@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/finding-addon-ids" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Finding addon IDs
+            </h1>
+            <div itemprop="articleBody">
+                <p>Some APIs use special IDs, such as a plugin ID or action ID. The editor provides some methods you can use from the browser console to explore which IDs are available.
+</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Listing addon IDs</h2>
+<p>The <code>C3SDK_ListAddonIDs(addonType)</code> method lists all installed addon IDs in the editor. The <em>addonType</em> parameter must be <code>"plugin"</code> or <code>"behavior"</code>. For example, load Construct 3 in a browser, open the browser console (usually F12), and enter the following call to list all plugin IDs:
+</p>
+
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token function">C3SDK_ListAddonIDs</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token string">"plugin"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>This may take a moment to load, but then it will log to the console the ID for every installed plugin, along with its name as used in the editor (since this is sometimes different to the ID for legacy reasons).
+</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Listing ACE IDs</h2>
+<p>The <code>C3SDK_ListACEIDs(addonType, addonId, aceType)</code> method lists the IDs for an addon's actions, conditions or expressions (ACEs). The parameters it takes are:
+</p>
+<ul class="list">
+<li><em>addonType</em>: as before, either <code>"plugin"</code> or <code>"behavior"</code>.</li>
+<li><em>addonId</em>: the ID of the addon, which can be found using <code>C3SDK_ListAddonIDs()</code>.</li>
+<li><em>aceType</em>: one of <code>"actions"</code>, <code>"conditions"</code> or <code>"expressions"</code>, determining which to list.</li>
+</ul>
+
+<p>For example the following call will list all of the Sprite plugin's action IDs. The parameters each takes are also listed.
+</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token function">C3SDK_ListACEIDs</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token string">"plugin"</span><span class="token punctuation">,</span> <span class="token string">"Sprite"</span><span class="token punctuation">,</span> <span class="token string">"actions"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw"></div></div></div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

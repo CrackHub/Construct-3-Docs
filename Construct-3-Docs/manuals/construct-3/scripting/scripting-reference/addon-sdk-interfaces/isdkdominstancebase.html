@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkdominstancebase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ISDKDOMInstanceBase addon SDK interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISDKDOMInstanceBase</code> interface is used as a runtime base class for DOM instances (which create a HTML element) in the addon SDK. It derives from <a class="extern" href="isdkworldinstancebase.html" rel="noopener" target="_blank" title="Make your own games">ISDKWorldInstanceBase</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>ISDKDOMInstanceBase APIs</h2>
+<dl>
+<dt>_postToDOMElement(handler, data)</dt>
+<dt>_postToDOMElementAsync(handler, data)</dt>
+<dd>Post a message from the runtime instance to the DOM side. The message is received using <code>AddDOMElementMessageHandler()</code> in <a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/domelementhandler.html" rel="noopener" target="_blank" title="Make your own games">DOMElementHandler</a>. <code>handler</code> is a string identifying the kind of message. <code>data</code> is a JSON object that is forwarded with the message to provide additional details. The async variant returns a promise that awaits an async handler on the DOM side and forwards the return value back to the runtime, which the returned promise resolves with. The non-async variant simply posts a message and ignores the result (i.e. fire-and-forget).</dd>
+<dt>_postToDOMElementMaybeSync(handler, data)</dt>
+<dd>As with <code>_postToDOMElement()</code>, but when the runtime is in DOM mode, calls the DOM handler synchronously inside the call. When the runtime is in worker mode, this still posts a message which is handled later. Usually this method is not necessary, but it can be used to work around some user input restrictions in some browsers in DOM mode only.</dd>
+<dt>_createElement(data)</dt>
+<dd>Instruct the runtime to create a DOM element for this instance. It will end up calling <code>CreateElement()</code> in <a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/domelementhandler.html" rel="noopener" target="_blank" title="Make your own games">DOMElementHandler</a> with <code>data</code> (an optional object with additional details to create with). The runtime associates the resulting element with this instance.</dd>
+<dt>focusElement()</dt>
+<dt>blurElement()</dt>
+<dd>Helper methods to manage calling <code>focus()</code> and <code>blur()</code> on the instance's associated DOM element.</dd>
+<dt>isElementFocused()</dt>
+<dd>Helper method to identify whether the associated HTML element is currently focused.</dd>
+<dt>setElementCSSStyle(prop, val)</dt>
+<dd>Helper method to set a CSS style on the instance's associated HTML element. For example <code>setElementCSSStyle("font-family", "sans-serif")</code> will be forwarded to <code>elem.style.fontFamily = "sans-serif"</code> on the DOM side.</dd>
+<dt>setElementAttribute(attribName, value)</dt>
+<dt>removeElementAttribute(attribName)</dt>
+<dd>Helper method to set or remove an attribute on the instance's associated HTML element.</dd>
+<dt>setElementVisible(isVisible)</dt>
+<dd>Set whether the associated HTML element is visible or invisible. This sets the CSS style <code>display: none</code> when invisible.</dd>
+<dt>_getElementState()</dt>
+<dd>Override to return a JSON object representing the state of the DOM element, e.g. the text content. This is used by <code>CreateElement()</code> and <code>UpdateElementState()</code> to retrieve state to pass to the DOM side.</dd>
+<dt>_updateElementState()</dt>
+<dd>Send a message from the runtime to the DOM side with the element state (retrieved from <code>GetElementState()</code>). This results in a call to <code>UpdateState(elem, e)</code> on the DOM side. This is a convenient way to make sure any changes to the DOM element are applied.</dd>
+<dt>_getElementInDOMMode()</dt>
+<dd>When the runtime is in DOM mode, this returns the HTML element associated with this instance. When the runtime is in worker mode this method will throw an exception, as the DOM is not directly accessible from a Web Worker.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

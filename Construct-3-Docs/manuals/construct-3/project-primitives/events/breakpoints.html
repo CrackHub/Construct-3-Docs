@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/breakpoints" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Breakpoints
+            </h1>
+<div itemprop="articleBody">
+<p><span class="ilTag c2">Paid plans only</span> Breakpoints are an advanced feature that allow you to pause execution of the event sheet on a specific <a class="extern" href="../events.html" rel="noopener" target="_blank" title="Make your own games">event</a>, <a class="extern" href="conditions.html" rel="noopener" target="_blank" title="Make your own games">condition</a> or <a class="extern" href="actions.html" rel="noopener" target="_blank" title="Make your own games">action</a> when running in the <a class="extern" href="../../interface/debugger.html" rel="noopener" target="_blank" title="Make your own games">debugger</a>. This can be a significant aid to debugging, since the full capabilities of the debugger can be used while stepping through events, conditions and actions one-by-one.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Setting a breakpoint</h2>
+<p>Breakpoints can be toggled on and off for the selected event block, condition or action by <strong>right-clicking</strong> them and selecting <span class="navWrap">Toggle breakpoint</span> or pressing the <kbd>F3</kbd> keyboard shortcut. Breakpoints can also be toggled while debugging.</p>
+<p>When a breakpoint is set on an event, condition or action, a breakpoint icon appears beside it.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/946/breakpoints1.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1179x292px in new window (45.38 KB)"><span><img alt="An event with a breakpoint set" height="146" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/946/breakpoints1_v600.png" width="590"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Pausing on a breakpoint</h2>
+<p>When running the debugger, the project will automatically pause <em>just before</em> it runs an event, condition or action with a breakpoint.</p>
+<p>For events, this means it pauses just before it tests the first condition. This means a top-level event with a breakpoint will pause every tick, since the event engine reaches it every tick to test its conditions. It is usually more useful to place event breakpoints on <a class="extern" href="sub-events.html" rel="noopener" target="_blank" title="Make your own games">sub-events</a>, since they will only pause when the parent events have been run. When paused on a breakpoint, the event has a dashed outline and the icon changes to an arrow.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/947/breakpoints2.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1173x299px in new window (46.06 KB)"><span><img alt="An event stopped on a breakpoint" height="149" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/947/breakpoints2_v600.png" width="586"/></span></a></div></div>
+<p>For conditions, this means it pauses just before it tests the condition. Since the condition has not yet been tested, the debugger does not know whether the condition will return true or false; you must resume execution to be able to tell. Note that Construct bails out of events early if any condition is false. This means a breakpoint on the second condition won't pause the project if the first condition is false, since Construct will immediately skip to checking the next event. When paused on a condition, it is also indicated with a dashed outline, an arrow and also a changed background color.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/948/breakpoints3.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1057x323px in new window (44.71 KB)"><span><img alt="A condition stopped on a breakpoint" height="161" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/948/breakpoints3_v550.png" width="528"/></span></a></div></div>
+<p>For actions, this means it pauses just before the action runs. Placing a breakpoint on the first action in an event is often more useful than placing a breakpoint on the event itself, since it will only pause when all the conditions have been met and before any actions have run, as opposed to just before it starts checking any conditions. When paused on an action, it is indicated similarly to a condition.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/949/breakpoints4.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1059x288px in new window (44.37 KB)"><span><img alt="An action stopped on a breakpoint" height="144" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/949/breakpoints4_v550.png" width="530"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Continuing execution</h2>
+<p>When paused on a breakpoint, the debugger can be used as normal to inspect or edit values. However the <em>Pause</em> and <em>Step</em> buttons change in to <strong>Continue</strong> and <strong>Next</strong>.</p>
+<p>Pressing <strong>Continue</strong> resumes until the next breakpoint is hit. Remember you can still toggle other breakpoints while paused on a breakpoint.</p>
+<p>Pressing <strong>Next</strong> will step to the next event, condition or action in sequence in the event sheet. Alternatively, press <kbd>F10</kbd> with the browser window focused. This is useful for stepping through an event action-by-action and watching what happens in the debugger's inspector.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Limitations</h2>
+<p>Unfortunately due to the architecture of the Construct engine, breakpoints cannot be placed inside some (but not all) triggered events. When not supported, this also means breakpoints cannot be anywhere inside sub-events to the triggered event.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Using breakpoints</h2>
+<p>Breakpoints can be incredibly useful to learn more about how your own events work and to help track down problems. They may take some getting used to in order to get the most out of them, but once familiar they can be indispensable.</p>
+<p>It is especially useful to have a multi-monitor setup when using breakpoints, or with the debugger in general. This allows you to have Construct showing which event it has reached on one screen, and the project running on another screen.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

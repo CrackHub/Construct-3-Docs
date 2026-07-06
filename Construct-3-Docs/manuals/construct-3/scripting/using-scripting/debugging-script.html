@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/using-scripting/debugging-script" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Debugging script
+            </h1>
+<div itemprop="articleBody">
+<p>Browsers provide comprehensive developer tools ("dev tools" for short) to help debug and profile JavaScript code. Construct is designed to allow you to use these industry-standard tools to also debug code used in your project.</p>
+<p>Developer tools are complex and sophisticated tools used by professional developers. For full documentation you should refer to each browser's own dev tools documentation, such as <a class="extern outlink" href="https://developers.google.com/web/tools/chrome-devtools/" rel="nofollow noopener external" target="_blank" title="Go to: https://developers.google.com/web/tools/chrome-devtools/">Google's Chrome DevTools documentation</a>. However an overview is provided here, focusing on how to use dev tools with Construct specifically. Screenshots of dev tools are taken from Chrome's DevTools, as it is the most widely-used browser. Other browser's dev tools will look different, but generally they work in similar ways.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Debugging TypeScript</h2>
+<p>Browsers only directly support running JavaScript code. The way TypeScript works is it compiles the code in to JavaScript before running it, which generally amounts to deleting the type annotations. When debugging code written in TypeScript you'll actually find the compiled JavaScript output of your TypeScript code in the browser developer tools, all using the <em>.js</em> file extension rather than <em>.ts</em>. However this should not be a significant hindrance - it should look pretty much the same, including with all your comments, and only be missing the type annotations that TypeScript uses.</p>
+<p>As TypeScript compiles to JavaScript for running in the browser, the rest of this section refers to JavaScript code.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Construct's debugger</h2>
+<p>It should be noted that <a class="extern" href="../../interface/debugger.html" rel="noopener" target="_blank" title="Make your own games">Construct's debugger</a> cannot debug JavaScript - only the browser dev tools can. In an event sheet Construct's debugger can only stop just before running a script block or script action, and continuing will run all the JavaScript in that block to completion and then advance to the next block. Construct's debugger has no way to stop on code in script files at all. Therefore it is not generally useful for debugging JavaScript code.</p>
+<p>Using both the Construct debugger and browser dev tools simultaneously is possible, but is likely to be very confusing. Therefore it is recommended to only use one or the other at a time.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Opening dev tools</h2>
+<p>First make sure you have a preview window running and focused before opening developer tools. Otherwise you will open developer tools for the Construct editor, which is not useful, and due to security issues will show a warning in the console.</p>
+<p>Once a preview is running, in most browsers you can press <kbd>F12</kbd> to open developer tools. In Safari, use <kbd>⌥</kbd><kbd>⌘</kbd><kbd>I</kbd>.</p>
+<p>Normally the dev tools window can be undocked, so it appears in its own window. This is the easiest way to see the largest possible dev tools window, which is important for more advanced tasks like debugging JavaScript code.</p>
+<p>For more information, including using remote debugging to open developer tools for a mobile device, see the tutorial <a class="extern" href="https://www.construct.net/tutorials/checking-errors-browsers-5.html" rel="noopener" target="_blank" title="Make your own games">Checking for errors in browsers</a>.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>The console</h2>
+<p>The <em>Console</em> tab provides a list of messages, used for development purposes. Calling <code>console.log("Hello!")</code> will add the message <em>Hello!</em> here. For more console features available in code, see the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/console" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/console">Console API</a>. Adding console messages to indicate which parts of the code have been reached, and the contents of any important variables, can be a useful way to diagnose code.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/132045/console-hello.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 858x123px in new window (5.95 KB)"><span><img height="62" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/132045/console-hello_v430.png" width="429"/></span></a></div></div>
+<p>You can also directly type in JavaScript code in the console, which runs when you press <kbd>Enter</kbd>. This is a useful way to try out snippets of code or quickly write and test a function to use in your project. If you are stopped on a breakpoint, code run in the console can also use any variables in the scope of the breakpoint. Often this is useful if you break in some code with the <code>runtime</code> variable available, allowing you to call <a class="extern" href="../scripting-reference/iruntime.html" rel="noopener" target="_blank" title="Make your own games">runtime script interface</a> functions from the console.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Debugging JavaScript code</h2>
+<p>A more sophisticated tool is the JavaScript debugger. This is an incredibly powerful tool that allows you to pause JavaScript execution at any point, and inspect and alter the full state of your program. Normally this can be found in the <em>Sources</em> tab of dev tools.</p>
+<h3>Finding your scripts</h3>
+<p>You can find any script files in your project in this section of the debugger. For example if you add <em>myScriptFile.js</em> to your project, it will be listed here (normally on the left). The file should appear under the origin <em>preview.construct.net</em>, since that is the domain that project previews run on. Your project scripts will also appear in the subfolder <strong>scripts/project</strong>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/139574/dev-tools-sources.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 955x511px in new window (85.02 KB)"><span><img height="256" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/139574/dev-tools-sources_v480.png" width="478"/></span></a></div></div>
+<p>There may also be a special script file named <em>javaScriptsInEvents.js</em>. As the name suggests, all JavaScript code used in event sheets appear in this file. Each code block appears as a function whose name is derived from its location in the event sheet, such as <em>EventSheet1_Event1_Act1</em>. There may also be <em>typeScriptInEvents.js</em> which is the same but for all TypeScript code used in event sheets, but note this is also the JavaScript output of compiling the original TypeScript file.</p>
+<p>Messages logged to the browser console also identify where they came from. You can click the location that logged the message to open that script in the debugger, which is a useful way to jump to the relevant code.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/132048/console-to-debugger.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 879x585px in new window (53.28 KB)"><span><img height="293" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/132048/console-to-debugger_v440.png" width="440"/></span></a></div></div>
+<h3>Using breakpoints</h3>
+<p>Once you have opened a script file in the debugger, you can add a breakpoint by clicking in the margin of the file, where the line numbers appear. The breakpoint can be removed by clicking it again. When the breakpoint is present, just before that line of code runs all script execution will pause and the debugger will highlight that line, allowing you to inspect the state of your code. In this state you can hover the mouse cursor over variables to see their values, look at the call stack, and even run code in the console to alter the state of the program or call functions.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/132050/debugger-code-breakpoint.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 823x381px in new window (36.58 KB)"><span><img height="191" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/132050/debugger-code-breakpoint_v420.png" width="412"/></span></a></div></div>
+<p>Execution will not continue until you resume the debugger. Normally there is a <em>Continue</em> button for this. There are also features to step one line at a time, jump in to or out of functions, and so on. With keyboard shortcuts experienced developers can comfortably control execution of their code through a debugger, watching how the program runs at every step.</p>
+<p>You can also use the special <em>debugger</em> statement in code:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">debugger</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Whenever this line of code runs, the debugger will automatically stop as if there was a breakpoint on that line. However it will always do this until you delete the statement from your code, whereas normal breakpoints can be removed at any time.</p>
+<h3>Breakpoints on startup</h3>
+<p>Breakpoints, including the <code>debugger</code> statement, only ever stop when dev tools are open. If you want to stop on a breakpoint run on startup, this means by the time you open dev tools, the code has already run without stopping. This can be solved by reloading the preview window once you have opened dev tools. Press <kbd>F5</kbd> with the preview window focused to refresh it, or right-click the caption and select <em>Reload</em>. (Some debuggers also provide a reload button.) Since the preview window reloads with dev tools open, all breakpoints in startup code will be able to stop.</p>
+<h3>Avoiding stepping in to runtime code</h3>
+<p>While debugging code that makes lots of calls to the runtime APIs, you may find yourself regularly stepping in to the internal runtime code. This is not normally useful as you only really want to debug your own code.</p>
+<p>You can avoid the debugger ever stepping in runtime code by ignoring the runtime scripts. The debugger will avoid ever showing you an ignored script, even if you try to step inside it. In Chrome you can ignore a runtime script if you step in to it, right-click the code, and then select <em>Add script to ignore list</em>.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>More tools and techniques</h2>
+<p>Browsers also provide advanced capabilities like profiling performance, tracking all network requests, and more. Many other debugging tools are also provided. This section has only scratched the surface; over time you'll find and learn useful debugging techniques that will help you learn to quickly diagnose problems in your code and fix them. These are invaluable tools that experienced developers cannot live without! For beginners, learning to use a debugger and step your code one line at a time is also a very useful technique. It will show you, step-by-step, exactly what your code is doing. This helps you learn the flow of a program and often helps reveal the cause of a problem in an obvious way, where you'd be completely stuck without it.</p>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

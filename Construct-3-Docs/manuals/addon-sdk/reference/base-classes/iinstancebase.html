@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/base-classes/iinstancebase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IInstanceBase interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IInstanceBase</code> interface is used as the base class for instances in the SDK. For "world" type plugins, instances instead derive from <a class="extern" href="iworldinstancebase.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstanceBase</a>, which itself derives from <code>IInstanceBase</code>.</p>
+<p><code>IInstanceBase</code> cannot be directly constructed; it should only be used as a base class.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Properties</h2>
+<dl>
+<dt>this._sdkType</dt>
+<dd>Reference to the associated SDK type class.</dd>
+<dt>this._inst</dt>
+<dd>Reference to the <a class="extern" href="../object-interfaces/iobjectinstance.html" rel="noopener" target="_blank" title="Make your own games">IObjectInstance</a> interface, or <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> interface for "world" type plugins, representing this instance in the editor. This allows access to Construct's built-in features for instances.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Methods</h2>
+<dl>
+<dt>Release()</dt>
+<dd>Optional override for when an instance is released.</dd>
+<dt>OnCreate()</dt>
+<dd>Optional override for when an instance is created in the editor.</dd>
+<dt>OnPropertyChanged(id, value)</dt>
+<dd>Optional override for when a property with the given ID is changed. The value the property was changed to is also passed.</dd>
+<dt>LoadC2Property(name, valueString)</dt>
+<dd>Optional override to use custom logic for importing properties from a Construct 2 project referencing a Construct 2 version of this plugin.</dd>
+<dt>GetProject()</dt>
+<dd>Return the <a class="extern" href="../model-interfaces/iproject.html" rel="noopener" target="_blank" title="Make your own games">IProject</a> representing the instance's associated project.</dd>
+<dt>GetObjectType()</dt>
+<dd>Convenience method to return the <a class="extern" href="../object-interfaces/iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> interface representing Construct's object type class.</dd>
+<dt>GetInstance()</dt>
+<dd>Return the <a class="extern" href="../object-interfaces/iobjectinstance.html" rel="noopener" target="_blank" title="Make your own games">IObjectInstance</a> corresponding to this instance.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

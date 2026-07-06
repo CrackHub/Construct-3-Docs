@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/mobile-iap" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Mobile IAP
+            </h1>
+            <div itemprop="articleBody">
+                <p>The <strong>Mobile IAP</strong> plugin allows a game to use consumable and non-consumable <strong>in app purchases</strong> (IAP) on Android and iOS.</p>
+
+
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Consumable vs Non-consumable</h2>
+
+<p>Non-consumable purchases can be bought once per user. A good use for this type of purchase is to distribute your game for free but with the majority of the content locked from the user. To unlock the rest of the content the user can purchase a premium upgrade. The plugin keeps track of these types of purchases for you across multiple user devices.</p>
+
+<p>Consumable purchases can be bought multiple times by each user. A good use for this type of purchase is to enable a timed bonus or virtual currency. You need to keep track of these types of purchase yourself.</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Setup</h2>
+
+<p>Before adding purchases to you game you will need to set up your application on Google Play and/or the App Store.</p>
+
+<p>To register an app on Google Play visit <a href="https://play.google.com/apps/publish" target="_blank" rel="nofollow noopener external" title="Go to: https://play.google.com/apps/publish" class="extern outlink">https://play.google.com/apps/publish</a>. To enable in app purchases you will also need to setup a Google payments merchants account at <a href="http://www.google.com/wallet/merchants.html" target="_blank" rel="nofollow noopener external" title="Go to: http://www.google.com/wallet/merchants.html" class="extern outlink">http://www.google.com/wallet/merchants.html</a>.</p>
+
+<p>To register an app on the App Store visit <a href="https://itunesconnect.apple.com/login" target="_blank" rel="nofollow noopener external" title="Go to: https://itunesconnect.apple.com/login" class="extern outlink">https://itunesconnect.apple.com/login</a></p>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>Registration stage</h2>
+
+<p>When making IAP events, the first thing you need to do is to complete the plugin's registration stage. You won't be able to make any purchases or check if a user owns a product until this is done. For each product you have you must call the <em>Add Product ID</em> action with the product ID and type (consumable or non-consumable). To finish registration you must call the  <em>Complete Product Registration</em> action. If registration succeeds then <em>On Registration Success</em> triggers. After this you are free to check the state of products and make purchases. </p>
+
+
+
+<p>You only need to register the products once per session. Using the <em>Add product ID</em> or <em>Complete product registration</em> actions after calling registration will have no effect.</p>
+
+<a class="internalNavLink" name="internalH1Link3" id="internalH1Link3"></a><h2>Displaying products</h2>
+
+<p>When offering a product to a user it is important to first ensure that it is available for purchase, otherwise the user will not be able to purchase it. A product may not be available if it is already owned, is invalid, has been flagged as unavailable by the store or (if consumable) is in the process of being purchased. This plugin also includes expression to get the name and description of a product from the store. It's important that your application uses these where appropriate rather than text that you have included in your application, as the app store is known to reject applications that don't follow this rule. </p>
+
+<a class="internalNavLink" name="internalH1Link4" id="internalH1Link4"></a><h2>Keeping track of purchases</h2>
+
+<p>It's important to consider how you're going to keep track of user purchases before you start adding IAP events. Non-consumable purchases are tracked by the app stores, so you can easily find out if the user owns it. However, consumable products are a bit more tricky. The app stores don't track these, so you need to store information about these yourself. Initially it may seem appealing to store this information in Local Storage or similar, and while this works quite well for local testing it has a big issue: synchronization. If a user shares their account across multiple devices only the device that performed the purchase will know of it. This is also a pretty big issue if they move to a new device or reinstall your game, as they will lose content <strong>they have paid for</strong> and this tends to upset users. So best practice is to store this information in a remote database somewhere, that you can connect to from your game to check the purchases a user has made.</p>
+
+<p>Exactly how you set this up very much depends on the game you are making and if you are offering a short timed bonus you may not even need a database. A simple setup would be a single number representing a user's balance of "magic gems" or similar. With a more complicated game you may choose to store the entire game state on the server; the world, balance of virtual currency, purchases of virtual goods made with virtual currency and purchases of virtual currency with real currency. A complete setup like this has the bonus of a user not losing virtual goods when moving device, and being able to play the game on multiple devices, but does increase your network dependence.</p>
+
+<a class="internalNavLink" name="internalH1Link5" id="internalH1Link5"></a><h2>Testing</h2>
+
+<p>Both the app store and the play store offer mechanisms for testing purchases without spending real money. You should use these to confirm that your products have been correctly configured, and that your purchase flow works correctly for successful and unsuccessful purchases as well as checking ownership on subsequent runs of your application. While the plugin unifies purchases for iOS and Android there are subtle differences in timings and product behaviour that you may experience. These timing differences can upset your purchase flow, so it's important to check any timing assumptions you make for one platform hold for the other.</p>
+
+<a class="internalNavLink" name="internalH1Link6" id="internalH1Link6"></a><h2>Trigger order</h2>
+<p>Here are the sequence that triggers fire in for various scenarios.</p>
+
+<h3>Product not owned</h3>
+<p>On startup:</p>
+
+<ol class="list">
+	<li>On registration success</li>
+	<li>On product available</li>
+</ol>
+
+<p>On performing a successful purchase:</p>
+
+<ol class="list">
+	<li>On purchase success</li>
+	<li>On transaction finished</li>
+	<li>On product owned</li>
+</ol>
+
+<p>On performing a failed purchase:</p>
+
+<ol class="list">
+	<li>On purchase failed</li>
+</ol>
+
+<h3>Product already owned</h3>
+<p>On startup:</p>
+
+<ol class="list">
+	<li>On registration success</li>
+	<li>On product owned</li>
+</ol>
+
+<a class="internalNavLink" name="internalH1Link7" id="internalH1Link7"></a><h2>IAP properties</h2>
+<dl class="sans">
+	<dt>Validator URL</dt>
+	<dd>Optional URL of a receipt validation service to verify in-app purchases with. This is for advanced users to implement a server to ensure purchases are valid. The URL is passed to the underlying <code>cordova-plugin-purchase</code>; refer to the Cordova plugin documentation on <a href="https://github.com/j3k0/cordova-plugin-purchase/blob/master/api/classes/CdvPurchase.Store.md#validator" target="_blank" rel="nofollow noopener external" title="Go to: https://github.com/j3k0/cordova-plugin-purchase/blob/master/api/classes/CdvPurchase.Store.md#validator" class="extern outlink">store.validator</a> for technical details on how to set up or implement a validation service.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link8" id="internalH1Link8"></a><h2>IAP conditions</h2>
+<dl class="sans">
+
+	<dt>On Purchase Success</dt>
+	<dd>Triggers when a specific product purchase succeeds.</dd>
+
+	<dt>On Any Purchase Success</dt>
+	<dd>Triggers when any product purchase succeeds.</dd>
+
+	<dt>On Purchase Failed</dt>
+	<dd>Triggers when a specific product purchase fails.</dd>
+
+	<dt>On Any Purchase Failed</dt>
+	<dd>Triggers when a any product purchase fails.</dd>
+
+	<dt>On Registration Success</dt>
+	<dd>Triggers when registration has been completed (after the <em>Complete registration</em> action). This is a good time to check if a product is owned. You should wait for this trigger before attempting any purchases.</dd>
+
+	<dt>On Registration Failure</dt>
+	<dd>Triggers when registration failed. If this occurs then you won't be able to make any purchases.</dd>
+
+	<dt>On Product Available</dt>
+	<dd>Triggers when a specific product becomes available to purchase.</dd>
+
+	<dt>On Any Product Available</dt>
+	<dd>Triggers when any product becomes available to purchase.</dd>
+	
+	<dt>On Product Owned</dt>
+	<dd>Triggers when a specific product becomes owned. This triggers both after a first purchase for it, and on startup when the product was previously purchased, allowing easily identifying if the purchased product can be made use of.</dd>
+
+	<dt>On Any Product Owned</dt>
+	<dd>Triggers when any product becomes owned.</dd>
+
+	<dt>Product Owned</dt>
+	<dd>True if the current user owns the product.</dd>
+
+	<dt>Product Available</dt>
+	<dd>True if the current user can purchase the product.</dd>
+
+	<dt>Store Registered</dt>
+	<dd>True if the registration stage successfully completed.</dd>
+
+	<dt>On transaction finished</dt>
+	<dd>Triggered when the store transaction for a purchase has finished. The transaction ID is available in the <em>TransactionID</em> expression.</dd>
+
+</dl>
+
+<a class="internalNavLink" name="internalH1Link9" id="internalH1Link9"></a><h2>IAP Actions</h2>
+<dl class="sans">
+
+	<dt>Add product ID</dt>
+	<dd>Add a new product to the plugin by specifying the ID and type (consumable or non-consumable). This can only be called in the registration stage.</dd>
+
+	<dt>Complete product Registration</dt>
+	<dd>Ends the registration stage. After this has been called you will no longer be able to register products. This must be called before you can purchase products. <em>On registration success</em> will trigger if successful.</dd>
+
+	<dt>Restore Purchases</dt>
+	<dd>Restores user purchases. This is not necessary on Android.</dd>
+
+	<dt>Purchase Product</dt>
+	<dd>Triggers the purchase of a product with a specific ID. This product must be available to purchase. <em>On Purchase Success/Failed</em> will trigger depending on the outcome of the purchase. If the purchase is successful, <em>On product owned</em> will also trigger, as well as on startup in future sessions while the product is still owned.</dd>
+
+</dl>
+
+<a class="internalNavLink" name="internalH1Link10" id="internalH1Link10"></a><h2>IAP Expressions</h2>
+<dl class="sans">
+
+	<dt>ProductName(ProductID)</dt>
+	<dd>Get the name of a product from its ID. This is the localized name provided by the store, you should use it instead of a hard-coded string.</dd>
+
+	<dt>ProductPrice(ProductID)</dt>
+	<dd>Get the price of a product from its ID. This is the localized value provided by the store, you should use it instead of a hard-coded value.</dd>
+
+	<dt>ProductDescription(ProductID)</dt>
+	<dd>The description of a product from its ID. This is the localized string provided by the store, you should use it instead of a hard-coded string.</dd>
+
+	<dt>ProductID</dt>
+	<dd>The ID of the current product in a trigger.</dd>
+
+	<dt>TransactionID</dt>
+	<dd>In <em>On transaction finished</em>, the ID of the transaction that finished, using the ID provided by the store.</dd>
+
+	<dt>ErrorMessage</dt>
+	<dd>In an error trigger, the relevant error message, if any.</dd>
+</dl>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

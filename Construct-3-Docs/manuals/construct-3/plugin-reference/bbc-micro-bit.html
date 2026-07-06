@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/bbc-micro-bit" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                BBC micro:bit plugin
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>BBC micro:bit plugin</strong> allows communicating with the <a class="extern outlink" href="https://microbit.org/" rel="nofollow noopener external" target="_blank" title="Go to: https://microbit.org/">BBC micro:bit</a> single-board computer via Bluetooth.
+</p>
+<h3>Setup</h3>
+<p>For a guide on getting started using a BBC micro:bit in Construct, please refer to the tutorial <a class="extern" href="https://www.construct.net/tutorials/getting-started-bbc-microbit-3060.html" rel="noopener" target="_blank" title="Make your own games">Getting started with the BBC micro:bit</a>. This also covers the system requirements for the feature. This manual entry is a reference only for Construct's BBC micro:bit plugin.
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>BBC micro:bit properties</h2>
+<dl class="sans">
+<dt>Enable accelerometer</dt>
+<dt>Enable buttons</dt>
+<dt>Enable magnetometer</dt>
+<dt>Enable temperature</dt>
+<dt>Enable LED display</dt>
+<dd>Check the corresponding boxes to enable using the various features of the BBC micro:bit from the plugin. If any feature is disabled, note the corresponding conditions, actions and expressions for that feature will not work. Turning off unused features may improve the reliability of the Bluetooth connection. If you do turn off features, don't forget which ones, to avoid confusion in case you try to start using that feature later on as you will then need to re-enable it.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>BBC micro:bit conditions</h2>
+<dl class="sans">
+<dt>Is device connected</dt>
+<dd>True if a device is currently connected via Bluetooth.</dd>
+<dt>Is supported</dt>
+<dd>True if the current browser/platform supports Bluetooth features necessary for communicating with the device (the Web Bluetooth API).</dd>
+<dt>On device connected</dt>
+<dd>Triggered after the <em>Request device</em> action successfully connects to a device over Bluetooth.</dd>
+<dt>On device disconnected</dt>
+<dd>Triggered when the Bluetooth connection to a device is lost. This may be intentional (e.g. using the <em>Disconnect device</em> action) or due to losing the Bluetooth signal.</dd>
+<dt>On request device failed</dt>
+<dd>Triggered after the <em>Request device</em> action if it failed to establish a Bluetooth connection to a device. This includes the user cancelling the prompt to connect to a device.</dd>
+<dt>On accelerometer reading</dt>
+<dd>Triggered while connected to a device whenever a reading from the accelerometer sensor is received via Bluetooth. This requires <em>Enable accelerometer</em> to be checked in the object's properties. The reading is available via the accelerometer expressions.</dd>
+<dt>On bearing reading</dt>
+<dd>Triggered while connected to a device whenever a reading from the magnetometer sensor is received via Bluetooth. This requires <em>Enable magnetometer</em> to be checked in the object's properties. The reading is available via the <em>Bearing</em> expression. </dd>
+<dt>On button pressed</dt>
+<dd>Triggered while connected to a device whenever one of the device buttons is pressed, released or held down for a moment (also known as "long pressed"). This requires <em>Enable buttons</em> to be checked in the object's properties.</dd>
+<dt>On temperature reading</dt>
+<dd>Triggered while connected to a device whenever a reading from the thermometer is received via Bluetooth. This requires <em>Enable temperature</em> to be checked in the object's properties. The reading is available via the <em>Temperature</em> expression.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>BBC micro:bit actions</h2>
+<dl class="sans">
+<dt>Request device</dt>
+<dd>Request to connect to a BBC micro:bit device over Bluetooth. This must be used in a user input trigger, such as a button click or a tap, as browsers block requests not started by user input. If a Bluetooth connection is established successfully, <em>On device connected</em> will trigger. If the user cancels or the request is otherwise unsuccessful, <em>On request device failed</em> will trigger.</dd>
+<dt>Disconnect device</dt>
+<dd>Disconnect from a currently connected device. All communication with the device will stop and both the Construct project and the device will become available to connect to something else.</dd>
+<dt>Clear LED state</dt>
+<dd>Reset the LED state stored in the plugin so that all LEDs are set to off. Note this does not affect the device until the <em>Update LEDs</em> action is used.</dd>
+<dt>Set LED state</dt>
+<dd>Set one of the LED states on or off in the state stored in the plugin. The LED is specified by its zero-based column and row, so note that the first column and first row have the index 0. Also note that as the device has a 5x5 display, the last columna nd row index that can be used is 4. Note this does not affect the device until the <em>Update LEDs</em> action is used.</dd>
+<dt>Update LEDs</dt>
+<dd>Send the current LED state stored in the plugin to the device via Bluetooth. This requires <em>Enable LED display</em> to be checked in the object's properties. Note that the <em>Clear LED state</em> and <em>Set LED state</em> actions do not affect the device: they only update the LED state stored in the plugin. This action then transmits the LED state stored in the plugin to the device for display, so the former actions can be used to set up the intended LED display, and then this action used to update the actual display on the device.</dd>
+<dt>Scroll text</dt>
+<dd>Display a short message (up to 20 characters) on the device's LED display. This requires <em>Enable LED display</em> to be checked in the object's properties.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>BBC micro:bit expressions</h2>
+<dl class="sans">
+<dt>DeviceID</dt>
+<dd>A string with a unique ID for the connected device.</dd>
+<dt>AccelerometerRawX</dt>
+<dt>AccelerometerRawY</dt>
+<dt>AccelerometerRawZ</dt>
+<dd>The raw accelerometer readings received from the device, updated in <em>On accelerometer reading</em>. Each axis returns a number ranging from -1 to 1. The raw readings are the unmodified readings as determined by the sensor - these readings can be "noisy" and have a lot of variation in them, so it may be preferable to use the smoothed readings, or implement your own smoothing calculation.</dd>
+<dt>AccelerometerSmoothedX</dt>
+<dt>AccelerometerSmoothedY</dt>
+<dt>AccelerometerSmoothedZ</dt>
+<dd>Smoothed accelerometer readings received from the device, updated in <em>On accelerometer reading</em>. Each axis returns a number ranging from -1 to 1. The smoothed readings employ a simple calculation to eliminate some of the noise in the raw readings, which can be helpful for a smoother and more reliable reading.</dd>
+<dt>Bearing</dt>
+<dd>The bearing reading in degrees from due north, updated in <em>On bearing reading</em>. This requires <em>Enable magnetometer</em> to be checked in the object's properties, and note the device must be calibrated before readings will be received.</dd>
+<dt>Temperature</dt>
+<dd>The thermometer reading in degrees celcius, updated in <em>On temperature reading</em>. This requires <em>Enable temperature</em> to be checked in the object's properties.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

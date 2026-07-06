@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/progress-bar" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Progress bar
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Progress bar</strong> object displays a bar which can be used to indicate the progress of a long-running operation or goal.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/1018/progressbar.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 305x53px in new window (2.8 KB)"><span><img alt="A progress bar" height="53" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/1018/progressbar.png" width="305"/></span></a></div></div>
+<p>The progress bar is styled differently depending on the platform or browser, designed to match the style of the system. If a custom style is desired, it may instead be preferable to use a <a class="extern" href="tiled-background.html" rel="noopener" target="_blank" title="Make your own games">Tiled Background</a> which has its width set depending on the progress.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/progress-bar.html" rel="noopener" target="_blank" title="Make your own games">IProgressBarInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Layering HTML objects</h2>
+<p>This object displays using a HTML element rather than drawing in to the canvas. This means its layering works differently to other objects. To learn more about how to layer HTML objects, see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Progress bar properties</h2>
+<dl class="sans">
+<dt>Value</dt>
+<dd>The initial progress display to show, from 0 to the maximum.</dd>
+<dt>Maximum</dt>
+<dd>The maximum progress value, at which point the progress bar is shown full indicating a completed operation.</dd>
+<dt>Tooltip</dt>
+<dd>An optional tooltip to show while hovering the mouse over the control.</dd>
+<dt>Initially visibile</dt>
+<dd>Whether the control is initially visible or invisible in the page.</dd>
+<dt>ID <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>id</em> attribute for the element in the DOM (Document Object Model). This can be useful for CSS styling.</dd>
+<dt>Class <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>class</em> attribute for the element in the DOM (Document Object Model). This can be useful for CSS styling.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Progress bar conditions</h2>
+<p>See <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">common conditions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Compare progress</dt>
+<dd>Compare the currently set progress amount.</dd>
+<dt>On clicked</dt>
+<dd>Triggered when the progress bar control is clicked.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Progress bar actions</h2>
+<p>See <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">common actions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Make indeterminate</dt>
+<dd>Set the progress bar in to an indeterminate mode, intended to indicate that it is working, but the progress is unknown. The display of this mode depends on the browser and platform. Not all browsers may support an indeterminate mode for progress bars.</dd>
+<dt>Set maximum</dt>
+<dd>Set the maximum progress value for the progress bar.</dd>
+<dt>Set progress</dt>
+<dd>Set the current progress value displayed by the progress bar, from 0 to the maximum.</dd>
+<dt>Set tooltip</dt>
+<dd>Set the tooltip that appears when the mouse hovers over the control.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Progress bar expressions</h2>
+<dl class="sans">
+<dt>Maximum</dt>
+<dd>The currently set maximum progress value.</dd>
+<dt>Progress</dt>
+<dd>The currently set progress amount, if the bar is not in indeterminate mode.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

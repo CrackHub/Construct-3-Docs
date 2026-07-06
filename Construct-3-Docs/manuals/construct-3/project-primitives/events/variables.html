@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/variables" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Event variables
+            </h1>
+<div itemprop="articleBody">
+<p><strong>Event variables</strong> are number or text values which are either <strong>global</strong> to the whole project or <strong>local</strong> to a range of events. They are modified using the <a class="extern" href="../../interface/dialogs/event-variable.html" rel="noopener" target="_blank" title="Make your own games">Event Variable dialog</a>. To add an event variable, <strong>right-click</strong> on an event, another variable, or an empty space in the event sheet, and select <span class="navWrap">Add global variable</span> or <span class="navWrap">Add local variable</span>, or press the <kbd>V</kbd> <a class="extern" href="../../interface/keyboard-shortcuts.html" rel="noopener" target="_blank" title="Make your own games">keyboard shortcut</a>. Variables at the root level of the event sheet (not indented beneath anything else) become global variables, whereas variables in groups or sub-events become local variables.</p>
+<p>Event variables are modified with the system actions in the <em>Global &amp; local variables</em> category. They can be retrieved by simply using their name in <a class="extern" href="expressions.html" rel="noopener" target="_blank" title="Make your own games">expressions</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Global variables</h2>
+<p>Global variables show a globe icon. They are always at the top level of an event sheet - they are not <a class="extern" href="sub-events.html" rel="noopener" target="_blank" title="Make your own games">sub-events</a> or inside any <a class="extern" href="groups.html" rel="noopener" target="_blank" title="Make your own games">groups</a>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/944/global-variable.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 636x59px in new window (4.96 KB)"><span><img alt="A global variable" height="30" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/944/global-variable_v320.png" width="318"/></span></a></div></div>
+<p>Global variables store their values between layouts. Events in any layout can access any global variable, even if it was created in a different event sheet that is not <a class="extern" href="includes.html" rel="noopener" target="_blank" title="Make your own games">included</a>.</p>
+<p>Global variables can be moved to another event sheet by cutting and pasting them. After being cut, references to the global variable will disappear because it has been removed; this is normal and nothing to worry about. When you paste the global variable, the references that disappeared will reappear again. Alternatively you can <strong>right-click</strong> the global variable and select <span class="navWrap">Move to event sheet...</span>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Local variables</h2>
+<p>Local variables are variables placed nested under other events, or inside a group. They also show with a different icon to global variables.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/945/local-variable.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 636x129px in new window (7.04 KB)"><span><img alt="A local variable" height="64" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/945/local-variable_v320.png" width="318"/></span></a></div></div>
+<p>The main difference between global and local variables is <strong>local variables can only be accessed in their scope</strong>. A local variable's scope is its level of sub-events. All other events at the same level of indentation, or lower levels, can access the local variable. Events <em>above</em> it (less indented) <em>cannot</em> access the local variable.</p>
+<p>For example, if an event variable is in a group of events, it becomes a local variable. Then, it will only appear as an option for a variable in events inside that group. In other groups or in other event sheets it does not appear at all and cannot be accessed. This makes the variable <em>local</em> to the <em>scope</em> in which it is placed.</p>
+<p>Local variables convenient for temporarily holding variables over a short range of events, such as to calculate an average value (where a temporary <em>sum</em> variable may be necessary). It also helps keep the project simple, since it prevents the need to create more global variables, which appear everywhere in the project even if they are not needed everywhere.</p>
+<p>The scope of local variables is designed to mimic how the scope of variables works in real programming languages.</p>
+<h3>Function parameters</h3>
+<p>Function parameters are a special kind of local variable, scoped to a function event. For more information see the section on <a class="extern" href="functions.html" rel="noopener" target="_blank" title="Make your own games">Functions</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Static and constant variables</h2>
+<p>By default, local variables reset to their initial value whenever entering their scope (usually every tick), like local variables in programming languages. If the variable is marked <em>static</em> in the Event Variable dialog it will persist its value permanently, like a global variable.</p>
+<p>Both global and local variables can be marked <em>constant</em>. This makes them read-only: they can be retrieved and compared, but not changed.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Finding references to variables</h2>
+<p><span class="ilTag c2">Paid plans only</span> You can quickly see a list of all references to a global or local variable by <strong>right-clicking</strong> it and selecting <span class="navWrap">Find all references...</span>. This will open the <a class="extern" href="../../interface/bars/find-results-bar.html" rel="noopener" target="_blank" title="Make your own games">Find Results bar</a> with a list of all places in the project the variable is used. This is also helpful for identifying if there are no references so the variable can be safely deleted.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

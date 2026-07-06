@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/file-chooser" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                File Chooser script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IFileChooserInstance</code> interface derives from <a class="extern" href="../object-interfaces/idominstance.html" rel="noopener" target="_blank" title="Make your own games">IDOMInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/file-chooser.html" rel="noopener" target="_blank" title="Make your own games">File Chooser plugin</a>.
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>File Chooser events</h2>
+<p>See <a class="extern" href="../interfaces/instance-event.html" rel="noopener" target="_blank" title="Make your own games">instance event</a> for standard instance event object properties.
+</p>
+<dl>
+<dt>"change"</dt>
+<dd>Fired when a file or set of files has been chosen from the input control.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>File Chooser APIs</h2>
+<dl>
+<dt>click()</dt>
+<dd>Acts as if the file chooser was clicked, which brings up the system file picker. This allows the button to be completely customized, as the actual File Chooser object can be moved offscreen, and a custom sprite or other object used to activate the <code>click()</code> method instead. </dd>
+<dt>clear()</dt>
+<dd>Reset the control to its initial state with no selection, clearing any prior picked file.</dd>
+<dt>getFiles()</dt>
+<dd>Return an array of <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/File" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/File">File</a> objects representing the currently chosen files.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

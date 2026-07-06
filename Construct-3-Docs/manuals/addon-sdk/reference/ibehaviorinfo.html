@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/ibehaviorinfo" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IBehaviorInfo interface
+            </h1>
+<div itemprop="articleBody">
+<p>IBehaviorInfo defines the configuration for a behavior. It is typically accessed in the behavior constructor via <code>this._info</code>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>SetName(name)</dt>
+<dd>Set the name of the addon. Typically this is read from the language file.</dd>
+<dt>SetDescription(description)</dt>
+<dd>Set the description of the addon. Typically this is read from the language file.</dd>
+<dt>SetVersion(version)</dt>
+<dd>Set the version string of the addon, in A.B.C.D form. Typically this is set to the <code>BEHAVIOR_VERSION</code> constant.</dd>
+<dt>SetCategory(category)</dt>
+<dd>Set the category of the addon. Typically this is set to the <code>BEHAVIOR_CATEGORY</code> constant. It must be one of <code>"attributes"</code>, <code>"general"</code>, <code>"movements"</code>, <code>"other"</code>.</dd>
+<dt>SetAuthor(author)</dt>
+<dd>Set a string identifying the author of the addon.</dd>
+<dt>SetHelpUrl(url)</dt>
+<dd>Set a string specifying a URL where the user can view help and documentation resources for the addon.</dd>
+<dt>SetIcon(url, type)</dt>
+<dd>Set the addon icon URL and type. By default the URL is <code>"icon.svg"</code> and the type is <code>"image/svg+xml"</code>. It is recommended to leave this at the default and use an SVG icon, since it will scale well to any display size or density. However you can change your addon to load a PNG icon with <code>SetIcon("icon.png", "image/png")</code>.</dd>
+<dt>SetIsOnlyOneAllowed(isOnlyOneAllowed)</dt>
+<dd>Set a boolean of whether the behavior is allowed to be added more than once to the same object. The default is <code>false</code>, which means the behavior can be added multiple times to the same object. Set to <code>true</code> to only allow it to be added once to each object.</dd>
+<dt>SetIsDeprecated(isDeprecated)</dt>
+<dd>Set a boolean of whether the addon is deprecated or not. If you wish to replace your addon with another one, the old one can be deprecated with <code>SetIsDeprecated(true)</code>. This makes it invisible in the editor so it cannot be used in new projects; however old projects with the addon already added can continue to load and work as they did before. This discourages use of the deprecated addon without breaking existing projects that use it.</dd>
+<dt>SetCanBeBundled(canBeBundled)</dt>
+<dd>Pass <code>false</code> to prevent the addon from being bundled via the <em>Bundle addons</em> project property. By default all addons may be bundled with a project, and it is recommended to leave this enabled for best user convenience. However if you publish a commercial addon and want to prevent it being distributed by project-bundling, you may wish to disable this.</dd>
+<dt>SetProperties(propertiesArray)</dt>
+<dd>Set the available addon properties by passing an array of <a class="extern" href="pluginproperty.html" rel="noopener" target="_blank" title="Make your own games">PluginProperty</a>. See <a class="extern" href="../guide/configuring-behaviors.html" rel="noopener" target="_blank" title="Make your own games">Configuring Behaviors</a> for more information.</dd>
+<dt>AddCordovaPluginReference(opts)</dt>
+<dd>Add a dependency on a Cordova plugin, that will be included when using the Cordova exporter. For more information see <a class="extern" href="specifying-dependencies.html" rel="noopener" target="_blank" title="Make your own games">Specifying dependencies</a>.</dd>
+<dt>AddFileDependency(opts)</dt>
+<dd>Add a dependency on another file included in the addon. For more information see <a class="extern" href="specifying-dependencies.html" rel="noopener" target="_blank" title="Make your own games">Specifying dependencies</a>.</dd>
+<dt>AddRemoteScriptDependency(url) <span class="ilTag c4">Not recommended</span></dt>
+<dd>Add a script dependency to a remote URL (on a different origin). For more information see <a class="extern" href="specifying-dependencies.html" rel="noopener" target="_blank" title="Make your own games">Specifying dependencies</a>.</dd>
+<dt>SetC3RuntimeScripts(arr)</dt>
+<dd>Pass an array of strings to set the list of runtime scripts the addon uses. The default list is the following, and note that this method entirely replaces it: <em>"c3runtime/behavior.js", "c3runtime/type.js", "c3runtime/instance.js", "c3runtime/conditions.js", "c3runtime/actions.js", "c3runtime/expressions.js"</em>.</dd>
+<dt>AddC3RuntimeScript(path)</dt>
+<dd>Add a single runtime script path to the existing list of runtime scripts the addon uses, e.g. "c3runtime/additionalScript.js".</dd>
+<dt>SetRuntimeModuleMainScript(path)</dt>
+<dd>Set the main script that the runtime loads as a module. When this method is called, Construct will only load that script, and it is expected that all your other scripts are imported in the main script. If this method is not called, Construct automatically generates a main script that imports every single runtime script - but note that makes it difficult to use modules properly. See <a class="extern" href="../guide/runtime-scripts.html" rel="noopener" target="_blank" title="Make your own games">runtime scripts</a> for more information.</dd>
+<dt>SetScriptInterfaceNames(opts)</dt>
+<dd>Use this method to tell Construct the names of your script interface classes. This is necessary to generate the correct TypeScript definition files. <code>opts</code> is an object which allows specifying the names for the <code>instance</code>, <code>behaviorType</code> and <code>behavior</code> interface names as necessary, e.g.:<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">SetScriptInterfaceNames</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-curly brace-open brace-level-2" id="pair-1-close">{</span>
+	<span class="token literal-property property">instance</span><span class="token operator">:</span> <span class="token string">"IBulletBehaviorInstance"</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-1-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div></dd>
+<dt>SetTypeScriptDefinitionFiles(arr)</dt>
+<dd>Specify an array of TypeScript definition files (.d.ts) your addon provides. This should be used to provide full TypeScript definitions of any script interfaces your addon provides, which is necessary for projects using TypeScript with your addon. Example: <div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">SetTypeScriptDefinitionFiles</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token punctuation brace-square brace-open brace-level-2" id="pair-3-close">[</span><span class="token string">"c3runtime/IBulletBehaviorInstance.d.ts"</span><span class="token punctuation brace-square brace-close brace-level-2" id="pair-3-open">]</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div></dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

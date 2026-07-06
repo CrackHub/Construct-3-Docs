@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/timelines/timeline" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timeline
+            </h1>
+<div itemprop="articleBody">
+<p>A timeline can gradually change values of an <a class="extern" href="../objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> over time to produce an animation. It allows for the co-ordination of complex transitions of many different instances at the same time.</p>
+<p>Although the most basic usage is to change the <strong>X</strong> and <strong>Y</strong> properties of an instance to produce movement, a timeline can be configured to affect almost every property that can be part of an instance. This includes all the common instance properties, <a class="extern" href="../objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variables</a>, <a class="extern" href="../objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effect</a> parameters, <a class="extern" href="../objects/behaviors.html" rel="noopener" target="_blank" title="Make your own games">behavior</a> properties and <a class="extern" href="../objects/plugins.html" rel="noopener" target="_blank" title="Make your own games">plugin</a> properties. Not all properties are supported by timelines as some of them don't make sense, such as any property that is only used on start up.</p>
+<p>Timelines can modify boolean and text properties, but since these can not be interpolated like numbers or colors to achieve a smooth transition, they just change as the timeline's play head reaches their property keyframes.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Adding Timelines</h2>
+<p>With the <a class="extern" href="../../interface/bars/timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a> open, create a timeline using any of the following methods:</p>
+<ul class="list">
+<li>Right-click the <strong>Timelines</strong> folder in the <a class="extern" href="../../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> and select <em>Add timeline</em></li>
+<li>Right-click a space in the <a class="extern" href="../../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a> and select <span class="navWrap">Timeline<span class="arr">►</span>Add timeline</span> (when the Timeline Bar is open)</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Nesting Timelines</h2>
+<p>With the Timeline Bar open and more than one timeline added to the project, use one of the following methods:</p>
+<ul class="list">
+<li>Use the <span class="navWrap">Timeline<span class="arr">►</span>Add timelines</span> option from the Timeline Bar <kbd>+</kbd> split button.</li>
+<li>Right-click any empty space in the Timeline Bar and use the context menu option <span class="navWrap">Timeline<span class="arr">►</span>Add timelines</span>.</li>
+<li>Drag the timeline you want to nest from the Project Bar into the Timeline Bar.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Timeline Properties</h2>
+<dl class="sans">
+<dt>Name</dt>
+<dd>The name of the timeline. It is a unique identifier and is used to refer to the timeline from an event sheet.</dd>
+<dt>Animation mode</dt>
+<dt>Result mode</dt>
+<dt>Ease</dt>
+<dt>Path mode</dt>
+<dd>See the section on common timeline element properties in <a class="extern" href="../timelines.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a>. These properties follow an inheritance pattern.</dd>
+<dt>Time</dt>
+<dd>The current time of the main time marker. This only affects the editor.</dd>
+<dt>Total time</dt>
+<dd>The total time for the timeline to be completed.</dd>
+<dt>Raw Step</dt>
+<dd>The increments the current time marker can take in the editor.<br/>
+When using the Step animation mode, this value will be used at runtime to produce the correct increments while playing the timeline. When <strong>Steps per second</strong> property is changed, this property is updated automatically.</dd>
+<dt>Steps per second</dt>
+<dd>This property is connected to the <strong>Raw step</strong> property, it is used to generate the correct Raw step value in a more intuitive way. When Raw step is changed, this property is updated automatically.</dd>
+<dt>Show UI elements</dt>
+<dd>See the section on common timeline element properties in <a class="extern" href="../timelines.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a>. Changing this property will apply the change to every sub-element.</dd>
+<dt>Use Step</dt>
+<dd>Use this property to avoid using the step value in the editor. If disabled, scrubbing to preview the timeline in the editor will be completely smooth.</dd>
+<dt>Resize mode</dt>
+<dd>Choose between <strong>Width &amp; Height</strong> and <strong>Scale X &amp; Scale Y</strong>. This tells the editor which pair of property tracks need to be created when creating keyframes after making size changes in the Layout View.</dd>
+<dt>Loop</dt>
+<dd>When the timeline finishes, continuously repeat it from the start again. When the timeline is nested this value is ignored and instead the value of the top most parent timeline is used.</dd>
+<dt>Ping pong</dt>
+<dd>When the timeline finishes, reverse the direction of playback, so it plays alternately forwards and in reverse. When the timeline is nested this value is ignored and instead the value of the top most parent timeline is used.</dd>
+<dt>Repeat count</dt>
+<dd>The number of times to repeat the timeline animation when not looping indefinitely. When the timeline is nested this value is ignored and instead the value of the top most parent timeline is used.</dd>
+<dt>Start on layout</dt>
+<dd>This is a dropdown that gives the option to choose at the start of which layout the timeline should start playing automatically. This property serves as a shortcut for the simple use case of just starting playback of a timeline at the beginning of a layout, without any further manipulation.</dd>
+<dt>Transform</dt>
+<dd>Whether a timeline's position keyframes should be transformed by changes produced by ancestors in it's own hierarchy, or not. Enabled by default.</dd>
+<dt>Use system timescale</dt>
+<dd>Whether a timeline will be affected by the system timescale or not. When disabled a timeline will continue producing changes regardless of the current system timescale.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

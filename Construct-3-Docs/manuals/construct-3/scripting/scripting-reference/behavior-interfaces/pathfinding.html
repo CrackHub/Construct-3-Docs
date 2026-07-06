@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/pathfinding" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Pathfinding behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IPathfindingBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/pathfinding.html" rel="noopener" target="_blank" title="Make your own games">Pathfinding behavior</a>.</p>
+<p>An additional <code>IPathfindingMap</code> interface is also used to represent the pathfinding map, i.e. grid of obstacles, which is shared between all Pathfinding behavior instances using the same cell size and cell border settings.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=scripting-pathfinding" rel="noopener" target="_blank" title="Make games in the browser">Scripting pathfinding example</a> for a demonstration of using these APIs to find and display a path around obstacles.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Pathfinding behavior events</h2>
+<p>See <a class="extern" href="../interfaces/behavior-instance-event.html" rel="noopener" target="_blank" title="Make your own games">behavior instance event</a> for standard behavior instance event object properties.</p>
+<dl>
+<dt>"arrived"</dt>
+<dd>Fired when a moving object comes to a stop at its destination.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Pathfinding behavior APIs</h2>
+<dl>
+<dt>map</dt>
+<dd>The <code>IPathfindingMap</code> interface representing this behavior instance's pathfinding map, such as where obstacles are. See the documentation on <code>IPathfindingMap</code> below.</dd>
+<dt>async findPath(x, y)</dt>
+<dd>Starts calculating a path to the given position in layout co-ordinates, and returns a promise that resolves when the path has been calculated. The promise resolves with a boolean indicating whether a path was found.</dd>
+<dt>async calculatePath(fromX, fromY, toX, toY)</dt>
+<dd>Calculates a path between any two positions, and returns a promise that resolves when the path has been calculated. The promise resolves with a boolean indicating whether a path was found. This can be used for pure pathfinding calculations without taking in to account the state of the instance: <code>findPath()</code> is designed for use with the instance movement and so will only allow one path starting at the object position to be calculated at a time, but <code>calculatePath</code> allows any number of paths to be calculated for any positions at any time.</dd>
+<dt>startMoving()</dt>
+<dd>Automatically start moving the object along the found path. This can only be used after a path has been successfully found.</dd>
+<dt>stop()</dt>
+<dd>If the object is moving along its path, causes it to stop.</dd>
+<dt>maxSpeed</dt>
+<dd>Set or get the maximum speed in pixels per second the object can move at, for use with <em>startMoving()</em>.</dd>
+<dt>speed</dt>
+<dd>Set or get the current speed of the object if it is currently moving along its path, in pixels per second. This cannot be negative or greater than <em>maxSpeed</em>.</dd>
+<dt>acceleration</dt>
+<dt>deceleration</dt>
+<dd>Set or get the acceleration and deceleration rates in pixels per second per second, for use with <em>startMoving()</em>.</dd>
+<dt>rotateSpeed</dt>
+<dd>Set or get the rate at which the object can rotate in radians per second, for use with <em>startMoving()</em>. Note this can affect the speed of the object: if the rotation speed is low, the object will have to slow down on tight corners.</dd>
+<dt>isCalculatingPath</dt>
+<dd>A read-only boolean indicating if a path is being calculated, e.g. via <em>findPath()</em>.</dd>
+<dt>isMoving</dt>
+<dd>A readonly boolean indicating if the object is currently moving along its path after calling <em>startMoving()</em>. It is set back to false after the object arrives at its destination.</dd>
+<dt>currentNode</dt>
+<dd>A read-only number indicating the zero-based index of the node the object is currently moving towards, while <em>isMoving</em> is true. This may skip ahead just before the object actually reaches the next node, in order to help it round corners.</dd>
+<dt>getNodeCount()</dt>
+<dd>Returns the number of nodes in the path that was found, after a path has been successfully found.</dd>
+<dt>getNodeXAt(i)</dt>
+<dt>getNodeYAt(i)</dt>
+<dt>getNodeAt(i)</dt>
+<dd>Return the position of a node in the path that was found, in layout co-ordinates, using the zero-based index of the node. This is only available after a path has been successfully found. The <code>getNodeAt()</code> variant returns <code>[x, y]</code>.</dd>
+<dt>*nodes()</dt>
+<dd>Iterates all nodes in the path that was found. This returns the same information as <code>getNodeAt()</code> but as a generator, yielding values of the form <code>[x, y]</code>.</dd>
+<dt>directMovementMode</dt>
+<dd>Set or get a string of one of <code>"none"</code>, <code>"to-destination"</code> or <code>"anywhere-along-path"</code> reflecting the direct movement mode. For more information about the effect of each mode, see the <em>Direct movement</em> property in the <a class="extern" href="../../../behavior-reference/pathfinding.html" rel="noopener" target="_blank" title="Make your own games">Pathfinding behavior manual entry</a>.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>IPathfindingMap interface</h2>
+<p>This interface is accessed via the <code>map</code> property of the Pathfinding behavior script interface, providing access to details such as the grid of obstacles.</p>
+<dl>
+<dt>cellSize</dt>
+<dt>cellBorder</dt>
+<dd>Read-only numbers with the corresponding Pathfinding behavior properties for this map.</dd>
+<dt>widthInCells</dt>
+<dt>heightInCells</dt>
+<dd>Read-only numbers with the current size of the pathfinding map in cells.</dd>
+<dt>isCellObstacle(x, y)</dt>
+<dd>Returns a boolean indicating if a cell in the obstacle grid is marked as an obstacle. This is useful for debugging or displaying the obstacle grid. Note the position is taken in cell co-ordinates rather than layout co-ordinates.</dd>
+<dt>isDiagonalsEnabled</dt>
+<dd>Set or get a boolean indicating whether paths moving along diagonals are allowed. If disabled, the result nodes along paths will only ever change at 90-degree angles (up, right, down and left). If enabled nodes can move along diagonals as well.</dd>
+<dt>moveCost</dt>
+<dd>Set or get an integer of the base path cost for moving a single cell. This affects the relative cost of additional costs added by other features. The default is 10. The move cost is rounded to an integer, and it is multiplied by the square root of 2 for the diagonal move cost if diagonals are enabled.</dd>
+<dt>async regenerateMap()</dt>
+<dd>Determine whether each cell in the obstacles grid is an obstacle again. This is a very CPU intensive action and should not be used regularly. If only part of the obstacle map has changed, prefer to use <em>regenerateRegion()</em> or <em>regenerateObjectRegion()</em>. Returns a promise indicating when the regeneration has finished. Note finding paths before the promise has resolved will not use the updated map.</dd>
+<dt>async regenerateRegion(startX, startY, endX, endY)</dt>
+<dt>async regenerateObjectRegion(objectClass)</dt>
+<dd>As with <em>regenerateMap()</em>, but only the specified area is updated. This is usually considerably faster than regenerating the entire map. However as with regenerating the entire obstacle map, changes only take effect after the returned promise resolves. <em>regenerateRegion()</em> takes a rectangle in layout co-ordinates to regenerate. <em>regenerateObjectRegion()</em> similarly regenerates the rectangle in the layout given by the bounding boxes of the instances of an <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a>. Note this can cover multiple rectangles if there are multiple instances.</dd>
+<dt>startPathGroup(baseCost = 1, cellSpread = 1, maxWorkers = 1)</dt>
+<dt>endPathGroup()</dt>
+<dd>Start and end a <em>path group</em>, which can be used to spread out the paths found inside the group. For more information refer to the corresponding <em>Start path group</em> and <em>End path group</em> actions in the <a class="extern" href="../../../behavior-reference/pathfinding.html" rel="noopener" target="_blank" title="Make your own games">Pathfinding behavior manual entry</a>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

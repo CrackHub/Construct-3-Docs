@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/iframe" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                iframe
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>iframe</strong> object can display another web page, or a string of some HTML content, in your project. It is named after the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe">&lt;iframe&gt; element</a>, which is what the object uses.</p>
+<p>This object can also be used to show embedded content, such as YouTube videos. For example if you choose to share a YouTube video and select the "embed" option, it provides some HTML code for an <em>iframe</em> element. The <code>src</code> attribute is the embed URL for the video, e.g. <a class="extern outlink" href="https://www.youtube.com/embed/pWiC5Ln_0yA" rel="nofollow noopener external" target="_blank" title="Go to: https://www.youtube.com/embed/pWiC5Ln_0yA">https://www.youtube.com/embed/pWiC5Ln_0yA</a>. This can be used in the <em>URL</em> property of Construct's iframe object to show the video in your game.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Layering HTML objects</h2>
+<p>This object displays using a HTML element rather than drawing in to the canvas. This means its layering works differently to other objects. To learn more about how to layer HTML objects, see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>iframe properties</h2>
+<dl class="sans">
+<dt>URL</dt>
+<dd>The URL of a web page to load inside the iframe.</dd>
+<dt>HTML content</dt>
+<dd>A string of HTML content to display inside the iframe. This loads the HTML locally and does not request a separate web page. This is only used if the <em>URL</em> property is left empty.</dd>
+<dt>Initially visible</dt>
+<dd>Whether the object is initially visible at runtime.</dd>
+<dt>ID</dt>
+<dd>An optional <code>id</code> attribute to set on the iframe element. This may be useful if you have other styles or JavaScript code that you want to use with the iframe.</dd>
+<dt>Allow</dt>
+<dd>An optional <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy">feature policy</a> string to set in the iframe's <code>allow</code> attribute, which specifies what the displayed page is allowed to do. The default is designed to allow embedded video playback on services like YouTube, granting the video permission to enter fullscreen, autoplay, and use encrypted media.</dd>
+<dt>Enable sandbox</dt>
+<dt>Sandbox</dt>
+<dd>Check <em>Enable sandbox</em> to add the <code>sandbox</code> attribute on the iframe element, providing enhanced security. The <em>Sandbox</em> property is then the string to use in the <code>sandbox</code> attribute. Enabling the sandbox starts by removing a wide range of capabilities, and then each capability can be re-enabled by adding it to the sandbox string. By default the sandbox string allows JavaScript execution, but blocks forms, popups, same-origin access, top-document navigation, and more. If you only display static HTML content, you can also remove the default <code>allow-scripts</code> to block any JavaScript execution at all. For more information see the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe">iframe sandbox attribute on MDN</a>.<br/>
+<br/>
+</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>iframe conditions</h2>
+<p>The iframe object does not have any of its own conditions. See <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">common conditions</a> for features shared between form control objects.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>iframe actions</h2>
+<p>See <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">common actions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Display HTML string</dt>
+<dd>Load a string of HTML content in the iframe. This is similar to using the <em>HTML content</em> property. If the iframe was previously displaying a URL, it will switch to the HTML content instead.</dd>
+<dt>Navigate to URL</dt>
+<dd>Load a new URL in the iframe. If the iframe was previously displaying a string of HTML, it will switch to loading this URL instead.</dd>
+<dt>
+</dt></dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>iframe expressions</h2>
+<p>The iframe object does not have any of its own expressions.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/xml" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                XML
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>XML</strong> plugin can parse and read data from XML documents. It uses <strong>XPath</strong> to access the XML document. XPath is a kind of query language for XML, similar to how SQL is a query language for databases. A description of how to use XPath is out of the scope of this manual; there are some free tutorials you can search for on the web.</p>
+<p><a class="extern" href="https://editor.construct.net/#open=xml" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of the XML plugin.</a></p>
+<p>Currently the XML plugin is read-only. You can read data but not change any values in the XML document.</p>
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in APIs for <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/XML/Parsing_and_serializing_XML" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/XML/Parsing_and_serializing_XML">parsing and serializing XML</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Loading an XML document</h2>
+<p>XML must be loaded as a string with the <em>Load</em> action. If you have a small snippet of XML, you can paste it directly in to the action parameter - but note in expressions a double-quote character (<code>"</code>) must be repeated twice (<code>""</code>) to avoid ending the string, which can be inconvenient. Instead it is recommended to load an XML <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project file</a> using the <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX</a> object. When the AJAX request completes, pass <code>AJAX.LastData</code> in to the <em>Load</em> action. Then the data from the file can be used.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>XML conditions</h2>
+<dl class="sans">
+<dt>For each node</dt>
+<dd>Repeat the event once for each node returned by an XPath query. Typically this will be used with a query that returns multiple nodes, e.g. <code>"/bookstore/book"</code> to select all "book" nodes under "bookstore". In the <em>For each node</em> event, the current node is set to the one currently being iterated. This means relative XPaths, like <code>"title/text()"</code>, work relative to the current node (in this case returning the text of the child "title" tag). <em>For each node</em> can also be nested, so you can iterate another list relative to the current node.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>XML actions</h2>
+<dl class="sans">
+<dt>Load</dt>
+<dd>Load an XML document from a string. See 'Loading an XML document' above.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>XML expressions</h2>
+<dl class="sans">
+<dt>NodeCount</dt>
+<dd>Return the number of nodes returned by an XPath expression. For example, this can count the number of elements with a given name. In a <em>For each node</em> event, the XPath is relative to the current node.</dd>
+<dt>NumberValue</dt>
+<dd>Return a number from an XPath expression. If multiple values are returned, only the first value is retrieved. In a <em>For each node</em> event, the XPath is relative to the current node.</dd>
+<dt>StringValue</dt>
+<dd>Return a string from an XPath expression. If multiple values are returned, only the first value is retrieved. In a <em>For each node</em> event, the XPath is relative to the current node.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

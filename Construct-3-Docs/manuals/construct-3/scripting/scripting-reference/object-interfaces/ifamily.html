@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/ifamily" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IFamily script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IFamily</code> script interface represents a family in the project, e.g. a family of Sprite object types created in the Project Bar.
+</p>
+<p><code>IFamily</code> derives from <a class="extern" href="iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> which is a base class shared with object types (<a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a>).
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Getting an IFamily</h2>
+<p>As with object types, references to the project's families are typically accessed through the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> interface <code>objects</code> property. For example <code>runtime.objects.Family1</code> would refer to the <code>IFamily</code> interface for the family <em>Family1</em>, assuming it was added to the project.
+</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Family APIs</h2>
+<dl>
+<dt>getAllObjectTypes()</dt>
+<dd>Returns an array of all the <a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> members of this family.</dd>
+<dt>*objectTypes()</dt>
+<dd>Iterates over all the members of this family (as <a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a>).</dd>
+<dt>hasObjectType(objectType)</dt>
+<dd>Returns a boolean indicating whether the specified <code>IObjectType</code> is a member of this family.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

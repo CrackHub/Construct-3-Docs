@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/particles" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Particles script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IParticlesInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/particles.html" rel="noopener" target="_blank" title="Make your own games">Particles plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Particles APIs</h2>
+<dl>
+<dt>isSpraying</dt>
+<dd>A boolean indicating whether the object is actively emitting particles (when in <em>Continuous spray</em> mode).</dd>
+<dt>rate</dt>
+<dd>Set or get the number of particles created per second. </dd>
+<dt>sprayCone</dt>
+<dd>Set or get the angle in radians through which particles are fired.</dd>
+<dt>initSpeed</dt>
+<dd>Set or get the initial speed of particles in pixels per second.</dd>
+<dt>initSize</dt>
+<dd>Set or get the initial size of each particle in pixels.</dd>
+<dt>initOpacity</dt>
+<dd>Set or get the initial opacity of each particle, as a float from 0 to 1.</dd>
+<dt>initXRandom</dt>
+<dt>initYRandom</dt>
+<dd>Set or get the range of random offsets to the particle's position on each axis.</dd>
+<dt>initSpeedRandom</dt>
+<dd>Set or get the range of random offset to the particle's speed on creation.</dd>
+<dt>initSizeRandom</dt>
+<dd>Set or get the range of random offset to the particle's size on creation.</dd>
+<dt>initGrowRate</dt>
+<dd>Set or get the initial grow rate (change in size over time) for each particle, in pixels per second. Zero will keep the same size over time, a positive value will increase the size of the particle over time, and a negative value will shrink it over time.</dd>
+<dt>initGrowRandom</dt>
+<dd>Set or get the range of random offset to the particle's grow rate on creation.</dd>
+<dt>acceleration</dt>
+<dd>Set or get the acceleration of each particle, in pixels per second per second.</dd>
+<dt>gravity</dt>
+<dd>Set or get the downwards acceleration caused by gravity, in pixels per second per second.</dd>
+<dt>lifeAngleRandom</dt>
+<dd>Set or get an amount of random change to each particle's angle to apply during its lifetime, in radians.</dd>
+<dt>lifeSpeedRandom</dt>
+<dd>Set or get an amount of random change to each particle's speed to apply during its lifetime, in pixels per second.</dd>
+<dt>lifeOpacityRandom</dt>
+<dd>Set or get an amount of random change to each particle's opacity to apply during its lifetime, in the range 0-1.</dd>
+<dt>timeout</dt>
+<dd>Set the time in seconds each particle can last before being destroyed when the <em>Destroy mode</em> is <em>Timeout</em>.</dd>
+<dt>setParticleObjectClass(iObjectClass)</dt>
+<dd>Call with an <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to set the Particles object to spawn instances of that object class instead of drawing its own particles. Pass <code>null</code> to restore the default behavior of the Particles object drawing its own particles. For more information see <em>Advanced particle effects</em> in the <a class="extern" href="../../../plugin-reference/particles.html" rel="noopener" target="_blank" title="Make your own games">Particles manual entry</a>.</dd>
+<dt>fastForward(time)</dt>
+<dd>Skip ahead the particle effect by a time in seconds. For example fast-forwarding by 3 seconds will cause the Particles object to instantly spawn, move and destroy particles as if 3 seconds had gone by. This is useful for making sure particle effects appear ready immediately, rather than taking a few seconds to move their particles out from the spawn point.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

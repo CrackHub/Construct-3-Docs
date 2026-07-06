@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/objects/plugins" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Plugins
+            </h1>
+<div itemprop="articleBody">
+<p>Plugins define a kind of object. For example, a Sprite is a kind of object, and the Audio object is a different kind. These are defined by the <em>Sprite plugin</em> and <em>Audio plugin</em> respectively. See the plugin reference for more information on individual plugins.</p>
+<p>JavaScript developers can make new plugins (and behaviors) using the <a class="extern" href="../../../addon-sdk.html" rel="noopener" target="_blank" title="Make your own games">Addon SDK</a>. See also <a class="extern" href="../../tips-and-guides/installing-third-party-addons.html" rel="noopener" target="_blank" title="Make your own games">Third-party addons</a> for information about installing addons.</p>
+<p>Most plugins define their own properties in the <a class="extern" href="../../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>. To see a full list, locate the plugin in the reference section.</p>
+<p>There are three main kinds of plugins:</p>
+<ol class="list">
+<li><strong>Visual plugins</strong> (e.g. Sprite) appear in the layout and draw something to the screen.</li>
+<li><strong>Hidden plugins</strong> (e.g. Array) are placed in a particular layout, but do not draw anything to the screen.</li>
+<li><strong>Project-wide plugins</strong> (e.g. Mouse, Audio) are added to the entire project, and can only be added once. There cannot be more than one object type or instance of a project-wide plugin. They simply enable a new capability (such as being able to take mouse input) to <a class="extern" href="../events.html" rel="noopener" target="_blank" title="Make your own games">events</a>.</li>
+</ol>
+<p>Construct is designed modularly. That means not much functionality is built in: you must insert a plugin before you can use the related features. For example, you cannot play back any audio before adding the Audio plugin to a project. This might seem unnecessary, but there are many project-wide plugins and it is unlikely every project will need to use all of them. For example, if the Audio plugin was automatically included with every project, even projects which do not need Audio support would end up burdened with its features and code. So remember if you do not add a plugin, it is not at all included in your project, and this helps your projects remain lean and efficient when exported.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

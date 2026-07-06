@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/iruntime" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Runtime script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IRuntime</code> script interface provides a way for JavaScript code in Construct to interact with the engine.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Accessing the runtime script interface</h2>
+<p>The runtime script interface is typically accessed with the name <code>runtime</code>. Note however this is not in a global variable: it is only passed in specific places.</p>
+<p>All scripts in event sheets have the runtime interface passed to them as a parameter named <code>runtime</code>. For more information see <a class="extern" href="../using-scripting/scripts-in-event-sheets.html" rel="noopener" target="_blank" title="Make your own games">Scripts in event sheets</a>.</p>
+<p>In script files, the runtime interface is only passed to the <code>runOnStartup()</code> method. Outside of that, it is your responsibility to pass it along wherever else it is needed. For more information see <a class="extern" href="../using-scripting/script-files.html" rel="noopener" target="_blank" title="Make your own games">Script files</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Runtime events</h2>
+<p>The following events can be listened for using the <code>addEventListener</code> method.</p>
+<dl>
+<dt>"resize"</dt>
+<dd>Fires when the display size changes, such as upon window resizes. The event object has <code>cssWidth</code> and <code>cssHeight</code> properties with the size of the main canvas in CSS units, and <code>deviceWidth</code> and <code>deviceHeight</code> properties with the size of the main canvas in device units.</dd>
+<dt>"window-maximized"</dt>
+<dt>"window-minimized"</dt>
+<dd>Fires when the main app window is maximized or minimized. These events are only supported in desktop exports (Windows, macOS and Linux).</dd>
+<dt>"pretick"</dt>
+<dt>"tick"</dt>
+<dt>"tick2"</dt>
+<dd>These events fire every tick, at different points during ticking the engine. Each tick, <code>"pretick"</code> fires first, then behaviors are ticked, then <code>"tick"</code> fires, then it runs event sheets, then <code>"tick2"</code> fires. Use the <code>runtime.dt</code> property to access delta-time and step the game's logic by that amount of time.</dd>
+<dt>"beforeprojectstart"</dt>
+<dt>"afterprojectstart"</dt>
+<dd>Fired once only when the first layout in the project starts. <code>"beforeprojectstart"</code> fires before the <a class="extern" href="layout-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout</a> event <code>"beforelayoutstart"</code> on the first layout, which in turn is before <em>On start of layout</em> triggers. <code>"afterprojectstart"</code> fires after the ILayout event <code>"afterlayoutstart"</code> on the first layout, which in turn is after <em>On start of layout</em> triggers. In both events, all instances on the first layout are created and available to modify.<br/>
+</dd>
+<dt>"beforeanylayoutstart"</dt>
+<dt>"afteranylayoutstart"</dt>
+<dt>"beforeanylayoutend"</dt>
+<dt>"afteranylayoutend"</dt>
+<dd>Fired whenever any layout starts or ends. The <em>start</em> events fire before and after the <em>On start of layout</em> trigger, and the <em>end</em> events fire before and after the <em>On end of layout</em> trigger. The event object has the property <code>layout</code> which is the <a class="extern" href="layout-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout</a> for the layout that is starting or ending. </dd>
+<dt>"keydown"</dt>
+<dt>"keyup"</dt>
+<dd>Fired when keys are pressed and release on the keyboard. These pass copies of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent">KeyboardEvent</a>.</dd>
+<dt>"mousedown"</dt>
+<dt>"mousemove"</dt>
+<dt>"mouseup"</dt>
+<dt>"dblclick"</dt>
+<dd>Fired when mouse input is received. These pass copies of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">MouseEvent</a>. </dd>
+<dt>"wheel"</dt>
+<dd>Fired when mouse wheel input is received. This passes a copy of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent">WheelEvent</a>.</dd>
+<dt>"pointerdown"</dt>
+<dt>"pointermove"</dt>
+<dt>"pointerup"</dt>
+<dt>"pointercancel"</dt>
+<dd>Fired when pointer input is received. This covers mouse, pen and touch input. These pass copies of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent">PointerEvent</a>. Construct also adds a <code>lastButtons</code> property for <code>"mouse"</code> type pointers with the previous <code>buttons</code> state, which makes it easier to detect if different mouse buttons have been pressed or released in this event. </dd>
+<dt>"deviceorientation"</dt>
+<dt>"devicemotion"</dt>
+<dd>Fired when device orientation or motion sensor input is received. These pass copies of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent">DeviceOrientationEvent</a> or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent">DeviceMotionEvent</a> respectively.<br/>
+<br/>
+</dd>
+<dt>"suspend"</dt>
+<dt>"resume"</dt>
+<dd>Triggered when the browser/app suspends and resumes execution. Normally when the app goes in to the background (e.g. minimized, or switched back to the home screen), execution of the app is suspended to conserve system resources and save battery power, firing the <code>"suspend"</code> event. When the app is reopened, the <code>"resume"</code> event is fired and execution resumes. The <code>isSuspended</code> property also reflects the current suspend state.</dd>
+<dt>"save"</dt>
+<dt>"load"</dt>
+<dd>Fired when the savegame system saves or loads the state of the game. The <code>saveData</code> property of the event object is extra JSON data to save in the "save" event, and the corresponding last saved data in the "load" event. This allows custom data stored in scripts to be integrated with the savegame system. Note this is serialized to JSON so things like object references and complex types cannot be saved directly.<br/>
+</dd>
+<dt>"savecomplete"</dt>
+<dt>"loadcomplete"</dt>
+<dd>Fired when the savegame system has completed saving or loading the state of the game. The <code>jsonString</code> property of the event object is a string with the full content of the saved/loaded data.</dd>
+<dt>"instancecreate"</dt>
+<dd>Fired whenever any new instance is created. The event object has an <code>instance</code> property referring to the <a class="extern" href="object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> (or derivative) that was created.</dd>
+<dt>"hierarchyready"</dt>
+<dd>Fired for the root instance in a hierarchy after all instances have finished creating - see the <a class="extern" href="object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> event for more details. When fired on IRuntime, the event object has an <code>instance</code> property referring to the <a class="extern" href="object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> (or derivative) that was created.</dd>
+<dt>"instancedestroy"</dt>
+<dd>Fired whenever any instance is destroyed. After this event, all references to the instance are now invalid, so any remaining references to the instance should be removed or cleared to <code>null</code> in this event. Accessing an instance after it is destroyed will throw exceptions or return invalid data. The event object has an <code>instance</code> property referring to the <a class="extern" href="object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> (or derivative) that was destroyed. It also has an <code>isEndingLayout</code> property to indicate if the object is being destroyed because it's the end of a layout, or destroyed for other reasons.</dd>
+<dt>"loadingprogress"</dt>
+<dd>Fired during a <a class="extern" href="https://www.construct.net/tutorials/loader-layouts-custom-loading-9.html" rel="noopener" target="_blank" title="Make your own games">loader layout</a> when the value of the <code>loadingProgress</code> property changes. </dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Runtime APIs</h2>
+<dl>
+<dt>addEventListener(eventName, callback)</dt>
+<dt>removeEventListener(eventName, callback)</dt>
+<dd>Add or remove a callback function for an event. See <em>Runtime events</em> above for the available events. </dd>
+<dt>objects</dt>
+<dd>An object with a property for each object class in the project. For example if the project has an object named <em>Sprite</em>, then <code>runtime.objects.Sprite</code> will refer to the <a class="extern" href="object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass interface</a> for <em>Sprite</em>.<br/>
+</dd>
+<dt>getInstanceByUid(uid)</dt>
+<dd>Get an instance (an <a class="extern" href="object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> or derivative) by its UID (Unique ID), a unique number assigned to each instance and accessible via its <code>uid</code> property.</dd>
+<dt>globalVars</dt>
+<dd>An object with a property for each <a class="extern" href="../../project-primitives/events/variables.html" rel="noopener" target="_blank" title="Make your own games">global variable</a> on an event sheet in the project. For example if the project has a global variable on an event sheet named <em>Score</em>, then <code>runtime.globalVars.Score</code> provides access to the global variable from script.<br/>
+</dd>
+<dt>mouse</dt>
+<dd>A shorthand reference to the <a class="extern" href="plugin-interfaces/mouse.html" rel="noopener" target="_blank" title="Make your own games">Mouse script interface</a>. This is only set if the Mouse plugin is added to the project.</dd>
+<dt>keyboard</dt>
+<dd>A shorthand reference to the <a class="extern" href="plugin-interfaces/keyboard.html" rel="noopener" target="_blank" title="Make your own games">Keyboard script interface</a>. This is only set if the Keyboard plugin is added to the project.</dd>
+<dt>touch</dt>
+<dd>A shorthand reference to the <a class="extern" href="plugin-interfaces/touch.html" rel="noopener" target="_blank" title="Make your own games">Touch script interface</a>. This is only set if the Touch plugin is added to the project.</dd>
+<dt>timelineController</dt>
+<dd>A shorthand reference to the <a class="extern" href="plugin-interfaces/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline Controller script interface</a>. This is only set if the Timeline Controller plugin is added to the project.</dd>
+<dt>platformInfo</dt>
+<dd>A shorthand reference to the <a class="extern" href="interfaces/iplatforminfo.html" rel="noopener" target="_blank" title="Make your own games">IPlatformInfo script interface</a>. Note this always available regardless of whether the Platform Info plugin has been added to the project.</dd>
+<dt>collisions</dt>
+<dd>The <a class="extern" href="interfaces/icollisionengine.html" rel="noopener" target="_blank" title="Make your own games">ICollisionEngine</a> interface providing access to collision APIs.</dd>
+<dt>layout</dt>
+<dd>An <a class="extern" href="layout-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout interface</a> representing the current layout.</dd>
+<dt>getLayout(layoutNameOrIndex)</dt>
+<dd>Get an <a class="extern" href="layout-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout interface</a> for a layout in the project, by a case-insensitive string of its name or its zero-based index in the project.</dd>
+<dt>getAllLayouts()</dt>
+<dd>Return an array of <a class="extern" href="layout-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout interfaces</a> representing all the layouts in the project, in the sequence they appear in the Project Bar.</dd>
+<dt>goToLayout(layoutNameOrIndex)</dt>
+<dd>End the current layout and switch to a new layout given by a case-insensitive string of its name, or its zero-based index in the project (which is the order layouts appear in the Project Bar with all folders expanded). Note the layout switch does not take place until the end of the current tick.</dd>
+<dt>renderer</dt>
+<dd>The <a class="extern" href="graphics-interfaces/irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> script interface representing Construct's renderer, which is used for drawing content. Note that content can only be drawn in certain events, such as <a class="extern" href="layout-interfaces/ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a>'s <code>"beforedraw"</code> and <code>"afterdraw"</code> events. However you may use the renderer to load resources such as textures at any time, including on startup.</dd>
+<dt>assets</dt>
+<dd>An <a class="extern" href="interfaces/iassetmanager.html" rel="noopener" target="_blank" title="Make your own games">IAssetManager interface</a> providing access to project assets like sound and music files or other project files, as well as audio decoding utilities.</dd>
+<dt>storage</dt>
+<dd>An <a class="extern" href="interfaces/istorage.html" rel="noopener" target="_blank" title="Make your own games">IStorage interface</a> providing access to storage from scripts. Storage is shared with the Local Storage plugin.</dd>
+<dt>projectId</dt>
+<dd>A string of the project ID, as specified in Project Properties.</dd>
+<dt>projectName</dt>
+<dd>A string of the project name, as specified in Project Properties.</dd>
+<dt>projectUniqueId</dt>
+<dd>A string of random characters that Construct automatically generated to uniquely identify this specific project.</dd>
+<dt>projectVersion</dt>
+<dd>A string of the project version, as specified in Project Properties.</dd>
+<dt>viewportWidth</dt>
+<dt>viewportHeight</dt>
+<dt>getViewportSize()</dt>
+<dd>Read-only numbers with the project viewport size, as specified in Project Properties. The method returns both values at the same time.</dd>
+<dt>loadingProgress</dt>
+<dd>Return the current load progress on a loader layout in the range 0 to 1. This is the same as the <em>LoadingProgress</em> <a class="extern" href="../../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expression</a>. For more information, see the tutorial <a class="extern" href="https://www.construct.net/tutorials/loader-layouts-custom-loading-9.html" rel="noopener" target="_blank" title="Make your own games">how to make a custom loading screen</a>.</dd>
+<dt>imageLoadingProgress</dt>
+<dd>Return the current loading progress of any memory management <em>Load</em> <a class="extern" href="../../system-reference/system-actions.html" rel="noopener" target="_blank" title="Make your own games">system actions</a> that are currently busy, on a scale of 0-1. This is the same as the <em>ImageLoadingProgress</em> <a class="extern" href="../../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expression</a>.</dd>
+<dt>sampling</dt>
+<dd>A string indicating the project's <em>Sampling</em> property with one of the strings <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code>.</dd>
+<dt>isPixelRoundingEnabled</dt>
+<dd>A boolean representing the project's <em>Pixel rounding</em> setting.</dd>
+<dt>anisotropicFiltering</dt>
+<dd>A string representing the <em>Anisotropic filtering</em> <a class="extern" href="../../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project property</a>. The string must be one of the following values: <code>"auto"</code>, <code>"off"</code>, <code>"2x"</code>, <code>"3x"</code>, <code>"4x"</code>, <code>"8x"</code> or <code>"16x"</code></dd>
+<dt>gameTime</dt>
+<dd>Return the in-game time in seconds, which is affected by the time scale. This is equivalent to the <em>time</em> system expression.</dd>
+<dt>wallTime</dt>
+<dd>Return the in-game time in seconds, which is not affected by the time scale. </dd>
+<dt>tickCount</dt>
+<dd>A read-only number with the number of ticks that have run since the project started.</dd>
+<dt>timeScale</dt>
+<dd>Set or get a number that determines the rate at which time passes in the project, e.g. 1.0 for normal speed, 2.0 for twice as fast, etc. This is useful for slow-motion effects or pausing.</dd>
+<dt>dt</dt>
+<dd>Return the value of delta-time, i.e. the time since the last frame, in seconds.</dd>
+<dt>dtRaw</dt>
+<dd>Return the wall-clock time in seconds since the last frame. Unlike <em>dt</em>, the "raw" value is not affected by the game time scale or the min/max delta-time clamping.</dd>
+<dt>minDt</dt>
+<dt>maxDt</dt>
+<dd>Set the limits on the delta-time (<code>dt</code>) measurement. If the real-world delta-time increases above the maximum delta-time, it stops increasing the measurement used by Construct, corresponding to a dropping framerate causing the project to run in slow-motion. Conversely if the real-world delta-time decreases below the minimum delta-time, it stops decreasing the measurement used by Construct, corresponding to an increasing framerate causing the project to run in fast-forward. The defaults are a minimum delta-time of 0 (meaning the project never goes in to fast-forward mode) and a maximum delta-time of 1 / 30 (corresponding to a framerate of 30 FPS), meaning the project begins to go in to slow-motion as the framerate drops below 30 FPS. Going in to fast-forward can be useful for a "catch-up time" mode, and going in to slow-motion with low framerates is useful to prevent objects stepping too far every frame which can result in skipped collisions and unstable gameplay. </dd>
+<dt>framerateMode</dt>
+<dd>Change the project <em>Framerate mode</em> property at runtime. This can be one of the following strings: <code>"vsync"</code>, <code>"fixed"</code>, <code>"unlimited-tick"</code> or <code>"unlimited-frame"</code>. When <code>"fixed"</code> mode is set, the target framerate can be set with the <code>fixedFramerate</code> property. For more details, see the corresponding <a class="extern" href="../../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project property</a>.</dd>
+<dt>fixedFramerate</dt>
+<dd>When <code>framerateMode</code> is <code>"fixed"</code>, then this property specifies the target framerate, e.g. 30 for 30 FPS.</dd>
+<dt>framesPerSecond</dt>
+<dd>A read-only number indicating how many frames per second (FPS) the project is rendering. The most common display refresh rate is 60 Hz, so typically an efficiently designed project will render at 60 FPS. Note however if nothing is changing on-screen, then nothing is rendered, and so the FPS measurement may fall to 0 or display a lower result; this does not indicate poor performance, only that fewer frames are necessary to render. The <code>ticksPerSecond</code> property indicates how frequently the engine is stepping, which may be different to the frames rendered per second.</dd>
+<dt>ticksPerSecond</dt>
+<dd>A read-only number indicating how many ticks per second (TPS) the project is running at. Each tick processes the logic of the game. Usually a new frame is also rendered every tick, but if nothing changes then rendering a frame is skipped; further, depending on the framerate mode, stepping the engine and drawing frames may happen at different rates. Therefore the ticks per second may produce a different measurement to the frames per second. Usually the project will continually tick even if nothing is visually changing, and only stop ticking if the project is suspended, such as by being minimized or going in to the background.</dd>
+<dt>cpuUtilisation</dt>
+<dd>A timer-based estimate of Construct's main thread CPU usage over the past second, as a percentage in the range 0-1. This can help with performance measurements. Note however this only measures time in function calls that Construct knows about, so it may not include time spent running custom JavaScript code. Timer-based measurements can also be unreliable as most modern CPUs deliberately slow down if not fully loaded in order to save power, so the reading can be misleadingly high unless the system is under full load.</dd>
+<dt>gpuUtilisation</dt>
+<dd>A timer-based estimate of the GPU usage over the past second, as a percentage in the range 0-1. Not all devices support this, in which case this returns <code>NaN</code>. Timer-based measurements can also be unreliable as most modern GPUs deliberately slow down if not fully loaded in order to save power, so the reading can be misleadingly high unless the system is under full load.</dd>
+<dt>isSuspended</dt>
+<dd>A read-only boolean indicating if the runtime is currently suspended. When suspended, the runtime stops ticking and drawing anything, and remains inactive. This is normally done to save resources while in the background, such as when a browser tab is in the background or the application window minimized. The <code>"suspend"</code> and <code>"resume"</code> events are fired when this property changes.</dd>
+<dt>exportDate</dt>
+<dd>A read-only <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> object representing the time the project was exported from Construct. In preview mode, this is the time the preview was launched.</dd>
+<dt>saveToSlot(slotName)</dt>
+<dt>saveToJSONString()</dt>
+<dt>loadFromSlot(slotName)</dt>
+<dt>loadFromJSONString()</dt>
+<dd>Save or load the full state of the project. The <em>slot</em> variants automatically save to/load from the browser local storage using <code>slotName</code> to identify the save. The <em>JSONString</em> variants save to/load from a string representing the full state of the project, which can be useful to store the data elsewhere (e.g. to upload/download save data from a cloud service). All the methods return a Promise that resolves with a string representing the full state of the project.</dd>
+<dt>callFunction(name, ...params)</dt>
+<dd>Call a function in an event sheet, by a case-insensitive string of its name. Each parameter added after the name is passed to the function. There must be at least as many parameters provided as the function uses, although any additional parameters will be ignored. If the function has a return value, it will be returned from this method, else it returns <code>null</code>.</dd>
+<dt>setReturnValue(value)</dt>
+<dd>This can only be called from a script in an <a class="extern" href="../../project-primitives/events/functions.html" rel="noopener" target="_blank" title="Make your own games">event sheet function</a> with a return type other than <em>None</em>. It is essentially equivalent to the <em>Set return value</em> action. However the fact this method can be called from script can make it easier to return a value from script from an event sheet function. For example an event sheet function could contain a single script action with the code <code>runtime.setReturnValue(getMyValue())</code>, which means anywhere the event sheet function is called it returns the value of calling <code>getMyValue()</code> in JavaScript.</dd>
+<dt>signal(tag)</dt>
+<dd>Triggers <em>On signal</em>, resumes any events waiting for a signal with the given tag, and resolves any promise returned by <code>waitForSignal().</code></dd>
+<dt>waitForSignal(tag)</dt>
+<dd>Returns a Promise that resolves when the given tag is signalled. It may be signalled by either the script API or an event sheet.</dd>
+<dt>random()</dt>
+<dd>Return a random number in the range [0, 1). This is similar to <code>Math.random()</code>, but can produce a deterministic sequence of values if the <a class="extern" href="../../plugin-reference/advanced-random.html" rel="noopener" target="_blank" title="Make your own games">Advanced Random</a> object overrides the system random.</dd>
+<dt>destroyMultiple(iterable)</dt>
+<dd>Destroys all instances in the iterable of <a class="extern" href="object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> (such as an array or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a> of instances). This is equivalent to a for-of loop calling <code>destroy()</code> on every instance; however it is significantly more efficient when destroying large numbers of instances, as the internal engine updates necessary after destroying an instance are only processed once rather than repeatedly.</dd>
+<dt>sortZOrder(iterable, callback)</dt>
+<dd>Sort the relative Z order of all the <a class="extern" href="object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstances</a> given by <em>iterable</em>, using a custom sort function as the <em>callback</em> which receives two <em>IWorldInstance</em> to compare as arguments. An example using a <em>myZOrder</em> instance variable for sorting a Sprite object's instances is given below.<br/>
+<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">runtime<span class="token punctuation">.</span><span class="token function">sortZOrder</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span>runtime<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>Sprite<span class="token punctuation">.</span><span class="token function">instances</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-0-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-0-open">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation brace-round brace-open brace-level-2" id="pair-1-close">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-1-open">)</span> <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>instVars<span class="token punctuation">.</span>myZOrder <span class="token operator">-</span> b<span class="token punctuation">.</span>instVars<span class="token punctuation">.</span>myZOrder<span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><br/>
+</dd>
+<dt>saveCanvasImage(format, quality, areaRect)</dt>
+<dd>Take a screenshot of the current display canvas. All parameters are optional - if none are specified, the entire canvas is saved in PNG format. The <code>format</code> parameter is a string of the MIME type of the image format to use, e.g. "image/png". Where a lossy format is used like "image/jpeg", the <code>quality</code> parameter is a number from 0-1 for the compression quality. A subset of the canvas area can be saved (e.g. for saving a cropped image) by specifying a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a> for the <code>areaRect</code> parameter using units of device pixels. The method returns a Promise that resolves with a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> of the resulting image.</dd>
+<dt>invokeDownload(url, filename)</dt>
+<dd>Invoke a download of the resource at the given <em>url</em>, downloading with the given <em>filename</em>. Locally-generated content can be downloaded with this method using either a data URI or blob URL for <em>url</em>.</dd>
+<dt>isInWorker</dt>
+<dd>A read-only boolean indicating if the runtime is currently running in the context of a Web Worker. This is controlled by the <em>Use worker</em> project property. In worker mode, a more limited set of browser APIs is available. See <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers">Functions and classes available to Web Workers</a>.</dd>
+<dt>getHTMLLayer(index)</dt>
+<dd>Retrieve the HTML element used to contain all HTML content on a given HTML layer in the project. The index is the zero-based index of the HTML layer (not the Construct layer). This method can only be used in DOM mode - if the project property <em>Use worker</em> is <em>Yes</em> then calling this method will throw an exception. This method is useful to obtain a parent element in which to insert custom HTML content such that it appears layered according to one of Construct's HTML layers. For more information see <a class="extern" href="../../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</dd>
+<dt>async alert(message)</dt>
+<dd>Show an alert message prompt using the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/alert" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Window/alert">alert()</a> method. This is provided as a runtime method since it forwards the call to the DOM in worker mode. Note that unlike the standard browser <code>alert()</code> method, this is an async method - in worker mode it returns a promise that is resolved when the alert is closed, and execution in the worker will continue while the alert is showing. In DOM mode, the alert is blocking and will stop all execution while the alert is showing (but it still returns a promise that resolves when the alert is closed).<br/>
+</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Runtime SDK events and APIs</h2>
+<p>These events and APIs are normally only needed for use with the <a class="extern" href="../../../addon-sdk.html" rel="noopener" target="_blank" title="Make your own games">Addon SDK</a> and should not normally be used when using JavaScript coding in Construct. However as they are also part of the <code>IRuntime</code> interface they are also documented here.</p>
+<h3>SDK events</h3>
+<dl>
+<dt>"afterload"</dt>
+<dd>Fired after the <code>_loadFromJson()</code> call after the rest of the runtime has finished loading some saved state. This means all objects are available and can be looked up by their UID. For example to save a reference to an instance, save its UID to JSON, load its UID and store it in <code>_loadFromJson()</code>, and then look it up with <code>getInstanceByUid()</code> in the "afterload" event.</dd>
+</dl>
+<h3>SDK APIs</h3>
+<dl>
+<dt>sdk</dt>
+<dd>Access the <a class="extern" href="addon-sdk-interfaces/isdkutils.html" rel="noopener" target="_blank" title="Make your own games">ISDKUtils</a> interface which implements more APIs specific to the addon SDK.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

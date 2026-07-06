@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/configuring-effects" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Configuring effects
+            </h1>
+<div itemprop="articleBody">
+<p>The main configuration for an effect is set by additional effect-specific properties in <a class="extern" href="addon-metadata.html" rel="noopener" target="_blank" title="Make your own games">addon.json</a>. The additional properties used by effects are listed below.</p>
+<dl>
+<dt>category</dt>
+<dd>The category the effect should appear in. This must be one of <code>"3d"</code>, <code>"blend"</code>, <code>"color"</code>, <code>"distortion"</code>, <code>"mask"</code>, <code>"normal-mapping"</code>, <code>"tiling"</code>, <code>"other"</code>.</dd>
+<dt>supported-renderers</dt>
+<dd>An array of strings indicating the supported renderers for this effect. By default (if omitted) it is <code>["webgl"]</code>. The string <code>"webgl2"</code> can be added to support a WebGL 2 variant of the effect - see the section on <a class="extern" href="configuring-effects/webgl-shaders.html" rel="noopener" target="_blank" title="Make your own games">WebGL shaders</a> for more details. The string <code>"webgpu"</code> can be added to support the WebGPU renderer with a shader written in WGSL - see the section on <a class="extern" href="configuring-effects/webgpu-shaders.html" rel="noopener" target="_blank" title="Make your own games">WebGPU shaders</a> for more details.</dd>
+<dt>blends-background</dt>
+<dd>Boolean indicating whether the effect blends with the background. Objects and layers can use effects that blend with the background, but layouts cannot.</dd>
+<dt>uses-depth</dt>
+<dd>Boolean indicating whether the effect samples the depth buffer with the <code>samplerDepth</code> uniform. This is used for depth-based effects like fog.</dd>
+<dt>cross-sampling</dt>
+<dd>Boolean indicating whether a background-blending effect has inconsistent sampling of the background and foreground. A normal blending shader like Multiply will sample the background and foreground 1:1, so each foreground pixel samples only the background pixel it is rendered to. This is consistent sampling so <code>cross-sampling</code> should be <code>false</code>. However an effect that distorts the background, like Glass or a masking Warp effect, can sample different background pixels to the foreground pixel being rendered, so should set <code>cross-sampling</code> to <code>true</code>. This must be specified so the effect compositor can ensure the correct result is rendered when this happens.</dd>
+<dt>preserves-opaqueness</dt>
+<dd>Boolean indicating whether the effect preserves opaque pixels, i.e. every input pixel with an alpha of 1 is also output with an alpha of 1. This is true for most color-altering effects, but not for most distorting effects, since in some cases a previously opaque pixel will be distorted in to a transparent area of the texture. This information is not currently used, but is important for front-to-back rendering algorithms.</dd>
+<dt>animated</dt>
+<dd>Boolean indicating whether the effect is animated, i.e. changes over time using the <code>seconds</code> uniform. This is used to ensure Construct keeps redrawing the screen if an animated effect is visible.</dd>
+<dt>must-predraw</dt>
+<dd>Boolean indicating whether to force the pre-draw step. Sometimes Construct tries to optimise effect rendering by directly rendering an object with the shader applied. Setting this flag forces Construct to first render the object to an intermediate surface, which is necessary for some kinds of effect.</dd>
+<dt>supports-3d-direct-rendering</dt>
+<dd>Boolean indicating whether 3D objects can render directly with this effect. This defaults to <code>false</code>, causing all 3D objects with the effect to first perform a pre-draw step, and then processing the effect on a 2D surface. If set to <code>true</code>, then 3D objects with the effect are allowed to render directly to the display with the effect being processed for each triangle in the geometry. This is usually more efficient and can be more appropriate for processing 3D effects. Note however that the effect compositor may still decide to add a pre-draw step in some circumstances, so this setting is not a guarantee that it will always use direct rendering.</dd>
+<dt>extend-box</dt>
+<dd>Amount to extend the rendered box horizontally and vertically. Normally the effect is clipped to the object's bounding box, but some effects like Warp need to be able to render a short distance outside of that for the correct result. This property lets you extend the rendered box by a number of pixels. This property uses <code>"horizontal"</code> and <code>"vertical"</code> sub-properties, e.g. <code>"extend-box": { "horizontal": 30, "vertical": 30 }</code></dd>
+<dt>is-deprecated</dt>
+<dd>Boolean to indicate a deprecated effect. This hides the effect from the <em>Add effect</em> dialog, but allows existing projects to continue using it. This allows an effect to be phased out without breaking projects.</dd>
+<dt>parameters</dt>
+<dd>An array of parameters that the effect uses. See the next section for more information.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Effect parameters</h2>
+<p>The <code>parameters</code> array in addon.json specifies a list of parameters that are passed to the shader as uniforms. These can be used to customise the appearance of the effect, and can also be changed at runtime. Each parameter is specified as an object with the following properties.</p>
+<dl>
+<dt>id</dt>
+<dd>A string identifying this parameter.</dd>
+<dt>c2id</dt>
+<dd><span class="ilTag c1">Optional</span> The corresponding ID used in a compatible legacy Construct 2 effect if this is not the same as the <code>id</code>. Note for color parameters, this can be a comma-separated list of the three parameter IDs previously used for the red, green and blue components, e.g. <code>"red,green,blue"</code>.</dd>
+<dt>type</dt>
+<dd>The type of the effect parameter. This can be one of <code>"float"</code>, <code>"percent"</code> or <code>"color"</code>. Floats pass a simple number. Percent displays a percentage in the 0-100 range but passes a float in the 0-1 range to the shader. Color shows a color picker and passes a vec3 with components in the 0-1 range to the shader.</dd>
+<dt>initial-value</dt>
+<dd>The initial value of the shader uniform, in the format the shader uses it (i.e. 0-1 range for percent parameters). For color parameters, use a 3-element array, e.g. [1, 0, 0] for red.</dd>
+<dt>uniform</dt>
+<dd><span class="ilTag c2">WebGL only</span> The name of the corresponding uniform in the shader. The uniform must be declared in GLSL with this name. It can use whichever precision you want, but the uniform type must be <code>vec3</code> for color parameters, otherwise <code>float</code>. </dd>
+<dt>interpolatable</dt>
+<dd>Set to <code>true</code> so the property can be supported by timelines.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Writing shaders</h2>
+<p>Construct supports rendering with both WebGL and the newer WebGPU. However these technologies use different shader languages: WebGL uses GLSL, and WebGPU uses WGSL. To support both renderers your effect will need to provide both a GLSL and WGSL shader which both render equivalently.</p>
+<p>For more details on writing shaders, see <a class="extern" href="configuring-effects/webgl-shaders.html" rel="noopener" target="_blank" title="Make your own games">WebGL shaders</a> for GLSL-specific information, and see <a class="extern" href="configuring-effects/webgpu-shaders.html" rel="noopener" target="_blank" title="Make your own games">WebGPU shaders</a> for WGSL-specific information.</p>
+<p>You should test your shader works with both renderers. Change the <em>Enable WebGPU</em> setting in the <em>Advanced</em> section of Project Properties to test both renderers. You can also change the <em>Enable WebGPU in editor</em> setting in Construct's Settings dialog to test both renderers with the editor's rendering in the Layout View.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

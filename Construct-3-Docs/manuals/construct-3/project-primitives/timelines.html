@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/timelines" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timelines
+            </h1>
+<div itemprop="articleBody">
+<p>There are several different elements that make up a timeline. When any of them are selected in the <a class="extern" href="../interface/bars/timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a>, their properties will be shown in the <a class="extern" href="../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>. Some of the properties only affect the timeline element that owns them, but there are others that also affect other elements below them in the hierarchy.</p>
+<p>The hierarchy is as follows:</p>
+<ul class="list">
+<li><strong><a class="extern" href="timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a></strong> contain Track Folders, Tracks, Value Tracks, Timelines and Timeline Folders</li>
+<li><strong><a class="extern" href="timelines/timeline-folder.html" rel="noopener" target="_blank" title="Make your own games">Timeline Folders</a></strong> contain Timelines and Timeline Folders</li>
+<li><strong><a class="extern" href="timelines/track-folder.html" rel="noopener" target="_blank" title="Make your own games">Track Folders</a></strong> contain Track Folders, Tracks and Value Tracks</li>
+<li><strong><a class="extern" href="timelines/track.html" rel="noopener" target="_blank" title="Make your own games">Tracks</a></strong> contain Property Track Folders, Property Tracks and Master Keyframes</li>
+<li><strong><a class="extern" href="timelines/track/value-track.html" rel="noopener" target="_blank" title="Make your own games">Value Tracks</a></strong> contain a single Property Track and Master Keyframes</li>
+<li><strong><a class="extern" href="timelines/property-track-folder.html" rel="noopener" target="_blank" title="Make your own games">Property Track Folders</a></strong> contain Property Track Folders and Property Tracks</li>
+<li><strong><a class="extern" href="timelines/property-track.html" rel="noopener" target="_blank" title="Make your own games">Property Tracks</a></strong> contain Property Keyframes</li>
+<li><strong><a class="extern" href="timelines/master-keyframe.html" rel="noopener" target="_blank" title="Make your own games">Master Keyframes</a></strong> contain Property Keyframes (which share a parent Track and position in the timeline)</li>
+<li><strong><a class="extern" href="timelines/property-keyframe.html" rel="noopener" target="_blank" title="Make your own games">Property Keyframes</a></strong> are always the last elements in the hierarchy and don't contain anything</li>
+</ul>
+<p>It is useful to remember that structure when making changes to the following properties of a timeline element:</p>
+<ul class="list">
+<li><strong>Animation mode</strong></li>
+<li><strong>Result mode</strong></li>
+<li><strong>Ease</strong></li>
+<li><strong>Path mode</strong></li>
+<li><strong>Enabled</strong></li>
+<li><strong>Visible</strong></li>
+<li><strong>Locked</strong></li>
+<li><strong>Show UI Elements</strong></li>
+</ul>
+<h3>Explicit property changes</h3>
+<p>Making a change to <strong>Enabled</strong>, <strong>Visible</strong>, <strong>Locked</strong> or <strong>Show UI Elements</strong> properties will trigger changes down the element's hierarchy, explicitly modifying all children.</p>
+<h3>Inherited property changes</h3>
+<p><strong>Animation mode</strong>, <strong>Result mode</strong>, <strong>Ease</strong> and <strong>Path mode</strong> properties follow an inheritance pattern. This means that the special <strong>"Default"</strong> value means to use the value defined by the element immediately above it in the hierarchy.</p>
+<p>In the case of <strong>Animation mode</strong> and <strong>Result mode</strong> the value <strong>"Default"</strong> can be used at the timeline level but since it is the top most element in the hierarchy it has a different meaning. If the special <strong>"Default"</strong> value is used at the timeline level and all previous elements in the hierarchy were using the <strong>"Default"</strong> value as well, it means to use the inherent value associated with the type of each property track. The inherent values for each type are described in the tables below.</p>
+<h3>Animation mode inherent values</h3>
+<table>
+<thead>
+<tr>
+<td>Property type</td>
+<td>value</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>Numeric</td>
+<td>Continuous</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>Continuous</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>Keyframe</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>Keyframe</td>
+</tr>
+</tbody></table>
+<h3>Result mode inherent values</h3>
+<table>
+<thead>
+<tr>
+<td>Property type</td>
+<td>Value</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>Numeric</td>
+<td>Relative</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>Absolute</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>Absolute</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>Absolute</td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Common Timeline Element Properties</h2>
+<ul class="list">
+<li><strong>Animation mode:</strong> used by property tracks and refers to the method used to interpolate between property keyframes. It can have the following values.
+	<ul class="list">
+<li><strong>Default:</strong> use the value defined by the element immediately above it in the hierarchy.</li>
+<li><strong>Continuous:</strong> a smooth transition between values using an easing function. Only numeric and color properties can use this mode.</li>
+<li><strong>Keyframe:</strong> This mode will not do a smooth transition - instead it will change the properties of the instances as the play head of the timeline reaches each property keyframe.</li>
+<li><strong>Step:</strong> a smooth transition, but it only shows values that fall in the step defined by the <strong>Step</strong> property of the timeline.</li>
+</ul>
+</li>
+<li><strong>Result mode:</strong> how the values in each property keyframe in a property track are interpreted when playing. Numeric values default to <strong>Relative</strong> mode, while text, boolean and color values default to using <strong>Absolute</strong> mode.
+	<ul class="list">
+<li><strong>Default:</strong> use the value defined by the element immediately above it in the hierarchy.</li>
+<li><strong>Relative:</strong> the timeline assigns values relative to the initial values each instance had, before the timeline started playing.</li>
+<li><strong>Absolute:</strong> the timeline assigns absolute values, and will not be affected by the initial state before the timeline started playing. In this mode the timeline overrides all other behaviors that might be affecting an instance.</li>
+</ul>
+</li>
+<li><strong>Ease:</strong> the function used to transition between each pair of property keyframes in a property track. There are several built in functions to choose from. Custom ease curves can also be designed in the <a class="extern" href="../interface/dialogs/ease-editor.html" rel="noopener" target="_blank" title="Make your own games">Ease editor</a>. The special <strong>"Default"</strong> value uses the value defined by the element immediately above it in the hierarchy.
+	
+	<ul class="list">
+<li><strong>Ease editor:</strong> A link to open the Ease editor with the ease selected in the <strong>Ease</strong> property. Doing this it is possible to edit not only a custom ease, but also a built in ease.</li>
+</ul>
+</li>
+<li><strong>Path mode:</strong> only relevant for the X and Y properties. Sets how to transition between property keyframe pairs.
+	<ul class="list">
+<li><strong>Default:</strong> use the value defined by the element immediately above it in the hierarchy.</li>
+<li><strong>Line:</strong> interpolate between the starting and ending position of each property keyframe pair to form a straight line.</li>
+<li><strong>Cubic Bezier:</strong> This mode will enable a few additional controls in the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a> to allow for transitions following a curved path.</li>
+</ul>
+</li>
+<li><strong>Visible:</strong> used by tracks to toggle the visibility of the corresponding <a class="extern" href="objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a>. This setting only takes effect while <strong>Edit Mode</strong> is turned on. It is only relevant for the editor and will not affect the timeline at runtime.</li>
+<li><strong>Enabled:</strong> used by property keyframes. A disabled property keyframe is not taken into consideration when playing a timeline.</li>
+<li><strong>Locked:</strong> A locked timeline element and its children cannot be modified through the Timeline Bar or Properties Bar. It is only relevant for the editor and will not affect the timeline at runtime.</li>
+<li><strong>Show UI Elements:</strong> changing this property will turn off the UI elements shown in the layout associated with the affected instances. It is only relevant for the editor and will not affect the timeline at runtime.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/configuring-plugins" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Configuring plugins
+            </h1>
+<div itemprop="articleBody">
+<p>The main configuration for a plugin is set in <strong>plugin.js</strong>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Plugin constants</h2>
+<p>The following constants are defined in the file-level scope:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">const</span> <span class="token constant">PLUGIN_ID</span> <span class="token operator">=</span> <span class="token string">"MyCompany_MyAddon"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token constant">PLUGIN_CATEGORY</span> <span class="token operator">=</span> <span class="token string">"general"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>The ID and version constants must match the values specified in <a class="extern" href="addon-metadata.html" rel="noopener" target="_blank" title="Make your own games">addon.json</a>.</p>
+<dl>
+<dt>PLUGIN_ID</dt>
+<dd>This is a unique ID that identifies your plugin from all other addons. This must not be used by any other addon ever published for Construct 3. <strong>It must never change</strong> after you first publish your addon. (The name is the only visible identifier of the addon in the Construct 3 editor, so that can be changed any time, but the ID must always be the same.) To ensure it is unique, it is recommended to use a vendor-specific prefix, e.g. <code>MyCompany_MyAddon</code>.</dd>
+<dt>PLUGIN_CATEGORY</dt>
+<dd>The category for the plugin when displaying it in the <em>Create New Object Type</em> dialog. This must be one of <code>"3d"</code>, <code>"data-and-storage"</code>, <code>"form-controls"</code>, <code>"general"</code>, <code>"input"</code>, <code>"media"</code>, <code>"monetisation"</code>, <code>"platform-specific"</code>, <code>"web"</code>, <code>"other"</code>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Updating plugin identifiers</h2>
+<p>The main class declaration of the plugin looks like this:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">const</span> <span class="token constant">PLUGIN_CLASS</span> <span class="token operator">=</span> <span class="token constant">SDK</span><span class="token punctuation">.</span>Plugins<span class="token punctuation">.</span>MyCompany_MyAddon <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token class-name">MyCustomPlugin</span> <span class="token keyword">extends</span> <span class="token class-name">SDK<span class="token punctuation">.</span>IPluginBase</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Be sure to update the identifiers to describe your own plugin, in both the SDK namespace and the <code>class</code> name.</p>
+<h3>Updating in type.js and instance.js</h3>
+<p>Likewise in both type.js and instance.js, you must update the following:</p>
+<ul class="list">
+<li><code>PLUGIN_CLASS</code> to refer to your plugin's name</li>
+<li>The <code>class</code> name suffixed with <code>Type</code> or <code>Instance</code>. (For example the Audio plugin uses <code>AudioPlugin</code>, <code>AudioType</code> and <code>AudioInstance</code> as the three names.)</li>
+</ul>
+<h3>Optional plugin scripts</h3>
+<p>With the addon SDK, you may omit the editor script files type.js and instance.js, as well as the runtime script files plugin.js and type.js. If these files are omitted, it uses the default base class with no modifications. To remove these files, be sure to do the following:</p>
+<ol class="list">
+<li>Delete any unused script files</li>
+<li>Remove the files from the <code>"file-list"</code> array in addon.json</li>
+<li>Remove any unused editor script files from the <code>"editor-scripts"</code> array in addon.json</li>
+<li>In the editor plugin script, call <code>this._info.SetC3RuntimeScripts()</code> with an array of the runtime script files in use, as the default list includes c3runtime/plugin.js and c3runtime/type.js.</li>
+</ol>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>The plugin constructor</h2>
+<p>The main function of plugin.js is to define a class representing your plugin. In the class constructor, the configuration for the plugin is set via the <code>this._info</code> member, which is an <a class="extern" href="../reference/iplugininfo.html" rel="noopener" target="_blank" title="Make your own games">IPluginInfo</a> interface. The constructor also reads potentially translated strings from the language subsystem.</p>
+<p>For more information about the possible plugin configurations, see the <code>IPluginInfo</code> reference.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Specifying plugin properties</h2>
+<p>The plugin properties appear in the Properties Bar when instances of the plugin are selected. To set which properties appear, pass an array of <a class="extern" href="../reference/pluginproperty.html" rel="noopener" target="_blank" title="Make your own games">PluginProperty</a> to <code>this._info.SetProperties</code>. An example is shown below. For more details see the <code>PluginProperty</code> reference.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">SetProperties</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token punctuation brace-square brace-open brace-level-2" id="pair-2-close">[</span>
+	<span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>PluginProperty</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-0-close">(</span><span class="token string">"integer"</span><span class="token punctuation">,</span> <span class="token string">"test-property"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation brace-round brace-close brace-level-3" id="pair-0-open">)</span>
+<span class="token punctuation brace-square brace-close brace-level-2" id="pair-2-open">]</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw"></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

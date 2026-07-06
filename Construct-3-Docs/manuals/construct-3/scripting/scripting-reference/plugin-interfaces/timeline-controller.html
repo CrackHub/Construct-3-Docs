@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/timeline-controller" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timeline controller script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITimelineControllerObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline Controller plugin</a>.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Typically it is used through <code>runtime.timelineController</code> instead of the named object.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Timeline controller APIs</h2>
+<dl>
+<dt>play(timeline, tags)</dt>
+<dd>Start playback of a timeline specified by a string of its name. The tags to associate with this playback are optional, and can be specified as a space-separated string, or an array of strings. The method returns an <a class="extern" href="../interfaces/itimelinestate.html" rel="noopener" target="_blank" title="Make your own games">ITimelineState</a> representing the playback state of the timeline.</dd>
+<dt>setInstances(instances, trackId)</dt>
+<dd>Set one or more instances to be used for the next timeline playback. The <code>instances</code> parameter can be either an <code>IWorldInstance</code> or an array of <code>IWorldInstance</code> in order to set multiple instances. The instances can be different to the ones used in the editor. The instance will be set to the track with the corresponding <code>trackId</code>, specified as a string. The <code>trackId</code> is also optional: if omitted it uses the first track in the timeline. It can also be used repeatedly omitting the <code>trackId</code> to keep setting the tracks in the timeline in sequence. When the timeline is played it will then affect the specified instances instead of the ones used in the editor. This method is equivalent to the <em>Set instance</em> action; for more information see the <a class="extern" href="../../../plugin-reference/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline Controller manual entry</a>.</dd>
+<dt>*allTimelines()</dt>
+<dd>Iterates all <a class="extern" href="../interfaces/itimelinestate.html" rel="noopener" target="_blank" title="Make your own games">ITimelineState</a> representing all the currently playing timelines.</dd>
+<dt>*timelinesByTags(tags)</dt>
+<dd>Iterates <a class="extern" href="../interfaces/itimelinestate.html" rel="noopener" target="_blank" title="Make your own games">ITimelineState</a>s matching the specified tags, which can be specified as either a space-separated string, or an array of strings.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/touch" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Touch script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITouchObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/touch.html" rel="noopener" target="_blank" title="Make your own games">Touch plugin</a>.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Typically it is used through <code>runtime.touch</code> instead of the named object.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>The <a class="extern" href="https://editor.construct.net/#open=tracking-pointers" rel="noopener" target="_blank" title="Make games in the browser">Tracking pointers</a> example demonstrates how both mouse and touch input can be tracked simultaneously using pointer events.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Events</h2>
+<p>To detect touch input events, use the events fired on the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">Runtime script interface</a>, such as <code>"pointerdown"</code>. There are also <code>"deviceorientation"</code> and <code>"devicemotion"</code> events which can be used to detect device movement.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Touch APIs</h2>
+<dl>
+<dt>async requestPermission(type)</dt>
+<dd>Request permission to use device orientation or motion sensors. The <code>"deviceorientation"</code> and <code>"devicemotion"</code> events will not fire unless this method has been called and permission granted. <em>type</em> must be <code>"orientation"</code> or <code>"motion"</code>. The user may be prompted to allow permission. Note some browsers merge both types in to one permission prompt in which case only one permission request is necessary to access both orientation and motion. Returns a promise that resolves with <code>"granted"</code> if permission was allowed, else <code>"denied"</code> if the user declined.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

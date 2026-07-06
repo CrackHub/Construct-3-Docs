@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/instant-games" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Instant Games
+            </h1>
+            <div itemprop="articleBody">
+                <p>The Instant Games plugin allows you to create games that integrate with the <strong>Facebook Instant Games</strong> platform. These games can be played in Messenger, the Facebook news feed, and so on.</p>
+
+
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Instant Games official documentation</h2>
+<p>For information specifically relating to the Instant Games platform, please also refer to the official <a href="https://developers.facebook.com/docs/games/instant-games" target="_blank" rel="nofollow noopener external" title="Go to: https://developers.facebook.com/docs/games/instant-games" class="extern outlink">Instant Games developer documentation</a>. Construct's Instant Games plugin handles many of the details for you, but the official documentation also includes useful information on setting up an app, managing web hosting and publishing, setting up ads, tips and best practices, additional ways to test the app, and more.</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Exporting for Instant Games</h2>
+<p>Make sure you use the <strong>Facebook Instant Games</strong> export option when publishing an Instant Game. This will ensure additional files required by Instant Games are included with the export. The resulting zip file can be directly uploaded to Facebook's web hosting service.</p>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>Instant Games properties</h2>
+<dl class="sans">
+	<dt>Navigation menu</dt>
+	<dd>The type of the navigation menu used by Instant Games to display. This corresponds to the <code>navigation_menu_version</code> in the <a href="https://developers.facebook.com/docs/games/instant-games/sdk/bundle-config" target="_blank" rel="nofollow noopener external" title="Go to: https://developers.facebook.com/docs/games/instant-games/sdk/bundle-config" class="extern outlink">bundle configuration</a>.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link3" id="internalH1Link3"></a><h2>Instant Games conditions</h2>
+<dl class="sans">
+	<dt>On load ad success</dt>
+	<dt>On load ad error</dt>
+	<dd>Triggered after the <em>Load ad</em> action when an ad of the same type either successfully finishes loading or has an error loading.</dd>
+
+	<dt>On show ad success</dt>
+	<dt>On show ad error</dt>
+	<dd>Triggered after the <em>Show ad</em> action when the user finishes viewing an ad of the same type or if it fails to be shown.</dd>
+
+	<dt>Is available</dt>
+	<dd>True if the Instant Games platform is available. This will be false if the game is hosted outside of the Instant Games platform or was not exported using the <em>Facebook Instant Games</em> export option. Note Instant Games is also unavailable in preview mode.</dd>
+
+	<dt>On context changed</dt>
+	<dt>On context change cancelled</dt>
+	<dd>Triggered after the <em>Change context</em> action when the user changes context or cancels the dialog. If the context changed, the context ID will change too.</dd>
+
+	<dt>On error</dt>
+	<dd>Triggered if an error occurs at any point using the Instant Games platform. Usually looking in the browser console will provide more information about the problem.</dd>
+
+	<dt>On pause</dt>
+	<dd>Triggered when the Instant Games platform wants the game to pause in order to handle an interruption, e.g. due to an incoming phone call.</dd>
+
+	<dt>On shortcut created</dt>
+	<dt>On shortcut failed</dt>
+	<dd>Triggered after the <em>Create home screen shortcut</em> action depending on whether the shortcut was successfully created.</dd>
+
+	<dt>On leaderboard loaded</dt>
+	<dd>Triggered after the <em>Load leaderboard scores</em> action when the leaderboard score data has been loaded. The leaderboard expressions can then be used to access the data.</dd>
+
+	<dt>On player score loaded</dt>
+	<dd>Triggered after the <em>Load player score</em> action when the player's score data has been loaded. The player score expressions can then be used to access the data.</dd>
+
+	<dt>On score submitted</dt>
+	<dd>Triggered after the <em>Set score</em> action once the score has been submitted to the Instant Games platform.</dd>
+
+	<dt>On connected players loaded</dt>
+	<dd>Triggered after the <em>Load connected players</em> action when the connected player's data has been loaded. The connected player expressions can then be used to access the data.</dd>
+
+	<dt>On loaded player data</dt>
+	<dd>Triggered after the <em>Load player data</em> action when the player data has been loaded. The <em>PlayerData</em> expression can then be used to access the data.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link4" id="internalH1Link4"></a><h2>Instant Games actions</h2>
+<dl class="sans">
+	<dt>Load ad</dt>
+	<dd>Load an interstitial or rewarded video ad. The ad must have been created on Facebook's advertising platform and the placement ID provided to this action. Ads must be loaded before they can be shown. Only one ad of each type can be loaded at a time. <em>On load ad success/error</em> will trigger depending on the outcome.</dd>
+
+	<dt>Show ad</dt>
+	<dd>Show an ad that has previously been successfully loaded. Note only the last successfully loaded ad of the given type will be shown with this action. <em>On show ad success/error</em> will trigger depending on the outcome.</dd>
+
+	<dt>Log event</dt>
+	<dd>Log an event to Facebook's analytics platform. This can help you learn more about how players are interacting with your game. An optional value can be provided that will be summed with the prior event value.</dd>
+
+	<dt>Change context</dt>
+	<dd>Opens a dialog allowing the player to change to a different Instant Games context. This action corresponds to the <code>chooseAsync()</code> SDK method. If the user successfully changes context, <em>On context changed</em> will trigger and the context ID will change. If the user cancels the dialog, <em>On context change cancelled</em> will trigger.</dd>
+
+	<dt>Create home screen shortcut</dt>
+	<dd>(Android only) Request to create a home screen shortcut to the game on the user's device. <em>On shortcut created/failed</em> will trigger depending on the outcome.</dd>
+
+	<dt>Custom update</dt>
+	<dd>Post a custom update in to a message thread. This can use a custom image and text for the call-to-action (CTA) and other fields. This action corresponds to the <code>updateAsync()</code> SDK method with a <code>"CUSTOM"</code> action.</dd>
+
+	<dt>Quit</dt>
+	<dd>Quit the game if it is being played in a context where exiting is possible.</dd>
+
+	<dt>Share</dt>
+	<dd>Show a dialog to invite, request, challenge or share, in a chat or timeline. An image must be provided in the form of a Sprite object, whose currently showing image will be used.<br>
+<br>
+The text to use in the share message can be provided. The content of the <em>Data</em> parameter will be set to the <em>EntryPointData</em> expression if another user loads the game through that particular share. This can be used to automatically join the other player to the sharing player's game.</dd>
+
+	<dt>Subscribe to bot</dt>
+	<dd>Prompt the user to subscribe to a bot associated with the game, if one has been configured.</dd>
+
+	<dt>Switch game</dt>
+	<dd>Request that the client switch to a different Instant Game according to its App ID. The game must belong to the same business as the current game. This action corresponds to the <code>switchGameAsync()</code> SDK method.</dd>
+
+	<dt>Load leaderboard scores</dt>
+	<dd>Load a list of scores from a leaderboard. The leaderboard must have first been created for the app. <em>On leaderboard loaded</em> will trigger once the scores are available, after which the leaderboard expressions can be used to access the data.</dd>
+
+	<dt>Load player score</dt>
+	<dd>Load the current player's own score and rank. <em>On player score loaded</em> will trigger once available, after which the player score expressions can be used to access the data.</dd>
+
+	<dt>Set score</dt>
+	<dd>Set the player's current score on a leaderboard. <em>On score submitted</em> will trigger once submitted.</dd>
+
+	<dt>Load connected players</dt>
+	<dd>Load a list of connected players (other users who have also interacted with this player in the game). <em>On connected players loaded</em> will trigger once available, after which the connected player expressions can be used to access the data.</dd>
+
+	<dt>Load player data</dt>
+	<dd>Load the last set data for the current player. <em>On loaded player data</em> will trigger once available, after which the <em>PlayerData</em> expression can be used to access it.</dd>
+
+	<dt>Set player data</dt>
+	<dd>Store some data to associate with the current player on the Instant Games platform. This data can later be requested using the <em>Load player data</em> action. Note the data should be kept as short as possible, ideally under 1000 characters.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link5" id="internalH1Link5"></a><h2>Instant Games expressions</h2>
+<dl class="sans">
+	<dt>ContextID</dt>
+	<dd>A unique identifier that identifies the current game context. Note this can change after the <em>Change context</em> action completes.</dd>
+
+	<dt>EntryPointData</dt>
+	<dd>If the game is launched from a share, update or switch, then this expression returns the data that was associated with the share.</dd>
+
+	<dt>Locale</dt>
+	<dd>The locale of the current player.</dd>
+
+	<dt>Platform</dt>
+	<dd>A description of the current platform the user is playing on. This can be one of <code>"IOS"</code>, <code>"ANDROID"</code>, <code>"WEB"</code> or <code>"MOBILE_WEB"</code>.</dd>
+
+	<dt>SDKVersion</dt>
+	<dd>The version of the Instant Games SDK in use.</dd>
+
+	<dt>LeaderboardResultCount</dt>
+	<dt>LeaderboardPlayerIDAt</dt>
+	<dt>LeaderboardScoreAt</dt>
+	<dd>In <em>On leaderboard loaded</em>, return the number of results, and the player ID and score for each entry in the list.</dd>
+
+	<dt>PlayerRank</dt>
+	<dt>PlayerScore</dt>
+	<dd>In <em>On player score loaded</em>, the current player's rank and score on the leaderboard.</dd>
+
+	<dt>ConnectedPlayerCount</dt>
+	<dt>ConnectedPlayerIDAt</dt>
+	<dd>In <em>On connected players loaded</em>, return the number of results, and the connected player ID for each entry in the list.</dd>
+
+	<dt>PlayerData</dt>
+	<dd>In <em>On loaded player data</em>, the string of the last set player data that was stored to the Instant Games platform.</dd>
+
+	<dt>PlayerID</dt>
+	<dt>PlayerName</dt>
+	<dt>PlayerPhotoURL</dt>
+	<dd>Retrieve basic information about the current player, including their unique ID, their name and a URL to their profile picture.</dd>
+</dl>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

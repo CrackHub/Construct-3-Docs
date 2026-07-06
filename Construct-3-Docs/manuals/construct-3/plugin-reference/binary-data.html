@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/binary-data" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Binary Data
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Binary Data plugin</strong> allows raw access to an allocated section of memory (often referred to as a <em>buffer</em>). For example it could allocate 16 bytes of memory, and read and write anywhere in that buffer as individual bytes, 32-bit integers, floating point numbers, text, and so on.</p>
+<p>A comprehensive description of how binary data/computer memory storage works is out of the scope of this manual. However there is lots of information on the Internet that covers it, and most computer science or computing courses will also cover it. The Binary Data object is also useful even if you do not access its contents: it integrates with other plugins like <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX</a> and <a class="extern" href="local-storage.html" rel="noopener" target="_blank" title="Make your own games">Local Storage</a>, allowing binary data such as images to be stored or transferred in useful ways. Despite the name, Binary Data can also store text, using the <em>Set from text</em> action and <em>GetAllText</em> expression, which can be useful with other plugins such as Cryptography.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/binary-data.html" rel="noopener" target="_blank" title="Make your own games">IBinaryDataInstance script interface</a>. (JavaScript and TypeScript have support for binary data built-in, but this allows for interacting with binary data used in event sheets.)</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Binary Data properties</h2>
+<dl class="sans">
+<dt>Endian</dt>
+<dd>The default <a class="extern outlink" href="https://en.wikipedia.org/wiki/Endianness" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Endianness">endian</a> to use when reading and writing binary values.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Binary Data conditions</h2>
+<dl class="sans">
+<dt>Compare length</dt>
+<dd>Compare the length of the data buffer, in bytes.</dd>
+<dt>Compare value</dt>
+<dd>Read a value of a given data type at an offset in the data buffer, and then compare that value to another number.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Binary Data actions</h2>
+<dl class="sans">
+<dt>Copy</dt>
+<dd>Copy data from another (or the same) Binary Data object. This does not change the size of the buffer. The <em>Start</em> and <em>Length</em> specify the range of data in the source Binary Data object to copy, defaulting to copying the entire buffer. The <em>Target</em> is a byte offset to write the copy at.</dd>
+<dt>Fill</dt>
+<dd>Fill a range of the buffer with copies of the same value. For example this can be used to fill an entire range of the buffer with zero bytes. The <em>Offset</em> and <em>Length</em> can be used to specify a byte range to fill, but they default to covering the entire buffer.<br/>
+</dd>
+<dt>Set endian</dt>
+<dd>Change the <a class="extern outlink" href="https://en.wikipedia.org/wiki/Endianness" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Endianness">endian</a> used when reading and writing values.</dd>
+<dt>Set from Binary Data</dt>
+<dd>Set the contents of the Binary Data object to a copy of another Binary Data object. This changes the size of the buffer to be the same as the other object.</dd>
+<dt>Set from string</dt>
+<dd>Set the contents of the Binary Data object from the contents of a string, changing the size of the data buffer to fit it. The string may be provided in three formats:<ul class="list"><li><strong>Text:</strong> set the data to the provided text string encoded as <a class="extern outlink" href="https://en.wikipedia.org/wiki/UTF-8" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>.</li><li><strong>Base64:</strong> set the data by decoding the provided <a class="extern outlink" href="https://en.wikipedia.org/wiki/Base64" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Base64">base64</a>-encoded string to binary.</li><li><strong>Hex:</strong> set the data by decoding the provided <a class="extern outlink" href="https://en.wikipedia.org/wiki/Hexadecimal" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Hexadecimal">hexadecimal</a>-encoded string to binary.</li></ul></dd>
+<dt>Set length</dt>
+<dd>Set the size of the memory buffer in bytes. Note Binary Data initially has a zero sized buffer, so this must be used first before any reads or writes can complete. The existing data is preserved when changing the size; if the new size is smaller, data is truncated, and if the new size is larger, zero bytes are added.</dd>
+<dt>Set value</dt>
+<dd>Write a value of a given data type at a byte offset in the memory buffer. The entire value must be within the bounds of the buffer, otherwise the write is ignored. For example a 4-byte Uint32 value cannot be written anywhere in a 3-byte buffer, because all four bytes must be inside the buffer.</dd>
+<dt>Compress</dt>
+<dt>Decompress</dt>
+<dd>Use a compression algorithm to compress or decompress the data stored in the Binary Data object. The supported compression algorithms are <a class="extern outlink" href="https://www.rfc-editor.org/rfc/rfc1952" rel="nofollow noopener external" target="_blank" title="Go to: https://www.rfc-editor.org/rfc/rfc1952">GZIP</a> and <a class="extern outlink" href="https://www.rfc-editor.org/rfc/rfc1950" rel="nofollow noopener external" target="_blank" title="Go to: https://www.rfc-editor.org/rfc/rfc1950">DEFLATE</a>. The same algorithm as used for compression must be used for decompression. Compression algorithms work by identifying and eliminating repeating patterns in data and can significantly shrink the amount of data. However the effectiveness depends on the size and type of data. Small amounts of data, or highly unpredictable data, generally does not compress well; large amounts of highly repetitive data generally compresses very well. See the <a class="extern" href="https://editor.construct.net/#open=compression" rel="noopener" target="_blank" title="Make games in the browser">Compression example</a> for a demonstration.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Binary Data expressions</h2>
+<dl class="sans">
+<dt>ByteLength</dt>
+<dd>Return the current length of the buffer in bytes.</dd>
+<dt>GetBase64</dt>
+<dd>Return the entire contents of the data buffer encoded as a <a class="extern outlink" href="https://en.wikipedia.org/wiki/Base64" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Base64">base64</a> string. This is useful when binary data must be stored in a text-based format like JSON.<br/>
+</dd>
+<dt>GetHex</dt>
+<dd>Return the entire contents of the data buffer encoded as a <a class="extern outlink" href="https://en.wikipedia.org/wiki/Hexadecimal" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Hexadecimal">hexadecimal</a> string. This always uses two hexadecimal digits per byte. </dd>
+<dt>GetURL</dt>
+<dd>Return a URL that can be used locally to load the binary data. For example if the Binary Data represents an image, this URL can be passed the Sprite object's <em>Load image from URL</em> action to load the image from the Binary Data object.<br/>
+</dd>
+<dt>GetUint8(byteOffset)</dt>
+<dt>GetInt8(byteOffset)</dt>
+<dt>GetUint16(byteOffset)</dt>
+<dt>GetInt16(byteOffset)</dt>
+<dt>GetUint32(byteOffset)</dt>
+<dt>GetInt32(byteOffset)</dt>
+<dt>GetFloat32(byteOffset)</dt>
+<dt>GetFloat64(byteOffset)</dt>
+<dd>Read a value of the corresponding type from the buffer at a byte offset. The entire value must be within the bounds of the buffer, otherwise it returns 0. For example a 4-byte Uint32 value cannot be read from a 3-byte buffer, because all four bytes must be inside the buffer.<br/>
+</dd>
+<dt>GetText(byteOffset, length)</dt>
+<dd>Decode text in the UTF-8 encoding in a range of the buffer in bytes, and return the string. If the UTF-8 encoding is invalid, or any part of the range is outside the buffer, an empty string is returned.</dd>
+<dt>GetAllText</dt>
+<dd>Decode all the data in the Binary Data object as text in the UTF-8 encoding. This is the same as using the <em>GetText</em> expression with a range that specifies all the data.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

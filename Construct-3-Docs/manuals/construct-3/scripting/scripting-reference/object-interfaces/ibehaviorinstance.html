@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/ibehaviorinstance" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IBehaviorInstance script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IBehaviorInstance</code> interface represents a behavior on an <a class="extern" href="iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a>.</p>
+<p>Many behaviors return a more specific class deriving from IBehaviorInstance to add APIs specific to the behavior. See the <a class="extern" href="https://www.construct.net/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces.html" rel="noopener" target="_blank" title="Make your own games">Behavior instances reference</a> for more information.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Getting an IBehaviorInstance</h2>
+<p>Behavior instances are typically accessed via the <code>behaviors</code> property of <a class="extern" href="iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a>, followed by the name of the behavior. Some example code is shown below.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">const</span> mySpriteInst <span class="token operator">=</span> runtime<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>Sprite<span class="token punctuation">.</span><span class="token function">getFirstInstance</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> myBehaviorInst <span class="token operator">=</span> mySpriteInst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Platform<span class="token punctuation">;</span>
+<span class="token comment">// ... do something with myBehaviorInst ...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>IBehaviorInstance APIs</h2>
+<dl>
+<dt>addEventListener(type, func, capture)</dt>
+<dt>removeEventListener(type, func, capture)</dt>
+<dd>Add or remove an event handler for a particular type of event fired by an addon's script interface. An event object is passed as a parameter to the handler function. See <a class="extern" href="../interfaces/behavior-instance-event.html" rel="noopener" target="_blank" title="Make your own games">behavior instance event</a> for standard event object properties. For information on which events are fired by specific addons and which additional event object properties are available, see the documentation on each addon's script interfaces.</dd>
+<dt>dispatchEvent(e)</dt>
+<dd>Dispatch an event, firing any handler functions that have been added for the event type. You can use <code>new C3.Event(eventName, isCancellable)</code> to create an event object that can be dispatched (e.g. <code>new C3.Event("arrived", true)</code>), and add any extra properties relevant to your event to that object. This can also be used by the <a class="extern" href="../../../../addon-sdk.html" rel="noopener" target="_blank" title="Make your own games">addon SDK</a> to cause your addon to fire an event in the script interface, e.g.:<br/>
+<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">const</span> e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">C3<span class="token punctuation">.</span>Event</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token string">"arrived"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">GetScriptInterface</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-3-close">(</span>e<span class="token punctuation brace-round brace-close brace-level-1" id="pair-3-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div></dd>
+<dt>instance</dt>
+<dd>A reference to the <a class="extern" href="iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> representing the object instance this behavior instance is affecting.</dd>
+<dt>behavior</dt>
+<dd>A reference to the <a class="extern" href="ibehavior.html" rel="noopener" target="_blank" title="Make your own games">IBehavior</a> representing the kind of behavior, e.g. Solid or Physics.</dd>
+<dt>behaviorType</dt>
+<dd>A reference to the <a class="extern" href="ibehaviortype.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorType</a> the behavior instance belongs to.</dd>
+<dt>runtime</dt>
+<dd>A reference back to the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime interface</a>.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

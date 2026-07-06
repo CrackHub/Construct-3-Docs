@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/flowchart-controller" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Flowchart Controller
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Flowchart Controller</strong> plugin allows <a class="extern" href="../project-primitives/flowcharts/flowchart.html" rel="noopener" target="_blank" title="Make your own games">flowcharts</a> to be controlled in event sheets.</p>
+<p>Some of the common uses of the plugin include the following:</p>
+<ul class="list">
+<li>Create instances of flowcharts using the <strong>Start flowchart</strong> or <strong>Start flowchart (by name)</strong> actions.</li>
+<li>Use the <strong>Set flowchart</strong> action to set an existing flowchart instance as the current one, affecting which flowchart other actions, conditions and expressions act upon.</li>
+<li>Use the <strong>Go to</strong> actions to traverse a flowchart.</li>
+<li>Use the <strong>Node entered</strong> and <strong>Node exited</strong> triggers to perform other project-specific actions depending on the current state of a flowchart.</li>
+<li>Query information from the current node of the current flowchart using expressions.</li>
+</ul>
+<h3>Flowchart instances</h3>
+<p>Use the <em>Start flowchart</em> action to create an <em>instance</em> of a flowchart. This is essentially the current state of a flowchart, including the current node. Sometimes only one instance of a flowchart is necessary, which is simpler to use. However it is possible to create multiple instances of the same flowchart, and have each instance track its current node separately. This allows for more advanced uses, such as having every instance of a Sprite object have its own flowchart instance and be able to proceed through the flowchart independently, rather than sharing one flowchart state for all Sprite objects.</p>
+<p>The <em>End flowchart</em> action is the counterpart of <em>Start flowchart</em>, and destroys a flowchart instance so it no longer consumes memory.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Flowchart Controller Conditions</h2>
+<dl class="sans">
+<dt>On any flowchart entered</dt>
+<dd>Triggered when any flowchart is entered. This will happen after using the <strong>Set Flowchart</strong> action or after using one of the actions to start a new flowchart and using the parameter to immediately set it as the current one.</dd>
+<dt>On any node entered</dt>
+<dd>Triggered when any node is entered in the current flowchart.</dd>
+<dt>On tagged node entered</dt>
+<dd>Triggered when a node with the specified tags is entered in the current flowchart. All the passed tags must match for the condition to be fulfilled.</dd>
+<dt>On any node entered in flowchart</dt>
+<dd>Triggered when any node is entered in a flowchart with the specified tag.</dd>
+<dt>On tagged node entered in flowchart</dt>
+<dd>Triggered when a node with the specified tags is entered in a flowchart with the specified tag. All the passed node tags must match for the condition to be fulfilled.</dd>
+<dt>On any flowchart exited</dt>
+<dd>Triggered when any flowchart is exited.</dd>
+<dt>On any node exited</dt>
+<dd>Triggered when any node in the current flowchart is exited.</dd>
+<dt>On tagged node exited</dt>
+<dd>Triggered when a node with the specified tags in the current flowchart is exited. All the passed tags must match for the condition to be fulfilled.</dd>
+<dt>On any node exited in flowchart</dt>
+<dd>Triggered when any node in the specified flowchart is exited.</dd>
+<dt>On tagged node exited in flowchart</dt>
+<dd>Triggered when a node with the specified tags in the specified flowchart is exited. All the passed node tags must match for the condition to be fulfilled.</dd>
+<dt>Is at start node</dt>
+<dd>Check if the current flowchart is at the start node.</dd>
+<dt>Is at start node in flowchart</dt>
+<dd>Check if the specified flowchart is at the start node.</dd>
+<dt>Has flowchart</dt>
+<dd>Check if a flowchart with the specified tag was already created by either <strong>Start flowchart</strong> or <strong>Start flowchart (by name)</strong>. <br/>
+<br/>
+</dd>
+<dt>Compare output count</dt>
+<dd>Compare the output count of the current node in the current flowchart.</dd>
+<dt>Compare output name</dt>
+<dd>Compare the output name in the current node of the current flowchart, using an index to choose the output.</dd>
+<dt>Compare default output name</dt>
+<dd>Compare the output name in the current node of the current flowchart, checking against the default output. Only works if a default output has been set.</dd>
+<dt>Compare output value</dt>
+<dd>Compare the output value in the current node of the current flowchart, using an index or name to choose the output.</dd>
+<dt>Compare default output value</dt>
+<dd>Compare the output value in the current node of the current flowchart, checking against the default output. Only works if a default output has been set.</dd>
+<dt>Compare node tags</dt>
+<dd>Compare the tags of the current node in the current flowchart. In the case of passing multiple tags as a space separated string, the current node must contain all the passed tags for the condition to be fulfilled.</dd>
+<dt>Compare node tag count</dt>
+<dd>Compare the tag count of the current node in the current flowchart.</dd>
+<dt>Compare flowchart tag</dt>
+<dd>Compare the tag of the current flowchart.</dd>
+<dt>Has output</dt>
+<dd>Check if the current node of the current flowchart has an output, using an index or a name to choose the output.</dd>
+<dt>Has default output</dt>
+<dd>Check if the current node of the current flowchart has a default output.</dd>
+<dt>Output name match regex</dt>
+<dd>Check if an output's name in the current node of the current flowchart matches a regular expression, using an index to choose the output.</dd>
+<dt>Output value match regex</dt>
+<dd>Check if an output's value in the current node of the current flowchart matches a regular expression, using an index or name to choose the output.</dd>
+<dt>For Each Output</dt>
+<dd>Run a loop for each output in the current node of the current flowchart.</dd>
+</dl>
+<h3>Flowchart Controller Actions</h3>
+<dl class="sans">
+<dt>Start flowchart</dt>
+<dt>Start flowchart (by name)</dt>
+<dd>Starts a new flowchart instance. Use the <strong>Start node tag</strong> parameter so the flowchart starts in that node, if left empty the flowchart's starting node set in the editor is used. The <strong>Flowchart tag</strong> parameter assigns the flowchart instance a tag to later identify it elsewhere in the event sheet. The <strong>Set as current</strong> parameter is a shortcut to immediately set the new flowchart as the current one.<br/>
+<br/>
+</dd>
+<dt>Set flowchart</dt>
+<dd>Set the flowchart with the specified tag as the current one. All actions, conditions and expressions used after this will refer to the specified flowchart, except for the case a tag is provided to get information from a specific flowchart instance other than the current one.</dd>
+<dt>End flowchart</dt>
+<dd>Release the current flowchart.</dd>
+<dt>End flowchart by tag</dt>
+<dd>Release the flowchart with the specified tag.</dd>
+<dt>Reset flowchart</dt>
+<dd>Reset the current flowchart, making the default initial node the current one.</dd>
+<dt>Reset flowchart by tag</dt>
+<dd>Reset the specified flowchart, making the default initial node the current one in that flowchart.</dd>
+<dt>Go to next node</dt>
+<dd>Go to the next node, using an index or a name to choose the <a class="extern" href="../project-primitives/flowcharts/flowchart-node-output.html" rel="noopener" target="_blank" title="Make your own games">output</a> to follow.</dd>
+<dt>Go to default node</dt>
+<dd>Go to the next node, following the default output. If no default output has been set, nothing will happen.</dd>
+<dt>Go to node</dt>
+<dd>Go to an arbitrary node in the current flowchart using tags to find it. When passing multiple tags as a space separated string, a node must match all the tags before it can be visited.</dd>
+<dt>Go to previous node</dt>
+<dd>Go to the previous node of the current flowchart.</dd>
+<dt>Go to parent node</dt>
+<dd>Go to the parent node of the current node in the current flowchart, using an index or tags to find the parent node. If the node only has one parent the action will just move the flowchart to that node. When passing multiple tags as a space separated string, the parent node must match all the tags before it can be visited. If there are multiple matches, the first valid one is used.</dd>
+</dl>
+<h3>Flowchart Controller Expressions</h3>
+<dl class="sans">
+<dt>FlowchartTag</dt>
+<dd>Return the tag of the current flowchart.</dd>
+<dt>NodeTag</dt>
+<dd>Return the full tag string of the current node in the current flowchart.</dd>
+<dt>NodeTagAt(Index)</dt>
+<dd>Return a tag of the current node in the current flowchart using a 0-based index to look it up.</dd>
+<dt>NodeTagCount</dt>
+<dd>Return the amount of tags of the current node in the current flowchart.</dd>
+<dt>OutputCount</dt>
+<dd>Return the output count of the current node in the current flowchart.</dd>
+<dt>OutputNameAt(Index)</dt>
+<dd>Return the output name at the specified index in the current node of the current flowchart.</dd>
+<dt>OutputNameDefault</dt>
+<dd>Return the default output name in the current node of the current flowchart. If no default output is set, an empty string is returned.</dd>
+<dt>OutputValue(IndexOrName)</dt>
+<dd>Return the output value at the specified index or name in the current node of the current flowchart.</dd>
+<dt>OutputValueDefault</dt>
+<dd>Return the default output value in the current node of the current flowchart. If no default output is set, an empty string is returned.</dd>
+<dt>ParentCount</dt>
+<dd>Return the parent count of the current node in the current flowchart.</dd>
+<dt>ParentTag(ParentIndex)</dt>
+<dd>Return the full parent tag string of the current node in the current flowchart, specifying a parent index.</dd>
+<dt>ParentTagAt(ParentIndex, TagIndex)</dt>
+<dd>Return a parent tag of the current node in the current flowchart, specifying a parent index and a 0-based index to look up the tag.</dd>
+<dt>ParentIndex(ParentTag)</dt>
+<dd>Return the parent node index of the current node in the current flowchart, specifying a parent tag.</dd>
+<dt>NodeTagInFlowchart(FlowchartTag)</dt>
+<dd>Return the full tag string of the current node in the specified flowchart.</dd>
+<dt>NodeTagAtInFlowchart(FlowchartTag, TagIndex)</dt>
+<dd>Return a tag of the current node in the specified flowchart using a 0-based index to look up the node tag.</dd>
+<dt>NodeTagCountInFlowchart(FlowchartTag)</dt>
+<dd>Return the tag count of the current node in the specified flowchart.</dd>
+<dt>OutputCountInFlowchart(FlowchartTag)</dt>
+<dd>Return the output count of the current node in the specified flowchart.</dd>
+<dt>OutputNameAtInFlowchart(Index, FlowchartTag)</dt>
+<dd>Return the output name at the specified index in the current node of the specified flowchart.</dd>
+<dt>OutputNameDefaultInFlowchart(FlowchartTag)</dt>
+<dd>Return the default output name in the current node of the specified flowchart. If no default output is set, an empty string is returned.</dd>
+<dt>OutputValueInFlowchart(IndexOrName, FlowchartTag)</dt>
+<dd>Return the output value at the specified index or name in the current node of the specified flowchart.</dd>
+<dt>OutputValueDefaultInFlowchart(FlowchartTag)</dt>
+<dd>Return the default output value in the current node of the specified flowchart. If no default output is set, an empty string is returned.</dd>
+<dt>ParentCountInFlowchart(FlowchartTag)</dt>
+<dd>Return the parent count of the current node in the specified flowchart.</dd>
+<dt>ParentTagInFlowchart(ParentIndex, FlowchartTag)</dt>
+<dd>Return the full parent tag string of the current node in the specified flowchart using an index to pick the parent.</dd>
+<dt>ParentTagAtInFlowchart(ParentIndex, FlowchartTag, tagIndex)</dt>
+<dd>Return a parent tag of the current node in the specified flowchart using an index to pick the parent and a 0-based index to look up the parent tag.</dd>
+<dt>ParentIndexInFlowchart(ParentTag, FlowchartTag)</dt>
+<dd>Return the parent index of the current node in the specified flowchart using a tag to pick the parent.</dd>
+<dt>CurOutputName</dt>
+<dd>Return the current output name in a <strong>For Each Output</strong> loop.</dd>
+<dt>CurOutputValue</dt>
+<dd>Return the current output value in a <strong>For Each Output</strong> loop.</dd>
+<dt>CurIsDefault</dt>
+<dd>Check if the current output in a <strong>For Each Output</strong> loop is the default one.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

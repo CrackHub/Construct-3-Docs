@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/button" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Button
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Button</strong> object creates a button control which the user can click to perform an action. It can also be set to be a <strong>checkbox</strong>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/button.html" rel="noopener" target="_blank" title="Make your own games">IButtonInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Layering HTML objects</h2>
+<p>This object displays using a HTML element rather than drawing in to the canvas. This means its layering works differently to other objects. To learn more about how to layer HTML objects, see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Styling buttons</h2>
+<p>As Button objects are HTML elements, their appearance can be customised using CSS (Cascading Style Sheets). The <em>ID</em> and <em>Class</em> properties can be used to identify the HTML element, and a CSS <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project file</a> added to apply some styles to it.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Button properties</h2>
+<dl class="sans">
+<dt>Type</dt>
+<dd>Either <em>Button</em> for a push-button or <em>Checkbox</em> for a checked/unchecked control.</dd>
+<dt>Text</dt>
+<dd>The text appearing on the button face or checkbox label.</dd>
+<dt>Tooltip</dt>
+<dd>A tooltip that appears in most browsers if the user hovers the mouse over the button and waits. Leave blank for no tooltip.</dd>
+<dt>Initially visibile</dt>
+<dd>Whether or not the button is shown on startup. If Invisible, the button must be shown with the Set visible action.</dd>
+<dt>Enabled</dt>
+<dd>Whether the button is initially enabled. If disabled, the button will be greyed out and cannot be pushed.</dd>
+<dt>Auto font size</dt>
+<dd>Automatically set the font-size property of the element according to the layout and layer scale. This will prevent the font-size CSS property being manually set with the <em>Set CSS style</em> action. Disable if you intend to use <em>Set CSS style</em> to adjust the <em>font-size</em> property.</dd>
+<dt>Checked</dt>
+<dd>If <em>Type</em> is <em>Checkbox</em>, this is the initial check state of the control.</dd>
+<dt>ID <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>id</em> attribute for the element in the DOM (Document Object Model). This can be useful for CSS styling.</dd>
+<dt>Class <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>class</em> attribute for the element in the DOM (Document Object Model). This can be useful for CSS styling.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Button conditions</h2>
+<p>See <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">common conditions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Is checked</dt>
+<dd>If <em>Type</em> is <em>Checkbox</em>, is true if the control is currently checked.</dd>
+<dt>On clicked</dt>
+<dd>Triggered when the user pushes the button or checks/unchecks the control, either by keyboard, mouse or touch input.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Button actions</h2>
+<p>See <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">common actions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Set checked</dt>
+<dd>If <em>Type</em> is <em>Checkbox</em>, set the current check state of the control.</dd>
+<dt>Set text</dt>
+<dd>Set the text on the button face.</dd>
+<dt>Set tooltip</dt>
+<dd>Set the text that appears for the button tooltip. Leave blank for no tooltip.</dd>
+<dt>Toggle checked</dt>
+<dd>If <em>Type</em> is <em>Checkbox</em>, toggles the check state of the control.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Button expressions</h2>
+<p>The Button object does not have any of its own expressions.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

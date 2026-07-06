@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/tile-movement" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Tile Movement Behavior Script Interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITileMovementBehaviourInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/tile-movement.html" rel="noopener" target="_blank" title="Make your own games">Tile Movement behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tile Movement behavior APIs</h2>
+<dl>
+<dt>isIgnoringInput</dt>
+<dd>A boolean indicating if input is currently being ignored. If input is ignored, pressing any of the control keys has no effect. However, unlike disabling the behavior, the object can continue to move.</dd>
+<dt>isDefaultControls</dt>
+<dd>A boolean indicating if the default controls (using the arrow keys) are enabled.</dd>
+<dt>simulateControl(control)</dt>
+<dd>Simulate one of the movement controls being held down. Useful when <code>isDefaultControls</code> is disabled. The control is provided as a string and must be one of <code>"left"</code>, <code>"right"</code>, <code>"up"</code>, <code>"down"</code>.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+<dt>setSpeed(x, y)</dt>
+<dd>Modify the speed property of the behavior. X and Y are numerical values that define the speed on the respective axes.</dd>
+<dt>getSpeed()</dt>
+<dd>Read the speed property of the behavior. The speed is returned as an array with 2 numerical elements, representing the speed for the X and Y axes respectively.</dd>
+<dt>setGridPosition(x, y, immediate)</dt>
+<dd>Modify the target grid position of the behavior. X and Y are numerical values that define the new target in grid space. Immediate is a boolean flag that indicates if the instance should immediately move to the target position, or move there as if the user was controlling the instance.</dd>
+<dt>getGridPosition()</dt>
+<dd>Read the current instance position in grid space. Returns an array of 2 numerical elements, being the position in the X and Y axes respectively.</dd>
+<dt>modifyGridDimensions(width, height, xOffset, yOffset)</dt>
+<dd>Redefine the dimensions of the grid. The Width and height parameters are numbers that specify the new size for the grid cells. The xOffset and yOffset parameters a numbers that specify the grids offset from the world space. If xOffset and yOffset are a multiple of width or height respectively they will have no effect on the alignment of the grid, but will change the grid space position of each cell.</dd>
+<dt>isMoving()</dt>
+<dd>Returns a boolean indicating if the instance is currently trying to move to a new target position</dd>
+<dt>isMovingDirection(direction)</dt>
+<dd>Returns a boolean indicating if the instance is currently trying to move to a new target position, in the given direction. Useful for deciding which animation to show for your character. The direction parameter is a string, which must be one of the following <code>"left"</code>, <code>"right"</code>, <code>"up"</code>, <code>"down"</code>.</dd>
+<dt>canMoveto(x, y)</dt>
+<dd>Allows you to check if the instance would collide with an object if was moved to the grid cell specified by the numerical parameters x and y. The parameters being the co-ordinates of the cell in grid space. This does not check for obstructions between the current position and the target position.</dd>
+<dt>canMoveDirection(direction, distance)</dt>
+<dd>Allows you to check if the instance would collide with an object if it moved a number of cells in a given direction. The direction is specified by the parameter direction, which must be a string of the value <code>"up"</code>, <code>"left"</code>, <code>"right"</code> or <code>"down"</code>. The distance is specified by the parameter distance, which must be a number indicating the number of cells to travel ( not the distance in world space ). This will check for any obstructions between the current position and the target. This is quite useful for character AI.</dd>
+<dt>getTargetPosition()</dt>
+<dd>Returns the current target position in world space as an array of 2 numerical elements. These elements being the X and Y positions respectively.</dd>
+<dt>getGridTargetPosition()</dt>
+<dd>Returns the current target position in grid space as an array of 2 numerical elements. These elements being the X and Y positions respectively.</dd>
+<dt>toGridSpace(x, y)</dt>
+<dd>Convert a given co-ordinate in world space, to grid space. The return value is an array of 2 numerical elements. These elements being the X and Y positions in grid space respectively.</dd>
+<dt>fromGridSpace(x, y)</dt>
+<dd>Convert a given co-ordinate in grid space, to world space. The return value is an array of 2 numerical elements. These elements being the X and Y positions in world space respectively.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

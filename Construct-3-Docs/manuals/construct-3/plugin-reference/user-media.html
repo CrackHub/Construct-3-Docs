@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/user-media" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                User Media
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>User Media</strong> object allows retrieving camera or microphone input from a user. This requires appropriate hardware being installed on the user's system, such as a webcam for a PC, a phone camera on a mobile, or a microphone. Camera snapshots can be taken and transferred in to Sprite or Tiled Background objects, and microphone input can be analysed with the Audio object.</p>
+<p>For security reasons, most browsers will prompt the user for permission before allowing user media input, and will display clear notifications that the media device is currently being used, such as a recording icon in the system tray or tab icon.</p>
+<p>The User Media object has <a class="extern" href="common-features.html" rel="noopener" target="_blank" title="Make your own games">common features</a>, including the ability to have <a class="extern" href="../project-primitives/objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effects</a> applied for video feeds.</p>
+<p>For several examples of what the User Media object can do, search for <em>User Media</em> in the <a class="extern" href="../overview/start-page.html" rel="noopener" target="_blank" title="Make your own games">Start Page</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>In the layout</h2>
+<p>The User Media object appears as a rectangle in the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">layout view</a>, represented by a red cross with its icon in the middle. This represents where the video feed will be displayed in the layout. If you don't need video input, place the User Media object outside the layout.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>User Media conditions</h2>
+<dl class="sans">
+<dt>On media request approved</dt>
+<dd>Triggered when the user confirms a security prompt after the <em>Request camera</em> or <em>Request microphone</em> actions, indicating their approval to allow the application to use media input.</dd>
+<dt>On media request declined</dt>
+<dd>Triggered when the user cancels a security prompt after the <em>Request camera</em> or <em>Request microphone</em> actions, indicating they do not approve the application's request to use media input.</dd>
+<dt>On retrieved media sources</dt>
+<dd>Triggered after the <em>Get media sources</em> action completes, and the list of media sources is available with the <em>AudioSource</em> and <em>CameraSource</em> expressions.</dd>
+<dt>On snapshot ready</dt>
+<dd>Triggered after the <em>Snapshot</em> action, when the snapshot is ready to use with the <em>SnapshotURL</em> expression.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>User Media actions</h2>
+<dl class="sans">
+<dt>Get media sources</dt>
+<dd>Request a list of media sources that can be used with the <em>Request camera</em> or <em>Request microphone</em> actions. For example a mobile device may have both front-facing and back-facing cameras, or multiple microphones. Using the media source list allows the specific camera or microphone input to be selected. This does not complete immediately; the media source list is only available after the <em>On retrieved media sources</em> trigger fires. The browser also may not support listing the media sources, in which case the trigger will never fire.</dd>
+<dt>Request camera</dt>
+<dd>Show a security prompt to the user requesting that they give the application permission to use camera input. Either <em>On media request approved</em> or <em>On media request declined</em> will trigger depending on their decision. If approved, the User Media object in the layout will start displaying a video feed from the user's camera device. The specific camera source to use can be chosen with the <em>Source</em> parameter, if media source listing is supported and a media source list has been requested. Otherwise the <em>Preferred direction</em> setting can be used to select the user-facing (front/selfie) or environment-facing (back) camera if the device has two, which is common on mobile devices. If the preferred width/height are not zero, the nearest supported resolution that the input device supports will be picked. Microphone input can also be optionally included, with a given microphone source (see <em>Request microphone</em>), which is useful in case you want to use <a class="extern" href="game-recorder.html" rel="noopener" target="_blank" title="Make your own games">Game recorder</a> to record the user's camera and include audio.</dd>
+<dt>Request microphone</dt>
+<dd>Show a security prompt to the user requesting that they give the application permission to use microphone input. <em>On media request approved</em> or <em>On media request declined</em> will trigger depending on their decision. The <a class="extern" href="audio.html" rel="noopener" target="_blank" title="Make your own games">Audio</a> object must also be in the project for this to be useful. A tag is given for the microphone input, and the audio input from the microphone is routed the same way as playing a sound with that tag. This means you can assign effects from the Audio object to the microphone input by adding the effects to the same tag assigned to the microphone. A useful combination is to add an analyser effect then a mute effect to microphone input. This prevents the user hearing their own voice, but allows peak, RMS and spectrum monitoring with the analyser. The specific microphone input to use can be chosen with the <em>Source</em> parameter, if media source listing is supported and a media source list has been requested; otherwise the default microphone input is used.</dd>
+<dt>Snapshot</dt>
+<dd>If the user has approved a camera request and the User Media object is showing a video feed, then snapshots the current frame. The still image is available after <em>On snapshot ready</em> triggers in the <em>SnapshotURL</em> expression. The image can be loaded in to a Sprite or Tiled Background object using the <em>Load image from URL</em> action and passing <em>SnapshotURL</em>, or downloaded using the Browser object's <em>Invoke download</em> action. This action optionally takes parameters allowing you to specify the compression format, which is useful if you intend to upload or save the image and a smaller file size would be advantageous.</dd>
+<dt>Stop</dt>
+<dd>Ends any active video feed or microphone input. Media input must be requested again before it can be used.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>User Media expressions</h2>
+<dl class="sans">
+<dt>AudioSourceCount</dt>
+<dd>After <em>On retrieved media sources</em> triggers, the number of audio sources available.</dd>
+<dt>AudioSourceLabelAt(index)</dt>
+<dd>After <em>On retrieved media sources</em> triggers, the label of the audio source at the given index. The label is normally the name of the input or recording device, but it may be empty for security reasons (such as if the user has not yet approved a media request).</dd>
+<dt>CameraSourceCount</dt>
+<dd>After <em>On retrieved media sources</em> triggers, the number of camera sources available.</dd>
+<dt>CameraSourceFacingAt(index)</dt>
+<dd>After <em>On retrieved media sources</em> triggers, a string indicating which way a camera source is facing. This can be "user" (the camera is facing the user, such as the front-facing camera on a phone), "environment" (the camera is facing away from the user, such as the back-facing camera on a phone), "left", "right", or empty if unknown or withheld for security reasons.</dd>
+<dt>CameraSourceLabelAt(index)</dt>
+<dd>After <em>On retrieved media sources</em> triggers, the label of the camera source at the given index. The label is normally the name of the input device, but it may be empty for security reasons (such as if the user has not yet approved a media request).</dd>
+<dt>SnapshotURL</dt>
+<dd>A data URI representing the snapshotted image after a <em>Snapshot</em> action once <em>On snapshot ready</em> has triggered, otherwise an empty string.</dd>
+<dt>VideoWidth</dt>
+<dt>VideoHeight</dt>
+<dd>If a video feed is approved and active, this returns the size in pixels of the feed from the device (which may not be the same size as the object in the layout). If no feed is active then 0 is returned.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

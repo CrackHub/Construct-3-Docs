@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/debugger" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Debugger
+            </h1>
+<div itemprop="articleBody">
+<p>Bugs refer to software defects - things not working as you expected in your project. <em>Debugging</em> refers to the process of fixing these issues. Construct's debugger is a tool to help you find and fix bugs in your project.</p>
+<p>The debugger has three tabs: <a class="extern" href="debugger/inspect-tab.html" rel="noopener" target="_blank" title="Make your own games">Inspect</a>, <a class="extern" href="debugger/watch-tab.html" rel="noopener" target="_blank" title="Make your own games">Watch</a> <span class="ilTag c2">Paid plans only</span>, <a class="extern" href="debugger/profile-tab.html" rel="noopener" target="_blank" title="Make your own games">CPU Profiler</a> <span class="ilTag c2">Paid plans only</span> and <a class="extern" href="debugger/gpu-profile-tab.html" rel="noopener" target="_blank" title="Make your own games">GPU Profiler</a> <span class="ilTag c2">Paid plans only</span>. For more information, see the manual entries for each.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Running the debugger</h2>
+<p>The debugger appears when you choose the <em>Debug</em> preview mode. This can be reached via the <a class="extern" href="main-toolbar.html" rel="noopener" target="_blank" title="Make your own games">main toolbar</a>, the <a class="extern" href="main-menu.html" rel="noopener" target="_blank" title="Make your own games">main menu</a>, the <a class="extern" href="https://www.construct.net/index.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> or using the keyboard shortcut <kbd>Ctrl</kbd> + <kbd>F5</kbd>.</p>
+<p>The debugger works much like an <a class="extern" href="https://www.construct.net/make-games/manuals/construct-3/overview/testing-and-publishing.html" rel="noopener" target="_blank" title="Make your own games">ordinary preview</a>, except that an extra panel appears alongside the project showing lots of information and some diagnostic tools.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/81866/debugger-ui.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1000x875px in new window (159.92 KB)"><span><img alt="The debugger showing information about the running project" height="700" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/81866/debugger-ui_v800.png" width="800"/></span></a><span class="descrip">The debugger showing information about the running project</span></div></div>
+<h3>Customising the debugger panel</h3>
+<p>The debug panel can be resized by dragging the resize border along the top. This allows you to pull it out to see more information, or collapse it down to just its tools and a summary of the performance information.</p>
+<p>The debugger can also be popped out in to its own window. This is especially useful on multi-monitor setups. The project will show using the full browser window, and a separate browser window displays the debug panel. Click the <strong>pop-out button</strong> in the top-right of the debugger panel to do this. Clicking it again, or closing the popup window, will restore the debugger panel to the main browser window again.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Main debugger commands</h2>
+<p>Alongside the pop-out button are some other useful tools. They are as follows:</p>
+<ul class="list">
+<li><strong>Pause:</strong> pause the project so it is no longer progressing. This is useful to spend a while inspecting some information at a particular moment. When paused it turns in to a <strong>Resume</strong> button; click it again to resume running.</li>
+<li><strong>Step</strong> can only be used when paused. It advances the project by a single frame. <em>Delta-time</em> (dt) is set as if the project were running at 60 FPS. This can be useful to inspect a moment frame-by-frame and watch how an event like a collision is handled.</li>
+<li><strong>Save</strong> and <strong>Load</strong> make a temporary save, allowing you to quickly save the state of the project and then restore back to that state at any time later on. This can be useful for repeatedly running the same part of a project over and over again. The state is stored to the current browser's local storage. The save will not be available in a different browser, but will be available in the same browser even after closing and reopening it, rebooting, etc.</li>
+<li><strong>Take screenshot</strong> will download a screenshot of the main project view, providing a useful tool to capture images of your project.</li>
+<li><strong>Restart</strong> will refresh the project, loading it from scratch again.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Performance summary</h2>
+<p>Some details about the performance of the project appear in the debugger's main title bar, and in the <em>Inspect</em> tab area for the System object, which is displayed initially. For more advice on performance, see <a class="extern" href="../tips-and-guides/performance-tips.html" rel="noopener" target="_blank" title="Make your own games">Performance Tips</a>. Note that since the debugger displays and manages a lot of information, it can have a significant performance overhead itself; when measuring performance, it's best to switch to one of the Profiler tabs <span class="ilTag c2">Paid plans only</span>, or use the normal preview mode and display performance measurements with objects. The performance information the debugger displays includes the following:</p>
+<ul class="list">
+<li><strong>The object count</strong> (e.g. <em>500 objects</em>): how many objects are currently created. Using too many objects can degrade performance. This value corresponds to the <em>objectcount</em> system expression.</li>
+<li><strong>The framerate</strong> (e.g. <em>60 FPS</em>): how many frames per second the project is rendering. The most common display refresh rate is 60 Hz, so typically an efficiently designed project will render at 60 FPS. Note however if nothing is changing on-screen, then nothing is rendered, and so the framerate may fall to 0 or display a lower result; this does not indicate poor performance, only that fewer frames are necessary to render. The <em>Ticks per second</em> measurement in the System performance section of the inspector shows how frequently the engine is stepping, which may be different to the frames rendered per second. This value corresponds to the <em>fps</em> system expression.</li>
+<li><strong>The estimated CPU time</strong> (e.g. <em>20% CPU</em>): an estimate of how much CPU time is being spent in the logic of the project. This is not always accurate, especially since it only takes in to account time spent on the main JavaScript thread, and should only be considered a ballpark figure. The profiler <span class="ilTag c2">Paid plans only</span> can break this down in to how much time is being spent in each area of the project, and is described in more detail later on in this guide. This value corresponds to the <em>CPUUtilisation</em> system expression.</li>
+<li><strong>The estimated GPU time</strong> (e.g. <em>20% GPU</em>): an estimate of how much GPU time is being spent in the rendering of the project. This is also an estimate based on hardware timers in the GPU. This value corresponds to the <em>GPUUtilisation</em> system expression.</li>
+<li><strong>The estimated image memory</strong> use (e.g. <em>32.5mb images</em>): an estimate of how much memory is being used by the currently loaded images in the project. Images typically use up the most memory in a project, but note this value excludes everything else, such as memory required to run the logic of the project or to play music and sound effects. See the guide on <a class="extern" href="../tips-and-guides/memory-usage.html" rel="noopener" target="_blank" title="Make your own games">Memory usage</a> for more information. This value corresponds to the <em>ImageMemoryUsage</em> system expression.</li>
+</ul>
+<p>Some additional performance details appear in the <strong>Performance</strong> section of the System object's inspector view, which is displayed by default:</p>
+<ul class="list">
+<li><strong>Collision checks/sec</strong> (e.g. <em>1144 (~22 / tick)</em>): how many times in the last second the engine had to test for a collision between two objects. Collision checks are invoked by the <em>On collision</em> or <em>Is overlapping sprite</em> conditions, and many <a class="extern" href="../project-primitives/objects/behaviors.html" rel="noopener" target="_blank" title="Make your own games">behaviors</a> perform additional collision checks automatically. In brackets, the average checks per tick is also shown. For example if there were 600 collision checks in the last second and the framerate is 60 FPS, the estimated checks per tick will be 10. This tells you on average there were about ten collision checks per frame, although the actual value will often vary frame-by-frame.</li>
+<li><strong>Poly checks/sec</strong> (e.g. <em>60 (~1 / tick)</em>): most collision checks are very fast, and the engine can tell trivially that two objects are not overlapping (by verifying that their bounding boxes do not overlap). However if two object's bounding boxes are overlapping, the engine must do a more expensive check where the collision polygons of each object are tested against each other. This value tells how many checks of this kind were made in the last second, as well as with the average per tick as with the <em>Collision checks/sec</em> value. Usually the <em>Poly checks/sec</em> value is considerably smaller, but if it is high, it indicates a possible performance problem.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Breakpoints</h2>
+<p>When running the debugger, it's possible to set <em>breakpoints</em> to pause execution of an event sheet on a specific event, condition or action. For more information, see the manual entry on <a class="extern" href="../project-primitives/events/breakpoints.html" rel="noopener" target="_blank" title="Make your own games">breakpoints</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

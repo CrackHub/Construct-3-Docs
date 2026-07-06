@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/mobile-advert" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Mobile Advert
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Mobile Advert</strong> plugin allows a game to use <strong>Admob</strong> Banner, Interstitial, Rewarded and Rewarded Interstitial adverts on <strong>Android</strong> and <strong>iOS</strong> exports.</p>
+<p>Web exports use <a class="extern outlink" href="https://developers.google.com/ad-placement" rel="nofollow noopener external" target="_blank" title="Go to: https://developers.google.com/ad-placement">Google's Ad Placement API</a> to show Interstitial and Rewarded adverts.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Advert types</h2>
+<p>Construct supports the following advert types:</p>
+<dl class="sans">
+<dt>Banner Advert</dt>
+<dd>Displays an advert that partially overlays the bottom of the screen, the size of the advert can be specified when it's created. <strong>(Mobile export only)</strong></dd>
+<dt>Interstitial Advert</dt>
+<dd>Displays a full screen advert, useful for transitioning between layouts. <strong>(Mobile &amp; Web exports)</strong></dd>
+<dt>Rewarded Advert</dt>
+<dd>Similar to an interstitial advert in that it is a full screen advert. If the user watches this advert for the designated amount of time, they will get the reward payload. If the advert is dismissed before that, the reward is not given. <strong>(Mobile &amp; Web exports)</strong></dd>
+<dt>Rewarded Interstitial Advert</dt>
+<dd>Similar to rewarded adverts, but users aren’t required to opt in to view a rewarded interstitial. Instead of the opt-in prompt in rewarded ads, rewarded interstitials require an intro screen that announces the reward and gives users a chance to opt out if they wish to do so. <strong>(Mobile &amp; Web exports)</strong></dd>
+</dl>
+<div class="hr"></div>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Getting started with Admob</h2>
+<p>Follow these steps to quickly get started with Admob on mobile exports:</p>
+<ol class="list">
+<li>Create an Admob account - see: <a class="extern outlink" href="https://support.google.com/admob/answer/7356219" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/admob/answer/7356219">Sign up for AdMob</a></li>
+<li>Create an <strong>application</strong> on your Admob account - see: <a class="extern outlink" href="https://support.google.com/admob/answer/2773509" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/admob/answer/2773509">Set up an app in Admob</a></li>
+<li>Create <strong>ad units</strong> for your <strong>application</strong> - see: <a class="extern outlink" href="https://support.google.com/admob/answer/6128738" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/admob/answer/6128738">Ad units</a></li>
+<li>Copy your application IDs and paste them to the Mobile Advert <strong>Android Application ID</strong> and <strong>iOS Application ID</strong> properties. <a class="extern outlink" href="https://support.google.com/admob/answer/7356431" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/admob/answer/7356431">Finding your Application IDs</a></li><li>Submit your business and payment details to your AdMob account and wait for them to verify (which may take 24 hours). This must be done before ads can be served.</li>
+</ol>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Getting started with web adverts</h2>
+<p>Follow these steps to quickly get started with adverts on web exports:</p>
+<ol class="list">
+<li>Sign up for an <a class="extern outlink" href="https://www.google.com/adsense/start/" rel="nofollow noopener external" target="_blank" title="Go to: https://www.google.com/adsense/start/"> Adsense account</a> 
+ if you already don't have one</li>
+<li>You will need a website which is whitelisted to show these type of ads</li>
+<li>Fill in <a class="extern outlink" href="https://docs.google.com/forms/d/e/1FAIpQLSf428z96Boo4hJ2ygtgvEwekVsW5N6hcF7RiidyiXW79tbVAw/viewform" rel="nofollow noopener external" target="_blank" title="Go to: https://docs.google.com/forms/d/e/1FAIpQLSf428z96Boo4hJ2ygtgvEwekVsW5N6hcF7RiidyiXW79tbVAw/viewform">this form</a> to indicate interest in using Google's Ad Placement API</li>
+</ol>
+<h3>How do I get my site whitelisted?</h3>
+<ol class="list">
+<li>Visit the <strong>Sites</strong> options in the left hand side menu of your Adsense account</li>
+<li>Find the <strong>Add site</strong> button and click it to start adding your website</li>
+<li>Follow the steps to add your website</li>
+<li>You will need to modify the root of your website by adding a small script to it</li>
+<li>Request a review</li>
+</ol>
+<p>After sometime, hopefully your website will be approved and your game will be able to show ads.</p>
+<h3>Considerations for web adverts</h3>
+<ol class="list">
+<li>You will need to have your website be a real one, that means that it should have real content and generally speaking look like it is serving a purpose. If you just setup a test website with no content, it is less likely it will be approved.</li>
+<li>Since the parent website your game will be hosted in needs to be whitelisted so the game can show ads, the ideal use case is you have control of the hosting website.</li>
+<li>If a game is shown in a cross origin iframe, it won't be allowed to show ads.</li>
+</ol>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>User Consent (Mobile exports only)</h2>
+<p>In order for the <strong>Show User Consent Dialog</strong> action to show <strong>GDPR</strong> consent forms and <strong>IDFA</strong> messages (iOS only), it is required to set them up in your Admob account.</p>
+<h3>GDPR message</h3>
+<p>Follow this guide to <a class="extern outlink" href="https://support.google.com/admob/answer/10113207" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/admob/answer/10113207">Create a GDPR message</a></p>
+<h3>IDFA message</h3>
+<p>Follow this guide to <a class="extern outlink" href="https://support.google.com/admob/answer/10115331?hl=en&amp;ref_topic=10078980" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/admob/answer/10115331?hl=en&amp;ref_topic=10078980">Create an IDFA message</a></p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Mobile exports required properties</h2>
+<p>If you intend to show ads in mobile exports, either <strong>Android</strong> or <strong>iOS</strong>, you will need to specify your application IDs on the Mobile Advert object. Without these values the plugin will not be able to start.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Web exports required properties</h2>
+<p>If you intend to show ads in a web export, you will need to specify your publisher ID in the Mobile Advert object. Without that value, the plugin will not be able to show web adverts.</p>
+<p>That's all the configuration you need for now. You can create new applications and edit your advert units later if you need.</p>
+<div class="hr"></div>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Initialization</h2>
+<p>The plugin will automatically initialize when the app starts. However this may involve showing a user consent prompt to the user for regulatory reasons, depending on the user's region. Therefore you should wait for the <strong>On configuration complete</strong> trigger to fire before attempting to create or show any ads. You should also use the <strong>On configuration failed</strong> trigger, and perhaps the <strong>Is configured</strong> condition, to check if configuration failed for any reason, such as being on an invalid platform or one of your properties being incorrect.</p>
+<h3>Using IDFA on iOS</h3>
+<p>As of iOS 14+, the <em>identifier for advertisers</em> or <strong>IDFA</strong> is no longer available to apps by default. This can affect the performance of ads. To use the <strong>IDFA</strong>, you must prompt the user for permission to access it with the <strong>Request IDFA</strong> action. You may also wish to do this on startup. The <strong>On IDFA request complete</strong> trigger fires when the user makes a decision, and the <strong>IDFAStatus</strong> expression indicates the outcome.</p>
+<h3>The App Tracking Transparency framework on iOS</h3>
+<p>In order to support the <strong>Request IDFA</strong> action, the Mobile Advert plugin includes an iOS library called <strong>App Tracking Transparency</strong>. To comply with Apple's App Store review process you may be required to indicate to the reviewers where your app uses the <strong>IDFA</strong> prompt. Therefore you may be required to add the <strong>Request IDFA</strong> action somewhere in your project. You do not have to always request it on startup - it could for example be a setting in a menu, and then you indicate to the App Store reviewers where to find the option.</p>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Advert Loading</h2>
+<p>Adverts need to load over the network before you can use them. When creating an advert you can choose to "show" the advert immediately after it has loaded. However if it's more suitable for your game you can choose to load your advert ahead of time by creating the advert, but not showing it, then later displaying the advert when you need it. This will prevent your user experiencing a lag while the advert loads. Be sure to check your advert has actually loaded before trying to display it, loading times for rewarded adverts in particular can be quite long. It's also worth remembering that you are not guaranteed to receive an advert when you request one, so take that into account when you are making your events.</p>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Banner Advert Sizes</h2>
+<p>To display a banner advert you must specify a size for it, generally smart portrait/landscape will work for most situations but here are the specifiable sizes. Using a size that is larger than the display will prevent it from loading. Smart banner will vary in height depending on the available screen height. With a smart banner if the base image isn't wide enough to fill the screen black bars are displayed on either side.</p>
+<dl class="sans">
+<dt>Smart portrait</dt>
+<dd>Screen width x 32/50/90</dd>
+<dt>Smart landscape</dt>
+<dd>Screen width x 32/50/90</dd>
+<dt>Standard</dt>
+<dd>320 x 50</dd>
+<dt>Large</dt>
+<dd>320 x 100</dd>
+<dt>Medium</dt>
+<dd>300 x 250</dd>
+<dt>Full (tablet only)</dt>
+<dd>468 x 60</dd>
+<dt>Leaderboard (tablet only)</dt>
+<dd>728 x 90</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link9" name="internalH1Link9"></a><h2>Mobile Advert Properties</h2>
+<dl class="sans">
+<dt>Testing mode</dt>
+<dd>Changes the displayed adverts units to testing adverts. Should be used during development. <strong>(Mobile &amp; Web exports)</strong></dd>
+<dt>Android application ID</dt>
+<dd>The Admob application ID for the Android version of your game. This has the format "ca-app-pub-0000000000000000~0000000000". On Android this value is required, and your application will fail to start unless it is provided and correct. <a class="extern outlink" href="https://support.google.com/admob/answer/7356431" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/admob/answer/7356431">Find your app ID</a> <strong>(Mobile exports only)</strong></dd>
+<dt>iOS application ID</dt>
+<dd>The Admob application ID for the iOS version of your game. This has the format "ca-app-pub-0000000000000000~0000000000". On iOS this value is required, and your application will fail to start unless it is provided and correct. <a class="extern outlink" href="https://support.google.com/admob/answer/7356431" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/admob/answer/7356431">Find your app ID</a> <strong>(Mobile exports only)</strong></dd>
+<dt>Spoof location (debug)</dt>
+<dd>Fakes the device location to allow testing the user consent dialog in different scenarios. Testing mode must be enabled for this to work. <strong>(Mobile exports only)</strong></dd>
+<dt>Show on start up</dt>
+<dd>Choose wether to show the consent form automatically on startup or not. This option doesn't do anything in web exports. <strong>(Mobile exports only)</strong></dd>
+<dt>Publisher ID</dt>
+<dd>Adsense publisher ID, found in your Adsense account. This is required if you intend to show adverts in a web export. <a class="extern outlink" href="https://support.google.com/adsense/answer/105516" rel="nofollow noopener external" target="_blank" title="Go to: https://support.google.com/adsense/answer/105516">Find your publisher ID</a> <strong>(Web exports only)</strong></dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link10" name="internalH1Link10"></a><h2>Differences between mobile and web adverts</h2>
+<div class="hr"></div>
+<h3>Ad units</h3>
+<p>If you only want to show web ads, it is not necessary to provide ad units in your actions, the field can be left blank. If you are planning to use the same project for web and mobile though, you will still need to provide them.</p>
+<h3>Rewarded ads</h3>
+<p>There is a slight difference between rewarded ads in mobile and rewarded ads in web that should be considered.</p>
+<p>In mobile when the ad is viewed you can use the <strong>RewardType</strong> and <strong>RewardValue</strong> expression to get information about the reward and this information is set in your Admob account through the ad unit.</p>
+<p>In a web export, because you don't use ad units, the rewarded ads will always return the value <em>"Reward"</em> for the <strong>RewardType</strong> expression and the value of <em>"1"</em> for the <strong>RewardValue</strong> expression.</p>
+<p>For this reason it is recommended to use the <a class="extern" href="platform-info.html" rel="noopener" target="_blank" title="Make your own games">Platform Info</a> plugin to decide what to do after a rewarded ad is viewed, depending on what platform the game is running on.</p>
+<a class="internalNavLink" id="internalH1Link11" name="internalH1Link11"></a><h2>Mobile Advert Conditions</h2>
+<dl class="sans">
+<dt>On Banner Ready</dt>
+<dd>Triggers when a banner advert has loaded.</dd>
+<dt>On Interstitial Ready</dt>
+<dd>Triggers when a interstitial advert has loaded.</dd>
+<dt>On Rewarded Ready</dt>
+<dd>Triggers when a rewarded advert has loaded.</dd>
+<dt>On Rewarded Interstitial Ready</dt>
+<dd>Triggers when a rewarded interstitial advert has loaded.</dd>
+<dt>On Banner Failed to Load</dt>
+<dd>Triggers when a banner advert fails to load.</dd>
+<dt>On Interstitial Failed to Load</dt>
+<dd>Triggers when a interstitial advert fails to load.</dd>
+<dt>On Rewarded Failed to Load</dt>
+<dd>Triggers when a rewarded advert fails to load.</dd>
+<dt>On Rewarded Interstitial Failed to Load</dt>
+<dd>Triggers when a rewarded interstitial advert fails to load.</dd>
+<dt>On Banner Shown</dt>
+<dd>Triggers when a banner advert has been displayed.</dd>
+<dt>On Interstitial Complete</dt>
+<dd>Triggers when a interstitial advert has closed.</dd>
+<dt>On Rewarded Complete</dt>
+<dd>Triggers when a rewarded advert has closed, and the user has been rewarded.</dd>
+<dt>On Rewarded Interstitial Complete</dt>
+<dd>Triggers when a rewarded interstitial advert has closed, and the user has been rewarded.</dd>
+<dt>On Banner Hidden</dt>
+<dd>Triggers when a banner advert has been hidden.</dd>
+<dt>On Interstitial Cancelled</dt>
+<dd>Triggers when a interstitial advert has been cancelled.</dd>
+<dt>On Rewarded Cancelled</dt>
+<dd>Triggers when a rewarded advert has been cancelled.</dd>
+<dt>On Rewarded Interstitial Cancelled</dt>
+<dd>Triggers when a rewarded interstitial advert has been cancelled.</dd>
+<dt>On Configuration Complete</dt>
+<dd>Triggers when the application ID has been successfully set.</dd>
+<dt>On Configuration Failed</dt>
+<dd>Triggers when the application ID failed to be set.</dd>
+<dt>On IDFA request complete</dt>
+<dd>Triggered after the <em>Request IDFA</em> action once the user has made a decision. The outcome of their decision is reflected in the <em>IDFAStatus</em> expression.</dd>
+<dt>Is Configured</dt>
+<dd>True if the plugin has been succesfully configured.</dd>
+<dt>Is Showing Banner</dt>
+<dd>True if a banner advert is being shown.</dd>
+<dt>Is Showing Interstitial</dt>
+<dd>True if a interstitial advert is being shown.</dd>
+<dt>Is Showing Rewarded</dt>
+<dd>True if a rewarded advert is being shown.</dd>
+<dt>Is Showing Rewarded Interstitial</dt>
+<dd>True if a rewarded interstitial advert is being shown.</dd>
+<dt>Is Banner Loaded</dt>
+<dd>True if a banner advert is ready to be shown.</dd>
+<dt>Is Interstitial Loaded</dt>
+<dd>True if a interstitial advert is ready to be shown.</dd>
+<dt>Is Rewarded Loaded</dt>
+<dd>True if a rewarded advert is ready to be shown.</dd>
+<dt>Is Rewarded Interstitial Loaded</dt>
+<dd>True if a rewarded interstitial advert is ready to be shown.</dd>
+<dt>Is in EEA or unknown</dt>
+<dd>True if the SDK consider the device to be inside the EEA or is unable to detect the location. As it is a requirement to show the dialog inside the EEA "unknown" is considered effectively the same as being in the EEA. In web exports this condition always evaluates to "true".</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link12" name="internalH1Link12"></a><h2>Mobile Advert Actions</h2>
+<dl class="sans">
+<dt>Create Banner</dt>
+<dd>Create a banner advert with a AdMob advert unit ID and size. Optionally show when loaded. Only one banner may be created at a time. If the <strong>reload</strong> parameter is set to <strong>true</strong> an existing banner will be reloaded with the new settings. Setting <strong>overlap</strong> to <strong>true</strong> causes the banner to overlap the main Webview, If <strong>false</strong> the main Webview will be resized so both it and the banner fit in the screen without overlapping. In the case of setting <strong>overlap</strong> to <strong>true</strong> the <strong>offset</strong> parameter can be used to specify an amount by which the banner should be offset from it's initial position.</dd>
+<dt>Create Rewarded</dt>
+<dd>Create a rewarded advert with a AdMob advert unit ID. Optionally show when loaded. Only one rewarded advert may be created at a time.</dd>
+<dt>Create Interstitial</dt>
+<dd>Create a interstitial advert with a AdMob advert unit ID. Optionally show when loaded. Only one interstitial may be created at a time.</dd>
+<dt>Create Rewarded Interstitial</dt>
+<dd>Create a rewarded interstitial advert with a AdMob advert unit ID. Optionally show when loaded. Only one rewarded interstitial may be created at a time.</dd>
+<dt>Show User Consent Dialog</dt>
+<dd>Shows the modal user consent dialog</dd>
+<dt>Show Banner</dt>
+<dd>Show a loaded banner advert. Will only display if there is a loaded banner ready.</dd>
+<dt>Show Rewarded</dt>
+<dd>Show a loaded rewarded advert. Will only display if there is a loaded video ready.</dd>
+<dt>Show Interstitial</dt>
+<dd>Show a loaded interstitial advert. Will only display if there is a loaded interstitial ready.</dd>
+<dt>Show Rewarded Interstitial</dt>
+<dd>Show a loaded rewarded interstitial advert. Will only display if there is a loaded rewarded interstitial ready.</dd>
+<dt>Hide Banner</dt>
+<dd>Hide an active banner advert (destroys the advert). Does nothing if no banner is available.</dd>
+<dt>Request IDFA</dt>
+<dd>Prompt the user for permission to use the <em>identifier for advertisers</em> (IDFA). When the user makes a decision, <em>On IDFA request complete</em> triggers, and the outcome is indicated in the <em>IDFAStatus</em> expression. See the section on using the IDFA above.</dd>
+<dt>Set Max Advert Content Rating</dt>
+<dd>Filter the viewed adverts based on the digital content label classifications for various age groups. This action is not supported in web exports.</dd>
+<dt>Tag For Child Directed Treatment</dt>
+<dd>Request advert content that is child-directed for the purposes of the Children's Online Privacy Protection Act (COPPA). This action is not supported in web exports.</dd>
+<dt>Tag for under age of consent</dt>
+<dd>Indicate the user should be treated as under the age of consent as per the restrictions in the European Economic Area(EEA) General Data Protection Act(GDPR). This action is not supported in web exports.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link13" name="internalH1Link13"></a><h2>Mobile Advert Expressions</h2>
+<dl class="sans">
+<dt>ErrorMessage</dt>
+<dd>When in a failure condition, an error message related to it.</dd>
+<dt>RewardType</dt>
+<dd>When in a <strong>On Rewarded Complete</strong> condition, the type of the related reward. In web exports this expression always returns the value "Reward".</dd>
+<dt>RewardValue</dt>
+<dd>When in a <strong>On Rewarded Complete</strong> condition, the value of the related reward. In web exports this expression always returns the value "1".</dd>
+<dt>RewardInterstitialType</dt>
+<dd>When in a <strong>On Rewarded Interstitial Complete</strong> condition, the type of the related reward. In web exports this expression always returns the value "Reward".</dd>
+<dt>RewardInterstitialValue</dt>
+<dd>When in a <strong>On Rewarded Interstitial Complete</strong> condition, the value of the related reward.  In web exports this expression always returns the value "1".</dd>
+<dt>ConsentStatus</dt>
+<dd>The current user consent status as a string, can take the values of: UNKNOWN, NOT_REQUIRED, REQUIRED or OBTAINED. In web exports this expression always return the UNKNOWN value.</dd>
+<dt>IDFAStatus</dt>
+<dd>Indicates the outcome of requesting to use the IDFA. If no request has been made this defaults to "not-determined". After a request it is either "authorized" or "denied" depending on the choice the user made. In web exports this expression always return the "not-determined" value.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

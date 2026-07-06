@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/json" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                JSON
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>JSON</strong> object can parse and read strings in JavaScript Object Notation (JSON) format, as well as writing data and converting the result back to a JSON string. A description of the JSON format is out of the scope of this manual; however there are some free tutorials you can search for on the web.</p>
+<p><a class="extern" href="https://editor.construct.net/#open=json" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of the JSON plugin.</a></p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/json.html" rel="noopener" target="_blank" title="Make your own games">IJSONInstance script interface</a>. (JavaScript and TypeScript have built-in support for JSON, but this allows for interacting with data used in an event sheet.)</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Loading a JSON file</h2>
+<p>JSON must be loaded as a string with the <em>Parse</em> action. If you have a small snippet of JSON, you can paste it directly in to the action parameter - but note in expressions a double-quote character (<code>"</code>) must be repeated twice (<code>""</code>) to avoid ending the string, which can be inconvenient. Instead it is recommended to request a JSON <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project file</a> using the <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX</a> object. When the AJAX request completes, pass <code>AJAX.LastData</code> in to the <em>Parse</em> action. Then the data from the file can be used.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>JSON paths</h2>
+<p>Construct only supports numbers and strings in expressions. To allow you to use structures like nested objects and arrays, the JSON object uses a special <em>path string</em> which identifies keys in the JSON data. The path is similar to the JavaScript syntax that would be used to access the JSON data, but note it is not actually evaluated as JavaScript code.</p>
+<p>A path is essentially a list of nested keys separated by dots. For example consider the following JSON data:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-1-close">{</span>
+	<span class="token string-property property">"foo"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-0-close">{</span>
+		<span class="token string-property property">"bar"</span><span class="token operator">:</span> <span class="token number">42</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-0-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-1-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>The path <code>foo.bar</code> refers to the inner "bar" key, which will return the value 42.</p>
+<h3>Escaping</h3>
+<p>If a JSON key actually has a dot in it, e.g. <code>"my.key"</code>, then the dot needs to be escaped in a path string otherwise it will try to look for a key named <code>my</code> with another object key named <code>key</code> inside it. Dots preceded by a backslash (<code> \ </code>) will be interpreted as part of the key name, e.g. <code>my\.key</code> will look for a key named <code>"my.key"</code>. To actually use a backslash in a key name, then use a double backslash in a path, e.g. <code>my\\key</code> will look for a key named <code>"my\key"</code>.</p>
+<h3>Types</h3>
+<p>Since Construct expressions only support numbers and strings, only number and string type properties can be directly returned in expressions. Booleans are returned as a number (0 for false and 1 for true). However using paths, loops and conditions, there are a variety of tools to identify what kind of data is available and access values held within objects and arrays (even when nested), as well as detecting special values like <code>null</code>.</p>
+<h3>Arrays</h3>
+<p>Array elements can be accessed as if their elements were numbered properties (which is actually how JavaScript specifies arrays internally). For example consider the following JSON data:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-3-close">{</span>
+	<span class="token string-property property">"array"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-2-close">[</span><span class="token number">123</span><span class="token punctuation">,</span> <span class="token number">456</span><span class="token punctuation brace-square brace-close brace-level-2" id="pair-2-open">]</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-3-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Like most of Construct JSON arrays use zero-based indices, so the path <code>array.0</code> refers to the first element (123) and <code>array.1</code> refers to the second element (456), and so on.</p>
+<h3>Relative paths</h3>
+<p>The <em>Set path</em> action changes the current path, making it more convenient to access deeply nested keys. A relative path can then be used to continue from the current path. Relative paths begin with a dot, e.g. <code>.bar</code>. If a path does not begin with a dot, it is always treated as absolute (starting from the root), regardless of the current path.</p>
+<p>For example suppose you want to access multiple keys under a common path, like <code>foo.bar.baz.first</code> and <code>foo.bar.baz.second</code>. You can first use <em>Set path</em> to set <code>foo.bar.baz</code> as the current path, and then the paths <code>.first</code> and <code>.second</code> refer to <code>foo.bar.baz.first</code> and <code>foo.bar.baz.second</code> respectively. Even with a current path set, the path <code>abc.def</code> refers to top-level keys because it does not start with a dot, so is treated as absolute.</p>
+<p>The <em>For each</em> looping condition also sets the current path to the full path to the current key being iterated, making it convenient to retrieve data in a loop.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>JSON conditions</h2>
+<dl class="sans">
+<dt>Compare type</dt>
+<dd>Test the type of a value at a given path. This can also detect the special <code>null</code> value that cannot be returned in a Construct expression, as well as identifying arrays and objects.</dd>
+<dt>Compare value</dt>
+<dd>Compare the value at a given path. This can only be used with number or string values.</dd>
+<dt>For each</dt>
+<dd>Repeats once for each key at a path in the JSON data. This can be used with either object or array types; in the case of arrays, the keys are the array indices (e.g. 0, 1, 2...) represented as a string. Inside the loop, the current path is set to the current key being iterated, so relative paths can be used to retrieve data from the current key. The <em>CurrentKey</em>, <em>CurrentValue</em> and <em>CurrentType</em> expressions return information about the current key-value pair being iterated.</dd>
+<dt>Has key</dt>
+<dd>Determine if a key exists at a given path.</dd>
+<dt>Is boolean set</dt>
+<dd>Determine if a given path contains a boolean "true" value.</dd>
+<dt>On parse error</dt>
+<dd>Triggered after a <em>Parse</em> action if there was invalid syntax in the JSON string resulting in an error trying to parse it.</dd>
+<dt>On parse success</dt>
+<dd>Triggered after a <em>Parse</em> action if the JSON syntax was valid and parsing completed successfully.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>JSON actions</h2>
+<p>Note that when setting values, nonexistent keys are created as necessary. For example if the JSON file is empty but you set the number 5 at the path <code>foo.bar</code>, the <code>foo</code> and <code>bar</code> keys are automatically created, resulting in the data <code>{ "foo": { "bar": 5 } }</code>.</p>
+<dl class="sans">
+<dt>Delete key</dt>
+<dd>Delete the key at a path so it is no longer present in the JSON data. </dd>
+<dt>Parse</dt>
+<dd>Parse a string of JSON data and load it in to the object so it can be accessed. If the data is valid and is parsed successfully, <em>On parse success</em> is triggered; otherwise if the data is invalid and parsing fails, <em>On parse error</em> is triggered.</dd>
+<dt>Pop value</dt>
+<dd>Remove an element at the start or end of an array located at a path. If the path does not specify an array, this does nothing.</dd>
+<dt>Push value</dt>
+<dd>Add an element with the given value at the start or end of an array located at a path. If the path does not specify an array, this does nothing.</dd>
+<dt>Insert value</dt>
+<dd>Inserts an element with the given value into an array located at a path, increasing the size of the array by 1. The element is inserted at a specified index, if any elements existed at or after that index they pushed forward by 1.</dd>
+<dt>Remove values</dt>
+<dd>Removes a specified number of elements from an array located at a path, reducing the size of the array. Elements are removed starting at a specified index, if there are less elements after the array than requested to be removed then only the available number will be removed.</dd>
+<dt>Set array</dt>
+<dd>Create an array with a given number of elements at a path. If an array already exists at the given path, it is resized to the given number of elements. In both cases, any new elements are initialised to 0.</dd>
+<dt>Set boolean</dt>
+<dd>Set a true or false value at a path.</dd>
+<dt>Set JSON</dt>
+<dd>Parse a string of JSON data, and set the value at a path to the resulting JSON. This is useful to merge data from different sources in to the same JSON object.</dd>
+<dt>Set null</dt>
+<dd>Set the special <code>null</code> value at a path.</dd>
+<dt>Set object</dt>
+<dd>Set an empty object at a path. If there is already an object at the given path, it is replaced with an empty object.</dd>
+<dt>Set path</dt>
+<dd>Set the current path. This allows relative keys to continue from this path.</dd>
+<dt>Set value</dt>
+<dd>Set a number or string value at a path.</dd>
+<dt>Toggle boolean</dt>
+<dd>Toggle a boolean value at a path. If the value at the path is not a Boolean, do nothing.</dd>
+<dt>Add to</dt>
+<dd>Add a value to the numerical value at a path. If the value at the path is not numerical, do nothing.</dd>
+<dt>Subtract from</dt>
+<dd>Subtract a value from the numerical value at a path. If the value at the path is not numerical, do nothing.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>JSON expressions</h2>
+<dl class="sans">
+<dt>ArraySize</dt>
+<dd>Return the length of an array at a path. If there is not an array at the given path, returns -1.</dd>
+<dt>Back</dt>
+<dt>Front</dt>
+<dd>Return the element at the start (front) or end (back) of an array at a given path. If there is not an array at the given path, returns -1.</dd>
+<dt>CurrentKey</dt>
+<dd>In a <em>For each</em> loop, a string of the current key name. If an array is being looped, the current key is a string of the current index, e.g. "0", "1"...</dd>
+<dt>CurrentType</dt>
+<dd>In a <em>For each</em> loop, a string representing the type of the current value, which can be one of <code>"null"</code>, <code>"array"</code>, <code>"object"</code>, <code>"boolean"</code>, <code>"number"</code> or <code>"string"</code>.</dd>
+<dt>CurrentValue</dt>
+<dd>In a <em>For each</em> loop, the current value. This only returns numbers or strings, or booleans as a number (0 for false and 1 for true). All other types will return 0.</dd>
+<dt>Get</dt>
+<dd>Get the value at a given path. The path can be relative to the current path or the current key in a <em>For each</em> loop. This only returns numbers or strings, or booleans as a number (0 for false and 1 for true). All other types will return 0.</dd>
+<dt>Type</dt>
+<dd>Get a string representing the type of a value at a given path, which can be one of <code>"null"</code>, <code>"array"</code>, <code>"object"</code>, <code>"boolean"</code>, <code>"number"</code> or <code>"string"</code>. The path can be relative to the current path or the current key in a <em>For each</em> loop.</dd>
+<dt>Path</dt>
+<dd>Return the current path.</dd>
+<dt>ToBeautifiedString</dt>
+<dt>ToCompactString</dt>
+<dd>Return the current JSON data either as a formatted string with line breaks and indentation ("beautified"), or as a minimal string excluding any line breaks or indentation ("compact"). Beautified strings are easier to read, but compact strings are more efficient for storing, sending over the Internet, and loading. Both beautified and compact strings always represent identical data, and there are a range of third-party tools available that can convert between beautified and compact representation.</dd>
+<dt>GetAsBeautifiedString</dt>
+<dt>GetAsCompactString</dt>
+<dd>Return the JSON data at a specified location either as a formatted string with line breaks and indentation ("beautified"), or as a minimal string excluding any line breaks or indentation ("compact"). These expressions are conceptually similar to "ToBeautifiedString" and "ToCompactString" respectively, but for a specific part of the current data instead of everything. In that way they are the opposite half of the "Set JSON" action, which allow you to set a value from a JSON string at a given location.</dd>
+</dl></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

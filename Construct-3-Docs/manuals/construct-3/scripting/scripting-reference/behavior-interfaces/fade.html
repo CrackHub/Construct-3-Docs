@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/fade" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Fade behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IFadeBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/fade.html" rel="noopener" target="_blank" title="Make your own games">Fade behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Example</h2>
+<p>Below is a sample code snippet demonstrating starting a fade for <code>inst</code> (assumed to be an instance with the Fade behavior)  and logging to the console when the fade finishes.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Handle "fadeoutend" event which logs to console when</span>
+<span class="token comment">// the fade has finished</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Fade<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token string">"fadeoutend"</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span>
+<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-3-close">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-0-close">(</span><span class="token string">"Fade finished!"</span><span class="token punctuation brace-round brace-close brace-level-3" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-3-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Start the Fade effect running</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Fade<span class="token punctuation">.</span><span class="token function">startFade</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Fade behavior events</h2>
+<p>See <a class="extern" href="../interfaces/behavior-instance-event.html" rel="noopener" target="_blank" title="Make your own games">behavior instance event</a> for standard behavior instance event object properties.</p>
+<dl>
+<dt>"fadeinend"</dt>
+<dd>Fired when the fade in stage finishes, moving on to the wait stage.</dd>
+<dt>"waitend"</dt>
+<dd>Fired when the wait stage finishes, moving on to the fade out stage.</dd>
+<dt>"fadeoutend"</dt>
+<dd>Fired when the fade out stage finishes. The object may also be destroyed immediately after this event if the <em>Destroy</em> property of the behavior is enabled.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Fade behavior APIs</h2>
+<dl>
+<dt>startFade()</dt>
+<dd>Start the fade effect running if it is not already running.</dd>
+<dt>restartFade()</dt>
+<dd>Force the fade effect to restart from the beginning.</dd>
+<dt>fadeInTime</dt>
+<dd>Set or get the fade in time in seconds. Set to 0 to skip this stage.</dd>
+<dt>waitTime</dt>
+<dd>Set or get the wait time, in between the fade in and fade out, in seconds. Set to 0 to skip this stage.</dd>
+<dt>fadeOutTime</dt>
+<dd>Set or get the fade out time in seconds. Set to 0 to skip this stage.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

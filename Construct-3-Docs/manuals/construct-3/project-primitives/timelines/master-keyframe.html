@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/timelines/master-keyframe" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timeline master keyframe
+            </h1>
+<div itemprop="articleBody">
+<p>In the <a class="extern" href="../../interface/bars/timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a>, a master keyframe is represented by marks in the same row as the <a class="extern" href="track.html" rel="noopener" target="_blank" title="Make your own games">track</a> they belong to.</p>
+<p>A track can have many different master keyframes, one for each position in the <a class="extern" href="timeline.html" rel="noopener" target="_blank" title="Make your own games">timeline</a> with values that must be reached when animating. By themselves master keyframes only mark a time - the values used for interpolation are kept by the <a class="extern" href="property-keyframe.html" rel="noopener" target="_blank" title="Make your own games">property keyframes</a>.</p>
+<p>The main role of master keyframes is to serve as a control to modify all related property keyframes at the same time. Any changes made to a master keyframe will be applied to all corresponding property keyframes, including <strong>Enabled</strong>, <strong>Time</strong>, <strong>Ease</strong> and <strong>Path mode</strong> changes as well as deleting.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Adding Master Keyframes</h2>
+<p>To add master keyframes, follow these steps:</p>
+<ul class="list">
+<li>Turn on <strong>Edit mode</strong> by pressing the <strong>Edit</strong> button in the Timeline Bar toolbar.</li>
+<li>Move the current time marker to the position in the timeline where you want to create keyframes. This can be done by either clicking on the time ruler or by dragging the red line.</li>
+<li>Make changes to the instances you want to animate.</li>
+<li>Use the <kbd>S</kbd> keyboard shortcut or right-click in the <a class="extern" href="../../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a> and select <span class="navWrap">Timeline<span class="arr">►</span>Set keyframes</span>.</li>
+</ul>
+<h3>Master Keyframe Properties</h3>
+<dl class="sans">
+<dt>Index</dt>
+<dd>The index of the master keyframe in its track. It can not be changed. This value is updated if the keyframe's position in the timeline changes.</dd>
+<dt>Time</dt>
+<dd>The position of the master keyframe in the timeline. This can be updated from the <a class="extern" href="../../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a> or by dragging the keyframe in the Timeline Bar. Either change will update all property keyframes under the master.</dd>
+<dt>Ease</dt>
+<dt>Path mode</dt>
+<dt>Enabled</dt>
+<dd>See the section on common timeline element properties in <a class="extern" href="../timelines.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a>. <strong>Ease</strong> and <strong>Path mode</strong> follow an inheritance pattern while changing <strong>Enabled</strong> at the master keyframe level will apply the change to every associated property keyframe.
+<br/>
+<div class="hr"></div>
+<br/>
+<br/>
+</dd>
+<dt>Tags</dt>
+<dd>A space separated list of identifiers that can be used with a set of <a class="extern" href="../../plugin-reference/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline plugin</a> conditions, to identify when a master keyframe has been reached while a timeline is playing.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

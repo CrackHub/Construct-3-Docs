@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/fade" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Fade behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Fade behavior</strong> fades objects in and out by changing the object's opacity over time. By default, it makes an object fade out over 1 second then destroys it.</p>
+<p>Fades run in the following order. If any of the times are 0, the step is skipped.</p>
+<ol class="list">
+<li>The object fades in from invisible to its set opacity, over the <em>Fade in time</em>.</li>
+<li>The object remains at its current opacity for the <em>Wait time</em>.</li>
+<li>The object fades out to invisible, over the <em>Fade out time</em>.</li>
+<li>If the <em>Destroy</em> property is enabled, the object is then destroyed.</li>
+</ol>
+<p>For example, with each time set to 1 second, the object will fade in from invisible for 1 second, wait for 1 second, then fade out to invisible for 1 second.</p>
+<p>It is recommended to leave <em>Destroy</em> enabled. If disabled, the object still exists after fading out, but is invisible. If many objects are using the Fade behavior, this can build up many invisible objects over time, which gradually use more memory and CPU causing the game to slow down.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/fade.html" rel="noopener" target="_blank" title="Make your own games">IFadeBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Fade properties</h2>
+<dl class="sans">
+<dt>Fade in time</dt>
+<dd>Time, in seconds, to fade in from invisible. If 0, the fade in is skipped.</dd>
+<dt>Wait time</dt>
+<dd>Time, in seconds, to wait between fade in and fade out. If 0, the step is skipped.</dd>
+<dt>Fade out time</dt>
+<dd>Time, in seconds, to fade out to invisible. If 0, the fade out is skipped.</dd>
+<dt>Destroy</dt>
+<dd>If enabled, the object is automatically destroyed after the fade out finishes. If disabled, the object is never destroyed by the behavior. Be sure to destroy objects yourself as necessary, as a build-up of invisible faded-out objects can cause the game to slow down.</dd>
+<dt>Enabled</dt>
+<dd>If enabled, the object will begin fading as soon as it is created. Otherwise the fade will not run until you use the <em>Start</em> action.</dd>
+<dt>Preview <span class="ilTag c2">Paid plans only</span></dt>
+<dd>Enable to run a preview of the fade effect directly in the Layout View.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Fade conditions</h2>
+<dl class="sans">
+<dt>On fade-in finished</dt>
+<dt>On wait finished</dt>
+<dt>On fade-out finished</dt>
+<dd>Triggered when each stage of the fade finishes.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Fade actions</h2>
+<dl class="sans">
+<dt>Restart fade</dt>
+<dd>Run the entire fade from the beginning again.</dd>
+<dt>Set fade-in time</dt>
+<dt>Set fade-out time</dt>
+<dt>Set wait time</dt>
+<dd>Set the corresponding properties described under <em>Fade properties</em>.</dd>
+<dt>Start fade</dt>
+<dd>If the <em>Enabled</em> property is disabled, this will begin the fade.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Fade expressions</h2>
+<dl class="sans">
+<dt>FadeInTime</dt>
+<dt>FadeOutTime</dt>
+<dt>WaitTime</dt>
+<dd>Return the corresponding properties described under <em>Fade properties</em>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

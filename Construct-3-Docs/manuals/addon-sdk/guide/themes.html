@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/themes" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Theme addons
+            </h1>
+<div itemprop="articleBody">
+<p>Construct 3 allows theme addons, which simply add some custom stylesheets to the document. This allows a great deal of flexibility in customising the appearance of the Construct 3 editor. Any features of CSS can be used to alter the UI appearance. You can use browser developer tools to identify the classes and DOM structure used in the editor, and override the styles Construct 3 applies by default in your own stylesheet.</p>
+<p>Themes are based on the same <a class="extern" href="c3addon-file.html" rel="noopener" target="_blank" title="Make your own games">.c3addon file</a> that plugins and behaviors use, although with fewer necessary files. As you can see in the theme SDK download, all you need are <strong>lang/en-US.json</strong>, <strong>addon.json</strong>, an icon, and a stylesheet. Note your <a class="extern" href="addon-metadata.html" rel="noopener" target="_blank" title="Make your own games">addon metadata</a> must also contain a list of <code>stylesheets</code> — this is just a list of the CSS files to add to the document when your theme is applied.</p>
+<p>As with other kinds of addon, you can <a class="extern" href="using-developer-mode.html" rel="noopener" target="_blank" title="Make your own games">test themes as developer addons</a> for quicker development.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tips for developing themes</h2>
+<ul class="list">
+<li>Construct 3 uses a range of CSS variables (aka custom properties) to more easily customise certain parts of the UI. These also allow customisation of colors not in the DOM, such as the Layout View (which is rendered with WebGL). The available CSS variables are listed in comments in the theme SDK. Note colors in CSS variables must always be written in hex format (#000000), except for layout view colors which can use rgba() syntax. (Other CSS properties can use any syntax; only CSS variables are restricted, since they are sometimes read from JavaScript.)</li>
+<li>Avoid making significant alterations to layout. In many cases Construct 3's code assumes certain layout of elements. Additionally it is time consuming to test layout changes work across every part of the UI. For example Construct 3 has over 50 dialogs, and testing all the dialogs still appear correctly after a change is a lot of work. On the other hand, cosmetic changes like colors and borders are usually safe.</li>
+<li>Be sure to also test your theme on mobile. Construct 3 uses different paradigms and layouts in a number of places when adapting to smaller mobile displays, and you should check your theme still appears correctly in that mode.</li>
+<li>Be wary of styles that could have a performance impact. For example heavy use of shadows, effects (such as blurs or other filters) or animations, could be taxing on the CPU or GPU. Fewer people will use your theme if it slows down their device, so try to make sure your styles are used efficiently.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Using themes</h2>
+<p>Once you have installed a theme addon, you can start using it by selecting it from the Settings dialog. Note this involves restarting Construct 3 twice: once when the addon is installed, after which it appears in the Settings dialog, and then again after selecting it in the Settings dialog.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

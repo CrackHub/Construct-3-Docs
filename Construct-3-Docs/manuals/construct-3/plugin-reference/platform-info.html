@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/platform-info" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Platform info
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Platform info</strong> object returns information about the system, device and browser.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/interfaces/iplatforminfo.html" rel="noopener" target="_blank" title="Make your own games">IPlatformInfo script interface</a>, typically accessed via the <code>runtime.platformInfo</code> property. Note that this interface is always available in script regardless of whether the Platform Info object has been added to the project.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Platform info conditions</h2>
+<dl class="sans">
+<dt>Is Cordova export</dt>
+<dd>True when running after a Cordova-based export. Cordova is used to export Android and iOS apps, and implies that the platform is mobile and the OS is either Android or iOS.</dd>
+<dt>Is Linux wrapper export</dt>
+<dd>True when running after a <a class="extern" href="https://www.construct.net/tutorials/exporting-linux-steam-deck-3155.html" rel="noopener" target="_blank" title="Make your own games">Linux wrapper export</a>, and implies the platform is desktop and the OS is Linux.</dd>
+<dt>Is macOS wrapper export</dt>
+<dd>True when running after a <a class="extern" href="https://www.construct.net/tutorials/exporting-macos-wkwebview-2718.html" rel="noopener" target="_blank" title="Make your own games">macOS wrapper export</a>, and implies the platform is desktop and the OS is macOS.</dd>
+<dt>Is web export</dt>
+<dd>True when running after a web-based export. This is also true in preview mode, so that any features based on these export conditions will act as if it's in a web-based export in preview mode.</dd>
+<dt>Is Windows wrapper export</dt>
+<dd>True when running after a <a class="extern" href="https://www.construct.net/tutorials/exporting-windows-webview2-2685.html" rel="noopener" target="_blank" title="Make your own games">Windows wrapper export</a>, and implies the platform is desktop and the OS is Windows.</dd>
+<dt>On network change</dt>
+<dd>Triggered when the network connection changes, e.g. when moving from a Wifi network to a cellular data network. The network-related expressions will update in this trigger to reflect values for the new network.</dd>
+<dt>Is on Android</dt>
+<dt>Is on Chrome OS</dt>
+<dt>Is on iOS</dt>
+<dt>Is on Linux</dt>
+<dt>Is on macOS</dt>
+<dt>Is on Windows</dt>
+<dd>These conditions check which operating system (OS) the project is currently running on. For example in Chrome on Windows, <em>Is on Windows</em> will be true; in an Android app, <em>Is on Android</em> will be true; and so on. Note these conditions are not exhaustive: there may be platforms where none of these six conditions are true.<br/>
+</dd>
+<dt>Is on mobile</dt>
+<dd>Test if the current device reports itself as a "mobile" device. </dd>
+<dt>Is wake lock active</dt>
+<dd>True if a <em>Request wake lock</em> action has successfully completed and the screen is currently being kept on.</dd>
+<dt>Is wake lock supported</dt>
+<dd>True if the current browser/platform supports using wake locks to keep the screen on.</dd>
+<dt>On wake lock acquired</dt>
+<dd>Triggered after the <em>Request wake lock</em> action if the lock was successfully acquired. The screen will be kept on until <em>On wake lock released</em> triggers.</dd>
+<dt>On wake lock error</dt>
+<dd>Triggered if an error occurs while attempting to request a wake lock. The screen will not be kept on.</dd>
+<dt>On wake lock released</dt>
+<dd>Triggered when an existing wake lock is released, meaning the screen may once again automatically turn off due to inactivity. This can happen after a <em>Release wake lock</em> action, or automatically in some circumstances, such as if the browser tab or app goes in to the background. To keep the screen on after this trigger, another wake lock must be requested.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Platform info actions</h2>
+<dl class="sans">
+<dt>Request wake lock</dt>
+<dd>Request a wake lock to keep the screen on permanently, preventing it automatically dimming or switching off due to inactivity. Note this increases power usage so will drain battery more quickly. If successful, <em>On wake lock acquired</em> triggers; otherwise <em>On wake lock error</em> triggers.<br/>
+<br/>
+</dd>
+<dt>Release wake lock</dt>
+<dd>If a wake lock is currently active, release it, so the screen may once again dim or turn off due to inactivity.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Platform info expressions</h2>
+<dl class="sans">
+<dt>DeviceMemory</dt>
+<dd>Return the approximate amount of device memory (RAM) in gigabytes. For privacy reasons some platforms will round the result, so it may not match the exact amount installed on the system. Additionally this value is not available on some browsers or platforms, in which case it will return 0.</dd>
+<dt>HardwareConcurrency</dt>
+<dd>Return the number of hardware threads supported by the CPU. This is normally at least the number of CPU cores. Many modern CPUs support multiple hardware threads on a single CPU (e.g. Hyper-threading), and a common case is for each CPU to support two hardware threads, so this is often double the number of CPU cores. For privacy reasons some platforms will round the result, so it may not match the exact number of hardware threads/CPU cores available on the system. If the value is not available, it will return 0. However almost all consumer devices have at least two CPU cores.</dd>
+<dt>CanvasCssWidth</dt>
+<dt>CanvasCssHeight</dt>
+<dd>Return the size of the main display canvas in CSS pixels. This does not correspond exactly to device (physical display) pixels, but is the appropriate size from a web design perspective in <code>px</code> units.</dd>
+<dt>CanvasDeviceWidth</dt>
+<dt>CanvasDeviceHeight</dt>
+<dd>Return the size of the main display canvas in device (physical display) pixels. Unlike the CSS size, this size reflects the number of actual pixels used in the display.</dd>
+<dt>DevicePixelRatio</dt>
+<dd>Return the number of device (physical display) pixels per CSS pixel. For example a high-DPI display may have a device pixel ratio of 2, meaning there are two device pixels per CSS pixel. This value also reflects the browser zoom level, which works by adjusting the device pixel ratio. The concept of the device pixel ratio also allows web pages using <code>px</code> units to appear the same size on higher density displays where physical pixels are much smaller.</dd>
+<dt>Renderer</dt>
+<dd>Return a string indicating the graphics rendering technology in use. This can be <code>"webgl1"</code>, <code>"webgl2"</code> or <code>"webgpu"</code>. It can also have a <code>-software</code> suffix if a "major performance caveat" is detected, which normally indicates slower software rendering, typically due to unreliable GPU drivers. For example, software-rendered WebGL 1 support would return <code>"webgl1-software"</code>. The WebGPU renderer can also have a <code>-compatibility</code> suffix to indicate it is rendering with WebGPU in compatibility mode (supporting older hardware with legacy graphics APIs), e.g. <code>"webgpu-compatibility"</code>.</dd>
+<dt>RendererDetail</dt>
+<dd>Return a string describing system-specific detail about the graphics hardware in use. This typically describes the GPU manufacturer and model name, and sometimes some hardware capabilities.</dd>
+<dt>SafeAreaInsetLeft</dt>
+<dt>SafeAreaInsetTop</dt>
+<dt>SafeAreaInsetRight</dt>
+<dt>SafeAreaInsetBottom</dt>
+<dd>The inset around the edges of the screen in CSS pixels of a rectangular area that is always visible (hence safe to use for displaying anything important without it risking being cut off). This only applies for devices with non-rectangular screens, notably mobile devices with a notch, or in some cases devices with rounded edges in the corners of the screen. Devices with a standard rectangular display will return 0 for these values.</dd>
+<dt>ScreenWidth</dt>
+<dt>ScreenHeight</dt>
+<dd>Get the size of the current display screen. Note this often includes areas not available to applications, such as a desktop taskbar, or mobile status bar.</dd>
+<dt>WindowInnerWidth</dt>
+<dt>WindowInnerHeight</dt>
+<dd>Get the inner size of the current window. This is the size of the window content area that is available to the application.</dd>
+<dt>WindowOuterWidth</dt>
+<dt>WindowOuterHeight</dt>
+<dd>Get the outer size of the current window. This includes the window browser, caption, browser address bar etc. which is not generally available to the application.</dd>
+<dt>ConnectionEffectiveType</dt>
+<dd>Return a string rating the effective type of the connection based on the comparable cellular data connection generation, e.g. <code>"2g"</code>, <code>"3g"</code>, <code>"4g"</code>.</dd>
+<dt>ConnectionRTT</dt>
+<dd>Return the estimated round-trip time (latency) of the connection in milliseconds. This is the time it takes for a network message to be sent to the remote host and a reply to be received back.</dd>
+<dt>ConnectionType</dt>
+<dd>The type of network connection technology in use, e.g. <code>"cellular"</code>, <code>"wifi"</code> or <code>"ethernet"</code>. If the connection type cannot be detected or the platform does not support this feature, returns <code>"unknown"</code>.</dd>
+<dt>Downlink</dt>
+<dd>The estimated effective download bandwidth in megabits per second. Returns 0 if unable to detect.</dd>
+<dt>DownlinkMax</dt>
+<dd>The maximum downlink speed in megabits per second of the underlying connection technology. This is normally the theoretical maximum the current network technology's specification allows, for example 4G cellular allows a higher maximum speed than 3G under ideal signal conditions; however the actual available bandwidth will depend on other factors like signal quality and other parts of the network. Returns 0 if unable to detect.</dd>
+<dt>FramesPerSecond</dt>
+<dd>How many frames per second (FPS) the project is rendering. The most common display refresh rate is 60 Hz, so typically an efficiently designed project will render at 60 FPS. Note however if nothing is changing on-screen, then nothing is rendered, and so the FPS measurement may fall to 0 or display a lower result; this does not indicate poor performance, only that fewer frames are necessary to render. The <em>TicksPerSecond</em> expression indicates how frequently the engine is stepping, which may be different to the frames rendered per second.</dd>
+<dt>TicksPerSecond</dt>
+<dd>How many ticks per second (TPS) the project is running at. Each tick processes the logic of the game. Usually a new frame is also rendered every tick, but if nothing changes then rendering a frame is skipped; further, depending on the framerate mode, stepping the engine and drawing frames may happen at different rates. Therefore the ticks per second may produce a different measurement to the frames per second. Usually the project will continually tick even if nothing is visually changing, and only stop ticking if the project is suspended, such as by being minimized or going in to the background.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/dialogs/event-variable" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Add/edit event variable dialog
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Add/Edit Event Variable dialog</strong> allows you to change the details of a <a class="extern" href="../../project-primitives/events/variables.html" rel="noopener" target="_blank" title="Make your own games">global or local variable</a> in an <a class="extern" href="../../project-primitives/events/event-sheets.html" rel="noopener" target="_blank" title="Make your own games">event sheet</a>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/955/event-variable-dialog.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1197x942px in new window (39.22 KB)"><span><img alt="The Add/Edit Event Variable dialog, shown when adding a global variable" height="377" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/955/event-variable-dialog_v480.png" width="479"/></span></a></div></div>
+<p>The dialog has the following fields.</p>
+<dl class="sans">
+<dt>Name</dt>
+<dd>The name identifies the event variable. This is typed in to <a class="extern" href="../../project-primitives/events/expressions.html" rel="noopener" target="_blank" title="Make your own games">expressions</a> to retrieve the value of the event variable. Some names cannot be used, like the names of system expressions, since they would conflict when entering an expression.</dd>
+<dt>Type</dt>
+<dd>The type specifies what kind of value the variable holds. This can be <em>Number</em>, <em>String</em> (text), or <em>Boolean</em> (an on/off value). The type of an event variable does not change - you can't store text in a Number variable and vice versa.<br/>
+</dd>
+<dt>Initial value</dt>
+<dd>The initial number for a <em>Number</em> variable, the initial text for a <em>String</em> variable, or a checkbox for a <em>Boolean</em> variable to specify if it is initially true (checked) or false (unchecked). Note that unlike expressions, the initial text entered here does <strong>not</strong> need double quotes around it. In other words, <em>Hello</em> is a valid entry, and if you enter <em>"Hello"</em> (as you would in an expression) the initial string will include the double quotes.</dd>
+<dt>Description <span class="ilTag c1">Optional</span></dt>
+<dd>An optional comment you can use to briefly describe what the variable is used for. It is displayed next to the name in the editor to help remind you what to use the variable for.</dd>
+<dt>Static</dt>
+<dd>Only applies to local variables. By default, local variables reset their value to the initial value every tick. However if <em>Static</em> is checked, the local variable's value will persist permanently, like a global variable. Static local variables differ from global variables in that they can still only be used within their scope. Global variables always hold their values permanently so the <em>Static</em> option does not apply to them. For more information about local variables, see <a class="extern" href="../../project-primitives/events/variables.html" rel="noopener" target="_blank" title="Make your own games">Event Variables</a>.</dd>
+<dt>Constant</dt>
+<dd>Make a variable read-only. You will be able to compare and retrieve the variable, but not change its value using any actions. This is useful for referring to a number like the maximum number of lives, without having to repeat the number in your events. If you want to change the value, there is only one place you need to change, which is a lot easier than having to hunt down the multiple places you entered a particular number in your events. According to programming convention, the names of constants are displayed in upper case, e.g. <em>MAX_LIVES</em>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

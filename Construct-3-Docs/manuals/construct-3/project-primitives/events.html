@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Events
+            </h1>
+<div itemprop="articleBody">
+<p>Events are one of Construct's main features: instead of complicated scripting or programming languages with fiddly syntax and difficult errors, you can define how your project works using a simpler block system. The blocks are collectively referred to as events, although there are several kinds of block making up an <a class="extern" href="events/event-sheets.html" rel="noopener" target="_blank" title="Make your own games">event sheet</a>.</p>
+<p>Construct's event system is likely to be unfamiliar to new users. Read <a class="extern" href="events/how-events-work.html" rel="noopener" target="_blank" title="Make your own games">How Events Work</a> for a summary of how to use them. Events are not cookie-cutter blocks that limit what you can do. Instead they are designed to provide the basic tools you need to create sophisticated content.</p>
+<p>The basic concept of events is that <a class="extern" href="events/conditions.html" rel="noopener" target="_blank" title="Make your own games">conditions</a> <strong>filter</strong> the instances meeting the condition, then the <a class="extern" href="events/actions.html" rel="noopener" target="_blank" title="Make your own games">actions</a> run for <em>those instances only</em>. This allows you to control instances independently, especially when used with <a class="extern" href="objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variables</a>. A common misconception is that all instances of an object type must act the same. That is not the case: the fundamental way events work is to filter out individual instances, and run actions on just those that met the conditions.</p>
+<p>Events are edited in the <a class="extern" href="../interface/event-sheet-view.html" rel="noopener" target="_blank" title="Make your own games">Event Sheet View</a> using the <a class="extern" href="../interface/dialogs/add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add Condition/Action dialog</a>, the <a class="extern" href="../interface/dialogs/parameters.html" rel="noopener" target="_blank" title="Make your own games">Parameters dialog</a> and <a class="extern" href="../interface/dialogs/expressions-dictionary.html" rel="noopener" target="_blank" title="Make your own games">Expressions dictionary</a>.</p>
+<p>A diagram of a simple event is shown below. (This does not include every feature of events - the rest are explained in this section.)</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/876/event-diagram.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1277x304px in new window (24.19 KB)"><span><img alt="Diagram of an event in Construct" height="152" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/876/event-diagram_v650.png" width="638"/></span></a></div></div>
+<p><strong>Events</strong> typically consist of <strong>conditions</strong> that must be met, <strong>actions</strong> that run if so, and optionally further <a class="extern" href="events/sub-events.html" rel="noopener" target="_blank" title="Make your own games">sub-events</a> that test more conditions, run more actions, etc. A simple way to think about events is "If the conditions are true, then run the actions". However remember that a key feature is that it also filters the instances matching the condition. For example if the condition <em>Bullet collides with alien</em> is met, the action <em>Destroy alien</em> will run, and the <em>Destroy</em> action affects only the instance involved in the condition.</p>
+<p>Once you are familiar with events, you will likely find it useful to also use <a class="extern" href="events/functions.html" rel="noopener" target="_blank" title="Make your own games">Functions</a> to help manage events as your project gets larger.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Scripting</h2>
+<p>You can use Construct's event system exclusively and still make complex projects with sophisticated logic. However if you are interested in learning a programming language, you can also use JavaScript coding in Construct. You can also mix and match code and event blocks, such as using a line of JavasScript code in the place of an action. To find out more see the manual section on <a class="extern" href="../scripting/overview.html" rel="noopener" target="_blank" title="Make your own games">Scripting</a>.</p>
+<p>If you already have programming experience, you may be interested in extending Construct using the <a class="extern" href="../../addon-sdk.html" rel="noopener" target="_blank" title="Make your own games">Addon SDK</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

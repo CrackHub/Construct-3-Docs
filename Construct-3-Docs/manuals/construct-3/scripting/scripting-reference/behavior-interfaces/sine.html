@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/sine" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Sine behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISineBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/sine.html" rel="noopener" target="_blank" title="Make your own games">Sine behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Sine behavior APIs</h2>
+<dl>
+<dt>movement</dt>
+<dd>Set or get the movement type of the behavior as a string, which must be one of <code>"horizontal"</code>, <code>"vertical"</code>, <code>"forwards-backwards"</code>, <code>"size"</code>, <code>"width"</code>, <code>"height"</code>, <code>"angle"</code>, <code>"opacity"</code>, <code>"z-elevation"</code> and <code>"value-only"</code>. For a full description of each, refer to the <a class="extern" href="../../../behavior-reference/sine.html" rel="noopener" target="_blank" title="Make your own games">Sine behavior manual entry</a>.</dd>
+<dt>wave</dt>
+<dd>Set or get the wave function used to calculate the movement as a string, which must be one of <code>"sine"</code>, <code>"triangle"</code>, <code>"sawtooth"</code>, <code>"reverse-sawtooth"</code> and <code>"square"</code>. For a visualisation see <a class="extern outlink" href="https://en.wikipedia.org/wiki/File:Waveforms.svg" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/File:Waveforms.svg">this Wikipedia diagram</a>.</dd>
+<dt>period</dt>
+<dd>Set or get the duration, in seconds, of one complete back-and-forth cycle.</dd>
+<dt>magnitude</dt>
+<dd>Set or get the maximum change in the object's position, size or angle. This is in pixels for position or size modes, or radians for the angle mode.</dd>
+<dt>phase</dt>
+<dd>Set or get the progress through one cycle of the chosen wave, from 0 (the beginning of the cycle) to 2π (the end of the cycle). For example setting the cycle position to <code>Math.PI</code> will put it half way through the repeating motion.</dd>
+<dt>value</dt>
+<dd>A read-only number returning the current value of the offset applied by the sine behavior. This is intended to be used when the <code>movement</code> property is <code>"value-only"</code>.</dd>
+<dt>updateInitialState()</dt>
+<dd>The Sine behavior records the object's initial state upon its creation, and always oscillates relative to that, even if it is deactivated and later activated after the object has been modified. If the object changes and you wish for the Sine behavior to oscillate relative to the new state instead of its state upon creation, use this method to reset the initial state to the object's current state.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

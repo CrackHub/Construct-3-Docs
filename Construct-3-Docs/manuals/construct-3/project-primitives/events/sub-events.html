@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/sub-events" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Sub-events
+            </h1>
+<div itemprop="articleBody">
+<p><strong>Sub-events</strong> appear indented beneath other events. They <strong>carry on picking instances</strong> from where the "parent" event left off. They run after the parent event's <a class="extern" href="actions.html" rel="noopener" target="_blank" title="Make your own games">actions</a> have finished. An example is below.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/940/sub-events.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1063x269px in new window (45.47 KB)"><span><img alt="Example of sub-events in Construct" height="135" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/940/sub-events_v550.png" width="532"/></span></a></div></div>
+<p>This event runs like so:</p>
+<ol class="list">
+<li>Test if any <em>Monster</em> <a class="extern" href="../objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a> are overlapping <em>Player</em>. If so, the instances involved are remembered.</li>
+<li>The top event's actions would run next, but it doesn't have any.</li>
+<li>The second event (note it is indented) then tests if the <em>Player</em>'s <strong>ShieldEnabled</strong> <a class="extern" href="../objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variable</a> is set. If so, it subtracts 1 from the <em>health</em> of the Monster overlapping the player.</li>
+<li>The third event (also indented) tests if the <em>Player</em>'s <strong>ShieldEnabled</strong> instance variable is not set (see <a class="extern" href="conditions.html" rel="noopener" target="_blank" title="Make your own games">inverting conditions</a>). If so, it subtracts 1 from the health of the <em>Player</em>.</li>
+</ol>
+<p>In other words, monsters hurt the player when they touch, unless the player's <strong>ShieldEnabled</strong> instance variable is set, in which case the monsters are hurt instead.</p>
+<p>This works because the objects picked by the top event are remembered and also used for sub-events. If the second and third events were not sub-events (not appearing indented) the second event would subtract 1 from the health of <em>all</em> Monsters, because it was not referenced in the event. (See <em>Unreferenced objects</em> in <a class="extern" href="how-events-work.html" rel="noopener" target="_blank" title="Make your own games">How events work</a> for more on this.)</p>
+<p>Sub-events can have other sub-events too, which makes sub-events very powerful and flexible for setting up advanced game logic.</p>
+<p>Note sub-events run after the actions only if the actions run - in the above example, if no monsters are overlapping the player, neither the actions of that event nor its sub-events run at all.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Triggers in sub-events</h2>
+<p>If a trigger is in a sub-event, <strong>all</strong> of its parent event's conditions must be true at the time the trigger fires, otherwise the event will not run.</p>
+<p>There can also only be one trigger in a single branch of sub-events. In other words, one of the events above a trigger cannot also contain a trigger.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Adding and removing sub-events</h2>
+<p>To add a sub-event, <strong>right-click</strong> the event margin and choose <span class="navWrap">Add<span class="arr">►</span>Add sub-event</span>. Alternatively choose the <span class="navWrap">Add sub-event</span> option from the <strong>Add...</strong> link on the right, or press the <kbd>S</kbd> <a class="extern" href="../../interface/keyboard-shortcuts.html" rel="noopener" target="_blank" title="Make your own games">keyboard shortcut</a>.</p>
+<p>Adding and editing conditions to sub-events works identically to ordinary events. You can also create more deeply nested sub-events by adding a sub-event to a sub-event.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/ajax" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                AJAX
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>AJAX plugin</strong> allows you to fetch the content of a URL, or post data to a website. You can also use it to load <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project files</a>. Its name derives from "Asynchronous JavaScript and XML", a technique familiar to most web developers.</p>
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a> to make network requests.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>How to make a request</h2>
+<p>The basic usage of the AJAX object consists of:</p>
+<ol class="list">
+<li>Use the <em>Request</em> action to load a URL.</li>
+<li>A moment later after the request completes, <em>On completed</em> triggers.</li>
+<li>The <em>LastData</em> expression can be used to access the content of the response.</li>
+</ol>
+<p>The <em>tokenat</em> <a class="extern" href="../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expression</a> may be useful to split simple responses. Alternatively, you can read <em>LastData</em> in other formats by using other plugins, such as the <a class="extern" href="xml.html" rel="noopener" target="_blank" title="Make your own games">XML</a> object, loading <a class="extern" href="array.html" rel="noopener" target="_blank" title="Make your own games">Array</a> data, and so on.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Tags</h2>
+<p>A different tag can be provided for each request. This is a simple string you set to tell apart different requests. For example, on startup you may request both <em>foo.json</em> with tag <em>"foo"</em> and <em>bar.json</em> with tag <em>"bar"</em>. When the first request completes, <em>On "foo" completed</em> triggers; when the second request completes, <em>On "bar" completed</em> triggers. Requests can complete in a different order to the order they were made, so without tags it would be impossible to tell which request was completing.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Making AJAX requests cross-domain or in preview</h2>
+<p>By default, browsers <strong>block AJAX requests across domains</strong>. This means, for example, a game on <em>construct.net</em> can request other pages on <em>construct.net</em>, but cannot request pages on <em>facebook.com</em>. This is an important security feature of web browsers (it is not specific to Construct or its AJAX object).</p>
+<p>Also, when previewing in Construct the game runs on its own domain at <em>preview.construct.net</em>. Therefore AJAX requests to any other domain will typically fail during preview, unless the server explicitly allows cross-domain requests.</p>
+<p>If you want AJAX requests to your server to work from any domain, or in preview, you can configure the server to send the following HTTP header:</p>
+<p><code>Access-Control-Allow-Origin: *</code></p>
+<p>This will enable AJAX requests from any domain, but you should still be aware of the possible security implications of this. You may need to ensure this is set for all HTTP methods used, including GET, POST, and also OPTIONS since cross-domain requests sometimes use that method for "preflighted" requests. For more information on cross-domain requests see <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">HTTP access control (CORS) on MDN</a>.</p>
+<h3>Use HTTPS</h3>
+<p>Since <em>preview.construct.net</em> runs on a secure server (HTTPS), you cannot make AJAX requests in preview to insecure servers (HTTP). Browsers block this for security reasons. You may see warnings related to "mixed content", which refers to this problem.</p>
+<p>Therefore for cross-domain AJAX requests to work in preview mode, you must also make sure your server is secure (using HTTPS). On the modern web this is best practice anyway, especially since many other features only work on secure servers.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>In NW.js</h2>
+<p>When exporting desktop applications with NW.js, the AJAX object can also load files from the application folder. Simply use the <em>Request URL</em> action and enter the name of a file in the same directory as the application, e.g. <code>"example.txt"</code>. Note if a project file exists with the same name, this will always load the project file instead.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>MIME types</h2>
+<p>AJAX requests for files on your own server requires that your server has the <a class="extern" href="../tips-and-guides/mime-types.html" rel="noopener" target="_blank" title="Make your own games">correct MIME types set up</a>.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Binary data</h2>
+<p>The AJAX object can receive resources as binary, and also post binary data, using the <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. This is also useful to fetch local resources like canvas snapshot URLs or video recording URLs, and load them in to a Binary Data object to do something else with them, like save it to storage or upload it to a server.</p>
+<p>To request a resource that is received as a binary, use it as follows:</p>
+<ol class="list">
+<li>Use the <em>Set response binary</em> action to specify a Binary Data object to receive the next request's response.</li>
+<li>Use the <em>Request</em> action to load a URL.</li>
+<li>After the request completes and the response has finished downloading, <em>On completed</em> triggers.</li>
+<li>Now the chosen Binary Data object has automatically been filled with the response data. (Note in this case the <em>LastData</em> expression is not used.)</li>
+</ol>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>AJAX conditions</h2>
+<dl class="sans">
+<dt>On completed</dt>
+<dd>Triggered when a request with the same tag has completed successfully. The <em>LastData</em> expression contains the response, unless the <em>Set response binary</em> action was used, in which case the selected <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object now contains the response.</dd>
+<dt>On any completed</dt>
+<dd>Triggered when any request has completed successfully. The <em>Tag</em> expression identifies the request, and <em>LastData</em> contains the response.</dd>
+<dt>On error</dt>
+<dd>Triggered when a request with the same tag has failed. This can be for a number of reasons, such as the server being down or the request timing out. (The <em>LastData</em> expression is not set since there is no response.)</dd>
+<dt>On any error</dt>
+<dd>Triggered when any request has failed. The <em>Tag</em> expression identifies the request.</dd>
+<dt>On progress</dt>
+<dd>For long running downloads, <em>On progress</em> triggers periodically and updates the <em>Progress</em> expression with the state of the request. This is useful for making progress bars for things like large file downloads.</dd>
+<dt>On upload progress</dt>
+<dd>For long running uploads, <em>On upload progress</em> triggers periodically and updates the <em>Progress</em> expression with the state of the request. This is useful for making progress bars for things like large POST data uploads. </dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>AJAX actions</h2>
+<dl class="sans">
+<dt>Override MIME type</dt>
+<dd>In some cases you may wish to interpret the server's response with a different MIME type to the one the server indicates. For example a misconfigured server may return a text file with the wrong character set, and you want to force the response to be interpreted as UTF-8. In this case you could override the MIME type as <code>text/plain; charset=utf-8</code> to avoid garbling the text. This action only applies to the next AJAX request that is made, after which the MIME type will be set back to the default setting of accepting what the server response indicates.</dd>
+<dt>Post to URL</dt>
+<dt>Post binary to URL</dt>
+<dd>Send a request with data to a URL and retrieve the response. A tag is provided to match it up with the <em>On completed</em>, <em>On progress</em> and <em>On error</em> triggers. The <em>binary</em> variant can post the contents of a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object to the server; otherwise a string is used. Construct does not automatically URL encode the string - use the <em>URLEncode</em> <a class="extern" href="../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expression</a> to ensure the data is in the correct format for posting. Note string data is in the same format as a query string, e.g. <code>"foo=1&amp;bar=2"</code>. The method can also be specified: by default it is POST, but for some APIs you may need to change this to PUT, DELETE or another HTTP method.</dd>
+<dt>Request URL</dt>
+<dd>Send a GET request to retrieve the contents of a URL. A tag is provided to match it up with the <em>On completed</em>, <em>On progress</em> and <em>On error</em> triggers.</dd>
+<dt>Request project file</dt>
+<dd>Request the contents of a <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project file</a>. A tag is provided to match it up with the <em>On completed</em>, <em>On progress</em> and <em>On error</em> triggers.</dd>
+<dt>Set request header</dt>
+<dd>Set a HTTP header on the next AJAX request that is made. After the next AJAX request all the headers set with this action are cleared again, so it only takes effect once.</dd>
+<dt>Set timeout</dt>
+<dd>Set the amount of time a request has to complete in seconds; if the timeout expires without the request completing successfully, it will instead fail and trigger <em>On error</em>. This action only affects subsequent requests, and does not affect any requests that have already started. If the timeout is set to -1 it restores the default browser timeout.</dd>
+<dt>Set upload progress enabled</dt>
+<dd>Set whether tracking the progress of large upload requests is enabled for subsequent requests. This is enabled by default so the <em>On upload progress</em> trigger works. However tracking upload progress means that cross-domain requests send a "preflighted" request with the OPTIONS method, which can cause problems with some misconfigured servers. Disabling upload progress allows many kinds of cross-domain requests to be treated as "simple requests" and thus not need to send a "preflighted" request. For more information see <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">HTTP access control (CORS) on MDN</a>.</dd>
+<dt>Set with credentials</dt>
+<dd>Set the <em>with credentials</em> setting for the next AJAX request that is made. After the next AJAX request the setting will revert to its default (off), so it only takes effect once. When enabled, sending a request with credentials will cause cross-site requests to be made using credentials such as cookies and authorization headers. Internally this sets the <code>withCredentials</code> property of XMLHttpRequest. More details can be found at the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials">MDN withCredentials documentation</a>.</dd>
+<dt>Set response binary</dt>
+<dd>Use this action before a <em>Request</em> action to read the response in to a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object instead of returning it as a string in the <em>LastData</em> expression. This allows for non-text resources like images to be fetched and processed directly.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>AJAX expressions</h2>
+<dl class="sans">
+<dt>LastData</dt>
+<dd>The contents of the last response. This is set in the <em>On completed</em> trigger. Note if <em>Set response binary</em> was used, the response is in the chosen Binary Data object instead, and this expression will return an empty string.</dd>
+<dt>LastStatusCode</dt>
+<dd>The HTTP status code of the last response, e.g. 200 for OK or 404 for Not Found. This is set in the <em>On completed</em> trigger. </dd>
+<dt>Progress</dt>
+<dd>Return the progress of the AJAX request in an <em>On progress</em> trigger. The progress is represented as a number from 0 to 1, e.g. 0.5 for half completed.</dd>
+<dt>Tag</dt>
+<dd>The tag of the AJAX request in a trigger. This is useful to identify requests in <em>On any completed</em> or <em>On any error</em>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

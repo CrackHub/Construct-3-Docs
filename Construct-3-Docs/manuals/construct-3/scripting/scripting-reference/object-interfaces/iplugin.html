@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/iplugin" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IPlugin script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IPlugin</code> script interface represents a plugin, such as the Sprite plugin. The plugin only exists once in the project: if there are multiple Sprite objects in a project, then each object type is represented with a different <a class="extern" href="iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>IPlugin APIs</h2>
+<dl>
+<dt>runtime</dt>
+<dd>A reference back to the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> interface.</dd>
+<dt>id</dt>
+<dd>A read-only string with a unique identifier for this plugin as specified by the plugin developer.</dd>
+<dt>isSingleGlobal</dt>
+<dd>A read-only boolean indicating whether this plugin is a 'single global' type, meaning it is added to the project once and then is available globally, such as with the Mouse object.</dd>
+<dt>getSingleGlobalObjectType()</dt>
+<dt>getSingleGlobalInstance()</dt>
+<dd>These calls are only permitted when <code>isSingleGlobal</code> is true. These return the single <a class="extern" href="iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> and <a class="extern" href="iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> respectively that have been created for this plugin.</dd>
+<dt>isWorldType</dt>
+<dd>A read-only boolean indicating whether this plugin is a world type, meaning it appears in layouts.</dd>
+<dt>isHTMLElementType</dt>
+<dd>A read-only boolean indicating whether this plugin creates a HTML element.</dd>
+<dt>isRotatable</dt>
+<dd>A read-only boolean indicating whether instances of the plugin may be rotated.</dd>
+<dt>hasEffects</dt>
+<dd>A read-only boolean indicating whether the plugin may use effects.</dd>
+<dt>is3d</dt>
+<dd>A read-only boolean indicating whether the plugin is 3D (i.e. has depth on the Z axis).</dd>
+<dt>supportsHierarchies</dt>
+<dd>A read-only boolean indicating whether instances of the plugin may be used in hierarchies.</dd>
+<dt>supportsMesh</dt>
+<dd>A read-only boolean indicating whether instances of the plugin may use the mesh distortion feature.</dd>
+<dt>static getByConstructor(ctor)</dt>
+<dd>Return an <code>IPlugin</code> from its constructor in the <code>C3.Plugins</code> namespace, or <code>null</code> if it does not exist. For example <code>IPlugin.getByConstructor(C3.Plugins.Audio)</code> will return the <code>IPlugin</code> interface representing the Audio object, or <code>null</code> if the plugin is not used in the project.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkdompluginbase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ISDKDOMPluginBase addon SDK interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISDKDOMPluginBase</code> interface is used in the runtime as a base class for DOM plugins (that create a HTML element) in the addon SDK. It derives from <a class="extern" href="isdkpluginbase.html" rel="noopener" target="_blank" title="Make your own games">ISDKPluginBase</a>.
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>ISDKDOMPluginBase APIs</h2>
+<dl>
+<dt>_addElementMessageHandler(handler, func)</dt>
+<dt>_addElementMessageHandlers(arr)</dt>
+<dd>Add a message handler to receive messages posted by <code>PostToRuntimeElement()</code> in <a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/domelementhandler.html" rel="noopener" target="_blank" title="Make your own games">DOMElementHandler</a>. <code>handler</code> must match the string passed to <code>PostToRuntimeElement()</code>. <code>func</code> accepts two arguments: the associated instance, and an optional object with extra details passed to <code>PostToRuntimeElement()</code>. Typically this function just forwards the handler to an instance method, e.g. <code>this._addElementMessageHandler("click", (inst, e) =&gt; inst._onClick(e));</code>. The <code>_addElementMessageHandlers</code> variant accepts an array of <code>[handler, callback]</code> which is convenient when adding multiple handlers.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

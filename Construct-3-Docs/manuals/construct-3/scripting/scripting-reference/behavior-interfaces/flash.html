@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/flash" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Flash behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IFlashBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/flash.html" rel="noopener" target="_blank" title="Make your own games">Flash behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Example</h2>
+<p>Below is a sample code snippet demonstrating flashing <code>inst</code> (assumed to be an instance with the Flash behavior) and logging to the console when the flash finishes.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Handle "flashend" event which logs to console when</span>
+<span class="token comment">// the flash has finished</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Flash<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token string">"flashend"</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span>
+<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-3-close">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-0-close">(</span><span class="token string">"Flash finished!"</span><span class="token punctuation brace-round brace-close brace-level-3" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-3-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Start flashing with the Flash behavior for 2 seconds</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Flash<span class="token punctuation">.</span><span class="token function">flash</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Flash behavior events</h2>
+<p>See <a class="extern" href="../interfaces/behavior-instance-event.html" rel="noopener" target="_blank" title="Make your own games">behavior instance event</a> for standard behavior instance event object properties.</p>
+<dl>
+<dt>"flashend"</dt>
+<dd>Fired when a flash finishes.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Flash behavior APIs</h2>
+<dl>
+<dt>flash(onTime, offTime, duration)</dt>
+<dd>Start flashing for the given <code>duration</code> with the object shown visible for the <code>onTime</code> and invisible for the <code>offTime</code>, with all times in seconds.</dd>
+<dt>stop()</dt>
+<dd>Stop any currently active flash effect, returning the object to a visible state.</dd>
+<dt>isFlashing</dt>
+<dd>A read-only boolean indicating if the object is currently flashing.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

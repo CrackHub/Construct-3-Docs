@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/slider-bar" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Slider Bar script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISliderBarInstance</code> interface derives from <a class="extern" href="../object-interfaces/idominstance.html" rel="noopener" target="_blank" title="Make your own games">IDOMInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/slider-bar.html" rel="noopener" target="_blank" title="Make your own games">Slider Bar plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Slider Bar events</h2>
+<p>See <a class="extern" href="../interfaces/instance-event.html" rel="noopener" target="_blank" title="Make your own games">instance event</a> for standard instance event object properties.</p>
+<dl>
+<dt>"click"</dt>
+<dd>Fired when the control is clicked.</dd>
+<dt>"change"</dt>
+<dd>Fired when the user finishes changing the chosen value on the slider bar. Typically this only fires when the user releases a mouse button or touch after moving the slider.</dd>
+<dt>"input"</dt>
+<dd>Fired repeatedly as the user changes the chosen value on the slider bar. Unlike the <code>"change"</code> event this will reflect the current value of the slider as the user is still dragging it.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Slider Bar APIs</h2>
+<dl>
+<dt>value</dt>
+<dd>The current value represented by the slider bar.</dd>
+<dt>minimum</dt>
+<dt>maximum</dt>
+<dd>The minimum and maximum values, defining the range of the slider bar.</dd>
+<dt>step</dt>
+<dd>The increment of possible values. For example if the step is 10, then the slider will jump in units of 10 as it is moved, and only a multiple of 10 can be chosen as a value.</dd>
+<dt>tooltip</dt>
+<dd>A tooltip that appears if the user hovers the mouse over the text box and waits. An empty string indicates no tooltip.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the control is enabled or disabled.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

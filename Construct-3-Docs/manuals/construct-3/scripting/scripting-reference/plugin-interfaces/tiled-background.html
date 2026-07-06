@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/tiled-background" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Tiled Background script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITiledBackgroundInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/tiled-background.html" rel="noopener" target="_blank" title="Make your own games">Tiled Background plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tiled Background APIs</h2>
+<dl>
+<dt>imageWidth</dt>
+<dt>imageHeight</dt>
+<dt>getImageSize()</dt>
+<dd>The original dimensions of the Tiled Background's current image in pixels. This does not include tiling - it returns the size as shown in Construct's image editor. The method allows retrieving both values at the same time.</dd>
+<dt>imageOffsetX</dt>
+<dt>imageOffsetY</dt>
+<dt>setImageOffset(imageOffsetX, imageOffsetY)</dt>
+<dt>getImageOffset()</dt>
+<dd>The offset of the displayed Tiled Background image in pixels. The methods allow setting or getting both values at the same time.</dd>
+<dt>imageScaleX</dt>
+<dt>imageScaleY</dt>
+<dt>setImageScale(imageScaleX, imageScaleY)</dt>
+<dt>getImageScale()</dt>
+<dd>The scale of the displayed Tiled Background image, defaulting to 1 for original size. The methods allow setting or getting both values at the same time.</dd>
+<dt>imageAngle</dt>
+<dd>The angle of the displayed Tiled Background image in radians. If this is changed, <code>imageAngleDegrees</code> updates accordingly.</dd>
+<dt>imageAngleDegrees</dt>
+<dd>The angle of the displayed Tiled Background image in degrees. If this is changed, <code>imageAngle</code> updates accordingly.</dd>
+<dt>enableTileRandomization</dt>
+<dd>A boolean indicating whether tile randomization is enabled.</dd>
+<dt>tileXRandom</dt>
+<dt>tileYRandom</dt>
+<dt>setTileRandom(tileXRandom, tileYRandom)</dt>
+<dt>getTileRandom()</dt>
+<dd>When tile randomization is enabled, the amount of random horizontal and vertical offset to use, as a percentage in the range 0-1. The methods allow setting or getting both values at the same time.</dd>
+<dt>tileAngleRandom</dt>
+<dd>When tile randomization is enabled, the amount of random rotation to use, as a percentage in the range 0-1.</dd>
+<dt>tileBlendMarginX</dt>
+<dt>tileBlendMarginY</dt>
+<dt>setTileBlendMargin(tileBlendMarginX, tileBlendMarginY)</dt>
+<dt>getTileBlendMargin()</dt>
+<dd>When tile randomization is enabled, the percentage of the tile width or height which will fade in to the adjacent tile, as a percentage in the range 0-1. The methods allow setting or getting both values at the same time.</dd>
+<dt>async replaceImage(blob)</dt>
+<dd>Replace the current image with the contents of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> representing an image file such as a PNG image. The blob can be locally generated or retrieved from a URL, for example:<br/>
+<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Loading an image from a URL</span>
+<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span>url<span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> blob <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> tbInst<span class="token punctuation">.</span><span class="token function">replaceImage</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span>blob<span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div></dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

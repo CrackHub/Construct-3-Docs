@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/anchor" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Anchor behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Anchor behavior</strong> is useful for automatically positioning objects relative to the viewport. This is useful for <a class="extern" href="https://www.construct.net/tutorials/supporting-multiple-screen-17.html" rel="noopener" target="_blank" title="Make your own games">supporting multiple screen sizes</a>.</p>
+<p>Objects using the Anchor behavior should also be placed on a <a class="extern" href="../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">layer</a> with its parallax set to 0% x 0%. Otherwise as the game scrolls the objects may "lag" behind the screen.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/anchor.html" rel="noopener" target="_blank" title="Make your own games">IAnchorBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Positioning objects relative to the viewport</h2>
+<p>In the top-left of the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>, a dotted outline represents the viewport. Anchored objects should be positioned inside the dotted viewport area, as shown below.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/972/anchor-layout.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1015x670px in new window (78.61 KB)"><span><img alt="Positioning anchored objects in the layout" height="335" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/972/anchor-layout_v550.png" width="508"/></span></a><span class="descrip">Positioning anchored objects in the layout</span></div></div>
+<p>Now if the window is resized during preview, the objects maintain their relative positions, as shown below. Note this demo uses <em>Scale outer</em> fullscreen mode to allow the aspect ratio to change.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/973/anchor-viewport.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 957x1026px in new window (69.24 KB)"><span><img alt="Anchored objects in preview" height="512" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/973/anchor-viewport_v480.png" width="478"/></span></a><span class="descrip">Anchored objects in preview</span></div></div>
+<p>This is useful for interface elements like notifications and heads-up displays (HUDs).</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Relative positioning</h2>
+<p>The <em>Left edge</em> and <em>Top edge</em> position the object relative to the viewport edges, without changing the object size. For example, if the <em>Left edge</em> is set to <em>Viewport right</em>, the object will always stay the same distance from the right edge of the viewport.</p>
+<p>The <em>Right edge</em> and <em>Bottom edge</em> resize the object relative to the viewport edges. For example, if you want a Tiled Background to stretch wider as the window widens, set <em>Right edge</em> to <em>Viewport right</em>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Anchor conditions</h2>
+<dl class="sans">
+<dt>Is enabled</dt>
+<dd>Test if the behavior is currently enabled. When disabled it will have no effect on the object.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Anchor actions</h2>
+<dl class="sans">
+<dt>Set enabled</dt>
+<dd>Set whether the behavior is enabled or disabled. If disabled, the behavior will not alter the size or position of the object.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Anchor expressions</h2>
+<p>The Anchor behavior has no expressions.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

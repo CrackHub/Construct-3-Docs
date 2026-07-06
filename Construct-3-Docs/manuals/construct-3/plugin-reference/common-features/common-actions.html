@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/common-features/common-actions" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Common actions
+            </h1>
+<div itemprop="articleBody">
+<p>The following <a class="extern" href="../../project-primitives/events/actions.html" rel="noopener" target="_blank" title="Make your own games">actions</a> are common to several plugins.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Angle</h2>
+<p>Note angles in Construct start with 0 degrees facing right and increment clockwise.</p>
+<dl class="sans">
+<dt>Rotate clockwise</dt>
+<dd>Rotate the object a number of degrees clockwise.</dd>
+<dt>Rotate counter-clockwise</dt>
+<dd>Rotate the object a number of degrees counter-clockwise.</dd>
+<dt>Rotate toward angle</dt>
+<dd>Rotate the object a number of degrees toward another angle. If the object is close to the target angle it will not overshoot (it will end up exactly at the target angle).</dd>
+<dt>Rotate toward position</dt>
+<dd>Rotate the object a number of degrees toward a position. If the object is close to facing the target angle it will not overshoot (it will end up exactly at the target angle).</dd>
+<dt>Set angle</dt>
+<dd>Set the object's angle in degrees, from 0 to 360. 0 degrees is facing right and angles increment clockwise.</dd>
+<dt>Set angle toward position</dt>
+<dd>Set the object's angle to face a position in the layout.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Appearance</h2>
+<p>Not all objects support the actions relating to effects. For more information see <a class="extern" href="../../project-primitives/objects/effects.html" rel="noopener" target="_blank" title="Make your own games">Effects</a>.</p>
+<dl class="sans">
+<dt>Set blend mode</dt>
+<dd>Change the way the object blends with the background by altering the object's <em>Blend mode</em> property.</dd>
+<dt>Set color</dt>
+<dd>Change the <em>Color</em> property of the object, which applies a tint. Use the <code>rgbEx(r, g, b)</code> expression to set the color. To restore the original color of the object set a white color (i.e. <code>rgbEx(100, 100, 100)</code>).</dd>
+<dt>Set effect enabled</dt>
+<dd>Enable or disable one of the effects added to the object.</dd>
+<dt>Set effect parameter</dt>
+<dd>Change the value of one of the parameters for an effect added to the object. The parameter to change is specified by its zero-based index, i.e. 0 to change the first parameter, 1 to change the second parameter, and so on.</dd>
+<dt>Set opacity</dt>
+<dd>Set the object's opacity (or 'semitransparency'), from 0 (transparent) to 100 (opaque).</dd>
+<dt>Set sampling</dt>
+<dd>Set the object's sampling mode. For more information see the corresponding property in <a class="extern" href="../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">object instances</a>.</dd>
+<dt>Set visible</dt>
+<dd>Set the object visible or invisible (hidden). The <em>Toggle</em> option sets the opposite state, i.e. visible if the object is invisible and vice versa.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Hierarchy</h2>
+<p>These actions are available for plugins that support the <em>scene graph</em> feature, allowing objects to be connected together so they move, rotate and scale as if they were one large object.</p>
+<dl class="sans">
+<dt>Add child</dt>
+<dd>Add another object as a child of this object, which becomes its parent. The relative differences between the objects are remembered at the time the action is used. Then as the parent moves, scales and rotates, the child will move, scale and rotate with it. A series of checkboxes allows selection of which properties are to be updated. For example ticking only the <em>X</em> and <em>Y</em> options will keep the child at the same relative position, but not change its angle. The <em>Destroy with parent</em> option can also be enabled to automatically destroy the child if its parent is destroyed.</dd>
+<dt>Remove child</dt>
+<dd>Remove a child from this object, disconnecting it from the parent and no longer updating it as the parent changes. The child still keeps its own children, if it has any.</dd>
+<dt>Remove from parent</dt>
+<dd>Remove this object from its parent if it has any, disconnecting it and no longer updating it as the parent changes. The object still keeps its own children, if it has any.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>HTML element</h2>
+<p>These actions are available for some plugins in the <em>Form controls</em> category, like Button and Text Input. These objects are HTML elements placed on top of the canvas.</p>
+<dl class="sans">
+<dt>Set attribute</dt>
+<dt>Remove attribute</dt>
+<dd>Add/set or remove an attribute on the HTML element for the form control. Attributes are part of the HTML standard and are documented on the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes">Mozilla Developer Network</a>.<br/>
+</dd>
+<dt>Set CSS style</dt>
+<dd>Set a CSS (Cascading Style Sheets) style on the HTML element for the form control. CSS is part of the HTML standard and is documented on the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">Mozilla Developer Network</a>.<br/>
+</dd>
+<dt>Set enabled</dt>
+<dd>Enable or disable the control. When disabled, the control can no longer be interacted with. It also usually adjusts the appearance to indicate it is disabled, e.g. by greying out the control.</dd>
+<dt>Set focused</dt>
+<dt>Set unfocused</dt>
+<dd>Focus or unfocus (also known as "blurring") the control. When focused, the control will receive keyboard input exclusively, and usually has an adjusted appearance to indicate active focus. When unfocused, the control will not respond unless directly clicked or touched, and the project will receive keyboard input instead.</dd>
+<dt>Set visible</dt>
+<dd>Set whether the HTML element is visible or hidden. The visibility can also be toggled, to switch the visibility state to the opposite (e.g. hide if showing, or show if hidden).</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Instance variables</h2>
+<dl class="sans">
+<dt>Add to</dt>
+<dt>Subtract from</dt>
+<dd>Modify a number <a class="extern" href="../../project-primitives/objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variable</a>.</dd>
+<dt>Set</dt>
+<dd>Set a number or text <a class="extern" href="../../project-primitives/objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variable</a>.</dd>
+<dt>Set boolean</dt>
+<dd>Set a boolean <a class="extern" href="../../project-primitives/objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variable</a>, which can hold either a true or false value.</dd>
+<dt>Toggle boolean</dt>
+<dd>Toggle a boolean <a class="extern" href="../../project-primitives/objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variable</a>, which flips it from true to false or vice versa.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Mesh distortion</h2>
+<p>These actions are available in objects that support the mesh distortion feature. This allows the object to be split in to a grid of points, and each point moved around individually to deform the appearance of the object. Moving mesh points also affects the object's collisions accordingly. See the mesh distortion examples in the Start Page for a demonstration.</p>
+<dl class="sans">
+<dt>Set mesh size</dt>
+<dd>Create a mesh using the given number of points horizontally (in columns) and vertically (in rows). At least 2 points must be used for both sizes for a mesh to be created. Use 0 for both to remove any existing mesh. Since the mesh is initialised with points in their default positions, no visual difference will be observed until a mesh point is altered. If there is an existing mesh, by default this action will reset all mesh points when the mesh size changes. To preserve the existing mesh points when resizing an existing mesh, check <em>Copy from old mesh</em>.</dd>
+<dt>Set mesh point</dt>
+<dd>Alter one of the points on the mesh given by its zero-based column and row number. In <em>Absolute</em> mode the position and texture locations are set to the given values; in <em>Relative</em> mode the given values are added to their current values. The position is given as normalized co-ordinates in the range [0, 1] across the object box, i.e. 0.5 being in the middle. This allows the mesh to scale proportionately with the object size. Mesh points can be positioned outside the object box. The texture location is also given in normalized co-ordinates in the range [0, 1], but cannot go outside that range. Changing the texture location alters where on the source image corresponds to that mesh point, allowing for a different type of deformation. In absolute mode, texture positions of -1 leave the value unchanged. (In relative mode, use 0 to apply no change to the texture position, since -1 is a valid relative texture offset.) A Z position can also be specified for the mesh point, to move it in 3D. This works similarly to changing the Z position of the entire object, but only applying to a single mesh point. Note however the Z position is always interpreted as an absolute number regardless of the mode.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Misc</h2>
+<dl class="sans">
+<dt>Change Tags</dt>
+<dd>Change the instance's tags, using a space-separated string to specify a list of tags to change. The specified tags can either be added or removed from the instance, or replaced to set the instance's tags to just the provided ones. Note instance tags are case-insensitive.</dd>
+<dt>Destroy</dt>
+<dd>Destroy the object instance so it no longer exists.</dd>
+<dt>Set from JSON</dt>
+<dd>Set the state of this object from a string of data in JSON format. This must come from a prior use of the <em>AsJSON</em> expression.</dd>
+<dt>Signal</dt>
+<dd>Trigger <em>On signal</em> for the picked instances with the given tag. Any events paused with a <em>Wait for signal</em> action with the given tag will also be resumed once all the picked instances it is waiting on become signalled.</dd>
+<dt>Wait for signal</dt>
+<dd>Wait indefinitely until the <em>Signal</em> action is used with the same tag for all the currently picked instances. Other events continue to run in the meantime.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Size &amp; Position</h2>
+<dl class="sans">
+<dt>Move at angle</dt>
+<dd>Move the object a number of pixels at a given angle in degrees.</dd>
+<dt>Move forward</dt>
+<dd>Move the object a number of pixels forward at the object's current angle.</dd>
+<dt>Set width</dt>
+<dt>Set height</dt>
+<dt>Set depth</dt>
+<dt>Set size</dt>
+<dt>Set size 3D</dt>
+<dd>Set the object's current size in pixels. Note only 3D objects like <a class="extern" href="../3d-shape.html" rel="noopener" target="_blank" title="Make your own games">3D shape</a> have the options to set depth or the 3D size, as 2D objects do not have a size on the Z axis.</dd>
+<dt>Set X</dt>
+<dt>Set Y</dt>
+<dt>Set Z</dt>
+<dt>Set position</dt>
+<dt>Set position 3D</dt>
+<dd>Set the object's current position in the layout, in pixels. The origin (0,0) is the top-left of the layout. The Y axis increments downwards and the Z axis increments towards the camera.</dd>
+<dt>Set position to another object</dt>
+<dd>Position the object at another object. It can also be positioned relative to an image point on the given object.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Z Order</h2>
+<dl class="sans">
+<dt>Move to bottom</dt>
+<dt>Move to top</dt>
+<dd>Position the object either at the bottom or top of its current layer.</dd>
+<dt>Move to layer</dt>
+<dd>Move the object to the top of a given layer, either by its name or zero-based index. If the object is already on the given layer this action has no effect.</dd>
+<dt>Move to object</dt>
+<dd>Move the object next to another object in the Z order. You can choose to place the object to be placed in front or behind another object. If the target object is on a different layer, the object will also be moved to the target object's layer and then Z ordered next to it.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

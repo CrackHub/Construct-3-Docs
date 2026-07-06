@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/timelines/track/value-track" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Value Track
+            </h1>
+<div itemprop="articleBody">
+<p>A value track is a special kind of <a class="extern" href="../track.html" rel="noopener" target="_blank" title="Make your own games">track</a> which is not tied to any <a class="extern" href="../../objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a>.</p>
+<p>Because they are not tied to any instance the value they interpolate doesn't immediately affect anything, instead it needs to be queried at runtime using the <a class="extern" href="../../../plugin-reference/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline plugin</a> before it can be used.</p>
+<p>They are a little bit harder to use, but offer great flexibility in what they can be used for.</p>
+<p>Value tracks can only have a single <a class="extern" href="../property-track.html" rel="noopener" target="_blank" title="Make your own games">properly track</a> and a <a class="extern" href="../timeline.html" rel="noopener" target="_blank" title="Make your own games">timeline</a> can have as many as needed.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Adding Value Tracks</h2>
+<p>To add a value track to a timeline follow any of these methods:</p>
+<ul class="list">
+<li>Use the split button of the <kbd>+</kbd> button in the <a class="extern" href="../../../interface/bars/timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a> toolbar and choose the option <span class="navWrap">Track<span class="arr">►</span>Add value</span>.</li>
+<li>Right-click some Timeline Bar empty space and select <span class="navWrap">Track<span class="arr">►</span>Add value</span>.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Value Track Properties</h2>
+<dl class="sans">
+<dt>Name</dt>
+<dd>Must be unique in the timeline. Can be used to query the value of the track at runtime.</dd>
+<dt>Animation mode</dt>
+<dt>Ease</dt>
+<dd>See the section on common timeline element properties in <a class="extern" href="../../timelines.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a>. These properties follow an inheritance pattern.</dd>
+<dt>Enabled</dt>
+<dt>Locked</dt>
+<dd>See the section on common timeline element properties in <a class="extern" href="../../timelines.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a>. Changing these at the track level will apply the change to every sub-element.</dd>
+<dt>Track ID</dt>
+<dd>An optional identifier to query the value of the track at runtime.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

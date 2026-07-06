@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/construct-3/tips-and-guides/mime-types" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                MIME types
+            </h1>
+            <div itemprop="articleBody">
+                <p>When publishing to the web, it is important the server sends certain types of file with the correct <a href="https://en.wikipedia.org/wiki/Media_type" target="_blank" rel="nofollow noopener external" title="Go to: https://en.wikipedia.org/wiki/Media_type" class="extern outlink">MIME type</a>. For example, most servers are correctly set up to send a <strong>.html</strong> file with the MIME type <strong>text/html</strong>. However some server's defaults don't include every MIME type your project might need to use. Also some servers may be configured to send the wrong MIME type, which may still cause some features to work incorrectly. The list below should be used as a reference of the correct MIME types to have set.</p>
+
+<p>Configuring your server's MIME types depends on your host. If you don't know how to do this, contact your host for support, or ask them to set up the list below for you.</p>
+
+<p>Having the wrong MIME type set can result in problems like the browser refusing to load the file; the file returning "404 Not Found"; or causing the server to send a corrupt file (e.g. incorrectly sending an audio file as a text file). This can result in issues like audio playback not working, AJAX requests failing, or the project failing to start up.</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>MIME types for Construct projects</h2>
+<p>A server hosting an exported Construct project should have these file extensions associated with these MIME types.</p>
+
+<table>
+	<thead>
+		<tr>
+			<td>File ext.</td>
+			<td>MIME type</td>
+			<td>Notes</td>
+		</tr>
+	</thead>
+	<tbody><tr>
+		<td>.html</td>
+		<td>text/html</td>
+		<td><strong>Required</strong></td>
+	</tr>
+	<tr>
+		<td>.js</td>
+		<td>application/javascript</td>
+		<td><strong>Required</strong></td>
+	</tr>
+	<tr>
+		<td>.json</td>
+		<td>application/json</td>
+		<td><strong>Required</strong></td>
+	</tr>
+	<tr>
+		<td>.css</td>
+		<td>text/css</td>
+		<td><strong>Required</strong></td>
+	</tr>
+	<tr>
+		<td>.wasm</td>
+		<td>application/wasm</td>
+		<td><strong>Required</strong></td>
+	</tr>
+	<tr>
+		<td>.png</td>
+		<td>image/png</td>
+		<td><strong>Required</strong></td>
+	</tr>
+	<tr>
+		<td>.jpg, .jpeg</td>
+		<td>image/jpeg</td>
+		<td><strong>Required</strong></td>
+	</tr>
+	<tr>
+		<td>.webp</td>
+		<td>image/webp</td>
+		<td><strong>Required</strong></td>
+	</tr>
+	<tr>
+		<td>.avif</td>
+		<td>image/avif</td>
+		<td>Optional, if AVIF images used</td>
+	</tr>
+	<tr>
+		<td>.webm</td>
+		<td>video/webm</td>
+		<td><strong>Required</strong> (also covers WebM audio)</td>
+	</tr>
+	<tr>
+		<td>.m4a</td>
+		<td>audio/mp4</td>
+		<td>Optional, if AAC audio used</td>
+	</tr>
+	<tr>
+		<td>.mp3</td>
+		<td>audio/mpeg</td>
+		<td>Optional, if MP3 audio used</td>
+	</tr>
+	<tr>
+		<td>.ogg</td>
+		<td>audio/ogg</td>
+		<td>Optional, if Ogg Vorbis audio used (common in Construct 2 projects)</td>
+	</tr>
+	<tr>
+		<td>.mp4</td>
+		<td>video/mp4</td>
+		<td>Optional, if MP4 video used</td>
+	</tr>
+	<tr>
+		<td>.woff</td>
+		<td>application/font-woff</td>
+		<td>Optional, if web fonts used</td>
+	</tr>
+	<tr>
+		<td>.woff2</td>
+		<td>font/woff2</td>
+		<td>Optional, if web fonts used</td>
+	</tr>
+	<tr>
+		<td>.txt</td>
+		<td>text/plain</td>
+		<td>Optional, for data files</td>
+	</tr>
+	<tr>
+		<td>.csv</td>
+		<td>text/csv</td>
+		<td>Optional, for data files</td>
+	</tr>
+	<tr>
+		<td>.xml</td>
+		<td>text/xml</td>
+		<td>Optional, for data files</td>
+	</tr>
+	<tr>
+		<td>.svg</td>
+		<td>image/svg+xml</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>.scml</td>
+		<td>text/xml</td>
+		<td>Optional, for Spriter animations</td>
+	</tr>
+	<tr>
+		<td>.scon</td>
+		<td>application/json</td>
+		<td>Optional, for Spriter animations</td>
+	</tr>
+	<tr>
+		<td>.c3p</td>
+		<td>application/zip</td>
+		<td>Optional, for Construct project files</td>
+	</tr>
+</tbody></table>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Offline caching</h2>
+<p>If you find there is a problem with your MIME types after exporting and then fix them, the problem may not appear to be immediately corrected if the browser has cached the previous server responses for offline support.</p>
+
+<p>The easiest way to verify the problem is fixed after correcting a server's MIME types is to change the URL of the project, e.g. renaming the folder it was in on the server. This prevents the previous offline cache being used to load the game and it will start fresh with the new MIME type configuration taking effect.</p>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>More information</h2>
+<p>For more reading, see the Mozilla Developer Network (MDN) article on <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Configuring_server_MIME_types" target="_blank" rel="nofollow noopener external" title="Go to: https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Configuring_server_MIME_types" class="extern outlink">Configuring server MIME types</a>.</p>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/line-of-sight" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Line-of-sight behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ILOSBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/line-of-sight.html" rel="noopener" target="_blank" title="Make your own games">Line-of-sight behavior</a>.</p>
+<p>An additional <code>ILOSBehaviorRay</code> interface is returned by the <code>castRay()</code> method.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=script-raycasting" rel="noopener" target="_blank" title="Make games in the browser">Scripting raycasting example</a> for a demonstration of using the <code>castRay()</code> method to perform raycasting.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Line-of-sight behavior APIs</h2>
+<dl>
+<dt>range</dt>
+<dd>Set or get the maximum distance in pixels that line-of-sight can reach. If an object is further away than this distance, the object will never have line-of-sight to it, even if the intervening space is clear.</dd>
+<dt>coneOfView</dt>
+<dd>Set or get the angle in radians of the cone of view in which the object can have line-of-sight to other objects, relative to the current angle of the object.</dd>
+<dt>addObstacle(iObjectClass)</dt>
+<dd>If the <em>Obstacles</em> property is <em>Custom</em>, adds the given <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> as another kind of object to count as an obstruction to line-of-sight. </dd>
+<dt>clearObstacles(iObjectClass)</dt>
+<dd>If the <em>Obstacles</em> property is <em>Custom</em>, clears all obstacles added with the <code>addObstacle()</code> method. </dd>
+<dt>hasLOStoPosition(x, y)</dt>
+<dd>Returns a boolean indicating if the object currently has line-of-sight to a position in layout co-ordinates, respecting the range and cone of view.</dd>
+<dt>hasLOSBetweenPositions(fromX, fromY, fromAngle, toX, toY)</dt>
+<dd>Returns a boolean indicating if there is line-of-sight between any two positions in the layout, instead of using the object's own position. This respects the range and cone of view, based on <em>fromAngle</em>, which is in radians.</dd>
+<dt>castRay(fromX, fromY, toX, toY, useCollisionCells = true)</dt>
+<dd>Check for obstacle intersection between any two positions in the layout, returning a <code>ILOSBehaviorRay</code> interface representing the result. Check the <code>didCollide</code> property of the returned interface to identify if an intersection was found. The other properties of the interface indicate the hit position, normal and reflection angle, if an intersection was found. For more information see the documentation of the <code>ILOSBehaviorRay</code> interface below. The <em>useCollisionCells</em> parameter specifies whether to use the <a class="extern" href="https://www.construct.net/blogs/ashleys-blog-2/collision-cell-optimisation-914.html" rel="noopener" target="_blank" title="Make your own games">collision cells optimisation</a> when testing line of sight. Usually this is faster, but in some cases over extremely long distances it can be slower. </dd>
+<dt>ray</dt>
+<dd>Returns the <code>ILOSBehaviorRay</code> interface representing the result of the last <code>castRay</code> method call.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>ILOSBehaviorRay interface</h2>
+<p>This interface is used to represent the result of a call to <code>castRay()</code>. All its properties are read-only.</p>
+<dl>
+<dt>didCollide</dt>
+<dd>Read-only boolean indicating whether an intersection was found. </dd>
+<dt>hitX</dt>
+<dt>hitY</dt>
+<dt>getHitPosition()</dt>
+<dd>If <em>didCollide</em> is true, the read-only position of the first obstacle the ray intersected, in layout co-ordinates. The method returns both values at the same time.</dd>
+<dt>hitDistance</dt>
+<dd>If <em>didCollide</em> is true, the read-only distance between the ray start point and the hit position.</dd>
+<dt>hitUid</dt>
+<dd>If <em>didCollide</em> is true, the read-only UID of the instance that was the first obstacle the ray intersected.</dd>
+<dt>getNormalX(length)</dt>
+<dt>getNormalY(length)</dt>
+<dt>getNormal(length)</dt>
+<dd>If <em>didCollide</em> is true, returns a position at a given distance along the surface normal vector. The <code>getNormal()</code> variant returns both values at the same time.</dd>
+<dt>normalAngle</dt>
+<dd>If <em>didCollide</em> is true, the read-only angle of the surface normal at the point of intersection, in radians.</dd>
+<dt>getReflectionX(length)</dt>
+<dt>getReflectionY(length)</dt>
+<dt>getReflection(length)</dt>
+<dd>If <em>didCollide</em> is true, returns a position at a given distance along the reflection vector. The <code>getReflection()</code> variant returns both values at the same time.</dd>
+<dt>reflectionAngle</dt>
+<dd>If <em>didCollide</em> is true, the read-only angle of the reflection at the point of intersection, in radians.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/8-direction" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                8 Direction behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>8 Direction behavior</strong> allows an object to be moved up, down, left, right and on diagonals, controlled by the arrow keys by default. It is often useful for controlling the player in a top-down view game. It can also be set to 4 directions or simple up/down or left/right movement which is useful for paddles or sliders. <a class="extern" href="https://editor.construct.net/#open=8-direction-behavior" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of the 8-direction behavior</a>.</p>
+<p>The 8 Direction behavior is blocked by any objects with the <a class="extern" href="solid.html" rel="noopener" target="_blank" title="Make your own games">Solid behavior</a>.</p>
+<p>To set up custom or automatic controls, see the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/direction.html" rel="noopener" target="_blank" title="Make your own games">I8DirectionBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>8 Direction properties</h2>
+<dl class="sans">
+<dt>Max speed</dt>
+<dd>The maximum speed the object can travel at in any direction, in pixels per second.</dd>
+<dt>Acceleration</dt>
+<dd>The rate the movement accelerates at, in pixels per second per second. When reversing against the current movement, acceleration and deceleration both contribute to slowing down.</dd>
+<dt>Deceleration</dt>
+<dd>The rate the movement decelerates to rest when not being moved, in pixels per second per second. When reversing against the current movement, acceleration and deceleration both contribute to slowing down.</dd>
+<dt>Directions</dt>
+<dd>Set how many directions the movement can move in. By default it is <em>8 Directions</em>, allowing movement on diagonals. <em>4 directions</em> prevents movement on diagonals, and <em>Up &amp; down</em> or <em>Left &amp; right</em> only allows movement along a single axis.</dd>
+<dt>Set angle</dt>
+<dd>Whether or not the movement should also affect the objects angle. <em>360 degree (smooth)</em> will always set the object's angle to the current angle of motion. <em>45-degree intervals</em> will set the object's angle to 8 possible directions. <em>90-degree intervals</em> will set the object's angle to 4 possible directions. <em>No</em> means the behavior will not set the object's angle at all, which is useful if you want to control this yourself with events (e.g. to make the object point towards the mouse cursor).</dd>
+<dt>Allow sliding</dt>
+<dd>If disabled, the object will simply stop when it collides with a solid. If enabled, the object will be able to continue moving along angled solids when it collides with them, essentially 'slipping' or 'sliding' along them.</dd>
+<dt>Default controls</dt>
+<dd>If enabled, movement is controlled by the arrow keys on the keyboard. Disable to set up custom controls using the <em>Simulate control</em> action. For more information see the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a>.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the <em>Set enabled</em> action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>8 Direction conditions</h2>
+<dl class="sans">
+<dt>Allows sliding</dt>
+<dd>Test if the behavior currently allows sliding along solids.</dd>
+<dt>Compare speed</dt>
+<dd>Compare the object's current speed in pixels per second.</dd>
+<dt>Is enabled</dt>
+<dd>Test if the behavior is currently enabled. When disabled it will have no effect on the object.</dd>
+<dt>Is moving</dt>
+<dd>True if the object has a non-zero speed (is not stopped). Invert to test if the object is stopped.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>8 Direction actions</h2>
+<dl class="sans">
+<dt>Reverse</dt>
+<dd>Invert the direction of motion. Useful as a simple way to bounce the object off an obstacle.</dd>
+<dt>Set acceleration</dt>
+<dt>Set deceleration</dt>
+<dt>Set allow sliding</dt>
+<dt>Set max speed</dt>
+<dt>Set default controls</dt>
+<dd>These set the corresponding properties, described under <em>8 Direction properties</em>.</dd>
+<dt>Set enabled</dt>
+<dd>Enable or disable the movement. If disabled, the movement no longer has any effect on the object.</dd>
+<dt>Set ignoring input</dt>
+<dd>Set whether input is being ignored. If input is ignored, pressing any of the control keys has no effect. However, unlike disabling the behavior, the object can continue to move.</dd>
+<dt>Set speed</dt>
+<dd>Set the current speed the object is moving at, in pixels per second.</dd>
+<dt>Set vector X</dt>
+<dt>Set vector Y</dt>
+<dd>Set the X and Y components of the movement, in pixels per second.</dd>
+<dt>Simulate control</dt>
+<dd>Simulate one of the movement controls being held down. Useful when <em>Default controls</em> is disabled. See the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a> for more information.</dd>
+<dt>Stop</dt>
+<dd>A shortcut for setting the speed to zero.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>8 Direction expressions</h2>
+<dl class="sans">
+<dt>Acceleration</dt>
+<dt>Deceleration</dt>
+<dt>MaxSpeed</dt>
+<dd>Return the corresponding properties, described under <em>8 Direction properties</em>.</dd>
+<dt>MovingAngle</dt>
+<dd>Get the current angle of motion (which can be different to the object's angle), in degrees.</dd>
+<dt>Speed</dt>
+<dd>Get the current object's movement speed, in pixels per second.</dd>
+<dt>VectorX</dt>
+<dt>VectorY</dt>
+<dd>Get the object's current speed on each axis, in pixels per second. For example, if the object is moving to the left at 100 pixels per second, <em>VectorX</em> is -100 and <em>VectorY</em> is 0.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

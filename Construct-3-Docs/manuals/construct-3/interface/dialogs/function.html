@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/dialogs/function" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Add/edit function dialog
+            </h1>
+<div itemprop="articleBody">
+<p>The add/edit function dialog appears when adding or editing a <a class="extern" href="../../project-primitives/events/functions.html" rel="noopener" target="_blank" title="Make your own games">function</a>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/84224/function-dialog.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 860x704px in new window (33.37 KB)"><span><img height="352" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/84224/function-dialog_v430.png" width="430"/></span></a></div></div>
+<p>This dialog has the following fields.</p>
+<dl class="sans">
+<dt>Name</dt>
+<dd>The name of the function. Note that if the function is used as an expression (its <em>Return type</em> is not <em>None</em>), the name must be a valid expression, so cannot contain special characters or whitespace. Functions used as actions (with a <em>Return type</em> of <em>None</em>) can use any name.</dd>
+<dt>Description <span class="ilTag c1">Optional</span></dt>
+<dd>An optional description of the function, for your organisational purposes. This is displayed in the <a class="extern" href="add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add action dialog</a> or <a class="extern" href="expressions-dictionary.html" rel="noopener" target="_blank" title="Make your own games">Expressions dictionary</a> depending on the return type of the function, and can be a helpful reminder of what the function does.</dd>
+<dt>Category <span class="ilTag c1">Optional</span></dt>
+<dd>An optional category for the function, for your organisational purposes. Functions with the same category are grouped together in the <em>Add action dialog</em> and <em>Expressions dictionary</em>, providing a way to arrange related functions together. This field autocompletes with existing category names used in the project, making it easier to use the same category names.</dd>
+<dt>Return type</dt>
+<dd>The return type of the function. This also determines whether the function is used as an action or an expression. Functions with a return type of <em>None</em> are used as actions; otherwise they are used as expressions. A return type of <em>Any</em> means the function can return either a number or a string. Functions with a return type must have a name which is a valid expression, so cannot contain special characters or whitespace.<br/>
+</dd>
+<dt>Copy picked</dt>
+<dd>Normally calling a function will run its actions with all objects reset to picked. For example calling a function that modifies a Sprite will modify all instances of that Sprite regardless of whether any conditions picked specific instances before calling the function. Enabling <em>Copy picked</em> means the function will run with the same picked instances as the event that calls it, so actions still run on the same instances picked by any previous conditions.</dd>
+<dt>Asynchronous</dt>
+<dd>Tick to mark the function as <em>asynchronous</em> (or <em>async</em> for short). This means calls to this function can be used with the System action <em>Wait for previous actions to complete</em> if the function does any of its own waiting. Note this has a small performance overhead, so for best performance leave this disabled if you don't need it.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

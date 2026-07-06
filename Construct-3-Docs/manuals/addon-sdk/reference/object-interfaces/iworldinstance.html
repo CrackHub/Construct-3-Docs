@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/object-interfaces/iworldinstance" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IWorldInstance interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IWorldInstance</code> interface represents an instance of a "world" type plugin in Construct. It derives from <a class="extern" href="iobjectinstance.html" rel="noopener" target="_blank" title="Make your own games">IObjectInstance</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>GetLayer()</dt>
+<dd>Return the <a class="extern" href="../model-interfaces/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a> this instance belongs to.</dd>
+<dt>GetLayout()</dt>
+<dd>Return the <a class="extern" href="../model-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout</a> this instance belongs to.</dd>
+<dt>GetBoundingBox()</dt>
+<dd>Returns an <a class="extern" href="../geometry-interfaces/rect.html" rel="noopener" target="_blank" title="Make your own games">SDK.Rect</a> representing the bounding box of the instance in the layout.</dd>
+<dt>GetQuad()</dt>
+<dd>Returns an <a class="extern" href="../geometry-interfaces/quad.html" rel="noopener" target="_blank" title="Make your own games">SDK.Quad</a> representing the bounding quad of the instance in the layout.</dd>
+<dt>GetColor()</dt>
+<dd>Returns an <a class="extern" href="../geometry-interfaces/color.html" rel="noopener" target="_blank" title="Make your own games">SDK.Color</a> representing the premultiplied color of the instance. This combines the instance's color tint with its opacity in the alpha channel.</dd>
+<dt>SetOpacity(o)</dt>
+<dt>GetOpacity()</dt>
+<dd>Set or get the alpha component of the instance's color, representing its opacity, in the 0-1 range.</dd>
+<dt>SetX(x)</dt>
+<dt>SetY(y)</dt>
+<dt>SetXY(x, y)</dt>
+<dt>GetX()</dt>
+<dt>GetY()</dt>
+<dt>GetXY()</dt>
+<dd>Set and get the X and Y co-ordinates of this instance.</dd>
+<dt>SetZ(z)</dt>
+<dt>GetZ()</dt>
+<dd>Set and get the Z position of this instance. Note this is relative to the Z elevation of the layer the instance is on.</dd>
+<dt>SetXYZ(x, y, z)</dt>
+<dt>GetXYZ()</dt>
+<dd>Set and get the X, Y and Z co-ordinates of this instance.</dd>
+<dt>GetTotalZ()</dt>
+<dd>Get the total Z elevation of this instance, which is its own Z position added to the Z elevation of the layer it is on.</dd>
+<dt>SetAngle(a)</dt>
+<dt>GetAngle()</dt>
+<dd>Set and get the angle of the instance, in radians.</dd>
+<dt>SetWidth(w)</dt>
+<dt>SetHeight(h)</dt>
+<dt>SetSize(w, h)</dt>
+<dt>GetWidth()</dt>
+<dt>GetHeight()</dt>
+<dd>Set and get the size of the instance, in pixels.</dd>
+<dt>SetDepth(d)</dt>
+<dt>GetDepth()</dt>
+<dd>Set and get the depth (size on the Z axis) of the instance, in pixels. Note this is only applicable for 3D objects (2D objects have a depth of zero).</dd>
+<dt>SetOriginX(x)</dt>
+<dt>SetOriginY(y)</dt>
+<dt>SetOrigin(x, y)</dt>
+<dt>GetOriginX()</dt>
+<dt>GetOriginY()</dt>
+<dd>Set and get the current origin of the instance in the layout. Note this is normalized to a [0, 1] range, e.g. 0.5 is the middle.</dd>
+<dt>ApplyBlendMode(iRenderer)</dt>
+<dd>Sets the current blend mode of the given <a class="extern" href="../graphics-interfaces/iwebglrenderer.html" rel="noopener" target="_blank" title="Make your own games">IWebGLRenderer</a> according to the <em>Blend mode</em> property of the instance in Construct. This is only relevant if the plugin specifies that it supports effects. Use this in the <code>Draw()</code> method to set the correct blend mode.</dd>
+<dt>SetSampling(sampling)</dt>
+<dt>GetSampling()</dt>
+<dd>Set or get a string of the instance's sampling mode, which is one of <code>"auto"</code>, <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code>.</dd>
+<dt>GetActiveSampling()</dt>
+<dd>Get a string of the instance's active sampling mode. This is only different to <code>GetSampling()</code> when the sampling mode is <code>"auto"</code>: in this case the active sampling mode is inherited from the project, layout, layer, or hierarchy. This is the sampling mode with which this instance will be rendered.</dd>
+<dt>SetMustMitigateZFighting()</dt>
+<dd>Specify that the instance must use Z-fighting mitigations, even when it is not rendered coplanar with another object. This can be necessary if an object renders coplanar content itself, such as a SpriteFont with overlapping characters. This method is intended for use with the addon SDK with the addon's own instances.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/guides/subclassing-instances" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Subclassing instances
+            </h1>
+<div itemprop="articleBody">
+<p>Construct uses the <a class="extern" href="../scripting-reference/object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> and <a class="extern" href="../scripting-reference/object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> interfaces to provide access to instances. Many plugins provide derivatives of these to provide plugin-specific APIs. For example the Text plugin adds a <code>text</code> property with an <code>ITextInstance</code> class that derives from <code>IWorldInstance</code>. The <a class="extern" href="https://www.construct.net/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces.html" rel="noopener" target="_blank" title="Make your own games">Plugin interfaces</a> section covers these.</p>
+<p>However in your projects it is often desirable to have a further customised class to represent instances. For example all your Sprite instances will provide an <a class="extern" href="../scripting-reference/plugin-interfaces/sprite.html" rel="noopener" target="_blank" title="Make your own games">ISpriteInstance</a> interface, but this is still a fairly generic class to represent many different aspects of your project, such as both the player and enemies. <em>Subclassing</em> allows you to use your own custom classes like <code>PlayerInstance</code> or <code>EnemyInstance</code> to represent different objects in your game. Then any time you ask Construct for instances, such as with <a class="extern" href="../scripting-reference/object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">getAllInstances()</a>, you'll get references to your custom classes instead of a generic <code>ISpriteInstance</code> or <code>IWorldInstance</code> class.</p>
+<p>To use subclassing, follow the steps provided here. The <a class="extern" href="https://editor.construct.net/#open=spell-caster-code-js" rel="noopener" target="_blank" title="Make games in the browser">Spell Caster code scripting example</a> also demonstrates how to use this, with a custom <code>GoblinInstance</code> class to represent the enemy goblins in the game. A <a class="extern" href="https://editor.construct.net/#open=spell-caster-code-ts" rel="noopener" target="_blank" title="Make games in the browser">TypeScript version</a> is also available. The code samples here use JavaScript, but subclassing works similarly in TypeScript with the necessary type annotations - see <a class="extern" href="../using-scripting/typescript-construct.html" rel="noopener" target="_blank" title="Make your own games">TypeScript in Construct</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2><span class="headerStep">Step 1:</span> create your class</h2>
+<p>First write a class that extends from the class normally used by the instance. To help make this easy, Construct creates a special kind of class for every kind of instance in the project in the <code>InstanceType</code> namespace. For example when extending an object named <em>Player</em>, extend from <code>globalThis.InstanceType.Player</code>.</p>
+<p>In this example we'll extend a Sprite instance for the object named <em>Player</em>, so the class extends from <code>globalThis.InstanceType.Player</code>.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">class</span> <span class="token class-name">PlayerInstance</span> <span class="token keyword">extends</span> <span class="token class-name">globalThis<span class="token punctuation">.</span>InstanceType<span class="token punctuation">.</span>Player</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-3-close">{</span>
+	<span class="token function">constructor</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-0-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-0-open">)</span>
+	<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-2-close">{</span>
+		<span class="token keyword">super</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-1-close">(</span><span class="token punctuation brace-round brace-close brace-level-3" id="pair-1-open">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-2-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-3-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Often it is sensible to organize code by using a separate script file for the class.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2><span class="headerStep">Step 2:</span> set the instance class</h2>
+<p>Next, use the <a class="extern" href="../scripting-reference/object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass.setInstanceClass()</a> method to set your custom class. This must be done before any instances in the project are created, to make sure they all use the right class. Therefore this must be called in <code>runOnStartup</code>, which runs before the runtime has finished loading, so no instances exist yet.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token function">runOnStartup</span><span class="token punctuation brace-round brace-open brace-level-1">(</span><span class="token keyword">async</span> <span class="token parameter">runtime</span> <span class="token operator">=&gt;</span>
+<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-5-close">{</span>
+	runtime<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>Player<span class="token punctuation">.</span><span class="token function">setInstanceClass</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-4-close">(</span>PlayerInstance<span class="token punctuation brace-round brace-close brace-level-3" id="pair-4-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-5-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2><span class="headerStep">Step 3:</span> customise the class</h2>
+<p>Now you can add custom properties and methods to your class. For example the Player class may need to use an ammo counter, and a <em>shoot</em> method to fire one of their bullets. You can write these as you would with a normal JavaScript class.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">class</span> <span class="token class-name">PlayerInstance</span> <span class="token keyword">extends</span> <span class="token class-name">globalThis<span class="token punctuation">.</span>InstanceType<span class="token punctuation">.</span>Player</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-11-close">{</span>
+	<span class="token function">constructor</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-6-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-6-open">)</span>
+	<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-9-close">{</span>
+		<span class="token keyword">super</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-7-close">(</span><span class="token punctuation brace-round brace-close brace-level-3" id="pair-7-open">)</span><span class="token punctuation">;</span>
+
+		<span class="token comment">// Start with 5 bullets</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>ammo <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-9-open">}</span>
+
+	<span class="token function">shoot</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-8-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-8-open">)</span>
+	<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-10-close">{</span>
+		<span class="token comment">// Decrement ammo count</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>ammo<span class="token operator">--</span><span class="token punctuation">;</span>
+
+		<span class="token comment">// create a bullet instance, etc.</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-10-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-11-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Note that here <code>ammo</code> is not an instance variable or anything else associated with Construct's event system: it's just a normal JavaScript object property.</p>
+<p>Since <a class="extern" href="../scripting-reference/object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> has a <code>runtime</code> property, within your class you can always use <code>this.runtime</code> to refer to the <a class="extern" href="../scripting-reference/iruntime.html" rel="noopener" target="_blank" title="Make your own games">runtime script interface</a>.</p>
+<p>You may also wish to make use of <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_properties" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_properties">private properties and methods</a> to ensure some details remain internal to your class.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2><span class="headerStep">Step 4:</span> use your custom features</h2>
+<p>Now whenever you retrieve instances of the player from the existing APIs, you'll get <code>PlayerInstance</code> classes instead of the default based on <code>ISpriteInstance</code>. Then you can read your custom properties and call custom methods.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Assume called in "beforelayoutstart" event</span>
+<span class="token keyword">function</span> <span class="token function">OnBeforeLayoutStart</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-12-close">(</span><span class="token parameter">runtime</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-12-open">)</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-16-close">{</span>
+	<span class="token comment">// Get player instance from Construct</span>
+	<span class="token keyword">const</span> playerInstance <span class="token operator">=</span> runtime<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>Player<span class="token punctuation">.</span><span class="token function">getFirstInstance</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-13-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-13-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Example uses of custom class</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-14-close">(</span><span class="token string">"Ammo = "</span> <span class="token operator">+</span> playerInstance<span class="token punctuation">.</span>ammo<span class="token punctuation brace-round brace-close brace-level-2" id="pair-14-open">)</span><span class="token punctuation">;</span>
+	playerInstance<span class="token punctuation">.</span><span class="token function">shoot</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-15-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-15-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-16-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Conclusion</h2>
+<p>Subclassing is straightforward to set up, and lets you use custom classes for different objects in your project. This can make your code a lot clearer, and helps you to use the full power of JavaScript/TypeScript classes with instances in Construct's runtime.</p></div></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

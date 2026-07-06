@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/move" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Move To
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Move To behavior</strong> moves an object to a position at a maximum speed with acceleration and deceleration. It also supports rotating the object so it turns towards its target, and can add multiple waypoints to move to in sequence.</p>
+<p><a class="extern" href="https://editor.construct.net/#open=move-to" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of the Move To behavior.</a></p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/move.html" rel="noopener" target="_blank" title="Make your own games">IMoveToBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Move To properties</h2>
+<dl class="sans">
+<dt>Max speed</dt>
+<dd>The maximum speed the object will move at, in pixels per second.</dd>
+<dt>Acceleration</dt>
+<dd>The rate at which the object will accelerate to the maximum speed, in pixels per second per second. Use 0 to disable acceleration, meaning the object will immediately start moving at the maximum speed.</dd>
+<dt>Deceleration</dt>
+<dd>The rate at which the object will decelerate towards its target, in pixels per second per second. Use 0 to disable deceleration, meaning the object will come to an abrupt stop without slowing down. The object will only slow down towards its last position; if there are further waypoints to move to, it will continue accelerating up to the maximum speed. Note that the deceleration also imposes a stopping distance during which the object must be slowing down, which in some cases may prevent the object reaching its maximum speed.</dd>
+<dt>Rotate speed</dt>
+<dd>The rate the object will turn towards its target position, in degrees per second. Use 0 to disable turning, meaning the object will always move directly towards the target. Note a slow rotate speed results in a large turning circle, which can have awkward results if the object has to navigate through several close waypoints. For this reason it's recommended to use a high rotate speed.</dd>
+<dt>Set angle</dt>
+<dd>When enabled, the object angle will be set to the angle it is moving at. If disabled the movement will not affect the object angle.</dd>
+<dt>Stop on solids</dt>
+<dd>If enabled, movement will stop if the object collides with something with the <a class="extern" href="solid.html" rel="noopener" target="_blank" title="Make your own games">Solid</a> behavior, and trigger <em>On hit solid</em>. If disabled solids are ignored.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the <em>Set enabled</em> action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Move To conditions</h2>
+<dl class="sans">
+<dt>Compare speed</dt>
+<dd>Compare the object's current speed in pixels per second.</dd>
+<dt>Is enabled</dt>
+<dd>True if the behavior is currently enabled.</dd>
+<dt>Is moving</dt>
+<dd>True if the object has a target position it is moving towards.</dd>
+<dt>On arrived</dt>
+<dd>Triggered whenever the target position is reached. This is triggered for every waypoint if there are multiple waypoints to move to.<br/>
+</dd>
+<dt>On hit solid</dt>
+<dd>Triggered if <em>Stop on solids</em> is enabled and the object collided with a solid.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Move To actions</h2>
+<dl class="sans">
+<dt>Move to position</dt>
+<dt>Move to object</dt>
+<dd>Start moving towards a position, given either by layout co-ordinates or an object (or optionally an image point on the object). If <em>Mode</em> is <em>Direct</em>, any existing waypoints are removed, so the object will immediately move towards the given position. If <em>Mode</em> is <em>Add waypoint</em>, it will instead add a new waypoint to move to after all existing waypoints have been reached.</dd>
+<dt>Move along Pathfinding path</dt>
+<dd>This is an alternative to the <a class="extern" href="pathfinding.html" rel="noopener" target="_blank" title="Make your own games">Pathfinding behavior</a>'s <em>Move along path</em> action. It only works with a Pathfinding behavior on the same object, and like the Pathfinding action can only be used after <em>On path found</em> triggers. The 'Move To' behavior uses a different algorithm for moving along waypoints, and this action lets you use its approach instead of the built-in Pathfinding movement.</dd>
+<dt>Move along timeline</dt>
+<dt>Move along timeline (by name)</dt>
+<dd>Add all the points from the X and Y property tracks in a <a class="extern" href="../project-primitives/timelines/track.html" rel="noopener" target="_blank" title="Make your own games">timeline track</a>. The timing is ignored; the positions are treated only as a sequence of waypoints to move along. This is useful for using a timeline to visually design a path to follow in the Layout View. See the <a class="extern" href="https://editor.construct.net/#open=move-along-path" rel="noopener" target="_blank" title="Make games in the browser">Move along path</a> and <a class="extern" href="https://editor.construct.net/#open=move-along-curved-path" rel="noopener" target="_blank" title="Make games in the browser">Move along curved path</a> examples for a demonstration.</dd>
+<dt>Set angle of motion</dt>
+<dd>Set the angle the object is currently moving at, in degrees.</dd>
+<dt>Stop</dt>
+<dd>Stop any current movement. This also removes all waypoints.</dd>
+<dt>Set speed</dt>
+<dd>Set the current movement speed in pixels per second. Note this cannot exceed the maximum speed, nor can it exceed the current speed while within the stopping distance, since increasing the speed while decelerating would cause the object to miss its target.</dd>
+<dt>Set acceleration</dt>
+<dt>Set deceleration</dt>
+<dt>Set enabled</dt>
+<dt>Set max speed</dt>
+<dt>Set rotate speed</dt>
+<dt>Set stop on solids</dt>
+<dd>Set the corresponding properties. For more information see <em>Move to properties</em> above.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Move To expressions</h2>
+<dl class="sans">
+<dt>MovingAngle</dt>
+<dd>The current angle in degrees the object is moving at.</dd>
+<dt>Speed</dt>
+<dd>The current speed the object is moving at, in pixels per second.</dd>
+<dt>TargetX</dt>
+<dt>TargetY</dt>
+<dd>The current position in layout co-ordinates that the object is moving towards. When multiple waypoints are used, this is the current waypoint.</dd>
+<dt>WaypointCount</dt>
+<dt>WaypointXAt(index)</dt>
+<dt>WaypointYAt(index)</dt>
+<dd>Use these expressions to access the full list of waypoints added, given in layout co-ordinates.</dd>
+<dt>Acceleration</dt>
+<dt>Deceleration</dt>
+<dt>MaxSpeed</dt>
+<dt>RotateSpeed</dt>
+<dd>Return the corresponding properties. For more information see <em>Move to properties</em> above.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

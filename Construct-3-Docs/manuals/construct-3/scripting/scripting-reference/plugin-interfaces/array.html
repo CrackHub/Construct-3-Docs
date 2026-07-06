@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/array" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Array script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IArrayInstance</code> interface derives from <a class="extern" href="../object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/array.html" rel="noopener" target="_blank" title="Make your own games">Array plugin</a>.
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Array APIs</h2>
+<dl>
+<dt>width</dt>
+<dt>height</dt>
+<dt>depth</dt>
+<dd>Retrieve the current dimensions of the array.</dd>
+<dt>setSize(w, h = 1, d = 1)</dt>
+<dd>Set the size of the array in up to three dimensions. For one or two dimensional arrays, the later parameters can be omitted as they default to 1. (Note passing 0 for any dimension will create an array with zero elements that cannot store any data.) If the array grows, new elements have the value 0. If the array shrinks, elements are removed.</dd>
+<dt>getAt(x, y = 0, z = 0)</dt>
+<dd>Retrieve an element from the array at the given X, Y and Z co-ordinates. For one or two dimensional access, the later parameters can be omitted as they default to 0.</dd>
+<dt>setAt(val, x, y = 0, z = 0)</dt>
+<dd>Set an element in the array at the given X, Y and Z co-ordinates. <code>val</code> must be a number or string. For one or two dimensional arrays, the later parameters can be omitted as they default to 0.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

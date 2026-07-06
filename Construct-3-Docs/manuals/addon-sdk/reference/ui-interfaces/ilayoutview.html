@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/ui-interfaces/ilayoutview" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ILayoutView interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ILayoutView</code> interface provides access to a Layout View from the SDK. Note that this interface represents the editor view; the <a class="extern" href="../model-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout</a> interface provides the interface to the actual layout in the project model.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>GetProject()</dt>
+<dd>Return the <a class="extern" href="../model-interfaces/iproject.html" rel="noopener" target="_blank" title="Make your own games">IProject</a> representing the project associated with this Layout View.</dd>
+<dt>GetLayout()</dt>
+<dd>Return an <a class="extern" href="../model-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout</a> representing the layout in the project model that this Layout View is showing.</dd>
+<dt>GetActiveLayer()</dt>
+<dd>Return an <a class="extern" href="../model-interfaces/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a> representing the current active layer selected in this Layout View.</dd>
+<dt>GetZoomFactor()</dt>
+<dd>Return the current zoom factor of the Layout View. For example 1 represents 100% zoom, 0.5 represents 50% zoom, etc.</dd>
+<dt>LayoutToClientDevice(x, y)</dt>
+<dd>Convert from layout co-ordinates to device pixel co-ordinates in the layout view canvas. This is useful for rendering at device pixel sizes after calling <code>SetDeviceTransform()</code>. Returns the result co-ordinates as an array of <code>[x, y]</code>.</dd>
+<dt>SetDeviceTransform(iRenderer)</dt>
+<dd>Set the given <a class="extern" href="../graphics-interfaces/iwebglrenderer.html" rel="noopener" target="_blank" title="Make your own games">IWebGLRenderer</a> to a device pixel co-ordinate transform. This means co-ordinates used for rendering are based on device pixel co-ordinates relative to the layout view canvas, rather than layout co-ordinates.</dd>
+<dt>SetDefaultTransform(iRenderer)</dt>
+<dd>Set the given IWebGLRenderer to a layout co-ordinate transform. This is the default and should be restored after using <code>SetDeviceTransform()</code>.</dd>
+<dt>Refresh()</dt>
+<dd>Schedules the layout view to be redrawn at the next animation frame. Avoid unnecessarily refreshing the layout view, such as refreshing on a timer, since this can waste battery life.</dd>
+<dt>GetViewMode()</dt>
+<dd>Returns either the string <code>"2d"</code> or <code>"3d"</code> depending on the current view mode of the Layout View.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

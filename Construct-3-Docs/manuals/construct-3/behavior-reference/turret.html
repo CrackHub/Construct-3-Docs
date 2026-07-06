@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/turret" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Turret behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Turret behavior</strong> can automatically detect objects within a certain range and rotate towards them. It optionally includes features to determine when to fire, as well as <strong>predictive aim</strong>.</p>
+<p>For examples of the Turret behavior, search for <em>Turret</em> in the <a class="extern" href="../overview/example-browser.html" rel="noopener" target="_blank" title="Make your own games">Example Browser</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/turret.html" rel="noopener" target="_blank" title="Make your own games">ITurretBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>How Turrets work</h2>
+<p>Before a turret will target anything, you must use the <em>Add object to target</em> action so the object knows which objects to look for. Calling this once on the start of layout is sufficient. You can also give the turret a <a class="extern" href="../project-primitives/objects/families.html" rel="noopener" target="_blank" title="Make your own games">Family</a> <span class="ilTag c2">Paid plans only</span> to target, allowing it to easily target a collection of different objects.</p>
+<p>Once one of these objects enters the Turret's range (the distance between the objects is lower than the <em>Range</em> property), and the turret does not already have a target, then the turret acquires that object as a target. <em>On target acquired</em> is triggered, and if <em>Rotate</em> is enabled the object will start rotating towards the target. Once the turret is pointing in the direction of the target, <em>On shoot</em> will trigger at the frequency determined by the <em>Rate of fire</em> property. If you want the turret to fire upon the target, spawn a projectile in the <em>On shoot</em> event.</p>
+<p>If the target leaves the turret's range, the turret will lose the target and stop firing. If another target is already in range, it will immediately acquire that; otherwise it will simply wait until the next target enters range. Also note if <em>Target mode</em> is set to <em>Nearest</em>, the turret may switch to another target before the current target leaves range, if the new target comes closer than the existing target.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Predictive aim</h2>
+<p>A useful feature of the Turret behavior is the ability to use <strong>predictive aim</strong>. For an interactive demonstration of this see the <em>Turret predictive aim</em> example in the Start dialog.</p>
+<p>Normally turrets aim directly at a target. This often means moving targets are never hit, because by the time the projectile arrives, the object has moved somewhere else. Predictive aim solves this by aiming the turret at where the object will be by the time the projectile arrives, <em>if</em> it maintains the same velocity. In order for this to work, the Turret behavior must have the speed of the projectile set in its <em>Projectile speed</em> property, so it can determine how long it will take for the projectile to arrive. The projectile must also use a fixed speed, and not have any acceleration or deceleration.</p>
+<p>It is still possible for targets to dodge predictive aiming turrets, by changing direction or speed while the projectile travels towards it. However this is considerably more difficult compared to not using predictive aim, and the overall accuracy of the turret will be significantly improved.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Turret properties</h2>
+<dl class="sans">
+<dt>Range</dt>
+<dd>The range, in pixels, that the turret can detect targets in. Any targets further away from the turret than this distance will be ignored.</dd>
+<dt>Rate of fire</dt>
+<dd>The rate at which to trigger <em>On shoot</em>, when the turret has both acquired a target and rotated to point in the direction of the target.</dd>
+<dt>Rotate</dt>
+<dd>Whether to automatically set the object's angle according to the angle of the turret.</dd>
+<dt>Rotate speed</dt>
+<dd>The speed at which the turret can rotate towards targets, in degrees per second.</dd>
+<dt>Target mode</dt>
+<dd>If <em>First in range</em>, the turret will always track the same target until it leaves range, even if other targets come in range. If <em>Nearest</em>, the turret may switch to a different target before its current target leaves range, if another target comes closer.</dd>
+<dt>Predictive aim</dt>
+<dd>Whether to enable predictive aim or not. If enabled, you must set the correct <em>Projectile speed</em> for the predictive aim to work correctly. For more information see the section on <em>Predictive aim</em> above.</dd>
+<dt>Projectile speed</dt>
+<dd>If <em>Predictive aim</em> is enabled, this must be set to the projectile speed in pixels per second for the predictive aim to work correctly. For more information, see the section on <em>Predictive aim</em> above.</dd>
+<dt>Use collision cells</dt>
+<dd>Whether to use the <a class="extern" href="https://www.construct.net/blogs/ashleys-blog-2/collision-cell-optimisation-914.html" rel="noopener" target="_blank" title="Make your own games">collision cells optimisation</a> when looking for targets that are within range. Usually this is faster, but with extremely long ranges it can sometimes be slower.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the <em>Set enabled</em> action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Turret conditions</h2>
+<dl class="sans">
+<dt>Has target</dt>
+<dd>True if the turret currently has a target acquired.</dd>
+<dt>Is enabled</dt>
+<dd>Test if the behavior is currently enabled. When disabled it will have no effect on the object.</dd>
+<dt>On shoot</dt>
+<dd>Triggered at the frequency given by the <em>Rate of fire</em> property, when the turret both has a target and has rotated to point towards it. If the turret is to fire upon the target, you should spawn a projectile from the turret in this trigger.</dd>
+<dt>On target acquired</dt>
+<dd>Triggered when the turret has no target, but acquires one as it enters range.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Turret actions</h2>
+<dl class="sans">
+<dt>Acquire target</dt>
+<dd>Target a specific object if it is in range. If the object is out of range, the action is ignored. If in range, the turret will switch to targeting the given object, even if it already has a different target. Note if <em>Target mode</em> is <em>Nearest</em>, the turret may still immediately switch to a nearer target.</dd>
+<dt>Add object to target</dt>
+<dd>Use on startup to tell the turret which objects it should target. Use a <a class="extern" href="../project-primitives/objects/families.html" rel="noopener" target="_blank" title="Make your own games">Family</a> <span class="ilTag c2">Paid plans only</span>  to conveniently target a whole group of objects.</dd>
+<dt>Clear targets</dt>
+<dd>Remove all targets added using the <em>Add object to target</em> action. The turret will no longer target any objects at all.</dd>
+<dt>Unacquire target</dt>
+<dd>Tell the turret to forget its existing target, even if it is in range. This frees it up to target a different object, but it may choose to immediately target the same object again unless the <em>Acquire target</em> action is used immediately afterwards.</dd>
+<dt>Set enabled</dt>
+<dd>Enable or disable the behavior. If disabled, the behavior will not detect targets, rotate the object, or run any triggers.</dd>
+<dt>Set predictive aim</dt>
+<dt>Set projectile speed</dt>
+<dt>Set range</dt>
+<dt>Set rate of fire</dt>
+<dt>Set rotate</dt>
+<dt>Set rotate speed</dt>
+<dt>Set target mode</dt>
+<dd>Set the corresponding properties. For more information, see <em>Turret properties</em>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Turret expressions</h2>
+<dl class="sans">
+<dt>Range</dt>
+<dt>RateOfFire</dt>
+<dt>RotateSpeed</dt>
+<dd>Retrieve the corresponding properties. For more information, see <em>Turret properties</em>.</dd>
+<dt>TargetUID</dt>
+<dd>Get the UID of the currently targeted object, if any. For more information about UIDs, see <a class="extern" href="../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

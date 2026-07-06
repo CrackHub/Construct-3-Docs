@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/object-interfaces/icollisionpoly" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ICollisionPoly interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ICollisionPoly</code> interface represents the collision polygon for an <a class="extern" href="ianimationframe.html" rel="noopener" target="_blank" title="Make your own games">IAnimationFrame</a>. It is represented as a list of numbers representing points connected in a loop. As with image points, the collision polygon points are specified in texture co-ordinates, i.e. from 0 to 1.
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>Reset()</dt>
+<dd>Reset the collision polygon to the default, which matches the bounding box of the object.</dd>
+<dt>IsDefault()</dt>
+<dd>Return a boolean indicating if the collision polygon is set to the default, matching the bounding box of the object.</dd>
+<dt>GetPoints()</dt>
+<dd>Return an array of numbers representing the points in the collision polygon. The array elements are alternating X and Y components for the points, so its size is always even. The collision polygon is guaranteed to have at least three points.</dd>
+<dt>SetPoints(arr)</dt>
+<dd>Set the collision polygon points by passing an array of numbers. The array elements must be alternating X and Y components for the points, so its size must be even. There must be at least three points in a collision polygon, therefore the passed array must have at least 6 elements.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

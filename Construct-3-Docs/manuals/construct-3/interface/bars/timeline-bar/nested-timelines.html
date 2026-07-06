@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/timeline-bar/nested-timelines" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Nested timelines
+            </h1>
+<div itemprop="articleBody">
+<p>It is possible to nest <a class="extern" href="../../../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timelines</a> inside another parent timeline, this allows for coordination between timelines without the need of events. When a timeline is shown as nested inside a parent it works largely the same, some exclusive bits of UI are introduced as well as some differences when compared to the main timeline.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Adding nested timelines</h2>
+<p>First you will need to create more than one timeline in the project, after doing that you can do any of the following:</p>
+<ul class="list">
+<li>Drag a timeline from the <a class="extern" href="../project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> into the <a class="extern" href="../timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a> to nest it in the currently active timeline.</li>
+<li>Use the sub option <span class="navWrap">Timeline<span class="arr">►</span>Add timelines</span> of the <kbd>+</kbd> split button in the toolbar to bring up a dialog from which to choose timelines to add.</li>
+<li>Right-click on empty space in the Timeline Bar to bring up a context menu for the current timeline and use the option <span class="navWrap">Timeline<span class="arr">►</span>Add timelines</span>.</li></ul>
+<p>The image below shows how a nested timeline shows up in the Timeline Bar, after the main timeline elements and separated by two horizontal lines (highlighted in red). You can also see the nested timeline rows have a grey background to indicate they are not the main focus of the bar. A few other UI elements unique to nested timelines appear as well, continue reading for more details.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82240/timelinemanual07.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1066x238px in new window (12.81 KB)"><span><img height="179" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/82240/timelinemanual07_v800.png" width="800"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Editing nested timelines</h2>
+<div class="hr"></div>
+<h3>Focus</h3>
+<p>While a timeline is shown as nested content most editing can be done on it as in the main timeline. This includes, editing through the Properties Bar, moving keyframes, deleting keyframes and changing the starting offset. Adding <a class="extern" href="../../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a> and adding keyframes is not directly available to nested timelines though. In order to do those actions the nested timeline must have focus.</p>
+<p>Giving focus to a nested timeline is easy, you can do one of the following:</p>
+<ul class="list">
+<li>Double-click the corresponding nested timeline row.</li>
+<li>Right-click the corresponding nested timeline row and use the <span class="navWrap">focus</span> option.</li></ul>
+<p>In the image below you can see the nested timeline having focus. Now all of it's content have a white background, while the rows that don't belong to it have a grey background. The timeline with focus is the only that will accept changes relating to adding instances, keyframes or updating keyframes.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82241/timelinemanual08.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1171x225px in new window (15.13 KB)"><span><img height="154" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/82241/timelinemanual08_v800.png" width="800"/></span></a></div></div>
+<div class="hr"></div>
+<h3>Toolbar arrow buttons</h3>
+<p>The left pointing arrow is used to go to the last timeline which had focus, the right pointing arrow is used to go to the next timeline which had focus. These buttons are only shown if there are nested timelines in the current main timeline, otherwise they are hidden.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87427/timeline-toolbar-nested.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 484x29px in new window (2.31 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87427/timeline-toolbar-nested.png" width="484"/></span></a></div></div>
+<div class="hr"></div>
+<h3>Starting Offset</h3>
+<p>The starting offset handle is the line that can be seen in the same row as the top most element of a nested timeline. It is positioned to show where the nested timeline will start playing in relation to the parent, and it is sized according to it's total time.</p>
+<p>Similar to keyframes, dragging this handle allows you to change the starting offset of the nested timeline.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82246/timelinemanual09.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1045x227px in new window (11.86 KB)"><span><img height="174" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/82246/timelinemanual09_v800.png" width="800"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Layout view feedback</h2>
+<p>When a timeline with nested content is previewed in the layout, everything works as expected, but the instances which don't have focus have slightly different feedback.</p>
+<p>The instances and timeline UI elements which don't have focus, are shown with slightly transparent colors.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/42775/timelinebardoc11.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 642x344px in new window (51.82 KB)"><span><img height="344" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/42775/timelinebardoc11.png" width="642"/></span></a></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/sine" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Sine behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Sine behavior</strong> can adjust an object's properties (like its position, size or angle) back and forth according to an oscillating <a class="extern outlink" href="http://en.wikipedia.org/wiki/File:Simple_sine_wave.svg" rel="nofollow noopener external" target="_blank" title="Go to: http://en.wikipedia.org/wiki/File:Simple_sine_wave.svg">sine wave</a>. This can be used to create interesting visual effects. Despite the name, alternative wave functions like 'Triangle' can also be selected to create different effects. A visualisation of the different wave types can be found on <a class="extern outlink" href="http://en.wikipedia.org/wiki/File:Waveforms.svg" rel="nofollow noopener external" target="_blank" title="Go to: http://en.wikipedia.org/wiki/File:Waveforms.svg">Wikipedia</a>.</p>
+<p><a class="extern" href="https://editor.construct.net/#open=sine-behavior-types" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of the Sine behavior</a>, which demonstrates each type of movement the behavior can use.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/sine.html" rel="noopener" target="_blank" title="Make your own games">ISineBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Sine properties</h2>
+<dl class="sans">
+<dt>Movement</dt>
+<dd>The Sine behavior has the following modes:<br/>
+<ul class="list"><br/>
+<li><strong>Horizontal</strong> moves the object left and right on the X axis</li><br/>
+<li><strong>Vertical</strong> moves the object up and down on the Y axis</li><br/>
+<li><strong>Forwards/backwards</strong> moves the object in a straight line back and forth along the angle the object is facing at, like an angled <em>Horizontal</em> mode.</li><br/>
+<li><strong>Width</strong> stretches the object wider and narrower</li><br/>
+<li><strong>Height</strong> stretches the object taller and shorter</li><br/>
+<li><strong>Size</strong> makes the object grow and shrink</li><br/>
+<li><strong>Angle</strong> rotates the object clockwise and anticlockwise</li><br/>
+<li><strong>Opacity</strong> oscillates the object opacity. Note object opacities can never go less than 0 or greater than 100.</li><br/>
+<li><strong>Z elevation</strong> moves the object up and down on the Z axis.</li><br/>
+<li><strong>Value only</strong> does not modify the object. It simply stores the oscillating value which can be accessed by the <em>Value</em> expression. This can be useful to create custom effects or modify any other object or behavior property based on the sine behavior.</li></ul></dd>
+<dt>Wave</dt>
+<dd>The wave function used to calculate the movement. For a visualisation see <a class="extern outlink" href="http://en.wikipedia.org/wiki/File:Waveforms.svg" rel="nofollow noopener external" target="_blank" title="Go to: http://en.wikipedia.org/wiki/File:Waveforms.svg">this Wikipedia diagram</a>.<br/>
+<ul class="list"><br/>
+<li><strong>Sine:</strong> the default smooth oscillating motion based on a sine wave.</li><br/>
+<li><strong>Triangle:</strong> a linear back-and-forth motion.</li><br/>
+<li><strong>Sawtooth:</strong> linear motion with a jump back to start.</li><br/>
+<li><strong>Reverse sawtooth:</strong> reverse linear motion with a jump back to start.</li><br/>
+<li><strong>Square:</strong> alternating between the two maximum values.</li></ul></dd>
+<dt>Period</dt>
+<dd>The duration, in seconds, of one complete back-and-forth cycle.</dd>
+<dt>Period random</dt>
+<dd>A random number of seconds added to the period for each instance. This can help vary the appearance when a lot of instances are using the Sine behavior.</dd>
+<dt>Period offset</dt>
+<dd>The initial time in seconds through the cycle. For example, if the period is 2 seconds and the period offset is 1 second, the sine behavior starts half way through a cycle.</dd>
+<dt>Period offset random</dt>
+<dd>A random number of seconds added to the period offset for each instance. This can help vary the appearance when a lot of instances are using the Sine behavior.</dd>
+<dt>Magnitude</dt>
+<dd>The maximum change in the object's position, size or angle. This is in pixels for position or size modes, or degrees for the angle mode.</dd>
+<dt>Magnitude random</dt>
+<dd>A random value to add to the magnitude for each instance. This can help vary the appearance when a lot of instances are using the Sine behavior.</dd>
+<dt>Enabled</dt>
+<dd>If disabled, the behavior will have no effect until the <em>Set active</em> action is used.</dd>
+<dt>Preview <span class="ilTag c2">Paid plans only</span></dt>
+<dd>Enable to run a preview of the behavior directly in the Layout View.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Sine conditions</h2>
+<dl class="sans">
+<dt>Compare magnitude</dt>
+<dd>Compare the current magnitude of the movement.</dd>
+<dt>Compare movement</dt>
+<dd>Compare the current movement property of the behavior.</dd>
+<dt>Compare period</dt>
+<dd>Compare the current period of the movement, in seconds.</dd>
+<dt>Compare wave</dt>
+<dd>Compare the current wave property of the behavior.</dd>
+<dt>Is enabled</dt>
+<dd>Test if the behavior is currently enabled. When disabled it will have no effect on the object.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Sine actions</h2>
+<dl class="sans">
+<dt>Set cycle position</dt>
+<dd>Set the progress through one cycle of the chosen wave, from 0 (the beginning of the cycle) to 1 (the end of the cycle). For example setting the cycle position to 0.5 will put it half way through the repeating motion.</dd>
+<dt>Set enabled</dt>
+<dd>Enable or disable the behavior. When disabled, the behavior does not affect the object at all.</dd>
+<dt>Set magnitude</dt>
+<dd>Set the current magnitude of the cycle. This is in pixels when modifying the size or position, and degrees when modifying the angle.</dd>
+<dt>Set movement</dt>
+<dd>Change the movement type of the behavior, e.g. from <em>Horizontal</em> to <em>Size</em>.</dd>
+<dt>Set period</dt>
+<dd>Set the duration of a single complete back-and-forth cycle, in seconds.</dd>
+<dt>Set wave</dt>
+<dd>Change the wave property of the behavior, choosing a different wave function to be used to calculate the movement.</dd>
+<dt>Update initial state</dt>
+<dd>The Sine behavior records the object's initial state upon its creation, and always oscillates relative to that, even if it is deactivated and later activated after the object has been modified. If the object changes and you wish for the Sine behavior to oscillate relative to the new state instead of its state upon creation, use this action to reset the initial state to the object's current state.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Sine expressions</h2>
+<dl class="sans">
+<dt>CyclePosition</dt>
+<dd>Return a value from 0 to 1 representing the progress through the current cycle. For example, exactly half way through a cycle this returns 0.5.</dd>
+<dt>Magnitude</dt>
+<dd>Return the current magnitude of the cycle. This is in pixels when modifying the size or position, and degrees when modifying the angle.</dd>
+<dt>Period</dt>
+<dd>Return the current period of a single complete back-and-forth cycle in seconds.</dd>
+<dt>Value</dt>
+<dd>Return the current oscillating value. This will alternate as a positive and negative value centered on zero. This is useful to create custom effects when in <em>Value only</em> mode.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/language-file" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The language file
+            </h1>
+<div itemprop="articleBody">
+<p>In the .c3addon file, <strong>en-US.json</strong> is the default language file containing all the addon's strings that are shown in the editor UI in a JSON format. Moving these strings to a separate file makes it possible for the software to be fully translated.</p>
+<p>All strings must be provided in US English (hence the filename en-US.json) since this is the default language of Construct 3, and the common language from which all other languages are translated.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Overall structure</h2>
+<p>The overall structure of the language file is as follows, taken from the plugin SDK template. Note that in general, the language file uses an ID as a key on the left, and the string to display as the value on the right.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-16-close">{</span>
+	<span class="token string-property property">"languageTag"</span><span class="token operator">:</span> <span class="token string">"en-US"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"fileDescription"</span><span class="token operator">:</span> <span class="token string">"Strings for MyCustomPlugin."</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"text"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-15-close">{</span>
+		<span class="token string-property property">"plugins"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-3" id="pair-14-close">{</span>
+			<span class="token string-property property">"mycompany_myaddon"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-4" id="pair-13-close">{</span>
+				<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"My Custom Plugin"</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"description"</span><span class="token operator">:</span> <span class="token string">"Description for my custom plugin."</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"help-url"</span><span class="token operator">:</span> <span class="token string">"https://www.scirra.com"</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"properties"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-5" id="pair-1-close">{</span>
+					<span class="token string-property property">"test-property"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-6" id="pair-0-close">{</span>
+						<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Test property"</span><span class="token punctuation">,</span>
+						<span class="token string-property property">"desc"</span><span class="token operator">:</span> <span class="token string">"A test number property. Displayed by 'Alert' action."</span>
+					<span class="token punctuation brace-curly brace-close brace-level-6" id="pair-0-open">}</span>
+				<span class="token punctuation brace-curly brace-close brace-level-5" id="pair-1-open">}</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"aceCategories"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-5" id="pair-2-close">{</span>
+					<span class="token string-property property">"custom"</span><span class="token operator">:</span> <span class="token string">"Custom"</span>
+				<span class="token punctuation brace-curly brace-close brace-level-5" id="pair-2-open">}</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"conditions"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-5" id="pair-6-close">{</span>
+					<span class="token string-property property">"is-large-number"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-6" id="pair-5-close">{</span>
+						<span class="token string-property property">"list-name"</span><span class="token operator">:</span> <span class="token string">"Is large number"</span><span class="token punctuation">,</span>
+						<span class="token string-property property">"display-text"</span><span class="token operator">:</span> <span class="token string">"[i]{0}[/i] is a large number"</span><span class="token punctuation">,</span>
+						<span class="token string-property property">"description"</span><span class="token operator">:</span> <span class="token string">"Test if a number is greater than 100."</span><span class="token punctuation">,</span>
+						<span class="token string-property property">"params"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-7" id="pair-4-close">{</span>
+							<span class="token string-property property">"number"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-8" id="pair-3-close">{</span>
+								<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Number"</span><span class="token punctuation">,</span>
+								<span class="token string-property property">"desc"</span><span class="token operator">:</span> <span class="token string">"Number to test if greater than 100."</span>
+							<span class="token punctuation brace-curly brace-close brace-level-8" id="pair-3-open">}</span>
+						<span class="token punctuation brace-curly brace-close brace-level-7" id="pair-4-open">}</span>
+					<span class="token punctuation brace-curly brace-close brace-level-6" id="pair-5-open">}</span>
+				<span class="token punctuation brace-curly brace-close brace-level-5" id="pair-6-open">}</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"actions"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-5" id="pair-8-close">{</span>
+					<span class="token string-property property">"do-alert"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-6" id="pair-7-close">{</span>
+						<span class="token string-property property">"list-name"</span><span class="token operator">:</span> <span class="token string">"Do alert"</span><span class="token punctuation">,</span>
+						<span class="token string-property property">"display-text"</span><span class="token operator">:</span> <span class="token string">"Do alert"</span><span class="token punctuation">,</span>
+						<span class="token string-property property">"description"</span><span class="token operator">:</span> <span class="token string">"Do a dummy alert."</span>
+					<span class="token punctuation brace-curly brace-close brace-level-6" id="pair-7-open">}</span>
+				<span class="token punctuation brace-curly brace-close brace-level-5" id="pair-8-open">}</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"expressions"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-5" id="pair-12-close">{</span>
+					<span class="token string-property property">"double"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-6" id="pair-11-close">{</span>
+						<span class="token string-property property">"description"</span><span class="token operator">:</span> <span class="token string">"Double a number."</span><span class="token punctuation">,</span>
+						<span class="token string-property property">"translated-name"</span><span class="token operator">:</span> <span class="token string">"Double"</span><span class="token punctuation">,</span>
+						<span class="token string-property property">"params"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-7" id="pair-10-close">{</span>
+							<span class="token string-property property">"number"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-8" id="pair-9-close">{</span>
+								<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Number"</span><span class="token punctuation">,</span>
+								<span class="token string-property property">"desc"</span><span class="token operator">:</span> <span class="token string">"The number to double."</span>
+							<span class="token punctuation brace-curly brace-close brace-level-8" id="pair-9-open">}</span>
+						<span class="token punctuation brace-curly brace-close brace-level-7" id="pair-10-open">}</span>
+					<span class="token punctuation brace-curly brace-close brace-level-6" id="pair-11-open">}</span>
+				<span class="token punctuation brace-curly brace-close brace-level-5" id="pair-12-open">}</span>
+			<span class="token punctuation brace-curly brace-close brace-level-4" id="pair-13-open">}</span>
+		<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-14-open">}</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-15-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-16-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>The addon SDK provides a JSON schema to help you write language files, as it provides autocomplete and validation in compatible editors.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Required fields</h2>
+<p><code>"languageTag"</code> must be "en-US".</p>
+<p><code>"fileDescription"</code> is not used in the editor. It provides a hint to translators. It can simply say "Strings for [addon name]".</p>
+<p><code>"text"</code> represents the root node of the string tree, and "plugins" represents strings for all plugins. These should be left as they are.</p>
+<p><code>"mycompany_myaddon"</code> should be the <strong>lowercase addon ID.</strong> Note if your addon ID contains any uppercase characters, they should be lowercased for this key in the language file. The remaining strings all belong inside this key, since it represents your plugin.</p>
+<p><code>"name"</code> is the name of your plugin as it appears in the editor. This can be changed at any time, but the plugin ID should not be changed after release.</p>
+<p><code>"description"</code> is a short sentence or two describing what your plugin does.</p>
+<p><code>"help-url"</code> is a URL to documentation or support for your plugin.</p>
+<p><em>Note: themes only need to use the <code>"name"</code>, <code>"description"</code> and <code>"help-url"</code> fields.</em></p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Strings for properties/parameters</h2>
+<p>For each <a class="extern" href="../reference/pluginproperty.html" rel="noopener" target="_blank" title="Make your own games">PluginProperty</a> your plugin uses, there must be a key with the property ID under <code>"properties"</code>. For effects, there must be a key with the parameter ID under a <code>"parameters"</code> instead, but it otherwise works the same. The required strings for each property are:</p>
+<ul class="list">
+<li><code>"name"</code> — the name of the property, which appears to the left of the field</li>
+<li><code>"desc"</code> — the property description, which appears in the footer of the Properties Bar</li>
+</ul>
+<p>For example given the following property:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>PluginProperty</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-17-close">(</span><span class="token string">"integer"</span><span class="token punctuation">,</span> <span class="token string">"test-property"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-17-open">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>The following language strings can be used under the <code>"properties"</code> key:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string-property property">"test-property"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-1" id="pair-18-close">{</span>
+	<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Test property"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"desc"</span><span class="token operator">:</span> <span class="token string">"A test number property. Displayed by 'Alert' action."</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-18-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Some properties require additional keys.</p>
+<h3>Combo properties</h3>
+<p>The <code>"combo"</code> property type needs an extra <code>"items"</code> key to set the visible name of each item. Each key underneath this should be the ID of the combo item, and its value the name to use. Here is an example from the Audio plugin. The property is created as:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>PluginProperty</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-19-close">(</span><span class="token string">"combo"</span><span class="token punctuation">,</span> <span class="token string">"timescale-audio"</span><span class="token punctuation">,</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-21-close">{</span>
+	<span class="token literal-property property">initialValue</span><span class="token operator">:</span> <span class="token string">"off"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">items</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-20-close">[</span><span class="token string">"off"</span><span class="token punctuation">,</span> <span class="token string">"sounds-only"</span><span class="token punctuation">,</span> <span class="token string">"sounds-and-music"</span><span class="token punctuation brace-square brace-close brace-level-3" id="pair-20-open">]</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-21-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-19-open">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Note the items defined here are IDs rather than displayed strings. The strings to display are set in the language file like this:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string-property property">"timescale-audio"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-1" id="pair-23-close">{</span>
+	<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Timescale audio"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"desc"</span><span class="token operator">:</span> <span class="token string">"Choose whether the audio playback rate changes with the time scale."</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"items"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-22-close">{</span>
+		<span class="token string-property property">"off"</span><span class="token operator">:</span> <span class="token string">"Off"</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"sounds-only"</span><span class="token operator">:</span> <span class="token string">"On (sounds only)"</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"sounds-and-music"</span><span class="token operator">:</span> <span class="token string">"On (sounds and music)"</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-22-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-23-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3>Link properties</h3>
+<p>The <code>"link"</code> property type needs an extra <code>"link-text"</code> key to set the text of the clickable link. An example is below.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string-property property">"make-original-size"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-1" id="pair-24-close">{</span>
+	<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Size"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"desc"</span><span class="token operator">:</span> <span class="token string">"Click to set the object to the same size as its image."</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"link-text"</span><span class="token operator">:</span> <span class="token string">"Make 1:1"</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-24-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Category names</h2>
+<p>When <a class="extern" href="defining-aces.html" rel="noopener" target="_blank" title="Make your own games">defining ACEs</a>, category IDs are used rather than category names. The <code>"aceCategories"</code> key defines the displayed name of each category. The following example displays all ACEs in the category ID <code>"customCategory"</code> as being in a section labelled <code>"My custom category"</code>.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string-property property">"aceCategories"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-1" id="pair-25-close">{</span>
+	<span class="token string-property property">"customCategory"</span><span class="token operator">:</span> <span class="token string">"My custom category"</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-25-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Category names are shared across actions, conditions and expressions.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>ACE strings</h2>
+<p>Strings for conditions, actions and expressions are listed in the keys <code>"conditions"</code>, <code>"actions"</code> and <code>"expressions"</code> respectively. Note they are not sorted by category here; each section lists all ACEs of that type.</p>
+<p>Similar to properties, each key under each section is the ID of the action, condition or expression. As with the definitions themselves, actions and conditions work slightly differently to expressions.</p>
+<h3>Action and condition strings</h3>
+<p>The required keys are:</p>
+<ul class="list">
+<li><code>"list-name"</code> — the name that appears in the condition/action picker dialog.</li>
+<li><code>"display-text"</code> — the text that appears in the event sheet. You can use simple BBCode tags like <code>[b]</code> and <code>[i]</code>, and use <code>{0}</code>, <code>{1}</code> etc. as parameter placeholders. (There must be one parameter placeholder per parameter.) For behaviors only, the placeholder <code>{my}</code> is substituted for the behavior name and icon.</li>
+<li><code>"description"</code> — a description of the action or condition, which appears as a tip at the top of the condition/action picker dialog.</li>
+</ul>
+<h3>Expression strings</h3>
+<p>The required keys are:</p>
+<ul class="list">
+<li><code>"description"</code> — the description that appears in the expressions dictionary, which lists all available expressions.</li>
+<li><code>"translated-name"</code> — the translated name of the expression name. In the en-US file, this should simply match the expression name from the expression definition. This key mainly exists so it can be changed in other languages, making it possible to translate expressions in some contexts. Note when actually typing an expression the non-translated expression name must always be used.</li>
+</ul>
+<h3>Parameters</h3>
+<p>Actions, conditions and expressions can omit the <code>"params"</code> key if they have no parameters. However if they have any parameters this key must be present, and each parameter must have its own key inside with the ID of the parameter. Similar to the plugin properties, each key must have a <code>"name"</code> and <code>"desc"</code>. For <code>"combo"</code> parameters there must also be a property <code>"items"</code> (which work the same as <code>"combo"</code> property types: each item ID maps to its display text). For <code>"combo-grouped"</code> parameters, there must also be a property <code>"itemGroups"</code> (see below for an example).</p>
+<h3>Example</h3>
+<p>The <em>Is large number</em> condition in the plugin SDK uses the following definition in aces.json:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-28-close">{</span>
+	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"is-large-number"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"scriptName"</span><span class="token operator">:</span> <span class="token string">"IsLargeNumber"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"highlight"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"params"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-26-close">[</span>
+		<span class="token punctuation brace-curly brace-open brace-level-3" id="pair-27-close">{</span>
+			<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"number"</span><span class="token punctuation">,</span>
+			<span class="token string-property property">"type"</span><span class="token operator">:</span> <span class="token string">"number"</span>
+		<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-27-open">}</span>
+	<span class="token punctuation brace-square brace-close brace-level-2" id="pair-26-open">]</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-28-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Its corresponding language strings are defined in en-US.json as follows:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string-property property">"is-large-number"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-1" id="pair-31-close">{</span>
+	<span class="token string-property property">"list-name"</span><span class="token operator">:</span> <span class="token string">"Is large number"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"display-text"</span><span class="token operator">:</span> <span class="token string">"[i]{0}[/i] is a large number"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"description"</span><span class="token operator">:</span> <span class="token string">"Test if a number is greater than 100."</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"params"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-30-close">{</span>
+		<span class="token string-property property">"number"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-3" id="pair-29-close">{</span>
+			<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Number"</span><span class="token punctuation">,</span>
+			<span class="token string-property property">"desc"</span><span class="token operator">:</span> <span class="token string">"Number to test if greater than 100."</span>
+		<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-29-open">}</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-30-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-31-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3>"combo-grouped" example</h3>
+<p>When using the <code>"combo-grouped"</code> parameter type, the definition in aces.json might look like this:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-36-close">{</span>
+	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"dinosaur"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"type"</span><span class="token operator">:</span> <span class="token string">"combo-grouped"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"itemGroups"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-2">[</span><span class="token punctuation brace-curly brace-open brace-level-3" id="pair-34-close">{</span>
+		<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"theropods"</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"items"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-4" id="pair-32-close">[</span><span class="token string">"tyrannosaurus"</span><span class="token punctuation">,</span> <span class="token string">"velociraptor"</span><span class="token punctuation">,</span> <span class="token string">"deinonychus"</span><span class="token punctuation brace-square brace-close brace-level-4" id="pair-32-open">]</span>
+	<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-34-open">}</span><span class="token punctuation">,</span> <span class="token punctuation brace-curly brace-open brace-level-3" id="pair-35-close">{</span>
+		<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"sauropods"</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"items"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-4" id="pair-33-close">[</span><span class="token string">"diplodocus"</span><span class="token punctuation">,</span> <span class="token string">"saltasaurus"</span><span class="token punctuation">,</span> <span class="token string">"apatosaurus"</span><span class="token punctuation brace-square brace-close brace-level-4" id="pair-33-open">]</span>
+	<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-35-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-36-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Its corresponding language strings can be defined in en-US.json inside the <code>"params"</code> key as follows:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string-property property">"dinosaur"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-1" id="pair-42-close">{</span>
+	<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Dinosaur"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"desc"</span><span class="token operator">:</span> <span class="token string">"Choose a dinosaur"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"itemGroups"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-41-close">{</span>
+		<span class="token string-property property">"theropods"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-3" id="pair-38-close">{</span>
+			<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Theropods"</span><span class="token punctuation">,</span>
+			<span class="token string-property property">"items"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-4" id="pair-37-close">{</span>
+				<span class="token string-property property">"tyrannosaurus"</span><span class="token operator">:</span> <span class="token string">"Tyrannosaurus"</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"velociraptor"</span><span class="token operator">:</span> <span class="token string">"Velociraptor"</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"deinonychus"</span><span class="token operator">:</span> <span class="token string">"Deinonychus"</span>
+			<span class="token punctuation brace-curly brace-close brace-level-4" id="pair-37-open">}</span>
+		<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-38-open">}</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"sauropods"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-3" id="pair-40-close">{</span>
+			<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Sauropods"</span><span class="token punctuation">,</span>
+			<span class="token string-property property">"items"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-4" id="pair-39-close">{</span>
+				<span class="token string-property property">"diplodocus"</span><span class="token operator">:</span> <span class="token string">"Diplodocus"</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"saltasaurus"</span><span class="token operator">:</span> <span class="token string">"Saltasaurus"</span><span class="token punctuation">,</span>
+				<span class="token string-property property">"apatosaurus"</span><span class="token operator">:</span> <span class="token string">"Apatosaurus"</span>
+			<span class="token punctuation brace-curly brace-close brace-level-4" id="pair-39-open">}</span>
+		<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-40-open">}</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-41-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-42-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw"></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

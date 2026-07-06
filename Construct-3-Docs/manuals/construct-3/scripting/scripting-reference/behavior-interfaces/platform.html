@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/platform" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Platform behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IPlatformBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/platform.html" rel="noopener" target="_blank" title="Make your own games">Platform behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Platform behavior APIs</h2>
+<dl>
+<dt>fallThrough()</dt>
+<dd>If the player is currently standing on a jump-thru platform, this method will make them fall through it.</dd>
+<dt>resetDoubleJump(allow)</dt>
+<dd>Change whether a double-jump is allowed during the current jump. If <code>false</code> passed, a double-jump will no longer be allowed in the current jump, even if it is the first jump. If <code>true</code> passed a double-jump will be allowed again, even if a double-jump was already made in the current jump.</dd>
+<dt>simulateControl(control)</dt>
+<dd>Simulate one of the movement controls being held down. Useful when <em>isDefaultControls</em> is disabled. The control is provided as a string and must be one of <code>"left"</code>, <code>"right"</code>, <code>"jump"</code>.</dd>
+<dt>speed</dt>
+<dd>Get the current speed in pixels per second (read-only).</dd>
+<dt>maxSpeed</dt>
+<dd>Set or get the maximum speed in pixels per second.</dd>
+<dt>acceleration</dt>
+<dt>deceleration</dt>
+<dd>Set or get the acceleration/deceleration of the movement in pixels per second per second.</dd>
+<dt>vectorX</dt>
+<dt>vectorY</dt>
+<dt>setVector(vectorX, vectorY)</dt>
+<dt>getVector()</dt>
+<dd>Set or get the X and Y components of the movement in pixels per second. The methods allow setting or getting both values at the same time.</dd>
+<dt>jumpStrength</dt>
+<dd>Set or get the initial vertical speed of a jump in pixels per second when the jump key is pressed.</dd>
+<dt>maxFallSpeed</dt>
+<dd>Set or get the maximum speed in pixels per second the object can accelerate to when in free-fall.</dd>
+<dt>gravity</dt>
+<dd>Set or get the acceleration caused by gravity, in pixels per second per second, at the angle given by <em>gravityAngle</em>.</dd>
+<dt>gravityAngle</dt>
+<dd>Set or get the angle that gravity accelerates the object, in radians. By default this points down.</dd>
+<dt>isDoubleJumpEnabled</dt>
+<dd>A boolean indicating if the player may make one extra mid-air jump before landing on the ground.</dd>
+<dt>jumpSustain</dt>
+<dd>Set or get the maximum time in seconds that the jump strength is sustained at while the jump control is being held before the effect of gravity takes over.</dd>
+<dt>isMoving</dt>
+<dd>A read-only boolean indicating if the object is currently moving. This checks if either <code>vectorX</code> or <code>vectorY</code> are non-zero.</dd>
+<dt>isOnFloor</dt>
+<dd>A read-only boolean indicating if the object is currently standing on a solid or jump-thru.</dd>
+<dt>isByWall(side)</dt>
+<dd>Test if a solid blocking horizontal movement is immediately to the object's left or right, returning a boolean indicating if a wall was found. Jump-thrus do not count as walls. Pass either <code>"left"</code> or <code>"right"</code> as the <em>side</em>.</dd>
+<dt>isJumping</dt>
+<dd>A read-only boolean indicating if the object is currently moving upwards.</dd>
+<dt>isFalling</dt>
+<dd>A read-only boolean indicating if the object is currently in free-fall.</dd>
+<dt>ceilingCollisionMode</dt>
+<dd>A string of either <code>"stop"</code> (the default) or <code>"preserve-momentum"</code> (keep the vertical speed) indicating how to handle ceiling collisions.</dd>
+<dt>isDefaultControls</dt>
+<dd>A boolean indicating if the default controls (using the arrow keys) are enabled.</dd>
+<dt>isIgnoringInput</dt>
+<dd>A boolean indicating if input is currently being ignored. If input is ignored, pressing any of the control keys has no effect. However, unlike disabling the behavior, the object can continue to move.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

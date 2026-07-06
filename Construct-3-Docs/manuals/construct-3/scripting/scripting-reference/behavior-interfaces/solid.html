@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/solid" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Solid behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISolidBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/solid.html" rel="noopener" target="_blank" title="Make your own games">Solid behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Solid behavior APIs</h2>
+<dl>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+<dt>usesInstanceTags</dt>
+<dd>A read-only boolean reflecting the <em>Use instance tags</em> property of the Solid behavior. When this is true, the behavior's own tags APIs will have no effect, as instance tags are used instead. This mode is recommended.</dd>
+<dt>tags <span class="ilTag c1">Deprecated</span></dt>
+<dd>Set or get a list of tags for this solid behavior instance as a space-separated string. This property is deprecated - enable <em>Use instance tags</em> and use the instance tag APIs instead.</dd>
+<dt>setAllTags(iterable) <span class="ilTag c1">Deprecated</span></dt>
+<dd>Set all tags for this solid behavior instance using any iterable of strings such as an array or Set. This property is deprecated - enable <em>Use instance tags</em> and use the instance tag APIs instead.</dd>
+<dt>getAllTags() <span class="ilTag c1">Deprecated</span></dt>
+<dd>Get all tags for this solid behavior instance as a Set of strings. This property is deprecated - enable <em>Use instance tags</em> and use the instance tag APIs instead.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

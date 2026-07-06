@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/event-sheet-view" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Event Sheet View
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Event Sheet View</strong> is where events can be added, viewed and edited in an <a class="extern" href="../project-primitives/events/event-sheets.html" rel="noopener" target="_blank" title="Make your own games">event sheet</a> using the event system - Construct's alternative to traditional programming.</p>
+<p>The event system has a lot of features, so the event system has its own <a class="extern" href="../project-primitives/events.html" rel="noopener" target="_blank" title="Make your own games">section of the manual</a>. This section will simply cover the basics of using the Event Sheet View.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1767/uploads/articleuploadobject/0/images/873/event-sheet-view.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1315x412px in new window (33.69 KB)"><span><img alt="The Event Sheet View" height="206" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1767/r/uploads/articleuploadobject/0/images/873/event-sheet-view_v700.png" width="658"/></span></a><span class="descrip">The Event Sheet View</span></div></div>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Diagram of an event</h2>
+<p>The following image illustrates the key parts of an event.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1767/uploads/articleuploadobject/0/images/876/event-diagram.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1277x304px in new window (24.19 KB)"><span><img alt="Diagram of an event in Construct" height="152" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1767/r/uploads/articleuploadobject/0/images/876/event-diagram_v650.png" width="638"/></span></a></div></div>
+<p>Events are made up of three major sections:</p>
+<ol class="list">
+<li>The <strong>event block</strong>, which contains the conditions. Notice the margin to the left of the condition which allows you to select the entire event.</li>
+<li>The <strong><a class="extern" href="../project-primitives/events/conditions.html" rel="noopener" target="_blank" title="Make your own games">conditions</a></strong>, which are each listed inside the event block.</li>
+<li>The <strong><a class="extern" href="../project-primitives/events/actions.html" rel="noopener" target="_blank" title="Make your own games">actions</a></strong>, which are listed to the right of the event block.</li>
+</ol>
+<p>Conditions and actions can be selected by clicking on them. The entire event can be selected (which also selects all its conditions and actions) by clicking the <strong>event margin</strong>, or the bottom part of the event block. The event margin can also be right-clicked to access a menu allowing things like adding conditions or sub-events.</p>
+<p>As with the Layout View, multiple selections can be made by holding <kbd>Control</kbd> and clicking different items. However, you can only have either events, conditions or actions selected at a time (e.g. you can't have both a condition and action selected at once). You can also hold <kbd>Shift</kbd> and click an event, condition or action to select all the items in a line between the selection and clicked item.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Creating events</h2>
+<p>There are a number of ways to add a new event:</p>
+<ul class="list">
+<li><strong>Double-click</strong> a space in the event sheet, or <strong>right-click</strong> in a space to see a menu of things to add</li>
+<li>Click the <strong>Add event</strong> link which comes after the last event in a sheet or group, or click the <strong>Add...</strong>
+ link on the right</li>
+<li><strong>Right-click an event's margin</strong> and choose an item from the <span class="navWrap">Add</span> menu</li>
+</ul>
+<p>When you add a new event, the dialog that appears is for adding the first <strong>condition</strong> (see the <a class="extern" href="dialogs/add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add Condition dialog</a>). To add more conditions to an event, right-click the margin or an existing condition and select <strong>Add another condition</strong>, or use the <strong>Add...</strong> link on the right of the <em>Add action</em> link.</p>
+<p>Actions can be added by clicking the <strong>Add action</strong> link (if it has not been hidden in the ribbon), or right-clicking the margin or an existing action and selecting <strong>Add another action</strong>. See also the <a class="extern" href="dialogs/add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add Action dialog</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Modifying events</h2>
+<p><strong>Double-click</strong> or select and press <kbd>Enter</kbd> on condition or action to edit it.</p>
+<p>Events, conditions and actions can be <strong>dragged and dropped</strong> around the event sheet. Holding <kbd>Control</kbd> and dragging will duplicate the dragged event, condition or action. Event items can also be <strong>cut, copied and pasted</strong>.</p>
+<p>You may find it convenient to organise events in to <a class="extern" href="../project-primitives/events/groups.html" rel="noopener" target="_blank" title="Make your own games">groups</a>, which can also be activated and deactivated as a whole.</p>
+<p>Press <kbd>R</kbd> or right-click and use the <span class="navWrap">Replace object</span> option to quickly swap objects referenced in the selection. Note that objects with references to instance variables or behaviors in the selection can only be swapped with other objects with the same instance variables and behaviors which have the same names and types.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Scrolling and scale</h2>
+<p>There are several ways to scroll in the Event Sheet View:</p>
+<ul class="list">
+<li><strong>The vertical scrollbar</strong> to the right of the view</li>
+<li>Scrolling the <strong>mouse wheel</strong></li>
+<li><strong>Middle-clicking</strong> to pan the view</li>
+<li>Pressing <kbd>Space</kbd>, <strong>up/down</strong> arrows or <strong>page up/down</strong></li>
+</ul>
+<p>There are some options to adjust the text size in this view as well:</p>
+<ul class="list">
+<li>Hold <kbd>Control</kbd> and <strong>scroll the mouse wheel</strong></li>
+<li>Press <kbd>Control</kbd> + <kbd>+</kbd> or <kbd>-</kbd></li>
+<li>Right-click and use the <span class="navWrap">Event sheet<span class="arr">►</span>Font size</span> menu</li>
+<li>Use the browser's zoom feature, but note this scales the whole of Construct, not just the text scale in the Event Sheet View.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Finding in events</h2>
+<p><span class="ilTag c2">Paid plans only</span> You can search for some text in an event sheet by pressing <kbd>Ctrl</kbd> + <kbd>F</kbd> or right-clicking and selecting <span class="navWrap">Event sheet<span class="arr">►</span>Find...</span>. This opens a dialog that allows you to enter text to search for, with options to look in the current sheet or the entire project, and whether to make it a case-sensitive search. (Case sensitive searches count uppercase and lowercase characters as different, e.g. "SPRITE" and "sprite" are different with a case-sensitive search.) When you click <em>Find</em>, the results are displayed in the <a class="extern" href="bars/find-results-bar.html" rel="noopener" target="_blank" title="Make your own games">Find Results Bar</a>.</p>
+<h3>Find all references</h3>
+<p><span class="ilTag c2">Paid plans only</span> Text search is not always appropriate for finding in events. For example if you want to find all events referring to an object named <strong>Sprite</strong>, searching for the text <em>Sprite</em> will also return results for other names like <strong>Sprite2</strong>, since they also include the search term. To solve this, you can use the <strong>Find all references</strong> feature. This is available in many places in Construct for various kinds of things like behaviors and instance variables as well. For objects, you can right-click an object in the <a class="extern" href="bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> and select <em>Find all references</em>. This will open the <a class="extern" href="bars/find-results-bar.html" rel="noopener" target="_blank" title="Make your own games">Find Results Bar</a> with a comprehensive and precise list of all references to that object, excluding any other references that happen to include the object name. This is a great way to easily review your project with confidence the results are what you want.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Opening multiple views</h2>
+<p>You can open multiple Event Sheet Views for the same Event Sheet. Right-click anywhere inside the event sheet and choose <span class="navWrap">Evnet sheet<span class="arr">►</span>Open additional</span>. You can then drag and drop the additional view somewhere else in the user interface so you can see it at the same time. This can be useful for reviewing one part of a long event sheet while modifying another. When you make changes in either view, it will automatically update any other views.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

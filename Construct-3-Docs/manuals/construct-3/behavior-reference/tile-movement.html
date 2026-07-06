@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/tile-movement" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Tile movement
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Tile movement behavior</strong> allows an object to be moved up, down, left and right, moving a fixed distance at a time, controlled by the arrow keys by default. This is useful for <a class="extern" href="../plugin-reference/tilemap.html" rel="noopener" target="_blank" title="Make your own games">tilemap</a>-based games, where the level is designed around a grid: by using the same grid size with the Tile movement, the controlled object will always be aligned with a grid cell.</p>
+<p>The Tile movement aligns the object's origin with the grid. To ensure the object appears in the correct alignment with a visible grid, ensure the object size is the size of the cell, and place the origin in the top-left corner. Often it's easiest to make this object invisible, and place the player sprite on top so that it can keep its own size and origin, as is done in <a class="extern" href="https://editor.construct.net/#open=template-tile-based-game" rel="noopener" target="_blank" title="Make games in the browser">this example of the Tile movement behavior</a>.</p>
+<p>The Tile movement behavior is blocked by any objects with the <a class="extern" href="solid.html" rel="noopener" target="_blank" title="Make your own games">Solid behavior</a>.</p>
+<p>To set up custom or automatic controls, see the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/tile-movement.html" rel="noopener" target="_blank" title="Make your own games">ITileMovementBehaviourInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tile movement properties</h2>
+<dl class="sans">
+<dt>Grid width</dt>
+<dt>Grid height</dt>
+<dd>The size of the movement grid cells, in pixels. The object moves in increments of this size. Normally this matches the size of a corresponding tilemap.</dd>
+<dt>Grid offset X</dt>
+<dt>Grid offset Y</dt>
+<dd>The offset of the movement grid, in pixels. This can be used to align with a tilemap that is not aligned with (0, 0) in the layout.</dd>
+<dt>Speed X</dt>
+<dt>Speed Y</dt>
+<dd>The speed of the movement on each axis, in pixels per second.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the <em>Set enabled</em> action.</dd>
+<dt>Default controls</dt>
+<dd>If enabled, movement is controlled by the arrow keys on the keyboard. Disable to set up custom controls using the <em>Simulate control</em> action. For more information see the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a>.</dd>
+<dt>Isometric</dt>
+<dd>Check to enable an isometric grid movement, along diagonals. In this mode the "up" direction is towards the top-right. The default is unchecked, using a cartesian grid with horizontal and vertical movement.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Tile movement conditions</h2>
+<dl class="sans">
+<dt>Can move to</dt>
+<dd>Test if the object can move into a grid cell, given by its grid column and row. This is true if the cell is clear of any obstacles.</dd>
+<dt>Can move in direction</dt>
+<dd>Test if the object can move N cells in a given direction. Unlike the <strong>Can move to</strong> condition this checks for obstacles between the object and the destination.</dd>
+<dt>Is enabled</dt>
+<dd>Test if the behavior is currently enabled.</dd>
+<dt>Is moving</dt>
+<dd>Test if the behavior is currently moving in to a cell.</dd>
+<dt>Is moving in direction</dt>
+<dd>Test if the behavior is currently moving left, right, down or up. This is useful for setting the corresponding animation.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Tile movement actions</h2>
+<dl class="sans">
+<dt>Set default controls</dt>
+<dd>Enable or disable the <em>Default controls</em> property (see above for more details).</dd>
+<dt>Set enabled</dt>
+<dd>Enable or disable the movement. If disabled, the movement no longer has any effect on the object.</dd>
+<dt>Set grid dimensions</dt>
+<dd>Specify new values for the <em>Grid width</em>, <em>Grid height</em>, <em>Grid offset X</em> and <em>Grid offset Y</em> properties.</dd>
+<dt>Set grid position</dt>
+<dd>Set the object to a cell in the grid, given by its grid column and row. The <em>Movement</em> option allows the object to either be set to that position instantly, or animate over for a smooth movement over time.</dd>
+<dt>Set ignoring input</dt>
+<dd>Set whether input is being ignored. If input is ignored, pressing any of the control keys has no effect. However, unlike disabling the behavior, the object can continue to move.</dd>
+<dt>Set speed</dt>
+<dd>Specify new values for the <em>Speed X</em> and <em>Speed Y</em> properties.</dd>
+<dt>Simulate control</dt>
+<dd>Simulate one of the movement controls being held down. Useful when <em>Default controls</em> is disabled. See the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a> for more information.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Tile movement expressions</h2>
+<dl class="sans">
+<dt>GridTargetX</dt>
+<dt>GridTargetY</dt>
+<dd>Return the grid cell the object is currently moving towards, by its column and row.</dd>
+<dt>GridX</dt>
+<dt>GridY</dt>
+<dd>Return the current grid cell the object is in by its column and row.</dd>
+<dt>SpeedX</dt>
+<dt>SpeedY</dt>
+<dd>Return the current speed of the object on each axis, in pixels per second.</dd>
+<dt>TargetX</dt>
+<dt>TargetY</dt>
+<dd>Return the layout co-ordinates of the grid cell the object is currently moving towards, by its column and row.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

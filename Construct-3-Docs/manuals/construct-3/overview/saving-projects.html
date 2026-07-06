@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/overview/saving-projects" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Saving projects
+            </h1>
+<div itemprop="articleBody">
+<p>In Construct, there are several ways you can save your work. By default pressing <strong>Save</strong> on a new project will save with <strong>Cloud Save</strong>. You can select a different option, as well as change the save option at any time, in the <span class="navWrap">Menu<span class="arr">►</span>Project<span class="arr">►</span>Save as</span> menu.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Cloud save</h2>
+<p>You can save your work to a cloud storage services, allowing you to access your work wherever you go. Since Construct runs in the browser and can be used on any device, this is a great way to ensure you can carry on from where you left off no matter which device you end up using. Many cloud storage services also provide built-in backups and file histories, helping ensure your work is safe even in the face of disaster.</p>
+<p>Construct currently supports <a class="extern outlink" href="https://www.google.com/drive" rel="nofollow noopener external" target="_blank" title="Go to: https://www.google.com/drive">Google Drive</a>, <a class="extern outlink" href="https://onedrive.live.com/" rel="nofollow noopener external" target="_blank" title="Go to: https://onedrive.live.com/">Microsoft OneDrive</a> and <a class="extern outlink" href="https://www.dropbox.com/" rel="nofollow noopener external" target="_blank" title="Go to: https://www.dropbox.com/">Dropbox</a>. The first time you select <span class="navWrap">Menu<span class="arr">►</span>Project<span class="arr">►</span>Save as<span class="arr">►</span>Cloud save</span>, a dialog will appear asking you to choose one of the supported services. When you choose one, you'll be prompted to log in to your cloud storage account, so Construct has permission to save and open files from your account. Once you've entered your details they will be remembered, so you can keep using Cloud Save without having to keep entering your details.</p>
+<p>When you press <strong>Save</strong> with a Cloud Save project, Construct will save your project and upload it to your cloud storage account. The upload will continue in the background showing the upload status in the corner of the window, allowing you to continue working on your project. Note you cannot save again until the upload completes.</p>
+<p>Next time you use Construct, you can choose <span class="navWrap">Menu<span class="arr">►</span>Project<span class="arr">►</span>Cloud open</span> to find your project again. It'll also appear in the <strong>Recent projects</strong> section of the <a class="extern" href="start-page.html" rel="noopener" target="_blank" title="Make your own games">Start Page</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Download a copy</h2>
+<p>Select <span class="navWrap">Menu<span class="arr">►</span>Project<span class="arr">►</span>Save as<span class="arr">►</span>Download a copy</span> to download your project as a local file. Construct will ask if you want to change the downloaded filename; you can leave it empty to use the default. Construct projects use the <strong>.c3p</strong> file extension. Normally the file will go to your Downloads folder, but you may also be prompted to save to a different location depending on the browser. Alternatively you can usually drag-and-drop the resulting file directly out of the browser, such as from Google Chrome's downloads footer section.</p>
+<p>Note that despite the name, this does not actually download a file from the Internet. All the project data is stored locally. The term <em>Download</em> refers to invoking the browser's download UI to save your project to a local file.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Using local files</h2>
+<p>Currently some browsers such as Chrome support saving files directly to your system. This means you can use the <span class="navWrap">Menu<span class="arr">►</span>Project<span class="arr">►</span>Save as<span class="arr">►</span>Save as single file...</span> option to save your project as a local file anywhere on your system. To open a local file, choose the <span class="navWrap">Menu<span class="arr">►</span>Project<span class="arr">►</span>Open local file</span> option. Then when you make changes and click the Save button, it will write back over the file you originally opened. You may see a permission prompt from the browser asking if you want to allow access to the file; be sure to allow permission to ensure your save works correctly.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Using project folders</h2>
+<p>Where browsers support local files, they also allow the option to use project folders. These work similarly to saving local files, but instead of choosing a file, you select a folder to save to. Construct then saves the entire project as separate files within this folder. Be sure to choose an empty folder to avoid ending up with a confusing mix of files.</p>
+<p>This option is good for very large projects, since saves are faster, as it only has to update the changed files in the folder, rather than generate an entire new .c3p file. It is also a good option to use with source control tools like GitHub, since you can track changes to individual text-based files - for a guide on that see the tutorial <a class="extern" href="https://www.construct.net/tutorials/collaborate-construct-2390.html" rel="noopener" target="_blank" title="Make your own games">How to collaborate on Construct projects with GitHub</a>.</p>
+<p>This option can also be useful if you work with lots of JavaScript or TypeScript files in a Construct project and want to use a separate code editor. See the guide on <a class="extern" href="../scripting/guides/using-external-editor.html" rel="noopener" target="_blank" title="Make your own games">Using an external editor</a> for more details.</p>
+<p>Advanced users may interested to read the guide <a class="extern" href="https://www.construct.net/tutorials/constructs-project-format-3275.html" rel="noopener" target="_blank" title="Make your own games">Construct's project format</a> for an overview of how Construct stores project data.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Save to local browser</h2>
+<p>If saving local files is not supported, Construct provides an option to save projects to the local browser's storage instead. This storage is unique to both the specific device and browser. So for example if you save a project to browser storage on a specific laptop with Chrome, you can only find it again by using the same browser (Chrome) on the same device (that specific laptop).</p>
+<p>Construct will ask for permission to use persistent storage the first time you use this option, to ensure the browser won't automatically delete your data. Note browsers sometimes also have storage limits. You can also check the status of the persistent storage permission, as well as how much space the browser is allowed to use and how much it is using, in the <strong>About</strong> dialog.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

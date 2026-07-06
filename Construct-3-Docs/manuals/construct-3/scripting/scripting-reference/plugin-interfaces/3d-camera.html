@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/3d-camera" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                3D Camera script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>I3DCameraObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/3d-camera.html" rel="noopener" target="_blank" title="Make your own games">3D Camera plugin</a>.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Its default name is not a valid JavaScript identifier as it starts with a number, meaning it needs to be accessed with the syntax <code>runtime.objects["3DCamera"]</code>. You may wish to rename the object to a valid JavaScript identifier such as <em>Camera3D</em>, so that it can be accessed more conveniently with the syntax <code>runtime.objects.Camera3D</code>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>3D Camera APIs</h2>
+<dl>
+<dt>lookAtPosition(camX, camY, camZ, lookX, lookY, lookZ, upX, upY, upZ)</dt>
+<dd>Set the position and orientation of the 3D Camera using a camera position, a position for the camera to look towards, and an up vector. The camera and look-at positions are given as 3D co-ordinates. The up vector is a 3D vector specifying which way is up, as this is also necessary to determine how to orient the camera towards the look-at position. The default up vector is (0, 1, 0), i.e. up is the positive direction on the Y axis, suitable for a top-down view.</dd>
+<dt>lookParallelToLayout(camX, camY, camZ, lookAngle)</dt>
+<dd>Set the position and orientation of the 3D Camera using a camera position and a camera angle in radians. Whereas the default view is top-down, this sets a camera position looking along the layout, such that the layout appears as the floor at the bottom of the screen. This is a shortcut for using the <em>Look at position</em> action looking towards a 2D angle with an up vector of (0, 0, 1).</dd>
+<dt>restore2DCamera()</dt>
+<dd>Restore the camera to its default 2D behavior, using the standard scrolling features to move the view.</dd>
+<dt>moveAlongLayoutAxis(distance, axis, which)</dt>
+<dd>Move the camera position, the look position, or both, a distance along an axis relative to the layout. The distance can be negative to move in the opposite direction to the given axis. <em>axis</em> must be a string of <code>"x"</code>, <code>"y"</code> or <code>"z"</code>. <em>which</em> must be a string of <code>"camera"</code>, <code>"look"</code> or <code>"both"</code>.<br/>
+</dd>
+<dt>moveAlongCameraAxis(distance, axis, which)</dt>
+<dd>Move the camera position, the look position, or both, a distance along an axis relative to the current camera orientation. The distance can be negative to move in the opposite direction to the given axis. <em>axis</em> must be a string of "forward", "up" or "right". <em>which</em> must be a string of <code>"camera"</code>, <code>"look"</code> or <code>"both"</code>.<br/>
+</dd>
+<dt>rotateCamera(rotateX, rotateY, minPolar, maxPolar)</dt>
+<dd>Moves the camera look-at position according to X and Y rotations in radians. Note that a 3D Camera must first have been enabled using the <code>lookAtPosition()</code> or <code>lookParallelToLayout()</code> methods, since these also define the starting orientation for the camera to rotate around. Typically the rotation values will be provided by the mouse movement for "mouse look". The min/max polar values are also in radians and limit the Y rotation, stopping the camera rotating too close to directly upwards or downwards.</dd>
+<dt>getCameraPosition()</dt>
+<dd>Return an array of <code>[x, y, z]</code> with the current 3D position of the camera.</dd>
+<dt>getLookPosition()</dt>
+<dd>Return an array of <code>[x, y, z]</code> with the current 3D position of the position the camera is pointing at.</dd>
+<dt>getLookVector()</dt>
+<dd>Return an array of <code>[x, y, z]</code> with the current vector of the direction the camera is pointing in, including camera rotation.</dd>
+<dt>getForwardVector()</dt>
+<dd>Return an array of <code>[x, y, z]</code> with a 3D unit vector pointing in the direction of the camera. </dd>
+<dt>getRightVector()</dt>
+<dd>Return an array of <code>[x, y, z]</code> with a 3D unit vector pointing to the right of the camera, perpendicular to the forward vector.</dd>
+<dt>getUpVector()</dt>
+<dd>Return an array of <code>[x, y, z]</code> with the camera up vector, which helps determine the camera orientation. Note this is recomputed from the given camera and look positions, so may not be exactly the same as the up vector given in <em>lookAtPosition()</em>.</dd>
+<dt>zScale</dt>
+<dd>A read-only number with the number of pixels per unit on the Z axis. See the <em>Z scale</em> property in the <a class="extern" href="../../../plugin-reference/3d-camera.html" rel="noopener" target="_blank" title="Make your own games">3D Camera manual entry</a> for more details.</dd>
+<dt>fieldOfView</dt>
+<dd>Set or get the angle of the field of view in radians. Note this only has an effect when <em>Z Axis scale</em> is set to <em>Regular</em> in Project Properties. The default field of view is also set in Project Properties.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

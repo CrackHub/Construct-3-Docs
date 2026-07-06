@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/sprite" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Sprite script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISpriteInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/sprite.html" rel="noopener" target="_blank" title="Make your own games">Sprite plugin</a>.</p>
+<p>Sprite object types also define a <code>ISpriteObjectType</code> interface which derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add Sprite APIs that affect the object type, such as dynamic animations.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Sprite instance events</h2>
+<p>See <a class="extern" href="../interfaces/instance-event.html" rel="noopener" target="_blank" title="Make your own games">instance event</a> for standard instance event object properties.</p>
+<dl>
+<dt>"framechange"</dt>
+<dd>Fired when the currently displayed animation frame changes during playback of an animation. The event object has the additional properties:<br/>
+<ul class="list"><br/>
+<li><code>animationName</code>: a string of the name of the currently playing animation</li><br/>
+<li><code>animationFrame</code>: a zero-based index with the animation frame number of the new frame in its animation</li></ul></dd>
+<dt>"animationend"</dt>
+<dd>Fired when playback of the current animation reaches the end. The event object has the additional properties:<br/>
+<ul class="list"><br/>
+<li><code>animationName</code>: a string of the name of the animation that finished</li></ul></dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Sprite instance APIs</h2>
+<dl>
+<dt>animation</dt>
+<dd>A reference to a <a class="extern" href="../object-interfaces/ianimation.html" rel="noopener" target="_blank" title="Make your own games">IAnimation</a> script interface representing the current animation, which can be used to access additional details such as the frames in the animation.</dd>
+<dt>setAnimation(name, from = "beginning")</dt>
+<dd>Set the current animation by a string of its name (case-insensitive). If the animation name does not exist, an exception will be thrown. <code>from</code> can be set to either <code>"current-frame"</code> to switch to the same frame index in the new animation, or <code>"beginning"</code> to rewind to the first frame. </dd>
+<dt>getAnimation(name)</dt>
+<dd>Get an <a class="extern" href="../object-interfaces/ianimation.html" rel="noopener" target="_blank" title="Make your own games">IAnimation</a> for an animation in the Sprite object by a case-insensitive string of its name. Returns <code>null</code> if no animation is found.</dd>
+<dt>animationName</dt>
+<dd>A read-only string of the current animation name. Use the <code>setAnimation()</code> method to change the animation.</dd>
+<dt>startAnimation(from = "current-frame")</dt>
+<dd>Start playback of the current animation. <code>from</code> can be set to either <code>"current-frame"</code> to play from the existing frame, or <code>"beginning"</code> to play from the first frame.</dd>
+<dt>stopAnimation()</dt>
+<dd>Stop playback of the current animation.</dd>
+<dt>animationFrame</dt>
+<dd>The zero-based index of the current animation frame.</dd>
+<dt>animationFrameTag</dt>
+<dd>A string of the current animation frame tag (which is an empty string when not set). If assigned a new tag, and the current animation has multiple animation frames with the same tag, then it will use the first one.</dd>
+<dt>animationSpeed</dt>
+<dd>The current animation playback speed, in animation frames per second.</dd>
+<dt>animationRepeatToFrame</dt>
+<dd>The zero-based index of the animation frame to rewind to when repeating an animation.</dd>
+<dt>imageWidth</dt>
+<dt>imageHeight</dt>
+<dt>getImageSize()</dt>
+<dd>Read-only numbers indicating the size of the current animation frame's source image, in pixels. The method allows getting both values at the same time.</dd>
+<dt>getImagePointCount()</dt>
+<dd>Return the number of image points on the current animation frame.</dd>
+<dt>getImagePointX(nameOrIndex)</dt>
+<dt>getImagePointY(nameOrIndex)</dt>
+<dt>getImagePointZ(nameOrIndex)</dt>
+<dt>getImagePoint(nameOrIndex)</dt>
+<dd>Return the location of an image point on the current animation frame in layout co-ordinates. The Z co-ordinate can be useful when using 3D mesh distortion. Image points are identified either by a case-insensitive string of their name, or their index. Note image point 0 is the origin, so index 1 is the first image point. If the image point is not found, this returns the origin instead. The <code>getImagePoint</code> variant returns <code>[x, y, z]</code>.</dd>
+<dt>getPolyPointCount()</dt>
+<dd>Return the number of collision polygon points on the current animation frame.</dd>
+<dt>getPolyPointX(index)</dt>
+<dt>getPolyPointY(index)</dt>
+<dt>getPolyPoint(index)</dt>
+<dd>Return the location of a collision polygon point on the current animation frame in layout co-ordinates, by its zero-based index. The <code>getPolyPoint</code> variant returns <code>[x, y]</code>.<br/>
+</dd>
+<dt>setSolidCollisionFilter(isInclusive, tags)</dt>
+<dd>Enable or disable collisions with the Solid behavior according to tags. Specify <code>tags</code> using either a string of space-separated tag names, or any iterable of strings such as an array or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a>. If <code>isInclusive</code> is true, collisions are only enabled with solids that match any of the given tags; if no tags are specified, collisions are disabled with all solids. If <code>isInclusive</code> is false, collisions are disabled with solids that match any of the given tags; if no tags are specified, collisions are enabled for all solids (the default).</dd>
+<dt>async replaceCurrentAnimationFrame(blob)</dt>
+<dd>Replace the current animation frame image with the contents of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> representing an image file such as a PNG image. The blob can be locally generated or retrieved from a URL, for example:<br/>
+<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Loading an image from a URL</span>
+<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span>url<span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> blob <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> spriteInst<span class="token punctuation">.</span><span class="token function">replaceCurrentAnimationFrame</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span>blob<span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div></dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Sprite object type APIs</h2>
+<p>These <code>ISpriteObjectType</code> APIs are available on the object type class, e.g. <code>runtime.objects.MySprite</code>, rather than instances. Note this means that any changes, such as to the animations or animation frames, will affect all instances.</p>
+<dl>
+<dt>getAnimation(name)</dt>
+<dd>Return an <a class="extern" href="../object-interfaces/ianimation.html" rel="noopener" target="_blank" title="Make your own games">IAnimation</a> representing the animation with the given name, or <code>null</code> if none exists.</dd>
+<dt>getAllAnimations()</dt>
+<dd>Return an array of <code>IAnimation</code> representing all animations that the Sprite object type has.</dd>
+<dt>addAnimation(animName)</dt>
+<dd>Add a new animation with the given name and return an <code>IAnimation</code> representing it. The name must be unique. The added animation will have a single transparent animation frame sized 100x100.</dd>
+<dt>removeAnimation(animName)</dt>
+<dd>Remove an animation with the given name. An exception will be thrown if an animation with the given name does not exist, or the specified animation is the last one, as Sprite objects must have at least one animation.</dd>
+<dt>addAnimationFrame(animName, where)</dt>
+<dd>Add an animation frame to the animation with the specified name. The new frame will be transparent and sized 100x100. The <code>where</code> parameter must be either a number for a zero-based index of where to insert the frame, and can be -1 to add to the end, or a string of an animation frame tag to insert relative to. When adding an animation frame not at the end, it is inserted just before the given frame. The method returns an <a class="extern" href="../object-interfaces/ianimationframe.html" rel="noopener" target="_blank" title="Make your own games">IAnimationFrame</a> representing the added frame.</dd>
+<dt>removeAnimationFrame(animName, where)</dt>
+<dd>Remove an animation frame from the animation with the specified name. The last frame cannot be removed, as animations must have at least one frame. The <code>where</code> parameter must be either a number for a zero-based index of where to remove a frame, and can be -1 to remove from the end, or a string of an animation frame tag to remove.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/base-classes/ibehaviorinstancebase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IBehaviorInstanceBase interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IBehaviorInstanceBase</code> interface is used as the base class for behavior instances in the SDK.</p>
+<p><code>IBehaviorInstanceBase</code> cannot be directly constructed; it should only be used as a base class.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Properties</h2>
+<dl>
+<dt>this._sdkBehaviorType</dt>
+<dd>Reference to the associated SDK type class.</dd>
+<dt>this._behaviorInstance</dt>
+<dd>Reference to the <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> interface representing this instance in the editor. This allows access to Construct's built-in features for behavior instances.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Methods</h2>
+<dl>
+<dt>OnPropertyChanged(id, value)</dt>
+<dd>Optional override for when a property with the given ID is changed. The value the property was changed to is also passed.</dd>
+<dt>GetBehaviorInstance()</dt>
+<dd>Return the <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> interface representing this instance in the editor. </dd>
+<dt>GetSdkBehaviorType()</dt>
+<dd>Return the associated SDK type class.</dd>
+<dt>OnAddedInEditor()</dt>
+<dd>Optional override for when the behavior instance has been created due to the user adding a new behavior in the editor.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

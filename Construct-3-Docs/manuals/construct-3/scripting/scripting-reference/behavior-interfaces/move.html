@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/move" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Move To behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IMoveToBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/move.html" rel="noopener" target="_blank" title="Make your own games">Move To behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Example</h2>
+<p>Below is a sample code snippet demonstrating moving <code>inst</code> (assumed to be an instance with the Move To behavior) to a position and logging to the console when it arrives.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Handle "arrived" event which logs to console when</span>
+<span class="token comment">// movement has finished</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>MoveTo<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token string">"arrived"</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span>
+<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-3-close">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-0-close">(</span><span class="token string">"Arrived!"</span><span class="token punctuation brace-round brace-close brace-level-3" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-3-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Start the Move To behavior moving to (100, 100)</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>MoveTo<span class="token punctuation">.</span><span class="token function">moveToPosition</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Move To behavior events</h2>
+<p>See <a class="extern" href="../interfaces/behavior-instance-event.html" rel="noopener" target="_blank" title="Make your own games">behavior instance event</a> for standard behavior instance event object properties.</p>
+<dl>
+<dt>"arrived"</dt>
+<dd>Fired when the object arrives at its destination.</dd>
+<dt>"hitsolid"</dt>
+<dd>If <em>Stop on solids</em> is enabled, fired when the object hits a solid and stops.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Move To behavior APIs</h2>
+<dl>
+<dt>moveToPosition(x, y, isDirect = true)</dt>
+<dd>Start moving the object to a target position in layout co-ordinates. If <code>isDirect</code> is true, any existing waypoints will be cleared so the object moves directly to this position; otherwise it will add a waypoint to the queue.</dd>
+<dt>getTargetX()</dt>
+<dt>getTargetY()</dt>
+<dt>getTargetPosition()</dt>
+<dd>Return the current target position in layout co-ordinates that the object is moving to. The <code>getTargetPosition()</code> variant returns <code>[x, y]</code>.</dd>
+<dt>getWaypointCount()</dt>
+<dd>Return the number of waypoints that have been added.</dd>
+<dt>getWaypointX(index)</dt>
+<dt>getWaypointY(index)</dt>
+<dt>getWaypoint(index)</dt>
+<dd>Return the position in layout co-ordinates of a waypoint at a given zero-based index. The <code>getWaypoint()</code> variant returns <code>[x, y]</code>.</dd>
+<dt>stop()</dt>
+<dd>Stop any current movement, and clear all waypoints.</dd>
+<dt>isMoving</dt>
+<dd>Read-only boolean indicating whether the object is currently moving.</dd>
+<dt>speed</dt>
+<dd>Set or get the current movement speed in pixels per second.</dd>
+<dt>maxSpeed</dt>
+<dd>Set or get the maximum movement speed in pixels per second.</dd>
+<dt>acceleration</dt>
+<dt>deceleration</dt>
+<dd>Set or get the acceleration and deceleration of the movement in pixels per second per second.</dd>
+<dt>angleOfMotion</dt>
+<dd>Set or get the current angle the object is moving at, in radians.</dd>
+<dt>rotateSpeed</dt>
+<dd>Set or get the rate the object can turn at, in radians per second.</dd>
+<dt>isStopOnSolids</dt>
+<dd>Set or get a boolean indicating whether the <em>Stop on solids</em> property is enabled. When enabled the object will stop its movement, clear all waypoints and fire the <code>"hitsolid"</code> event if it touches an object with the Solid behavior during movement.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

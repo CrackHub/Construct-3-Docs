@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/base-classes/iworldinstancebase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IWorldInstanceBase interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IWorldInstanceBase</code> interface is used as the base class for instances in the SDK for "world" type plugins. It derives from <a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/reference/iinstancebase.html" rel="noopener" target="_blank" title="Make your own games">IInstanceBase</a>.</p>
+<p><code>IWorldInstanceBase</code> cannot be directly constructed; it should only be used as a base class.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>OnPlacedInLayout(iLayoutView)</dt>
+<dd>Optional override called when an instance is explicitly placed in the layout by the user. This is the right time to set any additional defaults such as the initial size or origin. A reference to the current <a class="extern" href="../ui-interfaces/ilayoutview.html" rel="noopener" target="_blank" title="Make your own games">ILayoutView</a> the instance was placed in is also provided.</dd>
+<dt>Draw(iRenderer, iDrawParams)</dt>
+<dd>Called when Construct wants the instance to draw itself in the Layout View. <code>iRenderer</code> is an <a class="extern" href="../graphics-interfaces/iwebglrenderer.html" rel="noopener" target="_blank" title="Make your own games">IWebGLRenderer</a> interface, used for issuing draw commands. <code>iDrawParams</code> is an <a class="extern" href="../graphics-interfaces/idrawparams.html" rel="noopener" target="_blank" title="Make your own games">IDrawParams</a> interface, used for providing additional information to the draw call.</dd>
+<dt>GetTexture(animationFrame)</dt>
+<dd>Load a texture from an <a class="extern" href="../object-interfaces/ianimationframe.html" rel="noopener" target="_blank" title="Make your own games">IAnimationFrame</a>. Texture loading is asynchronous and is started in the first call. The method will return <code>null</code> while the texture is loading. Construct will automatically refresh the Layout View when the texture finishes loading, at which point the method will return an <a class="extern" href="../graphics-interfaces/iwebgltexture.html" rel="noopener" target="_blank" title="Make your own games">IWebGLTexture</a> interface that can be used for rendering. Plugins typically render a placeholder of a semitransparent solid color while the texture is loading.</dd>
+<dt>GetTexRect()</dt>
+<dd>When a texture has successfully loaded, returns an <a class="extern" href="../geometry-interfaces/rect.html" rel="noopener" target="_blank" title="Make your own games">SDK.Rect</a> indicating the dimensions of the image to render in texture co-ordinates. Note that due to Construct's in-editor spritesheeting engine, this is usually a subset of a texture.</dd>
+<dt>HadTextureError()</dt>
+<dd>Returns true to indicate texture loading failed. Plugins typically switch the placeholder to a red color in this circumstance.</dd>
+<dt>IsOriginalSizeKnown()</dt>
+<dt>GetOriginalSize()</dt>
+<dd>Optional overrides to specify the "original size" of the instance. Typically if a plugin supports this, it is the size of the image. This enables percentage size options in the Properties Bar. The default implementation returns <code>false</code> from <code>IsOriginalSizeKnown()</code>, disabling the feature. To enable it, return <code>true</code> from <code>IsOriginalSizeKnown()</code>, and return the original size in the <code>GetOriginalSize()</code> method by returning an array with the form <code>[width, height, depth]</code>. For 2D content, return zero for the depth.</dd>
+<dt>HasDoubleTapHandler()</dt>
+<dt>OnDoubleTap()</dt>
+<dd>Optional override which is called when the user double-clicks or double-taps an instance in the Layout View. This also enables an <em>Edit</em> option in the context menu, which also calls the double-tap handler. Typically plugins with an image use this handler to edit the image. The default implementation returns <code>false</code> from <code>HasDoubleTapHandler()</code>, disabling the feature. To enable it, return <code>true</code> from <code>HasDoubleTapHandler()</code> and then override <code>OnDoubleTap()</code> to perform a task.</dd>
+<dt>RendersToOwnZPlane()</dt>
+<dd>An optional override to indicate if the instance renders to its own Z plane. This plane is at the base of the object for 3D objects with a depth, e.g. the <em>back</em> face of the 3D shape object. Typically all 2D content renders to its own Z plane and so should return <code>true</code>, which is the default when the method is not overridden. 3D content such as a 3D model that does not render to its own Z plane should return <code>false</code>. The result of this method is used to help mitigate Z-fighting.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

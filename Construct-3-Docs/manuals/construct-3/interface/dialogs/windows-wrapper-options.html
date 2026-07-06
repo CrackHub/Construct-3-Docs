@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/dialogs/windows-wrapper-options" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Windows wrapper options dialog
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Windows wrapper options</strong> dialog allows you to customize a Windows wrapper (WebView2) export <span class="ilTag c2">Paid plans only</span>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1767/uploads/articleuploadobject/0/images/144309/windows-webview2-options.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 933x615px in new window (46.75 KB)"><span><img alt="The Windows wrapper options dialog." height="307" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1767/r/uploads/articleuploadobject/0/images/144309/windows-webview2-options_v470.png" width="466"/></span></a><span class="descrip">The Windows wrapper options dialog.</span></div></div>
+<p>The following options are available.</p>
+<dl class="sans">
+<dt>Platforms</dt>
+<dd>Select which platforms are exported. You can choose between Windows 64-bit (for Intel-compatible systems, technically referred to as x64), and Windows ARM64 (for Windows on 64-bit ARM-based chips).</dd>
+<dt>Bundle</dt>
+<dd>Choose an option for bundling the various project files that are exported. The options are:<ul class="list"><br/>
+<li><strong>None:</strong> all exported project files are placed in a subfolder named <em>www</em> inside the app. It is possible inquisitive users could find some of your project's assets in here, including artwork, music and sound effects.</li><br/>
+<li><strong>Assets:</strong> combines all the exported project files into a single file named <em>assets.dat</em>. This file is not encrypted, but it does prevent casual browsing of the exported files. Using this option should not significantly impact performance.</li><br/>
+<li><strong>Single file:</strong> allows combining the entire exported project into a single executable file. After the export, you must first run <em>PackToSingleExecutable.exe</em> to perform the final step that creates the packed executable file. This bundling option may have some performance overhead when running the app, so may be unsuitable for large projects.</li></ul></dd>
+<dt>Enable DevTools</dt>
+<dd>Whether the app should allow opening the Microsoft Edge DevTools by pressing F12 or using the <em>Inspect</em> context menu option. This is useful for development purposes.</dd>
+<dt>Window caption</dt>
+<dd>Whether the application window includes the system-provided caption and border.</dd>
+<dt>Resizable window</dt>
+<dd>Whether the application window can be resized by the user. If disabled the window can still be made fullscreen using events.</dd>
+<dt>Ignore GPU blacklist</dt>
+<dd>Some systems with poor quality graphics drivers can end up crashing or causing severe display glitches when running games. Browsers provide blacklists to recognise faulty drivers or hardware and fall back to software rendering. This guarantees the game will work, but can result in poor performance on such systems. Disabling this option always uses GPU rendering which can be much faster, but can then run in to issues on systems with poor quality drivers.</dd>
+<dt>Export for Steam</dt>
+<dd>Adjusts the configuration of the exported project to work better with Steam, such as to support the Steam Overlay. For more information see the <a class="extern" href="https://www.construct.net/make-games/addons/1105/steamworks/documentation.html" rel="noopener" target="_blank" title="Make your own games">Steamworks plugin documentation</a>. Leave this unchecked if you are not exporting for Steam specifically.</dd>
+<dt>Export for Remote Preview</dt>
+<dd>If enabled this exports the project with all its resources and extensions, but the app itself will show <a class="extern" href="https://preview.construct.net/" rel="noopener" target="_blank" title="Make your own games">preview.construct.net</a>. This allows it to be used to load a Remote Preview from Construct, allowing faster testing with WebView2-specific features enabled.</dd>
+<dt>Command line options</dt>
+<dd>This option allows advanced users to customise the Chromium command-line arguments used by WebView2.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

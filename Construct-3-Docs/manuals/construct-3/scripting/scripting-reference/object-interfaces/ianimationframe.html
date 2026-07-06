@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/ianimationframe" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IAnimationFrame script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IAnimationFrame</code> interface represents a single animation frame within an <a class="extern" href="ianimation.html" rel="noopener" target="_blank" title="Make your own games">IAnimation</a>. It derives from the <a class="extern" href="iimageinfo.html" rel="noopener" target="_blank" title="Make your own games">IImageInfo</a> script interface.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>IAnimationFrame APIs</h2>
+<dl>
+<dt>duration</dt>
+<dd>A read-only number with the relative duration of this animation frame, i.e. 1 for standard speed, 2 for twice as long, etc.</dd>
+<dt>tag</dt>
+<dd>A string of the tag assigned for this frame in the Animation Editor.</dd>
+<dt>originX</dt>
+<dt>originY</dt>
+<dt>getOrigin()</dt>
+<dd>Read-only numbers with the normalized position of the origin within this animation frame, ranging from 0-1. The method returns both values at the same time.</dd>
+<dt>getImagePointCount()</dt>
+<dd>Return the number of image points on the animation frame.</dd>
+<dt>getImagePointX(nameOrIndex)</dt>
+<dt>getImagePointY(nameOrIndex)</dt>
+<dt>getImagePoint(nameOrIndex)</dt>
+<dd>Return the location of an image point on the animation frame in normalized co-ordinates, i.e. ranging from 0-1. Image points are identified either by a case-insensitive string of their name, or their index. If the image point is not found, this returns the origin instead. The <code>getImagePoint</code> variant returns <code>[x, y]</code>.</dd>
+<dt>getPolyPointCount()</dt>
+<dd>Return the number of collision polygon points on the animation frame.</dd>
+<dt>getPolyPointX(index)</dt>
+<dt>getPolyPointY(index)</dt>
+<dt>getPolyPoint(index)</dt>
+<dd>Return the location of a collision polygon point on the animation frame in normalized co-ordinates relative to the origin, by its zero-based index. The <code>getPolyPoint</code> variant returns <code>[x, y]</code>.<br/>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

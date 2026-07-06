@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/video" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Video
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Video</strong> object can play a video inside a project. The video renders into the project canvas itself, allowing other objects to appear on top of it and effects to be applied, unlike with HTML elements.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Video formats</h2>
+<p>The supported video formats varies depending on the browser, operating system, and sometimes hardware. The most widely supported video format is probably MP4 H.264 but as a patent-encumbered format it is sometimes not possible to support in open source platforms. As of 2024 the modern and open codec AV1 is increasingly widely supported, but may not be supported on some older devices.</p>
+<p>As a result to guarantee that video playback will work on all browsers and on all platforms, it may be necessary to encode your videos in two different formats. The Video plugin allows you to set two sources for a video: a <strong>primary source</strong> which is played if supported, otherwise it falls back to the <strong>secondary source</strong> (which is also only played if supported, but two formats should be enough to achieve universal support). This also allows choosing a modern efficient format which isn't universally supported as a primary source, and an older and less efficient but universally supported format as a secondary source, ensuring optimal playback on modern devices while still supporting older devices.</p>
+<h3>Identifying video formats</h3>
+<p>Video files actually encompass multiple different sub-formats. These include:</p>
+<ul class="list">
+<li><strong>Container format:</strong> this is usually WebM or MPEG-4 (MP4).</li>
+<li><strong>Video codec:</strong> the codec used to compress video data, such as VP9, H.264 or AV1.</li>
+<li><strong>Audio codec:</strong> if the video has an audio track, then this is the codec used to compress audio data, such as Opus or AAC.</li>
+</ul>
+<p>Use a third-party tool to identify the container, video codec and audio codec used by a video file. For example <a class="extern outlink" href="https://www.videolan.org/" rel="nofollow noopener external" target="_blank" title="Go to: https://www.videolan.org/">VLC media player</a> provides codec information via the menu <span class="navWrap">Tools<span class="arr">►</span>Codec information</span> while playing a video.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Importing video</h2>
+<p>Be sure to import video files to the <strong>Videos project folder</strong>. If video files are added in any other project folder, e.g. <em>Files</em>, they may be exported to a different folder and fail to load.</p>
+<p>Due to the complexities of video compression and the patent-encumbrance of some codecs like H.264, Construct does not provide a video importer like it does with audio. You must encode your video files yourself, and then import them as <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project files</a>. WebM and its codecs VP8, VP9 and AV1 are open formats and you should be able to find free encoders. However H.264/H.265 encoders may involve a fee.</p>
+<p>When publishing a project using video playback to the web, be sure that your server has the <a class="extern" href="../tips-and-guides/mime-types.html" rel="noopener" target="_blank" title="Make your own games">correct MIME types set up</a> otherwise video playback may fail after export.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Playback restrictions</h2>
+<p>In some cases, video playback cannot begin unless triggered by a user input event. The <em>Play</em> action will work in a user input trigger like <em>On touch start</em>, but if done outside of that it cannot play right away. To work around this the video plugin will wait until the next touch event to start playing the video. This also applies to autoplaying videos: it will not start until the first touch.</p>
+<p>This restriction generally only applies to web browsers. Usually if you publish an app, the restriction is able to be removed because the app can adjust the permissions.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Video properties</h2>
+<dl class="sans">
+<dt>Primary source</dt>
+<dt>Primary format</dt>
+<dd>The name of the project file to play if the primary format is supported. Make sure <em>Primary format</em> matches the actual container and codec used by the specified project file. See <em>Video formats</em> above for more details.</dd>
+<dt>Secondary source</dt>
+<dt>Secondary format</dt>
+<dd>The name of the project file to play, if the primary format is <em>not</em> supported. Make sure <em>Secondary format</em> matches the actual container and codec used by the specified project file. See <em>Video formats</em> above for more details.</dd>
+<dt>Autoplay</dt>
+<dd>The autoplay or preload mode. This can be:<br/>
+<ul class="list"><br/>
+<li><strong>No:</strong> nothing is done until the video is requested to be played.</li><br/>
+<li><strong>Preload:</strong> on startup the video will start downloading the video data, but will not start playing it yet. This can allow video playback to start more quickly when requested. Some platforms (e.g. mobile devices on cellular data connections) may ignore this.</li><br/>
+<li><strong>Yes:</strong> on startup the video will start downloading the video data, and also start playing it as soon as it determines the progress and transfer rate are sufficient to play through to the end without stalling for buffering. Some mobile platforms will not start playing until the first touch event - see <em>Compatibility</em> for more information.</li></ul></dd>
+<dt>Play in background</dt>
+<dd>If disabled, then switching browser tab, minimising the browser window, switching to a different mobile app, or otherwise hiding the window will pause the video and resume it when switching back. This is intended to avoid annoying the user with continued audio playback when deciding to do something else, and it also helps save battery on mobile devices. However for some types of app it may be desirable to keep playing in the background, in which case enabling this allows continued playback even when in the background.</dd>
+<dt>Initially visibile</dt>
+<dd>Whether the video is initially visible or invisible. Note that if it is invisible, audio playback may still be heard when playing, so it may be desirable to also mute the video.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Video conditions</h2>
+<dl class="sans">
+<dt>Has ended</dt>
+<dd>True if the video playback has reached the end of the video and stopped.</dd>
+<dt>Is muted</dt>
+<dd>True if the audio playback from the video has been muted.</dd>
+<dt>Is paused</dt>
+<dd>True if the video playback has been paused.</dd>
+<dt>Is playing</dt>
+<dd>True if the video playback is actively playing.</dd>
+<dt>On playback event</dt>
+<dd>Triggers when a playback event occurs. This can be one of:<br/>
+<ul class="list"><br/>
+<li><em>Can play:</em> triggered when enough data is available to play at least a couple of frames, but there may not be enough data to play through to the end.</li><br/>
+<li><em>Can play through:</em> triggered when the browser determines that the load progress and transfer rate are sufficient for playback through to the end without stalling for buffering. However this is not a guarantee, since the transfer rate could drop or be cut off completely.</li><br/>
+<li><em>Ended:</em> triggered when playback reaches the end of the video.</li><br/>
+<li><em>Error:</em> triggered if an error occurs during video loading, decoding or playback.</li><br/>
+<li><em>Started loading:</em> triggered when the browser begins loading video data.</li><br/>
+<li><em>Played:</em> triggered when playback begins.</li><br/>
+<li><em>Paused:</em> triggered upon pausing the video playback.</li><br/>
+<li><em>Stalled:</em> triggered if the video download rate is too slow to keep up the current playback rate. This will cause the video to pause while it finishes loading the rest of the video, also known as buffering.</li></ul></dd></dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Video actions</h2>
+<dl class="sans">
+<dt>Pause</dt>
+<dd>Pause the video playback if it is currently playing.</dd>
+<dt>Play</dt>
+<dd>Start playing the video. On some platforms this can only happen in a user input event. For more information, see the section on <em>Compatibility</em>.</dd>
+<dt>Set looping</dt>
+<dd>Set whether the video is looping, so that it restarts from the beginning when it reaches the end.</dd>
+<dt>Set muted</dt>
+<dd>Set whether the audio playback from the video is muted (inaudible) or unmuted.</dd>
+<dt>Set playback rate</dt>
+<dd>Set how fast the video playback proceeds, as a multiplier of its original speed. That means 1 is the original speed, 2 is twice as fast, 0.5 is half as fast, etc.</dd>
+<dt>Set playback time</dt>
+<dd>Set the video playback time to a specific time in seconds (i.e. seek to the given time). Due to the way video encoding technologies work, the video may only be able to seek close to but not exactly on the specified time.</dd>
+<dt>Set source</dt>
+<dd>Set a different video file to play. As with the object properties, different primary and secondary formats can be specified. Setting the source does not automatically start playing the video; use the <em>Play</em> action to start it after changing the source.</dd>
+<dt>Set volume</dt>
+<dd>Set the volume of the audio playback from the video, in decibels attenuation. 0 is full volume, -10 dB is approximately half as loud, etc. The audio cannot be amplified: positive volume values will be treated as 0.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Video expressions</h2>
+<dl class="sans">
+<dt>Duration</dt>
+<dd>The video duration in seconds, if the video has loaded enough for this to be determined.</dd>
+<dt>PlaybackRate</dt>
+<dd>The current playback rate as set by the <em>Set playback rate</em> action, as a multiplier of the original rate (e.g. 1 is original speed, 2 is twice as fast, etc).</dd>
+<dt>PlaybackTime</dt>
+<dd>The current playback time in seconds.</dd>
+<dt>VideoWidth</dt>
+<dt>VideoHeight</dt>
+<dd>The dimensions of the source video, in pixels.</dd>
+<dt>Volume</dt>
+<dd>The current audio playback volume in dB attenuation.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

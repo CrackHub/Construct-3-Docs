@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/addon-metadata" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Addon metadata
+            </h1>
+<div itemprop="articleBody">
+<p>The metadata for your addon, specifying details like its ID and type, is defined by <strong>addon.json</strong>. An example is shown below.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-2-close">{</span>
+	<span class="token string-property property">"is-c3-addon"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"sdk-version"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"type"</span><span class="token operator">:</span> <span class="token string">"plugin"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"My custom plugin"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"MyCompany_MyAddon"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0.0"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"author"</span><span class="token operator">:</span> <span class="token string">"Scirra"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"website"</span><span class="token operator">:</span> <span class="token string">"https://www.construct.net"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"documentation"</span><span class="token operator">:</span> <span class="token string">"https://www.construct.net"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"description"</span><span class="token operator">:</span> <span class="token string">"Example custom Construct 3 plugin."</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"editor-scripts"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-0-close">[</span>
+						<span class="token string">"plugin.js"</span><span class="token punctuation">,</span>
+						<span class="token string">"type.js"</span><span class="token punctuation">,</span>
+						<span class="token string">"instance.js"</span>
+					<span class="token punctuation brace-square brace-close brace-level-2" id="pair-0-open">]</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"file-list"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-1-close">[</span>
+		<span class="token string">"c3runtime/plugin.js"</span><span class="token punctuation">,</span>
+		<span class="token string">"c3runtime/type.js"</span><span class="token punctuation">,</span>
+		<span class="token string">"c3runtime/instance.js"</span><span class="token punctuation">,</span>
+		<span class="token string">"c3runtime/conditions.js"</span><span class="token punctuation">,</span>
+		<span class="token string">"c3runtime/actions.js"</span><span class="token punctuation">,</span>
+		<span class="token string">"c3runtime/expressions.js"</span><span class="token punctuation">,</span>
+		<span class="token string">"lang/en-US.json"</span><span class="token punctuation">,</span>
+		<span class="token string">"aces.json"</span><span class="token punctuation">,</span>
+		<span class="token string">"addon.json"</span><span class="token punctuation">,</span>
+		<span class="token string">"icon.svg"</span><span class="token punctuation">,</span>
+		<span class="token string">"instance.js"</span><span class="token punctuation">,</span>
+		<span class="token string">"plugin.js"</span><span class="token punctuation">,</span>
+		<span class="token string">"type.js"</span>
+	<span class="token punctuation brace-square brace-close brace-level-2" id="pair-1-open">]</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-2-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Note some of the information is duplicated elsewhere in the addon's files. This is because the editor reads this file before it loads any other files when asking the user if they want to install the addon. Note information specified here, such as the ID, must exactly match everywhere else it is used.</p>
+<p>The addon SDK provides a JSON schema to help you write addon.json files, as it provides autocomplete and validation in compatible editors.</p>
+<p>Each field and its possible values are described below.</p>
+<dl>
+<dt>is-c3-addon</dt>
+<dd>Boolean set to <code>true</code>. This is used by Construct 3 to identify valid addons.</dd>
+<dt>sdk-version</dt>
+<dd>The addon SDK version the addon has been built with. Currently only SDK version 2 is supported. Effects and themes are not affected by the addon SDK version and can omit this field.</dd>
+<dt>type</dt>
+<dd>One of <code>"plugin"</code>, <code>"behavior"</code>, <code>"effect"</code> or <code>"theme"</code>, indicating the kind of addon this is.</dd>
+<dt>name</dt>
+<dd>The displayed name of the addon, in English.</dd>
+<dt>id</dt>
+<dd>The unique ID of the addon. This is not displayed and is only used internally. This must not be used by any other addon ever published for Construct 3, and must never change after you first publish your addon. (The name is the only visible identifier of the addon in the Construct 3 editor, so that can be changed any time, but the ID must always be the same.) To ensure it is unique, it is recommended to use a vendor-specific prefix, e.g. <code>MyCompany_MyAddon</code>. It must match the ID set in plugin.js.</dd>
+<dt>version</dt>
+<dd>A string specifying the addon version in four parts (major, minor, patch, revision). Be sure to update this when releasing updates to your addon. It must match the version set in plugin.js/behavior.js.</dd>
+<dt>author</dt>
+<dd>A string identifying the author of the addon.</dd>
+<dt>website</dt>
+<dd>A string of a URL to the author's website. It is recommended to provide updates to the addon at this URL if any become available. The website should use HTTPS.</dd>
+<dt>documentation</dt>
+<dd>A string of a URL to the online documentation for the addon. It is important to provide documentation for your addon to be useful to users.</dd>
+<dt>description</dt>
+<dd>A string of a brief description of what the addon does, displayed when prompting the user to install the addon.</dd>
+<dt>min-construct-version</dt>
+<dd>The minimum Construct version required to load your addon, e.g. "r399". If not specified, the addon will be allowed to be installed with any version of Construct. If specified and the user attempts to install the addon with a version lower than the minimum, then Construct will prevent installation and show a message indicating that a newer version of Construct must be used. If the user installs the addon with a newer version of Construct and then rolls back to an older version of Construct lower than the minimum, then Construct will refuse to load the addon (a message will be logged to the console) and the editor will act as if the addon is not installed.</dd>
+<dt>supports-worker-mode</dt>
+<dd>A boolean indicating whether the addon supports Construct's worker mode, where the entire runtime is hosted in a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker</a> instead of the main thread. This defaults to <code>true</code>. Providing the addon only uses APIs available in a Web Worker, then it is compatible; where access to the DOM is necessary, then a DOM script can be used to still access those features in worker mode - see <a class="extern" href="runtime-scripts.html" rel="noopener" target="_blank" title="Make your own games">Runtime scripts</a> for more details. Therefore it should be possible for every addon to support worker mode, and supporting it is strongly recommended as worker mode can bring performance benefits. This can be set to <code>false</code> to indicate that the addon does not yet support worker mode, which may be useful to expedite addon development or if the addon makes use of extremely complex DOM operations. This will cause worker mode "auto" to switch to DOM mode which may degrade the performance of the project. If the user attempts to switch worker mode to "Yes" in project using the addon, then Construct will show an error message highlighting the addon that does not support the mode, and prevent changing the setting.</dd>
+<dt>editor-scripts</dt>
+<dd><em>For plugins and behaviors only.</em> An array of script files in the addon package to load in the editor. It is recommended to leave this at the default unless you have large editor dependency scripts, or if you want to minify your addon in to a single script. Note themes do not use editor scripts.</dd>
+<dt>stylesheets</dt>
+<dd><em>For themes only.</em> An array of CSS files in the addon package to apply to the document. These are the CSS files that define the theme's appearance.</dd>
+<dt>file-list</dt>
+<dd><em>For developer mode addons only.</em> A list of all files used by the addon. This is required for Developer Mode addons since there is no other mechanism for Construct to determine the list of files when serving files from a web server. Be sure to update this property if you add, rename or remove any files in your addon.</dd>
+</dl>
+<h3>Additional properties for effects</h3>
+<p>When developing an effect addon, additional information about the effect is included in the addon.json file. For more information see <a class="extern" href="configuring-effects.html" rel="noopener" target="_blank" title="Make your own games">Configuring effects</a>.</p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

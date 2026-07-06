@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/specifying-dependencies" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Specifying dependencies
+            </h1>
+<div itemprop="articleBody">
+<p>Plugins and behaviors can specify dependencies on additional files, or Cordova plugins for inclusion with the Cordova exporter. Dependencies are added using the <code>AddFileDependency(opts)</code> and <code>AddCordovaPluginReference(opts)</code> methods on both <a class="extern" href="iplugininfo.html" rel="noopener" target="_blank" title="Make your own games">IPluginInfo</a> and <a class="extern" href="ibehaviorinfo.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInfo</a>. Remote scripts can also be added with <code>AddRemoteScriptDependency</code>, but this is not recommended.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>File dependencies</h2>
+<p>A file dependency refers to another file in the addon. Note the file must be bundled with the addon; you cannot refer to URLs elsewhere on the Internet. There are several kinds of file dependency, which correspond to the <code>type</code> property in the options object:</p>
+<dl>
+<dt>copy-to-output</dt>
+<dd>This simply causes the file to be copied to the output folder when exporting. The file is also available in preview mode. This is useful for bundling additional resources, such as an image file that needs to be loaded at runtime, or a script that is dynamically loaded.</dd>
+<dt>external-dom-script</dt>
+<dd>A script dependency that is included via the addition of an extra <code>&lt;script&gt;</code> tag in the exported HTML file. The <code>scriptType</code> option can be set to <code>"module"</code> to load the script as a module (see below). Note in worker mode the script is loaded in the DOM, so is not directly available to the runtime code in the worker. The script is not minified on export. This is suitable for large external libraries that the addon references.</dd>
+<dt>external-runtime-script</dt>
+<dd>A script dependency that is included via the addition of an extra <code>&lt;script&gt;</code> tag in the exported HTML file, or loaded on the worker with <code>importScripts()</code> in worker mode. This means the script is always directly available to runtime code. However the dependency must be designed to work in a Web Worker, e.g. not assuming the DOM is present. The script is not minified on export.</dd>
+<dt>external-css</dt>
+<dd>A stylesheet dependency that is included via the addition of an extra <code>&lt;link rel="stylesheet"&gt;</code> tag in the exported HTML file, in case the addon needs to specify CSS styles.</dd>
+<dt>wrapper-extension</dt>
+<dd>A DLL to be bundled for a wrapper extension. See <a class="extern" href="../guide/wrapper-extensions.html" rel="noopener" target="_blank" title="Make your own games">Wrapper extensions</a> for more details.</dd>
+</dl>
+<p>To add a file dependency, call <code>AddFileDependency</code> with an options object, such as in this example:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">AddFileDependency</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-curly brace-open brace-level-2" id="pair-1-close">{</span>
+	<span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">"mydependency.js"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"external-dom-script"</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-1-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>The options object uses the following properties.</p>
+<dl>
+<dt>filename</dt>
+<dd>Name of the dependency file in the addon. This must be bundled with the addon; it cannot refer to a URL. It is recommended to bundle the script with your addon, but if you must use a URL, see the section <em>Remote script dependencies</em>. The file path is relative to the root (the location of addon.json).<br/>
+</dd>
+<dt>type</dt>
+<dd>One of the types described above, e.g. <code>"external-dom-script"</code>.</dd>
+<dt>fileType</dt>
+<dd>When <code>type</code> is <code>"copy-to-output"</code>, this must specify the MIME type of the file. For example if including <code>"image.png"</code> as a <code>"copy-to-output"</code> dependency, the <code>fileType</code><br/>
+ must be set to <code>"image/png"</code>.</dd>
+<dt>scriptType</dt>
+<dd>Currently only supported when <code>type</code> is <code>"external-dom-script"</code>. By default external DOM scripts are loaded as "classic" scripts. This property can be set to the string <code>"module"</code> to instead load the external DOM script as a module (i.e. with <code>&lt;script src="filename.js" type="module"&gt;&lt;/script&gt;</code>).</dd>
+<dt>platform</dt>
+<dd>When <code>type</code> is <code>"wrapper-extension"</code>, this specifies the platform architecture of the DLL. The supported options are <code>"windows-x86"</code> (for 32-bit Windows), <code>"windows-x64"</code>, <code>"windows-arm64"</code>, <code>"xbox-uwp-x64"</code> (for Xbox UWP export option only), <code>"macos-universal"</code> (for macOS WKWebView, with a universal binary including both Intel and Apple Silicon code), <code>"linux-x64"</code>, <code>"linux-arm"</code> (for 32-bit ARM) and <code>"linux-arm64"</code>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Cordova plugin dependencies</h2>
+<p>Addons can specify dependencies on Cordova plugins. These only apply to the Cordova exporter, which covers both Android and iOS. When exporting a Cordova project, the additional Cordova plugin dependencies are automatically included in the exported <strong>config.xml</strong>. This allows convenient integration of a Construct addon with a Cordova plugin.</p>
+<p>To add a Cordova plugin dependency, call <code>AddCordovaPluginReference</code> with an options object, such as in this example:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">AddCordovaPluginReference</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token punctuation brace-curly brace-open brace-level-2" id="pair-3-close">{</span>
+	<span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"cordova-plugin-inappbrowser"</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-3-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>If you wish to provide variables to the Cordova plugin, use the <code>variables</code> property of the options object to pass an array of <code>[variableName, pluginProperty]</code> pairs. In this case the plugin must also be passed in the <code>plugin</code> property. An example is shown below.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">const</span> property <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>PluginProperty</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-4-close">(</span><span class="token string">"integer"</span><span class="token punctuation">,</span> <span class="token string">"test-property"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-4-open">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">SetProperties</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-5-close">(</span><span class="token punctuation brace-square brace-open brace-level-2" id="pair-7-close">[</span>
+	property
+<span class="token punctuation brace-square brace-close brace-level-2" id="pair-7-open">]</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-5-open">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">AddCordovaPluginReference</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-6-close">(</span><span class="token punctuation brace-curly brace-open brace-level-2" id="pair-10-close">{</span>
+	<span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"cordova-plugin-inappbrowser"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">plugin</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">variables</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-9-close">[</span>
+		<span class="token punctuation brace-square brace-open brace-level-4" id="pair-8-close">[</span><span class="token string">"MY_VAR"</span><span class="token punctuation">,</span> property<span class="token punctuation brace-square brace-close brace-level-4" id="pair-8-open">]</span>
+	<span class="token punctuation brace-square brace-close brace-level-3" id="pair-9-open">]</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-10-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-6-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>See <a class="extern outlink" href="https://cordova.apache.org/docs/en/latest/config_ref/index.html#variable" rel="nofollow noopener external" target="_blank" title="Go to: https://cordova.apache.org/docs/en/latest/config_ref/index.html#variable">Cordova plugin variables</a> for more information.</p>
+<p>The options object uses the following properties.</p>
+<dl>
+<dt>id</dt>
+<dd>The ID of the Cordova plugin to reference.</dd>
+<dt>version <span class="ilTag c1">Optional</span></dt>
+<dd>A version spec for the Cordova plugin, e.g. <code>"1.0.4"</code>. If this is not specified, the latest version will be used.</dd>
+<dt>platform <span class="ilTag c1">Optional</span></dt>
+<dd>Specify a specific platform the Cordova plugin applies to. By default this is <code>"all"</code> meaning it will be used in both Android and iOS exports. However it can be set to <code>"android"</code> or <code>"ios"</code> to only be included when exporting to a specific platform. This is useful to switch between different Cordova plugins on different platforms.</dd>
+<dt>variables <span class="ilTag c1">Optional</span></dt>
+<dd>Specify variables to be used with the Cordova plugin as an array of <code>[variableName, pluginProperty]</code> pairs. The variable name is bound to a <code>SDK.PluginProperty</code>. When the project is exported a variable is added under the plugin reference in config.xml with the given name and a value taken from the specified property. When variables are specified, the <code>plugin</code> property must also be set.</dd>
+<dt>plugin <span class="ilTag c1">Optional</span></dt>
+<dd>Used to specify the plugin when using variables. Normally this should be set to <code>this</code>.</dd>
+</dl>
+<p>Note for security reasons the Construct mobile app build service does not allow arbitrary Cordova plugins to be used. The build service uses an allowlist of allowed Cordova plugins. If you'd like a Cordova plugin to be added to the allowlist, please file an issue on the <a class="extern outlink" href="https://github.com/Scirra/Construct-3-bugs/issues" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-3-bugs/issues">Construct issue tracker</a>. Please note we cannot guarantee that Cordova plugins will be allowed, and approval is subject to a security review. Other build systems, including compiling with the Cordova CLI, do not impose this restriction.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Cordova resource file dependencies</h2>
+<p>Addons can further specify dependencies on additional resource files for Cordova exports. When exporting a Cordova project, the additional Cordova resource file dependencies are automatically included in the exported <strong>config.xml</strong> as <code>&lt;resource file src="..." target="..."&gt;</code> tags.</p>
+<p>To add a Cordova resource file dependency, call <code>AddCordovaResourceFile</code> with an options object, such as in this example:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">AddCordovaResourceFile</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-11-close">(</span><span class="token punctuation brace-curly brace-open brace-level-2" id="pair-12-close">{</span>
+	<span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">"myfile.txt"</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-12-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-11-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>This will insert <code>&lt;resource-file src="myfile.txt"&gt;</code> to the exported config.xml.</p>
+<p>More information about how resource files are used in Cordova can be found in the <a class="extern outlink" href="https://cordova.apache.org/docs/en/latest/" rel="nofollow noopener external" target="_blank" title="Go to: https://cordova.apache.org/docs/en/latest/">Cordova documentation</a>.</p>
+<p>The options object uses the following properties.</p>
+<dl>
+<dt>src</dt>
+<dd>The <code>src</code> attribute of the <code>resource-file</code> tag. Location of the file relative to config.xml.</dd>
+<dt>target <span class="ilTag c1">Optional</span></dt>
+<dd>The <code>target</code> attribute of the <code>resource-file</code> tag. Path to where the file will be copied.</dd>
+<dt>platform <span class="ilTag c1">Optional</span></dt>
+<dd>Specify a specific platform the Cordova plugin applies to. By default this is <code>"all"</code> meaning it will be used in both Android and iOS exports. However it can be set to <code>"android"</code> or <code>"ios"</code> to only be included when exporting to a specific platform.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Remote script dependencies</h2>
+<p>Plugins and behaviors may also specify remote script dependencies. These are loaded from a cross-origin URL, e.g. <code>https://example.com/api.js</code>.</p>
+<p>Use <code>AddRemoteScriptDependency</code> to add a remote URL to load a script from. The second parameter can optionally be set to <code>"module"</code> to load the script as a module. For example:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Load remote "classic" script</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">AddRemoteScriptDependency</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-13-close">(</span><span class="token string">"https://example.com/api.js"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-13-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Load remote module script</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">AddRemoteScriptDependency</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-14-close">(</span><span class="token string">"https://example.com/api-module.js"</span><span class="token punctuation">,</span> <span class="token string">"module"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-14-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>This will produce the following tags on export, loaded before the runtime:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-html line-numbers" tabindex="0"><code class="match-braces language-html"><span class="token comment">&lt;!-- Classic script --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://example.com/api.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment">&lt;!-- Module script --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://example.com/api-module.js<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+</div></div></div></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

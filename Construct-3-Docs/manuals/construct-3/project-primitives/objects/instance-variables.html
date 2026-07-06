@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/objects/instance-variables" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Instance Variables
+            </h1>
+<div itemprop="articleBody">
+<p><strong>Instance Variables</strong> are added to <a class="extern" href="object-types.html" rel="noopener" target="_blank" title="Make your own games">object types</a> but store numbers, text or booleans (on/off flags) individually for each <a class="extern" href="instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a>. This makes them ideal for things like health counters in a game, since each instance tracks its own value. Instance variables are added to object types with the <strong>Object Instance Variables dialog</strong>, and the initial values for each instance can be set from the <a class="extern" href="../../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>.</p>
+<p><a class="extern" href="https://editor.construct.net/#open=instance-variables" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of instance variables.</a></p>
+<p>Instance variables can also be used to help control instances independently of each other. For example, a Boolean instance variable could be used to determine if an enemy is hunting down the player (<em>true</em>) or running away (<em>false</em>). If instances all have different values, the condition <em>Is boolean instance variable set</em> can be used to apply actions to enemies hunting down the player. Inverting the condition (picking instances with the value being <em>false</em>) can then be used to apply actions to enemies running away. The end result is a number of instances of the same object type acting independently: some chasing and others running away. This is a simple example - much more complex methods can be made using multiple instance variables. In other words, an instance's <em>state</em> can be controlled using instance variables.</p>
+<p>Instance variables can also be added to <a class="extern" href="families.html" rel="noopener" target="_blank" title="Make your own games">Families</a> <span class="ilTag c2">Paid plans only</span>. All the object types in the family then <em>inherit</em> the instance variable.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Autocompleting string instance variables</h2>
+<p>When using string instance variables, Construct will offer to autocomplete the instance variable with other strings it is referenced with in both event sheets and properties. The autocomplete options will appear in both the <a class="extern" href="../../interface/dialogs/parameters.html" rel="noopener" target="_blank" title="Make your own games">Parameters Dialog</a> (after typing the first <code>"</code> character) and the Properties Bar.</p>
+<p>This is useful for string instance variables that represent a fixed set of states, such as "idle", "searching" and "attacking". If your event sheets or properties reference a set of strings like this, then they will be offered for autocomplete in properties and parameters, helping show the list of available strings and avoiding typos from re-entering the values.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

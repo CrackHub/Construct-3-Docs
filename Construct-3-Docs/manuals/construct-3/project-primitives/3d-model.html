@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/3d-model" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                3D Model
+            </h1>
+<div itemprop="articleBody">
+<p><strong>3D model objects</strong> are created after importing a <strong>.gltf</strong> or <strong>.glb</strong> model file and act as data containers which are later used by a <a class="extern" href="../plugin-reference/3d-model.html" rel="noopener" target="_blank" title="Make your own games">3D model plugin</a> <a class="extern" href="objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> to display it in a <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>.</p>
+<h3>Importing 3D model files</h3>
+<p>From the context menu of the <strong>3D Models</strong> <a class="extern" href="projects.html" rel="noopener" target="_blank" title="Make your own games">project</a> folder in the <a class="extern" href="../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> choose one of the following options:</p>
+<ul class="list">
+<li><strong><span class="navWrap">Import<span class="arr">►</span>From folder</span>:</strong> Use this option when loading a <strong>.gltf</strong> or <strong>.glb</strong> file which has external references. All external reference files used should exist in the same folder the main model file is. If there is more than one model file in the selected folder, an intermediate dialog will appear to choose the model file that should be loaded.</li>
+<li><strong><span class="navWrap">Import<span class="arr">►</span>From file</span>:</strong> Use this option to import self contained <strong>.gltf</strong> or <strong>.glb</strong> files. Self contained model files are ones which don't reference external files and instead have all necessary information embedded.</li>
+</ul>
+<h4>Drag &amp; drop</h4>
+<ul class="list">
+<li>Drop a self-contained <strong>3D model</strong> file <em>(.glb or .gltf)</em> into the Layout View. This will import the model into the 3D model Project Bar folder, create an <a class="extern" href="objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object type</a> and create an <a class="extern" href="objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> in the Layout View.</li>
+<li>After using one of the methods that only imports a model into the 3D model Project Bar folder, drag it from the Project Bar into the Layout View to create an object type and create an instance in the Layout View.</li>
+</ul>
+<div class="hr"></div>
+<div class="hr"></div>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>3D model properties</h2>
+<dl class="sans">
+<dt>Name</dt>
+<dd>The name of the 3D model. Used to reference the model elsewhere.</dd>
+<dt>Data</dt>
+<dd>Only relevant in the <a class="extern" href="../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>, click it to import different model data in an existing 3D model object.</dd>
+<dt>Textures</dt>
+<dd>Only relevant in the Properties Bar, click to open the <a class="extern" href="../interface/animations-editor.html" rel="noopener" target="_blank" title="Make your own games">Animations Editor</a> to edit the textures used by the model. The Animations Editor can also be opened by double clicking in the 3D model item in the project bar or by double clicking on the 3D model plugin instance using the 3D model object.</dd>
+<dt>Offset</dt>
+<dd>A default offset applied to all 3D model plugin instances that use the 3D model object.</dd>
+<dt>Rotation</dt>
+<dd>A default rotation applied to all 3D model plugin instances that use the 3D model object.</dd>
+<dt>Scale</dt>
+<dd>A default scale applied to all 3D model plugin instances that use the 3D model object.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/iobjectclass" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Object class script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IObjectClass</code> script interface represents an object class in the project, which can be either an object type or a family. It is the base class for both <a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> and <a class="extern" href="ifamily.html" rel="noopener" target="_blank" title="Make your own games">IFamily</a>.</p>
+<p>For the most part, object types and families work the same and can be treated equally, hence most APIs being available on the <code>IObjectClass</code> base class. However there are some differences, such as only being able to create an instance of a specific object type, hence the <code>createInstance()</code> method only being available for <code>IObjectType</code>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Getting an IObjectClass</h2>
+<p>References to the project's object classes are typically accessed through the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> interface <code>objects</code> property. This covers both object types and families, hence everything under that property is an <code>IObjectClass</code>. For example <code>runtime.objects.Sprite</code> would refer to the <code>IObjectType</code> interface for the <em>Sprite</em> object type, and <code>runtime.objects.Family1</code> would refer to the <code>IFamily</code> interface for the family <em>Family1</em>, assuming they were added to the project.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Object class events</h2>
+<p>The following events can be listened for using the <code>addEventListener</code> method.</p>
+<dl class="sans">
+<dt>"instancecreate"</dt>
+<dd>Fired whenever a new instance belonging to this object class is created. The event object has an <code>instance</code> property referring to the <a class="extern" href="iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> (or derivative) that was created.</dd>
+<dt>"hierarchyready"</dt>
+<dd>Fired for the root instance in a hierarchy after all instances have finished creating - see the <a class="extern" href="iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> event for more details. When fired on an IObjectClass, the event object has an <code>instance</code> property referring to the <a class="extern" href="iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> (or derivative) that was created.</dd>
+<dt>"instancedestroy"</dt>
+<dd>Fired whenever any instance belonging to this object class is destroyed. After this event, all references to the instance are now invalid, so any remaining references to the instance should be removed or cleared to <code>null</code> in this event. Accessing an instance after it is destroyed will throw exceptions or return invalid data. The event object has an <code>instance</code> property referring to the <a class="extern" href="iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> (or derivative) that was destroyed. It also has an <code>isEndingLayout</code> property to indicate if the object is being destroyed because it's the end of a layout, or destroyed for other reasons.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Object class APIs</h2>
+<dl>
+<dt>runtime</dt>
+<dd>A reference back to the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> interface.</dd>
+<dt>plugin</dt>
+<dd>A reference to the <a class="extern" href="iplugin.html" rel="noopener" target="_blank" title="Make your own games">IPlugin</a> interface (or derivative) this object class was created from.</dd>
+<dt>name</dt>
+<dd>A read-only string of the object class's name.</dd>
+<dt>addEventListener(eventName, callback)</dt>
+<dt>removeEventListener(eventName, callback)</dt>
+<dd>Add or remove a callback function for an event. See <em>Object class events</em> above for more information.</dd>
+<dt>getAllInstances()</dt>
+<dd>Return an array of all instances of this object class.</dd>
+<dt>getFirstInstance()</dt>
+<dd>Return the first instance in the array returned by <code>getAllInstances()</code>, or <code>null</code> if no instances exist.</dd>
+<dt>*instances()</dt>
+<dd>Iterates over all the object class's instances.</dd>
+<dt>getPickedInstances()</dt>
+<dd>Return an array of instances that have been picked by the event's conditions. This is only useful with scripts in event sheets.</dd>
+<dt>getFirstPickedInstance()</dt>
+<dd>Return the first instance that has been picked by the event's conditions, or <code>null</code> if none. This is only useful with scripts in event sheets.</dd>
+<dt>*pickedInstances()</dt>
+<dd>Iterates over the instances that have been picked by the event's conditions. This is only useful with scripts in event sheets.</dd>
+<dt>getPairedInstance(inst)</dt>
+<dd>Get an instance of this object class at the same index (IID) as the given instance. If there are fewer instances of this object class than the given instance's object class, the index is allowed to wrap around. This allows identifying the same instance that the event system would pair with the given instance.</dd>
+<dt>callCustomAction(name, instances, ...params)</dt>
+<dd>Call one of this object class's custom actions in an event sheet by a case-insensitive string of its name. <code>instances</code> is an iterable (such as an array or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a>) of instances of the object class that will be picked when the custom action runs (since custom actions may run with multiple instances picked).  At least one instance must be provided, and all instances must belong to either the object type or family. Each subsequent parameter is passed to the custom action. There must be at least as many parameters as the custom action uses, although any additional parameters will be ignored.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

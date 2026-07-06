@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/custom-actions" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Custom actions
+            </h1>
+<div itemprop="articleBody">
+<p><strong>Custom actions</strong> are special kinds of event blocks that can be called from an action in an associated <a class="extern" href="../objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object type</a> or <a class="extern" href="../objects/families.html" rel="noopener" target="_blank" title="Make your own games">family</a>. They work similarly to <a class="extern" href="functions.html" rel="noopener" target="_blank" title="Make your own games">functions</a>, so it is useful to understand how functions work first before reading about custom actions.</p>
+<p>Using custom actions can help you organize event sheets and avoid having to duplicate groups of actions or events. Custom actions also have more advanced uses when added to families, allowing for members of the family to override or extend a family custom action.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Adding custom actions</h2>
+<p>In the event sheet, custom actions are created by adding a special kind of event block. To create one, use the <em>Add custom action</em> menu option instead of <em>Add event</em>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/96687/add-custom-action-menu.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 431x391px in new window (17.26 KB)"><span><img height="260" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/96687/add-custom-action-menu_v290.png" width="287"/></span></a></div></div>
+<p>When you select this the <a class="extern" href="../../interface/dialogs/custom-action.html" rel="noopener" target="_blank" title="Make your own games">Add custom action</a> dialog will appear for you to fill in details about the custom action. Once created, the custom action appears in the event sheet similar to a normal event, but with a special icon and descriptive text at the top. This is referred to as the <em>custom action block</em>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/96695/custom-action-block.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1050x64px in new window (9.01 KB)"><span><img height="49" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/96695/custom-action-block_v800.png" width="800"/></span></a></div></div>
+<p>You can add <a class="extern" href="conditions.html" rel="noopener" target="_blank" title="Make your own games">conditions</a>, <a class="extern" href="actions.html" rel="noopener" target="_blank" title="Make your own games">actions</a> and <a class="extern" href="sub-events.html" rel="noopener" target="_blank" title="Make your own games">sub-events</a> to custom action blocks, just like you can with normal events. However custom actions do not run unless you run them as an action in its associated object type or family. Once you've added a custom action block to your project, it will appear in the <a class="extern" href="../../interface/dialogs/add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add action dialog</a> alongside all the other object type or family's usual actions.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/96696/custom-action-in-list.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1224x622px in new window (47.57 KB)"><span><img height="311" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/96696/custom-action-in-list_v650.png" width="612"/></span></a></div></div>
+<p>Choosing the custom action from the <em>Add action</em> dialog adds an action that calls (runs) the associated custom action block.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/96698/run-custom-action.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 949x106px in new window (14.21 KB)"><span><img height="89" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/96698/run-custom-action_v800.png" width="800"/></span></a></div></div>
+<p>Running the custom action action will run the corresponding custom action block, including testing its conditions, running actions, and running any sub-events, and then return to the original action and continue from where it left off.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Parameters</h2>
+<p>Much like functions, custom actions can also use parameters. Since these work the same as with functions, refer to the section on <em>Parameters</em> in the <a class="extern" href="functions.html" rel="noopener" target="_blank" title="Make your own games">Functions manual entry</a> for more details.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Picking</h2>
+<p>When running a custom action, the custom action block is run with the same instances picked as the calling event block. For example this means running a custom action in a <em>On object clicked</em> trigger will run the custom action block with just the clicked instance picked. This means custom actions automatically alter just the picked instances, much like normal actions. However when the custom action block finishes running, any changes to the picked instances it made are discarded, so it does not affect the running of the original event that called it.</p>
+<p>The <em>Copy all picked</em> setting of the custom action block can alter how this works. Normally only instances of the custom action block's object are automatically picked. However if <em>Copy all picked</em> is checked, the custom action block will inherit <em>all</em> picked instances from the calling event block - including other object types and families. This makes it work similarly to a <a class="extern" href="functions.html" rel="noopener" target="_blank" title="Make your own games">function</a> with <em>Copy picked</em> enabled.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Asynchronous custom actions</h2>
+<p>Much like functions, custom actions can also be made asynchronous, so they can be used with the system <em>Wait for previous actions to complete</em> action. Since this feature works the same as with functions, refer to the section on <em>Asynchronous functions</em> in the <a class="extern" href="functions.html" rel="noopener" target="_blank" title="Make your own games">Functions manual entry</a> for more details.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Family custom actions</h2>
+<p>A custom action can be created for a <a class="extern" href="../objects/families.html" rel="noopener" target="_blank" title="Make your own games">family</a>. This allows some more advanced uses of custom actions.</p>
+<p>Much like with inheriting family instance variables, behaviors and effects, family custom actions can also be used as actions for every object type in the family. This allows every member of the family to share the same custom action.</p>
+<h3>Overrides</h3>
+<p>When a family has a custom action, it's still possible to create a custom action with the same name for a specific object type in that family. In that case, the object type's custom action <em>overrides</em> the family custom action.</p>
+<p>For example suppose there are three sprite object types named <em>Piggy</em>, <em>Octopus</em> and <em>Monkey</em> in a family named <em>Animals</em>, and there is a custom action named <em>PlayAnimation</em> for the family <em>Animals</em>. A custom action named <em>PlayAnimation</em> can also be added for <em>Monkey</em>. Then when running the family custom action <em>PlayAnimation</em>, the family custom action block will run for <em>Piggy</em> and <em>Octopus</em> instances, but the <em>Monkey</em> custom action block will run instead for <em>Monkey</em> instances.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/96700/custom-action-override.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1359x462px in new window (82.41 KB)"><span><img height="231" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/96700/custom-action-override_v700.png" width="680"/></span></a></div></div>
+<p>This allows specific object types in the family to override what a custom action will do for instances of that object type.</p>
+<h3>Choosing overrides</h3>
+<p>Consider the previous example with the <em>Monkey</em> object type having an override for the family custom action <em>PlayAnimation</em>. In this case, the action list for <em>Monkey</em> includes both actions, listing <em>PlayAnimation (Monkey)</em> and <em>PlayAnimation (Animals)</em>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/96701/custom-action-override.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1224x494px in new window (47.06 KB)"><span><img height="247" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/96701/custom-action-override_v650.png" width="612"/></span></a></div></div>
+<p>This allows choosing which custom action is run: the <em>Monkey</em> variant will run the override custom action for <em>Monkey</em>, and the <em>Animals</em> variant will run the original family custom action ignoring the override. This allows you to explicitly choose whether to run the override or the original family custom action for the <em>Monkey</em> object type.</p>
+<h3>Extending a family custom action</h3>
+<p>By default, an override custom action will entirely replace the family custom action. However it's also possible to make it <em>extend</em> what the family custom does. This can be done by using the ability to choose overrides to add an action to the override custom action block that calls the original family custom action block. (In programming languages, this is sometimes referred to as a "super" call.)</p>
+<p>Continuing the previous example, the <em>Monkey</em> custom action block can add a <em>Monkey</em> action to run <em>PlayAnimation (Animals)</em>, which is the original family custom action.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/96702/custom-action-super-call.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1362x333px in new window (58.51 KB)"><span><img height="166" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/96702/custom-action-super-call_v700.png" width="681"/></span></a></div></div>
+<p>Therefore when running the <em>Monkey</em> custom action override, it will first do the original family custom action, and then do its own actions after that. This allows extending what the family custom action does to do additional things for specific members of the family, rather than completely replacing the custom action.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

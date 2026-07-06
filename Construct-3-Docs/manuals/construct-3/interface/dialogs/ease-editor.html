@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/dialogs/ease-editor" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Ease editor
+            </h1>
+<div itemprop="articleBody">
+<p>This editor enables the possibility of creating custom ease functions to be used with <a class="extern" href="../../project-primitives/timelines.html" rel="noopener" target="_blank" title="Make your own games">timelines </a>and <a class="extern" href="../../behavior-reference/tween.html" rel="noopener" target="_blank" title="Make your own games">tweens</a>. This is a little bit of extra work when compared to the built in ease functions, but it makes it possible to customize your timeline animations and tweens even further.</p>
+<p>The most basic use is that of a cubic curve with a beginning, end and anchor points. This allows variations on all the basic ease functions (e.g. Sinusoidal, Back etc). It is also possible to add additional points in the middle of the curve to create variations of the more complex curves (e.g. Bounce, Elastic). Of course it is also possible to create completely original curves by using multiple points.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/118234/update000.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1064x657px in new window (22.61 KB)"><span><img height="494" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/118234/update000_v800.png" width="800"/></span></a></div></div>
+<div class="hr"></div>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Using the ease editor</h2>
+<dl class="sans"></dl>
+<p>Here is a short summary on how to create eases, use the ease editor and finally apply a custom ease.</p>
+<h3><span class="headerStep">Step 1:</span> Create a custom ease</h3>
+<dl class="sans"></dl>
+<p>Right-click <strong>Eases</strong> folder in the <a class="extern" href="../bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> and select <em>Add ease</em>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/28577/add.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 284x144px in new window (6.22 KB)"><span><img height="144" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/28577/add.png" width="284"/></span></a></div></div>
+<h3><span class="headerStep">Step 2:</span> Open the editor</h3>
+<dl class="sans"></dl>
+<p>Right-click on the newly created ease element under the <strong>Eases</strong> folder, then select the <em>Open </em>option or Double-click the ease element in the Project Bar.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/28578/open.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 243x188px in new window (7.2 KB)"><span><img height="188" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/28578/open.png" width="243"/></span></a></div></div>
+<h3><span class="headerStep">Step 3:</span> Make changes</h3>
+<dl class="sans"></dl>
+<p>With the ease editor open, you can make changes to the curve by dragging the colored handles. The default ease has four points, the start and end points (yellow squares) and the two anchor points (green and red squares). In any ease it is not possible to change the position of the start and end points. This means that with the default curve you will only be able to move the anchor points.</p>
+<p>If more ease keyframes are added in the middle of the curve, it is possible to move those.</p>
+<p>There are some limitations to the position the anchor points can take in relation to the main points, but those will be covered later.</p>
+<p>The default ease will be something similar to the built in <strong>In Out Sinusoidal</strong> ease function.</p>
+<h3><span class="headerStep">Step 4:</span> Use the custom ease</h3>
+<dl class="sans"></dl>
+<p>Once a custom ease is complete, it can be used in any of the places the built in eases are available. The names of the custom eases will appear after the names of the built in ease functions in all the relevant places. These include the <a class="extern" href="../bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>, <a class="extern" href="../bars/timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a> and <a class="extern" href="../../behavior-reference/tween.html" rel="noopener" target="_blank" title="Make your own games">Tween behavior</a>.</p>
+<div class="hr"></div>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Interface</h2>
+<h3>Handles</h3>
+<p>The different handles are the main method to edit the ease function.</p>
+<ul class="list">
+<li><strong>Main Handle:</strong> The main points, or keyframes of the curve are represented by yellow squares. This points are positions the curve must include. More points can be added to the curve to edit how it looks like. Depending on the <em>"Purpose"</em> of the curve the starting point and ending point might not be editable.</li>
+<li><strong>Anchor Handle:</strong> The anchor points of the curve, represented by green and red squares. Each pair of main points has two anchor points in between them. The first anchor point of a sub section of a curve will always be green, while the second anchor point will always be red. Anchor points can never go outside the range defined by the two main points that contain them. Dragging the main handles will force anchor handles out of their previous position to keep the previously mentioned condition.</li>
+</ul>
+<h3>Colored Lines</h3>
+<p>These are the main visual aid to understand how the curve will behave when it is used.</p>
+<ul class="list">
+<li><strong>Green line:</strong> The green line represents the ease function itself.
+
+The closer it is to the red line, the closer the timeline or tween using the ease will be to the initial value. Going bellow the red line means the animation using the ease will be going past the starting value, an example of this is the <strong>In Back</strong> built in ease.
+
+The closer it is to the blue line, the closer the timeline or tween using the ease will be to the ending value. Going above the blue line means the animation using the ease will be going past the ending value, an example of this is the <strong>Out Back</strong> built in ease. 
+	</li>
+<li><strong>Red line:</strong> Represents the starting value of the ease.
+	</li>
+<li><strong>Blue line:</strong> Represents the ending value of the ease.
+	</li>
+</ul>
+<h3>Horizontal and vertical axis</h3>
+<p>Each axis of the graph shown by the editor has a meaning that will help you to better understand what the ease function will be doing.</p>
+<ul class="list">
+<li><strong>Horizontal axis:</strong> This axis represents time. The further along the axis, the closer the animation using the ease is to finishing. The marker numbers are there to help identify what the ease will be doing at 25%, 50% and 75% completion. 
+	</li>
+<li><strong>Vertical axis:</strong> This represents the value the ease will produce. 0% is the starting value of the timeline or tween using the ease, while 100% represents the ending value.
+	</li>
+</ul>
+<p>The image bellow shows a custom ease, with multiple keyframes as well as their corresponding anchor points.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/118235/update001.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1064x658px in new window (28.38 KB)"><span><img height="495" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/118235/update001_v800.png" width="800"/></span></a></div></div>
+<div class="hr"></div>
+<h3>Context Menu</h3>
+<p>There are two options available in the context menu.</p>
+<ul class="list">
+<li><strong>Add ease keyframe:</strong> Add a new keyframe to the curve.</li>
+<li><strong>Delete ease keyframe:</strong> Remove an existing keyframe from the curve. The first and last keyframes can not be deleted.</li>
+<li><strong>Invert ease:</strong> Invert all the keyframes in the ease to produce the opposite ease.</li>
+<li><strong>Toggle linear and cubic:</strong> Toggle between a cubic ease and a linear ease.</li>
+<li><strong>Make segment linear:</strong> Toggle the <em>"Segment"</em> property of a keyframe to make the corresponding segment a linear transition.</li>
+<li><strong>Make segment cubic:</strong> Toggle the <em>"Segment"</em> property of a keyframe to make the corresponding segment a cubic transition.</li>
+</ul>
+<h3>Toolbar</h3>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/118236/update002.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1065x35px in new window (5.18 KB)"><span><img height="26" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/118236/update002_v800.png" width="800"/></span></a></div></div>
+<p>The toolbar at the top shows a few useful fields and buttons:</p>
+<ul class="list">
+<li><strong>Name:</strong> Change the name of the ease.</li>
+<li><strong>Purpose:</strong> This property can take the values of <em>"Any"</em> or <em>"Expressions only"</em> and affects how the ease can be edited.</li>
+<li><strong>Position:</strong> The inputs show the position of the last handle that was clicked on. Useful to make more precise adjustments that what is possible by dragging with a pointer device.</li>
+<li><strong>Segment:</strong> This property is keyframe specific and can take the values of <em>"Linear"</em> or <em>"Cubic"</em>. It affect how the ease behaves from the point where a keyframe is until the next one.</li>
+<li><strong>Undo:</strong> Works like elsewhere in the application.</li>
+<li><strong>Invert ease:</strong> Invert all the keyframes in the ease to produce the opposite ease.</li>
+<li><strong>Toggle linear and cubic:</strong> Toggle between a cubic ease and a linear ease.</li>
+<li><strong>Zoom:</strong> Works like elsewhere in the application </li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Editing built-in eases</h2>
+<p>When the ease editor is opened from the common <strong>Ease editor</strong> property of a <a class="extern" href="../../project-primitives/timelines.html" rel="noopener" target="_blank" title="Make your own games">Timeline element</a>, the editor can be opened showing a built-in ease.</p>
+<p>In this case a new custom ease is created to look just like the corresponding built-in ease, it is also given a unique name and can be edited normally.</p>
+<p>After closing the editor, if any meaningful changes where made, the new custom ease is added to the project and assigned to the corresponding timeline element. If no meaningful change was made after the editor is closed, everything is discarded.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>The special "Default" ease value</h2>
+<p>In the case of opening the editor from a timeline element which is using the special <em>"Default"</em> value the <strong>Ease</strong> property can take, C3 will look up the corresponding timeline's inheritance structure for a concrete ease value to use, be it custom or a built-in one.</p>
+<p>After closing the editor, any changes are applied to the timeline element which had the real ease, rather than the element which was using the special <em>"Default"</em> value.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>The "Purpose" property</h2>
+<p>As mentioned earlier, this property can take the following values: </p>
+<dl class="sans">
+<dt>Any</dt>
+<dd>Can be used anywhere where custom eases are supported. Their first and last keyframes can not be edited at all, that means the ease is bounded to <strong>start at a value of 0</strong> and <strong>end at a value of 1</strong>.</dd>
+<dt>Expressions only</dt>
+<dd>Can only be used as argument in expressions that support providing a custom ease, such as the <strong>Ease</strong> expression of the <a class="extern" href="../../plugin-reference/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline Controller</a> plugin. This purpose allows to edit the first and last keyframes of the ease, allowing it to <strong>start at values different from 0</strong> and <strong>end in values different from 1</strong>.</dd>
+</dl>
+<div class="hr"></div>
+<p>If a custom ease is already used in a place which expects it to have the <strong>"Any"</strong> purpose, such as <a class="extern" href="../../behavior-reference/tween.html" rel="noopener" target="_blank" title="Make your own games">Tweens</a>, then the property will not be able to be changed. The same goes if it is already used in a place which expects the <strong>"Expressions only"</strong> prupose.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/spritefont" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                SpriteFont script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISpriteFontInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/sprite-font.html" rel="noopener" target="_blank" title="Make your own games">Sprite font plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>SpriteFont APIs</h2>
+<dl>
+<dt>text</dt>
+<dd>The string currently displayed by the Sprite Font object.</dd>
+<dt>typewriterText(str, duration)</dt>
+<dd>Set the text over time by starting with an empty string and gradually adding characters until the full text of <code>str</code> is written out, over a <code>duration</code> specified in seconds. Note modifying the <code>text</code> property while text is being written out will cancel the effect.</dd>
+<dt>typewriterFinish()</dt>
+<dd>If text is being written out with the <code>typewriterText()</code> method, force it to finish immediately.</dd>
+<dt>characterScale</dt>
+<dd>The current text scale, defaulting to 1 for normal scale.</dd>
+<dt>characterSpacing</dt>
+<dd>The extra space in pixels to add horizontally between characters.</dd>
+<dt>lineHeight</dt>
+<dd>The extra space in pixels to add vertically between lines. 0 is the default size, negative values make lines closer together, and positive values space lines out further apart.</dd>
+<dt>horizontalAlign</dt>
+<dd>A string specifying the horizontal alignment of the text within the object bounding box, which must be one of <code>"left"</code>, <code>"center"</code> or <code>"right"</code>.</dd>
+<dt>verticalAlign</dt>
+<dd>A string specifying the vertical alignment of the text within the object bounding box, which must be one of <code>"top"</code>, <code>"center"</code> or <code>"bottom"</code>.</dd>
+<dt>wordWrapMode</dt>
+<dd>A string specifying the way to wrap text when it reaches the end of a line. This can be either <code>"word"</code> to wrap entire space-separated words, <code>"character"</code> to wrap at any character, or <code>"cjk"</code> to wrap at any character but with special handling for Chinese, Japanese and Korean punctuation.</dd>
+<dt>textWidth</dt>
+<dt>textHeight</dt>
+<dt>getTextSize()</dt>
+<dd>Read-only values indicating the size of the actual text content within the Sprite Font object's rectangle. The method allows getting both values at the same time.</dd>
+<dt>hasTagAtPosition(tag, x, y)</dt>
+<dd>Return a boolean indicating if there is text with a specific tag at the given position (case insensitive). For example if the text has the BBcode <code>Hello [tag=mytag]world[/tag]</code>, then testing if the tag "mytag" is at a given position return <code>true</code> if that position is over just the part of the text that says "world", else <code>false</code>.</dd>
+<dt>getTagAtPosition(x, y)</dt>
+<dd>Look up the tag for a part of the text at a given position and return the tag if any, else return an empty string if no tag is specified. For example if the text has the BBcode <code>Hello [tag=mytag]world[/tag]</code>, then the tag at a position over the word "world" is "mytag", and the tag at a position over the word "Hello" is "".</dd>
+<dt>getTagCount(tag)</dt>
+<dt>getTagPositionAndSize(tag, index)</dt>
+<dd>Get the number of fragments, and the size and position of each fragment by its zero-based index, for a given tag. Note that a single tag may be broken in to multiple fragments - see the section <em>Tagged range fragmentation</em> in the <a class="extern" href="../../../plugin-reference/text.html" rel="noopener" target="_blank" title="Make your own games">Text object manual entry</a> for more details (which applies equally to SpriteFonts). The <code>getTagPositionAndSize()</code> method returns the position and size as an object with the properties <code>{x, y, width, height}</code>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

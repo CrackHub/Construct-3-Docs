@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/debugger/profile-tab" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The debugger 'CPU profiler' tab
+            </h1>
+<div itemprop="articleBody">
+<p><span class="ilTag c2">Paid plans only</span> The <strong>CPU profiler</strong> tab provides a more detailed breakdown of the estimated CPU usage. The project must be running continuously for the profiler to be able to collect and display information. It then displays a breakdown of the estimated CPU time spent in each part of the project logic. It updates once a second and the values shown are for the previous second only.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/10079/cpu-profiler.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 508x270px in new window (10.01 KB)"><span><img alt="The CPU profiler tab displaying some results" height="270" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/10079/cpu-profiler.png" width="508"/></span></a><span class="descrip">The CPU profiler tab displaying some results</span></div></div>
+<p>It must be noted that the overall CPU usage is an estimate to begin with, and all other values are therefore estimates as well. The details shown in the profiler only relate to the main JavaScript thread, and the CPU could be busy with other tasks, such as processing audio or running pathfinding calculations. Additionally the time for the GPU to render the project is not taken in to account at all by the profiler (and is instead covered in the GPU profiler tab).</p>
+<p>Despite the above caveats, the profiler can be used to identify "hot spots" which would be good candidates to attempt to optimise first if there is a performance problem. For more performance advice, see <a class="extern" href="../../tips-and-guides/performance-tips.html" rel="noopener" target="_blank" title="Make your own games">Performance Tips</a>. Note that optimisation is often not necessary and is a waste of time if the project is already running fast enough. For a deeper discussion of the subject, see the blog post <a class="extern" href="https://www.construct.net/blogs/construct-official-blog-1/optimisation-dont-waste-time-768.html" rel="noopener" target="_blank" title="Make your own games">Optimisation: don't waste your time</a>.</p>
+<h3>Profiler breakdown</h3>
+<p>The profiler shows a table identifying how much CPU time has been spent in each part of the engine, down to individual event groups. It shows both the <strong>Self time</strong>, which is the time spent in just that item, as well as the <strong>Total time</strong>, which is the self time plus the time for any sub-items. The total time is mainly applicable for events, since it shows how much time was spent in that item <em>and</em> all its sub-items. For example an event group's self time is the time spent processing the group excluding any sub-groups, and its total time is the time spent processing the group including any sub-groups. By default the table is sorted showing the highest self time at the top, which is normally the best way to identify what needs to be optimised. However you can click the table headers to sort by total time instead.</p>
+<p>The top-level items are:</p>
+<ul class="list">
+<li><strong>Events:</strong> a breakdown of how much time was spent running event logic in the event sheets used by the layout. This is first broken down in to each event sheet (in case includes were used), and then further down in to groups and nested groups of events. This can help identify the most CPU-intensive events which you may want to optimise.
+<strong>Note:</strong> this category includes time spent running scripts in events.</li>
+<li><strong>Triggers:</strong> some triggers, like <em>On mouse clicked</em>, run outside the normal event processing that happens every tick. These are not covered in the <em>Events</em> section, so are included under this item instead.
+<strong>Note:</strong> this category includes time spent running scripts in triggered events.</li>
+<li><strong>Scripts:</strong> how much time was spent running <a class="extern" href="../../scripting/overview.html" rel="noopener" target="_blank" title="Make your own games">scripts in your project</a>. This only covers script files - scripts in events are measured under the <em>Events</em> and <em>Triggers</em> categories. <strong>Note:</strong> only the time spent in synchronous event callbacks from the engine can be counted. Construct cannot definitively attribute other time spent running your scripts to this category, such as asynchronous code or callbacks outside of the Construct engine. For example code that runs synchronously in the <code>"tick"</code> event is counted here. However code after an <code>await</code>, or in a <code>setTimeout</code> callback, is not attributed to this category, because Construct is unable to attribute the time spent running script in those cases. It will either be counted under the <em>Engine / Other</em> category, or may not be counted by the CPU profiler at all. If you use this type of code heavily, rely on the profiler in browser's developer tools instead.</li>
+<li><strong>Plugin processing:</strong> how much time was spent updating plugins in the engine. Many plugins require a small amount of work to update them every tick, such as for Sprite to advance animations. If there are a large number of instances, this amount of work can become significant. The CPU profiler can also break down this time per plugin to help identify which objects might be contributing most to the plugin processing time.</li>
+<li><strong>Behavior processing:</strong> how much time was spent updating behaviors in the engine. Many behaviors require some work every tick to process movement, collisions and so on. If there are a large number of instances, this amount of work can become significant. The CPU profiler can also break down this time per behavior to help identify which objects might be contributing most to the behavior processing time. In particular the Physics behavior is often CPU-intensive as it must run a physics simulation.</li>
+<li><strong>Tweens / Timelines:</strong> how much time was spent updating currently running tweens and timelines in the project. This is not normally significant unless you have very large numbers of instances running tweens or timelines. </li>
+<li><strong>Draw calls:</strong> how long it took the CPU to issue rendering calls, <em>not including</em> the time for the GPU to complete them. In some cases, rendering calls can be quite CPU intensive, especially when very large numbers of objects are on-screen. Some browsers also forward all draw calls to another thread to be processed in parallel, in which case the <em>Draw calls</em> measurement will likely be an underestimate.</li>
+<li><strong>Engine / Other:</strong> the remaining time spent in Construct's runtime engine, which is the overall estimated CPU with the events, scripts, plugin/behavior processing, and draw calls times subtracted away. This covers the general runtime overhead. It sometimes also includes time spent running scripts in your project - see the <em>Scripts</em> category description for more details.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

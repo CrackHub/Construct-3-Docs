@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/timeline-bar/context-menus" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Context menus
+            </h1>
+<div itemprop="articleBody">
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Elements context menus</h2>
+<p>All the <a class="extern" href="../../../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timeline</a> elements have context menu options that will come up by right-clicking on them. </p>
+<p>Right-clicking on any part of the <a class="extern" href="../timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a> which does not reference any particular element, such as the section showing the name of the current timeline or the time ruler, will bring up a menu with options that affect the timeline itself, rather than any of its elements.</p>
+<p>Here is a list with all the available options for each element. The more obvious ones such as <strong>Delete</strong> are not be described.</p>
+<ul class="list">
+<li><strong>Timeline:</strong>
+<ul class="list">
+<li><strong><span class="navWrap">Timeline<span class="arr">►</span>Add timelines</span></strong> Bring up a dialog to add nested timelines to the root of the current timeline.</li>
+<li><strong><span class="navWrap">Timeline<span class="arr">►</span>Add subfolder</span></strong> Add a <a class="extern" href="../../../project-primitives/timelines/timeline-folder.html" rel="noopener" target="_blank" title="Make your own games">timeline folder</a> to the root of the current timeline.</li>
+<li><strong><span class="navWrap">Track<span class="arr">►</span>Add instances</span></strong> Bring up a dialog to add <a class="extern" href="../../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a> that don't already belong to the current timeline.</li>
+<li><strong><span class="navWrap">Track<span class="arr">►</span>Add value</span></strong> Add a <a class="extern" href="../../../project-primitives/timelines/track/value-track.html" rel="noopener" target="_blank" title="Make your own games">value track</a> to the root of the current timeline.</li>
+<li><strong><span class="navWrap">Track<span class="arr">►</span>Add audio</span></strong> Add an <a class="extern" href="../../../project-primitives/timelines/track/audio-track.html" rel="noopener" target="_blank" title="Make your own games">audio track</a> to the root of the current timeline.</li>
+<li><strong><span class="navWrap">Track<span class="arr">►</span>Add subfolder</span></strong> Add a <a class="extern" href="../../../project-primitives/timelines/track-folder.html" rel="noopener" target="_blank" title="Make your own games">track folder</a> at the root of the current timeline.</li>
+<li><strong>Delete:</strong> Only shown for nested timelines. Deletes the timeline from the parent, but not from the project.</li>
+<li><strong>Focus:</strong> Only shown for nested timelines. Gives focus to the timeline in the nested structure.</li>
+</ul>
+</li>
+<li><strong>Track:</strong>
+<ul class="list">
+<li><strong>Add properties:</strong> Bring up a dialog to manually add empty <a class="extern" href="../../../project-primitives/timelines/property-track.html" rel="noopener" target="_blank" title="Make your own games">property tracks.</a> </li>
+<li><strong>Add subfolder:</strong> Add a <a class="extern" href="https://www.construct.net/make-games/manuals/construct-3/project-primitives/timelines/property-track-folders.html" rel="noopener" target="_blank" title="Make your own games">property track folder</a> to the root of the track.</li>
+<li><strong>Swap instance:</strong> Brings up a dialog from which to choose instances that can be used to replace the existing one.</li>
+<li><strong>Delete</strong></li>
+</ul>
+</li>
+<li><strong>Master keyframe:</strong>
+<ul class="list">
+<li><strong>Update:</strong> Update all the corresponding <a class="extern" href="../../../project-primitives/timelines/property-keyframe.html" rel="noopener" target="_blank" title="Make your own games">property keyframes.</a> </li>
+<li><strong>Disable:</strong> Disable all the corresponding property keyframes.</li>
+<li><strong>Enable:</strong> Enable all the corresponding property keyframes.</li>
+<li><strong>Delete</strong></li>
+<li><strong>Add missing property keyframes:</strong> Add any missing property keyframes under the specified <a class="extern" href="../../../project-primitives/timelines/master-keyframe.html" rel="noopener" target="_blank" title="Make your own games">master keyframe.</a>
+<ul class="list">
+<li><strong>With interpolated values:</strong> The new property keyframes are given the values that the timeline would generate at that point.</li>
+<li><strong>With current values:</strong> The new property keyframes are given the values currently held by the instance.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Track folder:</strong>
+<ul class="list">
+<li><strong>Add instances from selection:</strong> Add all the instances currently selected in the <a class="extern" href="../../layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a> directly as children of the track folder.</li>
+<li><strong>Add instances from dialog:</strong> Bring up a dialog to add instances which are not already part of the timeline, directly as children of the track folder.</li>
+<li><strong>Add subfolder</strong></li>
+<li><strong>Rename</strong></li>
+<li><strong>Delete</strong></li>
+</ul>
+</li>
+<li><strong>Property track:</strong>
+<ul class="list">
+<li><strong>Convert to scale:</strong> Convert width and height property tracks to corresponding scale X and scale Y property tracks.</li>
+<li><strong>Convert all to scale:</strong> Convert all width and height property tracks in a timeline to the corresponding scale X and scale Y property tracks.</li>
+<li><strong>Convert to size:</strong> Convert scale X and scale Y property tracks to corresponding width and height property tracks.</li>
+<li><strong>Convert all to size:</strong> Convert all scale X and scale Y property tracks in a timeline to the corresponding width and height property tracks.</li>
+<li><strong>Delete</strong></li>
+</ul>
+</li>
+<li><strong>Property keyframe:</strong>
+<ul class="list">
+<li><strong>Update:</strong> Update the value of the property keyframe with whatever value the corresponding instance has at the moment.</li>
+<li><strong>Disable:</strong> Disable the property keyframe. A disabled property keyframe is not taken into account when playing the timeline.</li>
+<li><strong>Enable:</strong> Enable the property keyframe.</li>
+<li><strong>Delete</strong></li>
+</ul>
+</li>
+<li><strong>Property track folder:</strong>
+<ul class="list">
+<li><strong>Add properties:</strong> Bring up a dialog to manually add empty property tracks for the corresponding track. The new property tracks are directly added as children of the property track folder.</li>
+<li><strong>Add subfolder</strong></li>
+<li><strong>Rename</strong></li>
+<li><strong>Delete</strong></li>
+</ul>
+</li>
+<li><strong>Timeline folder:</strong>
+<ul class="list">
+<li><strong>Add timelines:</strong> Bring up a dialog to add a nested timelines to the timeline folder.</li>
+<li><strong>Add subfolder</strong></li>
+<li><strong>Rename</strong></li>
+<li><strong>Delete</strong></li>
+</ul>
+</li>
+<li><strong>Common options:</strong>
+<ul class="list">
+<li><strong>Cut:</strong> Cut the current keyframe selection</li>
+<li><strong>Copy:</strong> Copy the current keyframe selection</li>
+<li><strong>Paste:</strong> Paste keyframes using the current time marker as reference. If no tracks are selected at the moment of pasting, the keyframes will be added in their respective tracks. If there are tracks selected at the moment of pasting, an attempt is made to paste the keyframes into the tracks they would fit best. If there are keyframes in the selection which can't be fit anywhere, they are ignored.</li>
+</ul>
+</li>
+</ul>
+<p>There is also the <strong>Set keyframes</strong> option that will show up in any menu provided there is at least a track, track folder, property track or property track folder selected. This will add keyframes at the position of the current time marker with the values the corresponding instances currently have. If there are already keyframes at the current time marker position, they will be updated with the most recent instance values.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Timeline bar context menu</h2>
+<p>Aside from the above options, there are some common options which show up in all menus and are specific to the Timeline Bar itself.</p>
+<ul class="list">
+<li><strong>Timeline:</strong>
+<ul class="list"><li><strong>Add timelines:</strong> Bring up a dialog to add nested timelines to the root of the current timeline.</li>
+<li><strong>Add subfolder:</strong> Add a timeline folder to the root of the current timeline.</li>
+</ul>
+</li>
+<li><strong>Track:</strong>
+<ul class="list"><li><strong>Add instances:</strong> Bring up a dialog to add instances that don't already belong to the current timeline.</li>
+<li><strong>Add value:</strong> Add a <a class="extern" href="../../../project-primitives/timelines/track/value-track.html" rel="noopener" target="_blank" title="Make your own games">value track</a> to the root of the current timeline.</li>
+<li><strong>Add audio:</strong> Add an <a class="extern" href="../../../project-primitives/timelines/track/audio-track.html" rel="noopener" target="_blank" title="Make your own games">audio track</a> to the root of the current timeline.</li>
+<li><strong>Add subfolder:</strong> Add a track folder at the root of the current timeline.</li>
+</ul>
+</li>
+<li><strong>View:</strong>
+<ul class="list">
+<li><strong>Default:</strong> Show the default view of the bar</li>
+<li><strong>Animation modes:</strong> Show the animation mode used by each element of the timeline </li>
+<li><strong>Result modes:</strong> Show the result mode used by each element of the timeline </li>
+<li><strong>Eases:</strong> Show the ease function that are currently in use in between each pair of keyframes</li>
+<li><strong>Path modes:</strong> Show which path mode is in use in between each pair of keyframes</li>
+</ul>
+</li>
+<li><strong>Scale:</strong> Change the zoom level of the bar. This is an editor only setting and will not affect the playback of a timeline.</li>
+</ul>
+<p>The <a class="extern" href="../properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a> also shows most of the above options as properties. This allows you to see at a glance which settings are used all across the timeline, and offers a convenient way to change them as well.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

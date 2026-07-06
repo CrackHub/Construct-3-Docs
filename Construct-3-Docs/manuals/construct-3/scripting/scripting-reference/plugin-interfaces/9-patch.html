@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/9-patch" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                9-patch script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>I9PatchInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/9-patch.html" rel="noopener" target="_blank" title="Make your own games">9-patch plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>9-patch APIs</h2>
+<dl>
+<dt>leftMargin</dt>
+<dt>rightMargin</dt>
+<dt>topMargin</dt>
+<dt>bottomMargin</dt>
+<dd>Set or get the margins of each side of the 9-patch in pixels. Note these margins apply to the source image, ignoring the image scale properties. By default all 9-patch instances share the same set of patch images, and so changing the margins will affect all instances, regardless of which instance was modified. However the exception to this is after the <code>replaceImage()</code> method completes, in which case the instance is using its own unique patch images, and the margins can then be changed for that instance only.</dd>
+<dt>edges</dt>
+<dd>Set or get the style of the edge patches as a string, which must be one of <code>"tile"</code> or <code>"stretch"</code>.</dd>
+<dt>fill</dt>
+<dd>Set or get the style of the central patch as a string, which must be one of <code>"tile"</code>, <code>"stretch"</code> or <code>"transparent"</code>.</dd>
+<dt>seams</dt>
+<dd>Set or get the seams mode as a string, which must be one of <code>"exact"</code> or <code>"overlap"</code>.</dd>
+<dt>imageScaleX</dt>
+<dt>imageScaleY</dt>
+<dd>Set or get the scale of the patches drawn inside the object, as a scale factor (e.g. 1 represents 100% scale).</dd>
+<dt>async replaceImage(blob)</dt>
+<dd>Replace the current image with the contents of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> representing an image file such as a PNG image. The blob can be locally generated or retrieved from a URL, for example:<br/>
+<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Loading an image from a URL</span>
+<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span>url<span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> blob <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> inst<span class="token punctuation">.</span><span class="token function">replaceImage</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span>blob<span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// (adjust margins if necessary here, e.g.:)</span>
+<span class="token comment">// inst.leftMargin = 20;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><br/>
+Once this method has completed (after <code>await</code>, or the Promise resolving), the margins can then be modified for the specific instance without affecting all other instances. Be sure to only modify the margins after the returned promise resolves, otherwise it will still be using the shared patch images and so affect all other instances.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/3d-shape" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                3D shape script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>I3DShapeInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/3d-shape.html" rel="noopener" target="_blank" title="Make your own games">3D shape plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>3D Shape APIs</h2>
+<dl>
+<dt>shape</dt>
+<dd>Set or get a string representing the the current shape being displayed. This must be one of <code>"box"</code>, <code>"prism"</code>, <code>"wedge"</code>, <code>"pyramid"</code>, <code>"corner-out"</code> and <code>"corner-in"</code>.</dd>
+<dt>setFaceVisible(face, visible)</dt>
+<dd>Set whether a face is visible or invisible based on the boolean <em>visible</em>. The <em>face</em> parameter is a string identifying the face which must be one of <code>"back"</code>, <code>"front"</code>, <code>"left"</code>, <code>"right"</code>, <code>"top"</code> and <code>"bottom"</code>.</dd>
+<dt>isFaceVisible(face)</dt>
+<dd>Return a boolean indicating whether a given face is visible. The <em>face</em> parameter is a string identifying the face which must be one of <code>"back"</code>, <code>"front"</code>, <code>"left"</code>, <code>"right"</code>, <code>"top"</code> and <code>"bottom"</code>.</dd>
+<dt>setFaceImage(face, image)</dt>
+<dd>Change one of the shape faces to use one of the other face images. For example this allows swapping the front face image for the back face image. To restore the original image, use the same face for both parameters. Both parameters are strings identifying the face to use, which must be one of <code>"back"</code>, <code>"front"</code>, <code>"left"</code>, <code>"right"</code>, <code>"top"</code> and <code>"bottom"</code>. </dd>
+<dt>setFaceObject(face, objectClass)</dt>
+<dd>Replace the image used for a face of the shape with the image used by a Sprite, Tiled Background or 9-Patch object. An instance of the given object must exist on the current layout. The <em>face</em> parameter is a string identifying the face which must be one of <code>"back"</code>, <code>"front"</code>, <code>"left"</code>, <code>"right"</code>, <code>"top"</code> and <code>"bottom"</code>. The <em>objectClass</em> parameter is an <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> referencing the object to set for the given face. Only Sprite, Tiled Background and 9-Patch object types are supported. </dd>
+<dt>isBackFaceCulling</dt>
+<dd>Set or get a boolean corresponding to the <em>Back face culling</em> property. When enabled, back face culling automatically hides faces of the shape that are pointing away from the camera.</dd>
+<dt>zTilingFactor</dt>
+<dd>Set or get the Z tiling factor property of the 3D shape. For more information, refer to the <a class="extern" href="../../../plugin-reference/3d-shape.html" rel="noopener" target="_blank" title="Make your own games">3D shape plugin manual entry</a>.</dd>
+<dt>getImagePointCount()</dt>
+<dd>Return the number of image points on the back face.</dd>
+<dt>getImagePointX(nameOrIndex)</dt>
+<dt>getImagePointY(nameOrIndex)</dt>
+<dt>getImagePoint(nameOrIndex)</dt>
+<dd>Return the location of an image point on the back face in layout co-ordinates. Image points are identified either by a case-insensitive string of their name, or their index. Note image point 0 is the origin, so index 1 is the first image point. If the image point is not found, this returns the origin instead. The <code>getImagePoint</code> variant returns <code>[x, y]</code>.</dd>
+<dt>getFaceImagePointCount(face)</dt>
+<dt>getFaceImagePointX(face, nameOrIndex)</dt>
+<dt>getFaceImagePointY(face, nameOrIndex)</dt>
+<dt>getFaceImagePointZ(face, nameOrIndex)</dt>
+<dt>getFaceImagePoint(face, nameOrIndex)</dt>
+<dd>Return the count and 3D location of image points on any of the six possible faces of the 3D shape. The face is identified by a string which must be one of <code>"back"</code>, <code>"front"</code>, <code>"left"</code>, <code>"right"</code>, <code>"top"</code>, <code>"bottom"</code>. Image points are identified either by a case-insensitive string of their name, or their index. Note as image point 0 refers to the origin, index 1 is the first image point. If the image point is not found, this returns the origin instead. The <code>getFaceImagePoint</code> variant returns <code>[x, y, z]</code>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

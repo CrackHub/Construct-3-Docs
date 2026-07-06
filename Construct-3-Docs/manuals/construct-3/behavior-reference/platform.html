@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/platform" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Platform behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Platform behavior</strong> implements a side-view "jump and run" style movement. It supports slopes, moving platforms, "jump-thru" platforms, and arbitrary angles of gravity. There are several examples of the Platform behavior that can be found in the <a class="extern" href="../overview/start-page.html" rel="noopener" target="_blank" title="Make your own games">Start Page</a>.</p>
+<p>The Platform behavior will land on any objects with the <a class="extern" href="solid.html" rel="noopener" target="_blank" title="Make your own games">Solid</a> or <a class="extern" href="jump-thru.html" rel="noopener" target="_blank" title="Make your own games">Jump-thru</a> behaviors. Jump-thru is different in that the Platform movement can jump on to a Jump-thru from underneath, whereas jumping in to a solid from underneath causes the player to bounce off. The image below illustrates the difference.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/976/jumpthru-solid.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1131x600px in new window (88.06 KB)"><span><img alt="Jump-thru vs. Solid behaviors" height="300" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/976/jumpthru-solid_v600.png" width="566"/></span></a><span class="descrip">Jump-thru vs. Solid behaviors</span></div></div>
+<p>By default the Platform movement is controlled by the left and right arrow keys and up arrow to jump. To set up custom or automatic controls, see the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/platform.html" rel="noopener" target="_blank" title="Make your own games">IPlatformBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Implementing reliable platform movements</h2>
+<p>For the most reliable platform movement, it is recommended to use a <strong>invisible rectangle sprite with no animations</strong> with the Platform movement. Then, the animated player object can be positioned on top of that. Otherwise, the changing size and collision polygon of the object as its animation plays can interfere with the Platform movement's floor, wall and slope detection, causing a shaking or glitchy movement. For more information and a complete guide, see the tutorial <a class="extern" href="https://www.construct.net/tutorials/platformer-game-2329.html" rel="noopener" target="_blank" title="Make your own games">How to make a Platform game</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Mirroring the player</h2>
+<p>It is not necessary to duplicate all your artwork for the player for facing both left and right. Instead, simply draw all the player's artwork for facing to the right, and use the Sprite object's <em>Set mirrored</em> action to mirror the player's image. Set the player mirrored when pressing the movement controls. An example is shown below.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/982/platform-mirror.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 857x214px in new window (25.46 KB)"><span><img alt="Events to mirror platform movement" height="107" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/982/platform-mirror_v430.png" width="428"/></span></a></div></div>
+<p>A common question is how to make the player shoot left and right, since even when mirrored the player will still shoot objects to the right. To solve this, use the <em>Is mirrored</em> condition, and if it is true, shoot to the left instead.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Platform properties</h2>
+<dl class="sans">
+<dt>Max speed</dt>
+<dd>The maximum floor speed in pixels per second.</dd>
+<dt>Acceleration</dt>
+<dd>The horizontal movement acceleration in pixels per second per second.</dd>
+<dt>Deceleration</dt>
+<dd>The horizontal movement deceleration in pixels per second per second. When moving in the opposite direction to the direction of motion, acceleration and deceleration combine.</dd>
+<dt>Jump strength</dt>
+<dd>The initial vertical speed of a jump in pixels per second when the jump key is pressed.</dd>
+<dt>Gravity</dt>
+<dd>The acceleration caused by gravity, in pixels per second per second.</dd>
+<dt>Max fall speed</dt>
+<dd>The maximum speed in pixels per second the object can accelerate to when in free-fall.</dd>
+<dt>Double jump</dt>
+<dd>If enabled, the player may make one extra mid-air jump before landing on the ground.</dd>
+<dt>Jump sustain</dt>
+<dd>Maximum time in milliseconds that the jump strength is sustained at while the jump control is being held before the effect of gravity takes over. This allows for variable height jumps depending on whether the jump control is tapped or held. For example if set to 200, then the jump velocity is sustained for up to the first 200ms of holding the jump control.</dd>
+<dt>Default controls</dt>
+<dd>If enabled, movement is controlled by the left and right arrow keys and the up arrow key to jump. Disable to set up custom controls using the <em>Simulate control</em> action. For more information see the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a>.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the Set enabled action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Platform conditions</h2>
+<dl class="sans">
+<dt>Compare speed</dt>
+<dd>Compare the current speed of the object in pixels per second.</dd>
+<dt>Is by wall</dt>
+<dd>Test if a solid blocking horizontal movement is immediately to the object's left or right. Jump-thrus do not count as walls.</dd>
+<dt>Is double-jump enabled</dt>
+<dd>True if double jumps are currently enabled. This is set by the <em>Double jump</em> property or <em>Set double-jump</em> action.</dd>
+<dt>Is enabled</dt>
+<dd>Test if the behavior is currently enabled. When disabled it will have no effect on the object.</dd>
+<dt>Is falling</dt>
+<dd>True if the object is in free-fall.</dd>
+<dt>Is jumping</dt>
+<dd>True if the object is moving upwards.</dd>
+<dt>Is moving</dt>
+<dd>True if the object's speed is non-zero.</dd>
+<dt>Is on floor</dt>
+<dd>True if the object is currently standing on a solid or jump-thru.</dd>
+<dt>On fall</dt>
+<dt>On jump</dt>
+<dt>On landed</dt>
+<dt>On moved</dt>
+<dt>On stopped</dt>
+<dd>These are <em>animation triggers</em>, which trigger when the platform movement is moving in to each state. If your object has animations for any of these states, you should set the appropriate animation in each trigger. This helps save you implementing the logic to detect state transitions yourself.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Platform actions</h2>
+<dl class="sans">
+<dt>Fall through</dt>
+<dd>If the player is currently standing on a <a class="extern" href="jump-thru.html" rel="noopener" target="_blank" title="Make your own games">jump-thru</a> platform, this action will make them fall through it. This is useful for adding an additional control, e.g. down arrow, to jump down from jump-thru platforms.</dd>
+<dt>Reset double jump</dt>
+<dd>Change whether a double-jump is allowed during the current jump. If disabled a double-jump will no longer be allowed in the current jump, even if it is the first jump; if enabled a double-jump will be allowed again, even if a double-jump was already made in the current jump.</dd>
+<dt>Set acceleration</dt>
+<dt>Set deceleration</dt>
+<dt>Set default controls</dt>
+<dt>Set double-jump</dt>
+<dt>Set gravity</dt>
+<dt>Set jump strength</dt>
+<dt>Set jump sustain</dt>
+<dt>Set max fall speed</dt>
+<dt>Set max speed</dt>
+<dd>Set the corresponding properties. For more information, see <em>Platform properties</em>.</dd>
+<dt>Set angle of gravity</dt>
+<dd>Change the angle of gravity, in degrees. By default it is 90 (downwards on the screen). This can interact interestingly with layer rotation.</dd>
+<dt>Set ceiling collision</dt>
+<dd>Change how the behavior handles collisions with the ceiling, when the movement is jumping up and hits a solid. The default mode is <em>Stop</em> which means the vertical momentum is immediately set to zero so the movement immediately falls down again. Changing the mode to <em>Preserve momentum</em> will not change the vertical momentum when hitting a solid while jumping. This means the player can stick to the ceiling until gravity overcomes their upwards momentum; it can also allow the player to jump up past a corner of a solid even if they hit the solid vertically first.</dd>
+<dt>Set enabled</dt>
+<dd>Enable or disable the Platform movement. When disabled, the behavior has no effect on the object at all.</dd>
+<dt>Set ignoring input</dt>
+<dd>Set whether input is being ignored. If input is ignored, pressing any of the control keys has no effect. However, unlike disabling the behavior, the object can continue to move, e.g. if in free-fall.</dd>
+<dt>Set vector X</dt>
+<dt>Set vector Y</dt>
+<dd>Manually set the horizontal and vertical components of motion, in pixels per second. For example, setting the vector Y to -1000 would cause a jump with strength 1000, which could be useful for implementing springs.</dd>
+<dt>Simulate control</dt>
+<dd>Simulate one of the movement controls being held down. Useful when <em>Default controls</em> is disabled. See the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">behavior reference summary</a> for more information.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Platform expressions</h2>
+<dl class="sans">
+<dt>Acceleration</dt>
+<dt>Deceleration</dt>
+<dt>Gravity</dt>
+<dt>JumpStrength</dt>
+<dt>JumpSustain</dt>
+<dt>MaxFallSpeed</dt>
+<dt>MaxSpeed</dt>
+<dd>Return the corresponding properties. For more information, see <em>Platform properties</em>.</dd>
+<dt>GravityAngle</dt>
+<dd>Get the current angle of gravity, in degrees.</dd>
+<dt>MovingAngle</dt>
+<dd>Return the current angle of motion in degrees, which can be different to the object's angle.</dd>
+<dt>Speed</dt>
+<dd>Return the current overall speed in pixels per second.</dd>
+<dt>VectorX</dt>
+<dt>VectorY</dt>
+<dd>Return the current X and Y components of motion, in pixels per second.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

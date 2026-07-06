@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/multiplayer" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Multiplayer script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IMultiplayerObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to provide APIs specific to the <a class="extern" href="../../../plugin-reference/multiplayer.html" rel="noopener" target="_blank" title="Make your own games">Multiplayer object</a>.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Typically it is accessed with <code>runtime.objects.Multiplayer</code>.</p>
+<p>Designing multiplayer games is a complex topic. There is more documentation about the way the Multiplayer object works in the <a class="extern" href="../../../plugin-reference/multiplayer.html" rel="noopener" target="_blank" title="Make your own games">Multiplayer object manual entry</a>. There is further learning material in the <a class="extern" href="https://www.construct.net/courses/online-multiplayer-construct-12.html" rel="noopener" target="_blank" title="Make your own games">Online multiplayer in Construct tutorial series</a>. This documentation covers only the scripting APIs to access the various multiplayer features Construct provides.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>API organisation</h2>
+<p>The multiplayer APIs broadly fall in to two categories:</p>
+<ol class="list">
+<li>Signalling APIs, which make use of the signalling server to meet other peers and establish connections to them</li>
+<li>The main multiplayer APIs, which are used for peer-to-peer communication once connections have been established.</li>
+</ol>
+<p>To clearly separate these usages, signalling APIs are available on a dedicated signalling interface at <code>runtime.objects.Multiplayer.signalling</code>, whereas the remaining multiplayer APIs are available on the main multiplayer interface at <code>runtime.objects.Multiplayer</code>.</p>
+<p>There are also some statistics under <code>runtime.objects.Multiplayer.stats</code>, but usage of those is optional.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=multiplayer-scripting" rel="noopener" target="_blank" title="Make games in the browser">Multiplayer scripting example</a> for a demonstration of using these multiplayer APIs in JavaScript code.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Signalling events</h2>
+<p>These events are fired on <code>runtime.objects.Multiplayer.signalling</code>.</p>
+<dl>
+<dt>"connected"</dt>
+<dd>Triggered when a connection to the signalling server has successfully been established. The event object includes the properties: <ul class="list"><br/>
+<li><code>myId</code>: the peer ID assigned to the local user</li><br/>
+<li><code>serverVersion</code>: a string with the signalling server software version</li><br/>
+<li><code>serverName</code>: a string of the signalling server name</li><br/>
+<li><code>serverOperator</code>: a string identifying the signalling server operator</li><br/>
+<li><code>serverMOTD</code>: a "message of the day" string chosen by the server operator</li></ul></dd>
+<dt>"login"</dt>
+<dd>Fired upon successfully logging in to the signalling server. The event object <code>myAlias</code> property provides the alias assigned to the local user (which will be the alias requested, unless the alias is already in use, in which case the signalling server will have assigned a different alias derived from the requested one).</dd>
+<dt>"join"</dt>
+<dd>Fired upon successfully joining a room on the signalling server. The event object includes the properties: <ul class="list"><br/>
+<li><code>isHost</code>: a boolean indicating whether the local user is the host of the room. The first peer to join a room is assigned the host.</li><br/>
+<li><code>hostId</code>: the peer ID of the room's host. This only needs to be referred to when <code>isHost</code> is false (since if the local user is the host, the host ID is their own peer ID).</li><br/>
+<li><code>hostAlias</code>: the alias of the room's host.</li><br/>
+<li><code>room</code>: a string of the room name that was joined. (This can only be different to the requested room name when auto-joining a room.)</li></ul></dd>
+<dt>"leave"</dt>
+<dd>Fired upon successfully leaving a room on the signalling server.</dd>
+<dt>"disconnected"</dt>
+<dd>Fired when lost connection to the signalling server.</dd>
+<dt>"kicked"</dt>
+<dd>Fired when forcibly removed from the current room on the signalling server. This is similar to the <code>"leave"</code> event, but the cause of leaving the room was server-initiated rather than peer-initiated.</dd>
+<dt>"error"</dt>
+<dd>Fired if an error occurs while using the signalling server. The event object <code>message</code> property provides an error message (if any).</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Signalling APIs</h2>
+<p>These methods are available on <code>runtime.objects.Multiplayer.signalling</code>.</p>
+<dl>
+<dt>addEventListener(eventName, callback)</dt>
+<dt>removeEventListener(eventName, callback)</dt>
+<dd>Add or remove a callback function for a signalling event. See <em>Signalling events</em> above for more information.</dd>
+<dt>async connect(url = "wss://multiplayer.construct.net")</dt>
+<dd>Initiate a connection to a signalling server. The default URL is the official Scirra-hosted signalling server. The method can be awaited and resolves at the same time the signalling <code>"connected"</code> event fires, resolving with an object with the same properties as the event object.</dd>
+<dt>disconnect()</dt>
+<dd>Disconnect from the signalling server. This can be done once peer-to-peer connections are established if the signalling server is no longer necessary, but note that will prevent any new peers from joining the game late.</dd>
+<dt>isConnected</dt>
+<dd>A read-only boolean indicating whether a connection to the signalling server is currently active.</dd>
+<dt>addICEServer(url, username, credential)</dt>
+<dd>Add a custom Interactive Connectivity Establishment (ICE) server used by WebRTC to establish connections between peers. These can include STUN and TURN servers. A username and credential can also be optionally provided if the server requires them. This method should be called on startup, before any connections are made.</dd>
+<dt>async login(alias)</dt>
+<dd>Attempt to log in to the signalling server and request to use the provided alias. The method can be awaited and resolves at the same time as the signalling <code>"login"</code> event, resolving with an object with the same properties as the event object.</dd>
+<dt>isLoggedIn</dt>
+<dd>A boolean indicating whether the user is currently logged in on the signalling server.</dd>
+<dt>async joinRoom(game, instance, room, maxPeers = 0)</dt>
+<dd>Join a specific room in the given game instance. The player must be connected and logged in to the signalling server. The first player to join a room becomes the host. <code>maxPeers</code> can be used to limit the number of peers that join. Only the host's value is used. If the room is full, subsequently joining peers will receive a "room full" error. The peer count includes the host, so 2 is the minimum value, or it can be left as 0 to allow an unlimited number of peers to join. The method can be awaited and resolves at the same time as the signalling <code>"join"</code> event, resolving with an object with the same properties as the event object.</dd>
+<dt>async autoJoinRoom(game, instance, room, maxPeers = 2, isLocking = true)</dt>
+<dd>Join the first available room with the given game, instance and first room name. The player must be connected and logged in to the signalling server. The first player to join a room becomes the host. When rooms are full, the signalling server will create a new room. For example if "myroom" is full, it will try "myroom2", "myroom3", etc. This effectively arranges all joining peers in to games of a particular size. If <code>isLocking</code> is true, then the room is locked when full. In that case late-joiners are not allowed; if left unlocked and a peer leaves after the game starts, a newly joining peer may be added back to the game to top it up to <code>maxPeers</code> again. This method works similarly to <code>joinRoom()</code> in that it can be awaited and resolves when the <code>"join"</code> event fires.</dd>
+<dt>async leaveRoom()</dt>
+<dd>Request to leave the current room on the signalling server. This method can be awaited and resolves at the same time the signalling <code>"leave"</code> event fires.</dd>
+<dt>async requestGameInstanceList(game)</dt>
+<dd>Request a list of active game instances within the given game. A promise is returned which resolves when the response is received with an array of objects describing each game instance, with the object properties: <ul class="list"><br/>
+<li><code>name</code>: the game instance name</li><br/>
+<li><code>peerCount</code>: the total number of peers in that game instance</li></ul></dd>
+<dt>async requestRoomList(game, instance, type = "all")</dt>
+<dd>Request a list of active rooms within a given game instance. The returned rooms depends on the <code>type</code>: <code>"all"</code> includes all rooms; <code>"unlocked"</code> includes only rooms which are unlocked; and <code>"available"</code> includes only rooms which are available to join (unlocked and not full). A promise is returned which resolves when the response is received with an array of objects describing each room, with the object properties: <ul class="list"><br/>
+<li><code>name</code>: the room name</li><br/>
+<li><code>peerCount</code>: the number of peers in the room</li><br/>
+<li><code>maxPeerCount</code>: the maximum number of peers allowed in the room, or 0 for unlimited</li><br/>
+<li><code>state</code>: the room state, one of <code>"available"</code>, <code>"locked"</code> or <code>"full"</code>.</li></ul></dd></dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Multiplayer events</h2>
+<p>These events are fired on <code>runtime.objects.Multiplayer</code>.</p>
+<dl>
+<dt>"peerconnect"</dt>
+<dd>Fired when a peer joins the same room. It also fires once per peer already in the room when joining an existing room, including the host. The event object includes the properties: <ul class="list"><br/>
+<li><code>peerId</code>: the ID of the connected peer</li><br/>
+<li><code>peerAlias</code>: the alias of the connected peer</li></ul></dd>
+<dt>"peerdisconnect"</dt>
+<dd>Fired when an existing peer disconnects from the room. The event object includes the properties: <ul class="list"><br/>
+<li><code>peerId</code>: the ID of the disconnected peer</li><br/>
+<li><code>peerAlias</code>: the alias of the disconnected peer</li><br/>
+<li><code>leaveReason</code>: a string with an optional reason provided for the peer disconnecting</li></ul></dd>
+<dt>"message"</dt>
+<dd>Fired when a message is received over the network. Note the order messages are received, or whether a sent message is received at all, depends on the reliability mode chosen when the message was originally sent. The event object includes the properties: <ul class="list"><br/>
+<li><code>fromId</code>: the ID of the peer the message was sent by</li><br/>
+<li><code>fromAlias</code>: the alias of the peer the message was sent by</li><br/>
+<li><code>message</code>: the content of the message. This is either a string, JSON data, or an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a> for binary content, depending on the type of the message sent.</li><br/>
+<li><code>transmissionMode</code>: the transmission mode the message was sent with.</li></ul></dd>
+<dt>"kicked"</dt>
+<dd>Fired if kicked from the current room. This can occur if the host quits, the connection to the host could not be established, or the host otherwise decides to forcibly remove you from the room. After this fires the player is no longer in the room and must re-join a room to be able to participate in a game.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Multiplayer APIs</h2>
+<p>These methods and properties are available on <code>runtime.objects.Multiplayer</code>.</p>
+<dl>
+<dt>signalling</dt>
+<dd>Provides the signalling interface - see <em>Signalling APIs</em> above.</dd>
+<dt>stats</dt>
+<dd>Provides the statistics interface - see <em>Statistics APIs</em> below.</dd>
+<dt>isHost</dt>
+<dd>A read-only boolean indicating if the current peer is the room host.</dd>
+<dt>myId</dt>
+<dt>myAlias</dt>
+<dd>Read-only strings with the peer ID and alias of the local user.</dd>
+<dt>hostId</dt>
+<dt>hostAlias</dt>
+<dd>Read-only strings with the peer ID and alias of the room host (which will be the same as <code>myId</code> and <code>myAlias</code> if <code>isHost</code> is true).</dd>
+<dt>currentGame</dt>
+<dt>currentGameInstance</dt>
+<dt>currentRoom</dt>
+<dd>Read-only strings identifying the current game, game instance, and room.</dd>
+<dt>peerCount</dt>
+<dd>Read-only number of connected peers, including the local user.</dd>
+<dt>getAllPeers()</dt>
+<dd>Return an array of <code>IMultiplayerPeer</code> representing every peer in the room, including the local user. See <em>Peer APIs</em> below.</dd>
+<dt>getPeerById(peerId)</dt>
+<dd>Return a <code>IMultiplayerPeer</code> for a peer in the current room by their peer ID, or returns <code>null</code> if they don't exist. See also <em>Peer APIs</em> below.</dd>
+<dt>sendPeerMessage(peerId, message, transmissionMode = "o")</dt>
+<dd>Send a message over the network to a peer in the same room identified by their peer ID. The message can be a string, an object for JSON transmission (which must be convertible to a string), or an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a> for binary content. The transmission mode can be one of <code>"o"</code> for reliable ordered, <code>"r"</code> for reliable unordered, or <code>"u"</code> for unreliable (see the <a class="extern" href="../../../plugin-reference/multiplayer.html" rel="noopener" target="_blank" title="Make your own games">Multiplayer object documentation</a> for more details about reliability modes). When received the <code>"message"</code> event will be fired.</dd>
+<dt>hostBroadcastMessage(fromId, message, transmissionMode = "o")</dt>
+<dd>This is similar to <code>sendPeerMessage()</code> but can only be called by the host, and the provided message will be sent to every other peer in the room. <code>fromId</code> can optionally be set to another peer ID to make it appear that the message is from that peer, which is useful when relaying messages through the host; if left empty it will use the host ID.</dd>
+<dt>disconnectRoom()</dt>
+<dd>Disconnects from any peers in the current room and also leaves the room on the signalling server. If the current user is the room host, all other peers are kicked.</dd>
+<dt>simulateLatency(latency, pdv, loss)</dt>
+<dd>Simulate latency, PDV and packet loss on all inbound and outbound messages. This can be useful for making local testing more realistic, since unlike the Internet latency is effectively non-existent. For local testing it is only necessary to simulate latency on the host, since that guarantees every message in the game will have delay added; it is not necessary to also simulate latency on the peers. The latency for an individual message is calculated as the latency plus a random value from zero to the PDV. The packet loss indicates the chance an unreliable message is lost entirely, or in the case of reliable messages that retransmission is necessary and the latency is multiplied.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Peer APIs</h2>
+<p>The <code>IMultiplayerPeer</code> interface represents a connected peer in the same room. It is returned by methods like <code>getAllPeers()</code> and <code>getPeerById()</code>.</p>
+<dl>
+<dt>id</dt>
+<dd>The peer ID for this peer.</dd>
+<dt>alias</dt>
+<dd>The alias for this peer.</dd>
+<dt>isHost</dt>
+<dd>A boolean indicating if this peer is the room host.</dd>
+<dt>isMe</dt>
+<dd>A boolean indicating if this peer represents the local user.</dd>
+<dt>latency</dt>
+<dt>pdv</dt>
+<dd>Get the measured latency and packet delay variation (PDV) on the network connection to this peer. Note peers can only use this to get the stats for the host, since that is the only connection they have, but the host can use it for any peer.</dd>
+<dt>send(message, transmissionMode = "o")</dt>
+<dd>This is a shorthand for calling <code>sendPeerMessage()</code> with this peer's ID.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Statistics APIs</h2>
+<p>These properties are available under <code>runtime.objects.Multiplayer.stats</code>.</p>
+<dl>
+<dt>inboundBandwidth</dt>
+<dt>outboundBandwidth</dt>
+<dd>Read-only numbers with the total estimated inbound and outbound bandwidth for all data transmission over the network in bytes per second. When automatic data compression is in use, this measures the compressed size of the data actually sent over the network.</dd>
+<dt>inboundDecompressedBandwidth</dt>
+<dt>outboundDecompressedBandwidth</dt>
+<dd>Read-only numbers with the total estimated decompressed inbound and outbound bandwidth for all data sent and received via the Multiplayer object in bytes per second. When automatic data compression is in use, this measures the size of the decompressed messages, which may be significantly larger than the data actually sent over the network.</dd>
+<dt>inboundCount</dt>
+<dt>outboundCount</dt>
+<dd>Read-only numbers of the total number of separate inbound and outbound messages sent and received. This includes internally-used messages for things like ping and synchronisation; generally the bandwidth is the more practically useful statistic.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

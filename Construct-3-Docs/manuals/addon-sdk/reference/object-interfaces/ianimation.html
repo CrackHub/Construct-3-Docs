@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/object-interfaces/ianimation" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IAnimation interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IAnimation</code> interface represents an animation within an animated object type. This is only applicable to animated plugins such as Sprite.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>GetName()</dt>
+<dd>Return a string of the animation name.</dd>
+<dt>GetObjectType()</dt>
+<dd>Return the <a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> that this animation belongs to.</dd>
+<dt>GetFrames()</dt>
+<dd>Return an array of <a class="extern" href="ianimationframe.html" rel="noopener" target="_blank" title="Make your own games">IAnimationFrame</a> representing the frames in this animation.</dd>
+<dt>AddFrame(blob, width, height)</dt>
+<dd>Add a new animation frame to the animation. All the parameters are optional. There are four overloads of this method:<br/>
+<ol class="list"><br/>
+<li>No parameters passed: add an empty animation frame with a default size</li><br/>
+<li>Blob passed with no size: use the blob as the animation frame image file, and decompress the image to determine the size</li><br/>
+<li>Blob passed with size: use the blob as the animation frame image file and use the provided size (which must be correct) to skip having to decompress the image to find its size</li><br/>
+<li>No blob passed but size provided: use the size for the empty animation frame</li></ol> The method returns a promise that resolves with the added <a class="extern" href="ianimationframe.html" rel="noopener" target="_blank" title="Make your own games">IAnimationFrame</a>.<br/>
+</dd>
+<dt>SetSpeed(s)</dt>
+<dt>GetSpeed()</dt>
+<dd>Set and get the animation speed in animation frames per second.</dd>
+<dt>SetLooping(l)</dt>
+<dt>IsLooping()</dt>
+<dd>Set and get the looping flag for the animation, indicating if the animation will repeat.</dd>
+<dt>SetPingPong(p)</dt>
+<dt>IsPingPong()</dt>
+<dd>Set and get the ping-pong flag for the animation, indicating if the animation will repeat alternating forwards and backwards.</dd>
+<dt>SetRepeatCount(r)</dt>
+<dt>GetRepeatCount()</dt>
+<dd>Set and get the number of times the animation is set to repeat.</dd>
+<dt>SetRepeatTo(f)</dt>
+<dt>GetRepeatTo()</dt>
+<dd>Set and get the animation frame index to return to when repeating the animation. This must be a valid index.</dd>
+<dt>Delete()</dt>
+<dd>Immediately deletes this animation from its object without any confirmation prompt. This cannot be undone.  </dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

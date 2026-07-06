@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/common-features/common-expressions" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Common expressions
+            </h1>
+<div itemprop="articleBody">
+<p>The following <a class="extern" href="../../project-primitives/events/expressions.html" rel="noopener" target="_blank" title="Make your own games">expressions</a> are common to several plugins.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Angle</h2>
+<dl class="sans">
+<dt>Angle</dt>
+<dd>The object's current angle, in degrees. 0 degrees is facing right and angles increment clockwise.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Appearance</h2>
+<dl class="sans">
+<dt>ColorValue</dt>
+<dd>A number representing the color property of the instance. This can be used with the <em>Set color</em> action to set an object's color to match another object.</dd>
+<dt>Opacity</dt>
+<dd>The object's current opacity (semitransparency), from 0 (transparent) to 100 (opaque).</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Hierarchy</h2>
+<p>These expressions are available for plugins that support the <em>scene graph</em> feature, allowing objects to be connected together so they move, rotate and scale as if they were one large object.</p>
+<dl class="sans">
+<dt>ChildCount</dt>
+<dd>Return the number of children currently attached to this object (with the <em>Add child</em> action) in the hierarchy. This is 0 if the object has no children.</dd>
+<dt>AllChildCount</dt>
+<dd>Return the number of children currently attached to this object (with the <em>Add child</em> action) in the hierarchy, including all descendants. This is 0 if the object has no children</dd>
+<dt>ParentUID</dt>
+<dd>The unique ID (UID) of this object's parent in the hierarchy. If this object has no parent, it returns -1.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Misc</h2>
+<dl class="sans">
+<dt>AsJSON</dt>
+<dd>Save the object state to a string of data in JSON format, and return it. This can be downloaded or otherwise stored, and later the state of the object restored using the <em>Set from JSON</em> action.</dd>
+<dt>Count</dt>
+<dd>The number of <a class="extern" href="../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a> of the <a class="extern" href="../../project-primitives/objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object type</a>.</dd>
+<dt>PickedCount</dt>
+<dd>The number of instances meeting the event's conditions. For example, if the event has the condition "Mouse is over Sprite", <em>Sprite.PickedCount</em> will return the number of Sprite instances that the mouse is over.</dd>
+<dt>ObjectTypeName</dt>
+<dd>The name of the object type for the given object. For example <em>Sprite.ObjectTypeName</em> will return "Sprite". When used as a family expression, this returns the name of the actual object type, never the name of the family itself.</dd>
+<dt>IID</dt>
+<dd>Return the instance's index ID (IID). See <a class="extern" href="../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a>.</dd>
+<dt>UID</dt>
+<dd>Return the instance's unique ID (UID). See <a class="extern" href="../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a>.</dd>
+<dt>Tags</dt>
+<dd>Get all the current instance tags as a space-string.</dd>
+<dt>TagsCount</dt>
+<dd>Get the number of tags an instance has.</dd>
+<dt>TagAt</dt>
+<dd>Get the tag at a zero-based index.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Size &amp; Position</h2>
+<dl class="sans">
+<dt>BBoxLeft</dt>
+<dt>BBoxRight</dt>
+<dt>BBoxTop</dt>
+<dt>BBoxBottom</dt>
+<dt>BBoxBack</dt>
+<dt>BBoxFront</dt>
+<dd>Return the layout co-ordinates of the object's axis-aligned bounding box. This is the smallest unrotated box that completely encloses the object, taking in to account any rotation or stretching. Note that the bounding box is tracked in 3D for use with 3D features.</dd>
+<dt>BBoxMidX</dt>
+<dt>BBoxMidY</dt>
+<dt>BBoxMidZ</dt>
+<dd>Return the layout co-ordinates of the mid-point of the object's axis-aligned bounding box. This is not necessarily the same position as the object origin, such as if the origin is not exactly in the middle.</dd>
+<dt>Width</dt>
+<dt>Height</dt>
+<dt>Depth</dt>
+<dd>Return the size of the object in pixels. Note only 3D objects like <a class="extern" href="../3d-shape.html" rel="noopener" target="_blank" title="Make your own games">3D shape</a> have a <em>Depth</em> expression, as 2D objects do not have a size on the Z axis.</dd>
+<dt>ImagePointX(nameOrNumber)</dt>
+<dt>ImagePointY(nameOrNumber)</dt>
+<dt>ImagePointZ(nameOrNumber)</dt>
+<dd>Return the position of one of the object's image points from its currently displaying animation frame in layout co-ordinates. Either the image point's name or its number can be passed. Note that when using a number, 0 refers to the origin, so the first image point is number 1.</dd>
+<dt>X</dt>
+<dt>Y</dt>
+<dd>Return the object's position in the layout, in pixels. The origin (0,0) is at the top-left of the layout and the Y axis increments downwards.</dd>
+<dt>Z</dt>
+<dd>Return the object's position on the Z axis for the instance relative to its layer. This is not affected by the layer's Z elevation.</dd>
+<dt>TotalZ</dt>
+<dd>Return the object's Z position added to the layer's Z elevation, providing the total Z position the instance appears at.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Time</h2>
+<dl class="sans">
+<dt>dt</dt>
+<dd>Return delta-time according to the object's own timescale. See <a class="extern" href="https://www.construct.net/tutorials/delta-time-framerate-2.html" rel="noopener" target="_blank" title="Make your own games">Delta-time and framerate independence</a> for more information.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Z Order</h2>
+<dl class="sans">
+<dt>LayerName</dt>
+<dd>The name of the layer the instance is currently on.</dd>
+<dt>LayerNumber</dt>
+<dd>The zero-based index of the layer the instance is currently on.</dd>
+<dt>ZIndex</dt>
+<dd>Get the zero-based index of the Z order of this instance within its current layer. 0 is the bottom instance, increasing up to the top instance.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Template</h2>
+<dl class="sans">
+<dt>TemplateName</dt>
+<dd>The name of the template used to create this instance. Returns an empty string if no template was used.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

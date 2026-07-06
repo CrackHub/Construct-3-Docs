@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/drawing-canvas" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Drawing canvas script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IDrawingCanvasInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/drawing-canvas.html" rel="noopener" target="_blank" title="Make your own games">Drawing Canvas plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=drawingcanvas-generate-image" rel="noopener" target="_blank" title="Make games in the browser">Drawing Canvas: Generate Image</a> example for a demonstration of programmatically generating an image for Drawing Canvas.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Drawing co-ordinates</h2>
+<p>The co-ordinate system used in drawing APIs work the same as they do for actions. For more information refer to the <a class="extern" href="../../../plugin-reference/drawing-canvas.html" rel="noopener" target="_blank" title="Make your own games">Drawing Canvas object documentation</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Colors in drawing methods</h2>
+<p>In some of the drawing APIs, there are parameters that accept a color. These are represented using an array with either three components e.g. <code>[r, g, b]</code>, in which case the alpha is treated as opaque, or four components e.g. <code>[r, g, b, a]</code> to specify the alpha as well. Each component is a normalized float value in the range 0-1.</p>
+<p>For example <code>[1, 0, 0]</code> represents opaque red, and <code>[0, 0, 1, 0.5]</code> represents blue at 50% opacity.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Drawing Canvas events</h2>
+<p>See <a class="extern" href="../interfaces/instance-event.html" rel="noopener" target="_blank" title="Make your own games">instance event</a> for standard instance event object properties.</p>
+<dl>
+<dt>"resolutionchange"</dt>
+<dd>Fired at the same time as the <em>On resolution changed</em> trigger. For more details see the section on resizing and resolution in the <a class="extern" href="../../../plugin-reference/drawing-canvas.html" rel="noopener" target="_blank" title="Make your own games">Drawing Canvas plugin manual entry</a>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Drawing Canvas APIs</h2>
+<dl>
+<dt>clearCanvas(color)</dt>
+<dd>Clear the entire canvas to a given color.</dd>
+<dt>clearRect(left, top, right, bottom, color)</dt>
+<dd>Clear a rectangular area on the canvas to a given color. This overwrites any existing pixel data in the canvas.</dd>
+<dt>fillRect(left, top, right, bottom, color)</dt>
+<dd>Fill a rectangular area on the canvas with a given color. This draws over any existing pixel data in the canvas (relevant when the opacity is not 1).</dd>
+<dt>outlineRect(left, top, right, bottom, color, thickness)</dt>
+<dd>Draw four lines around a rectangular area on the canvas with a given color and line thickness.</dd>
+<dt>fillLinearGradient(left, top, right, bottom, color1, color2, direction = "horizontal")</dt>
+<dd>Fill a rectangular area on the canvas with a linear gradient from <code>color1</code> to <code>color2</code>. The <code>direction</code> must be one of <code>"horizontal"</code> or <code>"vertical"</code>.</dd>
+<dt>fillEllipse(x, y, radiusX, radiusY, color, isSmooth = true)</dt>
+<dt>outlineEllipse(x, y, radiusX, radiusY, color, thickness,  isSmooth = true)</dt>
+<dd>Fill or outline an elliptical area on the canvas with a given color. The position is the center of the ellipse and the radius parameters determine the shape of the ellipse (set both to the same value to draw a circle). When drawing an outline, the <code>thickness</code> parameter is the line thickness. By default the edges of the drawn area are smoothed; for a pixellated style set <code>isSmooth</code> to <code>false</code>.</dd>
+<dt>line(x1, y1, x2, y2, color, thickness, lineCap = "butt")</dt>
+<dt>lineDashed(x1, y1, x2, y2, color, thickness, dashLength, lineCap = "butt")</dt>
+<dd>Draw either a solid or a dashed line between two points with a given color and line thickness. The dashed variant also takes a <code>dashLength</code> parameter to set how long the dashes are. <code>lineCap</code> must be one of <code>"butt"</code> (which ends the line exactly at the start and end positions) or <code>"square"</code> (which squares off the line endings so it extends a little past the start and end positions).</dd>
+<dt>fillPoly(polyPoints, color, isConvex = false)</dt>
+<dt>linePoly(polyPoints, color, thickness, lineCap = "butt")</dt>
+<dt>lineDashedPoly(polyPoints, color, thickness, dashLength, lineCap = "butt")</dt>
+<dd>Fill or outline a polygon area with a given color. The polygon is specified as an array of two-element arrays with co-ordinates for <code>polyPoints</code>, e.g. <code>[[x1, y1], [x2, y2], ...]</code>. For the line variants, the <code>thickness</code>, <code>dashLength</code> and <code>lineCap</code> parameters are the same as used for the <code>line()</code> and <code>lineDashed()</code> methods.
+<br/>
+With <code>fillPoly()</code> the polygon must provide at least three points, and may be <a class="extern outlink" href="https://en.wikipedia.org/wiki/Convex_polygon" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Convex_polygon">convex</a> or <a class="extern outlink" href="https://en.wikipedia.org/wiki/Concave_polygon" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Concave_polygon">concave</a>. However concave polygons are internally converted in to multiple convex polygons. This process can sometimes fail due to floating point precision issues in the geometric calculations, and result in a glitchy rendering. If you know the shape you are rendering is convex, pass <code>true</code> for the <code>isConvex</code> parameter, which will bypass the internal conversion; however this will not render correctly if the polygon is in fact concave. </dd>
+<dt>setDrawBlend(blendMode)</dt>
+<dd>Set the blend mode used for draw operations on to the canvas. This is different to the blend used to draw the canvas itself to the layout. The blend mode is specified as a string and must be one of <code>"normal"</code>, <code>"additive"</code>, <code>"copy"</code>, <code>"destination-over"</code>, <code>"source-in"</code>, <code>"destination-in"</code>, <code>"source-out"</code>, <code>"destination-out"</code>, <code>"source-atop"</code> or <code>"destination-atop"</code>.</dd>
+<dt>async pasteInstances(instancesArr, includeEffects = true)</dt>
+<dd>Draw a list of instances that are currently overlapping the canvas at their current positions, given as an array of <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a>. By default objects are drawn exactly as they appear, taking in to account any effects added to them; set <code>includeEffects</code> to <code>false</code> to draw without effects, as if all the object's effects were disabled. Note that the drawing actually happens at the end of the tick, and so this method is <code>async</code> so it can be awaited to ensure the paste has completed. </dd>
+<dt>setFixedResolutionMode(fixedWidth, fixedHeight)</dt>
+<dt>setAutoResolutionMode()</dt>
+<dd>Switch between fixed and auto resolution modes. For more information refer to the <a class="extern" href="../../../plugin-reference/drawing-canvas.html" rel="noopener" target="_blank" title="Make your own games">Drawing Canvas object documentation</a>.</dd>
+<dt>surfaceDeviceWidth</dt>
+<dt>surfaceDeviceHeight</dt>
+<dt>getSurfaceDeviceSize()</dt>
+<dd>Read-only values representing the size of the Drawing Canvas rendering surface in device pixels. The method returns both values at the same time.</dd>
+<dt>pixelScale</dt>
+<dd>A read-only value with the size of a single canvas pixel in object co-ordinates. See the section <em>Co-ordinate systems</em> in the <a class="extern" href="../../../plugin-reference/drawing-canvas.html" rel="noopener" target="_blank" title="Make your own games">Drawing Canvas object documentation</a> for more information.</dd>
+<dt>async getImagePixelData()</dt>
+<dd>Takes a snapshot of the drawing canvas pixel state on the GPU, and reads it back to the CPU asynchronously. Resolves with an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/ImageData">ImageData</a> representing the pixel data. Note this uses unpremultiplied alpha, whereas the surface on the GPU is premultiplied, so technically this is lossy.</dd>
+<dt>loadImagePixelData(imageData, premultiplyAlpha = false)</dt>
+<dd>Load pixel data in an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/ImageData">ImageData</a> in to the Drawing Canvas rendering surface. The ImageData must have a size equal to <code>surfaceDeviceWidth</code> and <code>surfaceDeviceHeight</code>. If the optional <code>premultiplyAlpha</code> parameter is set to <code>true</code>, the pixel data will premultiply the alpha (multiplying the RGB components by the A component). This can be left disabled if the pixel data is already premultiplied, which is also faster since the premultiplication step can be skipped.</dd>
+<dt>saveImage(format, quality, areaRect)</dt>
+<dd>Save the current canvas image in a compressed format (e.g. PNG or JPEG). All parameters are optional - if none are specified, the entire canvas is saved in PNG format. The <code>format</code> parameter is a string of the MIME type of the image format to use, e.g. "image/png". Where a lossy format is used like "image/jpeg", the <code>quality</code> parameter is a number from 0-1 for the compression quality. A subset of the canvas area can be saved (e.g. for saving a cropped image) by specifying a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a> for the <code>areaRect</code> parameter using units of device pixels. The method returns a Promise that resolves with a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> of the resulting image.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

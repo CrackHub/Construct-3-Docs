@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/geometry-interfaces/color" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Color interface
+            </h1>
+            <div itemprop="articleBody">
+                <p>The <code>Color</code> interface represents a floating-point RGBA color in the SDK. It can also be constructed independently as a general-purpose color class. Each color component is normalized to the range [0, 1].</p>
+
+<p>In the WebGL renderer, colors are normally required to have premultiplied alpha. Some APIs already return premultiplied colors, but others may not; check the documentation for any API methods returning colors to find out which are used. Wherever possible avoid using the <code>unpremultiply()</code> method, since it is lossy.</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Constructor</h2>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>Color</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>Color</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span>r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b<span class="token punctuation">,</span> a<span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>A <code>Color</code> can be constructed with no parameters, which defaults all components to zero, or with given RGBA components.</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Methods</h2>
+<dl>
+<dt>setRgb(r, g, b)</dt>
+<dd>Set the RGB components only, without affecting the alpha component, in a single call.</dd>
+<dt>setRgba(r, g, b, a)</dt>
+<dd>Set the RGBA components of the color in a single call.</dd>
+<dt>copy(color)</dt>
+<dd>Set the components of the color by copying another <code>SDK.Color</code>.</dd>
+<dt>copyRgb(color)</dt>
+<dd>Set the RGB components only, without affecting the alpha component, by copying another <code>SDK.Color</code>.</dd>
+<dt>clone()</dt>
+<dd>Return a new instance of an <code>SDK.Color</code> with an identical color to this one.</dd>
+
+<dt>setR(r)</dt>
+<dt>setG(g)</dt>
+<dt>setB(b)</dt>
+<dt>setA(a)</dt>
+<dd>Set each component of the color individually. Note color components are floats in the range [0, 1].</dd>
+<dt>getR()</dt>
+<dt>getG()</dt>
+<dt>getB()</dt>
+<dt>getA()</dt>
+<dd>Get each component of the color individually.</dd>
+
+
+<dt>equals(color)</dt>
+<dd>Return a boolean indicating if this color exactly matches another <code>SDK.Color</code>.</dd>
+
+<dt>equalsIgnoringAlpha(color)</dt>
+<dd>Return a boolean indicating if this color exactly matches the RGB components of another <code>SDK.Color</code>. The alpha component is ignored.</dd>
+
+<dt>equalsRgb(r, g, b)</dt>
+<dd>Return a boolean indicating if this color exactly matches the given RGB components.</dd>
+
+<dt>equalsRgba(r, g, b, a)</dt>
+<dd>Return a boolean indicating if this color exactly matches the given RGBA components.</dd>
+
+<dt>premultiply()</dt>
+<dd>Multiply the RGB components by the A component. This is usually required for rendering.</dd>
+
+<dt>unpremultiply()</dt>
+<dd>Divide the RGB components by the A component.<br>
+<br>
+</dd>
+
+</dl></div></div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

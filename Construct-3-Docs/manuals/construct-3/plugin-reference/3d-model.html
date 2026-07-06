@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/3d-model" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                3D Model
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>3D model</strong> <a class="extern" href="../project-primitives/objects/plugins.html" rel="noopener" target="_blank" title="Make your own games">plugin</a> can be used to display models from a <strong>.gltf</strong> or <strong>.glb</strong> file in the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>, along with playing their animations.</p>
+<p>Check the <a class="extern" href="../project-primitives/3d-model.html" rel="noopener" target="_blank" title="Make your own games">3D model object</a> manual entry for information about how to import model files.</p>
+<p>Refer to the <a class="extern" href="3d-shape.html" rel="noopener" target="_blank" title="Make your own games">3D shape</a> manual entry for information about working with 3D in Construct 3 which is also relevant to this plugin.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/3d-model.html" rel="noopener" target="_blank" title="Make your own games">I3DModelInstance script interface</a>.</p>
+<h3>Collisions</h3>
+<p>Similarly to 3D Shape collisions for 3D models still happen in 2D.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>3D model properties</h2>
+<dl class="sans">
+<dt>3D Model</dt>
+<dd>The 3D model object the <a class="extern" href="../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> will use.</dd>
+<dt>Initially visible</dt>
+<dd>If the model should be visible or not when the <a class="extern" href="../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a> starts.</dd>
+<dt>X offset</dt>
+<dd>The offset in the X axis in relation to the corresponding instance.</dd>
+<dt>Y offset</dt>
+<dd>The offset in the Y axis in relation to the corresponding instance.</dd>
+<dt>Z offset</dt>
+<dd>The offset in the Z axis in relation to the corresponding instance.</dd>
+<dt>X rotation</dt>
+<dd>The rotation in the X axis.</dd>
+<dt>Y rotation</dt>
+<dd>The rotation in the Y axis.</dd>
+<dt>Z rotation</dt>
+<dd>The rotation in the Z axis. This is added to the angle of the corresponding instance.</dd>
+<dt>X scale</dt>
+<dd>The scale in the X axis. This is compounded with the scale of the corresponding instance.</dd>
+<dt>Y scale</dt>
+<dd>The scale in the Y axis. This is compounded with the scale of the corresponding instance.</dd>
+<dt>Z scale</dt>
+<dd>The scale in the Z axis. This is compounded with the scale of the corresponding instance.</dd>
+<dt>X origin</dt>
+<dd>The transformation origin in the X axis.</dd>
+<dt>Y origin</dt>
+<dd>The transformation origin in the Y axis.</dd>
+<dt>Z origin</dt>
+<dd>The transformation origin in the Z axis.</dd>
+<dt>Meshes</dt>
+<dd>Toggle which meshes to show.</dd>
+<dt>Animation</dt>
+<dd>The initial animation.</dd>
+<dt>Loop</dt>
+<dd>Check so they animation loops.</dd>
+<dt>Mesh render mode</dt>
+<dd>The mesh render mode. Can be <em>"hierarchy"</em> to draw meshes using the hierarchy defined in the model file, <em>"isolate"</em> will draw the enabled models as if they where the only ones in the model file.</dd>
+<dt>Initially playing</dt>
+<dd>If the model should start playing an animation or not when the layout starts.</dd>
+<dt>Initial animation progress</dt>
+<dd>The initial animation progress.</dd>
+<dt>Enable collisions</dt>
+<dd>If the instance should collide or not.</dd>
+<dt>Back face culling</dt>
+<dd>Enable or disable back face culling.</dd>
+<dt>Bounding box</dt>
+<dd>An editor only property to display the bounding box of the 3D model.</dd>
+<dt>Bounding box color</dt>
+<dd>An editor only property to change the color of the bounding box of the 3D model.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>3D model conditions</h2>
+<p>For conditions in common to other objects, see <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">Common conditions</a>.</p>
+<dl class="sans">
+<dt>On model loaded</dt>
+<dd>Triggered when a new 3D model object is loaded.</dd>
+<dt>On model load error</dt>
+<dd>Triggered when there is an error loading a 3D model object.</dd>
+<dt>For each mesh</dt>
+<dd>Loop through all the meshes in the 3D model.</dd>
+<dt>For each animation</dt>
+<dd>Loop through all the animations in the 3D model.</dd>
+<dt>Is playing</dt>
+<dd>Checks if there is an animation playing.</dd>
+<dt>Is looping</dt>
+<dd>Checks if animations are set to loop.</dd>
+<dt>Render mode</dt>
+<dd>The render mode indicates how the meshes are displayed. If <em>"hierarchy"</em> is used, all the displayed meshes are drawn following the authored hierarchy in the model file. If <em>"isolate"</em> is used, the displayed meshes are drawn as if they where the only ones in the model file.</dd>
+<dt>Is mesh enabled</dt>
+<dd>Checks if the provided mesh name is being drawn or not.</dd>
+<dt>Are all meshes enabled</dt>
+<dd>Checks if all the meshes in the model are being drawn.</dd>
+<dt>Mesh exists</dt>
+<dd>Checks if a mesh exists in the model.</dd>
+<dt>Enable collisions</dt>
+<dd>Checks if collisions are enabled.</dd>
+<dt>Is back face culling enabled</dt>
+<dd>Checks if back face culling is enabled.</dd>
+<dt>On animation finished</dt>
+<dd>Triggers when the provided animation finishes.</dd>
+<dt>On animation looped</dt>
+<dd>Triggers when the provided animation loops.</dd>
+<dt>On any animation finished</dt>
+<dd>Triggers when any animation finishes.</dd>
+<dt>On any animation looped</dt>
+<dd>Triggers when any animation loops.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>3D model actions</h2>
+<p>For actions common to other objects, see <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">Common actions</a>.</p>
+<dl class="sans">
+<dt>Set 3D model</dt>
+<dd>Start loading a new 3D model object. The <strong>"Mesh"</strong> parameter can optionally be used to draw a single mesh, if the parameter is left empty all the meshes will be drawn. Use the <strong>"Animation"</strong> parameter to choose the starting animation, if left empty the first animation is used. Choose if the animation should start playing using the <strong>"Playing"</strong> parameter, use the <strong>"Loop"</strong> parameter to choose if the animation should loop and the <strong>"Progress"</strong> parameter to choose where the animation should start from, using a value in the range <strong>[0 - 1]</strong>.</dd>
+<dt>Set 3D model (by name)</dt>
+<dd>This is the same as <strong>"Set 3D model"</strong> but the 3D model object is specified using a string.</dd>
+<dt>Set mesh enabled</dt>
+<dd>Choose if a mesh is drawn or hidden.</dd>
+<dt>Set all meshes enabled</dt>
+<dd>Choose if all meshes are drawn or hidden.</dd>
+<dt>Set animation</dt>
+<dd>Change the current animation. Choose if the animation should play using the <strong>"Playing"</strong> parameter, use the <strong>"Loop"</strong> parameter to choose if the animation should loop and use the <strong>"Progress"</strong> parameter to choose where the animation should start from, using a value in the range <strong>[0 - 1]</strong>.</dd>
+<dt>Set looping</dt>
+<dd>Choose if animations should loop or not.</dd>
+<dt>Set progress</dt>
+<dd>Set the progress of the current animation using a value in the range <strong>[0 - 1]</strong>.</dd>
+<dt>Set origin</dt>
+<dd>Set the transformation origin on all three axes.</dd>
+<dt>Set transform</dt>
+<dd>Change the transformation values of the model. <strong>"Transform X"</strong>, <strong>"Transform Y"</strong>, <strong>"Transform Z"</strong> correspond to each axis. Use the <strong>"Operation"</strong> parameter to choose which operation to do on the values, either <em>Set</em>, <em>Add</em>, <em>Subtract</em>, <em>Multiply </em> or <em>Divide</em>. Use the <strong>"Type"</strong> parameter to choose which transformation to affect, either <em>Offset</em>, <em>Rotation</em> or <em>Scale</em>.</dd>
+<dt>Set quaternion</dt>
+<dd>Change the rotation of the <strong>3D model</strong> providing the <strong>"X"</strong>, <strong>"Y"</strong>, <strong>"Z"</strong> and <strong>"W"</strong> components of a quaternion.</dd>
+<dt>Play</dt>
+<dd>Start playing the specified animation, use the <strong>"Loop"</strong> parameter to choose if the animation should loop and use the <strong>"Progress"</strong> parameter to choose where the animation should start from, using a value in the range <strong>[0 - 1]</strong>.</dd>
+<dt>Stop</dt>
+<dd>Stop the current animation. The progress is reset to 0.</dd>
+<dt>Pause</dt>
+<dd>Pause the current animation. The progress stays as is.</dd>
+<dt>Resume</dt>
+<dd>Resume a paused animation.</dd>
+<dt>Set mesh render mode</dt>
+<dd>Change the render mode of the model. Either <em>"hierarchy"</em> or <em>"isolate"</em>.</dd>
+<dt>Set collisions enabled</dt>
+<dd>Change the collision state.</dd>
+<dt>Set back face culling</dt>
+<dd>Change the state of back face culling.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>3D model expressions</h2>
+<p>For expressions common to other objects, see <a class="extern" href="common-features/common-expressions.html" rel="noopener" target="_blank" title="Make your own games">common expressions</a>.</p>
+<dl class="sans">
+<dt>Error3dModelName</dt>
+<dd>The name of the last 3D model object that failed to load.</dd>
+<dt>Name</dt>
+<dd>The name of the 3D model object.</dd>
+<dt>Meshes</dt>
+<dd>A comma separated string with all the currently enabled mesh names.</dd>
+<dt>Animation</dt>
+<dd>The current animation.</dd>
+<dt>AnimationDuration(Animation)</dt>
+<dd>The total duration of the specified animation.</dd>
+<dt>Progress</dt>
+<dd>The progress of the current animation as a value in the range <strong>[0 - 1]</strong>.</dd>
+<dt>MeshCount</dt>
+<dd>The amount of meshes in the current model.</dd>
+<dt>MeshAt(Index)</dt>
+<dd>The mesh at the specified index.</dd>
+<dt>AnimationCount</dt>
+<dd>The total amount of animations in the model.</dd>
+<dt>AnimationAt(Index)</dt>
+<dd>The animation at the specified index.</dd>
+<dt>CurMesh</dt>
+<dd>The current mesh in the <strong>"For each mesh"</strong> looping condition.</dd>
+<dt>CurAnimation</dt>
+<dd>The current animation in the <strong>"For each animation"</strong> looping condition.</dd>
+<dt>OffsetX</dt>
+<dd>The offset in the X axis in relation to the corresponding instance.</dd>
+<dt>OffsetY</dt>
+<dd>The offset in the Y axis in relation to the corresponding instance.</dd>
+<dt>OffsetZ</dt>
+<dd>The offset in the Z axis in relation to the corresponding instance.</dd>
+<dt>RotationX</dt>
+<dd>The rotation in the X axis.</dd>
+<dt>RotationY</dt>
+<dd>The rotation in the Y axis.</dd>
+<dt>RotationZ</dt>
+<dd>The rotation in the Z axis. This value is added to the angle of the corresponding instance.</dd>
+<dt>ScaleX</dt>
+<dd>The scale in the X axis. This is compounded with the scale of the corresponding instance.</dd>
+<dt>ScaleY</dt>
+<dd>The scale in the Y axis. This is compounded with the scale of the corresponding instance.</dd>
+<dt>ScaleZ</dt>
+<dd>The scale in the Z axis. This is compounded with the scale of the corresponding instance.</dd>
+<dt>OriginX</dt>
+<dd>The transformation origin in the X axis.</dd>
+<dt>OriginY</dt>
+<dd>The transformation origin in the Y axis.</dd>
+<dt>OriginZ</dt>
+<dd>The transformation origin in the Z axis.</dd>
+<dt>QuaternionX</dt>
+<dd>Get the rotation quaternion X component.</dd>
+<dt>QuaternionY</dt>
+<dd>Get the rotation quaternion Y component.</dd>
+<dt>QuaternionZ</dt>
+<dd>Get the rotation quaternion Z component.</dd>
+<dt>QuaternionW</dt>
+<dd>Get the rotation quaternion W component.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/physics" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Physics behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IPhysicsBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/physics.html" rel="noopener" target="_blank" title="Make your own games">Physics behavior</a>.</p>
+<p>The Physics behavior also provides a <code>IPhysicsBehavior</code> interface deriving from <a class="extern" href="../object-interfaces/ibehavior.html" rel="noopener" target="_blank" title="Make your own games">IBehavior</a>, which specifies the global settings affecting the entire Physics world. This interface can be accessed through the <code>behavior</code> property of a Physics behavior instance.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=physics-scripting" rel="noopener" target="_blank" title="Make games in the browser">Physics scripting example</a> for a demonstration of using physics from JavaScript code.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>IPhysicsBehavior APIs</h2>
+<p>The behavior script interface specifies the properties of the physics world. It is typically accessed through the <code>behavior</code> property. Below shows an example of this to change the physics world gravity.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">const</span> behaviorInst <span class="token operator">=</span> spriteInst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Physics<span class="token punctuation">;</span>
+<span class="token keyword">const</span> behavior <span class="token operator">=</span> behaviorInst<span class="token punctuation">.</span>behavior<span class="token punctuation">;</span>
+behavior<span class="token punctuation">.</span>worldGravity <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<dl>
+<dt>worldGravity</dt>
+<dd>Set or get the force of gravity affecting all Physics objects. By default this is a force of 10 downwards.</dd>
+<dt>steppingMode</dt>
+<dd>Set or get a string of either <code>"fixed"</code> or <code>"variable"</code> indicating the Physics time stepping mode. Variable mode uses delta-time for framerate independent simulation, but may be non-deterministic due to variance in timer measurements. Fixed mode uses exactly the same time step every frame regardless of the framerate. This is not recommended since modern devices have a range of refresh rates, and it can cause physics to run too fast or too slow depending on the device. However it also makes the physics simulation deterministic (reproducing identical results every time). For more information see the tutorial <a class="extern" href="https://www.construct.net/tutorials/delta-time-framerate-2.html" rel="noopener" target="_blank" title="Make your own games">Delta-time and framerate independence</a>.</dd>
+<dt>velocityIterations</dt>
+<dt>positionIterations</dt>
+<dd>Set or get the number of velocity iterations and position iterations used in the physics engine. The default is 8 and 3 respectively. Lower values run faster but are less accurate, and higher values can reduce performance but provide a more realistic simulation.</dd>
+<dt>setCollisionsEnabled(iObjectClassA, iObjectClassB, state)</dt>
+<dd>Set whether collisions are enabled between object types using the Physics behavior. The object types are specified by <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a>, and <em>state</em> is a boolean indicating whether collisions between these types are enabled. Note this affects all instances of the given object types.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>IPhysicsBehaviorInstance APIs</h2>
+<dl>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object, and the corresponding physics body will be destroyed.</dd>
+<dt>applyForce(fx, fy, imgPt = 0)</dt>
+<dt>applyForceTowardPosition(f, px, py, imgPt = 0)</dt>
+<dt>applyForceAtAngle(f, a, imgPt = 0)</dt>
+<dd>Apply a force on the object, either with custom X and Y components, towards a position (in layout co-ordinates), or at an angle (in radians). The latter two are just convenience methods that internally calculate the X and Y components. Applying a force causes the object to accelerate in the direction of the force.
+<br/>
+Forces can be applied at an image point with the <code>imgPt</code> parameter, which normally also causes the object to rotate. Using <code>0</code> (the default) for the image point uses the object's center of mass, which does not cause rotation. Use <code>-1</code> to use the object's origin, which may be different to the center of mass and cause rotation. A string of the image point name can also be used.</dd>
+<dt>applyImpulse(ix, iy, imgPt = 0)</dt>
+<dt>applyImpulseTowardPosition(i, px, py, imgPt = 0)</dt>
+<dt>applyImpulseAtAngle(i, a, imgPt = 0)</dt>
+<dd>Apply an impulse on the object, either with custom X and Y components, towards a position (in layout co-ordinates), or at an angle (in radians). The latter two are just convenience methods that internally calculate the X and Y components. Applying an impulse simulates the object being struck, e.g. hit by a bat.
+<br/>
+Impulses can be applied at an image point with the <code>imgPt</code> parameter, which normally also causes the object to rotate. Using <code>0</code> (the default) for the image point uses the object's center of mass, which does not cause rotation. Use <code>-1</code> to use the object's origin, which may be different to the center of mass and cause rotation.</dd>
+<dt>applyTorque(m)</dt>
+<dt>applyTorqueToAngle(m, a)</dt>
+<dt>applyTorqueToPosition(m, px, py)</dt>
+<dd>Apply a torque (rotational acceleration) to the object, either directly, or towards an angle or position. The torque and angle are specified in radians.</dd>
+<dt>setVelocity(vx, vy)</dt>
+<dd>Set the object's current velocity, providing a speed in pixels per second for the X and Y axes.</dd>
+<dt>getVelocityX()</dt>
+<dt>getVelocityY()</dt>
+<dt>getVelocity()</dt>
+<dd>Get the X or Y components of the object's current velocity, in pixels per second. <code>getVelocity()</code> returns both as <code>[x, y]</code>.</dd>
+<dt>teleport(x, y)</dt>
+<dd>Set the object position preserving the Physics velocity. Normally changing the position of the object will reposition it, but alter the velocity to try to ensure the physics simulation remains realistic even though some external change was made to the object position. Using the <code>teleport()</code> method will reposition the object but not alter its Physics velocity in any way, which is sometimes desirable for purposes such as if a Physics object goes through a portal and is meant to appear somewhere else but with the same velocity.</dd>
+<dt>angularVelocity</dt>
+<dd>Set or get the angular velocity, in radians per second.</dd>
+<dt>isImmovable</dt>
+<dt>isPreventRotation</dt>
+<dt>density</dt>
+<dt>friction</dt>
+<dt>elasticity</dt>
+<dt>linearDamping</dt>
+<dt>angularDamping</dt>
+<dt>isBullet</dt>
+<dd>These are setters and getters for the various properties of the Physics behavior. For more details, refer to the section <em>Physics properties</em> in the <a class="extern" href="../../../behavior-reference/physics.html" rel="noopener" target="_blank" title="Make your own games">Physics behavior manual entry</a>.</dd>
+<dt>mass</dt>
+<dd>Read-only number representing the mass of the physics object, as calculated by the physics engine. This is the area of the object's collision mask multiplied by its density.</dd>
+<dt>getCenterOfMassX()</dt>
+<dt>getCenterOfMassY()</dt>
+<dt>getCenterOfMass()</dt>
+<dd>Get the X and Y position of the center of mass of the physics object, as calculated by the physics engine. This depends on the <em>collision mask</em> property, and is not necessarily in the middle of the object. <code>getCenterOfMass()</code> returns both components as <code>[x, y]</code>.</dd>
+<dt>isAwake</dt>
+<dd>Set or get a boolean indicating whether the Physics object is awake or asleep. Physics simulations are relatively CPU intensive, requiring a lot of calculations. To save processor time, the Physics engine will make objects that have come to a complete stop go in to "sleep" mode so they no longer require processing. However sometimes changes like repositioning an adjacent object will leave the object in "sleep" mode so it will not respond properly. In this situation setting <code>isAwake</code> to <code>true</code> can be used to force a sleeping object to resume simulation. (It can also be used to force an object to go in to "sleep" mode, but note this is normally done automatically when possible.)</dd>
+<dt>isSleeping</dt>
+<dd><span class="ilTag c4">Deprecated</span> Returns true when <code>isAwake</code> is false. Only provided for backwards compatibility; use <code>isAwake</code> instead.</dd>
+<dt>createDistanceJoint(imgPt, iOtherInst, otherImgPt, damping, freq)</dt>
+<dd>Fix two physics objects at a given distance apart, as if connected by a pole. The other instance must be an <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> which also uses the Physics behavior. An image point can be specified for each with <code>imgPt</code> to connect to a specific part of the object. Note that an image point of <code>0</code> specifies the center of gravity of the object - if you intend to connect to the object origin, use <code>-1</code>. <code>damping</code> is the joint damping ratio from 0 to 1, and <code>freq</code> is the mass-spring-damper frequency in Hertz.</dd>
+<dt>createRevoluteJoint(imgPt, iOtherInst)</dt>
+<dt>createLimitedRevoluteJoint(imgPt, iOtherInst, lower, upper)</dt>
+<dd>Hinge two physics objects together, so they can rotate freely as if connected by a pin. Limited revolute joints only allow rotation through a certain range of angles (given in radians), like the clapper of a bell. The other instance must be an <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> which also uses the Physics behavior. An image point can also be specified to connect to a specific part of the object. Note that an image point of <code>0</code> specifies the center of gravity of the object - if you intend to connect to the object origin, use <code>-1</code>.</dd>
+<dt>createPrismaticJoint(imgPt, iOtherInst, axisAngle, enableLimit, lowerTranslation, upperTranslation, enableMotor, motorSpeed, maxMotorForce)</dt>
+<dd>Restrict the movement of two physics objects along a specific axis, given by <code>axisAngle</code> in radians. An image point can also be specified to connect to a specific part of the object. Note that an image point of <code>0</code> specifies the center of gravity of the object - if you intend to connect to the object origin, use <code>-1</code>. The other instance must be an <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> which also uses the Physics behavior. <code>enableLimit</code> is a boolean specifying whether there is a lower and upper movement limit; if enabled these are given by the lower and upper translation (in pixels), otherwise unlimited movement is allowed along the axis. A motor can also be enabled by <code>enableMotor</code> to provide a continuous force along the axis with <code>motorSpeed</code> in radians per second, and <code>maxMotorForce</code> the maximum torque.</dd>
+<dt>removeAllJoints()</dt>
+<dd>Remove all joints from the object. Any objects this object was attached to via joints is also affected. Note some joints automatically disable collisions between the objects, so you may want to manually disable collisions again after removing joints otherwise overlapping objects will "teleport" apart (as the physics engine will try to prevent them overlapping).</dd>
+<dt>getContactCount()</dt>
+<dd>Return the number of locations the physics engine has identified this object as touching other physics objects.</dd>
+<dt>getContactX(index)</dt>
+<dt>getContactY(index)</dt>
+<dt>getContact(index)</dt>
+<dd>Return the position of a contact with another physics object, in layout co-ordinates, given by the zero-based index of the contact. The <code>getContact</code> variant returns <code>[x, y]</code>.</dd>
+<dt>setCollisionFilter(isInclusive, tags)</dt>
+<dd>Change the current <em>Collision filter mode</em> and <em>Collision filter tags</em> properties. <code>isInclusive</code> is a boolean where true sets inclusive collision filter mode, and false sets exclusive collision filter mode. <code>tags</code> may be either a space-separated string of tags, or an iterable of strings such as an array or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a>.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

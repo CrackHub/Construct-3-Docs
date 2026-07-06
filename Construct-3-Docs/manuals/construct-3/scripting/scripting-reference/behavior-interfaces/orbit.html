@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/orbit" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Orbit behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IOrbitBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/orbit.html" rel="noopener" target="_blank" title="Make your own games">Orbit behavior</a>.
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Orbit behavior APIs</h2>
+<dl>
+<dt>setTargetPosition(x, y)</dt>
+<dd>Set the position in the layout that the movement will orbit around.</dd>
+<dt>getTargetPosition()</dt>
+<dd>Return the current target position in the layout as a two-element array in the form <code>[x, y]</code>.</dd>
+<dt>pin(iWorldInst)</dt>
+<dd>Pass an <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to set the behavior to always orbit around that object's position.</dd>
+<dt>speed</dt>
+<dd>Set or get the current rotation speed in radians per second.</dd>
+<dt>acceleration</dt>
+<dd>Set or get the current rotation acceleration in radians per second per second.</dd>
+<dt>rotation</dt>
+<dd>Set or get the current orbit position by its angle relative to the target position in radians.</dd>
+<dt>offsetAngle</dt>
+<dd>For elliptical orbits, set or get the rotation of the ellipse in radians. For circular orbits, this does not affect the orbit path (since rotating a circle has no effect), but it changes the initial angle the orbit starts from.</dd>
+<dt>primaryRadius</dt>
+<dt>secondaryRadius</dt>
+<dd>Set or get the distance of the orbit from its target position. The primary radius is in the direction of the offset angle, and the secondary radius is perpendicular to the offset angle. For a circular orbit set both values to the same radius; for an elliptical orbit set them to different values.</dd>
+<dt>isMatchRotation</dt>
+<dd>Set or get a boolean indicating if the behavior will also alter the object's angle to match the direction of travel.</dd>
+<dt>totalRotation</dt>
+<dt>totalAbsoluteRotation</dt>
+<dd>Set or get the total accumulated rotation in radians. These values do not wrap upon completing a full rotation. The <code>totalRotation</code> value will decrease for counter-clockwise rotation, whereas <code>totalAbsoluteRotation</code> increases regardless of the direction of rotation.</dd>
+<dt>getDistanceToTarget()</dt>
+<dd>Return the distance from the object to the target position.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

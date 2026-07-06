@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/tween" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Tween
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Tween behavior</strong> animates the values of properties over time. For example you can "tween" an object's position to (100, 100), which will move it from its current position to the target position over time. Different <em>ease functions</em> can be used to alter the rate at which the value changes over time, for example using a <em>Linear</em> function for a constant-rate motion, <em>In Out Sinusoidal</em> for a sine-curve based movement which speeds up then slows down, and many more. Custom ease curves can also be designed with the <a class="extern" href="../interface/dialogs/ease-editor.html" rel="noopener" target="_blank" title="Make your own games">Ease editor</a>.</p>
+<p><a class="extern" href="https://editor.construct.net/#open=tweening" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of the Tween behavior</a>.</p>
+<p>The term "tween" comes from the term "<a class="extern outlink" href="https://en.wikipedia.org/wiki/Inbetweening" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Inbetweening">Inbetweening</a>", referring to generating intermediate frames in between two states.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/tween.html" rel="noopener" target="_blank" title="Make your own games">ITweenBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tween types</h2>
+<p>Construct's Tween behavior has three types of tween:</p>
+<ol class="list">
+<li>One-property tween, affecting only a single value, e.g. the X co-ordinate or the angle</li>
+<li>Two-property tween, affecting a pair of values, e.g. the position (X and Y co-ordinates), size (width and height) or the scale (a percentage of real size)</li>
+<li>Three-property tween, affecting a triad of values, e.g. the position (X, Y and Z co-ordinates)</li>
+<li>Value tween, which just tweens a number rather than affecting a property. This can be used to apply the tween to anything else in events, such as behavior properties or effect parameters. Value tweens must also specify the start value, since it cannot be taken from a property.</li>
+</ol>
+<p>These types are used by the tween actions: <em>Tween (one property)</em>, <em>Tween (two properties)</em>, <em>Tween (three properties)</em> and <em>Tween (value)</em>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Tagging</h2>
+<p>The Tween behavior can manage multiple tweens simultaneously. To help identify them separately, each tween can be given a <em>tag</em>, which is just a string of any name you like to identify the tween. The tag is optional and can be left empty if you don't need to modify or identify the tween at any point later on.</p>
+<p>Tweens can also be given multiple tags, separated by spaces. This can be useful to group tweens together under a common tag while also  providing a unique tag to target them individually.</p>
+<p>Actions, conditions and expressions which expect tags as an argument will match any tweens which include all of the provided tags.</p>
+<h3>Tagging examples</h3>
+<p>Given these tweens with these tags:</p>
+<table>
+<thead>
+<tr>
+<td>Name</td>
+<td>Tags</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tween1</strong></td>
+<td>"common size width"</td>
+</tr>
+<tr>
+<td><strong>Tween2</strong></td>
+<td>"common size height"</td>
+</tr>
+<tr>
+<td><strong>Tween3</strong></td>
+<td>"common color"</td>
+</tr>
+</tbody></table>
+<p>This will be the expected matches:</p>
+<table>
+<thead>
+<tr>
+<td>Tag</td>
+<td>Matches</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>"common"</td>
+<td><strong>All Tweens</strong></td>
+</tr>
+<tr>
+<td>"common size"</td>
+<td><strong>Tween1</strong> and <strong>Tween2</strong></td>
+</tr>
+<tr>
+<td>"common size width"</td>
+<td><strong>Tween1</strong></td>
+</tr>
+<tr>
+<td>"color"</td>
+<td><strong>Tween3</strong></td>
+</tr>
+<tr>
+<td>"width"</td>
+<td><strong>Tween1</strong></td>
+</tr>
+<tr>
+<td>"size"</td>
+<td><strong>Tween1</strong> and <strong>Tween2</strong></td>
+</tr>
+<tr>
+<td>"common size width height"</td>
+<td><strong>No Tweens</strong></td>
+</tr>
+</tbody></table>
+<p>Also note:</p>
+<ul class="list">
+<li>Actions using tags affect all matching tweens.</li>
+<li>In the case of conditions, all the matching tweens are evaluated and if any is true, then the condition will be fulfilled.</li>
+<li>In the case of expressions, the first matching tween will be the one used to get the value from.</li>
+<li>Tags are case insensitive. For example "mytag", "MyTag" and "MYTAG" are all the same as far as tweens are concerned.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Tween properties</h2>
+<dl class="sans">
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the <em>Set enabled</em> action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Tween conditions</h2>
+<dl class="sans">
+<dt>Is any playing</dt>
+<dd>True if any tween is currently playing.</dd>
+<dt>Is playing</dt>
+<dd>Test if a tween matching all the given tags is currently playing.</dd>
+<dt>Is any paused</dt>
+<dd>True if any tween is currently paused.</dd>
+<dt>Is paused</dt>
+<dd>Test if a tween matching all the given tags is currently paused.</dd>
+<dt>Is any ping-pong</dt>
+<dd>True if any tween is in the provided ping-pong <em>State</em></dd>
+<dt>Is ping-pong</dt>
+<dd>True if a tween matching all the given tags is in the provided ping-pong <em>State</em></dd>
+<dt>On any finished</dt>
+<dd>Triggered when any tween finishes. Use the <em>Tags</em> expression to get the tag string for the tween that finished.</dd>
+<dt>On finished</dt>
+<dd>Triggered when a tween matching all the given tags finishes.</dd>
+<dt>On any released</dt>
+<dd>Triggered when any tween is released. Use the <em>Tags</em> expression to get the tag string for the tween that was released.</dd>
+<dt>On released</dt>
+<dd>Triggered when a tween matching all the given tags is released.</dd>
+<dt>On any looped</dt>
+<dd>Triggered when any tween loops. Use the <em>Tags</em> expression to get the tag string for the tween that looped.</dd>
+<dt>On looped</dt>
+<dd>Triggered when a tween matching all the given tags loops.</dd>
+<dt>On any ping-pong</dt>
+<dd>Triggered when any tween ping-pongs. Use the <em>State</em> parameter to specify at which point of the ping-pong the trigger should take place. Use the <em>Tags</em> expression to get the tag string for the tween that ping-ponged.</dd>
+<dt>On ping-pong</dt>
+<dd>Triggered when a tween matching all the given tags ping-pongs. Use the <em>State</em> parameter to specify at which point of the ping-pong the trigger should take place. Use the <em>Tags</em> expression to get the tag string for the tween that ping-ponged.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Tween actions - one property</h2>
+<dl class="sans">
+<dt>Set end value</dt>
+<dd>Change the end value for an existing one-property tween matching all the given tags.</dd>
+<dt>Tween (one property)</dt>
+<dd>Start a tween for a single property. <em>Tags</em> are optional space-separated tags to identify the tween, and can be left blank if not used. <em>Property</em> chooses which property of the object to modify. The start value of the tween uses the current value of the property. <em>End value</em> specifies the value to tween to. <em>Time is the duration of the tween in seconds. Ease</em> specifies an ease function affecting the rate of change over time. <em>Destroy on complete</em> can be set to <em>Yes</em> to automatically destroy the instance when the tween finishes, useful for fade-out effects. Like <a class="extern" href="../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timelines</a>, a one property tween can be set to <em>Loop</em> and/or <em>Ping Pong</em> and given a <em>Repeat count</em>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Tween actions - two properties</h2>
+<dl class="sans">
+<dt>Set end values</dt>
+<dd>Change the end value for an existing two-property tween matching all the given tags.</dd>
+<dt>Tween (two properties)</dt>
+<dd>Start a tween for two properties. <em>Tags</em> are optional space-separated tags to identify the tween, and can be left blank if not used. <em>Property</em> chooses which property pair of the object to modify. The start value of the tween uses the current value of the properties. <em>End X</em> and <em>End Y</em> specify the end value for each of the two properties. <em>Time is the duration of the tween in seconds. Ease</em> specifies an ease function affecting the rate of change over time. <em>Destroy on complete</em> can be set to <em>Yes</em> to automatically destroy the instance when the tween finishes, useful for fade-out effects. Like <a class="extern" href="../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timelines</a>, a two property tween can be set to <em>Loop</em> and/or <em>Ping Pong</em> and given a <em>Repeat count</em>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Tween actions - three properties</h2>
+<dl class="sans">
+<dt>Set end values</dt>
+<dd>Change the end value for an existing three-property tween matching all the given tags.</dd>
+<dt>Tween (three properties)</dt>
+<dd>Start a tween for three properties. <em>Tags</em> are optional space-separated tags to identify the tween, and can be left blank if not used. <em>Property</em> chooses which property triad of the object to modify. The start value of the tween uses the current value of the properties. <em>End X</em>, <em>End Y</em> and <em>End Z</em> specify the end value for each of the three properties. <em>Time is the duration of the tween in seconds. Ease</em> specifies an ease function affecting the rate of change over time. <em>Destroy on complete</em> can be set to <em>Yes</em> to automatically destroy the instance when the tween finishes, useful for fade-out effects. Like <a class="extern" href="../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timelines</a>, a three property tween can be set to <em>Loop</em> and/or <em>Ping Pong</em> and given a <em>Repeat count</em>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Tween actions - value</h2>
+<dl class="sans">
+<dt>Set end value</dt>
+<dd>Change the end value for an existing value tween matching all the given tags.</dd>
+<dt>Set start value</dt>
+<dd>Change the start value for an existing value tween matching all the given tags.</dd>
+<dt>Tween (value)</dt>
+<dd>Start a tween for a number, independent of any properties. <em>Tags</em> are optional space-separated tags to identify the tween, and can be left blank if not used. <em>Start value</em> and <em>End value</em> specify the start and end value to tween through. <em>Time is the duration of the tween in seconds. Ease</em> specifies an ease function affecting the rate of change over time. <em>Destroy on complete</em> can be set to <em>Yes</em> to automatically destroy the instance when the tween finishes, useful for fade-out effects. Use the <em>Value</em> expression to retrieve the current value of the tween over time, such as to apply it to a different object, behavior or effect. Like <a class="extern" href="../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timelines</a>, a value tween can be set to <em>Loop</em> and/or <em>Ping Pong</em> and given a <em>Repeat count</em>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Tween actions - playback</h2>
+<dl class="sans">
+<dt>Pause</dt>
+<dt>Resume</dt>
+<dd>Pause and resume an existing tween matching all the given tags. Pausing a tween will stop it at its current progress, and resuming will continue from where it was paused.</dd>
+<dt>Pause all</dt>
+<dt>Resume all</dt>
+<dd>Pause and resume all current tweens.</dd>
+<dt>Stop</dt>
+<dd>Stop a tween matching all the given tags. Stopping a tween permanently ends a tween - it cannot be resumed afterwards.</dd>
+<dt>Stop all</dt>
+<dd>Stop all tweens. This permanently ends all tweens so no more tweens can be referenced until a new tween is started.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link9" name="internalH1Link9"></a><h2>Tween actions - setters</h2>
+<dl class="sans">
+<dt>Set destroy on complete</dt>
+<dt>Set all destroy on complete</dt>
+<dt>Set ease</dt>
+<dt>Set all eases</dt>
+<dd>Set the <em>Destroy on complete</em> and <em>Ease</em> parameters specified in the <em>Tween</em> action for existing tweens matching all the given tags. The <em>all</em> variants modify all tweens regardless of tags.</dd>
+<dt>Set playback rate</dt>
+<dt>Set all playback rates</dt>
+<dd>Set the playback rate of existing tweens matching all the given tags, or all tweens regardless of tags. A playback rate of 1 is normal speed, 0.5 half as fast, 2 twice as fast, and so on.</dd>
+<dt>Set time</dt>
+<dt>Set all times</dt>
+<dd>Set the playback time in seconds of existing tweens matching all the given tags, or all tweens regardless of tags. For example setting a time of 1 will skip the tween to playing as if it was 1 second after the tween was started.</dd>
+<dt>Set enabled</dt>
+<dd>Enable or disable the entire behavior. If disabled, the behavior will not affect any properties or advance any tweens.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link10" name="internalH1Link10"></a><h2>Tween expressions</h2>
+<p>Note expressions can only return a single value. When specifying tags, expressions return the value for the first tween with all the given tags.</p>
+<dl class="sans">
+<dt>Progress(tag)</dt>
+<dd>Return the progress of a tween by its tags in the range 0-1.</dd>
+<dt>Tags</dt>
+<dd>This expression can be used in the various triggers to get the tag string of the associated tween.</dd>
+<dt>Time(tag)</dt>
+<dd>Return the playback time of a tween by its tags, in seconds since the tween was started.</dd>
+<dt>PlaybackRate(tag)</dt>
+<dd>Return the playback rate of a tween by its tags.</dd>
+<dt>Value(tag)</dt>
+<dd>Return the current value of a value tween by its tags.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

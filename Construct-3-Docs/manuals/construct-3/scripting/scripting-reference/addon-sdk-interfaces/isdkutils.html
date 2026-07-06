@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkutils" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ISDKUtils addon SDK interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISDKUtils</code> interface provides general APIs intended for use with the <a class="extern" href="../../../../addon-sdk.html" rel="noopener" target="_blank" title="Make your own games">Addon SDK</a>. It is normally accessed via <code>runtime.sdk</code>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>ISDKUtils APIs</h2>
+<dl>
+<dt>addLoadPromise(promise)</dt>
+<dd>Only valid while the project is still loading. Add a promise that the runtime will wait to resolve before starting the first layout. This is useful if you want to make sure your addon loads an asynchronous resource before the game starts. </dd>
+<dt>updateRender()</dt>
+<dd>By default, Construct does not render a new frame unless something has changed. If something in your addon is changed which will affect the way it draws, call this method to ensure Construct draws a new frame to reflect the changes. Avoid calling this method unnecessarily - only call it when something has actually changed (be sure not to call it if e.g. setting something to the same value).</dd>
+<dt>isWrapperExtensionAvailable(wrapperComponentId)</dt>
+<dd>Returns a boolean indicating whether a wrapper extension with the specified ID was successfully loaded. If this returns false then no messages sent to the wrapper extension will be received, and async messages will return a promise that never resolves. This is similar to the corresponding <a class="extern" href="isdkinstancebase.html" rel="noopener" target="_blank" title="Make your own games">ISDKInstanceBase</a> method, but allows checking for any wrapper extension rather than just the one associated with the plugin. In general it is recommended to use the instance-specific methods as cases where you need to message a different wrapper extension to your own are rare.</dd>
+<dt>sendWrapperExtensionMessage(wrapperComponentId, messageId, params)</dt>
+<dt>sendWrapperExtensionMessageAsync(wrapperComponentId, messageId, params)</dt>
+<dd>These methods are equivalent to those in <a class="extern" href="isdkinstancebase.html" rel="noopener" target="_blank" title="Make your own games">ISDKInstanceBase</a>, but allow specifying an arbitrary wrapper component ID. In general it is recommended to use the instance-specific methods as cases where you need to message a different wrapper extension to your own are rare.</dd>
+<dt>getObjectClassBySid(sid)</dt>
+<dd>Returns an <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> with the given SID (Serialization ID), or null if none found. This can be used to look up the <code>IObjectClass</code> for plugin "object" properties, which pass a SID at runtime for the property value.</dd>
+<dt>isAutoSuspendEnabled</dt>
+<dd>Set or get a boolean indicating whether the runtime automatically suspends when it detects the page or app going in to the background. This is enabled by default; by turning it off you can then use <code>setSuspended()</code> to control when the runtime suspends and resumes. Note however that even if automatic suspending is disabled, browsers may effectively suspend background pages anyway through other means, such as throttling timers and callbacks. Therefore disabling automatic suspending does not necessarily mean the runtime actually is able to continue running in the background. This API exists mainly to comply with the requirements of platforms that provide their own suspend and resume events that are required to be used.</dd>
+<dt>setSuspended(isSuspended)</dt>
+<dd>Pass <code>true</code> to suspend the runtime, and <code>false</code> to resume it. When suspended, the runtime stops ticking and drawing anything, and remains inactive. Make sure that suspend and resume calls are paired one-to-one: for example do not suspend once but resume twice. </dd>
+<dt>constructVersionCode</dt>
+<dd>A read-only number representing the Construct release the project has been previewed or exported with. A version code is the release number multiplied by 100, plus the patch number. For example r123.4 has the version code 12304. This can be useful for compatibility checks where feature detection (such as checking if methods exist) is not sufficient.</dd>
+<dt>createLoopingConditionContext(loopName)</dt>
+<dd>This method is intended specifically for looping conditions (where <code>"isLooping": true</code> is specified in the condition definition). It allows "retriggering" the event, which executes all subsequent conditions, actions and sub-events in one call; a loop is implemented by repeatedly retriggering the event. The loop name is optional but allows passing the name to the system <em>loopindex</em> condition to retrieve the index in nested loops. It returns an <a class="extern" href="iloopingconditioncontext.html" rel="noopener" target="_blank" title="Make your own games">ILoopingConditionContext</a>. An example looping condition implementation is shown below.
+<br/>
+<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Sample looping condition method</span>
+<span class="token function">TestLoop</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token parameter">count</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-7-close">{</span>
+	<span class="token keyword">const</span> loopCtx <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>runtime<span class="token punctuation">.</span>sdk<span class="token punctuation">.</span><span class="token function">createLoopingConditionContext</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-1-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-1-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">for</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-2-close">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> count<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation brace-round brace-close brace-level-2" id="pair-2-open">)</span>
+	<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-6-close">{</span>
+		loopCtx<span class="token punctuation">.</span><span class="token function">retrigger</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-3-close">(</span><span class="token punctuation brace-round brace-close brace-level-3" id="pair-3-open">)</span><span class="token punctuation">;</span>
+
+		<span class="token keyword">if</span> <span class="token punctuation brace-round brace-open brace-level-3" id="pair-4-close">(</span>loopCtx<span class="token punctuation">.</span>isStopped<span class="token punctuation brace-round brace-close brace-level-3" id="pair-4-open">)</span>
+			<span class="token keyword">break</span><span class="token punctuation">;</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-6-open">}</span>
+
+	loopCtx<span class="token punctuation">.</span><span class="token function">release</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-5-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-5-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-7-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><br/>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

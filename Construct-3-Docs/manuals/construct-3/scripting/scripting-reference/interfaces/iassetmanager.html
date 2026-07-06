@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/interfaces/iassetmanager" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                AssetManager script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IAssetManager</code> interface provides access to the project's assets, such as audio files and other project files added to your project. It is typically accessed via <code>runtime.assets</code>.</p>
+<p>On most modern platforms, assets can be directly retrieved as if over the network with standard APIs like <code>fetch()</code> or <code>XMLHttpRequest</code>, even in non-web export platforms like mobile or desktop apps. However in some circumstances, generally with unusual export options like Playable Ads or with legacy projects, it may be necessary to use Construct's IAssetManager interface to fetch resources, as it implements workarounds that prevent standard fetches working in those environments.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>AssetManager APIs</h2>
+<dl>
+<dt>runtime</dt>
+<dd>A reference back to the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> script interface.</dd>
+<dt>async fetchText(url)</dt>
+<dt>async fetchJson(url)</dt>
+<dt>async fetchBlob(url)</dt>
+<dt>async fetchArrayBuffer(url)</dt>
+<dd>Retrieve the contents of a given URL as a string, JSON object, <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>. Returns a promise that resolves when the resource has been loaded.</dd>
+<dt>async getProjectFileUrl(url)</dt>
+<dd>Retrieve a URL that can be fetched directly for a given resource. Returns a promise that resolves to a string with a URL that may be the same as the original URL, or a different URL (e.g. <code>blob:</code> URL) if direct fetching is not supported. This is intended for using with local files where the other fetch methods are not appropriate, such as assigning the <code>src</code> attribute of a video.</dd>
+<dt>async getMediaFileUrl(url)</dt>
+<dd>As with <code>getProjectFileUrl</code> but for sound and music files, which are exported to a <em>media</em> subfolder.</dd>
+<dt>mediaFolder</dt>
+<dd>A string of the subfolder media files are in, including sound and music files. In preview this is an empty string, and after export it is the media subfolder followed by a forward slash, e.g. <code>"media/"</code>.</dd>
+<dt>projectFileList</dt>
+<dd>A read-only array with the list of project files in this project at the time of preview or export. Files in the Sounds, Music, Videos, Fonts, Icons &amp; Screenshots and Files folders are included. Each entry is a an object with the properties <code>name</code> being the relative path to the file, e.g. <code>subfolder/mydata.json</code>, and <code>size</code> which is the file size in bytes. 
+<br/>
+	async loadScripts(...urls)<br/>
+	Fetch and run the JavaScript files at the given URLs. This can load scripts in the <em>Files</em> folder of the Project Bar, none of which are automatically loaded by Construct. When loading multiple scripts, they will run in the order they are provided, e.g. <code>loadScripts("script1.js", "script2.js")</code>  will always run script1.js first and script2.js second. For best efficiency, try to load all the scripts you need in a single call, rather than repeated calls.</dd>
+<dt>async compileWebAssembly(url)</dt>
+<dd>Fetch and compile a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Module" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Module">WebAssembly.Module</a> from the given URL, which is typically a .wasm file. This uses streaming compilation where supported. Note this does not instantiate the module, which needs to be done before any calls can be made. Pass the module resulting from this call to <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/instantiate" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/instantiate">WebAssembly.instantiate()</a> to get a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Instance" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Instance">WebAssembly.Instance</a> from the module.</dd>
+<dt>async loadStyleSheet(url)</dt>
+<dd>Fetch a stylesheet at the given URL and attach it to the current document, applying its styles. Returns a Promise that resolves when the stylesheet has been applied to the document.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

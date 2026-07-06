@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/websocket" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                WebSocket
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>WebSocket</strong> plugin is a simple wrapper around the standardised WebSocket protocol. It allows for low-overhead bi-directional communication in real-time. Since WebSockets are standards-based, it should be compatible with any standards-compliant WebSocket server.</p>
+<p>Using the WebSocket plugin requires a WebSocket server. Construct does not provide a server nor can the WebSocket plugin be used to make a server. If you don't already have a WebSocket server set up, you will need to create one yourself using a technology like <a class="extern outlink" href="https://nodejs.org/" rel="nofollow noopener external" target="_blank" title="Go to: https://nodejs.org/">node.js</a> with WebSocket support. This can be a significant undertaking and require server-side programming knowledge.</p>
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">WebSocket API</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Secure WebSockets and preview mode</h2>
+<p>Construct runs and previews your projects on a secure (HTTPS) site. Some browsers block connections from secure to insecure sites. This means if you use an insecure WebSocket (<code>ws:</code> rather than <code>wss:</code>) the connection may be blocked in Construct's preview mode.</p>
+<p>On today's web, it is best practice to use secure connections for all services. Your site should also host your project on HTTPS, and any WebSockets you use should use secure connections as well. HTTPS hosting is actually required for many features to work, secure WebSockets are more likely to connect successfully, and obviously it makes your content much more secure, so this is a good idea anyway. In some browsers you may be able to temporarily unblock the use of insecure WebSockets by clicking a button in the browser or changing settings, but it is a much better idea to ensure all your services are secure. In future, browsers may block the use of insecure sites and connections entirely.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>WebSockets and multiplayer games</h2>
+<p>It may be tempting to use WebSockets to design real-time multiplayer games. Despite the fact they communicate in real-time, WebSockets are not a suitable choice for latency-sensitive real-time games. The underlying transport uses reliable transmission, meaning a single dropped packet can hold up all transmission until the packet is retransmitted successfully. For games with demanding real-time requirements, this can cause unplayable levels of latency. It is usually difficult to design around this without changing the transmission mode, which WebSockets do not support. Consider using the specially-designed <a class="extern" href="multiplayer.html" rel="noopener" target="_blank" title="Make your own games">Multiplayer</a> plugin <span class="ilTag c2">Paid plans only</span> instead.</p>
+<p>On the other hand, WebSockets should be suitable for games without such a demanding real-time requirement, like turn-based games. It should also be useful for application services, like chat rooms. Note this will still require you to create your own WebSocket server.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>WebSocket properties</h2>
+<p>The WebSocket object has no properties.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>WebSocket conditions</h2>
+<dl class="sans">
+<dt>Is connecting</dt>
+<dd>True if currently in the process of establishing a connection to a server. The connection is not yet successfully established; there may still be an error.</dd>
+<dt>Is open</dt>
+<dd>True if a connection has been successfully established and the communication channel is currently open.</dd>
+<dt>Is supported</dt>
+<dd>Use before attempting any connections to verify the current browser or platform supports WebSockets.</dd>
+<dt>On closed</dt>
+<dd>Triggered when the connection is closed, either deliberately or due to an error. The <em>CloseCode</em> and <em>CloseReason</em> expressions can indicate why the connection was closed.</dd>
+<dt>On error</dt>
+<dd>Triggered when an error occurs in the WebSocket connection. Use the <em>ErrorMsg</em> expression to get the error message text.</dd>
+<dt>On opened</dt>
+<dd>Triggered when the connection is successfully established and the communication channel is now open.</dd>
+<dt>On binary message</dt>
+<dd>Triggered when a binary message arrives from the server over an open connection. The specified <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object has the contents of the message written to it when the trigger fires, allowing access to the message content.</dd>
+<dt>On text message</dt>
+<dd>Triggered when a text message arrives from the server over an open connection. Use the <em>MessageText</em> expression to retrieve the content of the message.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>WebSocket actions</h2>
+<dl class="sans">
+<dt>Close</dt>
+<dd>Close any active connection. No more messages can be sent or will be received after closing.</dd>
+<dt>Connect</dt>
+<dd>Connect to a WebSocket server. WebSocket server addresses typically start with <strong>ws://</strong> for non-secure transmission and <strong>wss://</strong> for secure transmission. Note some network configurations may require secure transmission in order to function correctly.
+<br/>
+The <em>Protocol</em> parameter may be optionally set to a required sub-protocol (sent with the <em>Sec-WebSocket-Protocol</em> header in the WebSocket handshake). If the server does not indicate it supports the chosen sub-protocol, the connection will fail to be established. This can be used to prevent the client connecting to WebSocket servers that do not understand your application's specific messages.</dd>
+<dt>Send binary</dt>
+<dd>Send the contents of a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object as a binary message to the server. This is ignored if the connection is not currently open.</dd>
+<dt>Send text</dt>
+<dd>Send a text string to the server. This is ignored if the connection is not currently open.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>WebSocket expressions</h2>
+<dl class="sans">
+<dt>CloseCode</dt>
+<dd>In the <em>On closed</em> trigger, returns the numeric code of the close reason. This can be one of the standard-specified return values, or a user-defined value.</dd>
+<dt>CloseReason</dt>
+<dd>In the <em>On closed</em> trigger, returns a string describing the reason the connection was closed. This is optional and may be empty.</dd>
+<dt>ErrorMsg</dt>
+<dd>In <em>On error</em>, the error message text.</dd>
+<dt>MessageText</dt>
+<dd>In <em>On text message</em>, the text content of the message just received from the server.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

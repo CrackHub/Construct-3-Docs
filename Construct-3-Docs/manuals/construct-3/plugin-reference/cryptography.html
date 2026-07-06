@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/cryptography" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Cryptography
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Cryptography</strong> object can perform cryptographic operations such as encryption and hashing.</p>
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">Web Crypto API</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Encryption does not guarantee security</h2>
+<p>The Cryptography object can perform password-based encryption and decryption. This is intended for both educational purposes to help illustrate the principles of encryption, and also as a means to make it harder, although not impossible, to make unwanted modifications to sensitive data such as save game data (which could for example allow cheating).</p>
+<p>Merely using encryption <strong>does not mean your project is secure.</strong> Designing truly secure systems involves careful design of the overall system and is usually done by people with training and expertise, and may well need to involve a server to host the sensitive data out of reach of clients. In particular, if you enter a long and supposedly secure password for the <em>Encrypt</em> action in the event sheet, then that password will appear in plain text in your project's exported data files. A sufficiently motivated person will likely be able to identify that password in the exported files and then be able to view or modify any data encrypted with the same password. Even if you use a dynamically generated password so that the password does not appear in the project's exported data files, a more advanced adversary will still be able to use debugging tools to identify the password at the moment it is used to encrypt data.</p>
+<p>In short you should see encryption as a tool that makes it somewhat harder to view or modify data, but certainly not impossible. In some cases this is still sufficient. For example if you are concerned about people using browser developer tools to casually modify save game data and cheat, encrypting the data may be sufficient to deter casual modification, even if more skilled adversaries are still capable of it.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>HTTPS is already encrypted</h2>
+<p>Note that if you want to send data to a server securely, the best approach is to use a secure connection over HTTPS. This is already encrypted, and so there is no need to use the Cryptography object to encrypt data sent over a secure connection.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Processing text</h2>
+<p>Since encrypted data is usually binary data that is not easily representible as text, the Cryptography object generally works with the <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data object</a> for both its input and output. However this does not preclude the ability to use text: after all, text is just another kind of binary data. You can store text in a Binary Data object with the <em>Set from text</em> action, and retrieve text from it with the <em>GetAllText</em> expression. Using these allows performing tasks like encrypting and decrypting text or hashing text.</p>
+<p>You can also reliably display and transmit binary data in a text format by encoding it as <a class="extern outlink" href="https://en.wikipedia.org/wiki/Base64" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Base64">Base64</a> using both the <em>Set from base64</em> action and <em>GetBase64</em> expression.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=encryption" rel="noopener" target="_blank" title="Make games in the browser">Encryption example</a> for a basic demonstration of encryption and decryption of a message. The <a class="extern" href="https://editor.construct.net/#open=hashing" rel="noopener" target="_blank" title="Make games in the browser">Hashing example</a> also demonstrates hashing text or files.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Encrypted data format</h2>
+<p>For advanced users who wish to interoperate encrypted data with other code or services, the encrypted binary data contains a small amount of metadata added at the start by Construct to aid in decryption. The format of the data is described below.</p>
+<table>
+<thead>
+<tr>
+<td>Bytes</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-1</td>
+<td>Reserved (must be 0)</td>
+</tr>
+<tr>
+<td>1-17</td>
+<td>Salt (16 bytes)</td>
+</tr>
+<tr>
+<td>17-29</td>
+<td>Initialization vector (aka IV, 12 bytes)</td>
+</tr>
+<tr>
+<td>29-33</td>
+<td>Iterations (uint32, 4 bytes)</td>
+</tr>
+<tr>
+<td>33+</td>
+<td>Encrypted data payload</td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Cryptography conditions</h2>
+<dl class="sans">
+<dt>On encryption finished</dt>
+<dt>On encryption failed</dt>
+<dt>On any encryption finished</dt>
+<dt>On any encryption failed</dt>
+<dd>Triggered after an encryption action depending on whether the operation completed successfully. A tag can be specified to distinguish different encryption operations. The "any" variants always trigger regardless of the tag, and the associated tag can be retrieved with the <em>Tag</em> expression.</dd>
+<dt>On decryption finished</dt>
+<dt>On decryption failed</dt>
+<dt>On any decryption finished</dt>
+<dt>On any decryption failed</dt>
+<dd>Triggered after a decryption action depending on whether the operation completed successfully. Decryption will fail if the incorrect password is specified. A tag can be specified to distinguish different decryption operations. The "any" variants always trigger regardless of the tag, and the associated tag can be retrieved with the <em>Tag</em> expression.</dd>
+<dt>On hash finished</dt>
+<dt>On any hash finished</dt>
+<dd>Triggered after a hash action when the operation completes. A tag can be specified to distinguish different hashing operations. The "any" variant always triggers regardless of the tag, and the associated tag can be retrieved with the <em>Tag</em> expression.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Cryptography actions</h2>
+<dl class="sans">
+<dt>Encrypt binary</dt>
+<dd>Encrypt the contents of a given <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. The same provided password must be specified to successfully decrypt the data. The <em>Iterations</em> parameter indicates how many times to repeat a hash function when generating an encryption key; higher values use more processing power and so slow down encryption and decryption, but make it harder to use a brute-force attack to decrypt the data. An optional tag can be specified to distinguish different encryption operations. When the data has finished being encrypted, <em>On encryption finished</em> triggers. </dd>
+<dt>Decrypt binary</dt>
+<dd>Decrypt the contents of a given <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. Decryption will only succeed if the same password that was used to encrypt the data is provided. An optional tag can be specified to distinguish different decryption operations. When the data has finished being decrypted, <em>On decryption finished</em> triggers; if decryption fails, including due to having the wrong password, then <em>On decryption failed</em> will trigger instead.</dd>
+<dt>Hash binary</dt>
+<dd>Compute a <a class="extern outlink" href="https://en.wikipedia.org/wiki/Cryptographic_hash_function" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Cryptographic_hash_function">cryptographic hash function</a> for the contents of a given <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. Currently supported hash functions include SHA-256, SHA-384 and SHA-512 from the <a class="extern outlink" href="https://en.wikipedia.org/wiki/SHA-2" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/SHA-2">SHA-2</a> family of functions. An optional tag can be specified to distinguish different hasing operations. When the hashing completes, <em>On hash finished</em> will trigger and the resulting hash will be available as a hexadecimal string in the <em>Hash</em> expression.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Cryptography expressions</h2>
+<dl class="sans">
+<dt>Hash</dt>
+<dd>After <em>On hash finished</em> triggers, a hexadecimal string of the resulting hash. For example the SHA-256 hash of the string "Construct" is <code>67e7c6e28e540b4fd412ad663b634a38572b98d3f4608fc5792f2600d32c1eb9</code>.</dd>
+<dt>Tag</dt>
+<dd>In a trigger such as <em>On any decryption finished</em> or <em>On any hash finished</em>, this returns the associated tag of the action that resulted in the trigger.</dd>
+<dt>RandomUUID</dt>
+<dd>Returns a random v4 <a class="extern outlink" href="https://en.wikipedia.org/wiki/Universally_unique_identifier" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a> as a string using a cryptographically secure random number generator, e.g. <code>36b8f84d-df4e-4d49-b662-bcde71a8764f</code>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/construct-game-services" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Construct Game Services script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ICGSObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/construct-game-services.html" rel="noopener" target="_blank" title="Make your own games">Construct Game Services plugin</a>. Construct Game Services is also written as CGS for short.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Using the REST APIs</h2>
+<p>Construct Game Services have a comprehensive set of REST APIs available. When writing code it is possible to use those entirely independently of this plugin. This option may be of interest to advanced users - see the <a class="extern" href="https://www.construct.net/game-services/manuals/game-services.html" rel="noopener" target="_blank" title="Make your own games">Construct Game Services manual</a> for details.</p>
+<p>The CGS script interface also provides the <code>sessionKey</code> when signed in. This can be used to make REST API calls with the user's current authentication. This allows using the CGS script interface solely for authentication, and then using the resulting <code>sessionKey</code> to make REST API calls.</p>
+<p>For completeness the CGS script interface does provide equivalent features to the plugin, but note this is a subset of all the available features in the REST API.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>CGS events</h2>
+<dl>
+<dt>"signinpopupblocked"</dt>
+<dd>Triggered during sign in if the browser popup blocker prevented the sign in popup window from appearing. Use the <code>retryOpenSignInPopup()</code> method in a user input event to retry.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>CGS APIs</h2>
+<dl>
+<dt>isSignedIn</dt>
+<dd>Read-only boolean indicating if the player is currently signed in.</dd>
+<dt>canSignInPersistent</dt>
+<dd>Read-only boolean indicating if persistent sign in with <code>signInPersistent()</code> is available.</dd>
+<dt>playerId</dt>
+<dd>A read-only string of the unique player ID when signed in.</dd>
+<dt>playerName</dt>
+<dd>A read-only string of the player display name when signed in.</dd>
+<dt>gameId</dt>
+<dd>A read-only string of the game ID signed in to when signed in.</dd>
+<dt>sessionKey</dt>
+<dd>When signed in, a string with the session key for this sign in. This can be used to make REST API calls using the same authentication.</dd>
+<dt>async signInWithProvider(provider, gameId, options)</dt>
+<dd>Attempt to sign the user in with a third-party identity service like Google or Microsoft. <code>provider</code> must be one of: <code>"Apple"</code>, <code>"BattleNet"</code>, <code>"BattleNetChina"</code>, <code>"Discord"</code>, <code>"Facebook"</code>, <code>"Github"</code>, <code>"Google"</code>, <code>"ItchIO"</code>, <code>"Microsoft"</code>, <code>"Reddit"</code>, <code>"Steam"</code>, <code>"X"</code>, <code>"Yandex"</code>. The game ID to sign in to from your <a class="extern" href="https://www.construct.net/game-services/account.html" rel="noopener" target="_blank" title="Make your own games">Construct Game Services account</a> must be provided. <code>options</code> is an optional object that may provide the following properties:<ul class="list"><br/>
+<li><code>allowPersisting</code>: if <code>true</code> a successful sign in is remembered, and may be re-used in future with <code>signInPersistent()</code>. The default is <code>true</code>.</li><br/>
+<li><code>expiryMins</code>: the time in minutes that sessions remain active. The default is 1440 (24 hours).</li><br/>
+<li><code>popupWindowWidth</code> and <code>popupWindowHeight</code>: Signing in with a provider will open a popup window, and you can also specify the size of this popup window with these properties. The default is 800x800.</li></ul> The method returns a Promise that resolves when sign in has completed successfully, or rejects if sign in fails or is cancelled. </dd>
+<dt>retryOpenSignInPopup()</dt>
+<dd>After the <code>"signinpopupblocked"</code> event fires, make another attempt to open the sign in popup window to continue the sign in process. This should be used in a user input event such as a button click or mouse click, otherwise the browser popup blocker may still block the second attempt.</dd>
+<dt>async signInPersistent(gameId)</dt>
+<dd>Attempt to sign in re-using a previous successful sign in that allowed persisting. This can only be used when <code>canSignInPersistent</code> is true. This returns a Promise that resolves when the persistent sign in has completed.</dd>
+<dt>async signOut()</dt>
+<dd>Sign out of any account the user is currently signed in to, and also delete any remembered sign in if it allowed persisting. Locally this operation completes immediately. For completeness signing out will send a request in the background to ensure the session is ended on the server-side as well, but that is optional and if it fails the session will time out anyway. This method returns a Promise that resolves when the background request completes, but failure should not be considered significant.</dd>
+<dt>async setPlayerName(name)</dt>
+<dd>Set the name of the currently signed in player. In some cases the player name is obtained from the authentication provider, but in others a generic name will be used, in which case the player will likely want to change their name for features like leaderboards. Returns a Promise that resolves when the operation completes.</dd>
+<dt>async submitScore(score, leaderboardId)</dt>
+<dd>Submit a score to a leaderboard. <code>score</code> must be an integer (fractional scores are not supported). <code>leaderboardId</code> may be omitted to submit a score on the Construct Arcade, which does not require authentication. Otherwise it must be set to the leaderboard ID to submit the score to, in which case authentication is required. This method returns a Promise that resolves when the score has been successfully submitted.</dd>
+<dt>async getLeaderboardScores(leaderboardId, options)</dt>
+<dd>Request a page of scores from a given leaderboard ID. This does not require authentication. The returned scores can optionally be filtered with several options, which may include:<ul class="list"><br/>
+<li><code>resultsPerPage</code>: the number of results to fetch. The default is 20.</li><br/>
+<li><code>page</code>: zero-based index of the page to fetch. The default is 0 to retrieve the first page.</li><br/>
+<li><code>country</code>: an <a class="extern outlink" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> country code filter can be provided, e.g. "US" to only return scores submitted in the United States of America.</li><br/>
+<li><code>range</code>: a time range to filter results by, which if provided must be one of <code>"Daily"</code>, <code>"Weekly"</code>, <code>"Monthly"</code> or <code>"Yearly"</code>. For example using <code>"Daily"</code> will return today's scores. Weekly leaderboards run from Monday to Sunday. If this property is omitted it returns all scores (which is the default).</li><br/>
+<li><code>rangeOffset</code>: an offset to return a prior time range when <code>range</code> is specified. For example specifying a <code>"Daily"</code> range with a <code>rangeOffset</code> of 1 will return yesterday's scores.</li><br/>
+<li><code>culture</code>: a locale to use for returned values. By default it will use the leaderboard's default culture.</li></ul>This method returns a Promise that resolves with the following object upon success:<ul class="list"><br/>
+<li><code>totalPageCount</code>: the total number of pages available</li><br/>
+<li><code>scores</code>: an array of returned scores, each being an object with the following properties:<ul class="list"><br/>
+<li><code>score</code>: a number representing this score.</li><br/>
+<li><code>formattedScore</code>: a string with the score formatted according to the culture.</li><br/>
+<li><code>rank</code>: a number representing the score rank.</li><br/>
+<li><code>formattedRank</code>: a string with the rank formatted according to the culture.</li><br/>
+<li><code>country</code>: a string of the <a class="extern outlink" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> country code the score was submitted from.</li><br/>
+<li><code>playerId</code>: a string of the unique player ID who submitted the score.</li><br/>
+<li><code>playerName</code>: a string of the player display name who submitted the score.</li></ul></li></ul></dd>
+<dt>async createCloudSave(opts)</dt>
+<dd>Create or replace the data for a cloud save key. The <code>opts</code> parameter is an object which uses the following properties to specify options:<ul class="list"><li><code>key</code> (required): the storage key to save to.</li><br/>
+<li><code>bucketId</code>: the bucket ID to save to. This can be omitted to use player private storage.</li><br/>
+<li><code>name</code>: an optional name to associate with the data, such as a file name.</li><br/>
+<li><code>data</code> (required): a string or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> for the data to upload.</li></ul> The method returns a Promise that resolves when the operation has completed.</dd>
+<dt>async getCloudSave(opts)</dt>
+<dd>Download the data previously uploaded for a key in a game bucket with <code>createCloudSave</code>. The <code>opts</code> parameter is an object which uses the following properties to specify options:<ul class="list"><li><code>key</code> (required): the storage key to save to.</li><br/>
+<li><code>bucketId</code>: the bucket ID to save to. This can be omitted to use player private storage.</li><br/>
+<li><code>type</code>: a string of <code>"text"</code> or <code>"blob"</code> that determines the data type the returned Promise resolves with. The default is <code>"text"</code>.</li></ul> The method returns a Promise that returns with a string when <code>type</code> is <code>"text"</code>, or a Blob if <code>type</code> is <code>"blob"</code>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

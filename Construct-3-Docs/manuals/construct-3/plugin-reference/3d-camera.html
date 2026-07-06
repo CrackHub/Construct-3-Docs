@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/3d-camera" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                3D Camera
+            </h1>
+<div itemprop="articleBody">
+<p>In Construct the standard view is restricted to 2D and scrolling to an X and Y co-ordinate. The <strong>3D Camera</strong> object can change the viewpoint of the game to anywhere in 3D, such as positioning the camera to an X, Y and Z co-ordinate, looking towards another X, Y and Z co-ordinate. See the <a class="extern" href="https://editor.construct.net/#open=template-first-person-shooter" rel="noopener" target="_blank" title="Make games in the browser">First-person shooter example</a> for a demonstration of what the 3D Camera object can do.</p>
+<p>You can learn more about 3D Camera and how it works with other 3D features in the tutorial <a class="extern" href="https://www.construct.net/tutorials/using-3d-construct-2746.html" rel="noopener" target="_blank" title="Make your own games">Using 3D in Construct</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/3d-camera.html" rel="noopener" target="_blank" title="Make your own games">I3DCameraObjectType script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Using a 3D Camera</h2>
+<p>By default Construct will use the standard 2D view, using the standard scrolling features to pan the view in 2D. The <em>Look at position</em>, <em>Look parallel to layout</em> and <em>Set position</em> actions enable a 3D view, which overrides the standard 2D view - the standard scrolling features will no longer have any effect on the 3D view. The standard 2D view can be restored using the <em>Restore 2D camera</em> action.</p>
+<p>The 3D Camera object will only apply to layers which have their <strong>Rendering mode</strong> property set to <strong>3D</strong>. Layers using a <strong>2D</strong> rendering mode will ignore the 3D Camera and remain using a standard 2D view using the standard scrolling features. This is useful for things like a 2D interface displayed on top of a 3D view.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>3D Audio</h2>
+<p>When moving the camera in 3D, it can be useful to play positioned sounds which will adjust playback to make them sound like they are coming from a position in 3D space. This can be done by setting the listener orientation in the <a class="extern" href="audio.html" rel="noopener" target="_blank" title="Make your own games">Audio object</a>, and playing positioned sounds either at objects (which will also use their Z elevation as the Z co-ordinate of the sound) or at a position which allows specifying the X, Y and Z co-ordinates of the sound.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>3D Camera properties</h2>
+<p>The 3D Camera object has two properties: <strong>Z scale</strong> and <strong>Default camera Z</strong>. These are related and are influenced by the <em>Z axis scale</em> <a class="extern" href="../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project property</a>. The properties are defined as follows.</p>
+<dl class="sans">
+<dt>Z scale</dt>
+<dd>The number of pixels per unit on the Z axis. With a <em>Regular</em> Z axis scale, this is always 1, as the Z axis uses the same scale as the other axes.</dd>
+<dt>Default camera Z</dt>
+<dd>The default position of the camera on the Z axis, producing 2D rendering at 100% scale on the layout. With a <em>Normalized</em> Z axis scale, this is always 100.</dd>
+</dl>
+<p>The relationship between the properties and the <em>Z axis scale</em> property is as follows:</p>
+<ul class="list">
+<li>With the <strong>Normalized</strong> Z axis scale (the default), the <em>Default camera Z</em> is set to 100. Then the <em>Z scale</em> tells you how many pixels each unit on the Z axis is equivalent to.</li>
+<li>With the <strong>Regular</strong> Z axis scale, the <em>Z scale</em> is always 1, as the Z axis uses the same scale as the X and Y axes. The <em>Default camera Z</em> is then adjusted ensure 2D rendering appears at 100% scale. Note the <em>Field of view</em> project property also affects the <em>Default camera Z</em>.</li>
+</ul>
+<p>The <em>Normalized</em> Z axis scale is designed for 2D projects using simple 3D features like Z elevation. If your project uses 3D camera to employ a fully 3D view, it will likely benefit from using the <em>Regular</em> Z axis scale.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>3D Camera conditions</h2>
+<p>The 3D Camera object has no conditions.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>3D Camera actions</h2>
+<dl class="sans">
+<dt>Look at position</dt>
+<dd>Set the position and orientation of the 3D Camera using a camera position, a position for the camera to look towards, and an up vector. The camera and look-at positions are given as 3D co-ordinates. The up vector is a 3D vector specifying which way is up, as this is also necessary to determine how to orient the camera towards the look-at position. The default up vector is (0, 1, 0), i.e. up is the positive direction on the Y axis, suitable for a top-down view.</dd>
+<dt>Look parallel to layout</dt>
+<dd>Set the position and orientation of the 3D Camera using a camera position and a camera angle in degrees. Whereas the default view is top-down, this sets a camera position looking along the layout, such that the layout appears as the floor at the bottom of the screen. This is a shortcut for using the <em>Look at position</em> action looking towards a 2D angle with an up vector of (0, 0, 1).</dd>
+<dt>Move along camera axis</dt>
+<dd>Move the camera position, the look position, or both, a distance along an axis relative to the current camera orientation. The distance can be negative, for example to move left when the specified axis is <em>Right</em>.<br/>
+</dd>
+<dt>Move along layout axis</dt>
+<dd>Move the camera position, the look position, or both, a distance along an axis relative to the layout. The distance can be negative, for example to move left when the specified axis is <em>X</em>.<br/>
+</dd>
+<dt>Restore 2D camera</dt>
+<dd>Restore the camera to its default 2D behavior, using the standard scrolling features to move the view.</dd>
+<dt>Rotate camera</dt>
+<dd>Moves the camera look-at position according to X and Y rotations in degrees. Note that a 3D Camera must first have been enabled using the <em>Look at position</em>, <em>Look parallel to layout</em> or <em>Set position</em> actions, since these also define the starting orientation that this action rotates around. Typically the rotation values will be provided by the <a class="extern" href="mouse.html" rel="noopener" target="_blank" title="Make your own games">Mouse</a> object's <em>MovementX</em> and <em>MovementY</em> expressions in an <em>On movement</em> trigger to achieve "mouse look" - see <a class="extern" href="https://editor.construct.net/#open=first-person-platformer" rel="noopener" target="_blank" title="Make games in the browser">First-person platformer</a> for an example of this.</dd>
+<dt>Set field of view</dt>
+<dd>Set the angle of the field of view in degrees. Note this only has an effect when <em>Z Axis scale</em> is set to <em>Regular</em> in Project Properties. The default field of view is also set in Project Properties.</dd>
+<dt>Set position</dt>
+<dd>Set the camera position or the look position to a 3D co-ordinate. This can be used to control the camera or look positions independently without having to always specify both, such as to move the camera while using mouse look to control the look direction.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>3D Camera expressions</h2>
+<dl class="sans">
+<dt>CameraX</dt>
+<dt>CameraY</dt>
+<dt>CameraZ</dt>
+<dd>Get the current 3D position of the camera.</dd>
+<dt>LookX</dt>
+<dt>LookY</dt>
+<dt>LookZ</dt>
+<dd>Get the current 3D position of the position the camera is pointing at.</dd>
+<dt>LookVectorX</dt>
+<dt>LookVectorY</dt>
+<dt>LookVectorZ</dt>
+<dd>Get the current vector of the direction the camera is pointing in, including camera rotation (i.e. changes applied with the <em>Rotate camera</em> action for purposes like mouse look).</dd>
+<dt>ZScale</dt>
+<dd>The number of pixels per unit on the Z axis. See <em>Z scale</em> under <em>3D Camera properties</em> for more details.</dd>
+<dt>DefaultCameraZ</dt>
+<dd>The default position of the camera on the Z axis, producing 2D rendering at 100% scale on the layout. See <em>Z scale</em> under <em>3D Camera properties</em> for more details.</dd>
+<dt>FieldOfView</dt>
+<dd>The current field of view in degrees. This is only applicable when <em>Z axis scale</em> is set to <em>Regular</em>.</dd>
+<dt>CanvasToLayerX(layer, x, y, layerZ)</dt>
+<dt>CanvasToLayerY(layer, x, y, layerZ)</dt>
+<dd>Transform a position in canvas co-ordinates to layer co-ordinates on a Z plane given by <em>layerZ</em>. This is similar to the <a class="extern" href="../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expressions</a> of the same name, but working in 3D.</dd>
+<dt>LayerToCanvasX(layer, x, y, z)</dt>
+<dt>LayerToCanvasY(layer, x, y, z)</dt>
+<dd>Transform a position in 3D layer co-ordinates to 2D canvas co-ordinates. This is similar to the <a class="extern" href="../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expressions</a> of the same name, but working in 3D.</dd>
+<dt>LayerToLayerX(fromLayer, toLayer, x, y, z)</dt>
+<dt>LayerToLayerY(fromLayer, toLayer, x, y, z)</dt>
+<dd>Calculate the 2D position on a second layer (<em>toLayer</em>) that corresponds to a 3D position given on a first layer (<em>fromLayer</em>). This is similar to the <a class="extern" href="../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expressions</a> of the same name, but working in 3D.</dd>
+<dt>ViewportBottomLeftX(layer)</dt>
+<dt>ViewportBottomLeftY(layer)</dt>
+<dt>ViewportBottomRightX(layer)</dt>
+<dt>ViewportBottomRightY(layer)</dt>
+<dt>ViewportTopLeftX(layer)</dt>
+<dt>ViewportTopLeftY(layer)</dt>
+<dt>ViewportTopRightX(layer)</dt>
+<dt>ViewportTopRightY(layer)</dt>
+<dd>Return the X and Y position in layer co-ordinates of the four corners of the visible viewport, taking in to account the layer's Z elevation. These expressions are similar to the viewport <a class="extern" href="../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expressions</a>, but when using a 3D camera the viewport area can be an irregular quadrilateral instead of a simple 2D rectangle, so these expressions provide four separate positions.<br/>
+</dd>
+<dt>CameraXRotation</dt>
+<dt>CameraYRotation</dt>
+<dd>Return the X and Y rotation of the camera in degrees, as set by the <em>Rotate camera</em> action.</dd>
+<dt>ForwardX</dt>
+<dt>ForwardY</dt>
+<dt>ForwardZ</dt>
+<dd>Returns a 3D unit vector pointing in the direction of the camera. </dd>
+<dt>RightX</dt>
+<dt>RightY</dt>
+<dt>RightZ</dt>
+<dd>Returns a 3D unit vector pointing to the right of the camera, perpendicular to the forward vector.</dd>
+<dt>UpX</dt>
+<dt>UpY</dt>
+<dt>UpZ</dt>
+<dd>Returns a 3D unit vector for the camera up vector, which helps determine the camera orientation. Note this is recomputed from the given camera and look positions, so may not be exactly the same as the up vector given in the <em>Look at position</em> action.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

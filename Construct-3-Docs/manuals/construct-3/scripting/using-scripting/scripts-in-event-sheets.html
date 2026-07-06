@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/using-scripting/scripts-in-event-sheets" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Scripts in event sheets
+            </h1>
+<div itemprop="articleBody">
+<p>A great way to get started with JavaScript or TypeScript is writing snippets of code in the event sheet. You can write some code to run in the place of an action or an event block.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Scripts in actions</h2>
+<p>JavaScript or TypeScript code can be added as an action. The code runs whenever the action is run, i.e. after all the event's conditions are met, and all previous actions have run. To add some code as an action, use the <em>Add...</em> menu to the right of the <em>Add action</em> link, and select <em>Add JavaScript</em> or <em>Add TypeScript</em>. Alternatively you can use the <kbd>J</kbd> or <kbd>T</kbd> keyboard shortcuts respectively when an action is selected.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/132043/add-action-script.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1019x465px in new window (45.45 KB)"><span><img height="233" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/132043/add-action-script_v550.png" width="510"/></span></a></div></div>
+<p>A code editor will appear for you to enter the code to run.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Scripts in blocks</h2>
+<p>Alternatively JavaScript or TypeScript code can be added as a block, in the same place as other event blocks appear. The code runs whenever an event block in that place would be run. You can add a script block using any of the following methods:</p>
+<ol class="list">
+<li>Right-click in the margin of an existing event block and select <span class="navWrap">Add<span class="arr">►</span>Add JavaScript</span> or <span class="navWrap">Add<span class="arr">►</span>Add TypeScript</span></li>
+<li>Click the <em>Add...</em> menu at the end of a group, or the end of the event sheet, and select <em>Add JavaScript</em> or <em>Add TypeScript</em></li>
+<li>Use the <kbd>J</kbd> or <kbd>T</kbd> keyboard shortcuts when an event block is selected (note if an action is selected, a script action will be inserted instead)
+</li></ol>
+<p>Remember that the event sheet runs all events in top-to-bottom order every tick, so a script in a block at the top level of an event sheet is run every tick (as if it was an action in an <em>Every tick</em> event). Often it is more useful to use script blocks as sub-events, which only run if their parent event block was true.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Using 'await'</h2>
+<p>Code written in either a script action or script block is actually run inside an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async function</a>. This means your code can use the <code>await</code> keyword. For example you can await the result of a fetch over the network.</p>
+<p>Note that the rest of the event sheet will continue to run while <code>await</code> waits for its result. In other words, <code>await</code> pauses the script execution and any actions after the code will immediately run. Then once the awaited promise resolves, any code after the <code>await</code> will then run - which will be <em>after</em> the following actions have run. You can change this using the System action <em>Wait for previous actions to complete</em>: this will wait for any code blocks before it to finish before running the following actions.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Using imports</h2>
+<p>Since code in a script action or script block is run inside a function, you cannot use <code>import</code> or <code>export</code> statements inside scripts in event sheets, since the JavaScript/TypeScript programming languages do not permit these inside functions.</p>
+<p>Instead you can import things in to a script file with the purpose <em>Imports for events</em>, normally named <em>importsForEvents.js</em>. For example if you add the following JavaScript line in the <em>Imports for events</em> script:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// importsForEvents.js</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> Utils <span class="token keyword">from</span> <span class="token string">"./utilities.js"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>...then all your JavaScript code in script actions and script blocks can use the exports in <em>Utils</em>, e.g. <code>Utils.myExport()</code>. This provides a useful way to write a library of functions that can be used by code anywhere else in the project, and is another good way to closely integrate event sheets with code.</p>
+<p>Note that <strong><em>Imports for events</em> scripts are language-specific.</strong> If you add a JavaScript <em>Imports for events</em> file, then it only applies to JavaScript code in event sheets - it will not apply to TypeScript code in event sheets - and vice versa. You can have both a JavaScript and TypeScript <em>Imports for events</em> file in the same project, but it is recommended to use either all JavaScript or all TypeScript to avoid creating confusing situations where the two <em>Imports for events</em> files have different contents.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Using the runtime interface</h2>
+<p>All scripts in the event sheet can access a special <code>runtime</code> variable which refers to the <a class="extern" href="../scripting-reference/iruntime.html" rel="noopener" target="_blank" title="Make your own games">runtime script interface</a>. This provides functions and properties that lets your code access and control Construct's runtime. This also includes ways to closely integrate code and events, such as iterating the instances picked by the current event.</p>
+<p>A very simple example is shown below, which can be used to show a dialog box with the project name in it.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token function">alert</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span>runtime<span class="token punctuation">.</span>projectName<span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Accessing local variables</h2>
+<p>A useful way to pass values between scripts and the event sheet is to use <a class="extern" href="../../project-primitives/events/variables.html" rel="noopener" target="_blank" title="Make your own games">local variables</a> in the event sheet. These can be accessed by both script actions and script blocks using the variable name <code>localVars</code>. This is set to an object with a property for each local variable in scope. The available local variables are the same as are available to a <em>Set value</em> action in the same place. This includes any parameters for event sheet functions.</p>
+<p>For example a script in an event group with a local variable named <em>temp</em> can access the local variable using <code>localVars.temp</code>. A useful pattern is to use an action to set a local variable to an expression, and then read from it in a following script action. Alternatively a script could calculate a value and assign it to a local variable, to subsequently be used in the event sheet. It could also be used both ways at once, both reading the variable and then assigning it. See also the <a class="extern" href="https://editor.construct.net/#open=integrating-events-with-script" rel="noopener" target="_blank" title="Make games in the browser">Integrating events with script</a> example which shows one of the ways this can be used.</p>
+<p>Note that <code>localVars</code> excludes global variables, which are available via <a class="extern" href="../scripting-reference/iruntime.html" rel="noopener" target="_blank" title="Make your own games">runtime.globalVars</a> instead. <code>localVars</code> is also unique to scripts in the event sheet - script files cannot access it, because they do not have a scope in the event sheet.</p>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Errors</h2>
+<p>Any exceptions, or rejected promises, arising from a script in an event sheet will be caught by the Construct engine and logged to the console with information about where the error came from. This means unhandled exceptions or rejections will not crash the game (since browsers stop running scripts if they encounter an unhandled error). However you should keep an eye on the browser console to check for any unexpected errors. For more information see the section on <a class="extern" href="debugging-script.html" rel="noopener" target="_blank" title="Make your own games">debugging script</a>.</p></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

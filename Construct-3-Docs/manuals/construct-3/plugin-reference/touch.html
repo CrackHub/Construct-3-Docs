@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/touch" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Touch
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Touch</strong> object detects input from touchscreen devices like phones and tablets, as well as desktops or laptops with touch-sensitive displays.</p>
+<p>The Touch object also provides input from the <strong>accelerometer</strong> (motion) and <strong>inclinometer</strong> (tilt/compass direction) if the device supports them. The user must grant permission for these before they can be used though; see the <em>Request permission</em> action for more details. Note also some low-end devices lack the necessary hardware to measure these values.</p>
+<p>It is <a class="extern" href="../tips-and-guides/best-practices.html" rel="noopener" target="_blank" title="Make your own games">best</a> to support touch input wherever possible. On the web many users browse on mobile devices with touch input only and no mouse or keyboard. If your project does not support touch controls, many users will be unable to play your project at all. For a guide on how to implement on-screen touch controls, see the tutorial on <a class="extern" href="https://www.construct.net/tutorials/touch-controls-detecting-13.html" rel="noopener" target="_blank" title="Make your own games">Touch controls</a>.</p>
+<p>For a number of examples of using Touch input, search for Touch in the <a class="extern" href="../overview/example-browser.html" rel="noopener" target="_blank" title="Make your own games">Example Browser</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/touch.html" rel="noopener" target="_blank" title="Make your own games">ITouchObjectType script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Multi-touch</h2>
+<p>The Touch object supports multi-touch. This is most useful with the <em>On touched</em> object and <em>Is touching object conditions</em>, which can for example detect if multiple on-screen touch controls are being used. This is sufficient for many projects.</p>
+<p>For more advanced uses, the <em>TouchID</em>, <em>XForID</em> and <em>YForID</em> expressions can be used to track individual touches for different purposes. Each touch has a unique ID (which is an arbitrary number), and can be accessed using the <em>TouchID</em> expression in an event like <em>On any touch start</em>. The touch ID can then be stored in a variable and tracked using the <em>XForID</em> and <em>YForID</em> expressions. Finally comparing the <em>TouchID</em> in <em>On any touch end</em> indicates when that touch has been released.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Touch properties</h2>
+<dl class="sans">
+<dt>Use mouse input</dt>
+<dd>If enabled, mouse clicks will simulate touch events. Clicking and dragging the left mouse button will simulate a touch along where mouse dragged, and single clicks will simulate taps. This can be very useful for testing touch events work properly on a desktop computer with no touch input supported. However, only single-touch input can be simulated with a mouse, and a mouse is much more precise than a touch, so it is still best to test on a real touchscreen device.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Touch conditions</h2>
+<dl class="sans">
+<dt>On double-tap</dt>
+<dt>On double-tap object</dt>
+<dd>Triggered when two tap gestures are performed in quick succession in the same location. The <em>On double-tap object</em> variant triggers when this gesture is performed over an object.</dd>
+<dt>On hold</dt>
+<dt>On hold over object</dt>
+<dd>Triggered when a touch is held (pressed and not moved) for a short time period. The <em>On hold over object</em> variant triggers when this gesture is performed over an object.</dd>
+<dt>On tap</dt>
+<dt>On tap object</dt>
+<dd>Triggered when a tap gesture is performed, which is defined as a touch and release in quick succession in the same location. The <em>On tap object</em> variant triggers when this gesture is performed over an object.</dd>
+<dt>Compare acceleration</dt>
+<dd>Requires motion permission. Compare the current device's motion as its acceleration on each axis in m/s^2 (meters per second per second). The effect of gravity can be included or excluded, but note that some devices only support accelerometer values including the effect of gravity and will always return 0 for acceleration excluding gravity.</dd>
+<dt>Compare orientation</dt>
+<dd>Requires orientation permission. Compare the device's current orientation, if the device has a supported inclinometer. <em>Alpha</em> is the compass direction in degrees. <em>Beta</em> is the device front-to-back tilt in degrees (i.e. tilting forwards away from you if holding in front of you). A positive value indicates front tilt and a negative value indicates back tilt. <em>Gamma</em> is the device left-to-right tilt in degrees (i.e. twisting if holding in front of you). A positive value indicates right tilt and a negative value indicates left tilt.</dd>
+<dt>On permission granted</dt>
+<dt>On permission denied</dt>
+<dd>Triggered after the <em>Request permission</em> action depending on the outcome of the permission request. These can be triggered without an actual permission prompt being shown to the user, such as if a similar prompt was already shown.</dd>
+<dt>Compare touch speed</dt>
+<dd>Compare the speed of a specific touch (given by its zero-based index). Touch speed is measured in canvas pixels per second, so is not affected by scaling the display.</dd>
+<dt>Has Nth touch</dt>
+<dd>True if a given touch number is currently in contact with the screen. For example, <em>Has touch 1</em> will be true if there are two or more touches currently in contact with the screen (given that it is a zero-based index).</dd>
+<dt>Is in touch</dt>
+<dd>True if any touch is currently in contact with the screen.</dd>
+<dt>Is touching object</dt>
+<dd>True if any touch is currently touching a given object.</dd>
+<dt>On any touch end</dt>
+<dd>Triggered when any touch releases from the screen.</dd>
+<dt>On any touch start</dt>
+<dd>Triggered upon any touch on the screen.</dd>
+<dt>On Nth touch end</dt>
+<dd>Triggered when a given touch number releases from the screen. For example, <em>On touch 1 end</em> will trigger when releasing the second simultaneous touch (given that it is a zero-based index).</dd>
+<dt>On Nth touch start</dt>
+<dd>Triggered when a given touch number touches the screen. For example, <em>On touch 1 start</em> will trigger upon the second simultaneous touch (given that it is a zero-based index).</dd>
+<dt>On touched object</dt>
+<dd>Triggered when a given object is touched. The <em>Type</em> parameter defaults to <em>start</em>, which means it will trigger when a touch starts inside the given object. Changing the <em>Type</em> parameter to <em>end</em> instead means it will only trigger when a touch is released while inside the given object.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Touch actions</h2>
+<dl class="sans">
+<dt>Request permission</dt>
+<dd>Request permission to access the device accelerometer (motion) or inclinometer (orientation). The acceleration and orientation expressions may not return any values until permission has been granted by the user. This must be used in a user input event, normally <strong>On touch end</strong> (note that <em>On touch <u>start</u></em> may not work). Some systems merge both requests in to one, so if you request only one permission, the device will grant access to both. <em>On permission granted</em> or <em>On permission denied</em> is triggered depending on whether the user approved or declined the permission prompt. These can also trigger automatically without a prompt if the user recently approved or declined a similar permission prompt in the same browser session.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Touch expressions</h2>
+<dl class="sans">
+<dt>AccelerationX</dt>
+<dt>AccelerationY</dt>
+<dt>AccelerationZ</dt>
+<dd>Requires motion permission. Get the current device's motion as its acceleration on each axis in m/s^2 (meters per second per second) excluding the effect of gravity. The expressions which include gravity (below) are more widely supported; these will return 0 at all times on devices which do not support them.</dd>
+<dt>AccelerationXWithG</dt>
+<dt>AccelerationYWithG</dt>
+<dt>AccelerationZWithG</dt>
+<dd>Requires motion permission. Get the current device's motion as its acceleration on each axis in m/s^2 (meters per second per second) including the acceleration caused by gravity, which is about 9.8 m/s^2 down at all times. For example, at rest, the device will report an acceleration downwards corresponding to the force of gravity. These expressions are more commonly supported than the expressions returning acceleration without G (above). However, devices are still not guaranteed to support motion detection, in which case these will return 0 at all times.</dd>
+<dt>CompassHeading</dt>
+<dt>Alpha</dt>
+<dt>Beta</dt>
+<dt>Gamma</dt>
+<dd>Requires orientation permission. Return the device's orientation if supported, or 0 at all times if not supported. <em>Alpha</em> is the compass heading in degrees. In some circumstances this is relative to the compass heading of the device when the app started instead of the true compass heading relative to due North; the <em>CompassHeading</em> expression returns the true compass heading, where supported. <em>Beta</em> is the device front-to-back tilt in degrees (i.e. tilting forwards away from you if holding in front of you). A positive value indicates front tilt and a negative value indicates back tilt. <em>Gamma</em> is the device left-to-right tilt in degrees (i.e. twisting if holding in front of you). A positive value indicates right tilt and a negative value indicates left tilt.</dd>
+<dt>AbsoluteX</dt>
+<dt>AbsoluteY</dt>
+<dt>AbsoluteXAt(index)</dt>
+<dt>AbsoluteYAt(index)</dt>
+<dt>AbsoluteXForID(id)</dt>
+<dt>AbsoluteYForID(id)</dt>
+<dd>Return the current position of a touch over the canvas area. This is (0, 0) at the top left of the canvas and goes up to the window size. It is not affected by any scrolling or scaling in the project. The <em>At</em> expressions can return the absolute position of any touch given its zero-based index, and the <em>ForID</em> expressions return the position of a touch with a specific ID.</dd>
+<dt>X</dt>
+<dt>Y</dt>
+<dt>XAt(index)</dt>
+<dt>YAt(index)</dt>
+<dt>XForID(id)</dt>
+<dt>YForID(id)</dt>
+<dd>Return the current position of a touch in layout co-ordinates. It changes to reflect scrolling and scaling. However, if an individual layer has been scrolled, scaled or rotated, these expressions do not take that in to account - for that case, use the layer versions below. The <em>At</em> expressions can return the position of any touch given its zero-based index, and the <em>ForID</em> expressions return the position of a touch with a specific ID.</dd>
+<dt>X(layer)</dt>
+<dt>Y(layer)</dt>
+<dt>XAt(index, layer)</dt>
+<dt>YAt(index, layer)</dt>
+<dt>XForID(id, layer)</dt>
+<dt>YForID(id, layer)</dt>
+<dd>Return the current position of a touch in layer co-ordinates, with scrolling, scaling and rotation taken in to account for the given layer. The layer can be identified either by a string of its name or its zero-based index (e.g. <code>Touch.X("HUD")</code>). The <em>At</em> expressions can return the position of any touch on a layer given its zero-based index, and the <em>ForID</em> expressions return the position of a touch with a specific ID.</dd>
+<dt>TouchCount</dt>
+<dd>Number of touches currently in contact with the device's screen.</dd>
+<dt>TouchID</dt>
+<dd>Return the unique ID of a touch (which is an arbitrary number) in an event like <em>On any touch start</em> or <em>On any touch end</em>.<br/>
+<br/>
+</dd>
+<dt>TouchIndex</dt>
+<dd>Return the zero-based index of the touch in an event like <em>On any touch start</em> or <em>On any touch end</em>.</dd>
+<dt>AngleAt(index)</dt>
+<dt>AngleForID(id)</dt>
+<dd>Get the angle of motion of a specific touch in degrees by its zero-based index or unique ID. A touch must be moving across the device screen for this expression to contain a useful value.</dd>
+<dt>WidthForID(id)</dt>
+<dt>HeightForID(id)</dt>
+<dd>Return the width and height of a touch with a given ID in pixels. This allows the app to determine the approximate size of the touch area. Note some platforms do not support this and will always return 0 for the touch size.</dd>
+<dt>PressureForID(id)</dt>
+<dd>Return the pressure of a touch with a given ID, as a number from 0 (least detectable pressure) to 1 (most detectable pressure). This is useful for devices with pressure-sensitive displays. Note however not all devices have pressure-sensitive displays, and so will always return 0 for the pressure.</dd>
+<dt>SpeedAt(index)</dt>
+<dt>SpeedForID(id)</dt>
+<dd>Get the speed of a specific touch by its zero-based index or unique ID. Touch speed is measured in canvas pixels per second, so is not affected by scaling the display.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

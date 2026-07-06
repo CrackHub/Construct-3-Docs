@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/layers" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Layers
+            </h1>
+<div itemprop="articleBody">
+<p>A <strong>layer</strong> is like a transparent sheet of glass that objects are painted on to. Layers can be used to show different groups of objects in front or behind each other, like the foreground and background. Layers belong to a <a class="extern" href="layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a> and can be added, edited and removed in the <a class="extern" href="../interface/bars/layers-bar.html" rel="noopener" target="_blank" title="Make your own games">Layers Bar</a>. Layers can be scrolled at different rates for parallax effects, and also individually scaled and rotated, which makes them a powerful way to make interesting visual effects.</p>
+<p>Layers are also important to add non-scrolling content (e.g. HUDs or UIs) to scrolling projects. A layer with its parallax set to <strong>0, 0</strong> will not scroll at all, so any objects placed on this layer will always stay in the same place on-screen. Note that in this case, objects should be placed within the dashed rectangle that appears in the top-left of the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>.</p>
+<p>A common arrangement for layers might be:</p>
+<ul class="list">
+<li><strong>HUD</strong> (top layer - health bar, UI info etc.)</li>
+<li><strong>Foreground</strong> (objects appearing on top, e.g. explosions and effects)</li>
+<li><strong>Middleground</strong> (main game objects such as the player and enemies)</li>
+<li><strong>Background</strong> (bottom layer - the background)</li>
+</ul>
+<p>Note that the Free edition is limited to using two layers only.</p>
+<p>Layers can also have <a class="extern" href="objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effects</a> applied, which affects all content appearing on the layer.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Sub-layers</h2>
+<p>Layers can also be added as sub-layers of another layer. Sub-layers appear indented in the Layers Bar to show they come under another layer.</p>
+<p>A layer with both objects and sub-layers will show its objects on top of its sub-layers. In other words, sub-layers come beneath a layer's own objects in the Z order. This also means that sub-layers act a lot like a simple flat list of layers, and so can be used solely for organizing long layer lists, much like layer folders.</p>
+<p>However adding an effect to a layer with sub-layers allows for more efficient and more advanced effects. An effect on a layer with sub-layers will alter the appearance of both the layer and all its sub-layers. This is more efficient than adding the same effect to multiple layers, as it ensures the effect is only processed a single time, while affecting the content of multiple layers.</p>
+<p>Layer effects involving sub-layers also allow for composition of more advanced effects. For example a group of layers can be combined to make a single lighting layer, which then affects the appearance of another group of layers beneath it. See the <a class="extern" href="https://editor.construct.net/#open=shadows-blending-multiple" rel="noopener" target="_blank" title="Make games in the browser">Shadows: blending multiple lights</a> example for a demonstration of this technique.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Global layers</h2>
+<p>Sometimes many layouts in a project have the same content on a particular layer, such as for interface or HUD overlaid on to the project. Changing this content then becomes a chore since changes must be repeated on every layout. <strong>Global layers</strong> are aimed at solving this problem.</p>
+<p>If a layer's <em>Global</em> property is enabled, then <strong>every layer in the project with the same name</strong> is overridden by that layer. The initial objects, as well as its properties, are used instead of the other layer's own content and properties. Then changes can be made once to the original global layer, and the changes will be applied project-wide.</p>
+<p>The layer with the <em>Global</em> property enabled is the "master" layer. On other layers in the project with the same name, the <em>Global</em> property will be read-only and display <em>Overridden</em> to indicate it is being substituted by a different layer. The same layer's content will appear in the editor, and all edits will affect the master layer, no matter which layout it is being edited from.</p>
+<p>Whether a layer is the original global layer or is overridden will be shown next to a layer's name in between parenthesis in all relevant places, these includes the <em>Layers</em> dropdown in the Properties bar when an <a class="extern" href="objects/instances/edit.html" rel="noopener" target="_blank" title="Make your own games">instance</a> is selected and next to each item of the <a class="extern" href="../interface/bars/layers-bar.html" rel="noopener" target="_blank" title="Make your own games">Layers Bar</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Layer properties</h2>
+<p>The properties for a layer can be edited in the <a class="extern" href="../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a> after clicking the layer in the <a class="extern" href="../interface/bars/layers-bar.html" rel="noopener" target="_blank" title="Make your own games">Layers Bar</a>. Note this also changes the <strong>active layer</strong>.</p>
+<dl class="sans">
+<dt>Name</dt>
+<dd>The name of the layer, which can be used to refer to the layer in the event system.</dd>
+<dt>Initially visible</dt>
+<dd>Whether or not the layer is initially visible <strong>when previewing</strong>. This is different to the <em>Visible in editor</em> property which only affects the Layout View.</dd>
+<dt>Initially interactive</dt>
+<dd>Whether or not the layer is initially interactive when previewing. If disabled, then the content of the layer will not respond to mouse or touch input.</dd>
+<dt>HTML elements layer</dt>
+<dd>Allow HTML elements to appear above this layer. This allows content on other layers above this layer to render on top of HTML elements on this layer. Layers which enable this are shown with a special icon in the Layers Bar. For more details see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</dd>
+<dt>Use render cells</dt>
+<dd>Optimise the rendering of this layer for extremely large layouts with a large number of static objects spread out across this layer. This is not normally necessary except for certain types of large projects. If this is used incorrectly, it can actually make rendering less efficient, so make sure you can measure a performance improvement before using it. For more information, see the blog post <a class="extern" href="https://www.construct.net/blogs/ashleys-blog-2/render-cells-work-921.html" rel="noopener" target="_blank" title="Make your own games">How render cells work</a>.</dd>
+<dt>Scale rate</dt>
+<dd>Change the rate at which the layer zooms if scaling is applied to the layer or layout, a bit like parallax but for zoom. A scale rate of 0 means the layer will always stay at 100% scale regardless of the scaling applied. A scale rate of 100 means it will scale normally.</dd>
+<dt>Parallax</dt>
+<dd>Change the rate at which the layer scrolls in the horizontal and vertical directions. A parallax rate of <em>100% x 100%</em> means ordinary scrolling, <em>0% x 0%</em> means it will never scroll (useful for UIs), <em>50% x 50%</em> means scrolling half as fast, etc. Also useful for multi-layer parallaxing backgrounds.</dd>
+<dt>Z elevation</dt>
+<dd>The Z elevation of the entire layer. By default the camera is at Z = 100, and looking down to Z = 0. The default Z elevation is 0. Increasing it will move the layer upwards (towards the camera) and decreasing it will move it downwards (away from the camera). You can learn more about Z elevation in the tutorial <a class="extern" href="https://www.construct.net/tutorials/using-3d-construct-2746.html" rel="noopener" target="_blank" title="Make your own games">Using 3D features in Construct</a>.</dd>
+<dt>Transparent</dt>
+<dd>Make the layer have a transparent background. If enabled, the background color is not used.</dd>
+<dt>Background color</dt>
+<dd>The background color for the layer, if it is opaque (i.e. <em>Transparent</em> is disabled).</dd>
+<dt>Sampling</dt>
+<dd>Override the project or layout sampling settings for content on this layer. <em>Auto</em> means it will use the project or layout sampling setting. Sub-layers and individual object instances can also further override this setting.</dd>
+<dt>Opacity</dt>
+<dd>Set the opacity (or semitransparency) of the layer, from 0% (invisible) to 100% (opaque).</dd>
+<dt>Force own texture</dt>
+<dd>Force the layer to always render to an intermediate texture rather than directly to the screen. This is useful for some kinds of effects. However it slows down rendering, so it should be disabled unless specifically needed.</dd>
+<dt>Uses own texture</dt>
+<dd>A read-only property indicating if the layer renders to an intermediate texture. This has a performance overhead. The <em>Force own texture</em> setting enables this, but some other properties also cause the layer to use its own texture, including changing the layer opacity from 100%, changing the blend mode, or adding effects.</dd>
+<dt>Rendering mode</dt>
+<dd>When using 3D rendering mode, this setting can change a layer back in to rendering in 2D mode. This allows projects with 3D content to still use 2D layers as backdrops or overlays which are not affected by depth. For example a HUD layer ought to display on top of all 3D content, regardless of depth, so would typically use a 2D rendering mode for the layer. Otherwise in 3D mode, 3D features may still overlap the layer content if they rise higher than the layer contents. For an example, see <a class="extern" href="https://editor.construct.net/#open=combining-2d-3d" rel="noopener" target="_blank" title="Make games in the browser">Combining 2D &amp; 3D layers</a>, and you can learn more about 3D features and 2D layers in the tutorial <a class="extern" href="https://www.construct.net/tutorials/using-3d-construct-2746.html" rel="noopener" target="_blank" title="Make your own games">Using 3D features in Construct</a>. </dd>
+<dt>Draw order</dt>
+<dd>This setting only appears for layers using a 3D rendering mode. The default draw order is <em>Z order</em>, meaning objects are drawn in a back-to-front order according to the Z order of instances on the layer. 3D layers can also be set to <em>Camera distance</em> draw order, which instead ignores the Z order and draws instances on the layer according to how far away from the camera they are, from furthest away to nearest. This has no effect on opaque objects, but is important for rendering transparency in 3D. For more information see the tutorial <a class="extern" href="https://www.construct.net/tutorials/using-3d-construct-2746.html" rel="noopener" target="_blank" title="Make your own games">Using 3D in Construct</a>.</dd>
+<dt>Blend mode</dt>
+<dd>Change the way the layer is blended with the background when it is rendered to the display. See the <em>Blend modes</em> example that comes with Construct 3 for a visual demonstration of each.</dd>
+<dt>Effects</dt>
+<dd>Add and edit <a class="extern" href="objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effects</a> that apply to the whole layer.</dd>
+<dt>Visible in editor</dt>
+<dd>Whether or not the layer is showing <strong>in the Layout View</strong>. Note this is different to the <em>Initially visible</em> property which only affects previewing. This setting can also be accessed via the Layers Bar.</dd>
+<dt>Locked</dt>
+<dd>Whether or not the layer is locked in the Layout View. Objects on locked layers cannot be selected. This setting can also be accessed via the Layers Bar.</dd>
+<dt>Parallax in editor</dt>
+<dd>If enabled, the <em>Parallax</em> property will also be applied in the Layout View, allowing you to preview what the effect will look like.</dd>
+<dt>Global</dt>
+<dd>See the section above on <em>Global layers</em>. If enabled it will override every other layer in the project with the same name with its own contents and properties. Overridden layers display this property read-only as <em>Overridden</em>. If disabled its contents and properties are unique to itself.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

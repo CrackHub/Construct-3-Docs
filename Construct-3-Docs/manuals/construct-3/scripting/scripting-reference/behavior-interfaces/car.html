@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/car" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Car behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ICarBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/car.html" rel="noopener" target="_blank" title="Make your own games">Car behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Car behavior APIs</h2>
+<dl>
+<dt>stop()</dt>
+<dd>Stop the movement, setting the speed to 0.</dd>
+<dt>simulateControl(control)</dt>
+<dd>Simulate one of the movement controls being held down. Useful when <em>isDefaultControls</em> is disabled. The control is provided as a string and must be one of <code>"left"</code>, <code>"right"</code>, <code>"up"</code>, <code>"down"</code>.</dd>
+<dt>speed</dt>
+<dd>Set or get the current speed in pixels per second. Note this cannot exceed <code>maxSpeed</code>.</dd>
+<dt>maxSpeed</dt>
+<dd>Set or get the maximum speed in pixels per second.</dd>
+<dt>acceleration</dt>
+<dt>deceleration</dt>
+<dd>Set or get the acceleration/deceleration of the movement in pixels per second per second.</dd>
+<dt>vectorX</dt>
+<dt>vectorY</dt>
+<dt>getVector()</dt>
+<dd>Get the read-only X and Y components of the movement in pixels per second. The method returns both values at the same time.</dd>
+<dt>angleOfMotion</dt>
+<dd>The read-only current angle of the movement in radians.</dd>
+<dt>steerSpeed</dt>
+<dd>Set or get the rate the car rotates at when steering, in radians per second.</dd>
+<dt>driftRecover</dt>
+<dd>Set or get the rate the car recovers from drifts, in radians per second. In other words, this is the rate the angle of motion catches up with the object angle. The angle of motion can never be more than 90 degrees off the object angle. If the drift recover is greater or equal to <em>steerSpeed</em>, no drifting ever occurs. The lower the drift recover, the more the car will drift on corners.</dd>
+<dt>friction</dt>
+<dd>Set or get the amount of speed lost when colliding with a solid, from 0 (stop dead) to 1 (speed not affected at all). For example, 0.5 will slow the speed down by half when colliding with a solid.</dd>
+<dt>turnWhileStopped</dt>
+<dd>A boolean indicating if the <em>Turn while stopped</em> behavior property is enabled. When enabled, it allows rotation while not moving.</dd>
+<dt>isDefaultControls</dt>
+<dd>A boolean indicating if the default controls (using the arrow keys) are enabled.</dd>
+<dt>isIgnoringInput</dt>
+<dd>A boolean indicating if input is currently being ignored. If input is ignored, pressing any of the control keys has no effect. However, unlike disabling the behavior, the object can continue to move.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/interfaces/itimelinestatebase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ITimelineStateBase script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITimelineStateBase</code> is the base class of <a class="extern" href="itimelinestate.html" rel="noopener" target="_blank" title="Make your own games">ITimelineState</a> and <a class="extern" href="itweenstate.html" rel="noopener" target="_blank" title="Make your own games">ITweenState</a>, allowing common APIs to be shared between timelines and tweens, as tweens are a kind of temporary timeline. Unless otherwise stated, where this documentation refers to a timeline, it also applies to a tween.
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>ITimelineStateBase APIs</h2>
+<dl>
+<dt>finished</dt>
+<dd>A promise that resolves when the timeline finishes playing. This can be awaited in order to wait until the timeline finishes before proceeding to do something else.</dd>
+<dt>pause()</dt>
+<dt>resume()</dt>
+<dd>Pause or resume playback of the timeline.</dd>
+<dt>isPlaying</dt>
+<dt>isPaused</dt>
+<dd>Read-only booleans indicating whether playback is active or paused.</dd>
+<dt>time</dt>
+<dd>Set or get the current playback time of the timeline in seconds.</dd>
+<dt>totalTime</dt>
+<dd>Set or get the total time (i.e. the duration) of the timeline in seconds.</dd>
+<dt>progress</dt>
+<dd>A read-only number representing the playback progress from 0 to 1 (i.e. the time divided by the total time).</dd>
+<dt>isLooping</dt>
+<dd>Set or get a boolean indicating whether playback will repeat when it finishes.</dd>
+<dt>isPingPong</dt>
+<dd>Set or get a boolean indicating whether the playback direction will alternately reverse when repeating.</dd>
+<dt>playbackRate</dt>
+<dd>Set or get the speed of playback as a multiplier, e.g. 1 is normal speed, 2 is twice as fast, etc.</dd>
+<dt>tags</dt>
+<dd>A read-only array of strings representing the tags for this timeline.</dd>
+<dt>hasTags(tags)</dt>
+<dd>Return a boolean indicating if the timeline matches all the provided tags, given by a space-separated string.</dd>
+<dt>isReleased</dt>
+<dd>A read-only boolean indicating if the interface was released, which happens after the timeline finishes. Once released accessing any other property (apart from this one) will throw an exception, as the underlying timeline state no longer exists.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

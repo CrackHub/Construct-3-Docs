@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/internationalization" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Internationalization script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IInternationalizationObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/internationalization.html" rel="noopener" target="_blank" title="Make your own games">Internationalization plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Supported APIs</h2>
+<p>Many features of the Internationalization plugin merely access the browser-provided <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl</a> APIs, such as for formatting dates and times, identifying plural types, and so on. When writing code, you may as well access these APIs directly rather than through the script interface, so those APIs are not duplicated here. Instead the script interface only provides access to string lookups for translations.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Internationalization APIs</h2>
+<dl>
+<dt>locale</dt>
+<dd>Set or get a string representing the currently set locale as a <a class="extern outlink" href="https://en.wikipedia.org/wiki/IETF_language_tag" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/IETF_language_tag">BCP 47 language tag</a>, e.g. <code>"en-US"</code>.</dd>
+<dt>addString(context, str)</dt>
+<dd>Add a localized string to the provided context in the localization data for the current locale.</dd>
+<dt>saveToJSONString()</dt>
+<dd>Returns a string of JSON representing the state of the Internationalization object.</dd>
+<dt>loadFromJSONString(str)</dt>
+<dd>Load the state of the Internationalization object from a string of JSON data.</dd>
+<dt>setContext(context)</dt>
+<dt>getContext()</dt>
+<dd>Set and get a string representing the current context for string lookups.</dd>
+<dt>pushContext(context)</dt>
+<dt>popContext()</dt>
+<dd>Push or pop to the context stack. When a string is pushed, it is used as the base for all relative context lookups. </dd>
+<dt>createContext(context)</dt>
+<dd>Return an <code>I18NLookupContext</code> representing the given context. This provides a convenient way to look up several strings relative to that context. See the section below for more details.</dd>
+<dt>lookup(context, ...args)</dt>
+<dt>lookupPlural(context, count, ...args)</dt>
+<dd>Look up a string at the given context, and substitute placeholders with the following arguments. The context may be relative if a context has been pushed. The plural variant also makes use of the <code>count</code> argument to select the appropriate plural variant for the current locale. See the <a class="extern" href="../../../plugin-reference/internationalization.html" rel="noopener" target="_blank" title="Make your own games">Internationalization manual entry</a> for more details on placeholders, relative contexts and pluralization.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>I18NLookupContext</h2>
+<p>The <code>createContext()</code> method returns an <code>I18NLookupContext</code> which can be used for more conveniently looking up lots of strings from the same context. This works similarly to using <code>pushContext()</code>, but takes advantage of JavaScript's garbage collector to avoid having to need a following call to <code>popContext()</code>. This makes it more convenient and less error-prone to use than pushing and popping contexts. It's also uniquely available to the script interface, as Construct's event system does not support allow a comparable API.</p>
+<p>The code sample below demonstrates how it can be used.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">const</span> intl <span class="token operator">=</span> runtime<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>Internationalization<span class="token punctuation">;</span>
+
+<span class="token comment">// Normal lookup having to repeat the context</span>
+<span class="token keyword">let</span> string1 <span class="token operator">=</span> intl<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token string">"forest-world.chapter-1.intro-text.title"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> string2 <span class="token operator">=</span> intl<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token string">"forest-world.chapter-1.intro-text.message"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> string3 <span class="token operator">=</span> intl<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token string">"forest-world.chapter-1.intro-text.start"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Shorter lookups using a context</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> intl<span class="token punctuation">.</span><span class="token function">createContext</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-3-close">(</span><span class="token string">"forest-world.chapter-1.intro-text"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-3-open">)</span><span class="token punctuation">;</span>
+
+string1 <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-4-close">(</span><span class="token string">".title"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-4-open">)</span><span class="token punctuation">;</span>
+string2 <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-5-close">(</span><span class="token string">".message"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-5-open">)</span><span class="token punctuation">;</span>
+string3 <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-6-close">(</span><span class="token string">".start"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-6-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3>I18NLookupContext APIs</h3>
+<dl>
+<dt>lookup(context, ...args)</dt>
+<dt>lookupPlural(context, count, ...args)</dt>
+<dd>These methods are equivalent to those on the Internationalization script interface, but may use contexts relative to the context this <code>I18NLookupContext</code> was created with.</dd>
+<dt>createContext(context)</dt>
+<dd>Create another <code>I18NLookupContext</code> for the given context, which must be relative. This allows creating further <code>I18NLookupContext</code> objects for more deeply nested contexts.</dd></dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

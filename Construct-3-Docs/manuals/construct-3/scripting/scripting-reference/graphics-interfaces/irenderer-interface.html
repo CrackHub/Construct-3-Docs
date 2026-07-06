@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/graphics-interfaces/irenderer-interface" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IRenderer script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IRenderer</code> script interface provides access to Construct's renderer in the runtime. The same interface can be used regardless of the underlying rendering technology (e.g. WebGL or WebGPU). The interface's methods provide high-level drawing commands implemented by Construct, so you don't need to handle low-level concerns like vertex buffers.</p>
+<p><code>IRenderer</code> can be used both in project code, such as with the <a class="extern" href="../layout-interfaces/ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a> events <code>"beforedraw"</code> and <code>"afterdraw"</code>, and in the addon SDK for drawing plugins.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Renderer state</h2>
+<p><code>IRenderer</code> uses a persistent rendering state. Therefore to correctly render something, all the intended state must be specified, otherwise it will use an undefined previous state. <code>IRenderer</code> simplifies the renderer state to:</p>
+<ol class="list">
+<li>A blend mode. Typically a normal alpha blend mode is used.</li>
+<li>A fill mode (internally, the current fragment shader). The fill modes can be <em>color fill</em> (draw a solid color), <em>texture fill</em> (draw a texture), and <em>smooth line fill</em> (for drawing smooth lines).</li>
+<li>A color set by <code>setColor()</code> or <code>setColorRgba()</code>. The alpha component of the color is used as the opacity in texture fill mode.</li>
+<li>A texture set by <code>setTexture()</code>. This is only used in texture fill mode.</li>
+</ol>
+<p>There are two other states that are more applicable to 3D content:</p>
+<ul class="list">
+<li>The face culling mode, set by <code>setCullFaceMode()</code></li>
+<li>The front face winding that is also used by the face culling mode, set by <code>setFrontFaceWinding()</code></li>
+</ul>
+<p>A drawing method should begin by at least specifying the blend mode, the fill mode, the color, and the texture (if texture fill mode is used), before continuing to draw. The renderer efficiently discards redundant calls, so if the state does not actually change then these calls have minimal performance overhead.</p>
+<p>Once all state is set up, quads can be issued using one of the <code>rect()</code> or <code>quad()</code> method overloads. These methods draw using the currently set state.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Texture options</h2>
+<p>Some texture methods accept the same options objects to specify the texture parameters. To avoid repeating them, the common options that can be specified are documented below.</p>
+<ul class="list">
+<li><code>wrapX</code>: the texture horizontal wrap mode: one of <code>"clamp-to-edge"</code>, <code>"repeat"</code>, <code>"mirror-repeat"</code></li>
+<li><code>wrapY</code>: as with <code>wrapX</code> but for the vertical wrap mode</li>
+<li><code>defaultSampling</code>: the default texture sampling mode, which is used when <code>setTexture()</code> sets this texture with the sampling parameter set to <code>"auto"</code>. This must be one of <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code> (default). For backwards compatibility reasons, a property named <code>sampling</code> will also be used for this value if <code>defaultSampling</code> is not specified.</li>
+<li><code>mipMap</code>: boolean indicating if mipmaps should be used for this texture, default true</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Methods</h2>
+<dl>
+<dt>setAlphaBlendMode()</dt>
+<dd>Set the blend mode to a premultiplied alpha blending mode.</dd>
+<dt>setBlendMode(blendMode)</dt>
+<dd>Set the blend mode by a string which must be one of <code>"normal"</code>, <code>"additive"</code>, <code>"copy"</code>, <code>"destination-over"</code>, <code>"source-in"</code>, <code>"destination-in"</code>, <code>"source-out"</code>, <code>"destination-out"</code>, <code>"source-atop"</code>, <code>"destination-atop"</code>, <code>"lighten"</code>, <code>"darken"</code>, <code>"multiply"</code>, <code>"screen"</code>. Passing <code>"normal"</code> is equivalent to calling <code>setAlphaBlendMode()</code>.</dd>
+<dt>setColorFillMode()</dt>
+<dd>Set the fill mode to draw a solid color, specified by the current color.</dd>
+<dt>setTextureFillMode()</dt>
+<dd>Set the fill mode to draw a texture, specified by the current texture, and using the alpha component of the current color as the opacity.</dd>
+<dt>setSmoothLineFillMode()</dt>
+<dd>Set the fill mode to draw smooth lines using the current color.</dd>
+<dt>setColor(color)</dt>
+<dd>Set the current color from a four-element array representing the RGBA components in [0, 1] range, e.g. <code>[1, 0, 0, 1]</code> for opaque red.</dd>
+<dt>setColorRgba(r, g, b, a)</dt>
+<dd>Set the current color by directly passing the RGBA components. in [0, 1] range.</dd>
+<dt>setOpacity(o)</dt>
+<dd>Set only the alpha component of the current color in [0, 1] range. Note this does not affect the RGB components.</dd>
+<dt>resetColor()</dt>
+<dd>Set the current color to opaque white (1, 1, 1, 1).</dd>
+<dt>setCullFaceMode(mode)</dt>
+<dt>getCullFaceMode()</dt>
+<dd>Set or get the face culling mode, which may be one of the following strings: <ul class="list"><br/>
+<li><code>"none"</code>: all faces are rendered</li><br/>
+<li><code>"back"</code>: back faces are culled</li><br/>
+<li><code>"front"</code>: front faces are culled</li></ul>Whether a face counts as front or back depends on the front face winding (see <code>setFrontFaceWinding()</code>). The default mode is <code>"none"</code>. </dd>
+<dt>setFrontFaceWinding(mode)</dt>
+<dt>getFrontFaceWinding()</dt>
+<dd>Set or get the front face winding, which is used to determine whether a triangle is front facing or back facing depending on the order ("winding") of the vertices. This is used by the cull face mode (see <code>setCullFaceMode()</code>). The mode may be either the string <code>"cw"</code> for clockwise winding, or <code>"ccw"</code> for counter-clockwise winding. The default mode is <code>"cw"</code>, because most content that Construct renders itself uses clockwise winding.</dd>
+<dt>setCurrentZ(z)</dt>
+<dt>getCurrentZ()</dt>
+<dd>Set and get the current Z component used for all 2D drawing commands that don't specify Z components, such as the <code>rect2()</code> and <code>quad3()</code>.</dd>
+<dt>rect(rect)</dt>
+<dd>Draw a rectangle given by an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a>.</dd>
+<dt>rect2(left, top, right, bottom)</dt>
+<dd>Draw a rectangle by directly passing the left, top, right and bottom positions.</dd>
+<dt>quad(quad)</dt>
+<dd>Draw a quad given by a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad">DOMQuad</a>.</dd>
+<dt>quad2(tlx, tly, trx, try_, brx, bry, blx, bly)</dt>
+<dd>Draw a quad by directly passing the positions of each of the four points in the quad.</dd>
+<dt>quad3(quad, rect)</dt>
+<dd>Draw a quad given by a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad">DOMQuad</a>, using a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a> for the source texture co-ordinates to draw from.</dd>
+<dt>quad4(quad, texQuad)</dt>
+<dd>Draw a quad given by an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad">DOMQuad</a>, using another <code>DOMQuad</code> for the source texture co-ordinates to draw from.</dd>
+<dt>quad5(quad, texQuad, colorArr)</dt>
+<dd>As with <code>quad4</code>, but adds a <code>colorArr</code> parameter for per-vertex colors. This must be a Float32Array with 16 elements in the order r, g, b, a for the top-left, top-right, bottom-right and bottom-left vertices, in that order.</dd>
+<dt>quad3D(tlx, tly, tlz, trx, try_, trz, brx, bry, brz, blx, bly, blz, rect)</dt>
+<dt>quad3D2(tlx, tly, tlz, trx, try_, trz, brx, bry, brz, blx, bly, blz, texQuad)</dt>
+<dt>quad3D3(tlx, tly, tlz, trx, try_, trz, brx, bry, brz, blx, bly, blz, texQuad, colorArr)</dt>
+<dd>Draw a 3D quad, specifying all four points of the quad with X, Y and Z co-ordinates. The first method accepts texture co-ordinates via a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a> <em>rect</em>. The second method accepts texture co-ordinates via a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad">DOMQuad</a> <em>texQuad</em>. The third is the same as the second, but adds a <code>colorArr</code> parameter for per-vertex colors. This must be a Float32Array with 16 elements in the order r, g, b, a for the top-left, top-right, bottom-right and bottom-left vertices, in that order.</dd>
+<dt>drawMesh(posArr, uvArr, indexArr, colorArr)</dt>
+<dd>Draw an array of textured triangles based on the given position, texture co-ordinate and index arrays, and an optional per-vertex color array. The <code>posArr</code> parameter must be a Float32Array of vertex positions in the sequence x, y, z (and therefore its size must be a multiple of 3). The <code>uvArr</code> parameter must be a Float32Array of texture co-ordinates in the sequence u, v (and therefore its size must be a multiple of 2). The <code>indexArr</code> parameter must be a Uint16Array of indices of vertices and texture co-ordinates, in the sequence i, j, k with each set defining a single triangle to be drawn (and therefore its size must be a multiple of 3). Note that indices refer to the index of a vertex, rather than a direct index in to either array, e.g. a position array with elements x1, y1, z1, x2, y2, z2 has six elements but defines two vertices, and so index 1 refers to the second vertex. If <code>colorArr</code> is specified, it must be a Float32Array of colors in the sequence r, g, b, a (and therefore its size must be a multiple of 4). These colors override the renderer's current color. If <code>colorArr</code> is not specified, it uses the renderer's current color for every vertex. For a code sample, see the section <em>Drawing meshes</em> below. </dd>
+<dt>createMeshData(vertexCount, indexCount, opts)</dt>
+<dd>Create an <a class="extern" href="imeshdata.html" rel="noopener" target="_blank" title="Make your own games">IMeshData</a> to represent mesh data on the GPU and efficiently draw it over multiple frames with <code>drawMeshData</code>. <code>vertexCount</code> and <code>indexCount</code> determines how many vertices and indices the mesh has. These values cannot be changed after creation - to resize a mesh, create a new one, copy data over (if necessary), and release the old one. <code>opts</code> is an optional object with additional parameters; currently this can specify an optional <code>debugLabel</code> property to specify a string label for debugging purposes. (In the WebGPU renderer, the debug label is also used on the underlying WebGPU objects.)</dd>
+<dt>drawMeshData(meshData, indexOffset, indexCount)</dt>
+<dd>Draw a <a class="extern" href="imeshdata.html" rel="noopener" target="_blank" title="Make your own games">IMeshData</a> previously created with <code>createMeshData()</code>. If some buffers have been marked changed, the first time it is drawn the changed ranges of the buffers will also be uploaded to the GPU, and then the changed marking is unset. <code>indexOffset</code> and <code>indexCount</code> can optionally be specified to draw a reduced range of the index buffer; if used the count should be a multiple of 3 to specify complete triangles, and the offset should likely also be a multiple of 3 to avoid scrambling the triangle orders.</dd>
+<dt>convexPoly(pointsArray)</dt>
+<dd>Draw a convex polygon using the given array of points, in alternating X, Y order. Therefore the size of the array must be even, and must contain at least six elements (to define three points).</dd>
+<dt>line(x1, y1, x2, y2)</dt>
+<dd>Draws a quad from the point (x1, y1) to (x2, y2) with the current line width.</dd>
+<dt>texturedLine(x1, y1, x2, y2, u, v)</dt>
+<dd>Draws a quad from the point (x1, y1) to (x2, y2) with the current line width, and using (u, 0) as the texture co-ordinates at the start, and (v, 0) as the texture co-ordinates at the end.</dd>
+<dt>lineRect(left, top, right, bottom)</dt>
+<dd>Draws four lines along the edges of a given rectangle.</dd>
+<dt>lineRect2(rect)</dt>
+<dd>Draws four lines along the edges of a given <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a>.</dd>
+<dt>lineQuad(quad)</dt>
+<dd>Draws four lines along the edges of a given <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad">DOMQuad</a>.</dd>
+<dt>pushLineWidth(w)</dt>
+<dt>popLineWidth()</dt>
+<dd>Set the current line width for line-drawing calls. This must be followed by a <code>popLineWidth()</code> call when finished to restore the previous line width.</dd>
+<dt>pushLineCap(lineCap)</dt>
+<dt>popLineCap()</dt>
+<dd>Set the current line cap for line-drawing calls. This must be followed by a <code>popLineCap()</code> call when finished to restore the previous line cap. The available line caps are <code>"butt"</code> and <code>"square"</code>.</dd>
+<dt>setTexture(texture, sampling = "auto")</dt>
+<dd>Set the current texture to a given <a class="extern" href="itexture.html" rel="noopener" target="_blank" title="Make your own games">ITexture</a>. The <code>sampling</code> parameter is optional and defaults to <code>"auto"</code>, which means the texture will be rendered with the <code>defaultSampling</code> mode the texture was created with. Otherwise it can be set to one of <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code> to render the texture with a different sampling mode. To specify the sampling mode for an <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a>, pass its <code>activeSampling</code> property.</dd>
+<dt>createStaticTexture(data, opts)</dt>
+<dd>Create an <a class="extern" href="itexture.html" rel="noopener" target="_blank" title="Make your own games">ITexture</a> with the content specified by <code>data</code>. This method is asynchronous and so returns a Promise that resolves with the created <code>ITexture</code>. The <code>data</code> parameter may be one of <code>HTMLImageElement</code>, <code>HTMLCanvasElement</code>, <code>OffscreenCanvas</code> or <code>ImageBitmap</code>. (Note that in worker mode, only <code>OffscreenCanvas</code> and <code>ImageBitmap</code> are available.) <code>opts</code> specifies options for the texture - see the section <em>Texture options</em> above for more details. </dd>
+<dt>createDynamicTexture(width, height, opts)</dt>
+<dd>Create a new empty <a class="extern" href="itexture.html" rel="noopener" target="_blank" title="Make your own games">ITexture</a> for dynamic use, i.e. expecting the texture content to be replaced using <code>updateTexture()</code>. The size of the texture is given by <code>width</code> and <code>height</code> which must be positive integers. <code>opts</code> specifies options for the texture - see the section <em>Texture options</em> above for more details.</dd>
+<dt>updateTexture(data, texture, opts)</dt>
+<dd>Upload <em>data</em> as the new texture contents for the <a class="extern" href="itexture.html" rel="noopener" target="_blank" title="Make your own games">ITexture</a> <em>texture</em>. This can only be used for textures created with <code>createDynamicTexture()</code> and managed by your addon.
+<br/>
+<em>data</em> can be one of the following types: <code>HTMLImageElement</code>, <code>HTMLVideoElement</code>, <code>HTMLCanvasElement</code>, <code>ImageBitmap</code>, <code>OffscreenCanvas</code> or <code>ImageData</code>. Note in worker mode the DOM types cannot be used (<code>HTMLImageElement</code>, <code>HTMLVideoElement</code>, <code>HTMLCanvasElement</code>); in this case use <code>ImageBitmap</code> or <code>OffscreenCanvas</code> instead. This method cannot resize an existing texture, so the data must match the size the texture was created with; if the size needs to change, destroy and re-create the texture.
+<br/>
+<em>opts</em> specifies options for the texture upload which is an object that can include the following properties:<br/>
+<ul class="list"><br/>
+<li><code>premultiplyAlpha</code>: a boolean indicating whether to premultiply alpha of the image content specified by <em>data</em> (default true). Construct always renders using premultiplied alpha so this is normally necessary; however if the data is known to already be premultiplied, set this to false.</li></ul></dd>
+<dt>deleteTexture(texture)</dt>
+<dd>Delete an <a class="extern" href="itexture.html" rel="noopener" target="_blank" title="Make your own games">ITexture</a>, releasing its resources. This can only be used for textures created with <code>createDynamicTexture()</code> and managed by your addon. Do not attempt to delete textures managed by the Construct engine.</dd>
+<dt>async loadTextureForImageInfo(imageInfo, opts)</dt>
+<dd>For use with the addon SDK. Load a texture for a given <a class="extern" href="../object-interfaces/iimageinfo.html" rel="noopener" target="_blank" title="Make your own games">IImageInfo</a>. Returns a promise that resolves with the loaded <a class="extern" href="itexture.html" rel="noopener" target="_blank" title="Make your own games">ITexture</a>. <code>opts</code> specifies options for the texture - see the section <em>Texture options</em> above for more details.</dd>
+<dt>releaseTextureForImageInfo(imageInfo)</dt>
+<dd>For use with the addon SDK. Release a texture for a given <a class="extern" href="../object-interfaces/iimageinfo.html" rel="noopener" target="_blank" title="Make your own games">IImageInfo</a> that was previously loaded with <code>loadTextureForImageInfo()</code>.</dd>
+<dt>getTextureForImageInfo(imageInfo)</dt>
+<dd>For use with the addon SDK. Returns the existing <a class="extern" href="itexture.html" rel="noopener" target="_blank" title="Make your own games">ITexture</a> for a given <a class="extern" href="../object-interfaces/iimageinfo.html" rel="noopener" target="_blank" title="Make your own games">IImageInfo</a> that was previously loaded with <code>loadTextureForImageInfo()</code>, or returns <code>null</code> if no texture is loaded (or the texture is still asynchronously loading).</dd>
+<dt>createRendererText()</dt>
+<dd>Return a new <a class="extern" href="irenderertext.html" rel="noopener" target="_blank" title="Make your own games">IRendererText</a> interface. This manages text wrapping, drawing text, and uploading the results to a WebGL texture.</dd>
+<dt>setDeviceTransform()</dt>
+<dd>Set the co-ordinate system to be in device transform mode, which is in units of device pixels and relative to the screen. This can be useful for achieving pixel-perfect rendering.</dd>
+<dt>setLayerTransform(layer)</dt>
+<dd>Set the co-ordinate system to match the given <a class="extern" href="../layout-interfaces/ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a>. This is the default mode - this method is normally called after <code>setDeviceTransform()</code> to restore normal rendering.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Drawing meshes</h2>
+<p>The <code>drawMesh()</code> method allows passing typed arrays with vertex, texture co-ordinate, index, and optionally color data, for rendering entire meshes. Note that the mesh drawn with this method uses the same renderer state (blend mode, fill mode, color and texture) for all triangles. To draw parts of the mesh with different renderer state, you will need to make multiple calls to <code>drawMesh()</code> with other calls to change state in between. You can create typed arrays over different ranges of the same ArrayBuffer to draw sections of a mesh - see the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">MDN guide on TypedArray</a> for more details.</p>
+<p>One pitfall of the <code>drawMesh()</code> method is it will upload all the provided data to the GPU with every single call. This is acceptable for small meshes, but it quickly becomes inefficient for large meshes. In this case it is much more efficient to create the mesh data ahead of time with <code>createMeshData()</code>, fill it with the data that would have been passed to <code>drawMesh()</code>, and then draw it with <code>drawMeshData()</code> (which also supports drawing just a range of the mesh).</p>
+<p>Here is some sample code for using <code>drawMesh()</code>. This draws four triangles arranged as two quads with the single call to <code>drawMesh()</code>. This code assumes <code>quad</code> is a DOMQuad of the first quad to draw, and the second quad is drawn shifted 200px to the right; and that <code>rcTex</code> is the texture co-ordinates to use (which is repeated for both quads).</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Vertex positions as sequence of x, y, z</span>
+<span class="token keyword">const</span> posArr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Float32Array</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-square brace-open brace-level-2" id="pair-4-close">[</span>
+	quad<span class="token punctuation">.</span>p1<span class="token punctuation">.</span>x<span class="token punctuation">,</span> quad<span class="token punctuation">.</span>p1<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	quad<span class="token punctuation">.</span>p2<span class="token punctuation">.</span>x<span class="token punctuation">,</span> quad<span class="token punctuation">.</span>p2<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	quad<span class="token punctuation">.</span>p3<span class="token punctuation">.</span>x<span class="token punctuation">,</span> quad<span class="token punctuation">.</span>p3<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	quad<span class="token punctuation">.</span>p4<span class="token punctuation">.</span>x<span class="token punctuation">,</span> quad<span class="token punctuation">.</span>p4<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+
+	quad<span class="token punctuation">.</span>p1<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token number">200</span><span class="token punctuation">,</span> quad<span class="token punctuation">.</span>p1<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	quad<span class="token punctuation">.</span>p2<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token number">200</span><span class="token punctuation">,</span> quad<span class="token punctuation">.</span>p2<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	quad<span class="token punctuation">.</span>p3<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token number">200</span><span class="token punctuation">,</span> quad<span class="token punctuation">.</span>p3<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span>
+	quad<span class="token punctuation">.</span>p4<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token number">200</span><span class="token punctuation">,</span> quad<span class="token punctuation">.</span>p4<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span>
+<span class="token punctuation brace-square brace-close brace-level-2" id="pair-4-open">]</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Texture co-ordinates as sequence of u, v</span>
+<span class="token keyword">const</span> uvArr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Float32Array</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token punctuation brace-square brace-open brace-level-2" id="pair-5-close">[</span>
+	rcTex<span class="token punctuation">.</span>left<span class="token punctuation">,</span> rcTex<span class="token punctuation">.</span>top<span class="token punctuation">,</span>
+	rcTex<span class="token punctuation">.</span>right<span class="token punctuation">,</span> rcTex<span class="token punctuation">.</span>top<span class="token punctuation">,</span>
+	rcTex<span class="token punctuation">.</span>right<span class="token punctuation">,</span> rcTex<span class="token punctuation">.</span>bottom<span class="token punctuation">,</span>
+	rcTex<span class="token punctuation">.</span>left<span class="token punctuation">,</span> rcTex<span class="token punctuation">.</span>bottom<span class="token punctuation">,</span>
+
+	rcTex<span class="token punctuation">.</span>left<span class="token punctuation">,</span> rcTex<span class="token punctuation">.</span>top<span class="token punctuation">,</span>
+	rcTex<span class="token punctuation">.</span>right<span class="token punctuation">,</span> rcTex<span class="token punctuation">.</span>top<span class="token punctuation">,</span>
+	rcTex<span class="token punctuation">.</span>right<span class="token punctuation">,</span> rcTex<span class="token punctuation">.</span>bottom<span class="token punctuation">,</span>
+	rcTex<span class="token punctuation">.</span>left<span class="token punctuation">,</span> rcTex<span class="token punctuation">.</span>bottom
+<span class="token punctuation brace-square brace-close brace-level-2" id="pair-5-open">]</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Indices of vertices in sequence i, j, k</span>
+<span class="token keyword">const</span> indexArr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint16Array</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token punctuation brace-square brace-open brace-level-2" id="pair-6-close">[</span>
+	<span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span>
+	<span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span>
+
+	<span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span>
+	<span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span>
+<span class="token punctuation brace-square brace-close brace-level-2" id="pair-6-open">]</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span>
+
+renderer<span class="token punctuation">.</span><span class="token function">drawMesh</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-3-close">(</span>posArr<span class="token punctuation">,</span> uvArr<span class="token punctuation">,</span> indexArr<span class="token punctuation brace-round brace-close brace-level-1" id="pair-3-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>For further interactive code samples, see <a class="extern" href="https://editor.construct.net/#open=custom-layer-drawing-js" rel="noopener" target="_blank" title="Make games in the browser">Custom layer drawing (JavaScript)</a> or <a class="extern" href="https://editor.construct.net/#open=custom-layer-drawing-ts" rel="noopener" target="_blank" title="Make games in the browser">Custom layer drawing (TypeScript)</a> which use <code>drawMesh()</code>, and <a class="extern" href="https://editor.construct.net/#open=draw-mesh-data-js" rel="noopener" target="_blank" title="Make games in the browser">Draw mesh data (JavaScript)</a> or <a class="extern" href="https://editor.construct.net/#open=draw-mesh-data-ts" rel="noopener" target="_blank" title="Make games in the browser">Draw mesh data (TypeScript)</a> which use <code>drawMeshData()</code>.</p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

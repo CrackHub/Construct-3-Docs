@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/porting-addon-sdk-v2" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Porting to Addon SDK v2
+            </h1>
+<div itemprop="articleBody">
+<p>Construct formerly supported a legacy SDK, referred to as the Addon SDK v1. As of Construct 3 r450+, released in 2025, it now only supports a modern replacement with industry-standard encapsulation, referred to as the Addon SDK v2. This guide covers what you need to do to upgrade an existing addon using the Addon SDK v1 to v2.</p>
+<p>Only plugins and behaviors need updating to the Addon SDK v2. This is because the main change is to how runtime scripts are written. Effects and themes do not need porting, as they do not use runtime scripts. Further, plugins and behaviors should not need any significant modifications to any of their editor code, DOM-side runtime code, or wrapper extensions; usually only the runtime scripts in the <em>c3runtime</em> folder need significant changes.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Porting guide</h2>
+<p>Follow these steps to update a plugin or behavior from Addon SDK v1 to v2.</p>
+<h3><span class="headerStep">Step 1:</span> update SDK version</h3>
+<p>In <a class="extern" href="addon-metadata.html" rel="noopener" target="_blank" title="Make your own games">addon.json</a>, update the <code>"sdk-version"</code> field to 2. If the field is missing, add it with the value 2. This indicates to Construct that the addon is using the Addon SDK v2.</p>
+<p>You'll probably want to also increment the <code>"version"</code> field as the update to Addon SDK v2 warrants an updated addon version too.</p>
+<h3><span class="headerStep">Step 2:</span> update base classes</h3>
+<p>The base classes used in the Addon SDK v2 are different to v1. In other words, the class after the <code>extends</code> keyword needs to be updated.</p>
+<p>The following table lists the changes to base classes for plugins.</p>
+<table>
+<thead>
+<tr>
+<td>SDK v1 base class</td>
+<td>SDK v2 base class</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdkpluginbase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKPluginBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkpluginbase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKPluginBase</a></td>
+</tr>
+<tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdktypebase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKTypeBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkobjecttypebase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKObjectTypeBase</a></td>
+</tr>
+<tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdkinstancebase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKInstanceBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkinstancebase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKInstanceBase</a></td>
+</tr>
+<tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdkworldinstancebase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKWorldInstanceBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkworldinstancebase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKWorldInstanceBase</a></td>
+</tr>
+<tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdkdompluginbase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKDOMPluginBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkdompluginbase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKDOMPluginBase</a></td>
+</tr>
+<tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdkdominstancebase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKDOMInstanceBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkdominstancebase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKDOMInstanceBase</a></td>
+</tr>
+</tbody></table>
+<p>The following table lists the changes to base classes for behaviors.</p>
+<table>
+<thead>
+<tr>
+<td>SDK v1 base class</td>
+<td>SDK v2 base class</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdkbehaviorbase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKBehaviorBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkbehaviorbase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKBehaviorBase</a></td>
+</tr>
+<tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdkbehaviortypebase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKBehaviorTypeBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkbehaviortypebase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKBehaviorTypeBase</a></td>
+</tr>
+<tr>
+<td><a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/sdkbehaviorinstancebase.html" rel="noopener" target="_blank" title="Make your own games">C3.SDKBehaviorInstanceBase</a></td>
+<td><a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkbehaviorinstancebase.html" rel="noopener" target="_blank" title="Make your own games">globalThis.ISDKBehaviorInstanceBase</a></td>
+</tr>
+</tbody></table>
+<h3><span class="headerStep">Step 3:</span> update class constructors</h3>
+<p>In the Addon SDK v2, the constructors of the above base classes do not use any parameters. For example with the Addon SDK v1 class <code>C3.SDKInstanceBase</code>, the constructor used two parameters. With the Addon SDK v2 class <code>globalThis.ISDKInstanceBase</code>, the constructor uses no parameters.</p>
+<p>Further, for instance classes specifically, instead of the <code>properties</code> parameter being passed in the constructor, instead call <code>this._getInitProperties()</code> to access the same information. An example of the difference is shown below.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Instance constructor in Addon SDK v1</span>
+<span class="token function">constructor</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token parameter">inst<span class="token punctuation">,</span> properties</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-8-close">{</span>
+	<span class="token keyword">super</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-1-close">(</span>inst<span class="token punctuation brace-round brace-close brace-level-2" id="pair-1-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">if</span> <span class="token punctuation brace-round brace-open brace-level-2" id="pair-2-close">(</span>properties<span class="token punctuation brace-round brace-close brace-level-2" id="pair-2-open">)</span>
+	<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-7-close">{</span>
+		<span class="token comment">// ... read properties ...</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-7-open">}</span>
+
+	<span class="token comment">// ... rest of constructor ...</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-8-open">}</span>
+
+<span class="token comment">// Instance constructor in Addon SDK v2</span>
+<span class="token function">constructor</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-3-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-3-open">)</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-10-close">{</span>
+	<span class="token keyword">super</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-4-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-4-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">const</span> properties <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getInitProperties</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-5-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-5-open">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation brace-round brace-open brace-level-2" id="pair-6-close">(</span>properties<span class="token punctuation brace-round brace-close brace-level-2" id="pair-6-open">)</span>
+	<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-9-close">{</span>
+		<span class="token comment">// ... read properties ...</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-9-open">}</span>
+
+	<span class="token comment">// ... rest of constructor ...</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-10-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Further, for DOM or wrapper extension plugins, note that the DOM component ID or wrapper extension ID are now passed as part of an options object in the <code>super()</code> call, e.g.:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// In ISDKDOMPluginBase or ISDKDOMInstanceBase constructor:</span>
+<span class="token keyword">super</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-11-close">(</span><span class="token punctuation brace-curly brace-open brace-level-2" id="pair-13-close">{</span> <span class="token literal-property property">domComponentId</span><span class="token operator">:</span> <span class="token constant">DOM_COMPONENT_ID</span> <span class="token punctuation brace-curly brace-close brace-level-2" id="pair-13-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-11-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// In ISDKInstanceBase constructor for a wrapper extension:</span>
+<span class="token keyword">super</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-12-close">(</span><span class="token punctuation brace-curly brace-open brace-level-2" id="pair-14-close">{</span> <span class="token literal-property property">wrapperComponentId</span><span class="token operator">:</span> <span class="token string">"my-extension"</span> <span class="token punctuation brace-curly brace-close brace-level-2" id="pair-14-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-12-open">)</span><span class="token punctuation">;</span>
+<span class="token comment">// (instead of calling SetWrapperExtensionComponentId())</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3><span class="headerStep">Step 4:</span> remove separate script interface</h3>
+<p>In the Addon SDK v2, runtime script classes <em>are</em> the script interface classes: all public properties and methods are also accessible from Construct's scripting feature. Therefore there is no longer any need to define a separate script interface class.</p>
+<p>The method <code>GetScriptInterfaceClass()</code> can be deleted and the entire script interface class deleted if one was specified.</p>
+<h3><span class="headerStep">Step 5:</span> update property and method names</h3>
+<p>While all previously documented properties and methods in SDK v1 are still supported in SDK v2, they have been renamed to follow the naming conventions of the rest of the scripting APIs. In some cases some details are different to simplify the SDK or to adapt to the particular requirements of the new architecture.</p>
+<p>For example the SDK v1 instance method <code>GetDebuggerProperties()</code> is now named <code>_getDebuggerProperties()</code>, but otherwise works identically; <code>Trigger()</code> is now named <code>_trigger()</code> but otherwise works identically; and so on. Refer to the class links in the above table to review the full reference. Note also some features may now be in other base classes; for example the SDK v1 class <code>SDKInstanceBase</code> had a property <code>this._runtime</code>; the SDK v2 class <code>ISDKInstanceBase</code> does not define a property for the runtime, but it inherits from <a class="extern" href="../../construct-3/scripting/scripting-reference/object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a>, which defines the property <code>this.runtime</code>.</p>
+<p>For consistency, you will likely want to rename any other class methods to follow the new <a class="extern outlink" href="https://en.wikipedia.org/wiki/Camel_case" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Camel_case">camelCase</a> naming convention. As per the <a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces.html" rel="noopener" target="_blank" title="Make your own games">Addon SDK coding conventions</a>, you may wish to use an underscore prefix to indicate methods which should not be called from the scripting feature, but cannot be made private.</p>
+<h3><span class="headerStep">Step 6:</span> update remaining code</h3>
+<p>In some addons, such as if the main purpose is to integrate a third-party service, the addon should not require any further major changes. However if your addon has extensive logic using the runtime APIs from the Addon SDK v1, these will need to be rewritten in terms of the new runtime APIs based on Construct's scripting feature. A full reference of the available APIs can be found in the <a class="extern" href="../../construct-3/scripting/scripting-reference.html" rel="noopener" target="_blank" title="Make your own games">scripting reference</a> section of Construct's manual.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Recommended architecture</h2>
+<p>Our recommended architecture is to implement core logic as methods and properties (or setters/getters) on your main instance class. This makes the features accessible to the scripting feature. Then actions, conditions and expressions just call the script APIs, so they work consistently with the scripting feature, and don't have to have any significant logic in ACE methods. Then the debugger methods can use the same methods so the debugger views and changes things consistently with the way actions/expressions or script APIs would. Overall this means event sheets, scripting, and the debugger all share the same implementation, which also makes maintenance easier, as there is only one place code needs to be updated.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Recommended additional changes</h2>
+<p>The following changes are not required, but are recommended.</p>
+<h3>Delete PLUGIN_VERSION</h3>
+<p>In the editor plugin script, delete <code>PLUGIN_VERSION</code> and delete the line <code>this._info.SetVersion(PLUGIN_VERSION);</code>. This is because with the Addon SDK v2, the addon version is taken from the version specified in addon.json only; the version in the editor plugin script is now ignored. A deprecation warning will appear in the console until these changes are made.</p>
+<h3>Use globalThis</h3>
+<p>In the past the global object may have been referred to using <code>window</code> or <code>self</code>. The modern standardized way to do this is with <code>globalThis</code>, so it is recommended to use that instead of any other alternatives.</p>
+<h3>Configure to use modules</h3>
+<p>The Addon SDK v2 now supports using JavaScript Modules (i.e. <code>import</code> and <code>export</code> statements) in your runtime scripts. By default Construct creates a new main script module for your addon so you don't have to set anything else up, but it's good practice to set it up anyway as it's how all modern addons are written, and it's necessary if you want to use <code>import</code> or <code>export</code> in your runtime scripts. For more details see the section <em>Configuring use of modules</em> in <a class="extern" href="runtime-scripts.html" rel="noopener" target="_blank" title="Make your own games">Runtime scripts</a>.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Sample diffs</h2>
+<p>On the <a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK">Construct Addon SDK GitHub repository</a>, you can find commits that update the SDK samples from the Addon SDK v1 to the Addon SDK v2. The differences, or "diffs", in these commits can serve as a reference of what needs to be changed to update addons. With the sample addons the changes take in to above everything described above, including recommended changes. The following links display the diffs for the updates for each SDK sample.</p>
+<ul class="list">
+<li><a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK/commit/fc47fb8a4701cbf24d9f14c25908693ab7918f0f" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK/commit/fc47fb8a4701cbf24d9f14c25908693ab7918f0f">Update customImporterPlugin to addon SDK v2</a></li>
+<li><a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK/commit/480156e2ab1b70da20e2b15b2eb19c056ebc918e" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK/commit/480156e2ab1b70da20e2b15b2eb19c056ebc918e">Update domElementPlugin to addon SDK v2</a></li>
+<li><a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK/commit/038925a1cbbc265a871f7cf57dfa8a69305f617c" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK/commit/038925a1cbbc265a871f7cf57dfa8a69305f617c">Update domMessagingPlugin to addon SDK v2</a></li>
+<li><a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK/commit/8a4b12c034697ff8bf748fd7da49917c7354523e" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK/commit/8a4b12c034697ff8bf748fd7da49917c7354523e">Update drawingPlugin to addon SDK v2</a></li>
+<li><a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK/commit/4a249722738e622fa550eb2efaddfd8251e4d09f" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK/commit/4a249722738e622fa550eb2efaddfd8251e4d09f">Update editorTextPlugin to addon SDK v2</a></li>
+<li><a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK/commit/09facf1e5e5226fab6dba36e551d88d1c254d979" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK/commit/09facf1e5e5226fab6dba36e551d88d1c254d979">Update singleGlobalPlugin to addon SDK v2</a></li>
+<li><a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK/commit/509f751d4bde981911d25840b5fb71a8eb114e32" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK/commit/509f751d4bde981911d25840b5fb71a8eb114e32">Update wrapperExtensionPlugin to addon SDK v2</a></li>
+<li><a class="extern outlink" href="https://github.com/Scirra/Construct-Addon-SDK/commit/c704b17e0d620b55b6d7f1d08416c64ffcce42ff" rel="nofollow noopener external" target="_blank" title="Go to: https://github.com/Scirra/Construct-Addon-SDK/commit/c704b17e0d620b55b6d7f1d08416c64ffcce42ff">Update sample behavior to addon SDK v2</a></li>
+</ul>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Publishing</h2>
+<p>Addon developers should now be publishing updates to their addons using SDK v2. Support for the legacy SDK v1 will only continue until the middle of 2025, although beyond that support for SDK v1 addons will be extended until the end of 2026 with an LTS release.</p>
+<p>In the <a class="extern" href="https://www.construct.net/make-games/addons.html" rel="noopener" target="_blank" title="Make your own games">Addons section of the website</a>, there is a checkbox labelled <strong>Uses Addon SDK v2</strong> when editing an addon. When uploading an SDK v2 addon it should automatically detect that your addon uses SDK v2 and check this box for you. It's worth double-checking the checkbox for existing addons or after publishing an update using SDK v2, as this then ensures it is listed when using the <em>SDKv2 addons only</em> filtering option, which will eventually be enabled by default and therefore hide all old addons using SDK v1 by default unless this option has been checked.</p></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

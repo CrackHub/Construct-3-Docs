@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/interfaces/itweenstate" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Tween script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITweenState</code> interface represents an actively running tween. It derives from <a class="extern" href="itimelinestatebase.html" rel="noopener" target="_blank" title="Make your own games">ITimelineStateBase</a> which implements APIs in common between timelines and tweens, as a tween is a kind of temporary timeline. Many general playback APIs are part of <code>ITimelineStateBase</code>; the <code>ITweenState</code> interface only provides APIs specific to tweens that do not also apply to timelines.</p>
+<p>Tweens can be created using the <code>startTween()</code> method on the <a class="extern" href="../behavior-interfaces/tween.html" rel="noopener" target="_blank" title="Make your own games">Tween behavior script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tween APIs</h2>
+<dl>
+<dt>stop()</dt>
+<dd>Stops playback and immediately ends the tween. The interface is released in this call and so it cannot be used any further after this call.</dd>
+<dt>instance</dt>
+<dd>A read-only property with a reference to the <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> the tween is running on.</dd>
+<dt>isDestroyOnComplete</dt>
+<dd>Set or get a boolean indicating whether the corresponding instance will be automatically destroyed once the tween finishes.</dd>
+<dt>value</dt>
+<dd>A read-only number providing the current value of a value tween.</dd>
+<dt>setEase(easeName)</dt>
+<dd>Set the ease function used for the tween by a  string of its name. Refer to the Tween behavior script interface for a list of valid built-in ease names, or use the name of a custom ease.</dd>
+<dt>released</dt>
+<dd>A promise that resolves when the tween is destroyed. Afterwards the rest of the API can no longer be used except for <code>isReleased</code> property (inherited from <code>ITimelineState</code>) which provides a read-only boolean that indicates if the interface has been released and is now invalid.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

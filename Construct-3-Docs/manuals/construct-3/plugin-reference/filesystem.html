@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/filesystem" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                File System
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>File System</strong> plugin allows read and write access to files and folders on the local system.</p>
+<p>For a demonstration of using file system features, see the <a class="extern" href="https://editor.construct.net/#open=file-system-text-editor" rel="noopener" target="_blank" title="Make games in the browser">Text Editor example</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/file-system.html" rel="noopener" target="_blank" title="Make your own games">IFileSystemObjectType script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Browser/platform support</h2>
+<p>For the File System plugin features to work, the browser must support the full File System Access API. (Note that <em>Origin Private File System</em> or OPFS is not used by the File System plugin.) As of November 2024 this is only supported in Chrome and Edge (and most other Chromium-based browsers) on desktop. Notably this means Firefox and Safari are not currently supported. However it is also supported in the Windows WebView2, macOS WKWebView and Linux CEF exporters.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Browser permissions model</h2>
+<p>Browsers impose security restrictions to ensure that general web browsing is safe. Therefore they start with <strong>no access to local files or folders</strong> at all. The only way to gain access to local files and folders in a browser is to show a <strong>picker</strong> - a "save file" dialog, an "open file" dialog, or a "pick folder" dialog.</p>
+<p><strong>Desktop exporters</strong> like Windows WebView2 <strong>are an exception to this rule</strong> and can have direct access to certain special folders like the user's documents folder without any dialogs or permission prompts - see below for more details. However in a browser, once the user has successfully completed a picker by making a selection and clicking OK, then permission to access the chosen files or folders is granted.</p>
+<p>In some circumstances browsers will also show a <strong>permission prompt</strong> to access a file. For example choosing a file with an "open file" picker allows reading the file without any further permission prompt, as the picker grants read access. However if later on an attempt is made to write to the opened file, browsers will normally show a permission prompt to verify that the user is willing to allow their previously chosen file to be modified. (This also only applies to browsers - desktop exporters won't show permission prompts.)</p>
+<p>To help avoid the need to keep showing pickers, Construct is also able to <strong>save the permission to access previously chosen files</strong> and folders. The <em>Has picker tag</em> condition will be true if a picker completed in a prior session and the same chosen files or folders can still be accessed. Browsers may also show permission prompts when accessing files or folders from prior sessions.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Picker tags and file tags</h2>
+<p>Tags are short pieces of text used to identify different uses of the same feature. The File System plugin uses two kinds of tags. <strong>Picker tags</strong> identify different picker dialogs, such as two different uses of an "open file" dialog. Each successfully completed picker grants access to the chosen files or folders, which are then referred to by the picker tag.</p>
+<p>Reading or writing a file then uses a <strong>file tag</strong>. This identifies the actual file system operation of reading or writing to a chosen file or folder. The file tag is optional as it's only needed if you want to track when file system operations complete or encounter an error - if you don't care about the result, you can leave the file tag empty.</p>
+<p>The reason two kinds of tags are used is because one picker may grant access to multiple files or folders. For example one folder picker can grant access to a folder, in to which two files are then written. In this case there is one picker tag identifying the folder the user chose, and then two file tags identifying the separate write operations.</p>
+<p>In summary picker tags are required in order to identify the files and folders the user chose, but file tags are optional and are used to identify when reading or writing specific files or folders completes or encounters an error.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Accessing known folders</h2>
+<p>In Windows WebView2, macOS WKWebView and Linux CEF exports, the browser permission model can be bypassed to directly access folders such as the user's documents folder. This is done by using pre-defined folder picker tags like "&lt;documents&gt;". These act like the folder was already picked on startup. You can check if these are available on startup by using the <em>Has picker tag</em> condition. If available then actions like <em>Write text file</em> can write to picker tag "&lt;documents&gt;" folder path "test.txt", in order to write "text.txt" in the user's Documents folder, without showing any picker dialog or permission prompts at all.</p>
+<p>The full table of pre-defined picker tags for known folders is listed below. Note not all of these are guaranteed to be available: a system may not have some types of folders, in which case <em>Has picker tag</em> will be false even in a desktop export.</p>
+<h3>macOS App Sandbox</h3>
+<p>Note that in macOS WKWebView exports, if you enable the App Sandbox, then macOS creates a <em>container</em> for your app. This effectively gives your app its own folders like 'Documents', 'Pictures' and so on, inside a special app-specific path; the app won't actually access the folders the user would normally see in Finder. This is a privacy measure to make sure a sandboxed app can only access files saved by the same application, rather than being able to access all their files. When the sandbox is enabled, you can enable read-only or read-write permission for the Pictures, Movies and Downloads folder which provides access to the real folders shown in Finder. Alternatively if you disable the sandbox then the app will access all the known folders normally, with access to all the user's files.</p>
+<h3>Known folders table</h3>
+<p>Note the example paths shown in this table are for illustrative purposes only - the specific paths accessed may be different depending on the username, and may be in entirely different locations depending on the application install directory or system configuration.</p>
+<table>
+<thead>
+<tr>
+<td>Picker tag/platform</td>
+<td>Description/path</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>&lt;app&gt;</strong></td>
+<td>Folder main application executable belongs to. <strong>Note:</strong> for security reasons sometimes the system makes this folder read-only (e.g. <em>Program Files</em> on Windows).</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Program Files\My app
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/path/to/executable</td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/path/to/executable</td>
+</tr>
+<tr>
+<td><strong>&lt;web-resource&gt;</strong></td>
+<td>The folder that contains web resource files such as index.html, typically in a <em>www</em> subfolder to the app folder. <strong>Note:</strong> as with <strong>&lt;app&gt;</strong>, sometimes this will be a read-only folder as well.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Program Files\My app\www
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/path/to/executable/www</td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/path/to/executable/www</td>
+</tr>
+<tr>
+<td><strong>&lt;current-app-data&gt;</strong></td>
+<td>The local app data folder for this specific application.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\AppData\Local\myapp
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/Users/username/Library/Application Support/com.myapp.id
+	</td></tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/home/username/.local/share/com.myapp.id</td>
+</tr>
+<tr>
+<td><strong>&lt;local-app-data&gt;</strong></td>
+<td>The main system local app data folder for the current user.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\AppData\Local
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/Users/username/Library/Application Support
+	</td></tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/home/username/.local/share</td>
+</tr>
+<tr>
+<td><strong>&lt;roaming-app-data&gt;</strong></td>
+<td>The main system roaming app data folder for the current user.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\AppData\Roaming
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td><em>Not supported</em></td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td><em>Not supported</em></td>
+</tr>
+<tr>
+<td><strong>&lt;desktop&gt;</strong></td>
+<td>User's desktop folder.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\Desktop
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/Users/username/Desktop</td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/home/username/Desktop</td>
+</tr>
+<tr>
+<td><strong>&lt;documents&gt;</strong></td>
+<td>User's documents folder.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\Documents
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/Users/username/Documents</td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/home/username/Documents</td>
+</tr>
+<tr>
+<td><strong>&lt;downloads&gt;</strong></td>
+<td>User's downloads folder.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\Downloads
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/Users/username/Downloads</td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/home/username/Downloads</td>
+</tr>
+<tr>
+<td><strong>&lt;pictures&gt;</strong></td>
+<td>User's pictures/photos folder.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\Pictures
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/Users/username/Pictures</td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/home/username/Pictures</td>
+</tr>
+<tr>
+<td><strong>&lt;profile&gt;</strong></td>
+<td>Parent folder for all files and folders relating to the current user.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/Users/username</td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/home/username</td>
+</tr>
+<tr>
+<td><strong>&lt;saved-games&gt;</strong></td>
+<td>User's folder for games to save their current progress to.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\Saved Games
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td><em>Not supported</em></td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td><em>Not supported</em></td>
+</tr>
+<tr>
+<td><strong>&lt;screenshots&gt;</strong></td>
+<td>User's folder for games and applications to save screenshots to. Note this may be a subfolder to the pictures folder.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\Pictures\Screenshots
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td><em>Not supported</em></td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td><em>Not supported</em></td>
+</tr>
+<tr>
+<td><strong>&lt;videos&gt;</strong></td>
+<td>User's folder for games and applications to save recorded videos to.</td>
+</tr>
+<tr>
+<td><em>Windows</em></td>
+<td>C:\Users\username\Videos
+	</td></tr>
+<tr>
+<td><em>macOS</em></td>
+<td>/Users/username/Movies</td>
+</tr>
+<tr>
+<td><em>Linux</em></td>
+<td>/home/username/Videos</td>
+</tr>
+<tr>
+<td><strong>&lt;dropped-files&gt;</strong></td>
+<td>Used only to reference files dragged and dropped in to the window, when <em>On dropped files</em> triggers. This does not actually refer to a folder on disk, but allows accessing the dropped files as if the user picked a read-only folder containing them.</td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>File system conditions</h2>
+<dl class="sans">
+<dt>Desktop features supported</dt>
+<dd>Detect whether desktop-specific features of this plugin are available. This is only the case when running after using a supported desktop export option. When true, the known folder pickers like "&lt;documents&gt;" can be used (providing they are available - use the <em>Has picker tag</em> condition to check), as well as the desktop-specific actions like <em>Run file</em> and <em>Shell open</em>.</dd>
+<dt>Has picker tag</dt>
+<dd>True if a given picker tag has been remembered from a previous session, or if a known folder tag is available. In this case the picker tag can still be referred to for file system operations, such as to read a previously chosen file, without having to show a picker again.</dd>
+<dt>On picker complete</dt>
+<dt>On picker error</dt>
+<dd>Triggered after the <em>Show folder picker</em>, <em>Show open file picker</em> or <em>Show save file picker</em> actions with a matching picker tag, depending on the result of the picker. A picker is completed when the user successfully chooses a file or folder and access is then granted to the selection. Cancelling a picker, or otherwise being unable to show a picker (e.g. due to not being in a user input trigger), will trigger <em>On picker error</em>.</dd>
+<dt>Is supported</dt>
+<dd>True if file system features are supported. This depends on support for the File System Access API in the browser. If false then none of the features of the plugin will work.</dd>
+<dt>On file operation complete</dt>
+<dt>On file operation error</dt>
+<dd>Triggered after any file or folder operation such as reading a file or creating a folder, with a matching file tag completes/fails.</dd>
+<dt>On any file operation complete</dt>
+<dt>On any file operation error</dt>
+<dd>Triggered after any file or folder operation such as reading a file or creating a folder completes/fails, regardless of its file tag. The associated file tag can be retrieved with the <em>FileTag</em> expression.</dd>
+<dt>On dropped files</dt>
+<dd>Triggered when the user drags and drops files in to the window. The dropped files can be accessed using the special picker tag <code>&lt;dropped-files&gt;</code>. This allows accessing the dropped files as if the user picked a folder containing the files. The <em>FileCount</em> and <em>FileNameAt</em> expressions can also be immediately used to identify the number and names of the dropped files without having to use the <em>List content</em> action. The dropped files are read-only.</dd>
+<dt>Has file/folder</dt>
+<dd>Use this after the <em>List content</em> action to check whether a given file or folder exists in the returned list of files and folders. Note that this checks for the specified type of item - so for example if checking whether a folder exists, and the given name does exist but is actually a file, then the condition will be false. You must choose whether to check for the file name case-sensitively; note that typically on Windows and macOS file names are not case sensitive, but on Linux they are.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>File system actions</h2>
+<dl class="sans">
+<dt>Add accept type</dt>
+<dd>Add a file type to be shown in the next open file or save file picker. By default the pickers will show all kinds of files; adding an accept type defaults to filtering by those kinds of files, and adding multiple accept types allows the user to switch between different filters. The accept type must specify a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME type</a>, such as "text/plain" for text files or "image/png" for PNG images. A list of file extensions can also be provided in case they cannot be deduced from the MIME type. These must begin with a dot and multiple file extensions can be specified separated by semicolons, e.g. ".png;.jpg" indicates to allow both .png and .jpg file extensions. A description can also be provided which may be shown in the picker. When the next picker is shown, the list of added accept types is cleared and must be added again for another picker; typically you should use this action immediately prior to showing a picker.</dd>
+<dt>Show folder picker</dt>
+<dd>Show a folder picker allowing the user to choose a folder on their local system. The <em>Picker tag</em> identifies the chosen folder if it is completed successfully. The <em>Mode</em> determines what kind of permission prompt the user is shown.  The <em>Picker ID</em> is an optional extra identifier for remembering the picker settings, such as the last viewed folder. The <em>Start in</em> setting allows choosing a default system folder to show as the initial selection of the folder picker, but is overridden by any remembered settings from the same <em>Picker ID</em>.</dd>
+<dt>Show open file picker</dt>
+<dd>Show an open file picker allowing the user to choose one or multiple files on their local system to open. The <em>Picker tag</em> identifies the chosen file or files if it is completed successfully, and grants read access. (The files can later be written to, but the browser will show another permission prompt.) <em>Show accept all</em> sets whether to show an accept type that shows all kinds of files; if disabled then the <em>Add accept type</em> action must be used beforehand. <em>Multiple</em> can be enabled to allow the user to select multiple files in the open file picker.  The <em>Picker ID</em> is an optional extra identifier for remembering the picker settings, such as the last viewed folder. The <em>Start in</em> setting allows choosing a default system folder to show as the initial selection of the folder picker, but is overridden by any remembered settings from the same <em>Picker ID</em>.</dd>
+<dt>Show save file picker</dt>
+<dd>Show a save file picker allowing the user to choose a file on their local system to save to. The <em>Picker tag</em> identifies the chosen file if it is completed successfully, and grants write access.  <em>Show accept all</em> sets whether to show an accept type that shows all kinds of files; if disabled then the <em>Add accept type</em> action must be used beforehand. The <em>Suggested name</em> is used as the initial filename choice to save to in the picker. The <em>Picker ID</em> is an optional extra identifier for remembering the picker settings, such as the last viewed folder. The <em>Start in</em> setting allows choosing a default system folder to show as the initial selection of the folder picker, but is overridden by any remembered settings from the same <em>Picker ID</em>.</dd>
+<dt>Read text file</dt>
+<dt>Read binary file</dt>
+<dd>Read the contents of a file from a previously completed picker. The file or folder to read from is identified by the <em>Picker tag</em>. The <em>Folder path</em> is optional and is only used for folder pickers or from a open picker with <em>Multiple</em> enabled, and specifies the filename to be read, e.g. "file1.txt" or "subfolder/file2.txt" when using a folder picker. When using a save file picker or an open file picker for a single file, leave the <em>Folder path</em> empty as it is not used, as it will read the single file chosen by the picker. The <em>File tag</em> is optional and allows identifying when the read operation completes or fails with the <em>On file operation complete/error</em> triggers. In the case of reading a text file, the <em>FileText</em> expression is set to the read text content when completed. In the case of reading a binary file, the read file contents will be placed in the chosen <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object when completed.</dd>
+<dt>Write text file</dt>
+<dt>Write binary file</dt>
+<dd>Write text or binary data to a file from a previously completed picker. The file or folder to write to is identified by the <em>Picker tag</em>. The <em>Folder path</em> is optional and is only used for folder pickers or from a open picker with <em>Multiple</em> enabled, and specifies the filename to be written to, e.g. "file1.txt" or "subfolder/file2.txt" when using a folder picker. When using a save file picker or an open file picker for a single file, leave the <em>Folder path</em> empty as it is not used, as it will write to the single file chosen by the picker. The <em>File tag</em> is optional and allows identifying when the write operation completes or fails with the <em>On file operation complete/error</em> triggers. In the case of writing a text file, the given <em>Text</em> will be written to the file, and the text content can optionally be appended to the end of the existing file.  In the case of writing a binary file, the contents of the chosen <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> will be written to the file.</dd>
+<dt>Copy file</dt>
+<dd>Only applies to folder pickers. Copy a file within a previously picked folder. The <em>Source path</em> specifies an existing file to copy, e.g. "subfolder/file1.txt". The <em>Destination path</em> specifies where to create a copy; this will either create a new file if it doesn't exist, or overwrite an existing file if it already exists. The <em>File tag</em> is optional and allows identifying when the copy operation completes or fails with the <em>On file operation complete/error</em> triggers.</dd>
+<dt>Create folder</dt>
+<dd>Only applies to folder pickers. Create a subfolder within a previously picked folder. The <em>Folder path</em> specifies the folder to create. This can refer to multiple subfolders which will all be created, e.g. "subfolder/otherfolder". The <em>File tag</em> is optional and allows identifying when the folder creation operation completes or fails with the <em>On file operation complete/error</em> triggers.</dd>
+<dt>Delete</dt>
+<dd>Only applies to folder pickers. Delete a file or folder within a previously picked folder. The <em>Folder path</em> specifies the file or folder to delete, e.g. "subfolder/file1.txt" or "subfolder". The <em>Recursive</em> option applies only when <em>Folder path</em> identifies a folder: if enabled it will delete all files and folders within the identified folder as well as the folder itself, but if disabled it will only successfully delete the folder if it is already empty. The <em>File tag</em> is optional and allows identifying when the delete operation completes or fails with the <em>On file operation complete/error</em> triggers.</dd>
+<dt>List content</dt>
+<dd>Only applies to folder pickers. Retrieves a list of all files and folders within a previously picked folder. The <em>Folder path</em> identifies a subfolder to list the contents for, or can be left empty to list the contents of the originally picked folder. Enabling <em>Recursive</em> will also list all files and folders through subfolders of the specified folder.  The <em>File tag</em> is optional and allows identifying when the listing operation completes or fails with the <em>On file operation complete/error</em> triggers. Once completed, the available files and folders can be accessed with the <em>FileCount</em>, <em>FileNameAt</em>, <em>FolderCount</em> and <em>FolderNameAt</em> expressions. When <em>Recursive</em> was enabled, the listed file and folder names may include slashes, such as <em>subfolder/file.txt</em>; for cross-platform consistency these always use forwards slashes, even on Windows.</dd>
+<dt>Move file</dt>
+<dd>Only applies to folder pickers. Move a file within a previously picked folder. The file can be moved from one subfolder to another, or if it stays in the same folder, it renames the file. The <em>Source path</em> specifies the file to move, e.g. "subfolder/file1.txt". The <em>Destination path</em> specifies where to move (or rename) the file to. The <em>File tag</em> is optional and allows identifying when the copy operation completes or fails with the <em>On file operation complete/error</em> triggers.</dd>
+<dt>Run file</dt>
+<dd>Only supported in desktop exports when the <em>Desktop features supported</em> condition is true. This action attempts to execute the provided file path. Command-line arguments can also be optionally provided. This can be used to run another program. Uniquely for this action the folder picker parameter can be left empty, in which case the provided file path is run directly; this can be useful to run system executables like "cmd.exe" on Windows.</dd>
+<dt>Shell open</dt>
+<dd>Only supported in desktop exports when the <em>Desktop features supported</em> condition is true. This action requests that the operating system shell (the component that handles the system user interface) opens the specified file. Typically this launches the default app associated with the file type and then opens the file in it, similar to double-clicking the file in the system file explorer.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>File system expressions</h2>
+<dl class="sans">
+<dt>FileCount</dt>
+<dt>FileNameAt(index)</dt>
+<dd>Retrieve the number and filenames of available files. The available list of files is updated in the following situations: <ul class="list"><li>After an open file picker, to identify the available filenames (which can be multiple filenames if the <em>Multiple</em> option was enabled, otherwise it is just one file)</li><br/>
+<li>After the <em>List content</em> action for listing the contents of a folder. If the <em>Recursive</em> option was enabled, file and folder names may include slashes, such as <em>subfolder/file.txt</em>; for cross-platform consistency these always use forwards slashes, even on Windows.</li><br/>
+<li>After <em>On dropped files</em> triggers, to identify the available dropped files</li><br/>
+<li>After a save file picker to identify the chosen saved filename (which is just one file)</li></ul></dd>
+<dt>FolderCount</dt>
+<dt>FolderNameAt(index)</dt>
+<dd>Retrieve the number and names of available folders. The available list of folders is updated in the following situations: <ul class="list"><li>After the <em>List content</em> action for listing the contents of a folder. If the <em>List content</em> action <em>Recursive</em> option was enabled, file and folder names may include slashes, such as <em>subfolder/file.txt</em>; for cross-platform consistency these always use forwards slashes, even on Windows.</li><br/>
+<li>After a folder picker has completed, to identify the name of the chosen folder (which is just one folder).</li></ul></dd>
+<dt>FileText</dt>
+<dd>After a <em>Read text file</em> action completes successfully, the contents of the read file. </dd>
+<dt>FileTag</dt>
+<dd>In a file system operation trigger such as <em>On any file operation complete</em>, this returns the file tag of the associated file operation.</dd>
+<dt>FolderPath</dt>
+<dd>In a file system operation trigger working within a folder, this returns the folder path of the associated file operation.</dd>
+<dt>PickerTag</dt>
+<dd>In a trigger, this returns the picker tag associated with the picker or file system operation.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/direction" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                8 Direction behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>I8DirectionBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/8-direction.html" rel="noopener" target="_blank" title="Make your own games">8 direction behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>8 direction behavior APIs</h2>
+<dl>
+<dt>stop()</dt>
+<dd>Stop the movement, setting the speed to 0.</dd>
+<dt>reverse()</dt>
+<dd>Invert the direction of motion. Useful as a simple way to bounce the object off an obstacle.</dd>
+<dt>simulateControl(control)</dt>
+<dd>Simulate one of the movement controls being held down. Useful when <em>isDefaultControls</em> is disabled. The control is provided as a string and must be one of <code>"left"</code>, <code>"right"</code>, <code>"up"</code>, <code>"down"</code>.</dd>
+<dt>speed</dt>
+<dd>Set or get the current speed in pixels per second. Note this cannot exceed <code>maxSpeed</code>.</dd>
+<dt>maxSpeed</dt>
+<dd>Set or get the maximum speed in pixels per second.</dd>
+<dt>acceleration</dt>
+<dt>deceleration</dt>
+<dd>Set or get the acceleration/deceleration of the movement in pixels per second per second.</dd>
+<dt>vectorX</dt>
+<dt>vectorY</dt>
+<dt>setVector(vectorX, vectorY)</dt>
+<dt>getVector()</dt>
+<dd>Set or get the X and Y components of the movement in pixels per second. The methods allow setting or getting both values at the same time.</dd>
+<dt>isAllowSliding</dt>
+<dd>A boolean indicating if the behavior is allowed to slide along solids (corresponding to the <em>Allow sliding</em> property).</dd>
+<dt>isDefaultControls</dt>
+<dd>A boolean indicating if the default controls (using the arrow keys) are enabled.</dd>
+<dt>isIgnoringInput</dt>
+<dd>A boolean indicating if input is currently being ignored. If input is ignored, pressing any of the control keys has no effect. However, unlike disabling the behavior, the object can continue to move.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

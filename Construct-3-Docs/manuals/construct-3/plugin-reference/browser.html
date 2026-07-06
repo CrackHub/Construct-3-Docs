@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/browser" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Browser
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Browser</strong> object accesses features of the browser or platform running the project. It also provides features like switching to and from fullscreen mode, detecting if an update is available, and determining if the page is visible.</p>
+<p>Security limitations sometimes prevent browser actions. For example to prevent abuse, the window <em>Close</em> action can only be used when the window was opened automatically by a web page and not when it was opened by the user.</p>
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in APIs to access the same features.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Browser conditions</h2>
+<dl class="sans">
+<dt>Cookies enabled</dt>
+<dd>True if the user has cookies enabled in their browser.</dd>
+<dt>Is online</dt>
+<dd>True if the browser thinks it currently has an active connection to the Internet. Construct projects can work offline - see <a class="extern" href="https://www.construct.net/tutorials/offline-games-construct-8.html" rel="noopener" target="_blank" title="Make your own games">Offline games</a> for more information.</dd>
+<dt>On went online</dt>
+<dt>On went offline</dt>
+<dd>Triggered when the browser thinks the connection to the Internet has become available or unavailable during the running of the project. This is common on mobile devices which may be moving in and out of signal areas. The <em>Is online</em> condition also changes to reflect the connection status.</dd>
+<dt>Is portrait/landscape</dt>
+<dd>Determine if the current display is portrait (height is greater than width) or landscape (width is greater than height). This is performed by making a simple check on the window size of the browser, so also returns accordingly on a desktop browser depending on its dimensions.</dd>
+<dt>On back button</dt>
+<dd>Triggered when the user presses the device's 'Back' button. Note not all devices have this button (e.g. iOS devices only have a 'Home' button) and not all platforms support this trigger.</dd>
+<dt>On hash change</dt>
+<dd>Triggered when the part of the URL after the hash character (e.g. <code>example.com/index.html#hashpart</code>) changes. The <em>Hash</em> expression will return the new value.</dd>
+<dt>On offline ready</dt>
+<dd>Triggers the first time the project runs when it has finished downloading and is ready to use offline.</dd>
+<dt>On update found</dt>
+<dd>Triggers when an update is detected. The update will download in the background and trigger <em>On update ready</em> when it is ready to be used.</dd>
+<dt>On update ready</dt>
+<dd>Triggered when an updated version has finished downloading in the background. If the user is still on the project's menu or title screen, you may wish to prompt them to refresh the page (or just do it automatically) so the new version is loaded. See <a class="extern" href="https://www.construct.net/tutorials/offline-games-construct-8.html" rel="noopener" target="_blank" title="Make your own games">Offline games</a> for more information.</dd>
+<dt>Compare display mode</dt>
+<dd>Test the current display mode of the project. This corresponds to the CSS <code>display-mode</code> media query. Normal display in a web browser usually counts as the <em>browser</em> display mode. However if a web app install has been performed and the project is being displayed in its web app form without the usual browser interface elements like the address bar, then usually that counts as the <em>standalone</em> display mode.</dd>
+<dt>On install available</dt>
+<dt>Is install available</dt>
+<dd>Even in browsers that support web app installs, the option to install may not be immediately available. <em>On install available</em> triggers when a web app install first becomes available, and after that <em>Is install available</em> remains true, indicating that the <em>Request install</em> action may be used.</dd>
+<dt>On install result</dt>
+<dd>Triggered after the <em>Request install</em> action has been used to display an install prompt to the user. The possible install results are:<ul class="list"><br/>
+<li>Accepted: the user chose to install the web app.</li><br/>
+<li>Dismissed: the user cancelled or otherwise declined to install the web app.</li><br/>
+<li>Error: something went wrong with the install prompt and it was not able to complete successfully.</li><br/>
+<li>Any: run the trigger regardless of the result. The <em>InstallResult</em> expression can be used to retrieve a string representing the result.</li></ul></dd>
+<dt>On app installed</dt>
+<dd>Triggered after the <em>Request install</em> action has been used to display an install prompt to the user, and the user chose to accept installation, and then the web app installation completed successfully. Usually this also corresponds to the browser changing the display mode of the project to its app form (typically <em>standalone</em> display mode).</dd>
+<dt>Has focus</dt>
+<dt>On focus</dt>
+<dt>On blur</dt>
+<dd><em>Has focus</em> is true if the window currently has focus, which means keyboard input will be received by the window. <em>On focus</em> is triggered when the window becomes focused, and <em>On blur</em> is triggered when the window loses focus. </dd>
+<dt>Is fullscreen</dt>
+<dd>True if the browser is running in fullscreen mode after using the <em>Request fullscreen</em> action. </dd>
+<dt>On fullscreen error</dt>
+<dd>Triggered when a request to enter fullscreen mode was refused by the browser. This may be because the request was made outside of a user input trigger (e.g. mouse click or touch), or when running inside an iframe which blocks fullscreen permission.</dd>
+<dt>On resized</dt>
+<dd>Triggered when the browser window displaying the project is resized. This includes when changing orientation on a mobile device.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Browser actions</h2>
+<dl class="sans">
+<dt>Start group</dt>
+<dt>End group</dt>
+<dd>Start or end a group in the browser console. Groups appear indented, and the browser may give the option to expand/collapse the group easily. Groups can optionally be named. To create a group, use <em>Start group</em>, then a series of <em>Log</em> actions, then the <em>End group</em> action.</dd>
+<dt>Log</dt>
+<dd>Log a message, warning or error to the browser console. This can be useful for debugging, testing and diagnostics.</dd>
+<dt>Maximize window</dt>
+<dt>Minimize window</dt>
+<dt>Restore window</dt>
+<dd>Maximize or minimize the main app window, or restore it to its original size and position if it was previously maximized or minimized. These actions only work in desktop exports (Windows, macOS and Linux) as browsers do not allow controlling the window in this way, and mobile devices generally do not provide windowing capabilities.</dd>
+<dt>Vibrate</dt>
+<dd>Vibrate the device with a given pattern, if the device/platform supports vibration. The pattern is given as a comma-separated list of times in milliseconds, alternating between vibrate time and waiting. For example the string "200,100,200" specifies a 200ms vibration, 100ms pause, then another 200ms vibration. This allows a single action to specify a whole vibrate pattern.</dd>
+<dt>Load stylesheet</dt>
+<dd>Load a Cascading Style Sheet (CSS) from a URL and applies its styles to the document. This can be useful for styling form controls and other DOM elements. The URL can also be the name of a project file, such as "myfile.css", to load a CSS file included in the project.<br/>
+</dd>
+<dt>Set CSS style</dt>
+<dd>Set a CSS style on the style attribute of some HTML elements in the document, based on a CSS property name and a string for its value. Setting the value to an empty string will remove the property from the style attribute. The element to change the style for is set by a CSS selector, e.g. <code>".myclass"</code> will mean to update the CSS style of an element with the class <em>myclass</em>; if the <em>Type</em> is set to <em>all</em>, it will update the style of all elements matching the selector. <br/>
+</dd>
+<dt>Get CSS style</dt>
+<dd>Retrieve a string with the computed style value for a CSS property on an element given by a CSS selector. When the action finishes, the value is returned by the <em>CSSStyleValue</em> expression. A tag is used to identify different CSS style values. <br/>
+</dd>
+<dt>Go back</dt>
+<dt>Go forward</dt>
+<dd>Move through the browser navigation history as if clicking the Back and Forward buttons on the browser.</dd>
+<dt>Go to URL</dt>
+<dd>Navigate to a given URL. Note this uses the same window/tab as is showing the project, so this action will end the project. The <em>Target</em> can be used to select which frame to redirect, which is only useful if the project is displayed within a frame (e.g. an iframe embed), and the frame has permission to redirect the parent frame (i.e. it is not sandboxed). Possible targets are:<br/>
+<ul class="list"><br/>
+<li><strong>Self:</strong> redirect only the frame that is currently showing the project.</li><br/>
+<li><strong>Parent:</strong> redirect the parent frame.</li><br/>
+<li><strong>Top:</strong> redirect the top level frame (only different to the parent if more than one frame is used)</li></ul></dd>
+<dt>Invoke download</dt>
+<dd>Invoke a URL as a file download in the browser. Even if this points to a web page or document, it will be downloaded as a file in the browser interface. The URL can point to any address on the Internet, or it can be the name of any imported project file, or it can be a data URL (useful for downloading canvas snapshots). The filename parameter allows you to choose the filename the browser gives to the download, which can be different to the name of the resource being downloaded.<br/>
+</dd>
+<dt>Invoke download of string</dt>
+<dd>As with <em>Invoke download</em>, but instead of providing a URL to download, a string of the actual data to download as a file is used. A data URI combining the MIME type and data is created, then passed to the browser to download. This is convenient for downloading strings in JSON format as files, e.g. object data from the <em>AsJSON</em> expression.</dd>
+<dt>Open URL in new window</dt>
+<dd>Navigate to a given URL in a new window (or tab if the browser settings override). This continues to run the project in the old window or tab.</dd>
+<dt>Reload</dt>
+<dd>Force the page to refresh. This effectively restarts the project.</dd>
+<dt>Set hash</dt>
+<dd>Set the part of the URL after the hash character (e.g. <code>example.com/index.html#hashpart</code>). Note this does not reload the page, so the hash part of the URL can be used as a kind of mode or identifier that can be changed while the project is running.</dd>
+<dt>Set warn on close</dt>
+<dd>Enable a warning upon closing the browser tab or window. By default this is disabled, but when enabled, the user will receive a prompt to confirm closing the browser tab or window. A generic message will be shown, usually with text along the lines of "Leave site? Changes you made may not be saved." This provides the option to cancel closing the tab/window, which may help prevent accidental closure or losing unsaved progress. Note that browsers show this message at their discretion and in some circumstances may decide not to show a prompt for privacy or security reasons.</dd>
+<dt>Request install</dt>
+<dd>Where available, prompt the user to install the current page as a web app. This is normally only available in a web browser which supports Progressive Web App (PWA) installs. This is only allowed when installation is available, indicated by the <em>On install available</em> or <em>Is install available</em> conditions. Further it normally can only be used in a user input trigger, such as a button click or tap, and may only be used if not already installed. If the install prompt is shown, then <em>On install result</em> triggers afterwards with the outcome; if the install prompt was successful and the web app successfully installed, then <em>On app installed</em> triggers, and the display mode changes. Note that the style of the install dialog depends on how much information your project provides - see the section on <em>Installable web apps</em> in <a class="extern" href="https://www.construct.net/tutorials/publishing-web-10.html" rel="noopener" target="_blank" title="Make your own games">Publishing to the web</a> for more details.</dd>
+<dt>Alert</dt>
+<dd>Bring up a simple 'alert' message box.</dd>
+<dt>Blur</dt>
+<dd>Unfocus the browser window.</dd>
+<dt>Cancel fullscreen</dt>
+<dd>Return to windowed mode if the browser is currently in fullscreen mode.</dd>
+<dt>Close</dt>
+<dd>Close the current window, if the script has permission to do so.</dd>
+<dt>Focus</dt>
+<dd>Request to focus the window. Browsers may disregard this request to prevent abuse. In desktop exports, this will attempt to bring the main app window to the top, but similarly the system may not always allow this in order to prevent abuse.</dd>
+<dt>Lock orientation</dt>
+<dt>Unlock orientation</dt>
+<dd>Lock the display of the project to a portrait or landscape mode only, if the current platform supports this. This only has effect on mobile devices. The project may have to already be displaying in fullscreen (using the <em>Request fullscreen</em> action) before the orientation can be locked. Unlocking the orientation restores whatever behavior was set before locking, such as automatically changing orientation depending on the way the device is being held.</dd>
+<dt>Request fullscreen</dt>
+<dd>Request that the browser enter fullscreen mode. Note the browser may refuse this request unless the action is in a user-initiated event, such as a mouse click, key press, touch event or button press. It may also be refused if fullscreen permission is not available, such as if running inside an iframe which does not grant fullscreen permission. If the fullscreen request is ignored, <em>On fullscreen error</em> will trigger.  The fullscreen modes that can be entered correspond to the <em>Fullscreen mode</em> <a class="extern" href="../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project property</a>. <em>Navigation UI</em> where supported sets whether the browser should show browser elements such as back buttons or the address bar, or hide them (for a true fullscreen experience). Typically this setting only affects mobile browsers.</dd>
+<dt>Set window size</dt>
+<dt>Set window position</dt>
+<dd>Set the size and position of the main window. This is only applicable on desktop-style systems - mobile devices typically use fullscreen apps and therefore windows cannot be repositioned or resized. </dd></dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Browser expressions</h2>
+<dl class="sans">
+<dt>Language</dt>
+<dd>Get the browser's current language setting, e.g. <em>en-US</em>.</dd>
+<dt>Platform</dt>
+<dd>Get the current platform the browser reports itself running on, e.g. <em>Win32</em> for Windows.</dd>
+<dt>UserAgent</dt>
+<dd>Return the full user agent string for the browser, e.g. <em>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36</em>.</dd>
+<dt>CSSStyleValue(tag)</dt>
+<dd>Get the CSS style value retrieved from a prior call to the <em>Get CSS style</em> action. Once the action has finished (using <em>Wait for previous actions to complete</em>), pass the same tag as the action was called with to retrieve the result.</dd>
+<dt>Title</dt>
+<dd>The current HTML document's title.</dd>
+<dt>Domain</dt>
+<dd>The current domain, e.g. <em>construct.net</em>.</dd>
+<dt>Hash</dt>
+<dd>The string after the hash at the end of the URL, including the hash. For example, if the current URL is <code>example.com/index.html#hashpart</code>, this returns <em>#hashpart</em>.</dd>
+<dt>PathName</dt>
+<dd>The path relative to the domain in the URL. For example the path name of <em>https://construct.net/myproject/index.html#teapot</em> is <em>/myproject/index.html</em>.</dd>
+<dt>Port</dt>
+<dd>A string of the port specified in the URL, if any. Note while ports are numbers, this expression returns a string, since if no port is specified in the URL it will return an empty string.</dd>
+<dt>Protocol</dt>
+<dd>The current protocol, usually either <em>http:</em> or <em>https:</em>.</dd>
+<dt>QueryParam</dt>
+<dd>Return a query string parameter by name. For example, if the URL ends with <em>index.html?foo=bar&amp;baz=ban</em>, <code>QueryParam("foo")</code> returns <em>bar</em> and <code>QueryParam("baz")</code> returns <em>ban</em>.</dd>
+<dt>QueryString</dt>
+<dd>Return the full URL query string including the question mark. For example, if the URL ends with <em>index.html?foo=bar&amp;baz=ban</em>, this returns <em>?foo=bar&amp;baz=ban</em>.</dd>
+<dt>Referrer</dt>
+<dd>Get the previous page that linked to this page, if any.</dd>
+<dt>URL</dt>
+<dd>Get the complete current URL in the browser address bar, including the protocol.</dd>
+<dt>DisplayMode</dt>
+<dd>A string indicating the current browser display mode - see the <em>Compare display mode</em> condition for more details. This expression returns one of the strings "browser", "standalone", "minimal-ui" or "fullscreen".</dd>
+<dt>InstallResult</dt>
+<dd>In the <em>On install result</em> trigger, a string representing the install result. This may be one of the strings "accepted", "declined", "unavailable", "failed", or an empty string ("") if no install yet attempted.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

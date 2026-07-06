@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/layers-bar" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Layers Bar
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Layers Bar</strong> is used to add, edit and remove <a class="extern" href="../../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">layers</a> in a <a class="extern" href="../../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a>. A layer is like a sheet of glass objects are painted on to. This allows easy arrangement of which objects display in front of other objects, for example showing foreground objects in front of the background sprites. It also allows for interesting depth effects like Z elevation or parallax, and layers can be individually scaled and rotated as well.</p>
+<p>Layers can be <strong>dragged and dropped</strong> in the Layers Bar to change their order. Layers at the <strong>bottom</strong> of the list are displayed <strong>at the back</strong> (e.g. background objects), and layers at the <strong>top</strong> of the list are displayed <strong>at the front</strong> (e.g. HUD objects).</p>
+<p>Selecting a layer displays its properties in the <a class="extern" href="properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a> and also sets it as the <strong>active layer</strong> which new objects are inserted in to.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/864/layers-bar.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 600x682px in new window (21 KB)"><span><img alt="The Layers Bar" height="341" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/864/layers-bar_v300.png" width="300"/></span></a><span class="descrip">The Layers Bar</span></div></div>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>The Layers list</h2>
+<p>Each layer in the list has the following:</p>
+<ul class="list">
+<li>A <strong>checkbox</strong> to toggle whether the layer is <strong>visible in the editor</strong> (this does not affect the game when previewing or exporting)</li>
+<li>A <strong>padlock icon.</strong> Clicking this toggles the layer's <strong>locked</strong> status. If a layer is locked, objects on that layer cannot be selected in the editor. This is useful to prevent accidental selections on rarely-used layers like backgrounds.</li>
+<li>An optional <strong>globe icon</strong> to denote global layers.</li>
+<li>An optional <strong>tag icon</strong> to denote <a class="extern" href="../../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</li>
+<li>A <strong>number</strong> to the right. This is a zero based index of the layer (the first layer is number 0, not 1). If you need to enter a layer number in the event system, this is the corresponding number. You can also enter layer names in the event system, which is often more convenient since unlike the numbers, the names don't change if you reorder layers.</li>
+</ul>
+<p>You can <strong>right click</strong> a layer to see a menu of additional options, such as to add a new layer, rename or delete layers, or shortcuts to show, hide, lock or unlock all layers (or all but the selected one). Layers which are showing content from a global layer will show a context menu option to go to the layout where the original global layer is in.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Sub-layers</h2>
+<p>Layers can also be added as sub-layers of another layer. They can be added as sub-layers or moved to be sub-layers via drag-and-drop. Sub-layers appear indented in the Layers Bar to show they come under another layer, and the layer they belong to can be expanded or collapsed to show or hide all its sub-layers.</p>
+<p>Sub-layers can be used solely to help organize long layer lists, acting like layer folders. However applying an effect to a layer will also affect all its sub-layers. This allows for more efficiently processing effects (instead of having to add the same effect repeatedly to several layers), as well as more advanced effect composition across different groups of layers.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Object Z ordering</h2>
+<p>To modify the Z order (front-to-back order) of individual objects on a layer, use the <a class="extern" href="z-order-bar.html" rel="noopener" target="_blank" title="Make your own games">Z Order Bar</a> <span class="ilTag c2">Paid plans only</span>. </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

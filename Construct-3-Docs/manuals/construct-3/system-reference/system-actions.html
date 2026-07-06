@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-actions" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                System actions
+            </h1>
+<div itemprop="articleBody">
+<p>This section describes all the <a class="extern" href="../project-primitives/events/actions.html" rel="noopener" target="_blank" title="Make your own games">actions</a> in the built-in System object in Construct. They are listed in the order they appear in the <a class="extern" href="../interface/dialogs/add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add Action dialog</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Display</h2>
+<dl class="sans">
+<dt>Set anisotropic filtering</dt>
+<dt>Set fullscreen scaling</dt>
+<dt>Set pixel rounding</dt>
+<dt>Set project sampling</dt>
+<dd>Set the corresponding <a class="extern" href="../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project properties</a>. This allows the settings to be adjusted at runtime.</dd>
+<dt>Set canvas size</dt>
+<dd>Set the size of the canvas area in the page, if appearing inline to the page (i.e. a fullscreen mode is not used). If a fullscreen mode is in use, this effectively changes the size of the <em>Viewport size</em> <a class="extern" href="../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project property</a>, which adjusts the size of the viewport.</dd>
+<dt>Snapshot canvas</dt>
+<dd>Take a screenshot of the current display. A subset of the canvas area can be saved (e.g. for saving a cropped image) by specifying the <em>X</em>, <em>Y</em>, <em>Width</em> and <em>Height</em> parameters, all given in device pixels. The <a class="extern" href="../plugin-reference/platform-info.html" rel="noopener" target="_blank" title="Make your own games">Platform Info</a> expressions <em>CanvasDeviceWidth</em> and <em>CanvasDeviceHeight</em> give the size of the canvas in device pixels. The default (leaving all values as zero) will save the entire canvas area. This action triggers <em>On canvas snapshot</em> when the snapshot is ready, and the resulting image can be accessed with the <em>CanvasSnapshot</em> system expression. This can then be loaded in to a sprite or tiled background, sent to a server, or opened with the Browser object in a new tab.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>General</h2>
+<dl class="sans">
+<dt>Create object</dt>
+<dd>Create a new <a class="extern" href="../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> of an <a class="extern" href="../project-primitives/objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object type</a> on a <a class="extern" href="../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">layer</a> at a given position. If a family is chosen, a random object type from the family is picked, and an instance created for that. Tick <em>Create hierarchy</em> when creating the root object in a hierarchy to automatically create the rest of the scene graph hierarchy with connections in place. Choose a valid <em>Template name</em> so the new instance is created based on the template rather than an arbitrary instance.
+<br/>
+</dd>
+<dt>Create object (by name)</dt>
+<dd>As with <em>Create object</em>, but allows using a string of the name of the object type to create. This allows using an expression to dynamically pick which kind of object to create. The <em>Pick last created</em> condition is sometimes useful to pick the resulting instance in a sub-event.</dd>
+<dt>Reset persisted objects</dt>
+<dd>Across the entire project, reset all objects using the <a class="extern" href="../behavior-reference/persist.html" rel="noopener" target="_blank" title="Make your own games">Persist behavior</a> to their initial state (as if the layout has not been visited yet). This is useful when restarting from the beginning again.</dd>
+<dt>Set collision cell size</dt>
+<dd>Construct optimizes collision checks by sorting all objects in to "cells". The default cell size is the viewport size. Changing the collision cell size adjusts the trade-off between collision performance, memory use, and overhead of moving objects. Usually the default works well for most projects, but projects where there are large numbers of objects testing collisions in a small area, such as "bullet hell" style games, may benefit from a smaller collision cell size. Use performance measurements to identify the optimal size.</dd>
+<dt>Set group active</dt>
+<dd>Set an <a class="extern" href="../project-primitives/events/groups.html" rel="noopener" target="_blank" title="Make your own games">event group</a> active or inactive. None of the events in an inactive group run until it is activated again. The event group is identified by its name.</dd>
+<dt>Sort Z order</dt>
+<dd>Sort the Z order of instances of a given object according to an instance variable. This effectively removes all instances from their Z order, sorts them, then inserts the sorted sequence back in to the holes left behind. This means if the instances are spread across a range of layers, they will be sorted in the same Z order locations, maintaining the same order relative to other instances on those layers. Note this action is much faster than using an ordered <em>For each</em> with an action like <em>Send to front/back</em>, so this action should be the preferred way to sort the Z order of large numbers of instances.</dd>
+<dt>Stop loop</dt>
+<dd>Stop a <em>Repeat</em>, <em>For</em> or <em>For each</em> loop currently running. These loops are <a class="extern" href="system-conditions.html" rel="noopener" target="_blank" title="Make your own games">system conditions</a>. The rest of the event's actions and subevents will still complete, but the loop will not run any further after that.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Global &amp; local variables</h2>
+<dl class="sans">
+<dt>Add to</dt>
+<dt>Subtract from</dt>
+<dt>Set value</dt>
+<dd>Alter the value stored by a number or text type <a class="extern" href="../project-primitives/events/variables.html" rel="noopener" target="_blank" title="Make your own games">global or local variable</a>.</dd>
+<dt>Reset</dt>
+<dd>Reset an individual global variable in the project to its initial value.</dd>
+<dt>Reset global variables</dt>
+<dd>Reset all the global variables in the project to their initial value. If <em>Reset static</em> is checked, then all static local variables in the project will also be reset to their initial value.</dd>
+<dt>Set boolean</dt>
+<dt>Toggle boolean</dt>
+<dd>Set or toggle a boolean type <a class="extern" href="../project-primitives/events/variables.html" rel="noopener" target="_blank" title="Make your own games">global or local variable</a>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Layers</h2>
+<p>For more information about the effect actions, see <a class="extern" href="../project-primitives/objects/effects.html" rel="noopener" target="_blank" title="Make your own games">Effects</a>.</p>
+<dl class="sans">
+<dt>Add layer</dt>
+<dd>Create a new layer and insert it to the layer tree at runtime (also known as a <em>dynamic layer</em>). <em>Layer name</em> is the name to use for the added layer, which must be different to all existing layers already added, including other dynamic layers. <em>Insert by</em> is the name or index of another layer to insert the new layer relative to. <em>Where</em> specifies where to insert the new layer relative to the <em>Insert by</em> layer; <em>Above</em> and <em>Below</em> add it as a sibling layer adjacent to the <em>Insert by</em> layer, whereas <em>Add top/bottom sub-layer</em> inserts the new layer as a sub-layer of the <em>Insert by</em> layer. The <em>Insert by</em> layer may be left empty when <em>Where</em> is <em>Add top/bottom sub-layer</em>, in which case the new layer is added as the top or bottom layer at the root level of the layer tree.</dd>
+<dt>Move layer</dt>
+<dd>Remove and re-insert a layer to a new location in the layer tree. This works similarly to <em>Add layer</em>, except the specified layer must already exist; otherwise the <em>Insert by</em> and <em>Where</em> parameters are used in the same way.</dd>
+<dt>Remove layer</dt>
+<dd>Remove a layer from the layer tree by its name or index. This also removes any sub-layers of the removed layer, and all objects on the layer or any of its sub-layers will be destroyed. A layout must have at least one layer, so the last top-level layer cannot be removed.</dd>
+<dt>Remove all dynamic layers</dt>
+<dd>Removes all layers added using the <em>Add layer</em> action, leaving only the layers added in the editor. All objects on the removed layers will be destroyed. This can be useful to reset the state of dynamic layers.</dd>
+<dt>Set layer scroll</dt>
+<dt>Restore layer scroll</dt>
+<dd>Independently scroll a layer, regardless of where the layout is scrolled to. By default layers all follow the layout scroll position. Upon using the <em>Set layer scroll</em> action, a layer will stop following the layout scroll position, and remain scrolled at the position provided. The <em>Restore layer scroll</em> action reverts the layer to the default mode where it follows the layout scroll position.</dd>
+<dt>Set layer angle</dt>
+<dd>Rotate an entire <a class="extern" href="../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">layer</a> by a number of degrees.</dd>
+<dt>Set layer background color</dt>
+<dd>Set the background color of a layer. Note if the layer is transparent, setting the background won't change the appearance unless you also make the layer opaque.</dd>
+<dt>Set layer blend mode</dt>
+<dd>Set the blend mode of a layer. See the <em>Effects</em> section for a description of the available blend modes.</dd>
+<dt>Set layer effect enabled</dt>
+<dd>Enable or disable one of the effects added to a layer on the current layout. This action cannot be used to alter layers from other layouts.</dd>
+<dt>Set layer effect parameter</dt>
+<dd>Change the value of one of the parameters for an effect added to a layer on the current layout. This action cannot be used to alter layers from other layouts. The parameter to change is specified by its zero-based index, i.e. 0 to change the first parameter, 1 to change the second parameter, and so on. To set the value of a color parameter, use the <em>rgb</em> <a class="extern" href="system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expression</a>.</dd>
+<dt>Set layer force own texture</dt>
+<dd>Change a layer's <em>Force own texture</em> property at runtime. For more information see the property in the <a class="extern" href="../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">Layers</a> manual entry.</dd>
+<dt>Set layer HTML</dt>
+<dd>Set whether a layer acts as a HTML layer. For more information see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</dd>
+<dt>Set layer interactive</dt>
+<dt>Set layer opacity</dt>
+<dt>Set layer parallax</dt>
+<dt>Set layer sampling</dt>
+<dd>Set the corresponding layer properties at runtime. For more information see the <a class="extern" href="../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">Layers</a> manual entry.</dd>
+<dt>Set layer rendering mode</dt>
+<dd>Set the <em>Rendering mode</em> <a class="extern" href="../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">layer property</a> to either 2D or 3D mode. This allows dynamically changing a layer between rendering modes at runtime.</dd>
+<dd>Set the <em>Sampling</em> property of the layer.</dd>
+<dt>Set layer scale</dt>
+<dd>Set the scale (or zoom) of an entire layer, taking in to account its scale rate property.</dd>
+<dt>Set layer scale rate</dt>
+<dd>Set the <em>scale rate</em> property of a layer, which affects how quickly it scales (if at all).</dd>
+<dt>Set layer transparent</dt>
+<dd>Set the <em>transparent</em> property of a layer. If transparent, the background color is ignored.</dd>
+<dt>Set layer visible</dt>
+<dd>Show or hide an entire layer. </dd>
+<dt>Set layer Z elevation</dt>
+<dd>Set the Z elevation of an entire layer. By default the camera is at Z = 100, and looking down to Z = 0. The default Z elevation is 0. Increasing it will move the layer upwards (towards the camera) and decreasing it will move it downwards (away from the camera).<br/>
+<br/>
+</dd></dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Layout</h2>
+<dl class="sans">
+<dt>Go to layout</dt>
+<dt>Go to layout (by name)</dt>
+<dd>Switch to another <a class="extern" href="../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a> in the project. Note that global variables keep their current value - they are not reset. To reset them use the system action <em>Reset global variables</em>.</dd>
+<dt>Go to next/previous layout</dt>
+<dd>Switch to the next or previous layout in the project. The order as they appear in the <a class="extern" href="../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> is used, where layouts at the top are first and layouts at the bottom are last. If on the first layout, trying to go to the previous layout does nothing, and if on the last layout, trying to go to the next layout does nothing. Note that global variables keep their current value - they are not reset. To reset them use the system action <em>Reset global variables</em>.</dd>
+<dt>Recreate initial objects</dt>
+<dd>Recreate the objects in a rectangular area of the layout as they appear in the Layout View. In other words, this restores a section of the initial level design. Note that this does not destroy any existing objects, so if used repeatedly will create multiple objects sitting on top of each other. Only objects of the given type are created, or alternatively a family can be passed and all objects belonging to that family are recreated. The initial objects to create can also optionally be sourced from a different layout by specifying a layout name (leaving it empty will use the current layout). A specific layer can also be chosen by entering a layer name or number; the default of using -1 will use objects from all layers. The created instances can also optionally be placed on a specific layer with the <em>Destination layer</em> parameter (-1 means to try to match the source layer), and also offset from their default positions so they are created at a different location. As with the <em>Create object</em> action, all the created instances are also picked so subsequent actions can further alter them. Tick <em>Create hierarchy</em> when creating root objects in a hierarchy to automatically create the rest of the scene graph hierarchy with connections in place.</dd>
+<dt>Restart layout</dt>
+<dd>Restart the current layout. Note that unlike <em>Go to layout</em>, this action resets all event groups to their initial activation state. Global variables keep their current value - they are not reset. To reset them use the system action <em>Reset global variables</em>.</dd>
+<dt>Set layout angle</dt>
+<dd>Rotate an entire <a class="extern" href="../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a> by a number of degrees. This rotates all the layers in the layout.</dd>
+<dt>Set layout effect enabled</dt>
+<dd>Enable or disable one of the effects added to the current layout. This action cannot be used to alter other layouts.</dd>
+<dt>Set layout effect parameter</dt>
+<dd>Change the value of one of the parameters for an effect added to the current layout. This action cannot be used to alter other layouts. The parameter to change is specified by its zero-based index, i.e. 0 to change the first parameter, 1 to change the second parameter, and so on. To set the value of a color parameter, use the <em>rgb</em> <a class="extern" href="system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expression</a>.</dd>
+<dt>Set layout projection</dt>
+<dd>Change whether the layout uses a perspective or orthographic projection. See the <em>Projection</em> property in <a class="extern" href="../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">Layout Properties</a> for more information.</dd>
+<dt>Set layout sampling</dt>
+<dd>Set the layout <em>Sampling</em> property.</dd>
+<dt>Set layout scale</dt>
+<dd>Set the scale (or zoom) of an entire layout. This scales all the layers in the layout, taking in to account their <em>scale rate</em> property.</dd>
+<dt>Set layout vanishing point</dt>
+<dd>Change the location of the vanishing point in the viewport for this layout, using a percentage in the range 0-100. This affects how perspective appears for 3D features such as Z elevation and the 3D shape object. For more information refer to the <em>Vanishing point</em> <a class="extern" href="../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout property</a>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Memory management</h2>
+<p>By default Construct loads and releases memory automatically, so normally you do not need to worry about how memory is managed in your project. However very large projects may need to control when objects are loaded in to and released from memory. These actions provide control over the loaded image memory. Note that spritesheeting combines different images on to the same spritesheets; the spritesheet will be loaded in to memory if any single image on it is loaded, and only released when no images on it are loaded.</p>
+<dl class="sans">
+<dt>Load layout images</dt>
+<dt>Load layout images (by name)</dt>
+<dd>Load all the images used by a layout in to memory. The layout can be chosen either from a list or using a string of its name.<br/>
+</dd>
+<dt>Load object images</dt>
+<dt>Load object images (by name)</dt>
+<dd>Load all the images used by an object in to memory. The object can be chosen either by an object picker or a string of its name. If it's already loaded, this has no effect.<br/>
+</dd>
+<dt>Unload object images</dt>
+<dt>Unload object images (by name)</dt>
+<dd>Unload all the images used by an object from memory. The object can be chosen either by an object picker or a string of its name. If it is not yet loaded, this has no effect. If there are still instances of the object in use (i.e. the object's instance count is greater than 0), then this has no effect, since the images are still in use and cannot yet be released.<br/>
+</dd>
+<dt>Unload unused images</dt>
+<dd>Automatically unload the images for any objects that have their images loaded, but currently have had all their instances destroyed (so the instance count is 0).<br/>
+</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Save &amp; Load</h2>
+<p>For more information on using savegames, see the tutorial <a class="extern" href="https://www.construct.net/tutorials/savegames-11.html" rel="noopener" target="_blank" title="Make your own games">How to make savegames</a>.</p>
+<dl class="sans">
+<dt>Load</dt>
+<dd>Load the state of the project from a save slot. When completed, this triggers <em>On load complete</em>, or <em>On load failed</em> if the save slot has not been saved to before.</dd>
+<dt>Load from JSON</dt>
+<dd>Load the state of the project from a string of JSON data previously returned by the <em>SaveStateJSON</em> system expression.</dd>
+<dt>Save</dt>
+<dd>Save the state of the game to a save slot. When completed, this triggers <em>On save complete</em>.</dd>
+<dt>Save to JSON</dt>
+<dd>Save the state of the game to a string of JSON data. When completed, this triggers <em>On save complete</em>, and the resulting string of JSON data can be accessed with the <em>SaveStateJSON</em> system expression.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Scrolling</h2>
+<p>To scroll, the size of the <a class="extern" href="../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a> must be bigger than the size of the viewport, or the layout's <em>Unbounded scrolling</em> property must be enabled. Otherwise there is nowhere to scroll to and scrolling will have no effect.</p>
+<dl class="sans">
+<dt>Scroll to object</dt>
+<dd>Center the view on a given object. This scrolls all layers taking in to account their <em>parallax</em> property.</dd>
+<dt>Scroll to position</dt>
+<dt>Scroll to X</dt>
+<dt>Scroll to Y</dt>
+<dd>Set the X and Y positions to center the view on. This scrolls all layers taking in to account their <em>parallax</em> property.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Time</h2>
+<dl class="sans">
+<dt>Set object time scale</dt>
+<dt>Restore object time scale</dt>
+<dd>Change the rate time passes for a specific object. This affects the object's behaviors and its own <em>dt</em> expression. Restoring the object's time scale returns it to the same time scale the rest of the project is using. See the tutorial on <a class="extern" href="https://www.construct.net/tutorials/delta-time-framerate-2.html" rel="noopener" target="_blank" title="Make your own games">Delta-time and framerate independence</a> for more information.</dd>
+<dt>Set framerate mode</dt>
+<dd>Change the project <em>Framerate mode</em> property at runtime. For more details, see the corresponding <a class="extern" href="../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project property</a>.</dd>
+<dt>Set min/max delta-time</dt>
+<dd>Set the limits on the delta-time (<em>dt</em>) measurement. If the real-world delta-time increases above the maximum delta-time, it stops increasing the measurement used by Construct, corresponding to a dropping framerate causing the project to run in slow-motion. Conversely if the real-world delta-time decreases below the minimum delta-time, it stops decreasing the measurement used by Construct, corresponding to an increasing framerate causing the project to run in fast-forward. The defaults are a minimum delta-time of 0 (meaning the project never goes in to fast-forward mode) and a maximum delta-time of 1 / 30 (corresponding to a framerate of 30 FPS), meaning the project begins to go in to slow-motion as the framerate drops below 30 FPS. Going in to fast-forward can be useful for a "catch-up time" mode, and going in to slow-motion with low framerates is useful to prevent objects stepping too far every frame which can result in skipped collisions and unstable gameplay. </dd>
+<dt>Set time scale</dt>
+<dd>Change the rate time passes at in the project. Useful for slow-motion or pausing effects. See the tutorial on <a class="extern" href="https://www.construct.net/tutorials/delta-time-framerate-2.html" rel="noopener" target="_blank" title="Make your own games">Delta-time and framerate independence</a> for more information.</dd>
+<dt>Signal</dt>
+<dd>Resume any events paused with a <em>Wait for signal</em> action with the given tag.</dd>
+<dt>Wait</dt>
+<dd>Wait a number of seconds before continuing on to the next action or sub-events. Other events continue to run in the meantime.<br/>
+ The <em>Use time scale</em> parameter determines whether the time scale affects the wait time. If unchecked, then the time waited is in real-world (wall clock) time ignoring the time scale. This can be useful when pausing by setting the time scale to 0: in this case waits using the time scale are paused indefinitely, but waits not using the time scale will still complete in real-world time.</dd>
+<dt>Wait for previous actions to complete</dt>
+<dd>Wait until any previous actions have completed before continuing on to the next action or sub-events. Other events continue to run in the meantime. This only applies to <em>asynchronous actions</em>, which show with a special icon. Normally these types of action take a while to complete and run a trigger like <em>On completed</em> when the action has finished. However using <em>Wait for previous actions to complete</em> is often more convenient, since it allows you to keep everything within the same event block.<br/>
+</dd>
+<dt>Wait for signal</dt>
+<dd>Wait indefinitely until the <em>Signal</em> action is used with the same tag. Other events continue to run in the meantime.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

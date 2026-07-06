@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/interfaces/istorage" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Storage script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IStorage</code> interface provides access to storage for the project. It essentially wraps a simple key-value storage engine based on <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a>. This means any data that can be stored in IndexedDB can be stored with these methods, such as numbers, strings, Blobs, etc. It is typically accessed by the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> <code>storage</code> property.</p>
+<p>This interface accesses the same storage as the <a class="extern" href="../../../plugin-reference/local-storage.html" rel="noopener" target="_blank" title="Make your own games">Local Storage plugin</a>. Therefore an item stored from the event sheet can also be read from script, and vice versa. Note however that Construct expressions can only be strings or numbers, so if a script stores a different type it cannot be used in the event sheet.</p>
+<p>As with the Local Storage plugin, the storage is unique to the specific project. It is not shared with any other projects or other website storage, even on the same origin.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=localstorage-script" rel="noopener" target="_blank" title="Make games in the browser">Local storage - script</a> example for a demonstration of using these storage APIs to track a high score.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Storage APIs</h2>
+<dl>
+<dt>async getItem(key)</dt>
+<dd>Read an item from storage. Returns a promise that resolves to the value of the item if it exists in storage, else <code>null</code> if the item does not exist in storage.<br/>
+</dd>
+<dt>async setItem(key, value)</dt>
+<dd>Write an item to storage. Returns a promise that resolves when the write has completed.<br/>
+</dd>
+<dt>async removeItem(key)</dt>
+<dd>Delete an item from storage. Returns a promise that resolves when the removal has completed.</dd>
+<dt>async clear()</dt>
+<dd>Delete all items from storage. Returns a promise that resolves when the clear has completed.</dd>
+<dt>async keys()</dt>
+<dd>Retrieve a list of all keys in storage. Returns a promise that resolves to an array of key names.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

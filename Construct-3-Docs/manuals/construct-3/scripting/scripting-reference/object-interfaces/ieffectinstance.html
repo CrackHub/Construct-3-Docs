@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/ieffectinstance" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Effect instance script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IEffectInstance</code> script interface represents the parameters for a single effect on a <a class="extern" href="iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a>, <a class="extern" href="../layout-interfaces/ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a> or <a class="extern" href="../layout-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout</a>. It is typically accessed through the <code>effects</code> property.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=scripting-effect-parameters" rel="noopener" target="_blank" title="Make games in the browser">Scripting effect parameters</a> example for a demonstration of using the <code>setParameter()</code> method to modify effect parameters.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Effect APIs</h2>
+<dl>
+<dt>index</dt>
+<dd>The zero-based index of this effect, which is its index in the <code>effects</code> array.</dd>
+<dt>name</dt>
+<dd>A read-only string of the effect name.</dd>
+<dt>isActive</dt>
+<dd>A boolean indicating whether this effect is enabled or not. Inactive effects act the same as the effect being deleted, but the effect can later be reactivated if it is needed again. Note making effects inactive if they are not needed improves performance.</dd>
+<dt>setParameter(index, value)</dt>
+<dt>getParameter(index)</dt>
+<dd>Set or get an effect parameter by the zero-based parameter index. Most parameters use a number as the value. Note however that color parameters are represented by an array with three elements, i.e. <code>[r, g, b]</code>. The R, G and B values are normalized to floats in the [0, 1] range.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/misc-interfaces/izipfile" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IZipFile interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IZipFile</code> interface represents a zip file in the SDK. It allows access to the file list and reading files contained within the zip.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>PathExists(path)</dt>
+<dd>Return a boolean indicating if a given path exists within the zip.</dd>
+<dt>GetFileList()</dt>
+<dd>Return an array of all file paths contained within the zip.</dd>
+<dt>GetFirstEntryWithExtension(ext)</dt>
+<dd>Return a <a class="extern" href="izipfileentry.html" rel="noopener" target="_blank" title="Make your own games">IZipFileEntry</a> representing the first entry found with a given file extension, or <code>null</code> if none was found.</dd>
+<dt>GetEntry(path)</dt>
+<dd>Return a <a class="extern" href="izipfileentry.html" rel="noopener" target="_blank" title="Make your own games">IZipFileEntry</a> representing the file at the given path. If the path does not exist in the zip, this returns <code>null</code>.</dd>
+<dt>ReadText(entry)</dt>
+<dd>Return a promise that resolves with the contents of the given IZipFileEntry read as plain text.</dd>
+<dt>ReadJson(entry)</dt>
+<dd>Return a promise that resolves with the contents of the given IZipFileEntry, read as plain text and then parsed as JSON.</dd>
+<dt>ReadBlob(entry)</dt>
+<dd>Return a promise that resolves with the contents of the given IZipFileEntry, read as a <code>Blob</code>. (This is a raw binary format that can be read with other JavaScript APIs.)<br/>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

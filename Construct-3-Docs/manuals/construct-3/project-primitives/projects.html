@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/projects" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Projects
+            </h1>
+<div itemprop="articleBody">
+<p>A <strong>project</strong> is a complete game, app or animation made in Construct. Projects contain every element of your work, ranging from sprites to sound files. An overview of the project is shown in the <a class="extern" href="../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> where elements can be added, renamed, removed and arranged in to folders for organisation. See <a class="extern" href="../overview/project-structure.html" rel="noopener" target="_blank" title="Make your own games">Project structure</a> for a summary of the elements making up a project. The rest of this manual section goes in to more detail about each part of a project.</p>
+<p>Projects can be opened, closed and exported from the <a class="extern" href="../interface/main-menu.html" rel="noopener" target="_blank" title="Make your own games">main menu</a>. See also <a class="extern" href="https://www.construct.net/make-games/manuals/construct-3/overview/saving-sharing-projects.html" rel="noopener" target="_blank" title="Make your own games">Saving and sharing projects</a>, <a class="extern" href="../overview/testing-projects.html" rel="noopener" target="_blank" title="Make your own games">testing</a> and <a class="extern" href="../overview/publishing-projects.html" rel="noopener" target="_blank" title="Make your own games">publishing</a>. It is recommended to follow some <a class="extern" href="../tips-and-guides/best-practices.html" rel="noopener" target="_blank" title="Make your own games">best practices</a> while working on projects.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Project properties</h2>
+<p>The properties for a project can be edited in the <a class="extern" href="../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a> after selecting the name of the project in the Project Bar, or using the <em>Project properties</em> shortcut in Layout Properties.</p>
+<p>The <em>Name</em>, <em>Author</em> and <em>Description</em> properties are used for some of the export options, so be sure to fill them out accurately for any important projects.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>About</h2>
+<dl class="sans">
+<dt>Name</dt>
+<dd>The name or title of the project.</dd>
+<dt>Version</dt>
+<dd>The version of the project, which conventionally is four numbers in descending importance (e.g. 1.0.0.0), where the first number is the major version and the last number is the revision number. This is also used by several exporters to assign the version to your published app.<br/>
+<strong>Note:</strong> different platforms have their own way of handling the version. To ensure the version works consistently across platforms, try to follow these rules with the project version: <ul class="list"><br/>
+<li>Use 3 or 4 version components (using too few could become limiting)</li><br/>
+<li>Don't exceed the range 0-99 for any particular component. E.g. instead of incrementing 1.0.0.99 to 1.0.0.100, increment the next component, using 1.0.1.0.</li><br/>
+<li>Enable <em>Auto-increment version</em> (see below), as some platforms do not allow you to publish an update unless the version is higher.</li></ul></dd>
+<dt>Auto-increment version</dt>
+<dd>When enabled, every time you export the project, Construct will automatically increment the fourth number of the <em>Version</em> property. For example if the version is 1.4.0.0, when you export it will increment to 1.4.0.1, 1.4.0.2 etc. Note that this only supports numerical version components separated by a dot - it will not work with other version formats like "1.4a", "rev2" etc.</dd>
+<dt>Description</dt>
+<dd>A sentence or two giving a short summary of the project. Several exporters use this as the description for your published app.</dd>
+<dt>ID</dt>
+<dd>An ID uniquely identifying your application. This should be in reverse domain format, such as <strong>com.mycompany.myproject</strong>. Some exporters use this as the ID for your exported app, so try to ensure it will be unique.</dd>
+<dt>Author</dt>
+<dd>The name of the individual or organisation developing the project.</dd>
+<dt>Email</dt>
+<dd>A support or contact email address for the project. Some exporters use this to fill out the <em>Email</em> field of the published app.</dd>
+<dt>Website</dt>
+<dd>A link to the author's website or other related web address. Your site should be hosted securely (with https://). Some exporters use this to fill out the <em>Website</em> field of the published app.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Colors</h2>
+<dl class="sans">
+<dt>Background color</dt>
+<dd>If the viewport does not cover the whole screen, e.g. when using letterbox mode, this is the color of the bars that appear at the sides.</dd>
+<dt>Splash color</dt>
+<dd>When run as a web app, this is the background color of the splash screen which appears when the web app is first launched.</dd>
+<dt>Use theme color</dt>
+<dd>Check to enable the <em>Theme color</em> property, allowing to override the default browser color scheme.</dd>
+<dt>Theme color</dt>
+<dd>On some platforms, the theme color is used to tint the browser or OS color scheme, such as the address bar, app caption, or status bar. If <em>Use theme color</em> is disabled the system defaults will be used, otherwise the theme color will be applied instead.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Startup</h2>
+<dl class="sans">
+<dt>First layout</dt>
+<dd>Select which <a class="extern" href="layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a> is the first to appear when the project is exported. When previewing in the editor usually a specific layout is previewed, selecting <em>Preview project</em> will also preview from this layout.</dd>
+<dt>Use loader layout</dt>
+<dd>Use <em>First layout</em> as a special layout which shows while the rest of the layout is loading. The <em>loadingprogress</em> system expression returns the current progress from 0 to 1 (e.g. 0.5 for half completed). For more information, see the tutorial <a class="extern" href="https://www.construct.net/tutorials/loader-layouts-custom-loading-9.html" rel="noopener" target="_blank" title="Make your own games">how to make a custom loading screen</a>.</dd>
+<dt>Loader style <span class="ilTag c2">Paid plans only</span></dt>
+<dd>Change the default loader which is shown while the project is loading, or while the loader layout is itself still loading. See the tutorial <a class="extern" href="https://www.construct.net/tutorials/loader-layouts-custom-loading-9.html" rel="noopener" target="_blank" title="Make your own games">how to make a custom loading screen</a> for more information. The Free edition can only use the <em>Construct 3 splash</em> style. When using the <em>Progress bar &amp; logo</em> style, the icon with the <em>Loading logo</em> purpose is used as the logo. See <a class="extern" href="../tips-and-guides/icons-splash.html" rel="noopener" target="_blank" title="Make your own games">Icons &amp; splash</a> for more information.</dd>
+<dt>Preload sounds</dt>
+<dd>Whether to download and decode sounds before the project starts. If enabled, then sounds will be downloaded while the loading bar is showing. If disabled then sounds will be downloaded on-demand as the project runs, which can add a delay on the first time they are played, but it also means there is less to download before the project can start. Note this option does not preload music, which will still be streamed as the project runs.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Display</h2>
+<dl class="sans">
+<dt>Viewport size</dt>
+<dd>The size, in pixels, of the view area in a layout. A dashed line indicating the window size appears in the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>. The viewport aspect ratio is also displayed underneath to help you easily identify which aspect ratio your project is using.</dd>
+<dt>Viewport fit</dt>
+<dd>How to fit the viewport to the display on devices with non-rectangular screens (such as the iPhone X). The viewport is rectangular, and the default <em>Auto</em> will add borders around the screen to ensure the full viewport is visible. Using <em>Cover</em> will display the viewport covering the entire physical screen, but this can result in parts of the viewport being hidden on non-rectangular screens, such as if there are notches or rounded corners.</dd>
+<dt>Fullscreen mode</dt>
+<dd>This determines how to fill the available window or screen space with the viewport. By default it uses <em>Letterbox scale</em>, which stretches the viewport to fill all available space, using black bars down the sides to preserve the aspect ratio. There are several variations; for more information see the tutorial on <a class="extern" href="https://www.construct.net/tutorials/supporting-multiple-screen-17.html" rel="noopener" target="_blank" title="Make your own games">supporting multiple screen sizes</a>.</dd>
+<dt>Fullscreen quality</dt>
+<dd>This only applies when the viewport is being stretched (i.e. <em>Fullscreen mode</em> is not <em>Off</em>). <em>High quality</em> mode renders at the full resolution of the displayed size. <em>Low quality</em> mode first renders at the project viewport size, and then simply stretches the result to fill the screen. Low quality mode often improves performance on low-end systems and is often suitable for retro-style pixellated projects with <em>Point</em> sampling. However note that text, downscaled sprites and effects will appear with better detail in high quality mode.</dd>
+<dt>Orientations</dt>
+<dd>Whether to lock the orientation on mobile devices. <em>Any</em> allows the display to switch between portrait and landscape automatically; choosing either <em>portrait</em> or <em>landscape</em> will attempt to lock the orientation to prevent it changing. This is applied when publishing an app, but for web exports note that not all browsers or platforms support orientation locking or have limitations on when it can apply. In some browsers it must be in fullscreen mode (using the Browser object's <em>Request fullscreen</em> action) before orientation lock takes effect.</dd>
+<dt>Sampling</dt>
+<dd>Choose between <em>nearest</em> (pixellated), <em>bilinear</em> (smooth) and <em>trilinear</em> (smooth with better quality downscaling) sampling when resizing images. <em>Trilinear</em> is recommended for modern projects with hi-res graphics, and <em>nearest</em> is better suited to retro-style projects with blocky pixel art. <em>Bilinear</em> can be faster than <em>Trilinear</em> on low-end devices if the improved downscaling quality is not necessary. Layouts, layers and individual object instances can override the sampling setting, but their default is <em>Auto</em> which means if nothing else is set, they will use the project setting.</dd>
+<dt>Pixel rounding</dt>
+<dd>By default objects can be drawn at sub-pixel positions, e.g. (100.3, 200.8). If <em>Sampling</em> is set to <em>Linear</em>, this can make fine pixel art appear blurry. If <em>Pixel rounding</em> is enabled, objects round their position to a whole number before drawing, e.g. (100, 201). This prevents any blurring, and can also prevent "seams" appearing on grids of objects. Note this does not affect their actual X and Y co-ordinates, which can still be between pixels - it only affects where they are drawn on the screen.</dd>
+<dt>Field of view</dt>
+<dd>This property only appears when the <em>Z axis scale</em> is set to <em>Regular</em>. It adjusts the viewing angle of the 3D camera. Note this only affects perspective projections, as orthographic projections do not use a viewing angle. Also note adjusting the field of view will also change the default camera Z, as Construct adjusts it to ensure 2D content appears at 100% scale.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Advanced</h2>
+<dl class="sans">
+<dt>Use worker</dt>
+<dd>When enabled, the runtime is hosted in a Web Worker, off the main thread (where supported). This makes it less likely the browser will interrupt the project (also known as jank), generally improving performance. When disabled the runtime is hosted in the main thread with full access to the DOM (Document Object Model), but in some cases can be interrupted by the browser. <em>Auto</em> mode means Construct decides the mode automatically; currently this enables it unless you use the scripting feature, in which case it disables it on the assumption you will want to use DOM APIs. If your scripting code can run in a worker, you can still enable worker mode by changing the setting to <em>Yes</em>.<br/>
+</dd>
+<dt>Enable WebGPU</dt>
+<dd>Whether to enable the WebGPU renderer for this project. If disabled, WebGPU is not supported, or the project uses third-party effects that do not support WebGPU, then the WebGL renderer will be used instead. In most cases the WebGPU renderer should have better performance than the WebGL renderer. The renderer in use can be identified by the <a class="extern" href="../plugin-reference/platform-info.html" rel="noopener" target="_blank" title="Make your own games">Platform Info</a> <em>Renderer</em> expression. The <em>Auto</em> setting means Construct will use the default, which is currently the WebGL renderer. Note the renderer used for the Construct editor (for Layout Views) is separately controlled in the <a class="extern" href="../interface/dialogs/settings.html" rel="noopener" target="_blank" title="Make your own games">Settings dialog</a>.</dd>
+<dt>Enable multitexturing</dt>
+<dd>This option only appears when WebGPU may be used (the <em>Enable WebGPU</em> property is not <em>No</em>). Normally when the renderer changes texture it has to issue new rendering commands which has a CPU overhead. Construct's WebGPU renderer supports <em>multitexturing</em>, which can move most texture swapping to the GPU; however that usually adds some per-pixel performance overhead that can affect fill rate. In other words, multi-texturing off will use more CPU time and less GPU time, whereas multi-texturing on will use less CPU time and more GPU time. The optimal setting depends on your project and whether it is bottlenecked more on CPU or GPU performance. The default mode <em>Auto</em> enables multitexturing on desktop devices as they tend to have more powerful GPUs, but disables it on mobile devices as they tend to have less powerful GPUs where fill rate is more important.</dd>
+<dt>Framerate mode</dt>
+<dd>Adjust how the framerate is scheduled at runtime. The default mode <em>V-synced</em> will tick and draw a new frame every time the display hardware refreshes, which produces a smooth framerate, and is the mode we recommend. The options are:<br/>
+<ul class="list"><br/>
+<li><strong>V-synced</strong> will run ticks to match the display refresh rate, and render a frame every tick as well. Note that if nothing changes then no frame may be rendered, in which case the frames per second measurement may be lower than the ticks per second measurement.</li><br/>
+<li><strong>Fixed</strong> schedules frames based on a timer. When you choose this mode, a <em>Fixed framerate</em> property appears, in which you can enter the target framerate, e.g. 30 for 30 FPS. In this mode the value of delta-time (<em>dt</em>) is also fixed ensuring deterministic results at runtime.  </li><br/>
+<li><strong>Unlimited (ticks only)</strong> will run ticks as fast as possible, but still only draw a new frame every time the display refreshes. This means the engine will measure a very high ticks per second (TPS) rate, but it is still only visually producing frames at the normal rate (typically 60 FPS). This option is suitable for CPU performance testing.</li><br/>
+<li><strong>Unlimited (full frames)</strong> will run full frames as fast as possible, including issuing all the draw calls to draw a new frame. Therefore the frames per second and ticks per second will run at the same rate, although as with V-synced mode if nothing is changing then it may skip rendering frames. When running faster than the display refresh rate, many frames will not be seen, since they will be replaced by the next frame before the display hardware refreshes. However it ensures that draw calls are included in any performance measurement. This option is more suitable for testing rendering performance.</li></ul></dd>
+<dt>Fixed framerate</dt>
+<dd>When <em>Framerate mode</em> is <em>Fixed</em>, the target framerate in frames per second. </dd>
+<dt>GPU preference</dt>
+<dd>On devices with multiple GPUs, the type of GPU to prefer. The most common multi-GPU case is laptops that contain a weak low-power integrated GPU (designed to maximize battery life) and a powerful discrete GPU (designed to maximize performance). This setting controls the preferred GPU on such devices.
+<br/>
+</dd>
+<dt>Downscaling quality</dt>
+<dd>Adjusts the tradeoff between rendering quality and memory use when resizing images to smaller than their original size (downscaling). The options are:<br/>
+<ul class="list"><br/>
+<li><em>Low quality</em>: mipmaps are disabled (reducing memory use), but downscaled sprites may appear blocky or pixellated. This mode is not recommended for most projects, since disabling mipmaps can reduce performance.</li><br/>
+<li><em>Medium quality</em>: mipmaps are enabled. Downscaling sprites generally looks better.</li><br/>
+<li><em>High quality</em>: mipmaps are enabled and the spritesheet after export pads out all images to power-of-two sizes. This can significantly increase memory use, but can resolve two minor rendering issues: light fringing that can sometimes occur along the borders of downscaled objects, or a quality change in the last frame of an animation. <strong>Do not use this mode</strong> unless a rendering artefact is specifically observed and selecting this mode can be observed to resolve it: the increased memory usage can be very significant, and is not a cost that should be added for no reason. For more information see <a class="extern" href="../tips-and-guides/memory-usage.html" rel="noopener" target="_blank" title="Make your own games">Memory usage</a>.</li></ul></dd>
+<dt>Rendering mode</dt>
+<dd>Whether to render the project in 2D or 3D mode. Normally Construct determines this automatically with the <em>Auto</em> setting. However if you only use 3D features dynamically, such as by altering 3D meshes at runtime, you may wish to opt in to 3D mode here. The options are as follows:<ul class="list"><br/>
+<li><strong>2D:</strong> the project will render in 2D, without a depth buffer. Any 3D features, such as 3D shape objects, will render incorrectly. This mode may be slightly faster than 3D mode for 2D content, but normally you don't need to choose it, as <em>Auto</em> mode will use it for 2D projects anyway.</li><br/>
+<li><strong>Auto:</strong> uses 3D mode if your project uses any 3D features, otherwise uses 2D mode.</li><br/>
+<li><strong>3D:</strong> the project will render in 3D, with a depth buffer, which is necessary for correct rendering of 3D features.</li></ul></dd>
+<dt>Anisotropic filtering</dt>
+<dd>The <a class="extern outlink" href="https://en.wikipedia.org/wiki/Anisotropic_filtering" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Anisotropic_filtering">anisotripic filtering</a> mode to use for all images in the project. This improves the appearance of surfaces at an oblique angle to the camera, such as the sides of 3D shape objects. It also improves the quality of 2D objects that are resized to extreme aspect ratios. Normally this can just be left at <em>Auto</em>. However in some cases this can affect performance, so is customizable. The options are as follows:<ul class="list"><br/>
+<li><strong>Off:</strong> do not use anisotropic filtering. This can degrade the rendering quality of 3D and some 2D features, but may slightly improve performance.</li><br/>
+<li><strong>Auto:</strong> currently corresponds to 4x anisotropic filtering.</li><br/>
+<li><strong>2x-16x:</strong> enable a specific level of anisotropic filtering. Higher levels improve quality further but may have a slightly higher performance impact.</li></ul></dd>
+<dt>Near distance</dt>
+<dt>Far distance</dt>
+<dd>Set the distance of the near plane and far plane from the camera. Content closer to the camera than the near plane, or further from the camera than the far plane, will not be visible. This allows customizing the visible area when using a 3D Camera. It also controls the limits of how far the view can zoom in or zoom out from a 2D game, as in Construct that is implemented by moving a camera closer and further from the game. These limitations in zoom level will also be reflected in the Layout View's maximum and minimum zoom levels.</dd>
+<dt>Max spritesheet size</dt>
+<dd>The maximum spritesheet size in pixels Construct will use when grouping multiple images on to the same sheet. This adjusts the tradeoff between memory usage and performance: smaller sizes tend to reduce memory usage but can have reduced performance, whereas larger sizes tend to increase memory usage but improve performance. The special option <em>Disabled</em> will disable use of spritesheets completely, causing every single image used in the project to be exported as a separate image file. This can have a significant negative impact on the download size, loading time and runtime performance of the project, and in some cases large projects may crash due to running in to system limits on the number of images that can be loaded, so using some degree of spritesheeting is strongly recommended.</dd>
+<dt>UID numbering</dt>
+<dd>Sets how to allocate UIDs for newly created instances in the editor. The default mode <em>Increment</em> will use the lowest available UID, which tends to assign incrementing numbers like 1, 2, 3, 4 etc. However this can cause problems when <a class="extern" href="../overview/collaborating-projects.html" rel="noopener" target="_blank" title="Make your own games">collaborating on projects with source control</a>, as it's possible two people could separately create new instances which get assigned the same UID. The <em>Random</em> mode is designed to avoid such problems: all newly created instances are assigned a random number with at least six digits, e.g. 129740, 652945, etc. This means there is a negligible chance that two people create new instances with the same UID.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Compatibility settings</h2>
+<dl class="sans">
+<dt>Z axis scale</dt>
+<dd>Determine the scale for the Z axis. The options are:<br/>
+<ul class="list"><li><strong>Normalized</strong>: the legacy option where the default camera position is 100 units above the layout. This means the Z axis has a different scale to the X and Y axes.</li><br/>
+<li><strong>Regular</strong>: the modern option where the X, Y and Z axes all use the same scale, and the default camera position can vary.</li></ul> The <em>Normalized</em> mode is deprecated - only use <em>Regular</em> for new projects, and if possible update any existing projects using <em>Normalized</em> mode to <em>Regular</em>. For more information see <a class="extern" href="../tips-and-guides/deprecated-features.html" rel="noopener" target="_blank" title="Make your own games">Deprecated features</a>.</dd>
+<dt>Convert Z axis scale</dt>
+<dd>This option is only shown for projects using the legacy Z axis scale <em>Normalized</em>. Clicking the link will update the project to use Z axis scale <em>Regular</em>, and then update the size and position of all objects in all layouts in the project according to the change in the scale on the Z axis. For more information see <a class="extern" href="../tips-and-guides/deprecated-features.html" rel="noopener" target="_blank" title="Make your own games">Deprecated features</a>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Editor</h2>
+<dl class="sans">
+<dt>Preview effects</dt>
+<dd>Whether or not to display <a class="extern" href="objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effects</a> and blend modes in the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>. If enabled, WebGL must also be enabled for the effects to appear. If disabled, WebGL effects are not rendered in the editor, and all objects are drawn as if they have the <em>Normal</em> blend mode.</dd>
+<dt>Pause on unfocus</dt>
+<dd>If enabled, the preview will pause when the browser window loses focus, e.g. when switching back to work in Construct. This can be useful for certain workflows, or to prevent the project distracting you as you work. If disabled the preview will continue to run even without focus, but note switching to another browser tab or minimising the preview window will still pause (as it does with published projects).</dd>
+<dt>Bundle addons <span class="ilTag c2">Paid plans only</span></dt>
+<dd>If enabled, all third-party addons that the project uses will be bundled with the project file when saved. This allows the project to be opened anywhere, such as on another system where the addons have not been pre-installed. This makes it more convenient to move projects using third-party addons between different devices. Note that addons can opt out of bundling; you will be notified when enabling this option if any addons cannot be bundled with the project. Bundled addons always use the version of the addon that was installed when they are saved. They can however be updated if the installed addon is a newer version via the <strong>View used addons</strong> dialog.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/keyboard" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Keyboard script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IKeyboardObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/keyboard.html" rel="noopener" target="_blank" title="Make your own games">Keyboard plugin</a>.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Typically it is used through <code>runtime.keyboard</code> instead of the named object.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=simple-keyboard-movement" rel="noopener" target="_blank" title="Make games in the browser">Simple keyboard movement</a> example for a basic demonstration of using the <code>isKeyDown()</code> method to move a Sprite.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Events</h2>
+<p>To detect key press events, use the <code>"keyup"</code> and <code>"keydown"</code> events fired on the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">Runtime script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Keyboard APIs</h2>
+<dl>
+<dt>isKeyDown(keyStringOrWhich)</dt>
+<dd>Return a boolean indicating if the specified keyboard key is currently being held down. The key can be specified either by its numeric code, corresponding to the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which">KeyboardEvent.which</a> property, or a string identifying the physical key, corresponding to the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code">KeyboardEvent.code</a> property (see also <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code/code_values" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code/code_values">KeyboardEvent: code values</a>).<br/>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

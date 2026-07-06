@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/animations-editor" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Animations Editor
+            </h1>
+<div itemprop="articleBody">
+<p>Construct has a fully-featured built-in image and animations editor, used to create animations for the Sprite object. When opening for an object without animations, such as Tiled Background, the animation editing features are hidden and it acts as a normal image editor. For brevity it is consistently referred to as the Animations Editor, even in cases where it is only editing a single image.</p>
+<p>To open this editor, <strong>double-click</strong> an object with an image or animations in the <a class="extern" href="layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a> or <a class="extern" href="bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/142161/new-bitmap-image.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1821x900px in new window (354.91 KB)"><span><img alt="The Animations Editor" height="395" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/r/uploads/articleuploadobject/0/images/142161/new-bitmap-image_v800.png" width="800"/></span></a><span class="descrip">The Animations Editor</span></div></div>
+<p>Note each pane in the Animation Editor can be resized by dragging the borders, similar to how you can with the main Construct interface. This lets you customise the layout of the Animation Editor.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Color palette</h2>
+<p>The color palette appears on the left and allows a color to be picked for the drawing tools. You can choose both a primary and secondary color with left and right click. The pane also has a number of cells that can be used to remember a set of colors. Right-click a cell to save or use the primary or secondary color. By default left-clicking the cell will set the primary color.</p>
+<h3>Saving a palette</h3>
+<p>Right clicking anywhere in the area where swatches of the color palette are will bring up a context menu with the option <span class="navWrap">Save palette</span>, click it to save the palette and be able to retrieve it later. Saved palettes are associated with the <a class="extern" href="../project-primitives/objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object type</a> or <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project file</a> that is currently being edited, but can be used on other object types or project files.</p>
+<h3>Picking a palette</h3>
+<p>If the project has any saved palettes, one can be picked by either:</p>
+<ol class="list">
+<li>Clicking on the <span class="navWrap">Pick palette</span> option in the context menu.</li>
+<li>Clicking the button on top of the swatches with the label <strong>Palette</strong>.</li>
+</ol>
+<p>Any of those methods will bring up a dialog from which any of the palettes stored in the <a class="extern" href="../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project</a> can be picked.</p>
+<h3>Downloading palettes as a file</h3>
+<p>One of the secondary options of the <span class="navWrap">Save</span> tool, found in the top toolbar, is to save a single palette as a JSON file, or multiple palettes as a zip file. You can choose to save the currently selected palette, all the palettes available to the current object type or all the palettes available to the current project.</p>
+<h3>Loading palettes from a file</h3>
+<p>Similar to the <span class="navWrap">Save</span> tool, the <span class="navWrap">Load</span> tool has a secondary option to load palettes. It can load individual palettes or multiple ones bundled in a zip file. All the palettes are loaded into the current object type.</p>
+<h3>Pasting colors</h3>
+<p>You can paste text specifying a color in to any of the color inputs to set the overall color. The text can be in any of the following formats:</p>
+<ul class="list">
+<li><code>r, g, b</code> or <code>r, g, b, a</code></li>
+<li><code>rgb(r, g, b)</code> or <code>rgba(r, g, b, a)</code></li>
+<li><code>hsl(h, s, l)</code> or <code>hsla(h, s, l, a)</code></li>
+<li>Hex as either <code>#ffffff</code> or <code>ffffff</code>
+</li></ul>
+<p>Color components can be in the range <strong>0% - 100%</strong> or <strong>0 - 255</strong>. Alpha components should be between <strong>0 and 1</strong>.</p>
+<h3>Color palettes in project folders</h3>
+<p>Palettes are saved to independent JSON files under the <code>"palettes"</code> folder so they can be ignored or kept when working with source control.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Top toolbar: image tools</h2>
+<p>The top toolbar in the image pane provides tools that affect the entire image, such as mirroring and flipping. The tools available are as follows.</p>
+<ul class="list">
+<li><strong>Clear:</strong> resets the image to all transparent.</li>
+<li><strong>Open:</strong> import an image from a local file. Note you can also choose <strong>SVG</strong> files, but these will be rastered in to a bitmap at a given size. The dropdown next to the main button also has an option to load color palettes from JSON or zip files.</li>
+<li><strong>Save:</strong> export a copy of the current image. In the browser this downloads the current image as a PNG file.
+ You can use the dropdown next to the button to save the current animation or all animations, bundled in a zip file. It is also possible to download the images with the associated image point and collision polygon data. One of the dropdown options allows you to save the current color palette to a JSON file, all the color palettes of the object type to a zip file or all the color palettes of the project to a zip file.</li>
+<li><strong>Set export format:</strong> opens the <em>Image Format dialog</em>, allowing you choose whether the image is saved as lossless (i.e. perfect quality) or lossy (i.e. allowing some quality reduction in order to further reduce the file size) when the project is exported. The specific formats that these mean are chosen when exporting - for example lossless images can be exported as either PNG or WebP. This can also be applied to the current animation, or all animations. Note Construct stores all images in the project in a lossless PNG format; images are only converted on export.</li>
+<li><strong>Undo</strong> and <strong>Redo</strong>: step through the change history.</li>
+<li><strong>Cut</strong>, <strong>Copy</strong>, <strong>Paste</strong>: perform clipboard operations with the image.</li>
+<li><strong>Mirror</strong> and <strong>Flip</strong>: invert the image on one of its axes. Use the dropdown next to the button to affect the entire animation.</li>
+<li><strong>Rotate anti-clockwise</strong> and <strong>Rotate clockwise</strong>: rotate the image in 90°. Use the dropdown next to the button to affect the entire animation.</li>
+<li><strong>Crop:</strong> resize the image smaller to remove transparent space around the edges of the image. This is a good idea to save memory. Note this leaves a 1px transparent border to improve the image quality at the edges. Use the dropdown next to the button to affect the entire animation or all the animations in the object type.</li>
+<li><strong>Resize:</strong> resize the current image. A dialog will open with options for the resize, including a checkbox to apply the resize to the current animation or to all the animations in the object type.</li>
+<li><strong>Zoom in</strong>, <strong>Zoom out</strong>, <strong>Reset zoom</strong>: adjust the zoom level in the image editor. Alternatively use <strong>Control + mouse wheel</strong>.</li>
+<li><strong>Toggle background brightness:</strong> switch between a light and dark background for the image editor. Changing to a dark background can be useful when editing very light images.</li>
+<li><strong>Toggle onion skin:</strong> <span class="ilTag c2">Paid plans only</span> display adjacent frames translucently over the current image when editing an animation. This can help when drawing animations. The options are to display the previous frame, next and previous frames, or next and previous two frames over the current image.</li>
+<li><strong>Grid:</strong> toggle the display of a grid over the current image. Use the dropdown next to the button to adjust the grid settings, such as the grid size, color and whether to snap to the grid.</li>
+<li><strong>Preview:</strong> preview the currently selected animation.</li>
+<li><strong>Settings:</strong> open a dialog to adjust settings specifically for the Animations Editor.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Side toolbar: drawing tools</h2>
+<p>The side toolbar provides some tools for drawing in the image, as well as some extra Construct-specific tools for setting image points and adjusting the collision polygon. Some tools have extra settings, such as the size for the brush tool, which appear underneath the top toolbar. The following tools are available.</p>
+<ul class="list">
+<li><strong>Rectangle select:</strong> select, move, delete, cut, copy and paste rectangle sections of the image.</li>
+<li><strong>Pencil:</strong> draw with a solid square, useful at 1px size for pixel art.</li>
+<li><strong>Brush:</strong> draw with a soft round brush.</li>
+<li><strong>Line:</strong> draw straight lines. Hold shift to lock the angle to 5° increments.</li>
+<li><strong>Rectangle:</strong> draw a rectangle in the image. The secondary color is used as a border. Hold shift to draw a square.</li>
+<li><strong>Ellipse:</strong> draw an ellipse in the image. The secondary color is used as a border. Hold shift to draw a circle.</li>
+<li><strong>Fill:</strong> fill a continuous area of the image with a color.</li>
+<li><strong>Eye dropper:</strong> select a color from the image. Alternatively hold Control and click with another tool selected.</li>
+<li><strong>Image points:</strong> display and edit the origin and image points in the image. This switches the color palette pane to a list of image points, allowing you to add and remove image points. The origin determines the rotation point of the image, and is where the X and Y co-ordinates of the object are aligned to. Image points can be used in the event system to refer to alternative positions. For example you may place an image point at the end of a gun, so spawned bullets can appear at the end of the gun barrel instead of at the origin.</li>
+<li><strong>Collision polygon:</strong> adjust the area that counts as colliding for this image. By default Construct guesses a collision shape, but it is not always accurate. Click and drag the points of the collision polygon to alter its shape. Right-click on a point or in a space to display a menu of additional options for the collision polygon, such as adding and deleting points. Some objects, like Tiled Background, do not use collision polygons.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Frames pane</h2>
+<p>The bottom pane displays a list of all frames in the current animation. Frames can be added and deleted here. Select a frame to switch to editing its image. Frames can also be <strong>dragged and dropped</strong> to adjust their sequence.</p>
+<p>Selecting a frame shows a few properties in the properties pane: </p>
+<ul class="list">
+<li><strong>Index:</strong> the 0 based index of the currently selected frame, this property is for feedback only and can not be edited through the properties pane.</li>
+<li><strong>Duration:</strong> is a multiplier for the amount of time to spend on the frame. For example, a frame duration of 2 will spend twice as long on that animation frame, 0.5 half as long, etc. relative to the current animation speed.</li>
+<li><strong>Tag:</strong> a string to identify this animation frame at runtime.</li>
+</ul>
+<p><strong>Right-click a frame</strong> to duplicate or delete it.</p>
+<p><strong>Right-click in an empty space</strong> in the pane to see additional options for managing the animation, which include:</p>
+<ul class="list">
+<li><strong>Add frame:</strong> add a new empty frame at the end of the animation</li>
+<li><strong>Duplicate last:</strong> add a new frame which is a copy of the last frame in the animation</li>
+<li><strong>Reverse frames:</strong> invert the sequence of frames in the animation</li>
+<li><strong>Import frames</strong>
+<ul class="list">
+<li><strong>From files:</strong> add multiple animation frames by selecting a set of local image files to import</li>
+<li><strong>From sheet:</strong> add multiple animation frames by selecting a local image file with multiple images placed on it (often called a <em>sprite strip</em>), and cutting it up in to individual images. A dialog shows up when selecting this option which allows to choose how the source image should be sliced and which images to extract from it.</li>
+</ul>
+</li>
+</ul>
+<p>You can also adjust the size of the frame icons appearing in the pane by adjusting the <strong>Thumbnail size</strong>.</p>
+<h4>3D textures</h4>
+<p>When the textures of <a class="extern" href="../plugin-reference/3d-model.html" rel="noopener" target="_blank" title="Make your own games">3D model plugin instance</a>, all the textures for each mesh appear in the Frames pane.</p>
+<p>When clicked they show the following properties in the properties pane.</p>
+<ul class="list">
+<li><strong>Index:</strong> the 0 based index of the currently selected texture, this property is for feedback only and can not be edited through the properties pane.</li>
+<li><strong>Mesh:</strong> the mesh this texture belongs to.</li>
+<li><strong>Color:</strong> the color this mesh has. Only used for rendering the mesh when the <strong>"Content"</strong> property has the value <strong>"Color"</strong>.</li>
+<li><strong>Opacity:</strong> the opacity of the color. Only used for rendering the mesh when the <strong>"Content"</strong> property has the value <strong>"Color"</strong>.</li>
+<li><strong>Content:</strong> this can show either the <strong>"Texture"</strong> value or the <strong>"Color"</strong> value. Meshes which don't provide texture information will only be able to have the <strong>"Color"</strong> value.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Animations and properties panes</h2>
+<p>The right side of the Animations Editor shows the Animations pane, where animations can be added, edited and deleted. <strong>Right click</strong> a space to add a new animation or add a subfolder to organise animations. Right click an animation to see options like <strong>Preview</strong>, which shows how the animation will look in the game. You can also <strong>Find all references</strong> <span class="ilTag c2">Paid plans only</span> for an animation to locate all its references in events.</p>
+<p><strong>Right-click in an empty space</strong> in the animations pane to see a few context menu options, of note are:</p>
+<ul class="list">
+<li><strong>Import animations</strong>
+<ul class="list">
+<li><strong>From files:</strong> allows you to select multiple files to be added to a new animation. Also supports choosing zip files containing multiple images. In that case, a new animation is created for each zip file and each image found in the zip is added as a new frame of the corresponding animation. If the zip file contains a <strong>c3-import-settings.json</strong> file, it will affect the animation creation accordingly. See the <strong>Bulk Importing</strong> section for more information on that.</li>
+<li><strong>From sheet:</strong> shows a dialog that allows to extract multiple animations from a local image file.</li>
+</ul>
+</li>
+</ul>
+<p>Selecting an animation also switches which frames are showing in the frames pane, and displays settings for the animation in the Properties pane. The following properties are available for animations.</p>
+<ul class="list">
+<li><strong>Name:</strong> the name of the animation. This can also be directly edited in the Animations pane.</li>
+<li><strong>Speed:</strong> the rate at which to play the animation, in animation frames per second. For example if set to 5, each frame will last 1/5th of a second. Note this cannot be faster than the game framerate, which is typically 60. Set to <strong>0</strong> if you do not want the animation to play, which is useful if you want to control which frame is showing by events. You can also use negative speeds, which causes the animation to play backwards. Note in this case repeating animations should set the <em>Repeat to</em> frame at the <em>end</em> of the animation, otherwise by default it repeats to frame 0 (the start of the animation), causing the animation to stop after playing in reverse.</li>
+<li><strong>Loop:</strong> enable to infinitely repeat the animation.</li>
+<li><strong>Repeat count:</strong> if the animation is not looping, the number of times to repeat the animation.</li>
+<li><strong>Repeat to:</strong> the zero-based index of the animation frame to go back to when the animation loops or repeats.</li>
+<li><strong>Ping pong:</strong> play the animation alternately forwards and backwards when looping or repeating.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Image points pane</h2>
+<p>When you select the <strong>Image points</strong> tool in the image editor, the left pane switches to a list of image points for the current animation frame.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/6978/imgpts.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 316x223px in new window (3.16 KB)"><span><img height="223" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/6978/imgpts.png" width="316"/></span></a></div></div>
+<p>The <strong>Origin</strong> is a special kind of image point defining the center of the object, or its point of rotation. It has a different icon to denote it. The term <em>image point</em> usually means "image points including the origin". Image points have a <strong>zero based index</strong>, and the first image point (number 0) is always the origin. The origin cannot be renamed.</p>
+<p>You can also add additional image points. These are useful to create spawn points for other objects. Since you can create objects at image points in events, it is often useful to place an image point in places like the end of the player's gun in the image. Image points can also be given a name, and referred to in events by this name.</p>
+<h3>Editing image points</h3>
+<p><strong>Select an image point in the list</strong> and a corresponding point will appear on the image. Left click to place the point under the mouse. The arrow keys can also nudge it 1 pixel in each direction.</p>
+<p>An image point can be quickly placed using the <strong>num pad</strong>, e.g. <strong>7</strong> for the top-left corner or <strong>5</strong> for centered. Alternatively the image point can be <strong>right clicked</strong> in the Image Points pane and an option chosen from the <strong>quick assign</strong> menu.</p>
+<p><strong>Right clicking</strong> an image point in the Image Points pane also provides options to:</p>
+<ul class="list">
+<li><strong>Apply to whole animation: </strong> sets the image point in the same relative place in all frames in the current animation.</li>
+<li><strong>Apply to all animations: </strong> sets the image point in the same relative place in all frames in all the animations of the object type.</li>
+<li><strong>Apply to all animations in subfolder: </strong> sets the image point in the same relative place in all frames in all the animations in the same subfolder as the current animation.</li>
+</ul>
+<p>If an image point does not exist in all frames, these options also creates it. <strong>Holding shift</strong> while placing the image point is a shortcut for <strong>Apply to whole animation</strong>.</p>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Drag-and-drop</h2>
+<p>There are various ways you can import images by drag-and-drop in to the Animations Editor window.</p>
+<h3>Into main image pane</h3>
+<p>An image file can be dropped in to the main image editing pane to replace the content of the current frame with the dropped image file. This works the same way as using the <strong>Open</strong> button on the top toolbar.</p>
+<h3>Frames pane</h3>
+<p>Dropping a single image file in to the Frames pane will prompt you asking how the image should be treated. The image can be treated as a plain image file, in which case the image is added as a new frame in the current animation. This works the same way as the context menu option <span class="navWrap">Import<span class="arr">►</span>From files</span>. The image can also be treated as a sprite sheet, which works the same way as the context menu option <span class="navWrap">Import<span class="arr">►</span>From sheet</span>.</p>
+<p>Dropping multiple image files in to the Frames pane will add a new frame for each dropped image file. This works the same way as the context menu option <span class="navWrap">Import<span class="arr">►</span>From files</span>.</p>
+<h3>Animations pane</h3>
+<p>You can drag-and-drop either a single image file or multiple image files in to the Animations pane, and it is handled in the same way as with the Frames pane, except that the frames are added to a new animation.</p>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Bulk importing</h2>
+<p>The Animations Editor offers a few different methods to import images in bulk.</p>
+<h3>Importing folders</h3>
+<ul class="list">
+<li>Dragging and dropping a folder into the <strong>Animations panel</strong>, will create a new sub folder with a new animation inside of it. The animation will have frames for all images found at the root level of the folder. Both the new sub folder and the animation will have the name of the dropped folder.
+</li>
+<li>Dragging and dropping a folder into the <strong>Frames panel</strong> or the <strong>Main drawing area</strong> will add all the individual images in the folder as frames of the current animation.
+</li>
+</ul>
+<h3>Importing zip files</h3>
+<ul class="list">
+<li>Dragging and dropping a zip file into the <strong>Animations panel</strong>, will create a new animation with all images found at the root level of the zip file. The animation will have the same name as the zip file.
+</li>
+<li>Dragging and dropping a zip file into the <strong>Frames panel</strong> or the <strong>Main drawing area</strong> will add all the individual images in the zip file as frames of the current animation.
+</li>
+</ul>
+<h3>Importing from the toolbar options</h3>
+<p>The toolbar <strong>Load</strong> button has two options. <strong>Load frames</strong> and <strong>Load animations</strong>.</p>
+<ul class="list">
+<li><strong>Load frames</strong> allows you to pick images to be loaded as frames of the current animation. It is also possible to pick zip files from the file picker. All images in a zip file will be added as frames of the current animation.
+</li>
+<li><strong>Load animations</strong> allows you to pick images to be loaded into a new animation. Is is also possible to pick zip files from the file picker. A new animation will be created with all of the individual images picked, while each picked zip file will correspond to a new animation being created.</li>
+</ul>
+<h3>Animated image file formats</h3>
+<p>In supported browsers, animated image file formats like GIF and APNG can be imported as a sequence of frames. This covers any method of importing an image file, including via drag-and-drop or by the toolbar <em>Load frames</em> option.</p>
+<h3>Nested content</h3>
+<p>Folders and zip files which in turn also have folders and zip files inside of them are supported, depending on how you try to import these, this is how C3 will behave.</p>
+<ul class="list">
+<li>Dropping in the <strong>Animations Panel:</strong> C3 will process everything and create animations and sub folders as needed.
+</li>
+<li>Dropping in the <strong>Frames Panel or Drawing Area:</strong> all of the nested content will be turned into a flat list and added as frames to the current animation.
+</li>
+<li>Toolbar <strong>Load Frames</strong> option: all the nested content inside a zip file will be turned into a flat list and added to the current animation.
+</li>
+<li>Toolbar <strong>Load Animations</strong> option: if a zip file with nested content is loaded, the images at the root level of the zip will be used to create an animation, if other zip files are found, new animations will be created for them. If a folder is found in a zip file, a sub folder with an animation inside of it will be created, following the same patters as importing a folder. 
+</li>
+</ul>
+<p>The key points to remember are:</p>
+<ul class="list">
+<li>Importing folders will create a sub folder with an animation inside of it, both named after the original folder. The animation will have frames corresponding to the images found at the root level of the original folder.</li>
+<li>Importing zip files will create an animation named after the zip file and will have frames corresponding to all the images found at the root level of the zip file.</li>
+<li>If nested content is found, the same pattern applies. Each folder will correspond to a new sub folder with a new animation inside of it. Each zip file will correspond to a new animation.</li>
+</ul>
+<h3><p><u>Configuration file options</u></p></h3>
+<p>Normally when importing a single file, C3 asks if the file should be treated as a sprite sheet or as a single file. In the case of importing multiple files this isn't really an option. Because of that, when importing folders or zips, even if an animation ends up having only one frame, C3 never asks how it it should be treated.</p>
+<p>To get around this problem, a special configuration file can be added to a folder or zip file to tell C3 how it should handle the files found on them.</p>
+<p>It's a simple JSON file, must be named <strong>c3-import-settings.json</strong> and should look like this:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-24-close">{</span>
+	<span class="token string-property property">"import-mode"</span><span class="token operator">:</span> <span class="token string">"spritesheet"</span><span class="token punctuation">,</span>
+
+	<span class="token string-property property">"sort"</span><span class="token operator">:</span> <span class="token string">"alphabetical"</span><span class="token punctuation">,</span>
+
+	<span class="token string-property property">"order"</span><span class="token operator">:</span> <span class="token string">"ascending"</span><span class="token punctuation">,</span>
+
+	<span class="token string-property property">"replace-existing-animation"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+
+	<span class="token string-property property">"replace-existing-folder"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+
+	<span class="token string-property property">"use-raw-folder-names"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+
+	<span class="token string-property property">"spritesheet"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-12-close">{</span>
+		<span class="token string-property property">"horizontal-cells"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"vertical-cells"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"direction"</span><span class="token operator">:</span> <span class="token string">"horizontal"</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-12-open">}</span><span class="token punctuation">,</span>
+
+	<span class="token string-property property">"svg"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-13-close">{</span>
+		<span class="token string-property property">"width"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"height"</span><span class="token operator">:</span> <span class="token number">100</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-13-open">}</span><span class="token punctuation">,</span>
+
+	<span class="token string-property property">"animation"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-23-close">{</span>
+		<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"optional-animation-name"</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"speed"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"loop"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"repeat-count"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"repeat-to"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"ping-pong"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"frame-durations"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-0-close">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation brace-square brace-close brace-level-3" id="pair-0-open">]</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"frame-collision-polys"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-5-close">[</span>
+			<span class="token punctuation brace-curly brace-open brace-level-4" id="pair-14-close">{</span><span class="token string-property property">"points"</span><span class="token operator">:</span><span class="token punctuation brace-square brace-open brace-level-5" id="pair-1-close">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation brace-square brace-close brace-level-5" id="pair-1-open">]</span><span class="token punctuation brace-curly brace-close brace-level-4" id="pair-14-open">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation brace-curly brace-open brace-level-4" id="pair-15-close">{</span><span class="token string-property property">"points"</span><span class="token operator">:</span><span class="token punctuation brace-square brace-open brace-level-5" id="pair-2-close">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation brace-square brace-close brace-level-5" id="pair-2-open">]</span><span class="token punctuation brace-curly brace-close brace-level-4" id="pair-15-open">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation brace-curly brace-open brace-level-4" id="pair-16-close">{</span><span class="token string-property property">"points"</span><span class="token operator">:</span><span class="token punctuation brace-square brace-open brace-level-5" id="pair-3-close">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation brace-square brace-close brace-level-5" id="pair-3-open">]</span><span class="token punctuation brace-curly brace-close brace-level-4" id="pair-16-open">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation brace-curly brace-open brace-level-4" id="pair-17-close">{</span><span class="token string-property property">"points"</span><span class="token operator">:</span><span class="token punctuation brace-square brace-open brace-level-5" id="pair-4-close">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation brace-square brace-close brace-level-5" id="pair-4-open">]</span><span class="token punctuation brace-curly brace-close brace-level-4" id="pair-17-open">}</span>
+		<span class="token punctuation brace-square brace-close brace-level-3" id="pair-5-open">]</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"frame-image-points"</span><span class="token operator">:</span><span class="token punctuation brace-square brace-open brace-level-3" id="pair-10-close">[</span>
+			<span class="token punctuation brace-square brace-open brace-level-4" id="pair-6-close">[</span><span class="token punctuation brace-curly brace-open brace-level-5" id="pair-18-close">{</span><span class="token string-property property">"originX"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token string-property property">"originY"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation brace-curly brace-close brace-level-5" id="pair-18-open">}</span><span class="token punctuation">,</span> <span class="token punctuation brace-curly brace-open brace-level-5" id="pair-19-close">{</span><span class="token string-property property">"name"</span><span class="token operator">:</span><span class="token string">"Image Point 1"</span><span class="token punctuation">,</span><span class="token string-property property">"x"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token string-property property">"y"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation brace-curly brace-close brace-level-5" id="pair-19-open">}</span><span class="token punctuation brace-square brace-close brace-level-4" id="pair-6-open">]</span><span class="token punctuation">,</span>
+			<span class="token punctuation brace-square brace-open brace-level-4" id="pair-7-close">[</span><span class="token punctuation brace-curly brace-open brace-level-5" id="pair-20-close">{</span><span class="token string-property property">"originX"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token string-property property">"originY"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation brace-curly brace-close brace-level-5" id="pair-20-open">}</span><span class="token punctuation brace-square brace-close brace-level-4" id="pair-7-open">]</span><span class="token punctuation">,</span>
+			<span class="token punctuation brace-square brace-open brace-level-4" id="pair-8-close">[</span><span class="token punctuation brace-curly brace-open brace-level-5" id="pair-21-close">{</span><span class="token string-property property">"originX"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token string-property property">"originY"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation brace-curly brace-close brace-level-5" id="pair-21-open">}</span><span class="token punctuation brace-square brace-close brace-level-4" id="pair-8-open">]</span><span class="token punctuation">,</span>
+			<span class="token punctuation brace-square brace-open brace-level-4" id="pair-9-close">[</span><span class="token punctuation brace-curly brace-open brace-level-5" id="pair-22-close">{</span><span class="token string-property property">"originX"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token string-property property">"originY"</span><span class="token operator">:</span><span class="token number">0.5</span><span class="token punctuation brace-curly brace-close brace-level-5" id="pair-22-open">}</span><span class="token punctuation brace-square brace-close brace-level-4" id="pair-9-open">]</span>
+		<span class="token punctuation brace-square brace-close brace-level-3" id="pair-10-open">]</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"frame-tags"</span><span class="token operator">:</span><span class="token punctuation brace-square brace-open brace-level-3" id="pair-11-close">[</span><span class="token string">"tag-1"</span><span class="token punctuation">,</span> <span class="token string">"tag-2"</span><span class="token punctuation">,</span> <span class="token string">"tag-3"</span><span class="token punctuation">,</span> <span class="token string">"tag-4"</span><span class="token punctuation brace-square brace-close brace-level-3" id="pair-11-open">]</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-23-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-24-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3><p><u>Configuration file options</u></p></h3>
+<ul class="list">
+<li><strong>import-mode</strong> can be either "spritesheet" or "files".
+
+</li>
+<li>
+<strong>sort</strong> can be either "alphabetical", "numerical" or "no-sort". Defaults to "alphabetical" if not provided.
+		<ul class="list">
+<li><strong>alphabetical</strong> sort will interpret the file names as characters and will sort alphabetically.</li>
+<li><strong>numerical</strong> sort should be used when the names of the files are numbers, so the importer interprets the names as such and sorts as expected.</li>
+<li><strong>no-sort</strong> won't do any sorting and leave the incoming files in whatever order they were initially read in. This might not be the expected order.</li>
+</ul>
+</li>
+<li><strong>order</strong> can be either "ascending" or "descending". Defaults to "ascending" if not provided. Allows you to choose the sorting order of the imported files.</li>
+<li><strong>replace-existing-animation</strong> is optional, can be either true or false and will default to false if not provided. If set to true, if an animation with the same name is found when importing, the imported one will replace the existing one, instead of creating a new one.</li>
+<li><strong>replace-existing-folder</strong> is optional, can be either true or false and will default to false if not provided. If set to true, if there is an existing folder with the same name as the imported one, all the contents of the existing folder will be replaced with the content of the imported folder.</li>
+<li><strong>use-raw-folder-names</strong> is optional, by default the importer will create unique folder names. Setting it to true will allow the importer to create folders with duplicate names. When using the Animations editor export with data options, the generated file has this option set to true.</li>
+<li><strong>spritesheet</strong> mimics the settings you can pick when importing a sprite sheet through the Animations Editor UI.</li>
+<li><strong>svg</strong> defines what size to use when encountering SVG files.</li>
+<li><strong>animation</strong> these settings can be used to override the default properties of an animation. If an animation name is provided, then it will take precedence over the name of the folder or zip file.</li>
+<li>The <strong>frame-durations</strong> property of <strong>animation</strong> is an array that allows you to specify the frame duration of each frame in the animation. Add one number for each frame in the animation. If a frame does not have a matching value in the array, the default value of "1" will be used. If the array is not specified at all, all imported frames will have a duration of "1".</li>
+<li><strong>frame-collision-polys</strong> is an array that allows you to specify the collision polygon for each frame in the animation. Add one object for each frame in the animation. If a frame does not have a matching object in the array, the default collision polygon will be used. If the array is not specified at all, all imported frames will have the default collision polygon. Each object in the array must follow the syntax in the example. This option is not meant to be used manually, instead it's values will be generated when using the options in the Animations editor to export animations with data.
+	
+</li>
+<li><strong>frame-image-points</strong> is an array of arrays that allows you to specify the image points for each frame in the animation. The first element in each array always refers to the origin image point and must be specified using the syntax in the example, subsequent elements refer to image points and must also follow the syntax in the example. Add one array of image points for each frame in the animation. If a frame does not have a matching array of image points, the default image point will be. If the array is not specified at all, all imported frames will have the default image point. This option is not meant to be used manually, instead it's values will be generated when using the options in the Animations editor to export animations with data.
+	
+</li>
+<li><strong>frame-tags</strong> is an array that allows you to specify the tag for each frame in the animation. If a frame does not have a matching tag in the array, the animation frame will default to having an empty tag. If the array is not specified at all, all imported frames will have the default empty tag. This option is not meant to be used manually, instead it's values will be generated when using the options in the Animations editor to export animations with data.
+	
+</li>
+</ul>
+<h3><p><u>Sorting options examples</u></p></h3>
+<p>These are a few examples illustrating how the sorting options will behave when doing a bulk import.</p>
+<h4><p><u>Example 1</u></p></h4>
+<p>The following list of file names: </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"pig.png"</span><span class="token punctuation">,</span> <span class="token string">"octocus.png"</span><span class="token punctuation">,</span> <span class="token string">"rock.png"</span><span class="token punctuation">,</span> <span class="token string">"robot.png"</span><span class="token punctuation">,</span> <span class="token string">"toaster.png"</span><span class="token punctuation">,</span> <span class="token string">"monster.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>when sorted in <strong><em>"alphabetical"</em></strong> and <em><strong>"ascending"</strong></em> order will end up like this </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"monster.png"</span><span class="token punctuation">,</span> <span class="token string">"octocus.png"</span><span class="token punctuation">,</span> <span class="token string">"pig.png"</span><span class="token punctuation">,</span> <span class="token string">"robot.png"</span><span class="token punctuation">,</span> <span class="token string">"rock.png"</span><span class="token punctuation">,</span> <span class="token string">"toaster.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h4><p><u>Example 2</u></p></h4>
+<p>The following list of file names: </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"1.png"</span><span class="token punctuation">,</span> <span class="token string">"2.png"</span><span class="token punctuation">,</span> <span class="token string">"3.png"</span><span class="token punctuation">,</span> <span class="token string">"4.png"</span><span class="token punctuation">,</span> <span class="token string">"5.png"</span><span class="token punctuation">,</span> <span class="token string">"6.png"</span><span class="token punctuation">,</span> <span class="token string">"7.png"</span><span class="token punctuation">,</span> <span class="token string">"8.png"</span><span class="token punctuation">,</span> <span class="token string">"9.png"</span><span class="token punctuation">,</span> <span class="token string">"10.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw"> <p>when sorted in <strong><em>"alphabetical"</em></strong> and <em><strong>"ascending"</strong></em> order will end up like this </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"1.png"</span><span class="token punctuation">,</span> <span class="token string">"10.png"</span><span class="token punctuation">,</span> <span class="token string">"2.png"</span><span class="token punctuation">,</span> <span class="token string">"3.png"</span><span class="token punctuation">,</span> <span class="token string">"4.png"</span><span class="token punctuation">,</span> <span class="token string">"5.png"</span><span class="token punctuation">,</span> <span class="token string">"6.png"</span><span class="token punctuation">,</span> <span class="token string">"7.png"</span><span class="token punctuation">,</span> <span class="token string">"8.png"</span><span class="token punctuation">,</span> <span class="token string">"9.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h4><p><u>Example 3</u></p></h4>
+<p>The following list of file names: </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"10.png"</span><span class="token punctuation">,</span> <span class="token string">"9.png"</span><span class="token punctuation">,</span> <span class="token string">"8.png"</span><span class="token punctuation">,</span> <span class="token string">"7.png"</span><span class="token punctuation">,</span> <span class="token string">"6.png"</span><span class="token punctuation">,</span> <span class="token string">"5.png"</span><span class="token punctuation">,</span> <span class="token string">"4.png"</span><span class="token punctuation">,</span> <span class="token string">"3.png"</span><span class="token punctuation">,</span> <span class="token string">"2.png"</span><span class="token punctuation">,</span> <span class="token string">"1.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw"> <p>when sorted in <strong><em>"numerical"</em></strong> and <em><strong>"ascending"</strong></em> order will end up like this </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"1.png"</span><span class="token punctuation">,</span> <span class="token string">"2.png"</span><span class="token punctuation">,</span> <span class="token string">"3.png"</span><span class="token punctuation">,</span> <span class="token string">"4.png"</span><span class="token punctuation">,</span> <span class="token string">"5.png"</span><span class="token punctuation">,</span> <span class="token string">"6.png"</span><span class="token punctuation">,</span> <span class="token string">"7.png"</span><span class="token punctuation">,</span> <span class="token string">"8.png"</span><span class="token punctuation">,</span> <span class="token string">"9.png"</span><span class="token punctuation">,</span> <span class="token string">"10.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h4><p><u>Example 4</u></p></h4>
+<p>The following list of file names: </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"a-10.png"</span><span class="token punctuation">,</span> <span class="token string">"a-9.png"</span><span class="token punctuation">,</span> <span class="token string">"a-8.png"</span><span class="token punctuation">,</span> <span class="token string">"a-7.png"</span><span class="token punctuation">,</span> <span class="token string">"a-6.png"</span><span class="token punctuation">,</span> <span class="token string">"a-5.png"</span><span class="token punctuation">,</span> <span class="token string">"a-4.png"</span><span class="token punctuation">,</span> <span class="token string">"a-3.png"</span><span class="token punctuation">,</span> <span class="token string">"a-2.png"</span><span class="token punctuation">,</span> <span class="token string">"a-1.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw"> <p>when sorted in <strong><em>"numerical"</em></strong> and <em><strong>"ascending"</strong></em> order will end up like this </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"a-10.png"</span><span class="token punctuation">,</span> <span class="token string">"a-9.png"</span><span class="token punctuation">,</span> <span class="token string">"a-8.png"</span><span class="token punctuation">,</span> <span class="token string">"a-7.png"</span><span class="token punctuation">,</span> <span class="token string">"a-6.png"</span><span class="token punctuation">,</span> <span class="token string">"a-5.png"</span><span class="token punctuation">,</span> <span class="token string">"a-4.png"</span><span class="token punctuation">,</span> <span class="token string">"a-3.png"</span><span class="token punctuation">,</span> <span class="token string">"a-2.png"</span><span class="token punctuation">,</span> <span class="token string">"a-1.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>In order to avoid unexpected behaviour, the best is to choose a naming convention for the files and stick to that, either numbers or characters.</p>
+<p>It is worth mentioning that because of the way <strong>"alphabetical"</strong> sorting works it is possible to generate names that include both characters and numbers that will be sorted as expected.</p>
+<h4><p><u>Example 5</u></p></h4>
+<p>The following list of file names: </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"anim-010.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-009.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-008.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-007.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-006.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-005.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-004.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-003.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-002.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-001.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw"> <p>when sorted in <strong><em>"alphabetical"</em></strong> and <em><strong>"ascending"</strong></em> order will end up like this </p></div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token string">"anim-001.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-002.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-003.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-004.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-005.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-006.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-007.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-008.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-009.png"</span><span class="token punctuation">,</span> <span class="token string">"anim-010.png"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3><p><u>Location of the configuration file</u></p></h3>
+<p>The configuration file can be placed at the root of a folder or zip structure and will affect all content found.</p>
+<p>Another file with the same name can be placed further down the hierarchy and will take precedence over the ones found before. That way you can configure different sets of files to be interpreted differently when imported.</p>
+<h3><p><u>Exporting animations with data</u></p></h3>
+<p>The <strong>Save</strong> option allows you to export animations with their corresponding image point and collision polygon data. This can be done for an individual animation as well as for all the animations in the object type.</p>
+<p>The generated file can then be used to bulk import all those animations into a different project. To do so, you can use any of the importing options described earlier.</p>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Color palette file format</h2>
+<p>Bellow is an example of the file generated by C3 when it saves a color palette to a JSON file.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-26-close">{</span>
+	<span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"MyPalette"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"slots"</span><span class="token operator">:</span> <span class="token string">"3"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"palette"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-25-close">[</span>
+		<span class="token string">"rgba(255, 0, 0, 1)"</span><span class="token punctuation">,</span>
+		<span class="token string">"rgba(0, 255, 0, 1)"</span><span class="token punctuation">,</span>
+		<span class="token string">"rgba(0, 0, 255, 1)"</span>
+	<span class="token punctuation brace-square brace-close brace-level-2" id="pair-25-open">]</span><span class="token punctuation">,</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-26-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3><p><u>Color palette file properties</u></p></h3>
+<ul class="list">
+<li><strong>name</strong> is optional, if not provided the loaded palette will be given a unique name. If it is provided it will be used, unless it already exists in the project in which case it is used as a base for a unique name.</li>
+<li><strong>slots</strong> is optional and represents the amount of swatches a palette has. If it is not provided the size of <strong>palette</strong> is used.</li>
+<li><strong>palette</strong> is a JSON array of colors and must exist. The example uses the <strong>CSS rgba</strong> format for the colors, but any valid <strong>CSS color format</strong> can be used.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link9" name="internalH1Link9"></a><h2>Miscellaneous settings</h2>
+<p>Clicking on the <strong>Settings</strong> button in the toolbar brings up a dialog where you can set the following options:</p>
+<h3>Import Settings</h3>
+<dl class="sans">
+<dt>Guess collision polygon after importing images</dt>
+<dd>Toggle this setting to choose if the collision polygon for new imported images should be guessed automatically or not. Affects all methods of importing.</dd>
+<dt>Use file name when importing animations</dt>
+<dd>Toggle this setting to choose if the file name of the imported file should be used to name a new animation or not. Affects all methods of importing animations.</dd>
+</dl>
+<h3>Palette Settings</h3>
+<dl class="sans">
+<dt>Swatch size</dt>
+<dd>Choose the size the swatches of the color palette should have.</dd>
+</dl>
+<h3>Download Settings</h3>
+<dl class="sans">
+<dt>Image format</dt>
+<dd>Choose the file format, quality and compression that the Animations editor should use when saving files to the local file system.</dd></dl></div></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

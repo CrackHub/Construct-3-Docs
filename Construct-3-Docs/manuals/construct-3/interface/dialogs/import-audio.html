@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/dialogs/import-audio" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Import Audio dialog
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Import Audio dialog</strong> allows audio files to be added to the project from disk. It is accessed by selecting <span class="navWrap">Import Sounds</span> or <span class="navWrap">Import Music</span> from the right-click menu of the <em>Sounds</em> or <em>Music</em> folders in the <a class="extern" href="../bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a>. Be sure to add the Audio object to your project to play back sounds and music.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/957/import-audio-dialog.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1689x1414px in new window (77.34 KB)"><span><img alt="The Import Audio dialog" height="566" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/957/import-audio-dialog_v700.png" width="676"/></span></a></div></div>
+<p>There are two ways to import audio files:</p>
+<ol class="list">
+<li>Click the <strong>Import audio</strong> button, which opens a file picker to choose some local files to import</li>
+<li><strong>Drag-and-drop</strong> some local files in to the area that says <em>Drag and drop audio files here</em></li>
+</ol>
+<p>As soon as you choose some files or drop them in, Construct will encode them to <strong>WebM Opus</strong> for best compatibility across platforms. It is recommended to import <strong>16-bit PCM WAV</strong> or <strong>FLAC</strong> files to ensure Construct can encode them without any quality loss. If you import files which are already WebM Opus, they will simply be copied to the project.</p>
+<p>Construct will use all available CPU cores to encode imported audio, which is useful if you need to import a lot of audio files. The progress of encoding is displayed in the table of files. Once all encoding is done, you can click <strong>Import</strong> to add them to the project.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Categorise audio files correctly</h2>
+<p>It is important to organise audio files appropriately. Audio files in the <strong>Sounds</strong> project folder are loaded completely before playing, but files in the <strong>Music</strong> folder are streamed. This means if a music track is accidentally put in the <em>Sounds</em> folder, it would have to load completely before it can start playing. However, audio in the <em>Music</em> folder can start playing much more quickly since it is streamed, and also uses less memory for long tracks.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Platform compatibility</h2>
+<p>There is not one audio format that can play across all browsers and platforms with built-in support. To avoid having to use multiple audio formats, Construct uses its own WebM Opus decoder for Safari &amp; iOS, which are the last platforms left that do not have built-in support for WebM Opus.</p>
+<p>In most browsers Construct can transcode AAC or MP3 audio for you. However if the browser does not support decoding these formats, Construct may be unable to transcode these formats and may show a warning. It is strongly recommended to use WebM Opus for all audio in Construct projects, as it is the only format that is guaranteed to play on all platforms. You will need to use other software to encode your audio to WebM Opus, and then import the .webm files to your project. Construct will simply copy these files in to your project if they are already WebM Opus.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Import formats</h2>
+<p>The following formats can be imported to Construct. PCM WAV or FLAC files are recommended.</p>
+<ul class="list">
+<li><strong>PCM WAV</strong> (.wav): converted to WebM Opus</li>
+<li><strong>FLAC</strong> (.flac): converted to WebM Opus</li>
+<li><strong>WebM</strong> (.webm): copied to project if Opus, else converted to Opus</li>
+<li><strong>MPEG-4 AAC</strong> (.m4a): converted to WebM Opus in most browsers (note this is lossy)</li>
+<li><strong>MP3</strong> (.mp3): converted to WebM Opus in most browsers (note this is lossy)</li>
+<li><strong>Ogg Vorbis</strong> (.ogg): converted to WebM Opus (note this is lossy)</li>
+<li><strong>Ogg Opus</strong> (.opus): converted to WebM Opus (note this is lossy)</li>
+</ul>
+<p>If you need to import a different format, you'll need to find third-party software to convert it. If you can, convert it directly to WebM Opus, as that is the preferred format for Construct.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Playback preference</h2>
+<p>Projects only need to use WebM Opus files to support all platforms. However in some cases, especially with older projects, audio files may be available in multiple formats in the project. In that case Construct uses the following order of preference to pick which to play at runtime. The first format in the list that has built-in support is used. If none of the available formats has built-in support, and there is a WebM Opus file available, then Construct falls back to the software decoder last of all.</p>
+<ol class="list">
+<li>WebM Opus</li>
+<li>Ogg Vorbis (used by Construct 2)</li>
+<li>MPEG-4 AAC</li>
+<li>MP3</li>
+<li>Software decode WebM Opus</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

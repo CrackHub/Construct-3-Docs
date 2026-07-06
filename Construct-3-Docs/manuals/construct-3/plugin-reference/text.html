@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/text" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Text
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Text</strong> object can display text using a font in your project. Note that there are not many built-in fonts common to all computers. Instead you can import <strong>web fonts</strong> for use with the Text object.</p>
+<p>Note the Text object is used for displaying text only. Don't confuse it with the <a class="extern" href="text-input.html" rel="noopener" target="_blank" title="Make your own games">Text input</a> object, which is a form control used for entering text in to.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/text.html" rel="noopener" target="_blank" title="Make your own games">ITextInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Using web fonts</h2>
+<p>Follow these steps to use a custom web font in the Text object.</p>
+<ol class="list">
+<li>Locate a web font to use, in WOFF or WOFF2 format. There are some web services that list web fonts.
+ (Be sure to check the web font license to ensure you use it correctly.) </li>
+<li>Download the <strong>.woff</strong> or <strong>.woff2</strong> file for the web font.</li>
+<li>In the <a class="extern" href="../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a>, <strong>right-click</strong> the <strong>Fonts</strong> folder and select <span class="navWrap">Import fonts</span>.</li>
+<li>Import the .woff or .woff2 file you downloaded previously. This will add the web font file as a <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project file</a>.</li>
+<li>Select a Text object in the Layout View, and click the button next to the <em>Font</em> property in the <a class="extern" href="../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>.</li>
+<li>In the Font Picker dialog, pick the web font you imported from the second drop-down list (under <em>Or pick a web font from this project</em>), and click OK.</li>
+</ol>
+<p>The Text object will now be displaying the custom web font in the Layout View. Since the web font is bundled with your project, it will be available on any platform.</p>
+<p>Note: the Free Edition of Construct is limited to only importing one web font.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Text rendering</h2>
+<p>The Text object does not display anything if its bounding rectangle is too small to fit a single letter of text. If text objects appear to go invisible, try resizing them larger.</p>
+<p>Different browsers render text in different ways. This means you should expect the appearance of the Text object to vary slightly across browsers. You should test your project in a range of browsers to ensure text objects display how you intend for all users. For more information see <a class="extern" href="../tips-and-guides/best-practices.html" rel="noopener" target="_blank" title="Make your own games">Best practices</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Using BBCode</h2>
+<p>By default the Text object allows the use of BBCode, a simple way of marking up text for formatting like <strong>bold</strong> and <em>italic</em>. If you don't want such tags to affect the formatting of the text, you can opt-out of it by unchecking the <em>Enable BBCode</em> property.</p>
+<p>BBCode uses "tags" in square brackets to mark the start and end of formatting. For example to make a word bold, wrap it in <code>[b]</code> and <code>[/b]</code>, e.g. <code>[b]Hello[/b]</code>. Some tags take a parameter, such as the font name to use, which is specified after an equals sign in the opening tag, e.g.<code>[font=Arial]Hello[/font]</code>.</p>
+<p>The following tags are supported:</p>
+<ul class="list">
+<li><code>[b]bold text[/b]</code></li>
+<li><code>[i]italic text[/i]</code></li>
+<li><code>[u]underline text[/u]</code></li>
+<li><code>[s]strikethrough text[/s]</code></li>
+<li><code>[size=20]change font size (in pt)[/size]</code></li>
+<li><code>[font=Arial]change font face[/font]</code> - you can also use any web font imported to the project.</li>
+<li><code>[color=#ff0000]change text color[/color]</code> - the color can be specified in the same way CSS colors are specified, e.g. hexadecimal, using <code>rgb()</code>, etc.</li>
+<li><code>[opacity=50]change text opacity[/opacity]</code></li>
+<li><code>[hide]invisible text[/hide]</code> - this is useful for flashing effects, since the text still takes up the same width while invisible</li>
+<li><code>[background=#ff0000]change background color[/background]</code></li>
+<li><code>[offsetx=10]offset X[/offsetx]</code> and <code>[offsety=10]offset Y[/offsety]</code> - move text by a number of pixels on each axis, useful for animated effects. The offset can optionally also be specified as a percentage of the line height, e.g. <code>[offsety=50%]</code> means offset downwards by half the line height.</li>
+<li><code>[stroke]stroke text[/stroke]</code>, drawing an outline rather than a solid fill</li>
+<li><code>[outline=#ff0000]outlined text (on top)[/outline]</code>, which adds an outline with a different color drawn on top of the text (as opposed to stroke, which removes the fill)</li>
+<li><code>[outlineback=#ff0000]outlined text (underneath)[/outline]</code>, which adds an outline with a different color drawn behind the text. This variant can look better with very thick outlines.</li>
+<li><code>[lineThickness=2]change line thickness[/lineThickness]</code>, affecting the line thickness used for stroke, outline, strikethrough and underline</li>
+<li><code>[icon=0]</code> or <code>[icon=tag]</code> - insert an icon to the text. The icons are taken from the animation frames of a Sprite object set in the <em>Icon set</em> property. The icon can be referred to by its zero-based frame index, or by the <em>Tag</em> property of the animation frame.</li>
+<li><code>[iconoffsety=50%]icon offset Y[/iconoffsety]</code> - change the vertical alignment of any icons between the tags. A percentage uses an amount relative to the line height. This is relative to the alphabetic baseline, so a value of 0 will align the bottom of the icon with the bottom of the character 'x'. The default icon offset Y is 20% so icons are normally aligned slightly below the alphabetic baseline.</li>
+<li><code>[tag=mytag]tag a range of text[/tag]</code>, assigns the tag "mytag" to a range of text, which can then be referred to in events (e.g. the <em>Has tag at position</em> condition, or expressions to get its size and position). Note see the section <em>Tagged range fragmentation</em> below for more details.</li>
+<li><code>[insert]inserted text[/insert]</code> does not change the text style, but inserts the given text separately to the rest of the string. This is useful when inserting right-to-left (RTL) text in to left-to-right (LTR) strings: normally RTL text inside an LTR string may change the direction of other text in the string, but if you put the RTL text inside these tags, it will ensure it does not change the direction of any text outside of the tags. It will also prevent other text merging features, such as kerning and ligatures, across the tag boundary.</li>
+</ul>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=text-formatting" rel="noopener" target="_blank" title="Make games in the browser">Text formatting example</a> for a demonstration of the various formatting tags, and the <a class="extern" href="https://editor.construct.net/#open=icons-in-text" rel="noopener" target="_blank" title="Make games in the browser">Icons in text example</a> for a demonstration of using icon tags.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Tagged range fragmentation</h2>
+<p>As noted above, certain ranges of text can be tagged, e.g.:</p>
+<p><code>The [tag=mytag]quick brown fox[/tag] jumps over the lazy dog</code></p>
+<p>This will assign the tag "mytag" to the words "quick brown fox". This works straightforwardly with the <em>Has tag at position</em> condition and <em>TagAtPosition</em> expression. However when accessing the size and position of the tag with the <em>TagCount</em>, <em>TagX</em> etc. expressions, the tagged range can in fact be split in to multiple <em>fragments</em>. There are two reasons this can happen:</p>
+<ol class="list">
+<li>Word wrap - if the tagged range is broken across two or more lines</li>
+<li>Changing styles within the tagged range</li>
+</ol>
+<p>In the normal case you may expect the above tagged range to count as a single tag with a single size and position. However it may be broken across lines by word wrap, such as shown below:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">The quick brown
+fox jumps over
+the lazy dog<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Notice how the tagged range is now in two separate places across two lines: the first line having "quick brown", and the second line having "fox". Each of the two parts is referred to as a <em>fragment</em>. There are now two positions and two sizes for the two fragments that the tagged range was broken in to. Therefore <em>TagCount("mytag")</em> will return 2. The other expressions to retrieve the size and position of the tagged range will return each of the fragments separately, identified by the index parameter. Note that long tagged ranges could be broken across three or even more lines, further increasing the number of fragments.</p>
+<p>Changing the style of text also fragments the text. For example consider the following BBcode: <code>The [tag=mytag]quick [b]brown[/b] fox[/tag] jumps over the lazy dog</code></p>
+<p>Now inside the tagged range, just the word "brown" is made bold. This also fragments the tagged range, this time in to three fragments: the first with "quick " (including a space), the second "brown" in bold, and the third " fox" (including a space). This time <em>TagCount("mytag")</em> will return 3 and each fragment's size and position will be returned separately based on the index parameter.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Text properties</h2>
+<dl class="sans">
+<dt>Text</dt>
+<dd>The text for the object to initially be showing.</dd>
+<dt>Enable BBCode</dt>
+<dd>Whether to enable the use of BBCode formatting in the text. See above for a list of allowed tags. If disabled, any BBCode tags will simply be displayed as plain text.</dd>
+<dt>Font</dt>
+<dd>The font the text object uses to display its text. Click the button to the right of the font name to open a font picker dialog.  Remember local fonts may not be available on other devices - consider using a web font, as described in <em>Using web fonts</em> above.</dd>
+<dt>Size</dt>
+<dd>The size of the text to display, in points (pt).</dd>
+<dt>Line height</dt>
+<dd>Amount to change the space between each line of text, in pixels. Use 0 for the default amount, -5 for 5 pixels shorter than default, 10 for 10 pixels taller than default, and so on.</dd>
+<dt>Bold</dt>
+<dd>Whether to use the <strong>bold</strong> variant of the font, if available.</dd>
+<dt>Italic</dt>
+<dd>Whether to use the <em>italic</em> variant of the font, if available.</dd>
+<dt>Color</dt>
+<dd>Choose the color of the text object's text.</dd>
+<dt>Horizontal alignment</dt>
+<dd>Choose whether the text displays left, center or right aligned within its bounding rectangle.</dd>
+<dt>Vertical alignment</dt>
+<dd>Choose whether the text displays top, center or bottom aligned within its bounding rectangle.</dd>
+<dt>Wrapping</dt>
+<dd>Choose how text wraps at the end of a line. <em>Word</em> will wrap entire words separated by spaces or hyphens. <em>Character</em> will wrap to the next line on any character, even punctuation. <em>CJK</em> works similarly to <em>Character</em>, but has special handling for Chinese, Japanese and Korean punctuation characters, intended to ensure punctuation wraps appropriately.</dd>
+<dt>Text direction</dt>
+<dd>Set the direction of the text flow. The default is left-to-right (LTR). For some languages the right-to-left (RTL) direction is more appropriate, such as Arabic and Hebrew. The text direction is particularly significant when using BBcode formatting, as it affects the order of formatted fragments.</dd>
+<dt>Icon set</dt>
+<dd>Choose a Sprite object to use for BBcode icon tags. Each animation frame of the Sprite object is treated as an individual icon. Icons can then be referred to by the animation frame index, or the animation frame <em>Tag</em> property. See the section <em>Using BBcode</em> above for more details.</dd>
+<dt>Initially visibile</dt>
+<dd>Whether or not the object is shown (visible) or hidden (invisible) when the layout starts.</dd>
+<dt>Origin</dt>
+<dd>Choose the position of the origin of the object relative to its unrotated bounding rectangle.</dd>
+<dt>Read aloud</dt>
+<dd>Check to indicate to screen readers that the contents of this text object ought to be read aloud when it appears or changes. By default text objects are not read out by screen readers as they are rendered in to a canvas, which is essentially a large image and so not accessible to screen readers. Further, Text objects are not all automatically read aloud as this can provide a poor screen reader experience, such as constantly reading out a changing score instead of more helpful information. Checking this option for important text objects improves the accessibility of projects to ensure the contents of text objects can be understood by people who cannot necessarily read them visually. The text object does not need to be on-screen, so a dedicated text object for screen readers with this option checked can also be used. See also the <a class="extern" href="speech-synthesis.html" rel="noopener" target="_blank" title="Make your own games">Speech Synthesis</a> plugin which can be used for similar purposes.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Text conditions</h2>
+<p>For conditions common to other objects, see <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">common conditions</a>.</p>
+<dl class="sans">
+<dt>Compare text</dt>
+<dd>Test whether the text object is currently displaying a certain string of text. The comparison can be either case sensitive ("TEXT" is different to "text") or case insensitive ("TEXT" is considered the same as "text"). To test if the text object is not showing some text, invert the condition.</dd>
+<dt>Has tag at position</dt>
+<dd>Test if there is text with a specific tag at the given position (case insensitive). For example if the text has the BBcode <code>Hello [tag=mytag]world[/tag]</code>, then testing if the tag "mytag" is at a given position will check if that position is over just the part of the text that says "world".</dd>
+<dt>Is running typewriter text</dt>
+<dd>True while text is being written out using the <em>Typewriter text</em> action.</dd>
+<dt>On typewriter text finished</dt>
+<dd>Triggered when text being written out using the <em>Typewriter text</em> action finishes writing out all the text.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Text actions</h2>
+<p>For actions common to other objects, see <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">common actions</a>.</p>
+<dl class="sans">
+<dt>Set font color</dt>
+<dd>Set the color of the text. Use an expression in the form <code>rgb(red, green, blue)</code>.</dd>
+<dt>Set font face</dt>
+<dd>Change the font used to display the text. This must be the name of a web font imported to the project, or a local font that is pre-installed on the user's device.</dd>
+<dt>Set font size</dt>
+<dd>Set the size of the text in points (pt).</dd>
+<dt>Set horizontal alignment</dt>
+<dt>Set vertical alignment</dt>
+<dt>Set line height</dt>
+<dt>Set read aloud</dt>
+<dt>Set text direction</dt>
+<dt>Set wrapping</dt>
+<dd>Change the corresponding properties. See <em>Text properties</em> above for more information.</dd>
+<dt>Set resolution mode</dt>
+<dd>By default Text objects use <em>Automatic</em> resolution mode, which means the resolution of the text adjusts according to the 2D display scale. This produces the best quality display, but only works with 2D display, and can also cause the text to constantly re-render when being smoothly scaled, which can sometimes have a significant performance overhead. <em>Fixed</em> resolution mode causes the text to render at a fixed resolution according to a provided scale factor, and ignore the display scale. This usually results in a reduced display quality but better performance.</dd>
+<dt>Append text</dt>
+<dd>Add some text to the end of the current text. For example, if the text object contains <em>Hello</em> and has <em>World</em> appended, the text object then contains <em>HelloWorld</em>.</dd>
+<dt>Set text</dt>
+<dd>Set the text the object is currently displaying. Use the <strong>&amp;</strong> operator to combine text and numbers. For more information, see <a class="extern" href="../project-primitives/events/expressions.html" rel="noopener" target="_blank" title="Make your own games">expressions</a>.</dd>
+<dt>Change icon set</dt>
+<dd>Changes the <em>Icon set</em> property, replacing the Sprite used for BBcode icons. This can be used to change the set of icons displayed by the Text object. Note if the new Sprite object does not have the same number of animation frames, or the same animation frame tags, then some icons may disappear.</dd>
+<dt>Typewriter text</dt>
+<dd>Set the text over time by starting with an empty string and gradually adding characters until the full text is written out, over a duration specified in seconds. Once the full text is written out, <em>On typewriter text finished</em> triggers. Note using <em>Set text</em> or <em>Append text</em> while text is being written out will cancel the effect.<br/>
+</dd>
+<dt>Finish typewriter</dt>
+<dd>If text is being written out with the <em>Typewriter text</em> action, force it to finish immediately.</dd>
+<dt>Update HTML</dt>
+<dd>This action converts the contents of the Text object, including any icons, in to a string of HTML. This can then be displayed in the <a class="extern" href="html-element.html" rel="noopener" target="_blank" title="Make your own games">HTML Element object</a>. This action is <em>asynchronous</em>: it takes a moment complete, so you need to use it with the <em>Wait for previous actions to complete</em> system action before you can use the result in the <em>AsHTML</em> expression. See the <a class="extern" href="https://editor.construct.net/#open=text-icons-to-html" rel="noopener" target="_blank" title="Make games in the browser">Text icons to HTML example</a> for a demonstration.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Text expressions</h2>
+<p>For expressions common to other objects, see <a class="extern" href="common-features/common-expressions.html" rel="noopener" target="_blank" title="Make your own games">common expressions</a>.</p>
+<dl class="sans">
+<dt>FaceName</dt>
+<dt>FaceSize</dt>
+<dt>LineHeight</dt>
+<dd>Return the corresponding object's properties. See <em>Text properties</em> above for more details.</dd>
+<dt>Text</dt>
+<dd>Return a string containing the object's current text.</dd>
+<dt>PlainText</dt>
+<dd>Return a string containing the object's current text, with any BBCode tags stripped out. For example if the text is <code>[b]Hello[/b]</code>, the <em>Text</em> expression will return that (with BBCode tags included), but the <em>PlainText</em> expression will return just <code>Hello</code>.</dd>
+<dt>AsHTML</dt>
+<dd>Returns a string of HTML code that represents the content of the Text object, including formatting and icons. This is only available after, and only updated by, the <em>Update HTML</em> action completing.</dd>
+<dt>TagAtPosition(x, y)</dt>
+<dd>Look up the tag for a part of the text at a given position and return the tag if any, else return an empty string if no tag is specified. For example if the text has the BBcode <code>Hello [tag=mytag]world[/tag]</code>, then the tag at a position over the word "world" is "mytag", and the tag at a position over the word "Hello" is "" (an empty string).</dd>
+<dt>TagCount(tag)</dt>
+<dt>TagX(tag, index)</dt>
+<dt>TagY(tag, index)</dt>
+<dt>TagWidth(tag, index)</dt>
+<dt>TagHeight(tag, index)</dt>
+<dd>Identify the size and position of all ranges of the text with a given tag. Note the count and the index actually refers to <em>fragments</em>, as a single tagged range may be broken up in to multiple pieces - see the section <em>Tagged range fragmentation</em> above for more details.</dd>
+<dt>TextWidth</dt>
+<dt>TextHeight</dt>
+<dd>Return the size of the actual text content within the text object's rectangle.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

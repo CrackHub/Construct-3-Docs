@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/events/expressions" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Expressions
+            </h1>
+<div itemprop="articleBody">
+<p>In events, <strong>expressions</strong> are used to calculate sums or retrieve information from objects, such as a Sprite's X co-ordinate. Expressions are entered in to the <a class="extern" href="../../interface/dialogs/parameters.html" rel="noopener" target="_blank" title="Make your own games">Parameters dialog</a> when adding or editing a <a class="extern" href="conditions.html" rel="noopener" target="_blank" title="Make your own games">condition</a> or <a class="extern" href="actions.html" rel="noopener" target="_blank" title="Make your own games">action</a> which has parameters. The <a class="extern" href="../../interface/dialogs/expressions-dictionary.html" rel="noopener" target="_blank" title="Make your own games">Expressions dictionary</a> is also shown at the same time and provides a dictionary of all the system and object expressions available in a project.</p>
+<p>Some examples of expressions, which can range from a simple number to a complex calculation, are given below:</p>
+<ul class="list">
+<li><code>0</code></li>
+<li><code>random(360)</code></li>
+<li><code>Sprite.X</code></li>
+<li><code>(Player1.X + Player2.X) / 2</code></li>
+<li><code>Sprite.8Direction.Speed</code></li>
+<li><code>Sprite.X + cos(Sprite.Angle) * Sprite.Speed * dt</code></li>
+</ul>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Numbers</h2>
+<p>Numbers are simply entered as digits with an optional fractional part separated by a dot, e.g. <code>5</code> or <code>-1.2</code>. Fractional numbers may begin with a dot, e.g. <code>.5</code>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Text (strings)</h2>
+<p>Text is also known as <em>strings</em> in software development, and Construct also sometimes uses this naming convention. Text in expressions should be surrounded by double-quotes, e.g. <code>"Hello"</code></p>
+<p>The double-quotes are not included as part of the text, so setting a text object to show the expression <code>"Hello"</code> will make it show <strong>Hello</strong>, without any double-quotes. To include a double-quote in a string, use two double-quotes next to each other (""), e.g. <code>"He said ""hi"" to me"</code> will return <strong>He said "hi" to me</strong>.</p>
+<p>You can use <code>&amp;</code> to build strings out of mixed text and numbers, e.g. <code>"Your score is: " &amp; score</code></p>
+<p>To add a line break to a string use the system expression <strong>newline</strong>, e.g. <code>"Hello" &amp; newline &amp; "world"</code></p>
+<p>The <strong>StringSub</strong> <a class="extern" href="../../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expression</a> is also useful for building strings. You can use it like this: <code>StringSub("Hi {0}, your score is {1}!", "Sam", 100)</code> which will produce the string <strong>Hi Sam, your score is 100!</strong>. The first string can use <em>placeholders</em> like <code>{0}</code>, <code>{1}</code>, <code>{2}</code> etc. and these are replaced by the following parameters. You can have as many placeholders as you like and they can appear anywhere in the first string, so long as the appropriate number of parameters follow on.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Operators</h2>
+<p>You can use the following operators in expressions:</p>
+<table>
+<thead>
+<tr>
+<td>Operator</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>+</strong></td>
+<td>Addition</td>
+</tr>
+<tr>
+<td><strong>-</strong></td>
+<td>Subtraction</td>
+</tr>
+<tr>
+<td><strong>*</strong></td>
+<td>Multiplication</td>
+</tr>
+<tr>
+<td><strong>/</strong></td>
+<td>Division</td>
+</tr>
+<tr>
+<td><strong>%</strong></td>
+<td>Modulo (remainder after division)</td>
+</tr>
+<tr>
+<td><strong>^</strong></td>
+<td>Raise to power, e.g. 5 ^ 2 = 25</td>
+</tr>
+<tr>
+<td><strong>&amp;</strong></td>
+<td>Build strings, e.g. <code>"Your score is: " &amp; score</code></td>
+</tr>
+<tr>
+<td><strong>=</strong>, <strong>&lt;&gt;</strong>, <strong>&lt;</strong>, <strong>&lt;=</strong>, <strong>&gt;</strong>, <strong>&gt;=</strong></td>
+<td>Comparison operators, e.g. <code>score &lt; 10</code>. Return 1 if comparison is true or 0 if false.</td>
+</tr>
+<tr>
+<td><strong>?:</strong></td>
+<td>Conditional operator, in the form <code>condition ? result_if_true : result_if_false</code>. Allows testing conditions in expressions. The condition counts as true if it is non-zero, and false if it is zero. E.g. <code>score &lt; 0 ? "Game over!" : "Keep going!"</code></td>
+</tr>
+<tr>
+<td><strong>&amp;</strong>, <strong>|</strong></td>
+<td>When used on numbers, <code>&amp;</code> is logical AND and <code>|</code> is logical OR. (Note if either side is a string, <code>&amp;</code> instead does string concatenation.) These are useful combined with the comparison operators, e.g. <code>score &lt; 0 | health &lt; 0</code>, which returns 1 if either condition is true, else 0 for false.</td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Object expressions</h2>
+<p>Objects have their own expressions to retrieve information about the object. These are written in the form <code>Sprite.X</code> (the object name, a dot, then the expression name). The <a class="extern" href="../../interface/dialogs/expressions-dictionary.html" rel="noopener" target="_blank" title="Make your own games">Expressions dictionary</a> lists all the available expressions in the project, and they are further documented in the reference section of the manual.</p>
+<p>The expression <code>Self</code> can be used as a short-cut to refer to the current object. For example, in an action for the <em>Player</em> object, <code>Self.X</code> refers to <code>Player.X</code>.</p>
+<p>You can add a zero-based object index to get expressions from different object instances. For example <code>Sprite(0).X</code> gets the first Sprite instance's X position, and <code>Sprite(1).X</code> gets the second instance's X position. For more information see index IDs (IIDs) in <a class="extern" href="../objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a>. You can also pass another expression for the index. Negative numbers start from the opposite end, so <code>Sprite(-1).X</code> gets the last Sprite's X position.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Behavior expressions</h2>
+<p>If an object has a <a class="extern" href="../objects/behaviors.html" rel="noopener" target="_blank" title="Make your own games">behavior</a> with its own expressions, they are written in the form <code>Object.Behavior.Expression</code>, e.g. <code>Sprite.8Direction.Speed</code>.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>System expressions</h2>
+<p>The built-in <a class="extern" href="../../system-reference/system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expressions</a> are listed in the reference. These include some basic mathematical functions like <code>sqrt</code> (square root).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

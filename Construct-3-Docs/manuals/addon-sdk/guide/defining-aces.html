@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/defining-aces" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Defining actions, conditions and expressions
+            </h1>
+<div itemprop="articleBody">
+<p>The set of actions, conditions and expressions which are available in your addon is defined in <strong>aces.json</strong>. The term "ACE" is used to refer to an action, condition or expression in general. ACEs are grouped by category. The overall structure of the file format is as follows.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-8-close">{</span>
+	<span class="token string-property property">"category1"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-6-close">{</span>
+		<span class="token string-property property">"conditions"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-0-close">[</span>
+			condition1<span class="token punctuation">,</span>
+			condition2<span class="token punctuation">,</span>
+			<span class="token operator">...</span>
+		<span class="token punctuation brace-square brace-close brace-level-3" id="pair-0-open">]</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"actions"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-1-close">[</span>
+			action1<span class="token punctuation">,</span>
+			action2<span class="token punctuation">,</span>
+			<span class="token operator">...</span>
+		<span class="token punctuation brace-square brace-close brace-level-3" id="pair-1-open">]</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"expressions"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-2-close">[</span>
+			expression1<span class="token punctuation">,</span>
+			expression2<span class="token punctuation">,</span>
+			<span class="token operator">...</span>
+		<span class="token punctuation brace-square brace-close brace-level-3" id="pair-2-open">]</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-6-open">}</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"category2"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-7-close">{</span>
+		<span class="token string-property property">"conditions"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-3-close">[</span>
+			<span class="token operator">...</span>
+		<span class="token punctuation brace-square brace-close brace-level-3" id="pair-3-open">]</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"actions"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-4-close">[</span>
+			<span class="token operator">...</span>
+		<span class="token punctuation brace-square brace-close brace-level-3" id="pair-4-open">]</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"expressions"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-5-close">[</span>
+			<span class="token operator">...</span>
+		<span class="token punctuation brace-square brace-close brace-level-3" id="pair-5-open">]</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-7-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-8-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Note that Construct 2 uses numbers for IDs, whereas Construct 3 uses strings. These strings are then also used to identify related language strings in the language file.</p>
+<h3>JSON schema</h3>
+<p>The addon SDK provides a JSON schema to help you write aces.json files, as it provides autocomplete and validation in compatible editors. Construct will ignore a <code>"$schema"</code> property at the top level instead of interpreting it as a category to help make it easy to use the schema.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Never delete ACES after release</h2>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Categories</h2>
+<p>Each category key is the category ID. This is not displayed in the editor; the string to display is looked up in the language file.</p>
+<p>For behaviors only, a default category of an empty string may be used. This category will use the behavior name. Other categories may still be used, in which case Construct 3 will append the category name after the behavior name, e.g. "MyBehaviorName: My category".</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Common properties of ACE definitions</h2>
+<p>Each entry in the <code>"conditions"</code>, <code>"actions"</code> and <code>"expressions"</code> arrays is a JSON object which defines a single condition, action or expression. An example minimal condition definition for the System <em>Every Tick</em> condition is shown below.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-9-close">{</span>
+	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"every-tick"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"scriptName"</span><span class="token operator">:</span> <span class="token string">"EveryTick"</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-9-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>The <code>id </code>and <code>scriptName </code>are the only required properties for conditions and actions. Expressions require <code>id</code>, <code>expressionName</code> and <code>returnType</code>. All other properties are optional.</p>
+<p>The definitions for conditions, actions and expressions all share a few common properties. These are detailed below. Then the properties specific to each kind is documented after that.</p>
+<dl>
+<dt>id</dt>
+<dd>A string specifying a unique ID for the ACE. This is used in the language file. By convention this is lowercase with dashes for separators, e.g. "my-condition".</dd>
+<dt>c2id</dt>
+<dd>If you are porting a Construct 2 addon to Construct 3, put the corresponding numerical ID that the Construct 2 addon used here. This allows Construct 3 to import Construct 2 projects using your addon.</dd>
+<dt>scriptName / expressionName</dt>
+<dd>The name of the function in the runtime script for this ACE. Note for expressions, use <code>expressionName</code> instead, which also defines the name typed by the user in expressions.</dd>
+<dt>isDeprecated</dt>
+<dd>Set to true to deprecate the ACE. This hides it in the editor, but allows existing projects to continue using it.</dd>
+<dt>highlight</dt>
+<dd>Set to true to highlight the ACE in the condition/action/expression picker dialogs. This should only be used for the most regularly used ACEs, to help users pick them out from the list easily.</dd>
+<dt>params</dt>
+<dd>An array of parameter definitions. See the section below on parameters. This can be omitted if the ACE does not use any parameters.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Condition definitions</h2>
+<p>Condition definitions can also use the following properties.</p>
+<dl>
+<dt>isTrigger</dt>
+<dd>Specifies a trigger condition. This appears with an arrow in the event sheet. Instead of being evaluated every tick, triggers only run when they are explicity triggered by a runtime call.</dd>
+<dt>isFakeTrigger</dt>
+<dd>Specifies a fake trigger. This appears identical to a trigger in the event sheet, but is actually evaluated every tick. This is useful for conditions which are true for a single tick, such as for APIs which must poll a value every tick.</dd>
+<dt>isStatic</dt>
+<dd>Normally, the condition runtime method is executed once per picked instance. If the condition is marked static, the runtime method is executed once only, on the object type class. This means the runtime method must also implement the instance picking entirely itself, including respecting negation and OR blocks.</dd>
+<dt>isLooping</dt>
+<dd>Display an icon in the event sheet to indicate the condition loops. The condition method should use <a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/iloopingconditioncontext.html" rel="noopener" target="_blank" title="Make your own games">ILoopingConditionContext</a> to implement its loop.</dd>
+<dt>isInvertible</dt>
+<dd>Allow the condition to be inverted in the event sheet. Set to <code>false</code> to disable invert.</dd>
+<dt>isCompatibleWithTriggers</dt>
+<dd>Allow the condition to be used in the same branch as a trigger. Set to <code>false</code> if the condition does not make sense when used in a trigger, such as the <em>Trigger once</em> condition.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Action definitions</h2>
+<p>Action definitions can also use the following properties.</p>
+<dl>
+<dt>isAsync</dt>
+<dd>Set to <code>true</code> to mark the action as asynchronous. Make the action method an <code>async</code> function, and the system <em>Wait for previous actions to complete</em> action will be able to wait for the action as well.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Expression definitions</h2>
+<p>Expressions work slightly differently to conditions and actions: they must specify a <code>returnType</code>, and instead of using a <code>scriptName</code> they specify an <code>expressionName</code> which doubles as both what is typed for the expression as well as the runtime script function name.</p>
+<dl>
+<dt>returnType</dt>
+<dd>One of <code>"number"</code>, <code>"string"</code>, <code>"any"</code>. The runtime function must return the corresponding type, and <code>"any"</code> must still return either a number or a string.</dd>
+<dt>isVariadicParameters</dt>
+<dd>If <code>true</code>, Construct 3 will allow the user to enter any number of parameters beyond those defined. In other words the parameters (if any) listed in <code>"params"</code> are required, but this flag enables adding further <code>"any"</code> type parameters beyond the end.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Parameter definitions</h2>
+<p>ACEs can all define which parameters they use with the <code>"params"</code> property. This property should be set to an array of parameter definition objects. Below shows an example for the System <em>Compare two values</em> condition.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-14-close">{</span>
+	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"compare-two-values"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"scriptName"</span><span class="token operator">:</span> <span class="token string">"Compare"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"params"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-10-close">[</span>
+		<span class="token punctuation brace-curly brace-open brace-level-3" id="pair-11-close">{</span>	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"first-value"</span><span class="token punctuation">,</span>	<span class="token string-property property">"type"</span><span class="token operator">:</span> <span class="token string">"any"</span> <span class="token punctuation brace-curly brace-close brace-level-3" id="pair-11-open">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation brace-curly brace-open brace-level-3" id="pair-12-close">{</span>	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"comparison"</span><span class="token punctuation">,</span>		<span class="token string-property property">"type"</span><span class="token operator">:</span> <span class="token string">"cmp"</span> <span class="token punctuation brace-curly brace-close brace-level-3" id="pair-12-open">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation brace-curly brace-open brace-level-3" id="pair-13-close">{</span>	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"second-value"</span><span class="token punctuation">,</span>	<span class="token string-property property">"type"</span><span class="token operator">:</span> <span class="token string">"any"</span> <span class="token punctuation brace-curly brace-close brace-level-3" id="pair-13-open">}</span>
+	<span class="token punctuation brace-square brace-close brace-level-2" id="pair-10-open">]</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-14-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Note that expressions can only use <code>"number"</code>, <code>"string"</code> or <code>"any"</code> parameter types.</p>
+<dl>
+<dt>id</dt>
+<dd>A string with a unique identifier for this parameter. This is used to refer to the parameter in the language file.</dd>
+<dt>c2id</dt>
+<dd>In some circumstances, it is necessary to specify which Construct 2 parameter ID a parameter corresponds to. However normally it can be inferred by the parameter index.</dd>
+<dt>type</dt>
+<dd>The parameter type. Expressions can only use <code>"number"</code>, <code>"string"</code> or <code>"any"</code>. However conditions and actions have the following options available:
+<br/>
+<ul class="list"><br/>
+<li><code>"number"</code> — a number parameter</li><br/>
+<li><code>"string"</code> — a string parameter</li><br/>
+<li><code>"any"</code> — either a number or a string</li><br/>
+<li><code>"boolean"</code> — a boolean parameter, displayed as a checkbox</li><br/>
+<li><code>"combo"</code> — a dropdown list. Items must be specified with the <code>"items"</code> property.</li><br/>
+<li><code>"combo-grouped"</code> — a dropdown list with grouped items (using <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup">optgroup</a> elements). Item groups must be specified with the <code>"itemGroups"</code> property.</li><br/>
+<li><code>"cmp"</code> — a dropdown list with comparison options like "equal to", "less than" etc.</li><br/>
+<li><code>"object"</code> — an object picker. The types of plugin to show can be filtered using an optional <code>"allowedPluginIds"</code> property.</li><br/>
+<li><code>"objectname"</code> — a string parameter which is interpreted as an object name</li><br/>
+<li><code>"projectfile"</code> — a dropdown list from which any project file in the project can be chosen. The parameter value at runtime is a relative path to fetch the project file from. The <code>"filter"</code> option can also be specified to filter the list by a file extension, e.g. <code>".txt"</code> to only list .txt files.</li><br/>
+<li><code>"layer"</code> — a string parameter which is interpreted as a layer name</li><br/>
+<li><code>"layout"</code> — a dropdown list with every layout in the project</li><br/>
+<li><code>"keyb"</code> — a keyboard key picker</li><br/>
+<li><code>"instancevar"</code> — a dropdown list with the non-boolean instance variables the object has</li><br/>
+<li><code>"instancevarbool"</code> — a dropdown list with the boolean instance variables the object has</li><br/>
+<li><code>"eventvar"</code> — a dropdown list with non-boolean event variables in scope</li><br/>
+<li><code>"eventvarbool"</code> — a dropdown list with boolean event variables in scope</li><br/>
+<li><code>"animation"</code> — a string parameter which is interpreted as an animation name in the object</li><br/>
+<li><code>"objinstancevar"</code> — a dropdown list with non-boolean instance variables available in a prior <code>"object"</code> parameter. Only valid when preceded by an <code>"object"</code> parameter.</li></ul></dd>
+<dt>initialValue</dt>
+<dd>A string which is used as the initial expression for expression-based parameters. Note this is still a string for <code>"number"</code> type parameters. It can contain any valid expression for the parameter, such as "1 + 1". For <code>"boolean"</code> parameters, use a string of either <code>"true"</code> or <code>"false"</code>. For <code>"combo"</code> parameters, this is the initial item ID.</dd>
+<dt>items</dt>
+<dd>Only valid with the <code>"combo"</code> type. Set to an array of item IDs available in the dropdown list. The actual displayed text for the items is defined in the language file. </dd>
+<dt>itemGroups</dt>
+<dd>Only valid with the <code>"combo-grouped"</code> type. Set to an array of item groups available in the dropdown list, with each group being represented by an object with properties <code>"id"</code> for the group ID, and <code>"items"</code> being an array of strings of item IDs in the group. The actual displayed text for the groups and items is defined in the language file. <div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// example "combo-grouped" parameter definition</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-19-close">{</span>
+	<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"dinosaur"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"type"</span><span class="token operator">:</span> <span class="token string">"combo-grouped"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"itemGroups"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-2">[</span><span class="token punctuation brace-curly brace-open brace-level-3" id="pair-17-close">{</span>
+		<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"theropods"</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"items"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-4" id="pair-15-close">[</span><span class="token string">"tyrannosaurus"</span><span class="token punctuation">,</span> <span class="token string">"velociraptor"</span><span class="token punctuation">,</span> <span class="token string">"deinonychus"</span><span class="token punctuation brace-square brace-close brace-level-4" id="pair-15-open">]</span>
+	<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-17-open">}</span><span class="token punctuation">,</span> <span class="token punctuation brace-curly brace-open brace-level-3" id="pair-18-close">{</span>
+		<span class="token string-property property">"id"</span><span class="token operator">:</span> <span class="token string">"sauropods"</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"items"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-4" id="pair-16-close">[</span><span class="token string">"diplodocus"</span><span class="token punctuation">,</span> <span class="token string">"saltasaurus"</span><span class="token punctuation">,</span> <span class="token string">"apatosaurus"</span><span class="token punctuation brace-square brace-close brace-level-4" id="pair-16-open">]</span>
+	<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-18-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-19-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div></dd>
+<dt>allowedPluginIds</dt>
+<dd>Optional and only valid with the <code>"object"</code> type. Set to an array of plugin IDs allowed to be shown by the object picker. For example, use <code>["Sprite"]</code> to only allow the object parameter to select a Sprite.</dd>
+<dt>filter</dt>
+<dd>Optional and only valid with the <code>"projectfile"</code> type. Set to a file extension including the dot to filter the list of provided project files to only those with the given file extension, e.g. <code>".txt"</code>.</dd>
+<dt>autocompleteId</dt>
+<dd>Optional and only valid with the <code>"string"</code> type. Set to a globally unique ID and string constants with the same ID will offer autocomplete in the editor. This is useful for "tag" parameters. Note the ID must be unique to all other plugins and behaviors in Construct, so it is a good idea to include your plugin or behavior name in the string, e.g. "myplugin-tag". </dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Language strings</h2>
+<p>The aces.json file does not include any strings displayed in the editor UI. These are all kept in a separate language file to facilitate translation. Therefore to finish adding ACEs, the relevant UI strings like the list name and description must be added to the language file. See <a class="extern" href="language-file.html" rel="noopener" target="_blank" title="Make your own games">The language file</a> for more information.</p></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

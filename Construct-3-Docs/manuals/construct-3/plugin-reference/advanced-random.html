@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/advanced-random" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Advanced random
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Advanced Random</strong> object provides expressions for advanced pseudo-random number generation (PRNG), including two- and three-dimensional noise functions like <a class="extern outlink" href="https://en.wikipedia.org/wiki/Perlin_noise" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a> (referred to as "classic noise" in the plugin). These are useful for <a class="extern outlink" href="https://en.wikipedia.org/wiki/Procedural_generation" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Procedural_generation">procedural generation</a>, such as providing an endless supply of interesting and unique level designs.</p>
+<p>It also provides seeded random functions, which provide the same pseudo-random number sequence when given the same seed. This can also be used to override the system random function (covering the <em>random()</em> expression, and any randomness used in behaviors) with a seeded random, which can provide deterministic random number generation for the whole runtime. By default the seed is always itself random, meaning random number generation is different between different runs of the game.</p>
+<p><a class="extern" href="https://editor.construct.net/#open=noise-textures" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of the Advanced Random plugin.</a> This uses the <a class="extern" href="drawing-canvas.html" rel="noopener" target="_blank" title="Make your own games">Drawing Canvas</a> object to display randomly generated textures using Advanced Random.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/advanced-random.html" rel="noopener" target="_blank" title="Make your own games">IAdvancedRandomObjectType script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Gradients</h2>
+<p>The Advanced Random object also provides tools to calculate custom gradients. This is useful for procedural generation. The random numbers it generates are in the range 0-1, but gradients allow you to specify values or colors for certain ranges of that. For example making the range 0-0.5 blue, and the range 0.5-1 green, allows you to look up the color using a random number in the range 0-1 and get either a water or land color. Combined with expressions like 2D perlin noise, this provides a way to randomly generate a level with mixed regions of water and land.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Probability tables</h2>
+<p>Advanced Random can also create <em>probability tables</em>, which are a way of generating weighted random numbers. For example if you add three items with a weight of 1, and then a fourth item with a weight of 2, that item is twice as likely to be picked as any other item. The value of a probability table entry can be either a number or a string, but the weight must be a number. This is useful for doing things like random pickups with lots of common cheap items, but also some rare valuable items.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Permutation tables</h2>
+<p>Another feature of Advanced Random is creating <em>Permutation tables</em>. These are simply a sequence of numbers that are randomly ordered. This is useful for retrieving random, non-repeating numbers. For example you could use the numbers 0-51 to represent a deck of cards, and create a permutation table to represent a shuffled deck of cards. Then if you read through the permutation table in order with the <em>Permutation</em> expression, it will return a random sequence of cards, like dealing from a shuffled deck.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Advanced random properties</h2>
+<dl class="sans">
+<dt>Seed</dt>
+<dd>A string of characters used as the seed for random number generation. The same seed will always provide the same sequence of numbers. An empty string (the default) will use a random seed, ensuring the sequence of numbers is different every time.</dd>
+<dt>Replace system random</dt>
+<dd>If enabled, the system random function, which covers the <em>random</em> system expression as well as randomness in behaviors, is overridden to use the Advanced Random object's PRNG. Since the Advanced Random object can control the seed, this provides a way to seed the random number generation of the entire runtime.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Advanced random conditions</h2>
+<p>The Advanced Random object has no conditions.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Advanced random actions</h2>
+<dl class="sans">
+<dt>Set octaves</dt>
+<dd>Set the number of octaves used for coherent noise generation, from 1-16. The default is 1. This affects the Billow, Classic and Ridged expressions only. Using additional octaves adds layers of increasing detail to the noise functions, but is also slower to process.</dd>
+<dt>Update seed</dt>
+<dd>Set a new seed for random number generation, using a string. </dd>
+<dt>Add gradient stop</dt>
+<dd>Adds a stop to the current gradient. Use after <em>Create gradient</em> to specify the gradient. The stop position can be any number, but is generally kept within the 0-1 range so it can be used with the random expressions. The stop value should be an expression of the form <em>rgbEx(r, g, b)</em> or <em>rgba(r, g, b, a)</em> when the gradient uses color mode; otherwise it can be a simple number. The default gradient is a simple black to white gradient, using <em>rgbEx(0, 0, 0)</em> at position 0 and <em>rgbEx(100, 100, 100)</em> at position 1.</dd>
+<dt>Create gradient</dt>
+<dd>Create a new gradient. Multiple gradients can be managed by giving them different names. Creating a gradient also sets it as the current gradient, so this action can be immediately followed by <em>Add gradient stop</em> to specify the gradient. By default gradients work in color mode, which uses values based on the <em>rgbEx</em> or <em>rgba</em> expressions; however they can also be set to number mode which uses simple numbers.</dd>
+<dt>Set gradient</dt>
+<dd>Set the current gradient by its name. This allows switching between multiple gradients.</dd>
+<dt>Create permutation table</dt>
+<dd>Generate a randomly ordered sequence of numbers. <em>Length</em> is how many numbers to generate, and <em>Offset</em> is the first number in the sequence. For example a length of 3 with an offset of 1 will generate the numbers 1, 2 and 3, and then randomly shuffle them.</dd>
+<dt>Shuffle permutation table</dt>
+<dd>Re-shuffle an existing permutation table.</dd>
+<dt>Add probability entry</dt>
+<dd>Add an entry to the current probability table. The value can be a string or a number. The weight affects how likely the item is to be picked, relative to other item's weights.</dd>
+<dt>Create probability table</dt>
+<dd>Create a new probability table, using a string to identify it.</dd>
+<dt>Remove probability entry</dt>
+<dd>Remove an existing entry from the current probability table. If a weight of 0 is specified, the first entry with the given value is removed regardless of its weight. Otherwise an entry is only removed if it matches both the value and the weight.</dd>
+<dt>Set probability table</dt>
+<dd>Set the current probability table from which weighted random values are taken.</dd>
+<dt>Create probability table from JSON</dt>
+<dd>Create a new probability table from a JSON string. The input should be an array of <code>[weight: number, value: number|string]</code> tuples, e.g. <code>[[1, "Apple"], [2, "Banana"], [3, "Carrot"]]</code>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Advanced random expressions</h2>
+<dl class="sans">
+<dt>Billow2d(x, y)</dt>
+<dt>Billow3d(x, y, z)</dt>
+<dd>Generate a random number using billow noise in the range 0-1, using either 2D or 3D co-ordinates.</dd>
+<dt>Cellular2d(x, y)</dt>
+<dt>Cellular3d(x, y, z)</dt>
+<dd>Generate a random number using cellular noise in the range 0-1, using either 2D or 3D co-ordinates.</dd>
+<dt>Classic2d(x, y)</dt>
+<dt>Classic3d(x, y, z)</dt>
+<dd>Generate a random number using classic (perlin) noise in the range 0-1, using either 2D or 3D co-ordinates.</dd>
+<dt>Random</dt>
+<dd>Generate a random number in the range [0, 1) using the current seed. This allows generating random numbers with a predictable sequence even when <em>Replace system random</em> is not used.</dd>
+<dt>RandomSeed</dt>
+<dd>Generate a random seed string that can be used to set the seed, restoring an unpredictable number sequence.</dd>
+<dt>Ridged2d(x, y)</dt>
+<dt>Ridged3d(x, y, z)</dt>
+<dd>Generate a random number using ridged noise in the range 0-1, using either 2D or 3D co-ordinates.</dd>
+<dt>Seed</dt>
+<dd>The currently set seed, as a string.</dd>
+<dt>Voronoi2d(x, y)</dt>
+<dt>Voronoi3d(x, y, z)</dt>
+<dd>Generate a random number using Voronoi noise in the range 0-1, using either 2D or 3D co-ordinates.</dd>
+<dt>Gradient(Position)</dt>
+<dt>GradientByName(Name, Position)</dt>
+<dd>Sample a gradient at the given position. This returns a color value for color mode gradients, otherwise a simple number. The <em>Gradient</em> variant refers to the current gradient, whereas the <em>GradientByName</em> variant refers to any gradient using a case-insensitive string of its name.</dd>
+<dt>Permutation</dt>
+<dd>Get a value at a zero-based index in the permutation table, from 0 (for the first item) up to but not including the length of the table.</dd>
+<dt>Weighted</dt>
+<dt>WeightedByName(Name)</dt>
+<dd>Get a random value from a probability table. The relative likelihood of values is affected by their weight. The <em>Weighted</em> variant refers to the current probability table, whereas the <em>WeightedByName</em> variant refers to any probability table using a case-insensitive string of its name.</dd>
+<dt>ProbabilityTableAsJSON</dt>
+<dd>Get the current probability table as a JSON string. This can be read back using the <strong>Create probability table from JSON</strong> action.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

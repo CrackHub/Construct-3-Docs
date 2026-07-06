@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/files" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Project files
+            </h1>
+<div itemprop="articleBody">
+<p>Any external files can also be imported to your project via the <a class="extern" href="../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a>. This is useful for including any other resources your project might need, such as videos, additional images, JSON/XML/CSV/text data, HTML, CSS, documents, or other general files you might need in your project. Often project files are requested in events with the <strong>AJAX</strong> object, allowing data files to be read by the game.</p>
+<p>Project files (excluding <a class="extern" href="sounds-and-music.html" rel="noopener" target="_blank" title="Make your own games">sounds and music</a>) can be categorised in to folders for <strong>Videos</strong>, <strong>Fonts</strong>, <strong>Icons</strong> (see <a class="extern" href="../tips-and-guides/icons-splash.html" rel="noopener" target="_blank" title="Make your own games">Icons &amp; splash</a>) and <strong>Files</strong> (for anything that does not belong to one of the other folders). Files can be imported by right-clicking one of the folders in the Project Bar and selecting the <strong>Import</strong> option. Note importing files copies them to the project.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Previewing files</h2>
+<p>Several kinds of files can be previewed simply by <strong>double-clicking</strong> their item in the Project Bar:</p>
+<ul class="list">
+<li>Like sounds and music, previewing a video file will play it in a video player.</li>
+<li>Fonts preview in a dialog showing some sample text using the font.</li>
+<li>SVG images are previewed in a resizable dialog that displays the image.</li>
+<li>Other images than SVG can be opened in the <a class="extern" href="../interface/animations-editor.html" rel="noopener" target="_blank" title="Make your own games">Animations Editor</a> for viewing and editing. This is particularly useful with icon files.</li>
+<li>Array, dictionary and text-based files can be viewed and edited in the <a class="extern" href="../interface/file-editors/array-editor.html" rel="noopener" target="_blank" title="Make your own games">Array editor</a>, <a class="extern" href="../interface/file-editors/dictionary-editor.html" rel="noopener" target="_blank" title="Make your own games">Dictionary editor</a> and <a class="extern" href="../interface/file-editors/text-editor.html" rel="noopener" target="_blank" title="Make your own games">Text editor</a> respectively <span class="ilTag c2">Paid plans only</span>.</li>
+</ul>
+<p>Other text-based files, like HTML and CSS files, can also be edited with a built-in text editor by double-clicking them <span class="ilTag c2">Paid plans only</span>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Using Web Fonts</h2>
+<p>You can use any web font (.woff or .woff2) files imported to the Fonts folder in Text objects. For more information see the section on <em>Using web fonts</em> in the <a class="extern" href="../plugin-reference/text.html" rel="noopener" target="_blank" title="Make your own games">Text object</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Adding new files</h2>
+<p><span class="ilTag c2">Paid plans only</span> When right-clicking the general-purpose <strong>Files</strong> folder, there is also a <strong>New</strong> submenu which provides a range of common kinds of file that you might want to add to the project.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/917/new-project-file.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 690x631px in new window (32.01 KB)"><span><img alt="Adding a new project file" height="316" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/917/new-project-file_v350.png" width="345"/></span></a><span class="descrip">Adding a new project file</span></div></div>
+<p>Adding an <strong>Array</strong> adds a JSON file in a format that can be loaded by the Array object, and opens the <a class="extern" href="../interface/file-editors/array-editor.html" rel="noopener" target="_blank" title="Make your own games">Array editor</a>. Adding a <strong>Dictionary</strong> adds a JSON file that can be loaded by the Dictionary object, and opens the <a class="extern" href="../interface/file-editors/dictionary-editor.html" rel="noopener" target="_blank" title="Make your own games">Dictionary editor</a>. Each allows the data in the files to be edited in a visual editor. The other files open a <a class="extern" href="../interface/file-editors/text-editor.html" rel="noopener" target="_blank" title="Make your own games">Text editor</a> for editing the contents of the file. Once added, <strong>double-click</strong> the file in the Project Bar to re-open its editor.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Adding HTML files</h2>
+<p><span class="ilTag c2">Paid plans only</span> HTML files can be added to the project, and edited with a built-in text editor. This is useful for writing long HTML content to be displayed in the <a class="extern" href="../plugin-reference/html-element.html" rel="noopener" target="_blank" title="Make your own games">HTML Element</a> object. The content can then be fetched using the <a class="extern" href="../plugin-reference/ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX</a> object, and then set as the content of the HTML Element.</p>
+<p>HTML project files can also have a <em>Purpose</em> set in the Properties Bar. This allows using them to insert content in to the exported HTML file. If the file is used this way, it will no longer be exported as an additional file. The possible purposes are:</p>
+<ul class="list">
+<li><strong>(none)</strong>: the HTML file will not be automatically used anywhere. It will be exported as an additional file.</li>
+<li><strong>End of &lt;head&gt;</strong>: the contents of the HTML file will be inserted just before <code>&lt;/head&gt;</code> in the exported HTML.</li>
+<li><strong>Start of &lt;body&gt;</strong>: the contents of the HTML file will be inserted just after <code>&lt;body&gt;</code> in the exported HTML.</li>
+<li><strong>End of &lt;body&gt;</strong>: the contents of the HTML file will be inserted just before <code>&lt;/body&gt;</code> in the exported HTML.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Adding stylesheets</h2>
+<p><span class="ilTag c2">Paid plans only</span> Stylesheets, using the CSS file extension (short for <em>Cascading Style Sheet</em>), can be added to the project and edited with a built-in text editor. This is particularly useful for customising the appearance of the <a class="extern" href="../plugin-reference/html-element.html" rel="noopener" target="_blank" title="Make your own games">HTML Element</a> object.</p>
+<p>Custom CSS files are also useful for customising the appearance of other HTML-based objects like <a class="extern" href="../plugin-reference/button.html" rel="noopener" target="_blank" title="Make your own games">Button</a> and <a class="extern" href="../plugin-reference/text-input.html" rel="noopener" target="_blank" title="Make your own games">Text Input</a>. These objects have <em>ID</em> and <em>Class</em> properties which can be used to identify them so custom styles can be applied from stylesheets.</p>
+<p>CSS files have a <em>Purpose</em> property in the Properties Bar. The default is <em>Stylesheet</em> which means Construct will use it as an additional stylesheet for your project. The purpose can also be set to <em>(none)</em> in which case its styles will not automatically be applied, and the stylesheet will merely be exported as an additional file on export. This may be useful if the stylesheet is needed for other purposes, such as for the content of an iframe.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>MIME types</h2>
+<p>When publishing to the web, you must ensure the server hosting the project has the <a class="extern" href="../tips-and-guides/mime-types.html" rel="noopener" target="_blank" title="Make your own games">correct MIME types set up</a> for all the kinds of project file you use. Otherwise some project files may fail to load, or could be loaded with corrupted data.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

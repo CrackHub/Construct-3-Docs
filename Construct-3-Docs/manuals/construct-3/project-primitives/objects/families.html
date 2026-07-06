@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/objects/families" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Families
+            </h1>
+<div itemprop="articleBody">
+<p><span class="ilTag c2">Paid plans only</span> In Construct, <strong>Families</strong> are groups of <a class="extern" href="object-types.html" rel="noopener" target="_blank" title="Make your own games">object types</a>. All the object types in a family must be from the same <a class="extern" href="plugins.html" rel="noopener" target="_blank" title="Make your own games">plugin</a>, e.g. all Sprite objects (and not a mix of Sprite and Tiled Background objects, for example).</p>
+<p>Families can help you avoid repeating events. For example, instead of having the same events for the <em>Enemy1</em>, <em>Enemy2</em> and <em>Enemy3</em> objects, you can add them all to an <em>Enemies</em> family and make the events once for the family. Then, the events automatically apply to all the object types in the family.</p>
+<p>The <a class="extern" href="https://editor.construct.net/#open=families" rel="noopener" target="_blank" title="Make games in the browser">Families example in Construct</a> demonstrates the advantage of this. There are seven kinds of enemy, and they all need to be destroyed when the laser hits them. Without families, seven separate events are necessary, as shown below:</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/920/families-repeated-events.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1134x1067px in new window (155.52 KB)"><span><img height="534" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/920/families-repeated-events_v600.png" width="567"/></span></a></div></div>
+<p>Using families all seven events can be replaced with a single event:</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/921/families-event.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1134x151px in new window (16.77 KB)"><span><img height="76" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/921/families-event_v600.png" width="567"/></span></a></div></div>
+<p>This makes it far easier to create and maintain projects with lots of objects that need to work in similar ways.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>How to create a family</h2>
+<p><strong>Right-click</strong> the <em>Families</em> folder in the <a class="extern" href="../../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> and select <strong>Add family</strong>. The <em>Edit Family</em> dialog appears.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/922/edit-family-dialog.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1068x860px in new window (97.48 KB)"><span><img alt="The Edit Family dialog" height="430" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/922/edit-family-dialog_v550.png" width="534"/></span></a></div></div>
+<p>Objects on the left are the objects in the project that can be added to the family. Objects on the right are the objects already in the family. <strong>Double-click</strong> an object to transfer it to the other side. You can select multiple objects by holding <kbd>Control</kbd> and clicking several objects, then clicking one of the buttons in the middle to transfer them.</p>
+<p>When done, click <strong>OK</strong> and the family will appear in the Project Bar. It can be expanded to show all the objects in the family as well. The family, and the objects in the family, can be edited by <strong>right-clicking</strong> them and choosing options from the menu, like <em>Remove from family</em> or <em>Edit family</em>.</p>
+<p>Objects can be added to multiple families. All events for the object's families will apply to the object.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Family instance variables</h2>
+<p><a class="extern" href="instance-variables.html" rel="noopener" target="_blank" title="Make your own games">Instance variables</a> can also be added to a whole family by <strong>right-clicking</strong> the family name in the Project Bar and selecting <span class="navWrap">Family instance variables</span>.</p>
+<p>If you add an instance variable to a family, <em>all</em> the object types in the family inherit the instance variable. For example, adding the instance variable <em>health</em> to the family <em>Enemies</em> in the above example will mean <em>BladeEnemy</em>, <em>BugEnemy</em>, <em>CrescentEnemy</em>, <em>FighterEnemy</em>, <em>SaucerEnemy</em>, <em>ScytheEnemy</em> and <em>SlicerEnemy</em> all gain a <em>health</em> instance variable. It will also appear in the editor alongside each object's own instance variables. However in the Event Sheet View the family will only show its own instance variables (those added directly to the family). This means any instance variables you want to be available to the family's events must be added to the family, and not to the objects in the family.</p>
+<p>If an object type belongs to multiple families, it inherits every family's instance variables.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Family behaviors</h2>
+<p><a class="extern" href="behaviors.html" rel="noopener" target="_blank" title="Make your own games">Behaviors</a> can also be added to a whole family by <strong>right-clicking</strong> the family name in the Project Bar and selecting <span class="navWrap">Family behaviors</span>.</p>
+<p>As with family instance variables, if you add a behavior to a family, <em>all</em> the object types in the family inherit the behavior. The behavior will appear in the events for all the objects in the family <em>and</em> the family itself. For example adding the <em>Bullet</em> behavior to a family called <em>Bullets</em> means the bullet's <em>Set speed</em> action is available to every object in the family, as well as the family itself.</p>
+<p>If an object type belongs to multiple families, it inherits every family's behaviors.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Family effects</h2>
+<p><a class="extern" href="effects.html" rel="noopener" target="_blank" title="Make your own games">Effects</a> can also be added to a whole family by <strong>right-clicking</strong> the family name in the Project Bar and selecting <span class="navWrap">Family effects</span>.</p>
+<p>As with family instance variables and behaviors, if you add an effect to a family, <em>all</em> the object types in the family inherit the effect. This can be useful for quickly applying effects to a number of different object types.</p>
+<p>If an object type belongs to multiple families, it inherits every family's effects.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Picking families in events</h2>
+<p>Families pick instances in the event sheet independently of the object types in the family. For example, consider <em>Family1</em> consisting of <em>SpriteA</em> and <em>SpriteB</em>. Conditions for <em>Family1</em> will never affect which <em>SpriteA</em> and <em>SpriteB</em> instances are picked. It will only affect which instances are affected when running an action for <em>Family1</em>. Likewise, conditions picking <em>SpriteA</em> and <em>SpriteB</em> instances will never affect which instances are picked in <em>Family1</em>. In other words, in the event sheet families are treated like an entirely separate object type, which just happens to have instances from other object types. This can be taken advantage of if you need a single event to pick two separate lists of instances from the same object type.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Upgrading ordinary objects to families</h2>
+<p>If you make a lot of events forgetting to use a family and want to replace them, it's possible to use the <em>Replace Object</em> feature to save you re-doing every event. The process is described in the tutorial <a class="extern" href="https://www.construct.net/tutorials/how-to-upgrade-an-object-to-a-family-14.html" rel="noopener" target="_blank" title="Make your own games">How to upgrade an object to a family</a>.</p>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Summary</h2>
+<p>Families are a very powerful feature which are essential to help keep large projects simple. Instance variables and behaviors added to families are inherited by every object in the family, which allows for sophisticated logic to be easily applied to many object types at once.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

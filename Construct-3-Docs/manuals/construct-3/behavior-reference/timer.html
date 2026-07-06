@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/timer" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timer behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Timer behavior</strong> triggers its <em>On timer</em> condition regularly or once after a delay. This is like using the system <em>Every X seconds</em> condition, or the system <em>Wait</em> action, except that times are kept for each instance individually. The rate of <em>On timer</em> triggering is affected by the time scale. The timer behavior is a more convenient alternative to adding <em>dt</em> to an instance variable every tick.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/timer.html" rel="noopener" target="_blank" title="Make your own games">ITimerBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tags</h2>
+<p>A single Timer behavior can keep track of multiple timers. To distinguish between them, a <em>tag</em> is used. A tag is just a string, which can be anything. For example, starting a timer with tag "attack" will trigger <em>On timer "attack"</em>, but not <em>On timer "defend"</em>.</p>
+<p>When a timer is stopped, or after a one-off timer triggers, it no longer exists and the timer expressions cannot be used to retrieve any information about it.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Timer conditions</h2>
+<dl class="sans">
+<dt>Is timer paused</dt>
+<dd>True if a timer with the given tag has been started and then subsequently paused with the <em>Pause/resume timer</em> action.</dd>
+<dt>Is timer running</dt>
+<dd>True if a timer with the given tag has been started with the <em>Start timer</em> action. Once <em>Stop timer</em> is used, the timer no longer counts as running. Paused timers also count as running - use the <em>Is timer paused</em> condition to identify these timers separately.</dd>
+<dt>On timer</dt>
+<dd>Triggers either regularly, or once off, after a timer that was started with the same tag has reached its duration.
+<br/>
+</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Timer actions</h2>
+<dl class="sans">
+<dt>Pause/resume timer</dt>
+<dd>Set a currently running timer (started with the <em>Start timer</em> action) either paused or resumed. When a timer is paused, it will stop triggering <em>On timer</em>. When resumed, it will continue triggering <em>On timer</em>, resuming from the time that it was paused at. In other words if a timer is set for 1 second, it is paused after 0.5 seconds, and then after some time it is resumed again, <em>On timer</em> will trigger 0.5 seconds after resuming.</dd>
+<dt>Pause/resume all timers</dt>
+<dd>This does the same thing as the <em>Pause/resume timer</em> action, but affecting all existing timers rather than only one with a given tag.</dd>
+<dt>Start timer</dt>
+<dd>Set a new timer, or if the timer exists, re-start it with new options. <em>Duration</em> is the time until <em>On timer</em> triggers. If <em>Type</em> is <em>Once</em>, then <em>On timer</em> will fire once and not again until <em>Start timer</em> is used again; if <em>Regular</em>, then <em>On timer</em> will keep firing every <em>Duration</em> seconds. The tag allows multiple timers to run at once. The corresponding <em>On timer</em> condition must use the same tag.</dd>
+<dt>Stop timer</dt>
+<dd>Stop a timer with a specific tag. <em>On timer</em> will no longer trigger with the given tag after this action.</dd>
+<dt>Stop all timers</dt>
+<dd>Stop all currently running timers regardless of their tags. <em>On timer</em> will no longer trigger for any timer after this action unless a new timer is started.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Timer expressions</h2>
+<dl class="sans">
+<dt>CurrentTime(tag)</dt>
+<dd>The time in seconds since <em>On timer</em> last triggered, for a timer with a specific tag.</dd>
+<dt>Duration(tag)</dt>
+<dd>The duration in seconds for a timer with a specific tag.</dd>
+<dt>NormalizedProgress(tag)</dt>
+<dd>The current progress for a timer with a specific tag represented as a number between 0 and 1, regardless of the duration of the timer. For example a normalized progress of 0.5 means half way through the duration.</dd>
+<dt>TotalTime(tag)</dt>
+<dd>The time in seconds since a timer with a specific tag was started with the <em>Start timer</em> action. This is only useful with regular timers, since it will always equal the <em>CurrentTime</em> expression for one-off timers (after which they fire and the timer no longer exists, so these expressions return 0).</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

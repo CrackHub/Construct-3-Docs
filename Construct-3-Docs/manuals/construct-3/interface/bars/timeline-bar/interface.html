@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/timeline-bar/interface" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Interface
+            </h1>
+<div itemprop="articleBody">
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Toolbar</h2>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87426/timeline-toolbar.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 484x29px in new window (2.01 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87426/timeline-toolbar.png" width="484"/></span></a></div></div>
+<p>The buttons are described from left to right.</p>
+<ul class="list">
+<li><strong>Add instances:</strong> Brings up a dialog to add <a class="extern" href="../../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a> which are not already part of the current <a class="extern" href="../../../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timeline</a>.
+	<ul class="list">
+<li><span class="navWrap">Timeline<span class="arr">►</span>add timelines</span> option inside the <strong>Add instances</strong> 		split button. Brings up a dialog to add a nested timeline.</li>
+<li><span class="navWrap">Timeline<span class="arr">►</span>add subfolder</span> option inside the <strong>Add instances</strong> split button. Will add a <a class="extern" href="../../../project-primitives/timelines/timeline-folder.html" rel="noopener" target="_blank" title="Make your own games">timeline folder</a> to the root of the current timeline.</li>
+<li><span class="navWrap">Track<span class="arr">►</span>add instances</span> option inside the <strong>Add instances</strong> split button. Does the same as the main button.</li>
+<li><span class="navWrap">Track<span class="arr">►</span>add value</span> option inside the <strong>Add instances</strong> split button. Adds a <a class="extern" href="../../../project-primitives/timelines/track/value-track.html" rel="noopener" target="_blank" title="Make your own games">value track</a> to the root of the timeline.</li>
+<li><span class="navWrap">Track<span class="arr">►</span>add audio</span> option inside the <strong>Add instances</strong> split button. Adds an <a class="extern" href="../../../project-primitives/timelines/track/audio-track.html" rel="noopener" target="_blank" title="Make your own games">audio track</a> to the root of the timeline.</li>
+<li><span class="navWrap">Track<span class="arr">►</span>add subfolder</span> option inside the <strong>Add instances</strong> split button. Will add a <a class="extern" href="../../../project-primitives/timelines/track-folder.html" rel="noopener" target="_blank" title="Make your own games">track folder</a> to the root of the current timeline.</li>
+</ul>
+</li>
+<li><strong>Edit mode:</strong> Turns on timeline editing mode.</li>
+<li><strong>Set keyframes:</strong> Set <a class="extern" href="../../../project-primitives/timelines/master-keyframe.html" rel="noopener" target="_blank" title="Make your own games">keyframes</a> at the current time marker. Keyframes will be set in all tracks which have an instance with any meaningful change. Only works while in editing mode.</li>
+<li><strong>Auto keyframes:</strong> Enable to set keyframes automatically in the current time marker as changes are made. Keyframes are only set in the corresponding tracks for the changes made. Only works while in editing mode.</li>
+<li><strong>Cut:</strong> Cut the current selection of keyframes.</li>
+<li><strong>Copy:</strong> Copy the current selection of keyframes.</li>
+<li><strong>Paste:</strong> Paste the current selection of keyframes relative to the current time marker. If no <a class="extern" href="../../../project-primitives/timelines/track.html" rel="noopener" target="_blank" title="Make your own games">tracks</a> are selected each keyframe is pasted in it's respective track. If there is a selection of tracks, an attempt is made to copy as many keyframes as possible into the correct tracks. If a keyframe does not fit in any track, it is ignored.</li>
+<li><strong>Move to first keyframe:</strong> Moves the current time marker to the first master keyframe</li>
+<li><strong>Move to previous keyframe:</strong> Moves the current time marker to the nearest master keyframe moving backwards</li>
+<li><strong>Preview:</strong> Start a preview of the current timeline.</li>
+<li><strong>Stop:</strong> Stop the preview of the current timeline.</li>
+<li><strong>Move to next keyframe:</strong> Moves the current time marker to the nearest master keyframe moving forwards.</li>
+<li><strong>Move to last keyframe:</strong> Moves the current time marker to the last master keyframe</li>
+<li><strong>Previous timeline:</strong> Go back to the previously focused timeline in a nested structure. Hidden if there are no nested timelines.</li>
+<li><strong>Next timeline:</strong> Go to the next timeline in a nested structure. Hidden if there are no nested timelines.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Toggles</h2>
+<p>These are the four options at the left most side of the bar. These affect not only the timeline element in the same row, but also any elements under the same hierarchy. If a row does not have a checkbox, the corresponding element does not support the property.</p>
+<ul class="list">
+<li><strong>Visibility:</strong> The <strong>checkboxes</strong> under the <strong>eye</strong> icon. These will toggle the visibility of the corresponding timeline track instance. The setting only takes effect while edit mode is turned on.</li>
+<li><strong>Lock:</strong> The <strong>checkboxes</strong> under the <strong>padlock</strong> icon. These will toggle the lock state of a timeline element. Locked elements cannot be edited. Locked elements can't be edited and have a grey highlight when selected in the layout while timeline editing mode is turned on.</li>
+<li><strong>Enable:</strong> The <strong>checkboxes</strong> under the <strong>checkmark</strong> icon. These will toggle the enable state of a timeline element. This setting affects the timeline at runtime. Disabled timeline elements are not taken into consideration when the timeline is interpolating values.</li>
+<li><strong>Show UI Elements:</strong> The <strong>checkboxes</strong> under the <strong>joined dots</strong> icon. Using these toggles you can show and hide the layout UI elements associated with the instance. This includes paths lines, keyframe handles and cubic bezier handles. This can be useful when working with timelines which have many different elements.</li>
+</ul>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/42924/timelinebardoc12.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 276x134px in new window (5.02 KB)"><span><img height="134" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/42924/timelinebardoc12.png" width="276"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Time markers</h2>
+<p>These are the three vertical lines in the right most section of the bar.</p>
+<ul class="list">
+<li><strong>Current time:</strong> The <strong>red line</strong>. Change its position to the place in the timeline you wish to add new keyframes. The marker can be dragged directly or by clicking on the time ruler and dragging. Dragging the marker will produce a preview of the timeline, provided that edit mode is turned on. Holding <kbd>Ctrl/Cmd</kbd> while dragging the marker to prevent the timeline from being previewed. Can also be changed from the <a class="extern" href="../properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a> when it is showing timeline properties.</li>
+<li><strong>Total time:</strong> The <strong>green line</strong>. Indicates the total time the timeline takes to play to the end. Can be dragged directly like the current time marker and changed from the Properties Bar when it is showing timeline properties. This marker represents the total time of the top most timeline only, if there are nested timelines, those are not represented by this line.</li>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82233/timelinemanual05.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 628x171px in new window (3.76 KB)"><span><img height="171" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82233/timelinemanual05.png" width="628"/></span></a></div></div>
+<li><strong>Compound time:</strong> The <strong>blue line</strong>. Indicates the total time a timeline has from start to finish including all of it's nested content. This marker can not be dragged and is just shown as reference. It won't be visible if there is no nested content or if the total time of the main timeline is enough to hold all of it's children.</li>
+</ul>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82235/timelinemanual06.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 906x247px in new window (5.58 KB)"><span><img height="218" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/82235/timelinemanual06_v800.png" width="800"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Timeline elements</h2>
+<p>These are the parts that make up a timeline. When selected, these elements will show their properties in the Properties Bar.</p>
+<ul class="list">
+<li><strong><a class="extern" href="../../../project-primitives/timelines/track.html" rel="noopener" target="_blank" title="Make your own games">Track</a>:</strong> Represented as a row with an icon of the corresponding instance. Tracks can be moved to and from track folders or the root of the timeline by dragging and dropping.</li>
+<li><strong><a class="extern" href="../../../project-primitives/timelines/master-keyframe.html" rel="noopener" target="_blank" title="Make your own games">Master keyframe</a>:</strong> Represented by black dots in the same row as the track they are contained by. A master keyframe's main role is to serve as a control to modify corresponding property keyframes in bulk.</li>
+<li><strong><a class="extern" href="../../../project-primitives/timelines/property-track.html" rel="noopener" target="_blank" title="Make your own games">Property track</a>:</strong> Represented as a row with an icon of the corresponding property being affected by the track. They can be moved to and from property track folders or the root of the parent track by dragging and dropping. They can not be moved outside of their parent track.</li>
+<li><strong><a class="extern" href="../../../project-primitives/timelines/property-keyframe.html" rel="noopener" target="_blank" title="Make your own games">Property keyframe</a>:</strong> Represented by light blue square in the same row as the property track they are contained by.</li>
+<li><strong><a class="extern" href="../../../project-primitives/timelines/track-folder.html" rel="noopener" target="_blank" title="Make your own games">Track folder</a>:</strong> Represented as a row with an icon of a folder. These are used to organise elements in a timeline, should it be needed. A track folder can have nested tracks as well as other track folders. They can be moved to and from track folders or the root of the timeline by dragging and dropping.</li>
+<li><strong><a class="extern" href="../../../project-primitives/timelines/property-track-folder.html" rel="noopener" target="_blank" title="Make your own games">Property track folder</a>:</strong> Represented as a row with an icon of a folder. These are used to organise elements in a track, should it be needed. A property track folder can have nested property tracks as well as other property track folders, they can be moved to and from property track folders or the root of the corresponding track by dragging and dropping. Property track folders can not be moved outside their corresponding track.</li>
+<li><strong><a class="extern" href="../../../project-primitives/timelines.html" rel="noopener" target="_blank" title="Make your own games">Nested timeline</a>:</strong> Represented as a row with the icon of a timeline, these act like a folder for all the content inside and can be expanded and collapsed as such. Nested timelines can be moved to and from timeline folders or the root of the parent timeline by dragging and dropping. There are several details specific to nested timelines which are discussed later.</li>
+<li><strong><a class="extern" href="https://www.construct.net/make-games/manuals/construct-3/project-primitives/timeline-folder.html" rel="noopener" target="_blank" title="Make your own games">Timeline folder</a>:</strong> Represented as a row with an icon of a folder. These are used to organize nested timelines in a parent timeline. Timeline folders can only exist as children of the main timeline or nested inside other timeline folders.</li>
+<li><strong>Timeline offset handle:</strong> Represented by a rectangle in the same row as the corresponding nested timeline. It's width represents the total playback time of the corresponding timeline and is positioned to be able to see, at a glance, when will the nested timeline will start and finish in relation to the parent. It can be dragged to adjust the starting time of the nested timeline in relation to the parent timeline.</li>
+<li><strong><a class="extern" href="../../../project-primitives/timelines/track/value-track.html" rel="noopener" target="_blank" title="Make your own games">Value Track</a>:</strong> Represented as a row with a name. Value tracks can be moved to and from track folders or the root of the timeline by dragging and dropping. They can only have one property track and are not associated with any instance. Must be used in tandem with the <a class="extern" href="../../../plugin-reference/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline Controller plugin</a> in order to query their value at runtime.</li>
+<li><strong><a class="extern" href="../../../project-primitives/timelines/track/audio-track.html" rel="noopener" target="_blank" title="Make your own games">Audio Track</a>:</strong> Represented as a row with a name. Audio tracks can be moved to and from track folders or the root of the timeline by dragging and dropping. They can only have two property tracks, one representing the audio file and another optional one to change the volume as the timeline progresses. They are not associated with any instance.</li>
+</ul>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26594/timeline-manual-14.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 600x153px in new window (6.45 KB)"><span><img height="153" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26594/timeline-manual-14.png" width="600"/></span></a></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

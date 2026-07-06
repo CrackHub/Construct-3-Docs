@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/timelines/property-track" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timeline property track
+            </h1>
+<div itemprop="articleBody">
+<p>In the <a class="extern" href="../../interface/bars/timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a>, property tracks are represented as a row with an icon of the corresponding property being affected by the <a class="extern" href="track.html" rel="noopener" target="_blank" title="Make your own games">track</a> they belong to.</p>
+<p>A property track represents the property of an instance that can be interpolated and is nested inside a parent track. Property tracks can refer to common <a class="extern" href="../objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> properties, <a class="extern" href="../objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variables</a>, <a class="extern" href="../objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effect</a> parameters, <a class="extern" href="../objects/behaviors.html" rel="noopener" target="_blank" title="Make your own games">behavior</a> properties and <a class="extern" href="../objects/plugins.html" rel="noopener" target="_blank" title="Make your own games">plugin</a> properties.</p>
+<p>A track can have many property tracks in its hierarchy, one for each property of the instance the <a class="extern" href="timeline.html" rel="noopener" target="_blank" title="Make your own games">timeline</a> will be affecting. A property track can exist at the root of a track or nested inside <a class="extern" href="property-track-folder.html" rel="noopener" target="_blank" title="Make your own games">property track folders</a>. They can be moved to and from property track folders or the root of the parent track by dragging and dropping. They can not be moved outside of their parent track.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Adding Property Tracks</h2>
+<p>Property tracks are added automatically when:</p>
+<ul class="list">
+<li>A new track is added to a timeline.</li>
+<li>A keyframe for a new property is added.</li>
+</ul>
+<p>To add an empty property track, right-click a track or property track folder and select <strong>Add properties</strong>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Property Track Properties</h2>
+<dl class="sans">
+<dt>Name</dt>
+<dd>The name of the property track. This can not be changed it takes the same name as the property being modified.</dd>
+<dt>Animation mode</dt>
+<dt>Result mode</dt>
+<dt>Ease</dt>
+<dt>Path mode</dt>
+<dd>See the section on common timeline element properties in <a class="extern" href="../timelines.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a>. These properties follow an inheritance pattern.</dd>
+<dt>Visible</dt>
+<dt>Enabled</dt>
+<dt>Locked</dt>
+<dd>See the section on common timeline element properties in <a class="extern" href="../timelines.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a>. Changing these at the property track level will apply the change to every sub-element.</dd>
+</dl>
+<h3>Unique properties</h3>
+<h4>Initial Animation</h4>
+<dl class="sans">
+<dt>Start from</dt>
+<dd>Choose how the animation should behave when the play head reaches the keyframe. The value <strong>"Current frame"</strong> will cause the new animation to start playing from the same frame the previous animation was in. <strong>"Beginning"</strong> will cause the new animation to start playing from the beginning.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/facebook" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Facebook
+            </h1>
+            <div itemprop="articleBody">
+                <p>The <strong>Facebook</strong> object allows you to integrate your game with Facebook. It can be used in any web-hosted game, not just in Facebook games. For example, you could have a game running on your own server. The Facebook object still allows you to integrate with user's Facebook accounts even when the user is playing the game on your website. However, it is still necessary to submit the app to Facebook so you have an App ID. Apps can be submitted to Facebook via <a href="https://developers.facebook.com/" target="_blank" rel="nofollow noopener external" title="Go to: https://developers.facebook.com/" class="extern outlink">Facebook Developers</a>.</p>
+
+
+
+<p>The Facebook object makes asynchronous requests. This means the game keeps running while operations which may take several seconds (like submitting a score) complete in the background. Therefore, the Facebook object works around the principle of an action which starts a task (like <em>Publish score</em>), which then triggers a condition when it has completed (like <em>On score submitted</em>). These may be a few seconds apart and the game continues to run in between, rather than freezing the game while it waits for completion. As with most asynchronous requests, actions may complete in a different order to that which they were made.</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Readiness</h2>
+<p>The Facebook object takes a moment to load on startup. Do not attempt to use the Facebook object before <em>On ready</em> has triggered or <em>Is ready</em> is true, otherwise the actions will be ignored.</p>
+
+<p>You must enter the <strong>App ID</strong> for the Facebook object to successfully load, even in testing. If you don't enter it, the object will never become ready. This is because Facebook prevent you using the API unless you have a real App ID to give it.</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Logging in</h2>
+<p>The user must successfully log in with their Facebook account before they can use any other features of the Facebook object, such as posting to the user's wall. This is done with the <em>Log in</em> action, and since login can take a few seconds you must wait until <em>On user logged in</em> triggers before using any other features.</p>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>Facebook Playable Ads</h2>
+<p>This plugin also provides the <em>On CTA click</em> action for Facebook Playable Ads. This action can be used independently of the other features, i.e. without having to log in first, or provide an app ID or any other properties.</p>
+
+<a class="internalNavLink" name="internalH1Link3" id="internalH1Link3"></a><h2>Facebook Properties</h2>
+<dl class="sans">
+	<dt>App ID</dt>
+	<dd>The App ID given for your app in the Facebook Developers section.</dd>
+
+	<dt>App Secret</dt>
+	<dd>This is only necessary if you plan to use the Scores API. Otherwise do not enter the app secret. The app secret can be found in the Facebook Developers section for your app and is currently necessary to enable the Scores API.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link4" id="internalH1Link4"></a><h2>Facebook conditions</h2>
+<dl class="sans">
+	<dt>Is ready</dt>
+	<dd>True if the Facebook object is ready to be used. When false, the Facebook object is still loading the necessary scripts and all actions will be ignored.</dd>
+
+	<dt>Is user logged in</dt>
+	<dd>True if the user is currently logged in with their Facebook account.</dd>
+
+	<dt>On name available</dt>
+	<dd>Triggered shortly after <em>On user logged in</em>, when the expressions to get the user's name are available.</dd>
+
+	<dt>On ready</dt>
+	<dd>Triggered when the Facebook object is ready to be used. Before this triggers, the Facebook object is still loading the necessary scripts and all actions will be ignored.</dd>
+
+	<dt>On user logged in</dt>
+	<dd>Triggered when the user has successfully logged in. It also triggers on startup if the user has previously logged in, and they have returned to the app with a remembered login. This also triggers at the start of each layout throughout the game while the user is logged in.</dd>
+
+	<dt>On user logged out</dt>
+	<dd>Triggered if the user logs out during the game.</dd>
+
+	<dt>On hi-score</dt>
+	<dd>Triggers once for each hi-score after the <em>Request hi-score board</em> action. The <em>HiscoreName</em>, <em>HiscoreRank</em> and <em>Score</em> expressions contain the current hi-score information.</dd>
+
+	<dt>On score submitted</dt>
+	<dd>Triggers when the <em>Publish score</em> action has successfully completed.</dd>
+
+	<dt>On user top score available</dt>
+	<dd>Triggers when the <em>Request user top score</em> action has successfully completed. The <em>Score</em> expression has the user's top score.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link5" id="internalH1Link5"></a><h2>Facebook actions</h2>
+<dl class="sans">
+	<dt>Log in</dt>
+	<dd>Open a popup window requesting the user to log in. This can only be called in a user-input event, such as a key press, button push, mouse click or touch screen tap. The user may cancel at the log in screen so logging in is not guaranteed to be successful. You must provide a comma-separated list of permissions to request. Some features of the Facebook plugin depend on the user approving certain permissions. Do not request permissions that your application does not need. You can find documentation on the available permissions in the <a href="https://developers.facebook.com/docs/facebook-login/permissions" target="_blank" rel="nofollow noopener external" title="Go to: https://developers.facebook.com/docs/facebook-login/permissions" class="extern outlink">Facebook developer's guide</a>.</dd>
+
+	<dt>Log out</dt>
+	<dd>Log the current user out from Facebook.</dd>
+
+	<dt>On CTA click</dt>
+	<dd><strong>For Facebook Playable Ads.</strong> In a Playable Ad, use this action when the user interacts with the call-to-action (CTA) in the ad. This action can be used independently of the rest of the plugin's features.</dd>
+
+	<dt>Prompt to share link</dt>
+	<dd>Open a dialog prompting the current user to share a URL of your choosing on their wall. This does not require any permissions, but the user is free to cancel the action.</dd>
+
+	<dt>Prompt to share this app</dt>
+	<dd>Open a dialog prompting the current user to share the URL to the current Facebook app on their wall. This does not require any permissions, but the user is free to cancel the action.</dd>
+
+	<dt>Prompt wall post</dt>
+	<dd>Open a dialog prompting the current user to make a wall post. No content or links is added - it is an empty text box for the user to type anything they like. This does not require any permissions, but the user is free to cancel the action.</dd>
+
+	<dt>Publish link</dt>
+	<dd>Automatically publish a URL to the user's wall without any prompt. Descriptions and a thumbnail image can optionally be provided. This requires that the user has logged in with the <em>Publish to stream</em> permission.</dd>
+
+	<dt>Publish wall post</dt>
+	<dd>Automatically publish a message to the user's wall without any prompt. This requires that the user has logged in with the <em>Publish to stream</em> permission.</dd>
+
+	<dt>Publish score</dt>
+	<dd>Publish a numerical score to the hi-score board for the game. This requires that the user has logged in with the <em>Publish scores</em> permission. When the action completes, it triggers <em>On score submitted</em>.</dd>
+
+	<dt>Request hi-score board</dt>
+	<dd>Request the game's hi-scores. This requires that the user has logged in with the <em>Publish scores</em> permission. This action will repeatedly trigger <em>On hi-score</em> once per score on the hi-score board. It is up to you to find a way to display these scores; appending each hi-score to a text object is a simple way to display them.</dd>
+
+	<dt>Request user top score</dt>
+	<dd>Request the current logged in user's top score for this game. This requires that the user has logged in with the <em>Publish scores</em> permission. When the action completes, it triggers <em>On user top score available</em>.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link6" id="internalH1Link6"></a><h2>Facebook expressions</h2>
+<dl class="sans">
+	<dt>FirstName</dt>
+	<dd>The current user's first name. This is only set after <em>On name available</em> triggers.</dd>
+
+	<dt>FullName</dt>
+	<dd>The current user's full name. This is only set after <em>On name available</em> triggers.</dd>
+
+	<dt>LastName</dt>
+	<dd>The current user's full name. This is only set after <em>On name available</em> triggers.</dd>
+
+	<dt>UserIDStr</dt>
+	<dd>The current user's ID, which can be used to distinguish different users with the same name. This is only set if the user is logged in. Note: although this is a number, it is returned as a string since IDs can be larger numbers than Javascript can express.</dd>
+
+	<dt>HiscoreName</dt>
+	<dd>The current hi-score board entry name. This is only set in an <em>On hi-score</em> event.</dd>
+
+	<dt>HiscoreRank</dt>
+	<dd>The current hi-score board entry rank, from 1 down to the number of hi-score entries requested. This is only set in an <em>On hi-score</em> event.</dd>
+
+	<dt>HiscoreUserIDStr</dt>
+	<dd>Return the user ID of the current hi-score board entry. This is unique even if two people on the hi-score board have the same name. Note: although this is a number, it is returned as a string since IDs can be larger numbers than Javascript can express.</dd>
+
+	<dt>Score</dt>
+	<dd>Either the current hi-score in an <em>On hi-score</em> event, or the current user's score in <em>On user top score available</em>.</dd>
+</dl>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/html-element" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                HTML Element script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IHTMLElementInstance</code> interface derives from <a class="extern" href="../object-interfaces/idominstance.html" rel="noopener" target="_blank" title="Make your own games">IDOMInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/html-element.html" rel="noopener" target="_blank" title="Make your own games">HTML Element plugin</a>.</p>
+<p>In DOM mode the HTML Element can be accessed with standard DOM APIs using the <code>getElement()</code> method of <code>IDOMInstance</code>. However these methods can all still be used in worker mode. Most of the methods are asynchronous as in this case updates are managed by posting messages between the worker and the DOM.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>HTML Element events</h2>
+<p>See <a class="extern" href="../interfaces/instance-event.html" rel="noopener" target="_blank" title="Make your own games">instance event</a> for standard instance event object properties.</p>
+<dl>
+<dt>"click"</dt>
+<dd>Fired when any part of the HTML Element or its content is clicked. This event fires repeatedly for the target element followed by all parent elements up to the main HTML element, simulating event bubbling. The event object has two additional properties <code>targetId</code> and <code>targetClass</code> that can be used to identify the element clicked.</dd>
+<dt>"animationend"</dt>
+<dd>Fired when any CSS animation inside the HTML element finishes (based on the DOM event of the same name, but note this event is dispatched by Construct and not the DOM). The event object has three additional properties: <code>targetId</code> and <code>targetClass</code>, which can be used to identify the element whose animation ended, and <code>animationName</code> which identifies the name of the CSS animation that ended (as defined by the <code>@keyframes</code> rule).</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>HTML Element APIs</h2>
+<dl>
+<dt>async setContent(str, type = "html", selector = "", isAll = false)</dt>
+<dd>Replaces some content inside the HTML element with the given string <code>str</code>. The string is interpreted according to <code>type</code> which must be one of <code>"html"</code>, <code>"bbcode"</code> or <code>"text"</code>. The location to replace content is specified by a CSS selector string. This can be left blank to replace the content of the entire main HTML element. The <code>isAll</code> flag will update all elements matching the selector if set, otherwise only the first matching element is updated.</dd>
+<dt>async insertContent(str, type = "html", atEnd = true, selector = "", isAll = false)</dt>
+<dd>Insert the string of content <code>str</code> inside the HTML element. The string is interpreted according to <code>type</code> which must be one of <code>"html"</code>, <code>"bbcode"</code> or <code>"text"</code>. The location to insert content is specified by a CSS selector string. This can be left blank to insert the content to the main HTML element. The <code>atEnd</code> flag inserts content at the end if true, or the beginning if false. The <code>isAll</code> flag will update all elements matching the selector if set, otherwise only the first matching element is updated.</dd>
+<dt>async setContentClass(mode, classArr, selector, isAll = false)</dt>
+<dd>Adds, toggles or removes element classes according to <code>mode</code>, which must be one of <code>"add"</code>, <code>"toggle"</code> or <code>"remove"</code>. The classes to modify are given as an array of strings in <code>classArr</code>. The location to change is specified by a CSS selector string. This can be left blank to change the classes of the main HTML element. The <code>isAll</code> flag will update all elements matching the selector if set, otherwise only the first matching element is updated.</dd>
+<dt>async setContentAttribute(mode, attrib, value, selector, isAll = false)</dt>
+<dd>Adds or removes element attributes according to <code>mode</code>, which must be one of <code>"set"</code> or <code>"remove"</code>. The string of the attribute name to modify is specified by <code>attrib</code>, and its value as a string of <code>value</code> (ignored if removing the attribute). The location to change is specified by a CSS selector string. This can be left blank to change the attributes of the main HTML element. The <code>isAll</code> flag will update all elements matching the selector if set, otherwise only the first matching element is updated.</dd>
+<dt>async setContentCssStyle(propName, value, selector, isAll)</dt>
+<dd>Sets an element's style . The string of the CSS property name to modify is specified by <code>propName</code>, which may use either CSS naming (e.g. <code>"font-size"</code>) or JavaScript naming (e.g. <code>"fontSize"</code>). The value to set for this property is given by a string of <code>value</code>; set an empty string to revert the style to default. The location to change is specified by a CSS selector string. This can be left blank to change the style of the main HTML element. The <code>isAll</code> flag will update all elements matching the selector if set, otherwise only the first matching element is updated.</dd>
+<dt>async setScrollPosition(selector, direction, position)</dt>
+<dd>Set the horizontal or vertical scroll position of an element. The HTML element to scroll is given by the CSS selector string <code>selector</code>, which can be set to an empty string to scroll the main HTML element. This action only scrolls one element matching the selector. <code>direction</code> must be set to either <code>"left"</code> to set the scroll left (horizontal) position or <code>"top"</code> to set the scroll top (vertical) position. The <em>position</em> value is the scroll position to set in CSS pixels.</dd>
+<dt>htmlContent</dt>
+<dd>A string of the complete inner HTML of the main HTML element. This can also be assigned to change the full content of the HTML element. </dd>
+<dt>textContent</dt>
+<dd>A string of the complete inner text of the main HTML element, in plain text form (with no HTML tags). This can also be assigned to change the full text content of the HTML element. </dd>
+<dt>async createSpriteImgElement(spriteInst, selector, insertAt, id, class_)</dt>
+<dd>Creates an <code>&lt;img&gt;</code> element with the content of a given <a class="extern" href="sprite.html" rel="noopener" target="_blank" title="Make your own games">ISpriteInstance</a>'s current image, and inserts it to the HTML element. The location to insert is specified by a CSS selector string. The <code>insertAt</code> parameter must be a string of one of <code>"start"</code>, <code>"end"</code> or <code>"replace"</code> indicating how to insert the image element. The <code>id</code> and <code>class_</code> parameters are optional strings to set an ID or class for the inserted image element, which helps make it easy to style the inserted image with CSS. </dd>
+<dt>async positionInstanceAtElement(worldInst, selector)</dt>
+<dd>Sets the position and size of a given <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to match the position and size of a specific HTML element given by a CSS selector string. </dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

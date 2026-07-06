@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/ibehavior" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IBehavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IBehavior</code> interface represents a kind of behavior, such as Solid, Physics or Pin. Some behaviors derive from this class to add extra options that are global to the entire behavior, such as the physics world properties in the Physics behavior. This interface is usually accessed through the <a class="extern" href="ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> <code>behavior</code> property.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>IBehavior APIs</h2>
+<dl>
+<dt>runtime</dt>
+<dd>A reference back to the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> interface.</dd>
+<dt>id</dt>
+<dd>A read-only string with a unique identifier for this behavior as specified by the behavior developer.</dd>
+<dt>getAllInstances()</dt>
+<dd>Return an array of all instances that have this kind of behavior, for example every object with the Solid behavior. Note the returned instances may come from a range of different object types.</dd>
+<dt>static getByConstructor(ctor)</dt>
+<dd>Return an <code>IBehavior</code> from its constructor in the <code>C3.Behaviors</code> namespace, or <code>null</code> if it does not exist. For example <code>IBehavior.getByConstructor(C3.Behaviors.Bullet)</code> will return the <code>IBehavior</code> interface representing the Bullet behavior, or <code>null</code> if the behavior is not used in the project.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

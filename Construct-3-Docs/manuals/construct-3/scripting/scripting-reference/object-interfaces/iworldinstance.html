@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/iworldinstance" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                WorldInstance script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IWorldInstance</code> script interface represents a single instance of an object type (represented by <a class="extern" href="iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a>) that appears in a layout. It derives from the <a class="extern" href="iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> script interface.</p>
+<p>Many objects return a more specific class deriving from <code>IInstance</code> or <code>IWorldInstance</code> to add APIs specific to the plugin. See the <a class="extern" href="https://www.construct.net/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces.html" rel="noopener" target="_blank" title="Make your own games">Plugin interfaces reference</a> for more information.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Getting an IWorldInstance</h2>
+<p>Instances are typically accessed through <a class="extern" href="iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> methods like <code>getFirstInstance()</code>. For example, <code>runtime.objects.Sprite.getFirstInstance()</code> will return the first instance of the Sprite object type.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>World instance events</h2>
+<p>The following events can be listened for on any <code>IWorldInstance</code> using the <code>addEventListener</code> method. See <a class="extern" href="../interfaces/instance-event.html" rel="noopener" target="_blank" title="Make your own games">instance event</a> for standard event properties. Note many more kinds of addon-specific events can be fired. See the documentation on each addon's script interfaces for more information.</p>
+<dl class="sans">
+<dt>"hierarchyready"</dt>
+<dd>Fired for the root instance in a hierarchy after all instances have finished creating. During creation of a hierarchy it is uncertain whether other instances in the hierarchy have been created yet, which can sometimes complicate initializing hierarchies. When this event fires all instances in the hierarchy have been created, including triggering <em>On created</em> in event sheets, and so it is a suitable time to perform initialization of an entire hierarchy. As this only fires for the root instance, if you wish to iterate the rest of the instances in the hierarchy, use the <code>allInstances()</code> generator method of the root instance.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>General APIs</h2>
+<dl>
+<dt>layout</dt>
+<dd>An <a class="extern" href="../layout-interfaces/ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout interface</a> representing the layout the instance is on.</dd>
+<dt>layer</dt>
+<dd>An <a class="extern" href="../layout-interfaces/ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer interface</a> representing the layer the instance is on.</dd>
+<dt>x</dt>
+<dt>y</dt>
+<dt>setPosition(x, y)</dt>
+<dt>getPosition()</dt>
+<dd>The position of this instance, in layout co-ordinates. The methods allow setting or getting both co-ordinates at the same time.</dd>
+<dt>offsetPosition(dx, dy)</dt>
+<dd>Adjust the position by adding <code>dx</code> to the X co-ordinate and <code>dy</code> to the Y co-ordinate.</dd>
+<dt>z</dt>
+<dd>The Z co-ordinate of the instance, relative to the layer it is on.</dd>
+<dt>totalZ</dt>
+<dd>A read-only value indicating the Z co-ordinate of the instance including its layer's Z elevation.</dd>
+<dt>setPosition3d(x, y, z)</dt>
+<dt>offsetPosition3d(dx, dy, dz)</dt>
+<dt>getPosition3d()</dt>
+<dd>Set, offset or get the X, Y and Z co-ordinates at the same time.</dd>
+<dt>originX</dt>
+<dt>originY</dt>
+<dt>setOrigin(originX, originY)</dt>
+<dt>getOrigin()</dt>
+<dd>The current origin point of this instance, represented as a normalized position in the range [0, 1]. For example the origin (0, 0) is in the top-left corner, and (0.5, 0.5) is in the middle regardless of the size of the object. The methods allow setting or getting both co-ordinates at the same time. </dd>
+<dt>width</dt>
+<dt>height</dt>
+<dt>depth</dt>
+<dt>setSize(width, height)</dt>
+<dt>setSize3d(width, height, depth)</dt>
+<dt>getSize()</dt>
+<dt>getSide3d()</dt>
+<dd>The size of this instance, in layout co-ordinates. The methods allow setting or getting both values at the same time. The depth is only relevant for 3D objects - for 2D objects the depth will be 0.</dd>
+<dt>angle</dt>
+<dd>The angle of the instance in radians. If this is changed, <code>angleDegrees</code> updates accordingly.</dd>
+<dt>angleDegrees</dt>
+<dd>The angle of the instance in degrees. If this is changed, <code>angle</code> updates accordingly.</dd>
+<dt>getBoundingBox(ignoreMesh = false)</dt>
+<dt>getBoundingBox3d(ignoreMesh = false)</dt>
+<dd>Return a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a>, or for the 3D variant an <a class="extern" href="../interfaces/iaabb3d.html" rel="noopener" target="_blank" title="Make your own games">IAABB3D</a>, representing the axis-aligned bounding box of the instance in layout co-ordinates. By default this takes in to account any changes from the mesh distortion feature - specifying <code>false</code> for the <code>ignoreMesh</code> parameter will return a bounding box as if the object did not use mesh distortion. </dd>
+<dt>getBoundingQuad(ignoreMesh = false)</dt>
+<dd>Return a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMQuad">DOMQuad</a> representing the bounding quad of the instance in layout co-ordinates. This is always a rectangle, but unlike the bounding box can represent rotation. By default this takes in to account any changes from the mesh distortion feature - specifying <code>false</code> for the <code>ignoreMesh</code> parameter will return a bounding quad as if the object did not use mesh distortion. </dd>
+<dt>isVisible</dt>
+<dd>A boolean indicating whether the instance is visible in the layout.</dd>
+<dt>isOnScreen()</dt>
+<dd>Returns true if any part of the object's bounding box is within the screen area (performing the same check as the <em>Is on-screen</em> condition). This is not affected by the object's visibility or opacity.</dd>
+<dt>opacity</dt>
+<dd>The opacity of the instance, as a floating point number in the range [0, 1], where 0 is fully transparent and 1 is fully opaque.</dd>
+<dt>colorRgb</dt>
+<dd>An array with 3 elements specifying the red, green and blue color filter of the instance, with color values as floats in the 0-1 range.</dd>
+<dt>blendMode</dt>
+<dd>A string indicating the current blend mode of the instance, controlling how it draws over the background. The allowed strings are the same as accepted by the <a class="extern" href="../graphics-interfaces/irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> method <code>setBlendMode()</code>.</dd>
+<dt>sampling</dt>
+<dd>A string of the instance's sampling mode, which is one of <code>"auto"</code>, <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code>.</dd>
+<dt>activeSampling</dt>
+<dd>A read-only string with the instance's active sampling mode. This is only different to <code>sampling</code> when the sampling mode is <code>"auto"</code>: in this case the active sampling mode is inherited from the project, layout, layer, or hierarchy. This is the sampling mode with which this instance will be rendered.</dd>
+<dt>effects</dt>
+<dd>An array of <a class="extern" href="ieffectinstance.html" rel="noopener" target="_blank" title="Make your own games">IEffectInstance</a> representing the effect parameters for each effect on the instance. Effects can also be accessed by name as well as by index - for example if there is one effect named <code>AdjustHSL</code>, it can be referred to with both <code>effects[0]</code> and <code>effects.AdjustHSL</code>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Z order APIs</h2>
+<dl>
+<dt>moveToTop()</dt>
+<dt>moveToBottom()</dt>
+<dd>Move the instance to the top or the bottom of its current layer in the Z order.</dd>
+<dt>moveToLayer(layer)</dt>
+<dd>Move the instance to the top of a different layer given by its <a class="extern" href="../layout-interfaces/ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a>.</dd>
+<dt>moveAdjacentToInstance(other, isAfter)</dt>
+<dd>Move the instance adjacent to <code>other</code> (another <code>IWorldInstance</code>) in the Z order. If necessary this also moves the instance to the same layer as <code>other</code>. If <code>isAfter</code> is true, it moves it just above the given instance, else just below.</dd>
+<dt>zIndex</dt>
+<dd>A read-only integer indicating the instance's current index in the Z order on its current layer, starting at 0 for the back of the current layer, and increasing as it moves to the front.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Collision APIs</h2>
+<p>See also the <a class="extern" href="../interfaces/icollisionengine.html" rel="noopener" target="_blank" title="Make your own games">ICollisionEngine</a> interface for more collision APIs.</p>
+<dl>
+<dt>isCollisionEnabled</dt>
+<dd>Set or get a boolean indicating whether collisions are enabled for this instance. If disabled, the instance will always fail all overlap or collision checks.</dd>
+<dt>containsPoint(x, y)</dt>
+<dd>Test if a point intersects this instance, using its collision polygon if any, and return a boolean indicating if the point is inside the instance's collision area.</dd>
+<dt>testOverlap(wi)</dt>
+<dd>Test if this instance overlaps another world instance given by an <code>IWorldInstance</code>, returning <code>true</code> if they overlap, else <code>false</code>. This uses the object's collision polygons if any. If either instance has collisions disabled, this will always return <code>false</code>.</dd>
+<dt>testOverlapSolid()</dt>
+<dd>Test if this instance overlaps any instance with the <a class="extern" href="../../../behavior-reference/solid.html" rel="noopener" target="_blank" title="Make your own games">Solid behavior</a>. This returns the instance interface class for the first instance with the solid behavior that was found to overlap this instance, or <code>null</code> if none. This uses the object's collision polygons if any and respects solid collision filtering.<br/>
+</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Mesh distortion APIs</h2>
+<dl>
+<dt>createMesh(hsize, vsize, copyFromOldMesh = false)</dt>
+<dd>Create a mesh for deforming the appearance of the object with the given number of mesh points horizontally and vertically. The minimum size is 2 on each axis. If there is an existing mesh, by default all mesh points are reset when the mesh size changes. To preserve the existing mesh points when resizing an existing mesh, pass <code>true</code> for <code>copyFromOldMesh.</code></dd>
+<dt>releaseMesh()</dt>
+<dd>Releases any mesh that has been created, reverting back to default rendering of the object with no mesh distortion. Ignored if no mesh created.</dd>
+<dt>setMeshPoint(col, row, opts)</dt>
+<dd>Alter a given point in a created mesh given by its zero-based column and row. <code>opts</code> is an object that may specify the following properties:<ul class="list"><br/>
+<li><code>mode</code>: a string of <code>"absolute"</code> (default) or <code>"relative"</code>, determining how to interpret the <code>x</code>, <code>y</code>, <code>u</code>and <code>v</code> options.</li><br/>
+<li><code>x</code> and <code>y</code>: the mesh point position offset, in normalized co-ordinates [0, 1] across the object size. These are allowed to go outside the object bounds. In relative mode these are added to the mesh point's current position.</li><br/>
+<li><code>z</code>: the Z co-ordinate of the mesh point, allowing for distortion in 3D. This always uses absolute mode.</li><br/>
+<li><code>u</code> and <code>v</code>: the texture co-ordinate for the mesh point, in normalized co-ordinates [0, 1]. These are not allowed to go outside the object bounds. These can be omitted, or in absolute mode be set to -1, to indicate not to change the texture co-ordinate from the default.</li></ul></dd>
+<dt>getMeshPoint(col, row)</dt>
+<dd>Return an object describing the currently set mesh point at its zero-based column and row. The returned object has the same properties as the <code>opts</code> argument of <code>setMeshPoint()</code> uses, except for <code>mode</code>. The returned values are all absolute values (as relative mode is only relevant when applying changes).</dd>
+<dt>getMeshSize()</dt>
+<dd>Return the size of the mesh as <code>[hsize, vsize]</code> (corresponding to the size passed to <code>createMesh()</code>) if one is created. If no mesh has been created, returns <code>[0, 0]</code>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Scene graph APIs</h2>
+<dl>
+<dt>getParent()</dt>
+<dd>Return the parent <code>IWorldInstance</code> of this instance in the scene graph hierarchy if any, else <code>null</code>.</dd>
+<dt>getTopParent()</dt>
+<dd>Return the top parent of this instance in the scene graph hierarchy (which by definition has no parent itself) if any, else <code>null</code>.</dd>
+<dt>*parents()</dt>
+<dd>A generator method that can be used to iterate all the instance's parents, up to the top parent.</dd>
+<dt>getChildCount()</dt>
+<dd>Returns the number of children that have been added to this instance in the scene graph hierarchy.</dd>
+<dt>getChildAt(index)</dt>
+<dd>Of the children that have been added to this instance, return the child instance at the given zero-based index. If the index is out of bounds, returns <code>null</code>.</dd>
+<dt>*children()</dt>
+<dd>A generator method that can be used to iterate all the instance's added children.</dd>
+<dt>*allChildren()</dt>
+<dd>A generator method that can be used to iterate all the instance's children recursively, i.e. including children of children, down to the bottom of the scene graph hierarchy.</dd>
+<dt>addChild(wi, opts)</dt>
+<dd>Add another world instance given by an <code>IWorldInstance</code> as a child of this instance in the scene graph hierarchy. This instance becomes its parent in the scene graph hierarchy. The child will move, scale and rotate with this instance according to the provided options specified in the object <code>opts</code>, which supports the following properties:<br/>
+<ul class="list"><br/>
+<li><code>transformX</code>: move the child with this instance's X position</li><br/>
+<li><code>transformY</code>: move the child with this instance's Y position</li><br/>
+<li><code>transformZ</code>: move the child with this instance's Z position</li><br/>
+<li><code>transformWidth</code>: scale the child with this instance's width</li><br/>
+<li><code>transformHeight</code>: scale the child with this instance's height</li><br/>
+<li><code>transformAngle</code>: rotate the child with this instance's angle</li><br/>
+<li><code>transformOpacity</code>: change the child's opacity according to the parent's opacity</li><br/>
+<li><code>transformVisibility</code>: make the child invisible if the parent is also invisible</li><br/>
+<li><code>destroyWithParent</code>: automatically destroy the child if this instance is destroyed</li></ul>Each option is a boolean which defaults to <code>false</code> if omitted, so only <code>true</code> properties need to be specified.<br/>
+</dd>
+<dt>getHierarchyOpts()</dt>
+<dd>Return an object with properties representing the options specified for this child when it was added to its parent. The returned object has the same properties as the <code>opts</code> argument of <code>addChild()</code> uses, such as <code>transformX</code>, with boolean values indicating whether they are enabled. Therefore the returned object can be passed directly to another call to <code>addChild()</code> to re-use the same options.</dd>
+<dt>removeChild(wi)</dt>
+<dd>Remove an existing child given by an <code>IWorldInstance</code> that was previously added with <code>addChild()</code>. The child is detached from the scene graph hierarchy and this instance will no longer act as its parent. The removed child still keeps its own children, if it has any.</dd>
+<dt>removeFromParent()</dt>
+<dd>Shorthand method for <code>wi.getParent().removeChild(wi)</code>, i.e. removes this instance from its parent if it has any. If the instance has no parent, the method has no effect.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

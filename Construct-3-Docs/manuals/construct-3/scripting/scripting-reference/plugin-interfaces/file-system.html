@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/file-system" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                File System script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IFileSystemObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/filesystem.html" rel="noopener" target="_blank" title="Make your own games">File System plugin</a>. Refer to the plugin documentation for details about permissions and known folders.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Typically it is used through <code>runtime.objects.FileSystem</code>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Common types</h2>
+<p>The following types are used across multiple APIs and so are described once here.</p>
+<h3>Accept types</h3>
+<p>File open and save pickers allow specifying file type filters, also known as the accept types. Each accept type is specified by an object with the following properties:</p>
+<ul class="list">
+<li><code>description</code>: a description of this file type that may be shown to the user.</li>
+<li><code>accept</code>: an object whose keys are MIME types, and values are an array of the corresponding file extensions, including the dot.</li>
+</ul>
+<p>Here is an example for an accept type for common image file formats:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-2-close">{</span>
+	<span class="token literal-property property">description</span><span class="token operator">:</span> <span class="token string">"Images"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">accept</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-1-close">{</span>
+		<span class="token string-property property">"image/*"</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-0-close">[</span><span class="token string">".png"</span><span class="token punctuation">,</span> <span class="token string">".jpg"</span><span class="token punctuation">,</span> <span class="token string">".webp"</span><span class="token punctuation">,</span> <span class="token string">".avif"</span><span class="token punctuation brace-square brace-close brace-level-3" id="pair-0-open">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-1-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-2-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3>Start in locations</h3>
+<p>An initial folder location can be specified using a string which may be one of the following values: <code>"default"</code>, <code>"desktop"</code>, <code>"documents"</code>, <code>"downloads"</code>, <code>"music"</code>, <code>"pictures"</code>, <code>"videos"</code>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>File System events</h2>
+<dl>
+<dt>"drop"</dt>
+<dd>Fired when the user drags and drops files in to the window. The event object has the property <code>files</code> which has an array of <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/File" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/File">File</a> objects representing the dropped files.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>File System APIs</h2>
+<dl>
+<dt>addEventListener(eventName, callback)</dt>
+<dt>removeEventListener(eventName, callback)</dt>
+<dd>Add or remove a callback function for a File System event. See <em>File System events</em> above for more information.</dd>
+<dt>isSupported</dt>
+<dd>A read-only boolean indicating if file system features are supported. This depends on support for the File System Access API in the browser. If false then none of the file system APIs will work.</dd>
+<dt>desktopFeaturesSupported</dt>
+<dd>A read-only boolean indicating whether desktop-specific features are available. This is only the case when running after using a supported desktop export option. When true, the known folder pickers like <code>"&lt;documents&gt;"</code> can be used (providing they are available - use the <code>hasPickerTag()</code> method to check), as well as the desktop-specific methods like <code>runFile()</code> and <code>shellOpen()</code>.</dd>
+<dt>hasPickerTag(pickerTag)</dt>
+<dd>Return a boolean indicating if a given picker tag has been remembered from a previous session, or if a known folder tag is available. In this case the picker tag can still be referred to for file system operations, such as to read a previously chosen file, without having to show a picker again.</dd>
+<dt>async showSaveFilePicker(opts)</dt>
+<dd>Show a save file picker allowing the user to choose a file on their local system to save to. The <code>opts</code> parameter is an object which uses the following properties to specify options:<ul class="list"><li><code>pickerTag</code> (required): a string of a tag to identify the chosen folder.</li><br/>
+<li><code>acceptTypes</code>: an array of objects used to filter the listed files. See <em>Accept types</em> above for more information.</li><br/>
+<li><code>showAcceptAll</code>: a boolean indicating whether to show an accept type that shows all kinds of files.</li><br/>
+<li><code>suggestedName</code>: a string used as the initial filename choice to save to in the picker.</li><br/>
+<li><code>id</code>: a string used as an extra identifier for remembering the picker settings, such as the last viewed folder.</li><br/>
+<li><code>startIn</code>: a string specifying the initial folder to show (when not remembered based on the <code>id</code>). See <em>Start in locations above for more information.</em></li></ul> The method returns a Promise that resolves with an array of strings for the selected file names, which in the case of a save file picker, will contain a single entry.</dd>
+<dt>async showOpenFilePicker(opts)</dt>
+<dd>Show an open file picker allowing the user to choose one or multiple files on their local system to open. The <code>opts</code> parameter is an object which uses the following properties to specify options:<ul class="list"><li><code>pickerTag</code> (required): a string of a tag to identify the chosen folder.</li><br/>
+<li><code>acceptTypes</code>: an array of objects used to filter the listed files. See <em>Accept types</em> above for more information.</li><br/>
+<li><code>showAcceptAll</code>: a boolean indicating whether to show an accept type that shows all kinds of files.</li><br/>
+<li><code>multiple</code>: a boolean indicating whether to allow the user to select multiple files.</li><br/>
+<li><code>id</code>: a string used as an extra identifier for remembering the picker settings, such as the last viewed folder.</li><br/>
+<li><code>startIn</code>: a string specifying the initial folder to show (when not remembered based on the <code>id</code>). See <em>Start in locations above for more information.</em></li></ul> The method returns a Promise that resolves with an array of strings for the selected file names.</dd>
+<dt>async showFolderPicker(opts)</dt>
+<dd>Show a folder picker allowing the user to choose a folder on their local system. The <code>opts</code> parameter is an object which uses the following properties to specify options:<ul class="list"><li><code>pickerTag</code> (required): a string of a tag to identify the chosen folder.</li><br/>
+<li><code>mode</code>: a string of either <code>"read"</code> or <code>"readwrite"</code> to specify whether read-only or read-write permission is to be granted for the chosen folder, which also affects the permission prompt shown to the user.</li><br/>
+<li><code>id</code>: a string used as an extra identifier for remembering the picker settings, such as the last viewed folder.</li><br/>
+<li><code>startIn</code>: a string specifying the initial folder to show (when not remembered based on the <code>id</code>). See <em>Start in locations above for more information.</em></li></ul> The method returns a Promise that resolves with an array of strings for the selected folder names, which in the case of a folder picker, will contain a single entry.</dd>
+<dt>async writeFile(opts)</dt>
+<dd>Write data to a previously chosen file. The <code>opts</code> parameter is an object which uses the following properties to specify options:<ul class="list"><li><code>pickerTag</code> (required): a string of the picker tag used to choose the file or folder.</li><br/>
+<li><code>data</code> (required): a string or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a> with the data to be written. Strings are written as text with UTF-8 encoding.</li><br/>
+<li><code>folderPath</code>: when the picker tag refers to a folder, the relative path to the file inside that folder, e.g. "subfolder/file.txt".</li><br/>
+<li><code>mode</code>: a string of either <code>"overwrite"</code> or <code>"append"</code> for the file write mode. The default is to overwrite, replacing the entire file contents with the provided data. Append mode is only supported when writing text (passing a string for <code>data</code>).</li><br/>
+<li><code>fileTag</code>: a file tag used by triggers in the event system.</li></ul> The method returns a Promise that resolves when the write has completed.</dd>
+<dt>async readFile(opts)</dt>
+<dd>Read data from a previously chosen file. The <code>opts</code> parameter is an object which uses the following properties to specify options:<ul class="list"><li><code>pickerTag</code> (required): a string of the picker tag used to choose the file or folder.</li><br/>
+<li><code>mode</code> (required): a string of either <code>"text"</code> or <code>"binary"</code> to specify the type of the data returned. In text mode the returned Promise will resolve with a string, and in binary mode it will resolve with an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>.</li><br/>
+<li><code>folderPath</code>: when the picker tag refers to a folder, the relative path to the file inside that folder, e.g. "subfolder/file.txt".</li><br/>
+<li><code>fileTag</code>: a file tag used by triggers in the event system.</li></ul> The method returns a Promise that resolves with either a string when <code>mode</code> is <code>"text"</code>, or an ArrayBuffer when <code>mode</code> is <code>"binary"</code>.</dd>
+<dt>async createFolder(pickerTag, folderPath, fileTag)</dt>
+<dd>Only applies to folder pickers. Create a subfolder within a previously picked folder. <code>folderPath</code> specifies the folder to create. This can refer to multiple subfolders which will all be created, e.g. "subfolder/otherfolder". <code>fileTag</code> is optional and used by triggers in the event system. Returns a Promise that resolves when the folder has been created.</dd>
+<dt>async copyFile(pickerTag, srcFolderPath, destFolderPath, fileTag)</dt>
+<dd>Only applies to folder pickers. Copy a file within a previously picked folder. <code>srcFolderPath</code> specifies an existing file to copy, e.g. "subfolder/file1.txt". <code>destFolderPath</code> specifies where to create a copy; this will either create a new file if it doesn't exist, or overwrite an existing file if it already exists. <code>fileTag</code> is optional and used by triggers in the event system. Returns a Promise that resolves when the file has been copied.</dd>
+<dt>async moveFile(pickerTag, srcFolderPath, destFolderPath, fileTag)</dt>
+<dd>Only applies to folder pickers. Move a file within a previously picked folder. The file can be moved from one subfolder to another, or if it stays in the same folder, it renames the file. <code>srcFolderPath</code> specifies the file to move, e.g. "subfolder/file1.txt". <code>destFolderPath</code> specifies where to move (or rename) the file to. <code>fileTag</code> is optional and used by triggers in the event system. Returns a Promise that resolves when the file has been moved.</dd>
+<dt>async delete(pickerTag, folderPath, isRecursive, fileTag)</dt>
+<dd>Only applies to folder pickers. Delete a file or folder within a previously picked folder. <code>folderPath</code> specifies the file or folder to delete, e.g. "subfolder/file1.txt" or "subfolder". <code>isRecursive</code> applies only when Folder path identifies a folder: if true it will delete all files and folders within the identified folder as well as the folder itself, but if false it will only successfully delete the folder if it is already empty. <code>fileTag</code> is optional and used by triggers in the event system. Returns a Promise that resolves when the deletion has completed. Note that deleting a folder recursively may take a long time if it contains a large number of files/folders.</dd>
+<dt>async listContent(pickerTag, folderPath, isRecursive, fileTag)</dt>
+<dd>Only applies to folder pickers. Retrieves a list of all files and folders within a previously picked folder. <code>folderPath</code> identifies a subfolder to list the contents for, or can be left empty to list the contents of the originally picked folder. If <code>isRecursive</code> is true it will also list all files and folders through subfolders of the specified folder. <br/>
+<code>fileTag</code> is optional and used by triggers in the event system. Returns a Promise that resolves upon completion with an object with the following properties:<ul class="list"><li><code>files</code>: an array of strings with file names in the specified folder.</li><br/>
+<li><code>folders</code>: an array of strings with folder names in the specified folder.</li></ul> When <code>isRecursive</code> was true, the listed file and folder names may include slashes, such as <em>subfolder/file.txt</em>; for cross-platform consistency these always use forwards slashes, even on Windows.</dd>
+<dt>async shellOpen(pickerTag, filePath, fileTag)</dt>
+<dd>Only supported in desktop exports when <code>desktopFeaturesSupported</code> is true. This action requests that the operating system shell (the component that handles the system user interface) opens the specified file. Typically this launches the default app associated with the file type and then opens the file in it, similar to double-clicking the file in the system file explorer. <code>fileTag</code> is optional and used by triggers in the event system. Returns a Promise that resolves when the operation has completed.</dd>
+<dt>async runFile(pickerTag, filePath, args, fileTag)</dt>
+<dd>Only supported in desktop exports when <code>desktopFeaturesSupported</code> is true. This action attempts to execute the provided file path. Command-line arguments can also be optionally provided as the string <code>args</code>. This can be used to run another program. Uniquely for this action the folder picker parameter can be left empty, in which case the provided file path is run directly; this can be useful to run system executables like "cmd.exe" on Windows. <code>fileTag</code> is optional and used by triggers in the event system. Returns a Promise that resolves when the operation has completed.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

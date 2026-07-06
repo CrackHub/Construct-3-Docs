@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/internationalization" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Internationalization
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Internationalization</strong> plugin provides tools to manage the localization of a project. This includes facilitating translations, pluralization, formatting dates for the user's locale, and so on.</p>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=internationalization" rel="noopener" target="_blank" title="Make games in the browser">built-in example project</a> for a thorough example showing the various internationalization features.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the string lookup features of this plugin can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/internationalization.html" rel="noopener" target="_blank" title="Make your own games">Internationalization script interface</a>. Note however many other features of this plugin merely access the browser-provided <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl</a> APIs, so those are not duplicated in the script interface, as you can access them directly instead.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Locales</h2>
+<p>Locales - which specify a region, language or dialect - are specified using standardized <a class="extern outlink" href="https://en.wikipedia.org/wiki/IETF_language_tag" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/IETF_language_tag">BCP 47 language tag</a>, also known as just a <em>language tag</em>. For example <code>en-US</code> refers to US English, <code>en-GB</code> refers to British English, <code>pt-BR</code> refers to Brazilian Portuguese, and so on.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>The translation file</h2>
+<p>The plugin can be loaded with translation information through event sheets, but the most common use case is to have all the strings for a given language in a separate file and load that using the <em>Load from JSON</em> action. A bare-bones example of such file would be as follows:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-2-close">{</span>
+	<span class="token string-property property">"locale"</span><span class="token operator">:</span> <span class="token string">"en-GB"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"strings"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-1-close">{</span>
+		<span class="token string-property property">"foo"</span><span class="token operator">:</span> <span class="token string">"example localized string"</span><span class="token punctuation">,</span>
+		<span class="token string-property property">"bar"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-3" id="pair-0-close">{</span>
+			<span class="token string-property property">"baz"</span><span class="token operator">:</span> <span class="token string">"more localized text"</span>
+		<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-0-open">}</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-1-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-2-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>A language file is a JSON file, with two distinct keys.</p>
+<p>The <code>"strings"</code> key is mandatory, all the localized text should be nested inside it. It can contain any valid JSON - how it is organized is entirely up to the user to decide what is more convenient. Trying to load a file without this key will result in an error.</p>
+<p>The <code>"locale"</code> key is optional and is used when loading to indicate to what language the file corresponds to. If the key is not present then the content of the file will be associated with the locale the Internationalization plugin is currently set to. If the key contains a value which can not be parsed into a valid locale, an error will be thrown when loading.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Loading an Internationalization file</h2>
+<p>To load an internationalization file do the following:</p>
+<ol class="list">
+<li>Use the <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX plugin</a> to request the file.</li>
+<li>In the AJAX <em>On Complete</em> trigger, use the <em>Load from JSON</em> action of the Internationalization plugin to load the AJAX data.</li>
+</ol>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104056/internationalizationmanual00.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 795x103px in new window (13.35 KB)"><span><img height="103" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104056/internationalizationmanual00.png" width="795"/></span></a></div></div>
+<p>Following those steps it is possible to load a localization file for each locale that needs it.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Looking up localized strings</h2>
+<p>Once the plugin has the data for the required locales, the next step is to look up the strings to use them where needed. To do that do the following:</p>
+<ol class="list">
+<li>Use the <em>Set locale</em> action</li>
+<li>Use the <em>Lookup</em> expression with the appropriate path</li>
+</ol>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104057/internationalizationmanual01.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 438x45px in new window (3.7 KB)"><span><img height="45" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104057/internationalizationmanual01.png" width="438"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Nesting, Push and Pop</h2>
+<p>In the case of having a few strings that need to be localized it can be easy enough to just have all of them at the root of the <strong>"strings"</strong> key in the localization file. As the amount of text that needs localization increases it can be useful to group related strings together to keep the localization files tidy.</p>
+<p>To make the lookup for a nested string you can do two things:</p>
+<h3>Absolute path</h3>
+<p>Include the absolute path to the string you are looking for in the argument of the <em>Lookup</em> expression. Dots can be used to navigate to nested JSON keys.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104066/internationalizationmanual02.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 463x22px in new window (2.37 KB)"><span><img height="22" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104066/internationalizationmanual02.png" width="463"/></span></a></div></div>
+<p>This option is straight forward and can be convenient in isolated cases.</p>
+<h3>Relative path</h3>
+<p>Push the context where the strings you are looking for are in the localization file and then use relative paths when using the <em>Lookup</em> expression. A relative path begins with a dot, and is appended to the current context.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104067/internationalizationmanual03.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 443x71px in new window (4.94 KB)"><span><img height="71" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104067/internationalizationmanual03.png" width="443"/></span></a></div></div>
+<p>In the case of having many strings in the same context it can be useful to use relative paths to avoid duplication.</p>
+<p>When using relative paths always remember to have a corresponding <em>Pop context</em> action for each <em>Push context</em> action.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Substitutions</h2>
+<p>By using substitutions it is possible to produce dynamic results at runtime, take the following example:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-4-close">{</span>
+	<span class="token string-property property">"locale"</span><span class="token operator">:</span> <span class="token string">"en-GB"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"strings"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-3-close">{</span>
+		<span class="token string-property property">"test"</span><span class="token operator">:</span> <span class="token string">"Hello {0} {1}"</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-3-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-4-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>The string has two placeholders that can be replaced at runtime if additional values are provided when using the <em>Lookup</em> expression. There can be any amount of placeholders and the number in between the curly braces refers to the order of the arguments passed to <em>Lookup</em>.</p>
+<p><strong>Example 1</strong></p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104097/internationalizationmanual04.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 549x19px in new window (2.75 KB)"><span><img height="19" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104097/internationalizationmanual04.png" width="549"/></span></a></div></div>
+<p>The output of that example is the string <strong>"Hello Good Morning"</strong>.</p>
+<p>If there are more placeholders than arguments, like in the example bellow, then the placeholders with no matching argument are left unchanged in the final result </p>
+<p><strong>Example 2</strong></p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104098/internationalizationmanual05.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 488x20px in new window (2.38 KB)"><span><img height="20" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104098/internationalizationmanual05.png" width="488"/></span></a></div></div>
+<p>The output of that example is the string <em><strong>"Hello Good {1}"</strong></em>.</p>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Plural rules</h2>
+<p>Following is a simple example of a localization file set up with a plural rule for British English.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-7-close">{</span>
+	<span class="token string-property property">"locale"</span><span class="token operator">:</span> <span class="token string">"en-GB"</span><span class="token punctuation">,</span>
+	<span class="token string-property property">"strings"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-6-close">{</span>
+		<span class="token string-property property">"plural-example"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-3" id="pair-5-close">{</span>
+			<span class="token string-property property">"one"</span><span class="token operator">:</span> <span class="token string">"{0} Pig"</span><span class="token punctuation">,</span>
+			<span class="token string-property property">"other"</span><span class="token operator">:</span> <span class="token string">"{0} Pigs"</span>
+		<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-5-open">}</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-6-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-7-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>In order to look up the plural form the <em>LookupPlural</em> expression is used passing in an additional value which is used to decide which plural form will be used. </p>
+<p><strong>Example 1</strong></p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104099/internationalizationmanual06.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 549x27px in new window (2.89 KB)"><span><img height="27" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104099/internationalizationmanual06.png" width="549"/></span></a></div></div>
+<p>That example would yield the string <strong>"1 Pig"</strong>.</p>
+<p><strong>Example 2</strong></p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104100/internationalizationmanual07.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 549x22px in new window (2.84 KB)"><span><img height="22" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/104100/internationalizationmanual07.png" width="549"/></span></a></div></div>
+<p>That example would yield the string <strong>"2 Pigs"</strong>.</p>
+<h3>Pluralization in other languages other than English</h3>
+<p>English is a relatively simple language when it comes to pluralization, as there are only two plural categories: <strong>"one"</strong> and <strong>"other"</strong> which refer to single units and more than one (or zero) respectively.</p>
+<p>Other languages might be more complex in this regard. To find out how many categories and the name each category has, use the following expressions to print out the values and see what keys your localization files need.</p>
+<p><em>PluralCategoryCount</em> will return the total amount of categories for the current locale.</p>
+<p><em>PluralCategoryAt(index)</em> will return the name of the plural category with the provided zero-based index.</p>
+<p>As an example, the locale <strong>"ar-EG"</strong> (Egypt Arabic) has six different plural categories, "few", "many", "one", "two", "zero" and "other". So a localization file for this language which uses plural rules should provide translations for each category.</p>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Internationalization conditions</h2>
+<dl class="sans">
+<dt>Compare to current locale</dt>
+<dd>Test the passed in locale value against the locale the plugin is currently configured with.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Internationalization actions</h2>
+<dl class="sans">
+<dt>Set locale</dt>
+<dd>Set the locale the plugin will use.</dd>
+<dt>Set context</dt>
+<dd>Set a context to get strings from. An absolute context overwrites any existing context and a relative context is appended to the existing one.</dd>
+<dt>Push context</dt>
+<dd>Push a context to get strings from. This helps to avoid duplication in the case of having to look up multiple strings in the same context.</dd>
+<dt>Pop context</dt>
+<dd>Remove the existing context from the stack.</dd>
+<dt>Add string</dt>
+<dd>Dynamically add a localized string to the provided context in the localization data for the current locale.</dd>
+<dt>Load from JSON</dt>
+<dd>Load the plugin with localization data for the current locale or the locale defined in the passed in JSON.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link9" name="internalH1Link9"></a><h2>Internationalization expressions</h2>
+<dl class="sans">
+<dt>Locale</dt>
+<dd>Returns the locale string the plugin is currently using.</dd>
+<dt>DefaultLocale</dt>
+<dd>Return the default locale for the current system. This can be used to select the default language.</dd>
+<dt>Lookup(Context [, ...])</dt>
+<dd>Looks up a localized string based on the current locale and a passed in context. Supports a variable list of arguments for substitution.</dd>
+<dt>LookupPlural(Context, Count [, ...])</dt>
+<dd>Looks up the plural form of a localized string based on the current locale a passed in context and a number to decide which plural form to return. Supports a variable list of arguments for substitution.</dd>
+<dt>CurrentContext</dt>
+<dd>Return the current context of the plugin.</dd>
+<dt>SelectPlural(number)</dt>
+<dd>Returns the name of the plural form based on the current locale and the passed in number.</dd>
+<dt>PluralCategoryCount</dt>
+<dd>Returns the total amount of plural categories for the current locale.</dd>
+<dt>PluralCategoryAt(index)</dt>
+<dd>Returns the plural category name based on the current locale and the provided zero-based index.</dd>
+<dt>SaveToJSON</dt>
+<dd>Returns a JSON representation of the plugin internal state.</dd>
+<dt>FormatNumberAsDecimal(number)</dt>
+<dd>Format the passed in number as a decimal based on the current locale.</dd>
+<dt>FormatNumberAsPercent(number)</dt>
+<dd>Format the passed in number as a percent based on the current locale.</dd>
+<dt>FormatNumberAsCurrency(Number, Currency, CurrencyDisplay)</dt>
+<dd>Format the passed in number as a currency in the current locale. The <strong>currency</strong> argument must be a valid 3 letter ISO currency code - <a class="extern outlink" href="https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes">see this table for supported currencies</a>. If an unsupported currency is passed in, a warning will be printed to console indicating all the supported currencies. The <strong>currencyDisplay</strong> argument can be any of <em>"symbol"</em>, <em>"narrowSymbol"</em>, <em>"code"</em>, <em>"name"</em>. Using an unsupported value will default to <em>"symbol"</em>.</dd>
+<dt>FormatNumberWithUnit(Number, Unit, UnitDisplay)</dt>
+<dd>Format the passed number as a unit in the current locale. The <strong>unit</strong> argument can take any of the values <a class="extern outlink" href="https://tc39.es/ecma402/#table-sanctioned-single-unit-identifiers" rel="nofollow noopener external" target="_blank" title="Go to: https://tc39.es/ecma402/#table-sanctioned-single-unit-identifiers">defined in this table</a>. The <strong>unitDisplay</strong> argument can be any of <em>"long"</em>, <em>"short"</em> or <em>"narrow"</em>. Using an unsupported value will default to <em>"short"</em>.</dd>
+<dt>RegionName(RegionLocale)</dt>
+<dd>Returns the region name of the passed in locale in the language of the current locale of the plugin.</dd>
+<dt>LanguageName(LanguageLocale)</dt>
+<dd>Returns the language name of the passed in locale in the language of the current locale of the plugin.</dd>
+<dt>CurrencyName(CurrencyCode)</dt>
+<dd>Returns the currency name of the passed 3 letter ISO currency code, in the language of the current locale of the plugin.</dd>
+</dl></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

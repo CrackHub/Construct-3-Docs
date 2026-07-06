@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/layout-interfaces/ilayout/ilayer" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Layer script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ILayer</code> script interface represents a layer on a <a class="extern" href="../ilayout.html" rel="noopener" target="_blank" title="Make your own games">layout</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=input-event-position" rel="noopener" target="_blank" title="Make games in the browser">Input event position example</a> for a demonstration of using the layer <code>cssPxToLayer()</code> method, which is useful when handling input events. The <a class="extern" href="https://editor.construct.net/#open=custom-layer-drawing-js" rel="noopener" target="_blank" title="Make games in the browser">Custom Layer Drawing example</a> also demonstrates using code to draw custom content to a layer with the <code>"afterdraw"</code> event.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Layer events</h2>
+<p>The following events can be listened for using the <code>addEventListener</code> method.</p>
+<dl>
+<dt>"beforedraw"</dt>
+<dt>"afterdraw"</dt>
+<dd>Fired when the layer is drawn, allowing custom drawing code to draw on this layer. As Construct uses a back-to-front renderer, content drawn in the <code>"beforedraw"</code> event will appear underneath other content on the layer, and content drawn in the <code>"afterdraw"</code> event will appear on top of other content on the layer. The event object has the following properties: <ul class="list"><li><code>renderer</code>: the <a class="extern" href="../../graphics-interfaces/irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> script interface with which you can draw content.</li><li><code>layer</code>: the <code>ILayer</code> of the layer being drawn.</li></ul></dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Layer APIs</h2>
+<dl>
+<dt>runtime</dt>
+<dd>A reference back to the <a class="extern" href="../../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> interface.</dd>
+<dt>name</dt>
+<dd>A read-only string of the layer name.</dd>
+<dt>index</dt>
+<dd>A read-only number with the zero-based index of the layer on its layout. The bottom layer has an index of 0, with the index increasing upwards in Z order.</dd>
+<dt>addEventListener(eventName, callback)</dt>
+<dt>removeEventListener(eventName, callback)</dt>
+<dd>Add or remove a callback function for an event. See <em>Layer events</em> above for the available events.</dd>
+<dt>layout</dt>
+<dd>The <a class="extern" href="../ilayout.html" rel="noopener" target="_blank" title="Make your own games">ILayout interface</a> representing the layout this layer belongs to.</dd>
+<dt>parentLayer</dt>
+<dd>A reference to the layer's parent <code>ILayer</code> if it is a sub-layer, else <code>null</code> if it is a top-level layer.</dd>
+<dt>*parentLayers()</dt>
+<dd>Iterates all the layer's parent layers, moving up towards the top of the hierarchy.</dd>
+<dt>*subLayers()</dt>
+<dd>Iterates the layer's own sub-layers in increasing Z order. This does not iterate any sub-layers at lower levels in the hierarchy.</dd>
+<dt>*allSubLayers()</dt>
+<dd>Iterates the layer's sub-layers and further sub-layers beneath those recursively, in increasing Z order.</dd>
+<dt>isInteractive</dt>
+<dd>A boolean indicating if the layer is interactive, allowing its content to respond to mouse and touch input. </dd>
+<dt>isSelfAndParentsInteractive</dt>
+<dd>A read-only boolean indicating if both this layer and all its parent layers are set to be interactive. If this is true the layer content will respond to mouse and touch input.</dd>
+<dt>isVisible</dt>
+<dd>A boolean indicating if the layer is visible. When invisible, the layer skips drawing entirely. </dd>
+<dt>isSelfAndParentsVisible</dt>
+<dd>A read-only boolean indicating if both this layer and all its parent layers are set to visible. If this is true the layer will be drawn.</dd>
+<dt>isTransparent</dt>
+<dd>A boolean indicating if the layer background is transparent. When transparent, the background color is ignored.</dd>
+<dt>backgroundColor</dt>
+<dd>Set or get the background color of a layer as an array with 3 elements specifying the red, green and blue components with values in the 0-1 range. Note this is ignored if the layer is transparent.</dd>
+<dt>isHTMLElementsLayer</dt>
+<dd>A boolean indicating if this layer acts as a HTML layer. For more information see <a class="extern" href="../../../../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</dd>
+<dt>scrollX</dt>
+<dt>scrollY</dt>
+<dt>scrollTo(x, y)</dt>
+<dt>getScrollPosition()</dt>
+<dt>restoreScrollPosition()</dt>
+<dd>Independently scroll a layer, regardless of where the layout is scrolled to. By default layers all follow the layout scroll position. Upon setting a layer's scroll position, the layer will stop following the layout scroll position, and remain scrolled at the position specified. The <code>restoreScrollPosition()</code> method reverts the layer to the default mode where it follows the layout scroll position. When not independently scrolling a layer, the <code>scrollX</code> and <code>scrollY</code> getters return the layout scroll position.</dd>
+<dt>parallaxX</dt>
+<dt>parallaxY</dt>
+<dd>Set or get the horizontal and vertical parallax rates of a layer.</dd>
+<dt>opacity</dt>
+<dd>The opacity of the layer, as a floating point number in the range [0, 1], where 0 is fully transparent and 1 is fully opaque. Note that changing the opacity to a value other than 1 will force the layer to render via its own texture.</dd>
+<dt>scale</dt>
+<dd>Set or get the layer scale, taking in to account its scale rate property.</dd>
+<dt>scaleRate</dt>
+<dd>Set or get the <em>scale rate</em> property of a layer, which affects how quickly it scales (if at all).</dd>
+<dt>angle</dt>
+<dd>Set or get the layer angle in radians.</dd>
+<dt>zElevation</dt>
+<dd>Set or get the Z elevation of the entire layer. By default the camera is at Z = 100, and looking down to Z = 0. The default Z elevation is 0. Increasing it will move the layer upwards (towards the camera) and decreasing it will move it downwards (away from the camera).</dd>
+<dt>renderingMode</dt>
+<dd>Set or get the <em>Rendering mode</em> <a class="extern" href="../../../../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">layer property</a> as a string of either <code>"2d"</code> or <code>"3d"</code>. This allows dynamically changing a layer between rendering modes at runtime.</dd>
+<dt>sampling</dt>
+<dd>A string of the layer's sampling mode, which is one of <code>"auto"</code>, <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code>.</dd>
+<dt>activeSampling</dt>
+<dd>A read-only string with the layer's active sampling mode. This is only different to <code>sampling</code> when the sampling mode is <code>"auto"</code>: in this case the active sampling mode is inherited from the layout or project setting.</dd>
+<dt>getViewport()</dt>
+<dd>Return a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a> representing the bounds of the viewport on this layer in layout co-ordinates.</dd>
+<dt>isForceOwnTexture</dt>
+<dd>A boolean indicating the layer's <em>Force own texture</em> property. For more information see the property in the <a class="extern" href="../../../../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">Layers</a> manual entry.</dd>
+<dt>blendMode</dt>
+<dd>A string indicating the blend mode of the layer, controlling how it draws over the other layers behind it. The allowed strings are the same as accepted by the <a class="extern" href="../../graphics-interfaces/irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> method <code>setBlendMode()</code>.</dd>
+<dt>effects</dt>
+<dd>An array of <a class="extern" href="../../object-interfaces/ieffectinstance.html" rel="noopener" target="_blank" title="Make your own games">IEffectInstance</a> representing the effect parameters of the effects on this layer. Effects can also be accessed by name as well as by index - for example if there is one effect named <code>AdjustHSL</code>, it can be referred to with both <code>effects[0]</code> and <code>effects.AdjustHSL</code>.</dd>
+<dt>cssPxToLayer(clientX, clientY, z = 0)</dt>
+<dt>layerToCssPx(layerX, layerY, z = 0)</dt>
+<dd>Convert between positions in CSS pixels, such as the <code>clientX/Y</code> properties of an input event, and layer co-ordinates within the project. An optional Z value can be provided to do the conversion taking in to account Z elevation to a certain height on the layer. This is useful for purposes like identifying what position in a layer was clicked in an input event, or positioning a HTML element in layer co-ordinates. Both methods return a pair of co-ordinates in the form <code>[x, y]</code>.</dd>
+<dt>drawSurfaceToLayer(dsX, dsY, z = 0)</dt>
+<dt>layerToDrawSurface(layerX, layerY, z = 0)</dt>
+<dd>Convert between positions in layer co-ordinates and the draw surface in units of device pixels. An optional Z value can be provided to do the conversion taking in to account Z elevation to a certain height on the layer. Both methods return a pair of co-ordinates in the form <code>[x, y]</code>. These methods are intended for the Addon SDK and are for identifying the draw surface co-ordinates that correspond to an object.</dd>
+<dt>renderScale</dt>
+<dd>A read-only number with the render scale factor for this layer. This is intended for the Addon SDK where plugins need this value to render taking in to account Construct's scale factor.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

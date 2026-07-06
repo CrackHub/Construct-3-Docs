@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/timelines/property-keyframe" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timeline property keyframe
+            </h1>
+<div itemprop="articleBody">
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Property Keyframe</h2>
+<p>In the <a class="extern" href="../../interface/bars/timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar</a>, property keyframes are represented by a mark in the same row as the property track they belong to.</p>
+<p>Property keyframes hold the values the <a class="extern" href="timeline.html" rel="noopener" target="_blank" title="Make your own games">timeline</a> uses when it is playing. They are at the end of the timeline hierarchy so any changes made at this level will only affect the property keyframe itself.</p>
+<p>A <a class="extern" href="property-track.html" rel="noopener" target="_blank" title="Make your own games">property track</a> can have many different property keyframes, one for each position in the timeline with values that must be reached when animating. Unlike <a class="extern" href="master-keyframe.html" rel="noopener" target="_blank" title="Make your own games">master keyframes</a>, property keyframes cannot be moved and must have a parent master keyframe. If a property keyframe's time is changed by either dragging it or changing the value in the <a class="extern" href="../../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>, a new master keyframe will be created at the new position along with new property keyframes to go with it.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Adding Property Keyframes</h2>
+<p>Property keyframes can be created following the same method to create master keyframes, since property keyframes will be created for each property track at a given position in the timeline.</p>
+<p>To create property keyframes for specific property tracks, follow these steps:</p>
+<ul class="list">
+<li>Turn on <strong>Edit mode</strong> by pressing the <strong>Edit</strong> button in the Timeline Bar toolbar.</li>
+<li>Move the current time marker to the position in the timeline where you want to create property keyframes. This can be done by either clicking on the time ruler or by dragging the red line.</li>
+<li>Make changes to the <a class="extern" href="../objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a> you want to animate.</li>
+<li>Right-click on the property track you wish to add a property keyframe to and select <strong>Set keyframes</strong>.</li>
+</ul>
+<p>If multiple property tracks are selected when using the <strong>Set keyframes</strong> option, property keyframes will be created for all of them.</p>
+<p>Either method will always create a master keyframe along with the property keyframes.</p>
+<h3>Property Keyframe Properties</h3>
+<dl class="sans">
+<dt>Index</dt>
+<dd>The index of the property keyframe in its property track. It can not be changed. This value is updated if the keyframe's position in the timeline changes.</dd>
+<dt>Name</dt>
+<dd>The name of the property track this property keyframe belongs to. This cannot be changed since it takes the same name as the property being modified.</dd>
+<dt>Value</dt>
+<dd>The value the property keyframe holds. This can be either numeric, text, boolean or color. Depending on the result mode in use this will be Relative or Absolute.</dd>
+<dt>Time</dt>
+<dd>The position of the property keyframe in the timeline. Since property keyframes cannot really be moved, changing this value will create a new master keyframe at the new position with new property keyframes to go with it. This can be updated from the Properties Bar or by dragging the keyframe in the Timeline Bar.</dd>
+<dt>Enabled</dt>
+<dt>Result mode</dt>
+<dt>Ease</dt>
+<dt>Path mode</dt>
+<dd>See the section on common timeline element properties in <a class="extern" href="../timelines.html" rel="noopener" target="_blank" title="Make your own games">Timelines</a>.</dd>
+</dl>
+<h3>Unique properties</h3>
+<h4>Angle</h4>
+<dl class="sans">
+<dt>Direction</dt>
+<dd>Allows you to choose which direction the angle will take to arrive at it's final value. By default Construct will attempt to take the shortest path but it can be forced to rotate clockwise or anti-clockwise by changing this property.</dd>
+<dt>Revolutions</dt>
+<dd>The amount of additional 360 degree turns the angle should take before arriving at it's final value.</dd>
+</dl>
+<div class="hr"></div>
+<h4>Initial Animation</h4>
+<dl class="sans">
+<dt>Start from</dt>
+<dd>Choose how the animation should behave when the play head reaches the keyframe. The value <strong>"Current frame"</strong> will cause the new animation to start playing from the same frame the previous animation was in. <strong>"Beginning"</strong> will cause the new animation to start playing from the beginning. The special <strong>"Default"</strong> value uses the <strong>"Start from"</strong> value from the parent property track.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

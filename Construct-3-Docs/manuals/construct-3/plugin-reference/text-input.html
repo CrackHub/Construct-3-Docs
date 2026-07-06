@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/text-input" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Text input
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Text input</strong> object is a form control providing a text field the user can type text in to. This is used for getting data from the user; don't confuse it with the <a class="extern" href="text.html" rel="noopener" target="_blank" title="Make your own games">Text</a> object, which is for displaying text.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/text-input.html" rel="noopener" target="_blank" title="Make your own games">ITextInputInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Layering HTML objects</h2>
+<p>This object displays using a HTML element rather than drawing in to the canvas. This means its layering works differently to other objects. To learn more about how to layer HTML objects, see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Styling text inputs</h2>
+<p>As Text Input objects are HTML elements, their appearance can be customised using CSS (Cascading Style Sheets). The <em>ID</em> and <em>Class</em> properties can be used to identify the HTML element, and a CSS <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project file</a> added to apply some styles to it.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Text Input properties</h2>
+<dl class="sans">
+<dt>Text</dt>
+<dd>The initial text entered in to the field.</dd>
+<dt>Placeholder</dt>
+<dd>Some text that appears faintly when the field is empty. This can be used for hints for what the field is for, e.g. <em>Username</em>.</dd>
+<dt>Tooltip</dt>
+<dd>A tooltip that appears if the user hovers the mouse over the text box and waits. Leave blank for no tooltip.</dd>
+<dt>Initially visibile</dt>
+<dd>Whether or not the text box is shown on startup. If invisible, the field must be shown with the <em>Set visible</em> action.</dd>
+<dt>Enabled</dt>
+<dd>Whether the text box is initially enabled. If disabled, the field will be greyed out and cannot be modified.</dd>
+<dt>Read-only</dt>
+<dd>Set whether the field is read-only, which means the text cannot be modified but can still be selected. This is different to disabling the field, which changes the appearance of the input.</dd>
+<dt>Spell check</dt>
+<dd>Enable spell-checking on the text entered in to the field, if the browser supports it. If enabled, spelling errors are underlined with a squiggly red line.</dd>
+<dt>Type</dt>
+<dd>Set the type of content being entered in to the text field, which can be:<br/>
+<ul class="list"><br/>
+<li><strong>Text:</strong> any text content</li><br/>
+<li><strong>Password:</strong> any content but characters hidden</li><br/>
+<li><strong>Email:</strong> intended for strings in the format of an email, e.g. <em>joe@bloggs.com</em></li><br/>
+<li><strong>Number:</strong> numerical digits only</li><br/>
+<li><strong>Telephone number:</strong> telephone number characters only</li><br/>
+<li><strong>URL:</strong> web addresses in the general format <em>https://example.com</em></li><br/>
+<li><strong>Textarea:</strong> a multi-line text input, usually displayed with a monospace font</li><br/>
+<li><strong>Search:</strong> text content intended as a search query</li><br/>
+</ul><br/>
+The <em>email</em>, <em>number</em>, <em>telephone number</em> and <em>URL</em> types are generally most useful for mobile devices, since they change which type of on-screen keyboard appears when the field is focused. For example, <em>Text</em> will show a general purpose on-screen keyboard, whereas <em>Number</em> may show a simple number pad, making it more convenient for the user to enter the content.<br/>
+</dd>
+<dt>Auto font size</dt>
+<dd>Automatically set the <em>font-size</em> property of the element according to the layout and layer scale. This will prevent the <em>font-size</em> CSS property being manually set with the <em>Set CSS style</em> action. Disable if you intend to use <em>Set CSS style</em> to adjust the <em>font-size</em> property.</dd>
+<dt>ID <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>id</em> attribute for the element in the DOM (Document Object Model). This can be useful for accessing the element's value from external scripts, or styling with CSS in the HTML page.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Text input conditions</h2>
+<p>See <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">common conditions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Compare text</dt>
+<dd>Compare the text currently entered in to the field. The comparison can either be case sensitive ("TEXT" is different to "text") or case insensitive ("TEXT" is the same as "text").</dd>
+<dt>On clicked</dt>
+<dd>Triggered when the user clicks the field.</dd>
+<dt>On double-clicked</dt>
+<dd>Triggered when the user double-clicks the field.</dd>
+<dt>On text changed</dt>
+<dd>Triggered whenever the text in the field is modified, by typing, backspace/delete, cut/paste etc.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Text input actions</h2>
+<p>See <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">common actions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Append text</dt>
+<dd>Add some text to the end of the current text. For example, if the text object contains <em>Hello</em> and has <em>World</em> appended, the text object then contains <em>HelloWorld</em>.</dd>
+<dt>Scroll to bottom</dt>
+<dd>Scroll to the bottom of the control. Only has an effect when set to the <em>textarea</em> type, since it is the only multiline mode. This is useful for chat or log style textareas.</dd>
+<dt>Set max length</dt>
+<dd>Set the maximum number of characters allowed to be entered in the field. Set to -1 to disable any limit and allow an unlimited number of characters (which is the default).</dd>
+<dt>Set placeholder</dt>
+<dd>Set the text that appears faintly when the field is empty. This can be used for hints for what the field is for, e.g. <em>Username</em>.</dd>
+<dt>Set read-only</dt>
+<dd>Set whether the field is read-only, which means the text cannot be modified but can still be selected. This is different to disabling the field, where text cannot be selected.</dd>
+<dt>Set text</dt>
+<dd>Set the text currently entered in to the field.</dd>
+<dt>Set tooltip</dt>
+<dd>Set the text that appears for the field tooltip. Leave blank for no tooltip.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Text Input expressions</h2>
+<dl class="sans">
+<dt>MaxLength</dt>
+<dd>Return the maximum number of characters allowed to be entered in to the field, as set by the <em>Set max length</em> action. If there is no maximum length (the default), this returns -1.</dd>
+<dt>Text</dt>
+<dd>Get a string containing the text currently entered in to the field.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

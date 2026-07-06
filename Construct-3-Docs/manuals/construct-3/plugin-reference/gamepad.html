@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/gamepad" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Gamepad
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Gamepad</strong> object allows you to detect input from a connected console controller, PC gamepad or joystick. While a range of devices ought to work with the Gamepad object, it is designed for and works best with the XBox controller, or similarly designed controllers (with the same button/stick layout). <a class="extern" href="https://editor.construct.net/#open=gamepad-control" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of gamepad control.</a></p>
+<p>Unfortunately whether or not a specific device is supported depends on a lot of factors, including the operating system, available drivers, and the browser's support. This makes it difficult to know in advance if a specific device will work. The XBox controller works out of the box on Windows systems with the Google Chrome browser. The Playstation controllers do not typically work without installing third party drivers since it is not officially supported.</p>
+<p>Some mobile devices also support gamepad input, either by special hardware accessories, or by connecting a gamepad via a cable or wirelessly.</p>
+<p>To prevent allowing websites to track you by your available controllers, most browsers supporting Gamepad input will report that there are no controllers connected until a button is pressed on one of the devices.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the browser <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API">Gamepad API</a> can be accessed directly, but only in DOM mode. In worker mode you can still receive gamepad input via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/gamepad.html" rel="noopener" target="_blank" title="Make your own games">IGamepadObjectType script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Gamepad support and Steam</h2>
+<p>When exporting a project for Steam, you may need to install GameInput for gamepads to work. For more information, refer to the <a class="extern" href="https://www.construct.net/make-games/addons/1105/steamworks/documentation.html" rel="noopener" target="_blank" title="Make your own games">Steamworks plugin documentation</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Key mapping</h2>
+<p>Different controllers have different button layouts, or the buttons have different names. For example, the Playstation 3 controller uses <em>square</em>, <em>circle</em>, <em>triangle</em> and <em>X</em> buttons, whereas the XBox controller uses <em>A</em>, <em>B</em>, <em>X</em> and <em>Y</em> (note that <em>X</em> appears in a different position in each controller too). For consistency, the Gamepad object refers to the XBox layout only.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Controlling behaviors with Gamepad</h2>
+<p>To control behaviors with Gamepad input, use the <em>Simulate control</em> action. An example is shown below for controlling a Platform behavior with the left analog stick and A to jump.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1767/uploads/articleuploadobject/0/images/995/gamepad-controls.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1190x329px in new window (56.4 KB)"><span><img alt="Events to control a behavior with a gamepad" height="164" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1767/r/uploads/articleuploadobject/0/images/995/gamepad-controls_v600.png" width="595"/></span></a></div></div>
+<p>For more information, see the section on <em>Custom controls</em> in the <a class="extern" href="../behavior-reference.html" rel="noopener" target="_blank" title="Make your own games">Behavior reference</a>.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Multiple gamepads</h2>
+<p>Multiple gamepad devices can be connected to a single computer. To differentiate between them, most actions, conditions and expressions in the Gamepad object also take a <em>Gamepad</em> parameter. This is a zero-based index of the controller. For example, 0 identifies the first controller, 1 identifies the second, and so on. This allows you to make multiplayer gamepad-controlled games.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Gamepad properties</h2>
+<dl class="sans">
+<dt>Analog deadzone</dt>
+<dd>Devices with analog joysticks are extremely sensitive to input. This allows fine control in games, but also means a joystick in rest position can still register a fairly large amount of movement. If this wasn't ignored, a joystick-controlled player could start moving around erratically even when the player is not touching the control. To solve this all values close to rest position are ignored. Joystick movement is in the range -100 to 100 on each axis, and if the distance from the center is below the <em>Analog deadzone</em> value, it will return 0. For example, the default is 25, so values inside a circle with the radius 25 will still count as zero. This is the recommended value to ensure even ageing controllers with highly erratic input do not cause unintended player movement.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Gamepad conditions</h2>
+<dl class="sans">
+<dt>Gamepad supports vibration type</dt>
+<dd>Check if a currently connected gamepad supports a particular kind of vibration effect, such as dual rumble or trigger rumble. Note both the browser and the hardware must support the vibration type - for example it is possible a gamepad has hardware support for trigger rumble, but one browser supports it where another browser does not.</dd>
+<dt>Has gamepads</dt>
+<dd>True if any gamepad is connected and activated. To prevent websites tracking you based on the available gamepads, most browsers supporting Gamepad input will report that no controllers are connected until a button is pressed on one of the devices.</dd>
+<dt>On gamepad connected</dt>
+<dd>Triggered when a gamepad device is connected to the computer. To prevent websites tracking you based on the available gamepads, most browsers supporting Gamepad input will report that no controllers are connected until a button is pressed on one of the devices, when <em>On gamepad connected</em> will also run.<br/>
+</dd>
+<dt>On gamepad disconnected</dt>
+<dd>Triggered when a gamepad device is disconnected from the computer, such as by pulling out its cable.</dd>
+<dt>Compare axis</dt>
+<dd>Compare the position of an analog joystick on a specific gamepad. Values within the <em>Analog deadzone</em> are returned as 0. Axes values range from -100 to 100.</dd>
+<dt>Is button down</dt>
+<dd>True if a given button is currently down on a specific gamepad. The buttons are always referred to according to the XBox controller layout.</dd>
+<dt>Is button index down</dt>
+<dd>True if a given button by its numerical index is currently down on a specific gamepad.</dd>
+<dt>On any button pressed</dt>
+<dd>Triggered when any button is pressed on a specific gamepad. The <em>ButtonIndex</em> expression is set with the index of the button. The special value -1 can also be used for the gamepad, in which case the trigger will fire when any button on any gamepad is pressed, and the <em>GamepadIndex</em> expression will also be set to the index of the gamepad where the button was pressed.</dd>
+<dt>On any button released</dt>
+<dd>Triggered when any button is released on a specific gamepad. The <em>ButtonIndex</em> expression is set with the index of the button. The special value -1 can also be used for the gamepad, in which case the trigger will fire when any button on any gamepad is released, and the <em>GamepadIndex</em> expression will also be set to the index of the gamepad where the button was released.</dd>
+<dt>On button index pressed</dt>
+<dd>Triggered when a given button by its numerical index is pressed on a specific gamepad.</dd>
+<dt>On button index released</dt>
+<dd>Triggered when a given button by its numerical index is released on a specific gamepad.</dd>
+<dt>On button pressed</dt>
+<dd>Triggered when a given button is pressed on a specific gamepad. The buttons are always referred to according to the XBox controller layout.</dd>
+<dt>On button released</dt>
+<dd>Triggered when a given button is released on a specific gamepad. The buttons are always referred to according to the XBox controller layout.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Gamepad actions</h2>
+<dl class="sans">
+<dt>Vibrate (dual rumble)</dt>
+<dt>Vibrate (trigger rumble)</dt>
+<dd>Initiate vibration (also known as "rumble") of a specific gamepad for a period of time given in milliseconds. Each kind of vibration uses different rumble motors in the gamepad hardware. The types of vibration that are supported can be checked with the <em>Gamepad supports vibration type</em> condition. Each kind of vibration has different parameters for the hardware motors, allowing for different types of rumble effects to be produced. If a vibration is already active when this action is used, it will be replaced by this action.</dd>
+<dt>Reset vibration</dt>
+<dd>Stop any active vibration started by the <em>Vibrate</em> action for a specific gamepad. The vibration will be immediately cancelled, so it will not fulfil the duration it was started for. If no vibration is active, this has no effect.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Gamepad expressions</h2>
+<dl class="sans">
+<dt>Axis(Gamepad, Index)</dt>
+<dd>Retrieve the current position of an analog joystick on a specific gamepad. <em>Index</em> specifies left analog X and Y or right analog X and Y axes. Axes range from -100 to 100. Axis values within the <em>Analog deadzone</em> are returned as 0.</dd>
+<dt>Button(Gamepad, Index)</dt>
+<dd>Retrieve the current button press value of a button on a specific gamepad. <em>Index</em> specifies the zero-based index of a button from the dropdown list in the <em>Is button down</em> condition (e.g. 0 returns the value for the <em>A</em> button). The returned value depends on the features of the button: if the button is pressure sensitive, it can return any value from 0 to 100 depending on the pressure; otherwise it returns 0 for not pressed and 100 for pressed. Buttons which are not pressure sensitive are easier to detect using the <em>Is button down</em> condition.</dd>
+<dt>GamepadCount</dt>
+<dd>Return the number of currently connected and active gamepad devices. To prevent websites tracking you based on the available gamepads, most browsers supporting Gamepad input will report that no controllers are connected until a button is pressed on one of the devices.</dd>
+<dt>GamepadID(Gamepad)</dt>
+<dd>A string intended to represent the device manufacturer and model for a specific gamepad, e.g. "XBox 360 controller". However in practice this varies depending on the system and browser in use.</dd>
+<dt>GamepadIndex</dt>
+<dd>In an <em>On gamepad connected/disconnected</em> trigger, or when using <em>On any button pressed/released</em> with a gamepad of -1, this expression indicates the index of the corresponding gamepad.</dd>
+<dt>ButtonIndex</dt>
+<dd>Return the numerical index of the last button pressed on a specific gamepad. This is useful with the <em>On any button pressed</em> and <em>On any button released</em> triggers to set up custom controls.</dd>
+<dt>RawAxis(Gamepad, Index)</dt>
+<dd>Retrieve raw axis input for a specific gamepad and axis index. This returns the value without keymapping, applying the analog deadzone, or multiplying the returned value by 100. Axis values range from -1 to 1.</dd>
+<dt>RawAxisCount(Gamepad)</dt>
+<dd>Return the number of axes available in the raw input for a specific gamepad. This returns the value without keymapping.</dd>
+<dt>RawButton(Gamepad, Index)</dt>
+<dd>Retrieve raw button input for a specific gamepad and button index. This returns the value without keymapping. Button values range from 0 to 1 (pressure sensitive buttons can return values in between).</dd>
+<dt>RawButtonCount(Gamepad)</dt>
+<dd>Return the number of buttons available in the raw input for a specific gamepad. This returns the value without keymapping.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

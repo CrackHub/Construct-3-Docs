@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/text-input" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Text Input script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITextInputInstance</code> interface derives from <a class="extern" href="../object-interfaces/idominstance.html" rel="noopener" target="_blank" title="Make your own games">IDOMInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/text-input.html" rel="noopener" target="_blank" title="Make your own games">Text Input plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Text Input events</h2>
+<p>See <a class="extern" href="../interfaces/instance-event.html" rel="noopener" target="_blank" title="Make your own games">instance event</a> for standard instance event object properties.</p>
+<dl>
+<dt>"click"</dt>
+<dt>"dblclick"</dt>
+<dd>Fired when the control is clicked or double-clicked.</dd>
+<dt>"change"</dt>
+<dd>Fired when user input causes the <code>text</code> property to change.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Text Input APIs</h2>
+<dl>
+<dt>text</dt>
+<dd>The current string entered in the input field.</dd>
+<dt>placeholder</dt>
+<dd>A string of text that appears faintly when the field is empty. This can be used for hints for what the field is for, e.g. <em>Username</em>.</dd>
+<dt>tooltip</dt>
+<dd>A tooltip that appears if the user hovers the mouse over the text box and waits. An empty string indicates no tooltip.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the control is enabled or disabled.</dd>
+<dt>isReadOnly</dt>
+<dd>A boolean indicating if the input field is read-only, which means the text cannot be modified but can still be selected. This is different to disabling the field, where text cannot be selected.</dd>
+<dt>scrollToBottom()</dt>
+<dd>Scroll to the bottom of the control. Only has an effect when set to the <em>textarea</em> type, since it is the only multiline mode. This is useful for chat or log style textareas.</dd>
+<dt>maxLength</dt>
+<dd>Set or get the maximum number of characters allowed to be entered in the field. The value -1 indicates no limit, which is the default.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

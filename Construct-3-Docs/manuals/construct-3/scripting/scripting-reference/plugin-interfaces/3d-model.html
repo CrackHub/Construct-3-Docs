@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/3d-model" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                3D model
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>I3DModelInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/3d-model.html" rel="noopener" target="_blank" title="Make your own games">3D model plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>3D Model APIs</h2>
+<dl>
+<dt>loadModel(model, mesh, animation, playing, progress)</dt>
+<dd>Load a new <a class="extern" href="../../../project-primitives/3d-model.html" rel="noopener" target="_blank" title="Make your own games">3D model object</a>. The <code>"model"</code> argument is required and is a string with the name of an existing 3D model object. <code>"mesh"</code> is an optional string and defaults to an empty string, if provided  that mesh will be the only one being drawn, otherwise all meshes in the model will be drawn. <code>"animation"</code> is an optional string and default to an empty string, if not provided the first animation in the model will be used. <code>"playing"</code> is an optional boolean and defaults to <em>"false"</em>, if provided the model will start playing an animation as soon as possible. <code>"progress"</code> is an optional number and defaults to <em>"0"</em>. It accepts a value in the range <strong>[0 - 1]</strong> that indicates where the current animation will start playing from. The method returns a promise that resolves then the loading is complete.</dd>
+<dt>onLoad</dt>
+<dd>This function is not defined by default. When defined it is executed after loading of a new 3D model object is complete.</dd>
+<dt>onError</dt>
+<dd>This function is not defined by default. When defined it is executed if there is any problem during the process of loading a new 3D model object.</dd>
+<dt>modelName</dt>
+<dd>returns the value of the current 3D model object in use. When set it acts as a shortcut for <strong>loadModel</strong> where only a 3D model name is provided.</dd>
+<dt>meshNames</dt>
+<dd>returns an array with all the meshes that are currently enabled. When set all the passed in mesh names will be enabled and any other meshes will be disabled.</dd>
+<dt>animationName</dt>
+<dd>returns the current animation. When set, the animation changes to the start of the new animation and doesn't play.</dd>
+<dt>animationProgress</dt>
+<dd>returns the progress of the current animation. When set it updates the progress of the current animation.</dd>
+<dt>isPlaying</dt>
+<dd>returns the playing state of the current animation. Setting will resume playback or stop it. </dd>
+<dt>isLooping</dt>
+<dd>sets or gets the current looping state of all animations in the model.</dd>
+<dt>meshRenderMode</dt>
+<dd>returns or changes the current render mode. It accepts these values: <code>"hierarchy"</code> to draw the enabled meshes as they where authored in the model file and <code>"isolate"</code> to draw the enabled meshes as if they where the only ones in the model file.</dd>
+<dt>backfaceCulling</dt>
+<dd>returns or changes the current state of back face culling.</dd>
+<dt>onAnimationFinished</dt>
+<dd>if set this callback executes when an animation finishes, it has one string argument which is the name of the animation that finished playing.</dd>
+<dt>onAnimationLooped</dt>
+<dd>if set this callback executes when an animation loops, it has one string argument which is the name of the animation that loopped.</dd>
+<dt>offsetX</dt>
+<dt>offsetY</dt>
+<dt>offsetZ</dt>
+<dd>return or set the current offset of the 3D model in relation to the position of the corresponding <a class="extern" href="../../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a>.</dd>
+<dt>rotationX</dt>
+<dt>rotationY</dt>
+<dt>rotationZ</dt>
+<dd>return or set the current rotation of the 3D model. <code>rotationZ</code> is added to the <strong>angle</strong> of the corresponding instance.</dd>
+<dt>scaleX</dt>
+<dt>scaleY</dt>
+<dt>scaleZ</dt>
+<dd>return or set the current scale of the 3D model. These values are compounded with the scale of the corresponding instance.</dd>
+<dt>originX</dt>
+<dt>originY</dt>
+<dt>originZ</dt>
+<dd>return or set the current transformation origin of the 3D model, using <code>"left"</code>, <code>"middle"</code> or <code>"right"</code> as valid values on the <strong>X</strong> axis, <code>"top"</code>, <code>"middle"</code> or <code>"bottom"</code> as valid values on the <strong>Y</strong> axis and <code>"back"</code>, <code>"middle"</code> or <code>"front"</code> as valid values on the <strong>Z</strong> axis.</dd>
+<dt>setTransform(x, y, z, type)</dt>
+<dt>addTransform(x, y, z, type)</dt>
+<dt>subTransform(x, y, z, type)</dt>
+<dt>mulTransform(x, y, z, type)</dt>
+<dt>divTransform(x, y, z, type)</dt>
+<dd>These methods are used to apply changes on the three axes of a 3D model. <code>"x"</code> <code>"y"</code> and <code>"z"</code> are the main values that will be applied and <code>"type"</code> refers to the properties that will be affected, can be either <em>"offset"</em> <em>"rotation"</em> or <em>"scale"</em>.</dd>
+<dt>setQuaternion(x, y, z, w)</dt>
+<dd>Use this method to set the <code>"x"</code> <code>"y"</code> <code>"z"</code> and <code>"w"</code> components of the rotation quaternion of a 3D model.</dd>
+<dt>getQuaternion()</dt>
+<dd>Returns an object with <code>"x"</code> <code>"y"</code> <code>"z"</code> and <code>"w"</code> properties representing the rotation quaternion of a 3D model. This object is not the real quaternion used by plugin instances, use <strong>setQuaternion</strong> to write the values when needed.</dd>
+<dt>animationDuration(animation)</dt>
+<dd>returns the duration in seconds of the provided animation.</dd>
+<dt>getAllMeshes</dt>
+<dd>returns an array of strings with all the meshes in the current 3D model.</dd>
+<dt>getAllAnimations()</dt>
+<dd>returns an array of strings with all the animations in the current 3D model.</dd>
+<dt>setMeshEnabled(mesh, enable)</dt>
+<dd>Enable or disable the provided mesh.</dd>
+<dt>setAllMeshesEnabled(enable)</dt>
+<dd>Enable or disable all the meshes.</dd>
+<dt>isMeshEnabled(mesh)</dt>
+<dd>returns <code>"true"</code> or <code>"false"</code> depending on if the passed in mesh is enabled or not.</dd>
+<dt>areAllMeshesEnabled()</dt>
+<dd>returns <code>"true"</code> or <code>"false"</code> depending on if all the meshes are enabled or not.</dd>
+<dt>meshExists(mesh)</dt>
+<dd>returns <code>"true"</code> or <code>"false"</code> if the passed in mesh exists in the current 3D model or not.</dd>
+<dt>play(animationName, progress): void</dt>
+<dd>Play an animation. <code>"animationName"</code> is an optional string and default to an empty string, if not provided or if the name does not correspond to any animation, the method will affect the current animation. <code>"progress"</code> is an optional number and defaults to <em>"0"</em>. It accepts a value in the range <strong>[0 - 1]</strong> that indicates where the animation will start playing from.</dd>
+<dt>stop()</dt>
+<dd>Stop the current animation, resets progress to 0.</dd>
+<dt>pause()</dt>
+<dd>Pause the current animation, progress is unchanged.</dd>
+<dt>resume()</dt>
+<dd>Resume a paused animation from the current progress.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

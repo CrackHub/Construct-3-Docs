@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/3d-shape" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                3D shape
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>3D shape</strong> object can add basic elements of 3D to your project, such as a 3D box. Six images can be drawn to cover each face of the shape.</p>
+<p>Try out the <a class="extern" href="https://editor.construct.net/#open=3dshape-tour" rel="noopener" target="_blank" title="Make games in the browser">3D shape tour example</a> for a visual demonstration of what the 3D shape object can do. The Start Page has a number of other examples under the <em>3D</em> tag.</p>
+<p>You can learn more about 3D shape and how it works with other 3D features in the tutorial <a class="extern" href="https://www.construct.net/tutorials/using-3d-construct-2746.html" rel="noopener" target="_blank" title="Make your own games">Using 3D in Construct</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/3d-shape.html" rel="noopener" target="_blank" title="Make your own games">I3DShapeInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Transparency</h2>
+<p>Due to the way 3D rendering works, transparency may not work as expected in 3D shape objects. To correctly render 3D features, Construct must use a <a class="extern outlink" href="https://en.wikipedia.org/wiki/Z-buffering" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Z-buffering">depth buffer</a>, but this only fully supports opaque surfaces. Therefore <strong>3D shape objects will work best with opaque images.</strong></p>
+<p>Making individual faces invisible works as expected, as this means the face skips drawing entirely, rather than drawing content that is assumed to be opaque.</p>
+<p>For more information, refer to the section on transparency in the tutorial <a class="extern" href="https://www.construct.net/tutorials/using-3d-construct-2746.html" rel="noopener" target="_blank" title="Make your own games">Using 3D features in Construct</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>3D shape properties</h2>
+<dl class="sans">
+<dt>Images</dt>
+<dd>Click the <em>Edit</em> link to edit the six images the object uses for face images, one for each face of a cube. Not all shapes use all six images. Some images may also be cropped according to the shape of the face it appears on. For example the <em>Prism</em> shape has triangular end faces, so the images at these ends are cropped to only show a triangular portion of the image.</dd>
+<dt>Shape</dt>
+<dd>Select from one of a few pre-defined shapes that the object will use. Not all shapes use all six images, since some have fewer than six faces. The available shapes are:<ul class="list"><li><strong>Box:</strong> a six-sided cube or cuboid shape.</li><br/>
+<li><strong>Prism:</strong> a five-sided prism shape, like a tent. The front face is not used.</li><br/>
+<li><strong>Wedge:</strong> a five-sided shape like a cuboid cut in half diagonally, sloping up to the right. The front face is not used.</li><br/>
+<li><strong>Pyramid:</strong> a five-sided square-based pyramid, with the peak of the pyramid centered over the base. The front face is not used.</li><br/>
+<li><strong>Corner (out):</strong> a five-sided shape similar to a pyramid with the peak aligned to the upper-right corner. The front face is not used. The name derives from the fact this shape can join rows of <em>Wedge</em> shapes at an outside corner.</li><br/>
+<li><strong>Corner (in):</strong> a six-sided shape similar to a box where the front and back faces join in the bottom-left. The front face is used, but slopes down in the bottom-left half of the image. The name derives from the fact this shape can join rows of <em>Wedge</em> shapes at an inside corner.</li></ul></dd>
+<dt>Z origin</dt>
+<dd>The location of the origin on the Z axis. This defaults to <em>Back</em> meaning the object extends up from its Z position.</dd>
+<dt>Initially visibile</dt>
+<dd>Set whether the object is shown (visible) or hidden (invisible) when the layout starts.</dd>
+<dt>Face visibility (Back/Front/Left/Right/Top/Bottom)</dt>
+<dd>Set whether each of the six faces of the shape is initially visible.</dd>
+<dt>Back face culling</dt>
+<dd>Automatically hides faces of the shape that are pointing away from the camera. This helps optimize performance if the shape is fully opaque, as those faces will never be seen anyway. If the shape is semitransparent (e.g. the opacity is less than 100%) then this mode can be useful to stop the faces pointing away from the camera from still being visible. Whether or not that is desirable depends on your art style.</dd>
+<dt>Use object image for faces (Back/Front/Left/Right/Top/Bottom)</dt>
+<dd>Optionally choose a Sprite, Tiled Background or 9-Patch object to display instead of the 3D shape's own face images for a given face of the shape. An instance of the object must be placed in the same layout for this to work. The properties of this instance can also be used to control the appearance of the face on the 3D shape. This allows using animated face images (via Sprite), or varieties of tiled/repeating images for face images (via Tiled Background and 9-Patch).</dd>
+<dt>Z tiling factor</dt>
+<dd>A scale factor to apply on the Z axis when showing a Tiled Background object as one of the faces. This should be set to 1 when the project Z axis scale is 'Regular'. This property exists only to adjust the tiling on the Z axis when the project Z axis scale is 'Normalized'. Both 'Normalized' mode and this property are now listed as <a class="extern" href="../tips-and-guides/superseded-features.html" rel="noopener" target="_blank" title="Make your own games">superseded features</a> and will be removed in future.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>3D shape conditions</h2>
+<p>For conditions in common to other objects, see <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">Common conditions</a>.</p>
+<dl class="sans">
+<dt>Compare shape</dt>
+<dd>Compare the current shape that is in use. This can be changed by the <em>Set shape</em> action.</dd>
+<dt>Is face visible</dt>
+<dd>Check if one of the six faces of the shape is currently set to visible. Note this only checks whether the visibility is currently enabled, either in the object's properties or with the <em>Set face visible</em> action - it does not test whether the face is really showing on-screen.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>3D shape actions</h2>
+<p>For actions common to other objects, see <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">Common actions</a>.</p>
+<dl class="sans">
+<dt>Set back face culling</dt>
+<dd>Change the <em>Back face culling</em> property. See above for more details.</dd>
+<dt>Set face image</dt>
+<dd>Change one of the shape faces to use one of the other face images. For example this allows swapping the front face image for the back face image. To restore the original image, use the same face for both parameters, e.g. set back face to use image of back face.</dd>
+<dt>Set face object</dt>
+<dd>Replace the image used for a face of the shape with the image used by a Sprite, Tiled Background or 9-Patch object. An instance of the given object must exist on the current layout. See the property <em>Use object image for faces</em> for more information.</dd>
+<dt>Set face visible</dt>
+<dd>Enable or disable the visibility of one of the faces of the shape. See the <em>Face visibility</em> properties for more information.</dd>
+<dt>Set shape</dt>
+<dd>Change the shape currently used by the object. See the <em>Shape</em> property for more information.</dd>
+<dt>Set Z tiling factor</dt>
+<dd>Change the multiple used for tiling images along the Z axis of the object. See the <em>Z tiling factor</em> property for more information.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>3D shape expressions</h2>
+<p>For expressions common to other objects, see <a class="extern" href="common-features/common-expressions.html" rel="noopener" target="_blank" title="Make your own games">common expressions</a>.</p>
+<dl class="sans">
+<dt>FaceImagePointCount(Face)</dt>
+<dt>FaceImagePointX(Face, ImagePoint)</dt>
+<dt>FaceImagePointY(Face, ImagePoint)</dt>
+<dt>FaceImagePointZ(Face, ImagePoint)</dt>
+<dd>Retrieve the 3D position of an image point on any of the 3D shape's faces. The face is a zero-based index of the face as shown in the image editor, i.e.:<br/>
+<ul class="list"><li>0: Back</li><li>1: Front</li><li>2: Left</li><li>3: Right</li><li>4: Top</li><li>5: Bottom</li></ul> The image point is specified by the name or number of the image point. When using a number, note that as per other image point expressions,  the first image point is number 1, as 0 refers to the origin.</dd>
+<dt>ZTilingFactor</dt>
+<dd>Return the current Z tiling factor property. See the documentation on the corresponding property above for more information.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

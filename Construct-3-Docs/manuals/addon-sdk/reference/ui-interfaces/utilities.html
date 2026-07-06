@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/ui-interfaces/utilities" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Util interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>SDK.UI.Util</code> interface provides access to various user interface utilities in the SDK.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>AddDragDropFileHandler(callback, opts)</dt>
+<dd>Register a callback for handling files drag-and-dropped in to the Construct 3 window. This is part of the Custom Importer API, allowing addons to handle importing files in a custom format. The given callback is invoked when a file is dropped in to the Construct 3 window, providing nothing else has handled it first. The callback must return a promise that resolves with <code>true</code> if the drop was recognised and imported, otherwise <code>false</code> if the drop was not recognised as a supported format (in which case Construct will continue running other handlers).
+<br/>
+The <code>opts</code> parameter of <code>AddDragDropFileHandler()</code> is an options object, which may specify the following:<br/>
+<ul class="list"><br/>
+<li><code>isZipFormat</code>: boolean indicating to handle dropped zip files only. If <code>true</code>, the callback will only be run if Construct recognises the dropped file as a zip file. Consequently the <code>file</code> parameter of the callback will be an <a class="extern" href="../misc-interfaces/izipfile.html" rel="noopener" target="_blank" title="Make your own games">IZipFile</a>, from which the contents of the zip file can be read. If <code>false</code>, the callback will only be run if Construct does <em>not</em> recognise the dropped file as a zip file, and consequently the <code>file</code> parameter of the callback will be a <code>Blob</code>.</li><br/>
+<li><code>toLayoutView</code>: boolean indicating to handle files dropped to an open Layout View only. If <code>true</code>, the callback will only be run if a Layout View is open, and the <code>opts</code> parameter of the callback will contain information about the Layout View and the drop position. If <code>false</code>, the callback will be run regardless of whether a Layout View is open or not, and no further options will be provided to the callback.</li><br/>
+</ul>
+<br/>
+The <code>callback</code> should have the signature <code>async function(filename, file, opts)</code>. The type of the <code>file</code> parameter is an IZipFile or Blob depending on the <code>isZipFormat</code> option. The <code>opts</code> parameter of the callback will provide the following additional details only when the <code>toLayoutView</code> option was specified:<br/>
+<ul class="list"><br/>
+<li><code>layoutView</code>: an <a class="extern" href="ilayoutview.html" rel="noopener" target="_blank" title="Make your own games">ILayoutView</a> interface representing the Layout View that was open when the file was dropped. This also provides access to the associated project, layout, current active layer, and so on.</li><br/>
+<li><code>clientX</code> and <code>clientY</code>: the drop position within the window in client co-ordinates.</li><br/>
+<li><code>layoutX</code> and <code>layoutY</code>: the drop position within the Layout View in layout co-ordinates. This is the position to create any new instances relevant to.</li><br/>
+</ul><br/>
+</dd>
+<dt>static ShowLongTextPropertyDialog(text, caption)</dt>
+<dd>Show the same dialog used to edit <code>longtext</code> properties. This is simply a large multi-line text field in a dialog, allowing for long text strings to be more conveniently edited, since the Properties Bar often can only show a small amount of text. Returns a promise that resolves with <code>null</code> if the dialog was cancelled, else a string of the text in the dialog.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/layout-interfaces/ilayout" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Layout script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ILayout</code> script interface represents a layout in the project.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Getting an ILayout</h2>
+<p>The <code>ILayout</code> interface is typically accessed via the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> <code>layout</code> property, e.g. <code>runtime.layout</code>. This represents the current running layout. Other layouts can be accessed via the IRuntime methods <code>getLayout()</code> and <code>getAllLayouts()</code>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Layout events</h2>
+<p>The following events can be listened for using the <code>addEventListener</code> method.</p>
+<dl>
+<dt>"beforelayoutstart"</dt>
+<dt>"afterlayoutstart"</dt>
+<dd>Fired when the layout starts. <code>"beforelayoutstart"</code> fires just before <em>On start of layout</em>, and <code>"afterlayoutstart"</code> fires just after. In both events, all instances on the layout are created and available to modify.<br/>
+</dd>
+<dt>"beforelayoutend"</dt>
+<dt>"afterlayoutend"</dt>
+<dd>Fired when the layout ends due to changing to another layout. <code>"beforelayoutend"</code> fires just before <em>On end of layout</em>, and <code>"afterlayoutend"</code> fires just after. In both events, all instances on the layout are still available, but all non-global instances are destroyed immediately after the <code>"afterlayoutend"</code> event.<br/>
+</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Layout APIs</h2>
+<dl>
+<dt>runtime</dt>
+<dd>A reference back to the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> interface.</dd>
+<dt>name</dt>
+<dd>A read-only string of the layout name.</dd>
+<dt>index</dt>
+<dd>A read-only number of the zero-based index of the layout in the order it appears in the Project Bar.</dd>
+<dt>addEventListener(eventName, callback)</dt>
+<dt>removeEventListener(eventName, callback)</dt>
+<dd>Add or remove a callback function for an event. See <em>Layout events</em> above for the available events.</dd>
+<dt>width</dt>
+<dt>height</dt>
+<dt>setSize(width, height)</dt>
+<dt>getSize()</dt>
+<dd>Set or get the size of the layout. The methods allow setting and getting both values at the same time. </dd>
+<dt>scrollX</dt>
+<dt>scrollY</dt>
+<dt>scrollTo(x, y)</dt>
+<dt>getScrollPosition()</dt>
+<dd>Set or get the scroll position in layout co-ordinates. <code>scrollTo()</code> is a shorthand for setting both <code>scrollX</code> and <code>scrollY</code>, and <code>getScrollPosition()</code> returns both scroll co-ordinates at the same time.</dd>
+<dt>isUnboundedScrolling</dt>
+<dd>A read-only boolean reflecting the state of the <em>Unbounded scrolling</em> layout property.</dd>
+<dt>sampling</dt>
+<dd>A string of the layout's sampling mode, which is one of <code>"auto"</code>, <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code>.</dd>
+<dt>activeSampling</dt>
+<dd>A read-only string with the layout's active sampling mode. This is only different to <code>sampling</code> when the sampling mode is <code>"auto"</code>: in this case the active sampling mode is inherited from the project setting.</dd>
+<dt>scale</dt>
+<dd>Set or get the layout scale, with <code>1</code> being the default scale, <code>2</code> being 2x scale, etc. This scales all the layers in the layout, taking in to account their scale rate property.</dd>
+<dt>angle</dt>
+<dd>Set the layout angle in radians. This rotates all the layers in the layout.</dd>
+<dt>projection</dt>
+<dd>Set or get a string specifying the current layout projection, which must be one of <code>"perspective"</code> or <code>"orthographic"</code>. For more details see <em>Projection</em> in <a class="extern" href="../../../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">Layout Properties</a>.</dd>
+<dt>setVanishingPoint(vpX, vpY)</dt>
+<dt>getVanishingPoint()</dt>
+<dd>Set or get the <em>Vanishing point</em> <a class="extern" href="../../../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout property</a>, with each component in the range 0-1. The getter returns an array with two elements in the form <code>[vpX, vpY]</code>.</dd>
+<dt>effects</dt>
+<dd>An array of <a class="extern" href="../object-interfaces/ieffectinstance.html" rel="noopener" target="_blank" title="Make your own games">IEffectInstance</a> representing the effect parameters of the effects on this layout. Effects can also be accessed by name as well as by index - for example if there is one effect named <code>AdjustHSL</code>, it can be referred to with both <code>effects[0]</code> and <code>effects.AdjustHSL</code>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Layer APIs</h2>
+<p>These APIs relate to the set of layers on the layout.</p>
+<dl>
+<dt>getLayer(layerNameOrIndex)</dt>
+<dd>Get an <a class="extern" href="ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer interface</a> for a layer on the layout, by a case-insensitive string of its name or its zero-based index. When passing a number, an out-of-range number is clamped to the valid range and the nearest layer returned. When passing a string, if no layer with the given name is found, the method returns <code>null</code>.</dd>
+<dt>*allLayers()</dt>
+<dd>Iterates <a class="extern" href="ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer interfaces</a> representing all the layers on the layout, in increasing Z order.</dd>
+<dt>getAllLayers()</dt>
+<dd>Return an array of <a class="extern" href="ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer interfaces</a> representing all the layers on the layout, in increasing Z order.</dd>
+<dt>addLayer(layerName, insertBy, where)</dt>
+<dd>Create a new layer and insert it to the layer tree at runtime (also known as a <em>dynamic layer</em>). <code>layerName</code> is a string of the name to use for the added layer, which must be different to all existing layers already added, including other dynamic layers. <code>insertBy</code> is an <a class="extern" href="ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a> of another layer to insert the new layer relative to. <code>where</code> specifies where to insert the new layer relative to the <code>insertBy</code> layer, which may be one of the following strings: <ul class="list"><br/>
+<li><code>"above"</code> or <code>"below"</code>: insert adjacent to the <code>insertBy</code> layer, above or below it in Z order.</li><br/>
+<li><code>"top-sublayer"</code> or <code>"bottom-sublayer"</code>: insert as a sub-layer of the <code>insertBy</code>, at the top or bottom of its existing sub-layers. <code>insertBy</code> may also be <code>null</code>, in which case the new layer is added at the top or bottom at the root level of the layer tree.</li></ul></dd>
+<dt>moveLayer(layerToMove, insertBy, where)</dt>
+<dd>Remove and re-insert a layer to a new location in the layer tree. This works similarly to <code>addLayer()</code>, except <code>layerToMove</code> refers to an <a class="extern" href="ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a> that already exists; otherwise the <code>insertBy</code> and <code>where</code> parameters are used in the same way.</dd>
+<dt>removeLayer(layer)</dt>
+<dd>Remove a given <a class="extern" href="ilayout/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a> from the layer tree. This also removes any sub-layers of the removed layer, and all objects on the layer or any of its sub-layers will be destroyed. A layout must have at least one layer, so the last top-level layer cannot be removed.</dd>
+<dt>removeAllDynamicLayers()</dt>
+<dd>Removes all layers added using the <code>addLayer()</code> method, leaving only the layers added in the editor. All objects on the removed layers will be destroyed. This can be useful to reset the state of dynamic layers.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

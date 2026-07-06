@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/configuring-effects/webgpu-shaders" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                WebGPU shaders
+            </h1>
+            <div itemprop="articleBody">
+                <p>Effect addons that support WebGPU must provide a shader written in WebGPU's shading language WGSL. This section provides information specific to WebGPU shaders.</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Providing a WGSL shader variant</h2>
+<p>To provide a WGSL shader variant for WebGPU, the <code>"supported-renderers"</code> property in addon.json must specify <code>"webgpu"</code>, e.g.:</p>
+
+<p><code>"supported-renderers": ["webgl", "webgpu"]</code></p>
+
+
+
+<p>This tells Construct that the effect also supports WebGPU, and it will look for a WGSL shader file with the name <em>effect.wgsl</em>.</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Writing WGSL shaders</h2>
+<p>WGSL is a substantially different shader language to GLSL. This documentation does not cover the full details of the shader language. However there are two significant differences to GLSL shaders to note when writing WGSL shaders in Construct:</p>
+
+<ol class="list">
+	<li>As WebGPU is a lower-level API than WebGL, WGSL shaders tend to be more verbose than GLSL, and also need to explicitly specify engine-specific details like binding and group numbers. To avoid hard-coding details that may change in future in to WGSL shaders, Construct provides a simple preprocessor based on tokens of the form <code>%%NAME%%</code>. These are not part of the WGSL language but are Construct-specific placeholders that Construct will replace with WGSL attributes and code. A full list of the supported placeholders is included below.</li>
+	<li>Effect parameters are stored in a struct and have no name associated with them in WGSL (they are referenced by a byte offset). Therefore they ignore the <em>uniform</em> property for the parameter set in addon.json. Instead just list all effect parameters in the <code>ShaderParams</code> struct in the order they are defined and with the appropriate type, and Construct will automatically calculate their byte offsets and update them accordingly.</li>
+</ol>
+
+<h3>Construct-specific placeholders</h3>
+<p>Here is a list of placeholders of the form <code>%%NAME%%</code> that Construct will replace in WGSL shaders.</p>
+
+<dl>
+	<dt>%%SAMPLERFRONT_BINDING%%</dt>
+	<dt>%%TEXTUREFRONT_BINDING%%</dt>
+	<dd>Replaced with the <code>@binding</code> and <code>@group</code> attributes for the foreground sampler and texture. Example usage:<br>
+<code>%%SAMPLERFRONT_BINDING%% var samplerFront : sampler;</code><br>
+<code>%%TEXTUREFRONT_BINDING%% var textureFront : texture_2d&lt;f32&gt;;</code></dd>
+
+	<dt>%%SAMPLERBACK_BINDING%%</dt>
+	<dt>%%TEXTUREBACK_BINDING%%</dt>
+	<dd>Replaced with the <code>@binding</code> and <code>@group</code> attributes for the background sampler and texture. Example usage:<br>
+<code>%%SAMPLERBACK_BINDING%% var samplerBack : sampler;</code><br>
+<code>%%TEXTUREBACK_BINDING%% var textureBack : texture_2d&lt;f32&gt;;</code></dd>
+
+	<dt>%%SAMPLERDEPTH_BINDING%%</dt>
+	<dt>%%TEXTUREDEPTH_BINDING%%</dt>
+	<dd>Replaced with the <code>@binding</code> and <code>@group</code> attributes for the depth sampler and texture for depth effects like fog. Example usage:<br>
+<code>%%SAMPLERDEPTH_BINDING%% var samplerDepth : sampler;</code><br>
+<code>%%TEXTUREDEPTH_BINDING%% var textureDepth : texture_depth_2d;</code></dd>
+
+	<dt>%%FRAGMENTINPUT_STRUCT%%</dt>
+	<dd>Defines the <code>FragmentInput</code> structure used as input to the fragment shader method. This structure defines the following fields:<ul class="list"><br>
+<li><code>fragUV : vec2&lt;f32&gt;</code>: the current fragment texture co-ordinates (equivalent to <code>vTex</code> in GLSL shaders)</li><br>
+<li><code>worldPos : vec3&lt;f32&gt;</code>: the current world position. It can be useful for identifying the 3D position of the current fragment.</li><br>
+<li><code>@builtin(position) fragPos : vec4&lt;f32&gt;</code>: to access the builtin position input.</li></ul> There are also two utility methods that are defined by this placeholder (see below).</dd>
+
+	<dt>%%FRAGMENTOUTPUT_STRUCT%%</dt>
+	<dd>Defines the <code>FragmentOutput</code> structure returned from the fragment shader method. This structure defines <code>color : vec4&lt;f32&gt;</code> which is used to write the output color from the shader (equivalent to writing to <code>gl_FragColor</code> in WebGL 1 shaders).</dd>
+
+	<dt>%%SHADERPARAMS_BINDING%%</dt>
+	<dd>Replaced with the <code>@binding</code> and <code>@group</code> attributes for the structure containing custom effect parameters. This structure must be defined by your shader matching the effect parameters in the same order. It can be omitted if the shader does not use any custom parameters. Example usage from the 'Set color' sample shader: <div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">struct ShaderParams {
+	setColor : vec3&lt;f32&gt;
+};
+%%SHADERPARAMS_BINDING%% var&lt;uniform&gt; shaderParams : ShaderParams;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div></dd>
+
+	<dt>%%C3PARAMS_STRUCT%%</dt>
+	<dd>Defines a structure named <code>c3Params</code> which contains members that correspond to the Construct-provided uniforms for WebGL shaders, as well as a set of utility methods. The members of the structure currently include: <div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">srcStart			: vec2&lt;f32&gt;,
+srcEnd				: vec2&lt;f32&gt;,
+srcOriginStart		: vec2&lt;f32&gt;,
+srcOriginEnd		: vec2&lt;f32&gt;,
+layoutStart			: vec2&lt;f32&gt;,
+layoutEnd			: vec2&lt;f32&gt;,
+destStart			: vec2&lt;f32&gt;,
+destEnd				: vec2&lt;f32&gt;,
+devicePixelRatio	: f32,
+layerScale			: f32,
+layerAngle			: f32,
+seconds				: f32,
+zNear				: f32,
+zFar				: f32,
+isSrcTexRotated		: u32<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div></dd>
+
+	<dt>%%C3_UTILITY_FUNCTIONS%%</dt>
+	<dd>Defines a set of utility functions that are useful for many kinds of effects (see below)</dd>
+</dl>
+
+<h3>Utility functions</h3>
+<p>Some placeholders also include definitions for useful helper functions that perform common tasks in shaders. The available functions are documented below.</p>
+
+<h3>Provided by %%FRAGMENTINPUT_STRUCT%%</h3>
+<dl>
+	<dt>fn c3_getBackUV(fragPos : vec2&lt;f32&gt;, texBack : texture_2d&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dd>Helper function to calculate the texture co-ordinates to sample the background texture at for background blending effects. Example: <code>c3_getBackUV(input.fragPos.xy, textureBack)</code></dd>
+
+	<dt>fn c3_getDepthUV(fragPos : vec2&lt;f32&gt;, texDepth : texture_depth_2d) -&gt; vec2&lt;f32&gt;</dt>
+	<dd>Helper function to calculate the texture co-ordinates to sample the depth texture at for depth-processing effects. Example: <code>c3_getDepthUV(input.fragPos.xy, textureDepth)</code></dd>
+</dl>
+
+<h3>Provided by %%C3PARAMS_STRUCT%%</h3>
+
+<dl>
+	<dt>fn c3_srcToNorm(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dt>fn c3_normToSrc(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dt>fn c3_srcOriginToNorm(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dt>fn c3_normToSrcOrigin(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dd>Pass <code>input.fragUV</code> to <code>c3_srcToNorm()</code> to return a position normalized in the range [0, 1] relative to the box <code>srcStart</code> to <code>srcEnd</code>. The <code>c3_normToSrc()</code> function performs the reverse calculation. The <code>srcOrigin</code> variants work relative to the box <code>srcOriginStart</code> to <code>srcOriginEnd</code> instead.</dd>
+
+	<dt>fn c3_clampToSrc(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dt>fn c3_clampToSrcOrigin(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dd>Clamps a given position to the box <code>srcStart</code> to <code>srcEnd</code> or <code>srcOriginStart</code> to <code>srcOriginEnd</code>.</dd>
+	
+	<dt>fn c3_getLayoutPos(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>	
+	<dd>Pass <code>input.fragUV</code> to calculate the current corresponding position in layout co-ordinates.</dd>
+
+	<dt>fn c3_srcToDest(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dd>Maps a texture co-ordinate in the <code>srcStart</code> to <code>srcEnd</code> rectangle to the corresponding position in the <code>destStart</code> to <code>destEnd</code> rectangle.</dd>
+
+	<dt>fn c3_clampToDest(p : vec2&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dd>Clamps a texture co-ordinate to the <code>destStart</code> to <code>destEnd</code> rectangle.</dd>
+
+	<dt>fn c3_linearizeDepth(depthSample : f32) -&gt; f32</dt>
+	<dd>Linearize a sample from the depth texture to a Z distance. Depth texture samples are usually in a normalized range [0, 1]; this method returns a Z distance based on the near and far planes, which is a more useful number for things like fog effects.</dd>
+</dl>
+
+<h3>Provided by %%C3_UTILITY_FUNCTIONS%%</h3>
+
+<dl>
+	<dt>fn c3_premultiply(c : vec4&lt;f32&gt;) -&gt; vec4&lt;f32&gt;</dt>
+	<dt>fn c3_unpremultiply(c : vec4&lt;f32&gt;) -&gt; vec4&lt;f32&gt;</dt>
+	<dd>Premultiplies the RGB components by the A component in a color, and the reverse operation.</dd>
+
+	<dt>fn c3_grayscale(rgb : vec3&lt;f32&gt;) -&gt; f32</dt>
+	<dd>Convert RGB colors to a corresponding grayscale component.</dd>
+
+	<dt>fn c3_getPixelSize(t : texture_2d&lt;f32&gt;) -&gt; vec2&lt;f32&gt;</dt>
+	<dd>Returns the size of a pixel in texture co-ordinates on the given texture. </dd>
+
+	<dt>fn c3_RGBtoHSL(color : vec3&lt;f32&gt;) -&gt; vec3&lt;f32&gt;</dt>
+	<dt>fn c3_HSLtoRGB(hsl : vec3&lt;f32&gt;) -&gt; vec3&lt;f32&gt;</dt>
+	<dd>Converts RGB values to the equivalent in HSL, and the reverse operation.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>Useful shader calculations</h2>
+<p>Some common calculations done in WGSL shaders are listed below.</p>
+
+<p>To sample the foreground pixel:</p>
+
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">var front : vec4&lt;f32&gt; = textureSample(textureFront, samplerFront, input.fragUV);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>To sample an adjacent pixel, offset by the pixel size:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">// get width of a pixel in texture co-ordinates
+var pixelWidth : f32 = c3_getPixelSize(textureFront).x;
+
+// sample next pixel to the right
+var next : vec4&lt;f32&gt; = textureSample(textureFront, samplerFront, input.fragUV + vec2&lt;f32&gt;(pixelWidth, 0.0));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>To calculate the position to sample the background, use the <code>c3_getBackUV()</code> helper function:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">var back : vec4&lt;f32&gt; = textureSample(textureBack, samplerBack, c3_getBackUV(input.fragPos.xy, textureBack));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>Sampling the depth buffer works similarly to sampling the background, but using the <code>c3_getDepthUV()</code> helper function on the depth texture and sampler. It's commonly useful to then linearize the resulting depth sample to a Z distance based on the near and far planes, which the <code>c3_linearizeDepth()</code> helper function does.</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">// sample depth buffer
+var depthSample : f32 = textureSample(textureDepth, samplerDepth, c3_getDepthUV(input.fragPos.xy, textureDepth));
+
+// linearize depth sample to Z distance
+var zLinear : f32 = c3_linearizeDepth(depthSample);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>To calculate the current texture co-ordinate relative to the object being rendered, without being affected by clipping at the edge of the viewport, use the <code>c3_srcOriginToNorm()</code> helper method:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">var n : vec2&lt;f32&gt; = c3_srcOriginToNorm(input.fragUV);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>To calculate the current layout co-ordinates being rendered, use the <code>c3_getLayoutPos()</code> helper method:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">var l : vec2&lt;f32&gt; = c3_getLayoutPos(input.fragUV);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>Construct renders using premultiplied alpha. Often it is convenient to modify the RGB components without premultiplication. To do this, use the <code>c3_unpremultiply()</code> and <code>c3_premultiply()</code> helper methods:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">// sample front texture
+var front : vec4&lt;f32&gt; = textureSample(textureFront, samplerFront, input.fragUV);
+
+// unpremultiply
+front = c3_unpremultiply(front);
+
+// ...modify unpremultiplied front color...
+
+// premultiply again
+front = c3_premultiply(front);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<a class="internalNavLink" name="internalH1Link3" id="internalH1Link3"></a><h2>Precision in WebGPU shaders</h2>
+<p>WebGL shaders allow the use of shader precision qualifiers such as <code>lowp</code> and <code>mediump</code>. WebGPU uses a different approach with explicit types such as <code>f32</code>. Some devices support a lower-precision <code>f16</code> type if they support the <code>shader-f16</code> feature. To help make it easy to use the <code>f16</code> type, Construct requests to use the <code>shader-f16</code> feature where supported, and defines a type in WebGPU shaders named <code>f16or32</code>, which is <code>f16</code> when <code>shader-f16</code> is supported, otherwise it is <code>f32</code>.</p>
+
+<p>Currently all of Construct's built-in inputs, outputs and library functions use the <code>f32</code> type exclusively for broadest compatibility. However shaders can make use of the <code>f16or32</code> type for their internal calculations, converting to <code>f32</code> where necessary, to help improve shader performance, especially as <code>f32</code> is high precision with a higher performance cost compared to <code>lowp</code> or <code>mediump</code> precision in GLSL.</p>
+
+<a class="internalNavLink" name="internalH1Link4" id="internalH1Link4"></a><h2>Compatibility differences with WebGL shaders</h2>
+<p>Due to API differences between WebGL and WebGPU, the WebGL src/srcOrigin/dest uniforms use an inverted Y direction. This means instead of ranging from 0-1 for top-to-bottom, they range from 1-0.</p>
+
+<p>Sometimes this does not have any impact on the effect. However in some cases it does, depending on the kinds of calculation done in the shader. When porting a GLSL shader to WGSL, you may need to emulate the inverted Y direction in WGSL to achieve the same effect. For example the Lens2 effect uses the following code pattern in WGSL to emulate the inverted Y direction:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">// At start of shader: get normalized source co-ordinates
+// and then invert Y direction to match WebGL
+var tex : vec2&lt;f32&gt; = c3_srcToNorm(input.fragUV);
+tex.y = 1.0 - tex.y;
+
+// ... rest of effect ...
+
+// At end of shader: invert Y direction again and then
+// calculate background sampling position
+p.y = 1.0 - p.y;
+
+var output : FragmentOutput;
+output.color = textureSample(textureBack, samplerBack, mix(c3Params.destStart, c3Params.destEnd, p));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>If you are writing a new effect, consider writing the WebGPU shader first, and then if necessary applying the Y inversion in the WebGL shader instead. As WebGPU is the newer technology, in the long term the WebGL renderer may eventually be retired, in which case it is better to have a natural code style in the WGSL shader.</p></div></div></div></div></div></div></div></div></div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

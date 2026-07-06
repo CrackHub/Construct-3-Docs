@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/geometry-interfaces/quad" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Quad interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>Quad</code> interface represents a shape made from four points in the SDK. Typically it is used to represent rotated rectangles. It is also the main primitive used for rendering, by passing object's bounding quads to the WebGL renderer.
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Constructor</h2>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>Quad</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>Quad</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span>tlx<span class="token punctuation">,</span> tly<span class="token punctuation">,</span> trx<span class="token punctuation">,</span> try_<span class="token punctuation">,</span> brx<span class="token punctuation">,</span> bry<span class="token punctuation">,</span> blx<span class="token punctuation">,</span> bly<span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>A <code>Quad</code> can be constructed with no parameters, which defaults all co-ordinates to zero, or with given positions for each point. The naming convention is <strong>tl</strong> for the "top-left" point, <strong>tr</strong> for the "top-right" point, <strong>br</strong> for the "bottom-right" point, and <strong>bl</strong> for the "bottom-left" point, followed by "x" or "y" for each component of the point. Note that the points can appear at any orientation for rotated quads; the names only correspond to their actual position when the quad is set to an unrotated rectangle.
+</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Methods</h2>
+<dl>
+<dt>set(tlx, tly, trx, try_, brx, bry, blx, bly)</dt>
+<dd>Set all four points of the quad in a single call.</dd>
+<dt>setRect(left, top, right, bottom)</dt>
+<dd>Set the quad's points to represent an axis-aligned rectangle using the given positions. Note that this is only useful if you subsequently make further modifications to the quad, else you may as well use the <a class="extern" href="rect.html" rel="noopener" target="_blank" title="Make your own games">Rect</a> interface.</dd>
+<dt>copy(quad)</dt>
+<dd>Set all points of the quad by copying another <code>SDK.Quad</code>.</dd>
+<dt>setTlx(n)</dt>
+<dt>setTly(n)</dt>
+<dt>setTrx(n)</dt>
+<dt>setTry(n)</dt>
+<dt>setBrx(n)</dt>
+<dt>setBry(n)</dt>
+<dt>setBlx(n)</dt>
+<dt>setBly(n)</dt>
+<dd>Set each point of the quad individually.</dd>
+<dt>getTlx()</dt>
+<dt>getTly()</dt>
+<dt>getTrx()</dt>
+<dt>getTry()</dt>
+<dt>getBrx()</dt>
+<dt>getBry()</dt>
+<dt>getBlx()</dt>
+<dt>getBly()</dt>
+<dd>Get each point of the quad individually.</dd>
+<dt>setFromRect(rect)</dt>
+<dd>Set the points of the quad to an axis-aligned rectangle given by an <a class="extern" href="rect.html" rel="noopener" target="_blank" title="Make your own games">SDK.Rect</a>. Note that this is only useful if you subsequently make further modifications to the quad, else you may as well use the Rect interface directly.</dd>
+<dt>setFromRotatedRect(rect, angle)</dt>
+<dd>Set the points of the quad to a rotated rectangle given by an <a class="extern" href="rect.html" rel="noopener" target="_blank" title="Make your own games">SDK.Rect</a>, rotated about the origin by <code>angle</code> in radians.</dd>
+<dt>getBoundingBox(rect)</dt>
+<dd>Calculate the bounding box of the quad, and store the result by writing to a given <a class="extern" href="rect.html" rel="noopener" target="_blank" title="Make your own games">SDK.Rect</a>.</dd>
+<dt>midX()</dt>
+<dt>midY()</dt>
+<dd>Return the average of the four points in the quad on each axis.</dd>
+<dt>intersectsSegment(x1, y1, x2, y2)</dt>
+<dd>Test if a segment, given as the line between points (x1, y1) and (x2, y2), intersects this quad, returning a boolean.</dd>
+<dt>intersectsQuad(quad)</dt>
+<dd>Test if another SDK.Quad intersects this quad, returning a boolean.</dd>
+<dt>containsPoint(x, y)</dt>
+<dd>Test if the given point is inside the bounds of this quad, returning a boolean.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

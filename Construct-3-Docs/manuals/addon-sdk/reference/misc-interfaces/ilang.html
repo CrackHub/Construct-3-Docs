@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/misc-interfaces/ilang" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                ILang interface
+            </h1>
+            <div itemprop="articleBody">
+                <p>The <code>ILang</code> interface allows for looking up translated strings in the language file.</p>
+
+
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+
+<dt>PushContext(prefix)</dt>
+<dd>Push a prefix to the context stack. For example <code>PushContext("foo")</code> followed by <code>Get(".bar")</code> will return the same string as if <code>Get("foo.bar")</code> were used. Pushing a context beginning with a dot will append to the current prefix, but pushing an entry not beginning with a dot will reset the current prefix. <strong>Note:</strong> be sure to always call <code>PopContext()</code> afterwards.</dd>
+
+<dt>PopContext()</dt>
+<dd>Pop a prefix from the context stack.</dd>
+
+<dt>Get(context)</dt>
+<dd>Look up a string in the language file. If the context begins with a dot, it is relative to the current context prefix. Otherwise it is treated as an absolute context.<br>
+</dd>
+
+</dl>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

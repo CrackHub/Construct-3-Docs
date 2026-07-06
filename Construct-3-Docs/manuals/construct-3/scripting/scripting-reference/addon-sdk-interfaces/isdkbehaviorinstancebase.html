@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkbehaviorinstancebase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ISDKBehaviorInstanceBase addon SDK interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISDKBehaviorInstanceBase</code> interface is used as a runtime base class for behavior instances in the addon SDK. It derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>ISDKBehaviorInstanceBase APIs</h2>
+<dl>
+<dt>_postCreate()</dt>
+<dd>Optional override called after the associated object instance has finished being created. This can be useful since the behavior instance constructor is called during instance creation, so the final state is not ready yet.</dd>
+<dt>_release()</dt>
+<dd>Optional override for when the corresponding instance is released. Clean up any other resources that need releasing in this method. It must also call <code>super._release()</code> to release all engine resources.</dd>
+<dt>_getInitProperties()</dt>
+<dd>Call this in the constructor to get an array of the behavior instance's properties.</dd>
+<dt>_trigger(method)</dt>
+<dt>_triggerAsync(method)</dt>
+<dd>Fire a trigger condition. The condition must be declared as a trigger in aces.json. Pass a full reference to the condition method, e.g. <code>this._trigger(C3.Behaviors.MyBehavior.Cnds.MyTrigger)</code>. The async variant returns a Promise that resolves when the trigger has finished executing, which can be used to support Construct's debugger, as it may wait if it hits a breakpoint inside the trigger.</dd>
+<dt>_setTicking(isTicking)</dt>
+<dt>_setTicking2(isTicking)</dt>
+<dt>_setPostTicking(isTicking)</dt>
+<dt>_isTicking()</dt>
+<dt>_isTicking2()</dt>
+<dt>_isPostTicking()</dt>
+<dd>Utility methods to start or stop the runtime calling the <code>_tick()</code>. <code>_tick2()</code> or <code>_postTick()</code> methods of your behavior instance every tick, and also to check whether ticking is active. It is recommended to stop ticking whenever the tick method is no longer needed to reduce the performance overhead of ticking. Redundant calls to start or stop ticking are ignored. The first call always takes effect (i.e. calls do not stack - if you make 3 calls to start ticking then 1 call to stop ticking, ticking is stopped).</dd>
+<dt>_tick()</dt>
+<dd>Optional override that is called every tick just <strong>before</strong> events are run after <code>_setTicking(true)</code> has been called.</dd>
+<dt>_tick2()</dt>
+<dd>Optional override that is called every tick just <strong>after</strong> events are run after <code>_setTicking2(true)</code> has been called.</dd>
+<dt>_postTick()</dt>
+<dd>Optional override that is called every tick just after all other behaviors have had their <code>_tick()</code> methods called. This allows behaviors to observe the state applied by other behavior's ticking. Note you should use <code>_tick()</code> rather than <code>_postTick()</code> where possible, since it is not possible to reliably observe the state applied by other behavior's post-ticking.</dd>
+<dt>_getDebuggerProperties()</dt>
+<dd>Override to return properties to display in the debugger. For more information see <a class="extern" href="../../../../addon-sdk/guide/runtime-scripts.html" rel="noopener" target="_blank" title="Make your own games">runtime scripts</a>.</dd>
+<dt>_saveToJson()</dt>
+<dd>Optional override to return a JSON object that represents the state of the behavior instance for savegames.</dd>
+<dt>_loadFromJson(o)</dt>
+<dd>Optional override accepting a JSON object returned by a prior call to <code>_saveToJson()</code> that represents the state of a behavior instance to load, for savegames.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/using-developer-mode" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Testing addons in Developer Mode
+            </h1>
+<div itemprop="articleBody">
+<p>While developing an addon, it is inconvenient to have to package and install a new .c3addon file every time you make a change. To make testing easier, you can load an addon from a local web server. This means every time you reload Construct 3, it re-loads the latest version of your addon from your local web server, saving you from having to make any .c3addon packages. Developer mode also means Construct reloads the addon files on every preview, making it much easier to check changes to runtime code, but note that most of the time changing code that affects the editor will still require a reload of the editor.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2><span class="headerStep">Step 1:</span> enable Developer Mode</h2>
+<p>For these steps to work, you must first <a class="extern" href="enabling-developer-mode.html" rel="noopener" target="_blank" title="Make your own games">enable Developer Mode</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2><span class="headerStep">Step 2:</span> start a local web server</h2>
+<p>There are many ways to run a local web server, e.g. with a Chrome extension, or a standalone server like nginx. Refer to your chosen server's documentation for installation and configuration.</p>
+<p>Your local web server must host on <em>localhost</em>. Construct 3 will refuse to load addons from any other origin. You can host on any port, but it is recommended to use a port in the ephemeral port range 49152-65535.</p>
+<p>The local web server must serve all the addon files with <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a> (Cross-Origin Resource Sharing) enabled for Construct 3 to be able to load them, since it will be making a cross-domain request. In practice this means adding this HTTP header to the server response:</p>
+<p><code>Access-Control-Allow-Origin: *</code></p>
+<p>To do this you need to enable CORS if your web server provides a setting for that, or manually specify the header. For example in nginx, add the following directive in your server location section:</p>
+<p><code>add_header Access-Control-Allow-Origin *;</code></p>
+<p>You may also wish to review the caching headers to ensure your local server does not return old cached files. Disabling caching entirely will ensure Construct 3 always receives the latest files.</p>
+<p>Once the server is fully configured, simply host the contents of the <a class="extern" href="c3addon-file.html" rel="noopener" target="_blank" title="Make your own games">c3addon file</a> in a folder on your local web server. For example the URL <em>http://localhost:65432/myaddon/addon.json</em> should serve the addon.json file for your addon.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2><span class="headerStep">Step 3:</span> update addon.json to include file list</h2>
+<p>Normally when files are extracted from the zip-format .c3addon file, Construct 3 can obtain a file list from the zip. However when loading from a local web server, Construct 3 needs another way to identify all available files. So you must update addon.json to include a complete file list. For more information see the section <em>Developer mode addons</em> in <a class="extern" href="addon-metadata.html" rel="noopener" target="_blank" title="Make your own games">Addon metadata</a>.</p>
+<p>The file list can be left in when distributing your .c3addon file — there's no need to later remove it.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2><span class="headerStep">Step 4:</span> install the developer mode addon</h2>
+<p>In Construct 3, open the Addon Manager. After enabling Developer Mode, there should be a new button at the bottom labelled <em>Add dev addon...</em>. Click this button. A dialog will appear asking for the URL to the addon's addon.json file on your local web server. Enter its path, e.g. <em>http://localhost:65432/myaddon/addon.json</em>, and press OK. If the addon.json file is reachable and parsed successfully, you'll see a message indicating to restart Construct 3 to load the addon. If an error occurs, check the browser console for more details.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2><span class="headerStep">Step 5:</span> develop the addon</h2>
+<p>Now every time you reload Construct 3, or preview a project using the addon, the latest version of your addon is loaded from the local web server. This makes it much quicker to test changes to your addon. For example if you make a change that crashes Construct 3 on startup, there is no need to clear the browser cache to remove the addon; you can simply fix the problem and reload C3. Similarly you can adjust some runtime code and press preview, and your code changes will be immediately reflected.</p>
+<p>Your addon will appear in the Addon Manager as having a "Developer" source. Note "Developer" addons cannot be bundled with projects when using the <em>Bundle addons</em> feature.</p>
+<p>You can also uninstall your developer mode addon like any other addon, by right-clicking it in the Addon Manager and selecting <em>Uninstall</em>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

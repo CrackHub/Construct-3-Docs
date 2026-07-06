@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/video-recorder" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Video recorder
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Video recorder</strong> object can record videos of your project in real-time. It can record either the main display canvas, the browser tab, the entire screen, or even a different app (where supported).</p>
+<p>Note not all browsers or platforms record the same types of audio or video. The codecs used and the resulting file format can vary; use <em>Is audio/video format supported</em> conditions to check which are supported. By default the recording actions use <em>Auto</em> as the format, which means a supported format will be picked.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Video recorder conditions</h2>
+<dl class="sans">
+<dt>Is audio format supported</dt>
+<dt>Is video format supported</dt>
+<dd>Check if particular audio and video codecs are supported for the recorded video.</dd>
+<dt>Is recording</dt>
+<dd>True while currently recording the canvas or screen.</dd>
+<dt>Is recording supported</dt>
+<dd>Check if the current browser or platform supports recording. If this is not true, video recording will not work.</dd>
+<dt>Is screen recording supported</dt>
+<dd>Check if the <em>Start screen recording</em> action is supported. This action can record the user's entire screen, and is not always supported even when the <em>Start recording</em> action is supported.</dd>
+<dt>On recording error</dt>
+<dd>Triggered if an error occurs while recording a video. The recording is unlikely to be available after an error.</dd>
+<dt>On recording ready</dt>
+<dd>Triggered after recording finishes, e.g. after the <em>Stop recording</em> action, when the video recording has finished encoding and is available to download with the <em>RecordingURL</em> expression. This can be downloaded using the Browser object's <em>Invoke download</em> action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Video recorder actions</h2>
+<dl class="sans">
+<dt>Start recording</dt>
+<dd>Start recording a video of the main display canvas. Note this excludes form controls like buttons and text inputs, because these are HTML elements that "float" above the main display canvas and aren't actually part of the canvas, so are excluded from the recording. (If it is important to record these, some browsers support screen recording and can capture the entire browser tab.) Specific video and audio formats can be chosen, but it is recommended to leave them at <em>Auto</em> to ensure a supported format is used, or set to <em>None</em> to omit either the video or audio from the recording. A custom framerate can be set but the default 0 indicates the display rate. The quality in kilobits per second (kbps) can also be set, determining the video quality vs. size tradeoff. Use <em>Stop recording</em> to end the recording, after which <em>On recording ready</em> will trigger so the video can be downloaded.</dd>
+<dt>Start screen recording</dt>
+<dd>Start recording a video of the user's entire screen. This only works when the <em>Is screen recording supported</em> condition is true. For security reasons, browsers will prompt the user before the recording starts. To avoid the prompt annoying users, this action may only be allowed in a user input trigger, e.g. <em>On button clicked</em>, <em>On touch start</em> etc. Some browsers also provide options in the prompt to record either the browser tab (which will include non-canvas elements like form controls), a different app, or the screen. Specific video and audio formats can be chosen, but it is recommended to leave them at <em>Auto</em> to ensure a supported format is used, or set to <em>None</em> to omit either the video or audio from the recording. Note that if audio is included, the video can only include audio played by the project itself, unless <em>System audio</em> is checked, which allows for recording all audio output from the system including other apps; note however the user may still need to opt-in to including system audio in the permission prompt. The quality in kilobits per second (kbps) can also be set, determining the video quality vs. size tradeoff. Use <em>Stop recording</em> to end the recording, after which <em>On recording ready</em> will trigger so the video can be downloaded.</dd>
+<dt>Start User Media recording</dt>
+<dd>Start recording video and/or audio from a <a class="extern" href="user-media.html" rel="noopener" target="_blank" title="Make your own games">User Media</a> object's input. <em>On media request approved</em> must trigger before this can be used.</dd>
+<dt>Set recording paused</dt>
+<dd>Pause or resume an active recording. A paused recording stops adding video frames or audio, and begins again when resumed. The resulting recording will appear to have a cut while the recording was paused.</dd>
+<dt>Stop recording</dt>
+<dd>Stop any active recording. When the video has finished encoding, <em>On recording ready</em> will trigger so the video can be downloaded.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Video recorder expressions</h2>
+<dl class="sans">
+<dt>RecordingURL</dt>
+<dd>In <em>On recording ready</em>, a URL that can be used to download the recorded video file. Use the Browser object's <em>Invoke download</em> action to download this.</dd>
+<dt>RecordingType</dt>
+<dd>The content type (also known as MIME type) of the recording that was made, e.g. <em>"video/webm;codecs=vp9"</em>. This is useful if you need to know the type of an <em>Auto</em> format recording, such as when sharing it.</dd>
+<dt>RecordingFileExtension</dt>
+<dd>The file extension of the recording that was made including the dot, e.g. <em>".webm"</em>. This is useful if you need to know the file extension of an <em>Auto</em> format recording, such as when download it.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

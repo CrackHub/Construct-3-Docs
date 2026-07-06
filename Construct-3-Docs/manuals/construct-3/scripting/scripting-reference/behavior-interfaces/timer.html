@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/timer" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timer behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITimerBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/timer.html" rel="noopener" target="_blank" title="Make your own games">Timer behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Example</h2>
+<p>Below is a sample code snippet demonstrating setting two timers on <code>inst</code> (assumed to be an instance with the Timer behavior). One is a regular timer and the other is a one-off timer. </p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Handle "timer" event and log to the console that the timer ran.</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Timer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token string">"timer"</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span>
+<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-5-close">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-0-close">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Timer "</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation brace-curly brace-open brace-level-4" id="pair-4-close">${</span>e<span class="token punctuation">.</span>tag<span class="token interpolation-punctuation punctuation brace-curly brace-close brace-level-4" id="pair-4-open">}</span></span><span class="token string">" ran!</span><span class="token template-punctuation string">`</span></span><span class="token punctuation brace-round brace-close brace-level-3" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-5-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Set a regular timer running every 1 second</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Timer<span class="token punctuation">.</span><span class="token function">startTimer</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"myRegularTimer"</span><span class="token punctuation">,</span> <span class="token string">"regular"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Set a one-off timer to run after 2.5 seconds</span>
+inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Timer<span class="token punctuation">.</span><span class="token function">startTimer</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-3-close">(</span><span class="token number">2.5</span><span class="token punctuation">,</span> <span class="token string">"myOneOffTimer"</span><span class="token punctuation">,</span> <span class="token string">"once"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-3-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Timer behavior events</h2>
+<p>See <a class="extern" href="../interfaces/behavior-instance-event.html" rel="noopener" target="_blank" title="Make your own games">behavior instance event</a> for standard behavior instance event object properties.</p>
+<dl>
+<dt>"timer"</dt>
+<dd>Fired when a timer period has elapsed. The event object has a <code>tag</code> property which is a string of the tag for the timer that has elapsed.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Timer behavior APIs</h2>
+<dl>
+<dt>startTimer(duration, tag, type = "once")</dt>
+<dd>Set a new timer, or if a timer with the same <code>tag</code> exists, re-start it with new options. <code>duration</code> is the time in seconds until the <code>"timer"</code> event fires. If <code>type</code> is <code>"once"</code>, then the timer event will fire once and not again until <code>startTimer</code> is called again. If <code>type</code> is set to <code>"regular"</code>, then the timer event will keep firing every <code>duration</code> seconds. The <code>tag</code> is a string that allows identifying different timers.</dd>
+<dt>setTimerPaused(tag, isPaused)</dt>
+<dd>Set a currently running timer either paused or resumed. When a timer is paused, it will stop firing timer events. When resumed, it will continue firing timer events, resuming from the time that it was paused at. In other words if a timer is set for 1 second, it is paused after 0.5 seconds, and then after some time it is resumed again, the next timer event will fire 0.5 seconds after resuming.</dd>
+<dt>setAllTimersPaused(isPaused)</dt>
+<dd>This does the same thing as the <code>setTimerPaused()</code> method, but affecting all existing timers rather than only one with a given tag.</dd>
+<dt>stopTimer(tag)</dt>
+<dd>Stop a timer with a specific tag. The timer event will no longer fire for the stopped timer after this call.</dd>
+<dt>stopAllTimers()</dt>
+<dd>Stop all currently running timers regardless of their tags. The timer event will no longer fire for any timer after this method unless a new timer is started.</dd>
+<dt>isTimerRunning(tag)</dt>
+<dd>Returns a boolean indicating if a timer with the given tag has been started. Once stopped, the timer no longer counts as running. Paused timers also count as running - use <code>isTimerPaused()</code> to identify these timers separately.</dd>
+<dt>isTimerPaused(tag)</dt>
+<dd>Returns a boolean indicating if a timer with the given tag has been started and then subsequently paused with <code>setTimerPaused()</code>.</dd>
+<dt>getCurrentTime(tag)</dt>
+<dd>Returns the time in seconds since the <code>"timer"</code> event last fired, for a timer with a specific tag.</dd>
+<dt>getTotalTime(tag)</dt>
+<dd>Returns the time in seconds since a timer with a specific tag was started. This is only useful with regular timers, since it will always equal <code>getCurrentTime()</code> for one-off timers (after which they fire and the timer no longer exists, so these expressions return 0).</dd>
+<dt>getDuration(tag)</dt>
+<dd>Returns the duration in seconds for a timer with a specific tag.</dd>
+<dt>getNormalizedProgress(tag)</dt>
+<dd>Returns the current progress for a timer with a specific tag represented as a number between 0 and 1, regardless of the duration of the timer. For example a normalized progress of 0.5 means half way through the duration.</dd>
+<dt>hasFinished(tag)</dt>
+<dd>Returns a boolean that is true for the tick that the <code>"timer"</code> event fires in. This is the way the <em>On timer</em> condition of the Timer behavior checks for finished timers, and this method allows script callers to make the same check, such as by polling the timer in the <code>"tick"</code> event.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

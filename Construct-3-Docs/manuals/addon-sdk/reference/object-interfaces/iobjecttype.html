@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/object-interfaces/iobjecttype" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IObjectType interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IObjectType</code> interface represents an object type in Construct. It derives from <a class="extern" href="iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>GetImage()</dt>
+<dd>Return an <a class="extern" href="ianimationframe.html" rel="noopener" target="_blank" title="Make your own games">IAnimationFrame</a> representing the object type's image. The plugin must have specified <code>SetHasImage(true)</code> in <a class="extern" href="../iplugininfo.html" rel="noopener" target="_blank" title="Make your own games">IPluginInfo</a>.</dd>
+<dt>EditImage()</dt>
+<dd>Open the Animations Editor in Construct to edit the object's image. The plugin must have specified <code>SetHasImage(true)</code>.</dd>
+<dt>GetAnimations()</dt>
+<dd>Return an array of <a class="extern" href="ianimation.html" rel="noopener" target="_blank" title="Make your own games">IAnimation</a> representing the animations in the object type. Note this is only applicable to animated plugin types, e.g. Sprite.</dd>
+<dt>AddAnimation(animName, frameBlob, frameWidth, frameHeight)</dt>
+<dd>Add a new animation to the object type. The object type's plugin must be animated (e.g. the Sprite plugin). Animations must have at least one frame, so this method also adds an animation frame. The <em>frameBlob</em>, <em>frameWidth</em> and <em>frameHeight</em> parameters are all optional: if they are omitted, Construct will add a default empty animation frame. If they are provided they are interpreted the same way as <a class="extern" href="ianimation.html" rel="noopener" target="_blank" title="Make your own games">IAnimation.AddFrame()</a>; see the linked documentation for more details. The call returns a promise that resolves with the newly created <a class="extern" href="ianimation.html" rel="noopener" target="_blank" title="Make your own games">IAnimation</a>.</dd>
+<dt>GetAllInstances()</dt>
+<dd>Return an array of all <a class="extern" href="iobjectinstance.html" rel="noopener" target="_blank" title="Make your own games">IObjectInstances</a> or <a class="extern" href="iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstances</a> of this object type in the project. </dd>
+<dt>CreateWorldInstance(layer)</dt>
+<dd>Create a new instance from this object type, and add it to the given <a class="extern" href="../model-interfaces/ilayer.html" rel="noopener" target="_blank" title="Make your own games">ILayer</a>. Returns a new <a class="extern" href="iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> interface representing the new instance. Note this method is only applicable to <code>"world"</code> type plugins.</dd>
+<dt>IsInContainer()</dt>
+<dd>Return a boolean indicating if the object type belongs to a container.</dd>
+<dt>GetContainer()</dt>
+<dd>Return the <a class="extern" href="icontainer.html" rel="noopener" target="_blank" title="Make your own games">IContainer</a> the object type belongs to if any, else <code>null</code>.</dd>
+<dt>CreateContainer(initialObjectTypes)</dt>
+<dd>Create a new container using an array of <a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> for the members of the container. The array must include the IObjectType this call is made on, must contain at least two elements, and the object type must not already be in a container. Returns an <a class="extern" href="icontainer.html" rel="noopener" target="_blank" title="Make your own games">IContainer</a> representing the created container.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

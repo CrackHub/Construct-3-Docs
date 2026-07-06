@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/sprite-font" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Sprite Font
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Sprite Font</strong> object uses an image to display text. The "sprite font" is the object image, which contains a grid of every character that can be drawn. By drawing parts of this image in sequence, strings of text can be rendered. This allows complete artistic control over the appearance of text, rather than having to choose from existing fonts.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/985/spritefont.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 425x263px in new window (5.23 KB)"><span><img alt="How a Sprite Font works" height="263" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/985/spritefont.png" width="425"/></span></a></div></div>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/spritefont.html" rel="noopener" target="_blank" title="Make your own games">ISpriteFontInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Comparison with Text object</h2>
+<p>Both the Sprite Font and <a class="extern" href="text.html" rel="noopener" target="_blank" title="Make your own games">Text</a> objects can display text in the project. Typically the Text object shows monochrome characters from an existing font or web font, which can use a range of sizes and possibly also bold and italic options. On the other hand Sprite Font uses images for each character. While this means any kind of artwork can be used for text, notably allowing for multi-colored text, it has the trade-off that it only really supports one font size and one bold/italic setting (those that it is drawn with).</p>
+<p>Another important difference is that traditional fonts as used by the Text object often have good support for unicode characters. This allows them to display a wide range of characters, including many alphabets and character sets from many different languages, as well as emoji. Sprite Fonts however can only use the characters for which an image has been drawn. It is very difficult to make a sprite font that covers much of the tens of thousands of possible unicode characters. If a Sprite Font is set to show some text which contains a character that has not been drawn, it will simply show an empty space for that character. If the entire string is in a different language which the sprite font does not cover, nothing will render at all. Bear in mind that if you allow user-inputted text, such as the player's name, or you wish to translate the project in future, then Text objects are probably more suitable.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Re-coloring SpriteFonts</h2>
+<p>SpriteFont objects have a <em>Color</em> property that can be used to conveniently re-color the text (and the <code>[color]</code> BBCode tag works similarly; see below). This works by applying a color filter, which works best if the SpriteFont is drawn with white text, since that can be filtered to any other color. For this reason the default SpriteFont is drawn white. The <em>Color</em> property is set to blue by default in order to help identify that the color of the SpriteFont is set by this property. So long as the image is drawn white, the color of the text can be set to any color with this property.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Using BBCode</h2>
+<p>By default the SpriteFont object allows the use of BBCode, a simple way of marking up text for formatting. If you don't want such tags to affect the formatting of the text, you can opt-out of it by unchecking the <em>Enable BBCode</em> property.</p>
+<p>BBCode uses "tags" in square brackets to mark the start and end of formatting. For example to hide a word, wrap it in <code>[hide]</code> and <code>[/hide]</code>, e.g. <code>[hide]Hello[/hide]</code>. Some tags take a parameter, such as the scale, which is specified after an equals sign in the opening tag, e.g.<code>[scale=2]Hello[/scale]</code>.</p>
+<p>The following tags are supported. Note that due to the fact SpriteFonts render images for text, the supported BBCode tags differ from those used by the Text object.</p>
+<ul class="list">
+<li><code>[scalex=2]stretch wider[/scalex]</code></li>
+<li><code>[scaley=2]stretch taller[/scaley]</code></li>
+<li><code>[scale=2]stretch both axes[/scale]</code></li>
+<li><code>[color=#ff0000]change text color[/color]</code> - the color can be specified in the same way CSS colors are specified, e.g. hexadecimal, using <code>rgb()</code>, etc. Note that for SpriteFont, the color is applied as a tint. To ensure you can use any color text, use a SpriteFont with the characters drawn in a white color.</li>
+<li><code>[opacity=50]change text opacity[/opacity]</code></li>
+<li><code>[hide]invisible text[/hide]</code> - this is useful for flashing effects, since the text still takes up the same width while invisible</li>
+<li><code>[background=#ff0000]change background color[/background]</code></li>
+<li><code>[offsetx=10]offset X[/offsetx]</code> and <code>[offsety=10]offset Y[/offsety]</code> - move text by a number of pixels on each axis, useful for animated effects</li>
+<li><code>[tag=mytag]tag a range of text[/tag]</code>, assigns the tag "mytag" to a range of text, which can then be referred to in events (e.g. the <em>Has tag at position</em> condition, or expressions to get its size and position). Note see the section <em>Tagged range fragmentation</em> in the <a class="extern" href="text.html" rel="noopener" target="_blank" title="Make your own games">Text object</a> manual entry for more details (as fragmentation works the same for both SpriteFont and Text objects).</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Sprite font properties</h2>
+<dl class="sans">
+<dt>Text</dt>
+<dd>The initial text to display.</dd>
+<dt>Sprite font</dt>
+<dd>Click the Edit link to edit the source image that text characters are rendered from. The image can be any size, but it should fit the characters it contains exactly. Characters start in the top-left and the sequence moves to the right, wrapping down to the next line when it reaches the right edge of the image. If the character is narrower than the cell, and you change its width using <em>Spacing data</em> or the <em>Set character width</em> action, the image should be drawn left-aligned in the cell.</dd>
+<dt>Character width</dt>
+<dt>Character height</dt>
+<dd>The size of each character's cell in the sprite font image. Individual characters can be displayed with a different width using <em>Spacing data</em> or the <em>Set character width</em> action. In this case, the character should be drawn left-aligned within its cell.</dd>
+<dt>Character set</dt>
+<dd>A string of characters that describes the sequence of letters in the sprite font image. This is used to map text to images. While the default starts with the English alphabet, it could be changed to another language or sequence and the image updated accordingly. Note however the Sprite Font can only display characters that are in the character set; any characters not in the character set with a corresponding image will appear as an empty space.</dd>
+<dt>Spacing data</dt>
+<dd>Some data in JSON format that lists the widths of individual characters. This allows improved text layout by using narrower spaces for narrower characters. The spacing data also affects the display of the text in the Layout View. The data is an array of pairs. Each pair is a width, and then a string of all the characters that width applies to. For example the pair <code>[10, "aeou"]</code> will set the width of the characters <em>a</em>, <em>e</em>, <em>o</em> and <em>u</em> to 10 pixels. The characters are case-sensitive, allowing you to choose different widths for uppercase characters. You can also set the width of the space character. Each pair must be listed in an array, e.g.<br/>
+<code>[[10, "aeou"], [12, "mvw"]]</code>.</dd>
+<dt>Scale</dt>
+<dd>A multiplier to scale the rendered text with, such as 0.5 for half as big or 2 for twice as big. This can be used to "fake" different font sizes, but remember it's only stretching images; you may want to draw the font again at a different size instead of using a scale.</dd>
+<dt>Character spacing</dt>
+<dd>Extra space in pixels to add horizontally between characters.</dd>
+<dt>Line height</dt>
+<dd>Extra space in pixels to add vertically between lines. 0 is the default size, negative values make lines closer together, and positive values space lines out further apart.</dd>
+<dt>Horizontal alignment</dt>
+<dd>The horizontal alignment of the text within the object bounding rectangle.</dd>
+<dt>Vertical alignment</dt>
+<dd>The vertical alignment of the text within the object bounding box.</dd>
+<dt>Wrapping</dt>
+<dd>Choose how text wraps at the end of a line. <em>Word</em> will wrap entire words separated by spaces or hyphens. <em>Character</em> will wrap to the next line on any character, even punctuation. <em>CJK</em> works similarly to <em>Character</em>, but has special handling for Chinese, Japanese and Korean punctuation characters, intended to ensure punctuation wraps appropriately.</dd>
+<dt>Initially visible</dt>
+<dd>Whether the object is initially visible or invisible when the layout starts.</dd>
+<dt>Origin</dt>
+<dd>Choose the position of the origin relative to its unrotated bounding rectangle.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Sprite font conditions</h2>
+<dl class="sans">
+<dt>Compare text</dt>
+<dd>Compare the current text the object is showing.</dd>
+<dt>Has tag at position</dt>
+<dd>Test if there is text with a specific tag at the given position (case insensitive). For example if the text has the BBcode <code>Hello [tag=mytag]world[/tag]</code>, then testing if the tag "mytag" is at a given position will check if that position is over just the part of the text that says "world".</dd>
+<dt>Is running typewriter text</dt>
+<dd>True while text is being written out using the <em>Typewriter text</em> action.</dd>
+<dt>On typewriter text finished</dt>
+<dd>Triggered when text being written out using the <em>Typewriter text</em> action finishes writing out all the text.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Sprite font actions</h2>
+<dl class="sans">
+<dt>Append text</dt>
+<dd>Add some text to the end of the existing text.</dd>
+<dt>Set character spacing</dt>
+<dt>Set line height</dt>
+<dt>Set scale</dt>
+<dt>Set horizontal alignment</dt>
+<dt>Set vertical alignment</dt>
+<dt>Set wrapping</dt>
+<dd>Set the corresponding object properties. For more information, see <em>Sprite font properties</em>.</dd>
+<dt>Set character width</dt>
+<dd>Set the width of certain characters. Normally it is preferable to use the <em>Spacing data</em> property, since it displays with correct spacing in the Layout View. In this action you can specify multiple characters at the same time to set their widths simultaneously, including the space character.</dd>
+<dt>Set text</dt>
+<dd>Replace the current text with a new string.</dd>
+<dt>Typewriter text</dt>
+<dd>Set the text over time by starting with an empty string and gradually adding characters until the full text is written out, over a duration specified in seconds. Once the full text is written out, <em>On typewriter text finished</em> triggers. Note using <em>Set text</em> or <em>Append text</em> while text is being written out will cancel the effect.<br/>
+<br/>
+</dd>
+<dt>Finish typewriter</dt>
+<dd>If text is being written out with the <em>Typewriter text</em> action, force it to finish immediately.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Sprite font expressions</h2>
+<dl class="sans">
+<dt>CharacterHeight</dt>
+<dd>Return the sprite font cell height.</dd>
+<dt>CharacterScale</dt>
+<dt>CharacterSpacing</dt>
+<dt>LineHeight</dt>
+<dd>Return the corresponding object properties. For more information, see <em>Sprite font properties</em>.</dd>
+<dt>CharacterWidth(char)</dt>
+<dd>Return the width of a character. A character must be passed (as a string) so the <em>Spacing data</em><br/>
+ or <em>Set character width</em> action can be taken in to account. Since the expression can only return one value, if there are multiple characters in the string, only the first is used.</dd>
+<dt>Text</dt>
+<dd>Return the object's current text.</dd>
+<dt>PlainText</dt>
+<dd>Return a string containing the object's current text, with any BBCode tags stripped out. For example if the text is <code>[b]Hello[/b]</code>, the <em>Text</em> expression will return that (with BBCode tags included), but the <em>PlainText</em> expression will return just <code>Hello</code>.</dd>
+<dt>TagAtPosition(x, y)</dt>
+<dd>Look up the tag for a part of the text at a given position and return the tag if any, else return an empty string if no tag is specified. For example if the text has the BBcode <code>Hello [tag=mytag]world[/tag]</code>, then the tag at a position over the word "world" is "mytag", and the tag at a position over the word "Hello" is "" (an empty string).</dd>
+<dt>TagCount(tag)</dt>
+<dt>TagX(tag, index)</dt>
+<dt>TagY(tag, index)</dt>
+<dt>TagWidth(tag, index)</dt>
+<dt>TagHeight(tag, index)</dt>
+<dd>Identify the size and position of all ranges of the text with a given tag. Note the count and the index actually refers to <em>fragments</em>, as a single tagged range may be broken up in to multiple pieces - see the section <em>Tagged range fragmentation</em> in the <a class="extern" href="text.html" rel="noopener" target="_blank" title="Make your own games">Text object</a> manual entry for more details (as fragmentation works the same for both SpriteFont and Text objects).</dd>
+<dt>TextWidth</dt>
+<dt>TextHeight</dt>
+<dd>Return the size of the actual text content within the Sprite Font object's rectangle.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

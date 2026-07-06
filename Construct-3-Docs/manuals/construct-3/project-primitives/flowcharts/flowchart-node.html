@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/flowcharts/flowchart-node" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Node
+            </h1>
+<div itemprop="articleBody">
+<p>The node is the main component of a <a class="extern" href="flowchart.html" rel="noopener" target="_blank" title="Make your own games">flowchart</a>. It represents a state the flowchart can get into and can hold arbitrary data in the form of <a class="extern" href="flowchart-node-output.html" rel="noopener" target="_blank" title="Make your own games">outputs</a>, similar to having a small amount of <a class="extern" href="../../plugin-reference/dictionary.html" rel="noopener" target="_blank" title="Make your own games">Dictionary</a> data in each node.</p>
+<p>The information a node holds can be queried at runtime using the <a class="extern" href="../../plugin-reference/flowchart-controller.html" rel="noopener" target="_blank" title="Make your own games">Flowchart Controller</a> plugin.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Creating nodes</h2>
+<p>To create a node in a flowchart, open a <a class="extern" href="../../interface/flowchart-view.html" rel="noopener" target="_blank" title="Make your own games">Flowchart View</a> for it from the <a class="extern" href="../../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> and then right-click in any empty space of the Flowchart View and select the <strong>Add</strong> option from the context menu. Doing that will create a node at the position of the pointer.</p>
+<p>For more information on further editing of nodes, see the <a class="extern" href="../../interface/flowchart-view.html" rel="noopener" target="_blank" title="Make your own games">Flowchart View</a> section of the manual.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Node properties</h2>
+<dl class="sans">
+<dt>Tags</dt>
+<dd>A string used to identify a node at runtime. Multiple different tags can be assigned by separating them with a space. The Flowchart Controller plugin has several actions, conditions and expressions that can be used with one or multiple tags to target specific nodes.</dd>
+<dt>Start node</dt>
+<dd>A boolean property specifying the first node a flowchart will be in once it is instantiated at runtime.</dd>
+<dt>Enable</dt>
+<dd>A boolean property indicating if the node is enabled or not. A disabled node is ignored at runtime and the flowchart state will not go past it. A disabled node can be bypassed at runtime if it has a default output set.</dd>
+<dt>Caption</dt>
+<dd>An editor-only property. This is an optional name that can be given to a node to help distinguish it from others.</dd>
+<dt>Color</dt>
+<dd>An editor-only property. This is an optional color that will be applied to the border of the node.</dd>
+<dt>Preset</dt>
+<dd>An editor-only property. Indicates if the node is a preset or not. Preset nodes can be used as a base to create new nodes.</dd>
+<dt>Outputs</dt>
+<dd>A list of the outputs each node has.</dd>
+<dt>Parent Index</dt>
+<dd>In the case a node is connected to multiple parent nodes, this property appears and displays an index that can be given to each parent. Used by some actions and expressions in the case a node has more than one parent.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

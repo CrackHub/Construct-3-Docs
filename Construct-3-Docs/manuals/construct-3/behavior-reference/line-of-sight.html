@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/line-of-sight" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Line-of-sight behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Line-of-sight (LOS) behavior</strong> allows the ability to check if two objects can "see" each other. More precisely, it will check if there are any obstacles blocking a line between the two objects. <a class="extern" href="https://editor.construct.net/#open=line-of-sight" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of Line-of-sight.</a></p>
+<p>Line-of-sight can also perform <em>Raycasting</em>. Normal line-of-sight checks there are no obstacles in a straight line between two objects. With raycasting, if there is an obstacle in the way, you can find the exact position of the obstacle in the way, as well as the surface normal and angle of reflection. The <a class="extern" href="https://editor.construct.net/#open=instant-hit-laser" rel="noopener" target="_blank" title="Make games in the browser">Instant hit laser example</a> provides a demonstration of how to use raycasting.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/line-of-sight.html" rel="noopener" target="_blank" title="Make your own games">ILOSBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Line-of-sight properties</h2>
+<dl class="sans">
+<dt>Obstacles</dt>
+<dd>Whether to use <em>Solids</em> as blocking line-of-sight, or <em>Custom</em>, where the objects blocking line-of-sight must be added using the <em>Add obstacle</em> action.</dd>
+<dt>Range</dt>
+<dd>The maximum distance in pixels that line-of-sight can reach. If an object is further away than this distance, the object will never have line-of-sight to it, even if the intervening space is clear.</dd>
+<dt>Cone of view</dt>
+<dd>The angle of the cone of view in which the object can have line-of-sight to other objects, relative to the current angle of the object. For example if this is 180, then the object can have line-of-sight to any objects anywhere in front of it, but never behind it. If 360, the object can have line-of-sight to objects at any angle.</dd>
+<dt>Use collision cells</dt>
+<dd>Whether to use the <a class="extern" href="https://www.construct.net/blogs/ashleys-blog-2/collision-cell-optimisation-914.html" rel="noopener" target="_blank" title="Make your own games">collision cells optimisation</a> when testing line of sight. Usually this is faster, but in some cases over extremely long distances it can be slower.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Line-of-sight conditions</h2>
+<dl class="sans">
+<dt>Has LOS to object</dt>
+<dd>Check if the object currently has line-of-sight to another object. For the condition to be true, the object must be within range, within the cone of view, and with no obstacles in the way of a straight line between the two objects. This condition also picks the instances of the chosen object that are in the line of sight. By default this checks if there is line-of-sight to the object origin, but you can optionally specify an image point instead.</dd>
+<dt>Has LOS to position</dt>
+<dd>Check if the object currently has line-of-sight to a position in the layout. For the condition to be true, the object must be within range, within the cone of view, and with no obstacles in the way of a straight line between the two objects.</dd>
+<dt>Has LOS between positions</dt>
+<dd>Check if there is line-of-sight between any two positions in the layout, instead of using the object's own position.</dd>
+<dt>Ray intersected</dt>
+<dd>Use after a <em>Cast ray</em> action to determine if the ray intersected with any obstacle.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Line-of-sight actions</h2>
+<dl class="sans">
+<dt>Add obstacle</dt>
+<dd>If the <em>Obstacles</em> property is <em>Custom</em>, adds an object type to count as an obstruction to line-of-sight.</dd>
+<dt>Clear obstacles</dt>
+<dd>If the <em>Obstacles</em> property is <em>Custom</em>, clears any object types added as obstacles with the <em>Add obstacle</em> action.</dd>
+<dt>Set cone of view</dt>
+<dt>Set range</dt>
+<dd>Sets the corresponding behavior properties. For more information, see <em>Line-of-sight properties</em>.</dd>
+<dt>Cast ray</dt>
+<dd>Check for obstacle intersection between any two positions in the layout. This sets the <em>Ray intersected</em> condition true or false depending on if the ray intersected an obstacle; typically this can be checked in a sub-event after the action. If the ray did intersect an obstacle, the hit, normal and reflection expressions are set according to the obstacle that was hit.<br/>
+<br/>
+</dd></dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Line-of-sight expressions</h2>
+<dl class="sans">
+<dt>ConeOfView</dt>
+<dt>Range</dt>
+<dd>Retrieve the corresponding behavior properties. For more information, see <em>Line-of-sight properties</em>.</dd>
+<dt>HitX</dt>
+<dt>HitY</dt>
+<dd>If <em>Ray intersected</em> is true, the position of the first obstacle the ray intersected, in layout co-ordinates.</dd>
+<dt>HitDistance</dt>
+<dd>If <em>Ray intersected</em> is true, the distance between the ray start point and the hit position.</dd>
+<dt>HitUID</dt>
+<dd>If <em>Ray intersected</em> is true, the UID of the instance that was the first obstacle the ray intersected.</dd>
+<dt>NormalAngle</dt>
+<dd>If <em>Ray intersected</em> is true, the angle of the surface normal at the point of intersection, in degrees.</dd>
+<dt>NormalX(length)</dt>
+<dt>NormalY(length)</dt>
+<dd>If <em>Ray intersected</em> is true, return a position at a given distance along the surface normal vector.</dd>
+<dt>ReflectionAngle</dt>
+<dd>If <em>Ray intersected</em> is true, the angle of the reflection at the point of intersection, in degrees.</dd>
+<dt>ReflectionX(length)</dt>
+<dt>ReflectionY(length)</dt>
+<dd>If <em>Ray intersected</em> is true, return a position at a given distance along the reflection vector.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

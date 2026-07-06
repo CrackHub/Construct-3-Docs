@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/geometry-interfaces/rect" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Rect interface
+            </h1>
+            <div itemprop="articleBody">
+                <p>The <code>Rect</code> interface represents an axis-aligned rectangle in the SDK. It can also be constructed independently as a general-purpose geometry class.</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Constructor</h2>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>Rect</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">SDK<span class="token punctuation">.</span>Rect</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span>left<span class="token punctuation">,</span> top<span class="token punctuation">,</span> right<span class="token punctuation">,</span> bottom<span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>A <code>Rect</code> can be constructed with no parameters, which defaults all co-ordinates to zero, or with given positions for the left, top, right and bottom positions.</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Methods</h2>
+<dl>
+<dt>set(left, top, right, bottom)</dt>
+<dd>Set all sides of the rectangle in one call.</dd>
+<dt>copy(rect)</dt>
+<dd>Set all sides of the rectangle by copying another <code>SDK.Rect</code>.</dd>
+<dt>clone()</dt>
+<dd>Return a new instance of an <code>SDK.Rect</code> with identical values to this one.</dd>
+<dt>setLeft(left)</dt>
+<dt>setTop(top)</dt>
+<dt>setRight(right)</dt>
+<dt>setBottom(bottom)</dt>
+<dd>Set the position of each side of the rectangle individually.</dd>
+<dt>getLeft()</dt>
+<dt>getTop()</dt>
+<dt>getRight()</dt>
+<dt>getBottom()</dt>
+<dd>Get the positition of each side of the rectangle individually.</dd>
+<dt>width()</dt>
+<dt>height()</dt>
+<dd>Get the width or height of the rectangle. Note if the right edge is to the left of the left edge, or the bottom edge above the top edge, this will return a negative size.</dd>
+<dt>midX()</dt>
+<dt>midY()</dt>
+<dd>Return the average of the left and right, or top and bottom, positions.</dd>
+<dt>offset(x, y)</dt>
+<dd>Add <code>x</code> to the left and right positions, and <code>y</code> to the top and bottom positions, offsetting the entire rectangle.</dd>
+<dt>inflate(x, y)</dt>
+<dt>deflate(x, y)</dt>
+<dd>Expand or shrink the rectangle using the given offsets. Inflating subtracts from the left and top edges and adds to the right and bottom edges, and deflating does the opposite.</dd>
+<dt>multiply(x, y)</dt>
+<dt>divide(x, y)</dt>
+<dd>Multiply or divide each position by a given factor on each axis.</dd>
+<dt>clamp(left, top, right, bottom)</dt>
+<dd>Clamp each position in the rectangle to a given value, ensuring the rectangle does not extend beyond the bounds of the passed rectangle.</dd>
+<dt>normalize()</dt>
+<dd>Normalize the rectangle positions, swapping the left-right positions if the right position is on the left, and swapping the top-bottom positions if the bottom position is on the top. This ensures the width and height are positive.</dd>
+<dt>intersectsRect(rect)</dt>
+<dd>Test for an intersection with another <code>SDK.Rect</code>, returning a boolean indicating if it intersects.</dd>
+<dt>containsPoint(x, y)</dt>
+<dd>Test if the given point is inside the bounds of this rectangle, returning a boolean.</dd>
+</dl></div></div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

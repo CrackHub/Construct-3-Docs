@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/tilemap" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Tilemap script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITilemapInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/tilemap.html" rel="noopener" target="_blank" title="Make your own games">Tilemap plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tile numbers</h2>
+<p>Tiles in the tilemap are represented as a single 32-bit integer number and can be rotated and flipped. To support this they consist of two parts using a bitmask:</p>
+<ul class="list">
+<li>The tile ID in the lower 29 bits - this is the number of the tile as shown in the Tilemap Bar when hovering the tile</li>
+<li>Tile flags in the upper 3 bits</li>
+</ul>
+<p>There is also a special tile number <strong>-1</strong> indicating an empty tile.</p>
+<h3>Tile flags</h3>
+<p>The Tilemap script interface exposes the following flags and masks which can be used to manipulate tile numbers:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">ITilemapInstance<span class="token punctuation">.</span><span class="token constant">TILE_FLIPPED_HORIZONTAL</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0x80000000</span><span class="token punctuation">;</span>
+ITilemapInstance<span class="token punctuation">.</span><span class="token constant">TILE_FLIPPED_VERTICAL</span> <span class="token operator">=</span> <span class="token number">0x40000000</span><span class="token punctuation">;</span>
+ITilemapInstance<span class="token punctuation">.</span><span class="token constant">TILE_FLIPPED_DIAGONAL</span> <span class="token operator">=</span> <span class="token number">0x20000000</span><span class="token punctuation">;</span>
+ITilemapInstance<span class="token punctuation">.</span><span class="token constant">TILE_FLAGS_MASK</span> <span class="token operator">=</span> <span class="token number">0xE0000000</span><span class="token punctuation">;</span>
+ITilemapInstance<span class="token punctuation">.</span><span class="token constant">TILE_ID_MASK</span> <span class="token operator">=</span> <span class="token number">0x1FFFFFFF</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>For example, to flip tile ID 2 horizontally, you would use bitwise OR combining the tile ID and the flag, e.g. <code>2 | ITilemapInstance.TILE_FLIPPED_HORIZONTAL</code>. Similarly you can test if the bit is set using <code>tile &amp; ITilemapInstance.TILE_FLIPPED_HORIZONTAL</code>.</p>
+<p>You can also use the masks to extract each component of the tile number. For example <code>tile &amp; ITilemapInstance.TILE_ID_MASK</code> will return just the tile ID, since it removes all the flag bits.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Tilemap APIs</h2>
+<dl>
+<dt>mapWidth</dt>
+<dt>mapHeight</dt>
+<dt>getMapSize()</dt>
+<dd>Read-only numbers representing the size of the tilemap in tiles. The method allows getting both values at the same time.</dd>
+<dt>mapDisplayWidth</dt>
+<dt>mapDisplayHeight</dt>
+<dt>getMapDisplaySize()</dt>
+<dd>Read-only numbers with the displayed size of the tilemap, in tiles. The method allows getting both values at the same time. </dd>
+<dt>tileWidth</dt>
+<dt>tileHeight</dt>
+<dt>getTileSize()</dt>
+<dd>Read-only numbers with the size of a tile in pixels. The method allows getting both values at the same time.</dd>
+<dt>getTileAt(x, y)</dt>
+<dd>Get the tile at a given position in tiles (i.e. (0, 0) is the top-left tile of the tilemap, regardless of the tilemap's position or the tile size). Returns -1 for empty tiles or tiles outside the tilemap; otherwise use bit operations to determine tile ID or flags separately.</dd>
+<dt>setTileAt(x, y, tile)</dt>
+<dd>Set the tile at a given position in tiles. Use -1 to set a tile empty; otherwise use bit operations to combine the tile ID and flags.</dd>
+<dt>async replaceImage(blob)</dt>
+<dd>Replace the current tilemap image with the contents of a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> representing an image file such as a PNG image. The blob can be locally generated or retrieved from a URL, for example:<br/>
+<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Loading an image from a URL</span>
+<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span>url<span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> blob <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> tmInst<span class="token punctuation">.</span><span class="token function">replaceImage</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span>blob<span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></div></dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

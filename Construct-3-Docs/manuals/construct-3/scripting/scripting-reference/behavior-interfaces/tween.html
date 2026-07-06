@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/tween" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Tween behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ITweenBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/tween.html" rel="noopener" target="_blank" title="Make your own games">Tween behavior</a>.</p>
+<p>An actively running tween is represented by <a class="extern" href="../interfaces/itweenstate.html" rel="noopener" target="_blank" title="Make your own games">ITweenState</a>, which also derives from <a class="extern" href="../interfaces/itimelinestate.html" rel="noopener" target="_blank" title="Make your own games">ITimelineState</a>. These interfaces can be used to control playback, including identifying when tweens end via the <code>finished</code> promise.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=scripting-tweens" rel="noopener" target="_blank" title="Make games in the browser">Scripting tweens example</a> for a demonstration of using tweens from JavaScript code.</p>
+<h3>Basic tween usage</h3>
+<p>A code sample is shown below of starting a tween and waiting for it to finish.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">doTween</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token parameter">runtime</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-5-close">{</span>
+	<span class="token comment">// Get a Sprite instance with the Tween behavior</span>
+	<span class="token keyword">const</span> inst <span class="token operator">=</span> runtime<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>Sprite<span class="token punctuation">.</span><span class="token function">getFirstInstance</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-1-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-1-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Create a tween that moves it to (300, 300) over 2 seconds</span>
+	<span class="token keyword">const</span> tween <span class="token operator">=</span> inst<span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>Tween<span class="token punctuation">.</span><span class="token function">startTween</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-2-close">(</span><span class="token string">"position"</span><span class="token punctuation">,</span> <span class="token punctuation brace-square brace-open brace-level-3" id="pair-4-close">[</span><span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation brace-square brace-close brace-level-3" id="pair-4-open">]</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"in-out-sine"</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-2-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Wait for the tween to finish</span>
+	<span class="token keyword">await</span> tween<span class="token punctuation">.</span>finished<span class="token punctuation">;</span>
+
+	<span class="token comment">// Log to the console now the tween has finished</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-3-close">(</span><span class="token string">"Tween finished"</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-3-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-5-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<h3>More examples</h3>
+<p>Some examples of valid calls to <code>startTween</code> are shown below (assuming <code>Tween</code> represents this behavior).</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Tween X position to 300 over 2 seconds linearly</span>
+Tween<span class="token punctuation">.</span><span class="token function">startTween</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-6-close">(</span><span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"linear"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-6-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Tween position to (300, 300) over 2 seconds with ease "in-out-sine"</span>
+Tween<span class="token punctuation">.</span><span class="token function">startTween</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-7-close">(</span><span class="token string">"position"</span><span class="token punctuation">,</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-11-close">[</span><span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation brace-square brace-close brace-level-2" id="pair-11-open">]</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"in-out-sine"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-7-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Looping ping-pong tween to size 200x200 every 0.5 seconds</span>
+Tween<span class="token punctuation">.</span><span class="token function">startTween</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-8-close">(</span><span class="token string">"size"</span><span class="token punctuation">,</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-12-close">[</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation brace-square brace-close brace-level-2" id="pair-12-open">]</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token string">"out-sine"</span><span class="token punctuation">,</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-14-close">{</span>
+	<span class="token literal-property property">loop</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">pingPong</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-14-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-8-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Tween color to blue over 1.5 seconds linearly</span>
+Tween<span class="token punctuation">.</span><span class="token function">startTween</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-9-close">(</span><span class="token string">"color"</span><span class="token punctuation">,</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-13-close">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation brace-square brace-close brace-level-2" id="pair-13-open">]</span><span class="token punctuation">,</span> <span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token string">"linear"</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-9-open">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Value tween from 100 to 200 linearly over 3 seconds</span>
+<span class="token keyword">const</span> t <span class="token operator">=</span> Tween<span class="token punctuation">.</span><span class="token function">startTween</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-10-close">(</span><span class="token string">"value"</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"linear"</span><span class="token punctuation">,</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-15-close">{</span>
+	<span class="token literal-property property">startValue</span><span class="token operator">:</span> <span class="token number">100</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-15-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-10-open">)</span><span class="token punctuation">;</span>
+<span class="token comment">// (then read t.value over time)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Tween properties</h2>
+<p>When using the <code>startTween</code> method, the <code>prop</code> parameter must be one of the strings given in the table below. Each property also lists how many values are expected for the <code>endValue</code> parameter; if more than 1, they should be passed as an array.</p>
+<table>
+<thead>
+<tr>
+<td>Property</td>
+<td>Number of values</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>"x"</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>"y"</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>"position"</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>"z"</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>"width"</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>"height"</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>"x-scale"</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>"y-scale"</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>"size"</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>"scale"</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>"angle"</code></td>
+<td>1 <em>(in radians)</em></td>
+</tr>
+<tr>
+<td><code>"opacity"</code></td>
+<td>1 <em>(in 0-1 range)</em></td>
+</tr>
+<tr>
+<td><code>"color"</code></td>
+<td>3 <em>(RGB values in 0-1 range)</em></td>
+</tr>
+<tr>
+<td><code>"value"</code></td>
+<td>1</td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Ease names</h2>
+<p>When using the <code>startTween</code> method, the <code>ease</code> parameter must be one of the strings given in the table below, or the name of a custom ease in the project.</p>
+<table>
+<tbody><tr>
+<td><code>"linear"</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>"in-sine"</code></td>
+<td><code>"out-sine"</code></td>
+<td><code>"in-out-sine"</code></td>
+</tr>
+<tr>
+<td><code>"in-elastic"</code></td>
+<td><code>"out-elastic"</code></td>
+<td><code>"in-out-elastic"</code></td>
+</tr>
+<tr>
+<td><code>"in-back"</code></td>
+<td><code>"out-back"</code></td>
+<td><code>"in-out-back"</code></td>
+</tr>
+<tr>
+<td><code>"in-bounce"</code></td>
+<td><code>"out-bounce"</code></td>
+<td><code>"in-out-bounce"</code></td>
+</tr>
+<tr>
+<td><code>"in-cubic"</code></td>
+<td><code>"out-cubic"</code></td>
+<td><code>"in-out-cubic"</code></td>
+</tr>
+<tr>
+<td><code>"in-quadratic"</code></td>
+<td><code>"out-quadratic"</code></td>
+<td><code>"in-out-quadratic"</code></td>
+</tr>
+<tr>
+<td><code>"in-quartic"</code></td>
+<td><code>"out-quartic"</code></td>
+<td><code>"in-out-quartic"</code></td>
+</tr>
+<tr>
+<td><code>"in-quintic"</code></td>
+<td><code>"out-quintic"</code></td>
+<td><code>"in-out-quintic"</code></td>
+</tr>
+<tr>
+<td><code>"in-circular"</code></td>
+<td><code>"out-circular"</code></td>
+<td><code>"in-out-circular"</code></td>
+</tr>
+<tr>
+<td><code>"in-exponential"</code></td>
+<td><code>"out-exponential"</code></td>
+<td><code>"in-out-exponential"</code></td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Tween behavior APIs</h2>
+<dl>
+<dt>startTween(prop, endValue, time, ease, opts)</dt>
+<dd>Start a tween running for a property to a given end value, over a <code>time</code> given in seconds, with an ease function specified by <code>ease</code>. Returns an <a class="extern" href="../interfaces/itweenstate.html" rel="noopener" target="_blank" title="Make your own games">ITweenState</a> representing the running tween. <ul class="list"><br/>
+<li><code>prop</code> must be a string of one of the property names given in the table in the section <em>Tween properties</em> above.</li><br/>
+<li><code>endValue</code> must be either a number, or an array of numbers, depending on <code>prop</code>. In the table of properties above, where the <em>Number of values</em> is 1, this must be a number; where it is greater than 1, it must be an array with that many values.</li><br/>
+<li><code>time</code> is the duration the tween will run for in seconds.</li><br/>
+<li><code>ease</code> is a string of the name of one of the built-in eases in the section <em>Ease names</em> above, or the name of a custom ease in the project.</li></ul> The <code>opts</code> parameter is optional for providing further parameters via object properties. The following properties can be used:<br/>
+<ul class="list"><br/>
+<li><code>tags</code>: a list of tags to assign to the tween, specified either as a space-separated string, or an array of strings</li><br/>
+<li><code>destroyOnComplete</code>: a boolean indicating whether to automatically destroy the instance once the tween completes (default false)</li><br/>
+<li><code>loop</code>: a boolean indicating whether to repeat the tween when it reaches the end (default false)</li><br/>
+<li><code>repeatCount</code>: the number of times to repeat the tween (default 1).</li><br/>
+<li><code>pingPong</code>: a boolean indicating whether to alternate the playback direction when repeating (default false)</li><br/>
+<li><code>startValue</code>: for value tweens only, specifies the start value (default 0).</li></ul> See above for some code examples demonstrating some of the ways this method can be called.</dd>
+<dt>*allTweens()</dt>
+<dd>Iterates all actively running tweens created by the behavior, represented with <a class="extern" href="../interfaces/itweenstate.html" rel="noopener" target="_blank" title="Make your own games">ITweenState</a>.</dd>
+<dt>*tweensByTags(tags)</dt>
+<dd>Iterates all actively running tweens matching the given set of tags, represented with <a class="extern" href="../interfaces/itweenstate.html" rel="noopener" target="_blank" title="Make your own games">ITweenState</a>. The tags may be specified as either a space-separated string, or an array of strings.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

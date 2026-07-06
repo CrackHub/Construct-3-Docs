@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/timeline-bar/layout-view-editing" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Layout view editing
+            </h1>
+<div itemprop="articleBody">
+<p>When edit mode is on, the <a class="extern" href="../../layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a> will show handles indicating the path an <a class="extern" href="../../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> will take as the <a class="extern" href="../../../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timeline</a> is played. The handles are only shown for <strong>X</strong> and <strong>Y</strong> properties, as those are the only that can really show any form of useful visual feedback. The handles can be used to update the path of the corresponding instance.</p>
+<p>Additionally, when setting the <strong>Path mode</strong> property to <strong>Bezier Curve</strong>, more handles will appear to edit the path between each pair of keyframes as curves.</p>
+<p>There are three types of handles that can be distinguished by color and size</p>
+<ul class="list">
+<li><strong>Large Blue:</strong> These represent the keyframe <strong>X</strong> and <strong>Y</strong> properties. Can be moved to update the corresponding keyframes. If there is no <a class="extern" href="../../../project-primitives/timelines/property-keyframe.html" rel="noopener" target="_blank" title="Make your own games">property keyframe</a> for either the X or Y properties, the handle will only be able to move in one axis.</li>
+<li><strong>Small Green:</strong> These show up when the <strong>Path mode</strong> property between a pair of property keyframes is set to <strong>Cubic Bezier</strong> and represent the first anchor point of a curve. If there is no property keyframe for either the <strong>X</strong> or <strong>Y</strong> properties, the handle will only be able to move in one axis.</li>
+<li><strong>Small Red:</strong> These show up when the <strong>Path mode</strong> property between a pair of property keyframes is set to <strong>Cubic Bezier</strong> and represent the second anchor point of a curve. If there is no property keyframe for either the <strong>X</strong> or <strong>Y</strong> properties the handle, will only be able to move in one axis.</li>
+</ul>
+<p>Aside from the handles, there are a few different lines that show up when the Layout View tool is turned on:</p>
+<ul class="list">
+<li><strong>Blue:</strong> These line represents the path instances will take as the timeline is played.</li>
+<li><strong>Grey:</strong> These lines are just visual connection between keyframes to help identify their order in the timeline.</li>
+<li><strong>Red:</strong> These appear to show which pair of keyframes an instance is currently between, and also to indicate that new keyframes can be added at that position.</li>
+<li><strong>Green:</strong> These appear when the current time marker is on top of a <a class="extern" href="../../../project-primitives/timelines/master-keyframe.html" rel="noopener" target="_blank" title="Make your own games">master keyframe</a> in the <a class="extern" href="../timeline-bar.html" rel="noopener" target="_blank" title="Make your own games">Timeline Bar.</a>  If the <strong>Set Keyframes</strong> option is used now, all the keyframes at that position will be updated.</li>
+</ul>
+<h3>Show UI Elements Toggle</h3>
+<p>When creating a timeline with many different instances it can become confusing to edit their paths if all the UI elements mentioned above are visible for all the instances at the same time. With this toggle you can hide the UI elements for the instances you are not interested in and only show the ones you want.</p>
+<p>Further more, if you make a master keyframe selection in the Timeline bar, the layout will only show the corresponding UI elements for those specific master keyframes.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

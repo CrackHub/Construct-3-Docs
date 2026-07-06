@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/timeline-controller" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timeline controller
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Timeline controller</strong> object allows <a class="extern" href="../project-primitives/timelines.html" rel="noopener" target="_blank" title="Make your own games">timelines</a> to be controlled in event sheets.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tagging</h2>
+<p>Much like <a class="extern" href="../behavior-reference/tween.html" rel="noopener" target="_blank" title="Make your own games">tweens</a>, timelines can be optionally tagged when they are played using one of the <strong>Play</strong> actions. Tags are useful to later control a timeline (or multiple timelines sharing the same tags) with some of the other actions, conditions or expressions.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Setting instances to play</h2>
+<p>In the simplest case, a timeline will affect the instances that were used to create the timeline in the editor. Using the <strong>Set Instance</strong> action it is possible to use different instances to the ones used in the editor. Below are some short examples to help illustrate how this action works.</p>
+<p>In the below example the timeline plugin <strong>Play</strong> action is used by itself on startup. This plays the timeline affecting the instances used in the editor to create the timeline. The timeline is tagged <strong>"new-timeline"</strong>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/31240/timeline-plugin-manual-02.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 684x64px in new window (6.89 KB)"><span><img height="64" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/31240/timeline-plugin-manual-02.png" width="684"/></span></a></div></div>
+<p>In this example the timeline plugin <strong>Play</strong> action is used together with the system plugin <strong>Create Object</strong> action and the timeline plugin <strong>Set Instance</strong> action. This plays the timeline affecting the newly created instance. The new instance will be used in the <a class="extern" href="../project-primitives/tracks.html" rel="noopener" target="_blank" title="Make your own games">track</a> with ID <strong>"a-track-id"</strong> and the timeline is tagged <strong>"new-timeline"</strong></p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/31241/timeline-plugin-manual-01.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 729x116px in new window (11.06 KB)"><span><img height="116" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/31241/timeline-plugin-manual-01.png" width="729"/></span></a></div></div>
+<p>This example is similar to the last one, but instead of creating a new instance from scratch, the one picked by a collision event is used.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/31242/timeline-plugin-manual-03.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 734x90px in new window (11.64 KB)"><span><img height="90" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/31242/timeline-plugin-manual-03.png" width="734"/></span></a></div></div>
+<div class="hr"></div>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>About picking</h2>
+<p>When using the <strong>Play</strong> action after one or more <strong>Set Instance</strong> actions, it is possible that one or more similar timelines will start playing. This will depend on the amount of currently picked instances for each given object type.</p>
+<p>In the example below a timeline will be played for each group of instances.</p>
+<p>This is the preview of the timeline in the editor. It has two different tracks and placeholder instances.</p>
+<div class="giphyWrap"><div allowfullscreen="" class="giphy-embed" data-original-tag="iframe" frameborder="0" height="100%" src="https://giphy.com/embed/RfMLPRrdX6v2g3AjEj" style="position:absolute" width="100%">
+<title>Animated GIF - Find &amp; Share on GIPHY</title>
+<link href="https://giphy.com/gifs/RfMLPRrdX6v2g3AjEj" rel="canonical"/>
+<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+<!-- Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->
+<div class="embed"><div class="_2uMcRNjGwWXGy-ltwFCP7c b_Bm76Gr4DeJWnrdhJpi1" data-shareopen="false" id="giphy-embed">
+<div class="_2vh2GgcZ7Hy6cU_kvl2ZZ4">
+<div class="_2Whr4fsCK_L_ucjcRRGEh_" data-background=""></div>
+<a class="_2XBDTIVigBJDybhZvL-hU3" data-gif="" href="https://giphy.com/gifs/RfMLPRrdX6v2g3AjEj?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y" target="_blank">
+<img alt="Animated GIF" class="nlSABoG9CSaJpsufv8WW9 _3vYn8QjoEvrXxHyqdn9ddZ _2XBDTIVigBJDybhZvL-hU3" height="99985" id="gif" src="https://media1.giphy.com/media/v1.Y2lkPWRkYTI0ZDUwc3U2bzU5M3dnc2t6eHIwOWl4NXkxcGxic2t6bGhteXEzdnM0bHdldCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RfMLPRrdX6v2g3AjEj/200w.webp" width="1905"/>
+            '<div class="_3aRLlClO7wY2OiqMkwRcGP _2XBDTIVigBJDybhZvL-hU3" style="background-image:url(https://media1.giphy.com/media/v1.Y2lkPWRkYTI0ZDUwc3U2bzU5M3dnc2t6eHIwOWl4NXkxcGxic2t6bGhteXEzdnM0bHdldCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RfMLPRrdX6v2g3AjEj/200w_s.gif)"></div>'
+        </a>
+<div class="_1Oq2CtPF8ivpXu9fIdM3cH" id="footer-container">
+<a class="_1Q-28QiIbiMcgz_OiDW2hh" data-gif="" href="https://giphy.com/gifs/RfMLPRrdX6v2g3AjEj?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y" target="_blank"></a>
+<div class="_1TO498gBjrF2EN7SGoHE2u" data-footer="">
+<div class="_27n-2mJ-GrcY_fZpVd44gz" id="grid-hitting-header-marker"></div>
+<div class="_3---nDdM5LPUT-5_2qiTQQ" id="grid-active-marker"></div>
+<div class="ggLqms6f6pdNgave_uZv0" id="grid-button-active-marker"></div>
+<div class="_3f0lULxul6397Yg-3BxULk">
+<div class="_2y6gi7CgeGwU5S_SoDtdHw" id="grid-header"><span>Related Gifs</span></div>
+<a class="_2vYxOwTQA6iyw70tC9IvF" href="https://giphy.com/channel/Poi123?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y" target="_blank"><span class="zDpl0KErkBParz2xHj-JC" style="background-image:url(https://media.giphy.com/avatars/default4.gif)"></span><div class="_3GnxDX7SIAEyZdq0MhhT3I"><div class="_1_ahUPJUi79BowJfSivl-4">Poi123</div><div class="Ix19cIyoy7Cb87VtC391M">@poi123</div> </div></a>
+</div>
+<div class="WpVJN5m_tIXwIUQLZSxAP" id="grid"><div class="giphy-grid"><div></div><div><div class="css-1nu97io giphy-loader css-7fqhxk"><div></div><div></div><div></div><div></div><div></div></div></div></div></div>
+</div>
+</div>
+<div class="_3UOMCEIXcXsKkhSikKpTpj" data-header="">
+<a class="QPOqdnK3YcwPvVWrT1JAx" href="https://giphy.com/?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y" target="_blank">
+<svg viewbox="0 0 73 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.598 2.823C12.574.777 10.682.337 8.548.337 2.762.337.122 4.473.122 8.5c0 4.025 2.31 8.095 8.404 8.095 2.97 0 5.654-1.056 6.622-3.014V6.74H7.624v3.41h3.894v1.98c-.88.637-2.156.79-2.97.79-3.102 0-4.136-2.44-4.136-4.42 0-3.015 1.628-4.51 4.136-4.51 1.034 0 2.398.285 3.52 1.34l2.53-2.507zm7.348 13.354V.777h-4.334v15.4h4.334zm7.48-11.66v3.828h3.124c1.21 0 1.826-.88 1.826-1.892s-.638-1.936-1.826-1.936h-3.124zm3.124 7.502h-3.124v4.157H25.07V.777h7.48c4.136 0 6.182 2.596 6.182 5.61 0 3.146-2.068 5.588-6.182 5.632zm22.33 4.18V.8h-4.312v5.85h-5.544V.8h-4.356v15.4h4.356v-5.83h5.544v5.83h4.312zM61.216.776H56.31v.176l5.852 9.086v6.137h4.356V10.04L72.634.974V.777h-4.906l-3.322 5.28-3.19-5.28z" fill="#FFF" fill-rule="evenodd"></path>
+</svg>
+</a>
+<div class="_3U2CZTXTrtWrYi0ZEGeqyg _1Fba10Vcpc4_UBtLy_oMYy ss-send" data-haslabel="">
+</div>
+</div>
+<div class="_3_vM7DF5cyJrbupdz6Htqf" id="grid-gradient"></div>
+<div class="_1fA3AC4rbTobtfhJNPbZIE" id="grid-button-container">
+<div class="_15NVdTDa-3OF48pRLP2Iu9">Continue Watching on GIPHY</div>
+</div>
+</div>
+<div class="_31KGzTI986GI57JZD8Jfqb"></div>
+<div class="_3kc_XJI1KrZmjrsYPRNrgH" data-sharemenu="">
+<div class="_2LGeaPYByQeocC1uL63FEX">
+<a class="_11DnUHYBHCjyzGZCiwR-S fVNfZkNz7vfETaactwgtY _1CcFQw7H4TrtiyIevX7Wi9 _1Fba10Vcpc4_UBtLy_oMYy _3yr4qzI4B-FenEnC8bj2dY" data-animated="false" href="https://giphy.com/gifs/RfMLPRrdX6v2g3AjEj?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y&amp;ref=fave" target="_blank"></a>
+<div class="_2pLOrgi_mLlUpG-Czr-z78 _16O-eCHzZunQvcyy7I8zUQ _2nwluuq-gBupJmVNwIMyEy _1Fba10Vcpc4_UBtLy_oMYy _3yr4qzI4B-FenEnC8bj2dY"></div>
+<div class="_2Yh2nqtup-WywlugS4ZR3p _12lVcnt6PnujdWtpCynuB4 _2nwluuq-gBupJmVNwIMyEy _1Fba10Vcpc4_UBtLy_oMYy _3yr4qzI4B-FenEnC8bj2dY"></div>
+<div class="_1AficpzFmza-fg-wse47zT _11cK6Vx_j-_JYr5eJSJj1P _2nwluuq-gBupJmVNwIMyEy _1Fba10Vcpc4_UBtLy_oMYy _3yr4qzI4B-FenEnC8bj2dY"></div>
+</div>
+<div class="_2LGeaPYByQeocC1uL63FEX">
+<h3 class="_1IdYUjJjSfAYulLHGRBrUE">Embed</h3>
+<input class="_1ZCIr6m_dNZyJ07YII5DLW _2-GxqWYNxZ-IXQRDqN-Soq _1bc7yOoPoF9ZAns5laPqC0" readonly="true" spellcheck="false" type="text" value='&lt;iframe src="https://giphy.com/embed/RfMLPRrdX6v2g3AjEj" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://giphy.com/gifs/RfMLPRrdX6v2g3AjEj"&gt;via GIPHY&lt;/a&gt;&lt;/p&gt;'/>
+</div>
+<div class="_2LGeaPYByQeocC1uL63FEX">
+<h3 class="_1IdYUjJjSfAYulLHGRBrUE">Link</h3>
+<input class="_1ZCIr6m_dNZyJ07YII5DLW _2-GxqWYNxZ-IXQRDqN-Soq _1bc7yOoPoF9ZAns5laPqC0" readonly="true" spellcheck="false" type="text" value="https://giphy.com/gifs/RfMLPRrdX6v2g3AjEj"/>
+</div>
+<div class="_3dnxitwzwOSm1Vnd2G4Ch7 _1Fba10Vcpc4_UBtLy_oMYy ss-delete"></div>
+</div>
+<svg class="_1kUT9JUnNbAcSluG824OLJ">
+<defs>
+<clippath id="cutout">
+<rect height="100%" width="100%" x="-41" y="0"></rect>
+<rect height="100%" width="100%" x="0" y="41"></rect>
+</clippath>
+</defs>
+</svg>
+</div></div>
+</div></div><div class="giphySpacer"></div>
+<p>Using the <strong>Set Instance</strong> action we specify to play a timeline for each picked group of instances at the start of the layout</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/31246/timeline-plugin-manual-04.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 760x115px in new window (15.02 KB)"><span><img height="115" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/31246/timeline-plugin-manual-04.png" width="760"/></span></a></div></div>
+<p>Lastly the preview of the layout shows that two different timelines where created to accommodate for the four instances found at the start of the layout.</p>
+<div class="giphyWrap"><div allowfullscreen="" class="giphy-embed" data-original-tag="iframe" frameborder="0" height="100%" src="https://giphy.com/embed/U4prxUyKGe9BMvBfRD" style="position:absolute" width="100%">
+<title>Animated GIF - Find &amp; Share on GIPHY</title>
+<link href="https://giphy.com/gifs/U4prxUyKGe9BMvBfRD" rel="canonical"/>
+<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+<!-- Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->
+<div class="embed"><div class="_2uMcRNjGwWXGy-ltwFCP7c b_Bm76Gr4DeJWnrdhJpi1" data-shareopen="false" id="giphy-embed">
+<div class="_2vh2GgcZ7Hy6cU_kvl2ZZ4">
+<div class="_2Whr4fsCK_L_ucjcRRGEh_" data-background=""></div>
+<a class="_2XBDTIVigBJDybhZvL-hU3" data-gif="" href="https://giphy.com/gifs/U4prxUyKGe9BMvBfRD?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y" target="_blank">
+<img alt="Animated GIF" class="nlSABoG9CSaJpsufv8WW9 _3vYn8QjoEvrXxHyqdn9ddZ _2XBDTIVigBJDybhZvL-hU3" height="99985" id="gif" src="https://media1.giphy.com/media/v1.Y2lkPWRkYTI0ZDUwY2Q1ZzlxczRrZmdxeDIzbWgybDI2bDg3M2Y4Z3RzeXYyYmo5Nzc3NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U4prxUyKGe9BMvBfRD/200w.webp" width="1905"/>
+            '<div class="_3aRLlClO7wY2OiqMkwRcGP _2XBDTIVigBJDybhZvL-hU3" style="background-image:url(https://media1.giphy.com/media/v1.Y2lkPWRkYTI0ZDUwY2Q1ZzlxczRrZmdxeDIzbWgybDI2bDg3M2Y4Z3RzeXYyYmo5Nzc3NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U4prxUyKGe9BMvBfRD/200w_s.gif)"></div>'
+        </a>
+<div class="_1Oq2CtPF8ivpXu9fIdM3cH" id="footer-container">
+<a class="_1Q-28QiIbiMcgz_OiDW2hh" data-gif="" href="https://giphy.com/gifs/U4prxUyKGe9BMvBfRD?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y" target="_blank"></a>
+<div class="_1TO498gBjrF2EN7SGoHE2u" data-footer="">
+<div class="_27n-2mJ-GrcY_fZpVd44gz" id="grid-hitting-header-marker"></div>
+<div class="_3---nDdM5LPUT-5_2qiTQQ" id="grid-active-marker"></div>
+<div class="ggLqms6f6pdNgave_uZv0" id="grid-button-active-marker"></div>
+<div class="_3f0lULxul6397Yg-3BxULk">
+<div class="_2y6gi7CgeGwU5S_SoDtdHw" id="grid-header"><span>Related Gifs</span></div>
+<a class="_2vYxOwTQA6iyw70tC9IvF" href="https://giphy.com/channel/Poi123?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y" target="_blank"><span class="zDpl0KErkBParz2xHj-JC" style="background-image:url(https://media.giphy.com/avatars/default4.gif)"></span><div class="_3GnxDX7SIAEyZdq0MhhT3I"><div class="_1_ahUPJUi79BowJfSivl-4">Poi123</div><div class="Ix19cIyoy7Cb87VtC391M">@poi123</div> </div></a>
+</div>
+<div class="WpVJN5m_tIXwIUQLZSxAP" id="grid"><div class="giphy-grid"><div></div><div><div class="css-1nu97io giphy-loader css-7fqhxk"><div></div><div></div><div></div><div></div><div></div></div></div></div></div>
+</div>
+</div>
+<div class="_3UOMCEIXcXsKkhSikKpTpj" data-header="">
+<a class="QPOqdnK3YcwPvVWrT1JAx" href="https://giphy.com/?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y" target="_blank">
+<svg viewbox="0 0 73 17" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.598 2.823C12.574.777 10.682.337 8.548.337 2.762.337.122 4.473.122 8.5c0 4.025 2.31 8.095 8.404 8.095 2.97 0 5.654-1.056 6.622-3.014V6.74H7.624v3.41h3.894v1.98c-.88.637-2.156.79-2.97.79-3.102 0-4.136-2.44-4.136-4.42 0-3.015 1.628-4.51 4.136-4.51 1.034 0 2.398.285 3.52 1.34l2.53-2.507zm7.348 13.354V.777h-4.334v15.4h4.334zm7.48-11.66v3.828h3.124c1.21 0 1.826-.88 1.826-1.892s-.638-1.936-1.826-1.936h-3.124zm3.124 7.502h-3.124v4.157H25.07V.777h7.48c4.136 0 6.182 2.596 6.182 5.61 0 3.146-2.068 5.588-6.182 5.632zm22.33 4.18V.8h-4.312v5.85h-5.544V.8h-4.356v15.4h4.356v-5.83h5.544v5.83h4.312zM61.216.776H56.31v.176l5.852 9.086v6.137h4.356V10.04L72.634.974V.777h-4.906l-3.322 5.28-3.19-5.28z" fill="#FFF" fill-rule="evenodd"></path>
+</svg>
+</a>
+<div class="_3U2CZTXTrtWrYi0ZEGeqyg _1Fba10Vcpc4_UBtLy_oMYy ss-send" data-haslabel="">
+</div>
+</div>
+<div class="_3_vM7DF5cyJrbupdz6Htqf" id="grid-gradient"></div>
+<div class="_1fA3AC4rbTobtfhJNPbZIE" id="grid-button-container">
+<div class="_15NVdTDa-3OF48pRLP2Iu9">Continue Watching on GIPHY</div>
+</div>
+</div>
+<div class="_31KGzTI986GI57JZD8Jfqb"></div>
+<div class="_3kc_XJI1KrZmjrsYPRNrgH" data-sharemenu="">
+<div class="_2LGeaPYByQeocC1uL63FEX">
+<a class="_11DnUHYBHCjyzGZCiwR-S fVNfZkNz7vfETaactwgtY _1CcFQw7H4TrtiyIevX7Wi9 _1Fba10Vcpc4_UBtLy_oMYy _3yr4qzI4B-FenEnC8bj2dY" data-animated="false" href="https://giphy.com/gifs/U4prxUyKGe9BMvBfRD?utm_source=iframe&amp;utm_medium=embed&amp;utm_campaign=Embeds&amp;utm_term=https%3A%2F%2Fwww.construct.net%2Fen%2Fmake-games%2Fmanuals%2Fconstruct-3%2Fplugin-reference%2Ftimeline-controller%3F__cf_chl_f_tk%3DKdOBH25aLQHvOXH57juUPiCjljg0H8KIvYsZRP2Affg-1783362939-1.0.1.1-TkiLOp4GITIdqOeOEztVsXeH89LhUyiVhzUwb_yWa9Y&amp;ref=fave" target="_blank"></a>
+<div class="_2pLOrgi_mLlUpG-Czr-z78 _16O-eCHzZunQvcyy7I8zUQ _2nwluuq-gBupJmVNwIMyEy _1Fba10Vcpc4_UBtLy_oMYy _3yr4qzI4B-FenEnC8bj2dY"></div>
+<div class="_2Yh2nqtup-WywlugS4ZR3p _12lVcnt6PnujdWtpCynuB4 _2nwluuq-gBupJmVNwIMyEy _1Fba10Vcpc4_UBtLy_oMYy _3yr4qzI4B-FenEnC8bj2dY"></div>
+<div class="_1AficpzFmza-fg-wse47zT _11cK6Vx_j-_JYr5eJSJj1P _2nwluuq-gBupJmVNwIMyEy _1Fba10Vcpc4_UBtLy_oMYy _3yr4qzI4B-FenEnC8bj2dY"></div>
+</div>
+<div class="_2LGeaPYByQeocC1uL63FEX">
+<h3 class="_1IdYUjJjSfAYulLHGRBrUE">Embed</h3>
+<input class="_1ZCIr6m_dNZyJ07YII5DLW _2-GxqWYNxZ-IXQRDqN-Soq _1bc7yOoPoF9ZAns5laPqC0" readonly="true" spellcheck="false" type="text" value='&lt;iframe src="https://giphy.com/embed/U4prxUyKGe9BMvBfRD" width="480" height="295" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://giphy.com/gifs/U4prxUyKGe9BMvBfRD"&gt;via GIPHY&lt;/a&gt;&lt;/p&gt;'/>
+</div>
+<div class="_2LGeaPYByQeocC1uL63FEX">
+<h3 class="_1IdYUjJjSfAYulLHGRBrUE">Link</h3>
+<input class="_1ZCIr6m_dNZyJ07YII5DLW _2-GxqWYNxZ-IXQRDqN-Soq _1bc7yOoPoF9ZAns5laPqC0" readonly="true" spellcheck="false" type="text" value="https://giphy.com/gifs/U4prxUyKGe9BMvBfRD"/>
+</div>
+<div class="_3dnxitwzwOSm1Vnd2G4Ch7 _1Fba10Vcpc4_UBtLy_oMYy ss-delete"></div>
+</div>
+<svg class="_1kUT9JUnNbAcSluG824OLJ">
+<defs>
+<clippath id="cutout">
+<rect height="100%" width="100%" x="-41" y="0"></rect>
+<rect height="100%" width="100%" x="0" y="41"></rect>
+</clippath>
+</defs>
+</svg>
+</div></div>
+</div></div><div class="giphySpacer"></div>
+<div class="hr"></div>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Omitting the track ID</h2>
+<p>There are a couple of cases in which it is possible to ignore using the <strong>track ID</strong> property of a <a class="extern" href="../project-primitives/tracks.html" rel="noopener" target="_blank" title="Make your own games">track</a> as well as omit using the <strong>track ID</strong> parameter of the <strong>Set Instance</strong> action.</p>
+<h3>A timeline with only one track</h3>
+<p>In this case it is possible to not use the <strong>track ID</strong>, as there is only one instance so there is no need to make any choice. The track ID must be empty in both the timeline track and the <strong>Set Instance</strong> action.</p>
+<div class="hr"></div>
+<h3>A timeline that will have all of its instances replaced</h3>
+<p>In the case it is needed to replace all of the instance of a timeline using the <strong>Set Instance</strong> action, it is possible to skip using a <strong>track ID</strong> for each track and on each call to <strong>Set Instance</strong>. If there is one <strong>Set Instance</strong> action for each track in the timeline, the instances will be replaced in the same order they appear in the timeline.</p>
+<p>The images bellow show how a timeline and it's properties might look in in this case.</p>
+<table>
+<thead>
+<tr>
+<td>Template timeline</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/47783/set-intance-no-track-id-2.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 369x243px in new window (7.39 KB)"><span><img height="243" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/47783/set-intance-no-track-id-2.png" width="369"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<td>First instance properties</td>
+<td>Second instance properties</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/47784/set-intance-no-track-id-3.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 344x431px in new window (14.18 KB)"><span><img height="431" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/47784/set-intance-no-track-id-3.png" width="344"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/47785/set-intance-no-track-id-4.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 344x431px in new window (14.24 KB)"><span><img height="431" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/47785/set-intance-no-track-id-4.png" width="344"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<td>Events</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/47786/set-intance-no-track-id-1.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 838x133px in new window (12.56 KB)"><span><img height="127" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/47786/set-intance-no-track-id-1.png" width="800"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<p>In this particular case the <strong>octopus</strong> <a class="extern" href="sprite.html" rel="noopener" target="_blank" title="Make your own games">sprite</a> is used in the first track while the <strong>toster</strong> sprite is used in the second track. Because no track IDs are used, order is assumed to be the same as that defined in the editor. </p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Unsetting all instances</h2>
+<p>Sometimes it might be necessary to clear the state the <strong>Timeline Controller</strong> uses in order to use different instances in a timeline. You might find that some state was previously set but no timeline was played to use it. Such a scenario is likely to cause subsequent uses of <strong>Set instance</strong> and <strong>Play</strong> to produce unexpected results. In those cases use the <strong>Unset instances</strong> action to clear the <strong>Timeline Controller</strong> before attempting to use <strong>Set Instance</strong> and <strong>Play</strong> together again.</p>
+<div class="hr"></div>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Timeline controller conditions</h2>
+<dl class="sans">
+<dt>Is any playing</dt>
+<dd>True if any timeline is playing.</dd>
+<dt>Is playing</dt>
+<dd>True if a specified timeline is playing, given by its tag.</dd>
+<dt>Is any paused</dt>
+<dd>True if any timeline is paused.</dd>
+<dt>Is paused</dt>
+<dd>True if a specified timeline is paused, given by its tag.</dd>
+<dt>On started</dt>
+<dd>Triggered when a timeline starts playing, given by its tag. Use the <strong>"Type"</strong> parameter to specify when the trigger should take place. <em>"Any"</em> will execute the trigger any time a timeline is started, <em>"Starting"</em> will execute the trigger only  on the initial playback of the timeline and <em>"Resuming"</em> will execute the trigger only when the timeline is resumed after being paused.</dd>
+<dt>On any started</dt>
+<dd>Triggered when any timeline starts playing. Use the <strong>"Type"</strong> parameter to specify when the trigger should take place. <em>"Any"</em> will execute the trigger any time a timeline is started, <em>"Starting"</em> will execute the trigger only  on the initial playback of the timeline and <em>"Resuming"</em> will execute the trigger only when the timeline is resumed after being paused.</dd>
+<dt>On finished</dt>
+<dd>Triggered when a timeline finishes playback, given by its tag.</dd>
+<dt>On any finished</dt>
+<dd>Triggered when any timeline finishes playback.</dd>
+<dt>On keyframe reached</dt>
+<dd>Triggered when a <a class="extern" href="../project-primitives/timelines/master-keyframe.html" rel="noopener" target="_blank" title="Make your own games">master keyframe</a> with certain tags is reached during playback. The keyframe can be identified by whether it matches any of the given tags, or if it has all of the given tags. Separate tags with spaces.</dd>
+<dt>On any keyframe reached</dt>
+<dd>Triggered when any master keyframe is reached during playback. The <em>KeyframeTags</em> expression has a string of the keyframe's <em>Tags</em> property.</dd>
+<dt>On time set</dt>
+<dd>Triggered when the time of a timeline is set with the <strong>Set Time</strong> action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Timeline controller actions</h2>
+<dl class="sans">
+<dt>Play</dt>
+<dd>Start playing a timeline, with tags to identify this playback.</dd>
+<dt>Play all</dt>
+<dd>Play all the timelines in the layout.</dd>
+<dt>Pause</dt>
+<dd>Pause a timeline by its tag. Paused timelines can subsequently be resumed.</dd>
+<dt>Pause all</dt>
+<dd>Pause all currently playing timelines.</dd>
+<dt>Resume</dt>
+<dd>Resume a paused timeline by its tag.</dd>
+<dt>Resume all</dt>
+<dd>Resume all paused timelines.</dd>
+<dt>Stop</dt>
+<dd>Stop a timeline and reset it to its initial state.</dd>
+<dt>Stop all</dt>
+<dd>Stop all timelines, resetting them all to their initial state.</dd>
+<dt>Set time</dt>
+<dd>Set the current playback time of a timeline in seconds. <strong>Note:</strong> you can also use a string with a keyframe tag for the <em>Time</em> parameter, in which case the time is set to the position of that keyframe. If the timeline is playing when its time is set, playback is stopped.</dd>
+<dt>Set playback rate</dt>
+<dd>Set the playback rate of a timeline. 1 is normal speed, 0.5 is half speed, etc. Negative numbers will play in reverse.</dd>
+<dt>Set instance</dt>
+<dd>Set an instance to be used for the next timeline playback. The instance can be of a different type to the one used in the editor. The instance will be set to the track with the corresponding track ID. The track ID can also be left empty in which case it uses the first track in the timeline. It can also be used repeatedly with an empty ID to keep setting the tracks in the timeline in sequence. When the timeline is played it will then affect this instance instead of the one used in the editor. Playback can be controlled by using unique tags when playing the timeline.</dd>
+<dt>Unset instances</dt>
+<dd>Clears all state associated with calls to <strong>Set instance</strong>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Timeline controller expressions</h2>
+<dl class="sans">
+<dt>Time(nameOrTags)</dt>
+<dd>Retrieve the current time of the first matching timeline by either name or tags.</dd>
+<dt>Progress(nameOrTags)</dt>
+<dd>Retrieve the progress of the first matching timeline by either name or tags, returning a value in the range [0, 1].</dd>
+<dt>TotalTime(nameOrTags)</dt>
+<dd>The total time of the first matching timeline by either name or tags.</dd>
+<dt>KeyframeTags</dt>
+<dd>In a On keyframe reached or On any keyframe reached trigger, a string with the Tags property of the keyframe that was reached.</dd>
+<dt>KeyframeTime</dt>
+<dd>Get the time of a keyframe providing a timeline name (or tags) and keyframe tags.</dd>
+<dt>TimelineName</dt>
+<dd>In a trigger, a string with the name of the relevant timeline.</dd>
+<dt>TimelineTags</dt>
+<dd>In a trigger, a string with the tags of the relevant timeline.</dd>
+<dt>Value(timelineNameOrTags, valueTrackNameOrId)</dt>
+<dd>Retrieve the value of a <a class="extern" href="../project-primitives/timelines/track/value-track.html" rel="noopener" target="_blank" title="Make your own games">value track</a> by specifying a timeline name or tags and a value track name or track id. If no matching value track is found, the expression returns 0.</dd>
+<dt>Ease(easeName, value)</dt>
+<dd>Return the result of an ease function at a given value in the range 0-1. The ease name can be either a built-in ease, or the name of a custom ease in the project. A list of the names of built-in eases is included below.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Built-in ease names</h2>
+<p>These are the names for built-in ease functions that can be used with the TimelineController <em>Ease</em> expression.</p>
+<table>
+<tbody><tr>
+<td><code>"linear"</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>"in-sine"</code></td>
+<td><code>"out-sine"</code></td>
+<td><code>"in-out-sine"</code></td>
+</tr>
+<tr>
+<td><code>"in-elastic"</code></td>
+<td><code>"out-elastic"</code></td>
+<td><code>"in-out-elastic"</code></td>
+</tr>
+<tr>
+<td><code>"in-back"</code></td>
+<td><code>"out-back"</code></td>
+<td><code>"in-out-back"</code></td>
+</tr>
+<tr>
+<td><code>"in-bounce"</code></td>
+<td><code>"out-bounce"</code></td>
+<td><code>"in-out-bounce"</code></td>
+</tr>
+<tr>
+<td><code>"in-cubic"</code></td>
+<td><code>"out-cubic"</code></td>
+<td><code>"in-out-cubic"</code></td>
+</tr>
+<tr>
+<td><code>"in-quadratic"</code></td>
+<td><code>"out-quadratic"</code></td>
+<td><code>"in-out-quadratic"</code></td>
+</tr>
+<tr>
+<td><code>"in-quartic"</code></td>
+<td><code>"out-quartic"</code></td>
+<td><code>"in-out-quartic"</code></td>
+</tr>
+<tr>
+<td><code>"in-quintic"</code></td>
+<td><code>"out-quintic"</code></td>
+<td><code>"in-out-quintic"</code></td>
+</tr>
+<tr>
+<td><code>"in-circular"</code></td>
+<td><code>"out-circular"</code></td>
+<td><code>"in-out-circular"</code></td>
+</tr>
+<tr>
+<td><code>"in-exponential"</code></td>
+<td><code>"out-exponential"</code></td>
+<td><code>"in-out-exponential"</code></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

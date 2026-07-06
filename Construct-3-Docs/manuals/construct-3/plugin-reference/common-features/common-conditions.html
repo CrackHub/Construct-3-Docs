@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/common-features/common-conditions" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Common conditions
+            </h1>
+<div itemprop="articleBody">
+<p>The following conditions are common to several <a class="extern" href="../../project-primitives/objects/plugins.html" rel="noopener" target="_blank" title="Make your own games">plugins</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Angle</h2>
+<p>Note angles in Construct start with 0 degrees facing right and increment clockwise.</p>
+<dl class="sans">
+<dt>Is between angles</dt>
+<dd>True if the object's current angle is between the two given angles in degrees. The first and second angles must be in clockwise order. That is, <em>Is between 0 and 45 degrees</em> is true if the object is in a 45 degree area, but <em>Is between 45 and 0 degrees</em> is true if the object is in the 315 degree area from 45 degrees through 0 degrees.</dd>
+<dt>Is clockwise from</dt>
+<dd>True if the object's current angle is clockwise from the given angle in degrees. Invert to test if the object is anticlockwise from the given angle. For example, an object at 45 degrees is clockwise from 0 degrees, but an object at 0 degrees is anticlockwise from 45 degrees.</dd>
+<dt>Is within angle</dt>
+<dd>True if the object's current angle is within a number of degrees of another angle. This is more reliable than testing if the object's angle exactly equals an angle, e.g. <em>Is within 0.5 degrees of 90 degrees</em> is probably better than <em>Angle equals 90 degrees</em>, since there are many cases an object can be very close to, but not exactly, 90 degrees.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Appearance</h2>
+<dl class="sans">
+<dt>Compare opacity</dt>
+<dd>Compare the object's current opacity, from 0 (transparent) to 100 (opaque).</dd>
+<dt>Is effect enabled</dt>
+<dd>Test if one of the effects added to the object is currently enabled.</dd>
+<dt>Is visible</dt>
+<dd>True if the object is currently visible. Invert to test if invisible. This only tests the visibility set by the <em>Set visible</em> action; it is not affected by the object being offscreen, having 0 opacity, or being on an invisible layer.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Collisions</h2>
+<dl class="sans">
+<dt>Is overlapping another object</dt>
+<dt>Is overlapping at offset</dt>
+<dd>True if any instance is overlapping any instance of another object. Collision polygons are taken in to account (if any), as well as the object's size and rotation. The <em>offset</em> variant will test for an overlap at an offset from the first object. For example, testing for an overlap at an offset of (100, 0) will temporarily move the object to the right 100 pixels, test for the overlap, then move it back again.</dd>
+<dt>On collision with another object</dt>
+<dd>Triggered upon the first time any instance starts overlapping any instance of another object. The collision polygons are taken in to account if set, as well as the object's size and rotation.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Hierarchy</h2>
+<p>These conditions are available for plugins that support the <em>scene graph</em> feature, allowing objects to be connected together so they move, rotate and scale as if they were one large object.</p>
+<dl class="sans">
+<dt>Compare child count</dt>
+<dd>Compare the number of children that are currently attached to the object (using the <em>Add child</em> action).The <em>Which</em> option can be set to:<br/>
+<ul class="list"><br/>
+<li><em>Own</em>: only the object's direct children are compared</li><br/>
+<li><em>All</em>: all children of the object are compared, including children-of-children, all the way to the bottom of the hierarchy</li></ul></dd>
+<dt>Has children</dt>
+<dd>True if any children have been attached to the object (i.e. the child count is greater than 0).</dd>
+<dt>Has parent</dt>
+<dd>True if this object is currently attached to another object.</dd>
+<dt>On hierarchy ready</dt>
+<dd>Triggered for the root (top parent) instance in a hierarchy after <em>On created</em> has triggered for all instances in the hierarchy. For a specific instance in a hierarchy, when <em>On created</em> triggers, it is not certain that <em>On created</em> has yet triggered for other instances in the hierarchy, which can complicate initializing hierarchies. This trigger gives you an opportunity to initialize a hierarchy once <em>On created</em> has been triggered for all instances in the hierarchy.</dd>
+<dt>Pick children</dt>
+<dd>Pick the children of a given object type or family attached to this object. The <em>Which</em> option can be set to:<br/>
+<ul class="list"><br/>
+<li><em>Own</em>: only the object's direct children are picked</li><br/>
+<li><em>All</em>: all children of the object are picked, including children-of-children, all the way to the bottom of the hierarchy</li><br/>
+<li><em>Bottom</em>: only children at the bottom of the hierarchy from this object are picked, i.e. children with no further children of their own.</li></ul></dd>
+<dt>Pick nth child</dt>
+<dd>Pick a specific child of this object at a given zero-based index. This only picks from the object's own children (children-of-children are excluded). When <em>Index type</em> is <em>all</em>, the index is in to the list of all children of any type. The object type or family of the child must still be specified; if it is the wrong type, it won't be picked even if there is a child at the given index. When <em>Index type</em> is <em>filtered</em>, the index is in to the list of children of the specified object type only. For example if a parent has three children of object types <em>Leg</em>, <em>Arm</em>, and <em>Leg</em>, and the condition is used to pick child <em>Leg</em> at index 1, index type <em>all</em> will not pick anything (as there is an <em>Arm</em> child there instead), whereas index type <em>filtered</em> will pick the second <em>Leg</em> instance (as that is index 1 in to all <em>Leg</em> children).</dd>
+<dt>Pick parent</dt>
+<dd>Pick the parent of a given object type or family this object is attached to. The <em>Which</em> option can be set to:<br/>
+<ul class="list"><br/>
+<li><em>Own</em>: only the object's direct parent is picked</li><br/>
+<li><em>All</em>: all parents of the object are picked, all the way to the top of the hierarchy</li><br/>
+<li><em>Top</em>: only the parent at the top of the hierarchy from this object is picked, i.e. the parent not attached to any other parent.</li><br/>
+</ul></dd></dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>HTML element</h2>
+<p>These conditions are available for some plugins in the <em>Form controls</em> category, like Button and Text Input. These objects are HTML elements placed on top of the canvas.</p>
+<dl class="sans">
+<dt>Is enabled</dt>
+<dd>True if the element is currently enabled, and can be interacted with.</dd>
+<dt>Is focused</dt>
+<dd>True if the element is currently focused, meaning it will receive keyboard input. Typically this also involves a visual indication of focus as well.</dd>
+<dt>Is visible</dt>
+<dd>True if the element is currently visible. Otherwise the element still exists and preserves its contents, but is hidden.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Instance variables</h2>
+<dl class="sans">
+<dt>Compare instance variable</dt>
+<dd>Compare the current value of one of the object's number or text type <a class="extern" href="../../project-primitives/objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variables</a>.</dd>
+<dt>Is boolean instance variable set</dt>
+<dd>Test if one of the object's boolean <a class="extern" href="../../project-primitives/objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">instance variables</a> is set to <em>true</em>. Invert the condition to test if false.</dd>
+<dt>Pick highest/lowest</dt>
+<dd>Pick instances according to which has the highest or the lowest instance variable value of all the instances. When <em>Pick all tied</em> is checked, multiple instances may be picked if they all share the same highest/lowest value. If it is unchecked, the condition will only ever pick a single instance even when there is a tie, in which case it will pick an arbitrary instance.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Misc</h2>
+<dl class="sans">
+<dt>Has Tags</dt>
+<dd>Check if the instance has all of the specified tags, provided by a space-separated string. Note that instance tags are case insensitive.</dd>
+<dt>On created</dt>
+<dt>On destroyed</dt>
+<dd>Triggered for each instance that is created or destroyed during the running of the game. <em>On created</em> is also trigged for each object already on a layout when the layout starts. For example, a one-shot particle effect could be spawned every time an object is created, and an explosion created every time the object is destroyed. These conditions are analogous to <em>constructors</em> and <em>destructors</em> in traditional programming languages (commands which run at the creation and destruction of an object). Be careful not to create an object of the same type in an <em>On created</em> event (e.g. <em>On Sprite2 created: create Sprite2</em>) since this will create an infinite loop and cause the game to hang.</dd>
+<dt>On signal</dt>
+<dd>Triggered when the <em>Signal</em> action is run with a matching tag (case insensitive).</dd>
+<dt>Pick by unique ID</dt>
+<dd>Pick the instance matching a given unique ID (UID) number.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Size &amp; Position</h2>
+<dl class="sans">
+<dt>Compare width</dt>
+<dt>Compare height</dt>
+<dt>Compare depth</dt>
+<dd>Compare the object's current size, in pixels. Note only 3D objects like <a class="extern" href="../3d-shape.html" rel="noopener" target="_blank" title="Make your own games">3D shape</a> have the option to compare depth, as 2D objects do not have a size on the Z axis.</dd>
+<dt>Compare X</dt>
+<dt>Compare Y</dt>
+<dt>Compare Z</dt>
+<dd>Compare the object's current position in the layout, in pixels. Note that objects can be positioned between pixels, e.g. at (5.5, 10.33333). This means it's not usually a good idea to rely on an object being at an exact position.</dd>
+<dt>Is on-screen</dt>
+<dd>True if any part of the object's bounding box is within the screen area. This is not affected by the object's visibility or opacity.</dd>
+<dt>Is outside layout</dt>
+<dd>True if the entire object's bounding box is outside the layout area.</dd>
+<dt>Pick nearest/furthest</dt>
+<dd>Pick instances according to which are nearest or furthest from a given position. When <em>Pick all tied</em> is checked, multiple instances may be picked if they all share the same nearest/furthest distance. If it is unchecked, the condition will only ever pick a single instance even when there is a tie, in which case it will pick an arbitrary instance.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Z Order</h2>
+<dl class="sans">
+<dt>Is on layer</dt>
+<dd>Pick all instances on a given layer, specified either by its name or zero-based index.</dd>
+<dt>Pick top/bottom</dt>
+<dd>Pick either the top-most or bottom-most instance, taking in to account layers and Z index. For example, the instance at the front of the top most layer is the top instance.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

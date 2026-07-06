@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-expressions" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                System expressions
+            </h1>
+<div itemprop="articleBody">
+<p>This section outlines the expressions in the built-in System object in Construct. Many are common mathematical operations, and they can be listed with descriptions in the <a class="extern" href="../interface/dialogs/expressions-dictionary.html" rel="noopener" target="_blank" title="Make your own games">Expressions dictionary</a>, but they are included here for completeness.</p>
+<p>This section does not list the operators or syntax that can be used in expressions - just the expressions specific to the System object. For more general information on how to use expressions in Construct, see <a class="extern" href="../project-primitives/events/expressions.html" rel="noopener" target="_blank" title="Make your own games">Expressions</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Display</h2>
+<dl class="sans">
+<dt>OriginalViewportWidth</dt>
+<dt>OriginalViewportHeight</dt>
+<dd>Get the original values of the <em>Viewport size</em> project property. The value of these expressions does not change when using fullscreen modes like <em>Scale inner</em> and <em>Scale outer</em> that change the viewport size depending on the available screen area. Note however that the system <em>Set canvas size</em> action does modify the values returned by these expressions when in any fullscreen mode other than <em>Off</em>, as in this case it has the effect of changing the <em>Viewport size</em> project property.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Layers</h2>
+<p>In expressions where a layer is required, either its name (as a string) or index (as a number, zero-based) can be entered.</p>
+<dl class="sans">
+<dt>CanvasToLayerX(layer, x, y)</dt>
+<dt>CanvasToLayerY(layer, x, y)</dt>
+<dd>Calculate the layout co-ordinates underneath a position in canvas CSS co-ordinates for a given layer.<br/>
+</dd>
+<dt>LayerToCanvasX(layer, x, y)</dt>
+<dt>LayerToCanvasY(layer, x, y)</dt>
+<dd>Calculate the canvas CSS co-ordinates above a position in layout co-ordinates for a given layer.<br/>
+</dd>
+<dt>LayerToLayerX(fromLayer, toLayer, x, y)</dt>
+<dt>LayerToLayerY(fromLayer, toLayer, x, y)</dt>
+<dd>Calculate the position on a second layer (<em>toLayer</em>) that corresponds to a position given on a first layer (<em>fromLayer</em>). This is a shorthand for converting a layer position to canvas CSS co-ordinates, and then back to a position on a different layer. </dd>
+<dt>LayerAngle(layer)</dt>
+<dd>Get the angle, in degrees, of a layer.</dd>
+<dt>LayerIndex(layer)</dt>
+<dd>Get the zero-based index of a layer from its name.</dd>
+<dt>LayerOpacity(layer)</dt>
+<dd>Get the opacity (or semitransparency) of a layer, from 0 (transparent) to 100 (opaque).</dd>
+<dt>LayerParallaxX(layer)</dt>
+<dt>LayerParallaxY(layer)</dt>
+<dd>Get the current parallax X and Y components of a layer.</dd>
+<dt>LayerScale(layer)</dt>
+<dd>Get the current scale of the layer, not including the overall layout scale.</dd>
+<dt>LayerScaleRate(layer)</dt>
+<dd>Get the current scale rate of the layer, which defines how quickly it scales (if at all).</dd>
+<dt>LayerScrollX(layer)</dt>
+<dt>LayerScrollY(layer)</dt>
+<dd>Get the current scroll position of a specific layer. Note this is always the same as the layout scroll position (given by the <em>ScrollX</em> and <em>ScrollY</em> system expressions) unless a layer was independently scrolled using the <em>Set layer scroll</em> <a class="extern" href="system-actions.html" rel="noopener" target="_blank" title="Make your own games">system action</a>.</dd>
+<dt>LayerZElevation(layer)</dt>
+<dd>Get the current elevation of the layer on the Z axis.</dd>
+<dt>ViewportBottom(layer)</dt>
+<dt>ViewportLeft(layer)</dt>
+<dt>ViewportRight(layer)</dt>
+<dt>ViewportTop(layer)</dt>
+<dd>Return the viewport boundaries in layout co-ordinates of a given layer. Not all layers have the same viewport if they are parallaxed, scaled or rotated separately.<br/>
+</dd>
+<dt>ViewportMidX(layer)</dt>
+<dt>ViewportMidY(layer)</dt>
+<dd>Return the mid-point of the viewport area in layout co-ordinates for a given layer.</dd>
+<dt>ViewportWidth(layer)</dt>
+<dt>ViewportHeight(layer)</dt>
+<dd>Return the size of the viewport in layout co-ordinates for a given layer.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Layout</h2>
+<dl class="sans">
+<dt>CanvasSnapshot</dt>
+<dd>Contains the resulting image from a <em>Snapshot canvas</em> action after <em>On canvas snapshot</em> has triggered. (Note this expression is not available immediately after the <em>Snapshot canvas</em> action - you can only use it after <em>On canvas snapshot</em> triggers.) The expression returns a data URI of the image file. This can be loaded in to a Sprite or Tiled Background object via <em>Load image from URL</em>, sent to a server or stored locally, or opened with the Browser object in a new tab to save to disk.</dd>
+<dt>LayoutAngle</dt>
+<dd>Get the angle, in degrees, of the current layout. This does not include the rotation of individual layers.</dd>
+<dt>LayoutScale</dt>
+<dd>Get the current scale of the entire layout set by the <em>Set layout scale</em> action. This does not include the scaling of individual layers.</dd>
+<dt>LayoutWidth</dt>
+<dt>LayoutHeight</dt>
+<dd>Get the size of the current layout in pixels.</dd>
+<dt>LayoutName</dt>
+<dd>Get the name of the current layout.</dd>
+<dt>ScrollX</dt>
+<dt>ScrollY</dt>
+<dd>Get the current position the view is centered on.</dd>
+<dt>VanishingPointX</dt>
+<dt>VanishingPointY</dt>
+<dd>Get the current vanishing point in the layout, where the range 0-100 represents the viewport. For more information refer to the <em>Vanishing point</em> <a class="extern" href="../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout property</a>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Math</h2>
+<p>These expressions are simply ordinary math functions like you find on calculators. However, note that all functions using an angle take it in <strong>degrees</strong>, not radians. Angles start with 0 degrees facing right and increment clockwise.</p>
+<p><strong>sin(x)</strong>, <strong>cos(x)</strong>, <strong>tan(x)</strong>, <strong>asin(x)</strong>, <strong>acos(x)</strong>, <strong>atan(x)</strong> Trigonometric functions using angles in <em>degrees</em>.</p>
+<p><strong>abs(x)</strong> Absolute value of x e.g. <code>abs(-5)</code> = 5</p>
+<p><strong>angle(x1, y1, x2, y2)</strong> Calculate angle between two points</p>
+<p><strong>anglelerp(a, b, x)</strong> Linearly interpolate the angle <em>a</em> to <em>b</em> by <em>x</em>. Unlike the standard <em>lerp</em>, this takes in to account the cyclical nature of angles.</p>
+<p><strong>anglediff(a1, a2)</strong> Return the smallest difference between two angles</p>
+<p><strong>anglerotate(start, end, step)</strong> Rotate angle <em>start</em> towards <em>end</em> by the angle <em>step</em>, all in degrees. If <em>start</em> is less than <em>step</em> degrees away from <em>end</em>, it returns <em>end</em>.</p>
+<p><strong>ceil(x)</strong> Round up x e.g. <code>ceil(5.1)</code> = 6</p>
+<p><strong>cosp(a, b, x)</strong> Cosine interpolation of <em>a</em> to <em>b</em> by <em>x</em>. Calculates <em>(a + b + (a - b) * cos(x * 180°)) / 2</em>.</p>
+<p><strong>cubic(a, b, c, d, x)</strong> Cubic interpolation through <em>a</em>, <em>b</em>, <em>c</em> and <em>d</em> by <em>x</em>. Calculates <em>lerp(qarp(a, b, c, x), qarp(b, c, d, x), x)</em>.</p>
+<p><strong>distance(x1, y1, x2, y2)</strong> Calculate distance between two 2D points</p>
+<p><strong>distance3d(x1, y1, z1, x2, y2, z2)</strong> Calculate distance between two 3D points</p>
+<p><strong>exp(x)</strong> Calculate e^x</p>
+<p><strong>floor(x)</strong> Round down x e.g. <code>floor(5.9)</code> = 5</p>
+<p><strong>infinity</strong> A floating point number value representing infinity.</p>
+<p><strong>lerp(a, b, x)</strong> Linear interpolation of <em>a</em> to <em>b</em> by <em>x</em>. Calculates <em>a + x * (b - a)</em>.</p>
+<p><strong>unlerp(a, b, y)</strong> Reverse linear interpolation: if lerp(a, b, x) = y, then unlerp(a, b, y) = x. Calculates <em>(y - a) / (b - a)</em>.</p>
+<p><strong>ln(x)</strong> Log to base e of x.</p>
+<p><strong>log10(x)</strong> Log to base 10 of x.</p>
+<p><strong>max(a, b [, c...])</strong>, <strong>min(a, b [, c...])</strong> Calculate maximum or minimum of the given numbers. Any number of parameters can be used as long as there are at least two.</p>
+<p><strong>pi</strong> The mathematical constant pi (3.14159...)</p>
+<p><strong>qarp(a, b, c, x)</strong> Quadratic interpolation through <em>a</em>, <em>b</em> and <em>c</em> by <em>x</em>. Calculates <em>lerp(lerp(a, b, x), lerp(b, c, x), x)</em>.</p>
+<p><strong>round(x)</strong> Round x to the nearest whole number e.g. <code>round(5.6)</code> = 6</p>
+<p><strong>roundToDp(x, digits)</strong> Round x to a given number of decimal places, e.g. <code>roundToDp(1.666666, 2)</code> = 1.67</p>
+<p><strong>sign(x)</strong> Retrieve the sign of <em>x</em>: -1 for any negative number, 1 for any positive number, or 0 if <em>x</em> is zero.</p>
+<p><strong>sqrt(x)</strong> Calculate square root of x e.g. <code>sqrt(25)</code> = 5</p>
+<dl class="sans">
+<dt>getbit(x, n)</dt>
+<dd>Get the nth bit of x represented as a 32-bit integer. For example <code>getbit(7, 0)</code> will get the least significant bit of the number 7 when represented as a 32-bit integer. Returns either 0 or 1.</dd>
+<dt>setbit(x, n, b)</dt>
+<dd>Set the nth bit of x represented as a 32-bit integer to b (either 0 or 1). The resulting 32-bit integer is returned.</dd>
+<dt>togglebit(x, n)</dt>
+<dd>Toggle the nth bit of x represented as a 32-bit integer. If that bit is 0, it is set to 1; if it is 1, it is set to 0. The resulting 32-bit integer is returned.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Memory management</h2>
+<dl class="sans">
+<dt>ImageLoadingProgress</dt>
+<dd>Return the current loading progress of any memory management <em>Load</em> actions that are currently busy, on a scale of 0-1.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Save &amp; Load</h2>
+<dl class="sans">
+<dt>SaveStateJSON</dt>
+<dd>In <em>On save complete</em> or <em>On load complete</em>, returns a string of JSON data representing the savegame data. This can later be loaded using the <em>Load from JSON</em> action. For more information see <a class="extern" href="https://www.construct.net/tutorials/savegames-11.html" rel="noopener" target="_blank" title="Make your own games">How to make savegames</a>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>System</h2>
+<dl class="sans">
+<dt>CurrentEventNumber</dt>
+<dt>CurrentEventSheetName</dt>
+<dd>Return the number of the current event being run, and the name of the event sheet it belongs to. These are useful for testing purposes, such as logging the current event number to the browser console.</dd>
+<dt>ImageMemoryUsage</dt>
+<dd>Returns the estimated total memory usage, in megabytes, of all the currently-loaded images. Note image memory is sometimes also referred to as "VRAM", but this is not strictly correct since not all devices have video-specific memory. Also remember this expression does not include the memory use of sounds, code, or other non-image resources.</dd>
+<dt>LoadingProgress</dt>
+<dd>Return the current load progress on a loader layout. The progress is returned as a number from 0 to 1, e.g. 0.5 for half complete. For more information, see the tutorial <a class="extern" href="https://www.construct.net/tutorials/loader-layouts-custom-loading-9.html" rel="noopener" target="_blank" title="Make your own games">how to make a custom loading screen</a>.</dd>
+<dt>LoopIndex</dt>
+<dd>Get the index (number of repeats so far) in any currently running loop.</dd>
+<dt>LoopIndex(name)</dt>
+<dd>Get the index (number of repeats so far) of the loop with the given name. Useful for getting indices in nested loops.</dd>
+<dt>ObjectCount</dt>
+<dd>The total number of objects currently created.</dd>
+<dt>ProjectFileCount</dt>
+<dt>ProjectFileNameAt(index)</dt>
+<dd>Retrieve the list of project files in this project at the time of preview or export. Files in the Sounds, Music, Videos, Fonts, Icons &amp; Screenshots and Files folders are included. Each entry is a string with the relative path to the file, e.g. <code>subfolder/mydata.json</code>. </dd>
+<dt>ProjectID</dt>
+<dd>Return the project ID as it appears in Project Properties.</dd>
+<dt>ProjectName</dt>
+<dd>Return the name of the project as it appears in Project Properties.</dd>
+<dt>ProjectUniqueID</dt>
+<dd>Return a string of random characters that Construct automatically generated to uniquely identify this specific project.</dd>
+<dt>ProjectVersion</dt>
+<dd>Return the version entered in to Project Properties. Note that this is always returned as a string, not a number.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Text</h2>
+<dl class="sans">
+<dt>find(src, text)</dt>
+<dt>findCase(src, text)</dt>
+<dd>Find the first index within <em>src</em> that <em>text</em> occurs, else returns -1. <em>find</em> is case-insensitive, and <em>findCase</em> is case-sensitive.</dd>
+<dt>left(text, count)</dt>
+<dd>Return the first <em>count</em> characters of <em>text</em>.</dd>
+<dt>len(text)</dt>
+<dd>Return the number of characters in <em>text</em>.</dd>
+<dt>lowercase(text)</dt>
+<dd>Convert the given text to all lowercase.</dd>
+<dt>mid(text, index, count)</dt>
+<dd>Return the <em>count</em> characters starting from <em>index</em> in <em>text</em>. Note <em>count</em> can be set to -1 to return characters from <em>index</em> to the end of the string.</dd>
+<dt>newline</dt>
+<dd>A string containing a line break. Use to insert line breaks in to strings, e.g. <code>"Hello" &amp; newline &amp; "World"</code></dd>
+<dt>RegexMatchAt(String, Regex, Flags, Index)</dt>
+<dd>Process the regular expression <em>Regex</em> on <em>String</em> with <em>Flags</em>, and in the list of results, return the entry at <em>Index</em>.</dd>
+<dt>RegexMatchCount(String, Regex, Flags)</dt>
+<dd>Process the regular expression <em>Regex</em> on <em>String</em> with <em>Flags</em>, and return the number of entries in the list of results.</dd>
+<dt>RegexReplace(String, Regex, Flags, Replace)</dt>
+<dd>In <em>String</em> substitute matches for the regular expression <em>Regex</em> (with <em>Flags</em>) with the string <em>Replace</em>. The replacement string can contain the following special characters: <strong>$$</strong> (inserts a $), <strong>$&amp;</strong> (inserts the matched substring), <strong>$`</strong> (inserts the portion of the string that precedes the matched substring), or <strong>$'</strong> (inserts the portion of the string that follows the matched substring).</dd>
+<dt>RegexSearch(String, Regex, Flags)</dt>
+<dd>Return the index of the first character in <em>String</em> where a match for <em>Regex</em> with <em>Flags</em> could be found.</dd>
+<dt>replace(src, find, rep)</dt>
+<dd>Find all occurrences of <em>find</em> in <em>src</em> and replace them with <em>rep</em>.</dd>
+<dt>right(text, count)</dt>
+<dd>Return the last <em>count</em> characters of <em>text</em>.</dd>
+<dt>StringSub(text, sub1 [, sub2...])</dt>
+<dd>Substitute placeholders of the form <code>{n}</code> in the given string. This expression accepts a variable number of parameters. For example <code>StringSub("Hello {0}!", "Sam")</code> returns <em>Hello Sam!</em>, as the placeholder <code>{0}</code> is replaced with the first provided additional parameter. Further parameters can be provided by increasing the number in the placeholder, e.g. <code>StringSub("Hi {0}, your score is {1}!", "Sam", 100)</code> returns <em>Hi Sam, your score is 100!</em>. Note the substitutions can be either strings or numbers. If there are multiple occurrences of the same placeholder, they are all replaced. If a placeholder is used for which a parameter is not provided, then it is left as-is, e.g. <code>StringSub("Hi {0}, your score is {1}!", "Sam")</code> returns <em>Hi Sam, your score is {1}!</em> as there is only one substitution provided.</dd>
+<dt>tokenat(src, index, separator)</dt>
+<dd>Return the Nth token from <em>src</em>, splitting the string by <em>separator</em>. For example, <code>tokenat("apples|oranges|bananas", 1, "|")</code> returns <em>oranges</em>. </dd>
+<dt>tokencount(src, separator)</dt>
+<dd>Count how many tokens occur in <em>src</em> using <em>separator</em>. For example, <code>tokencount("apples|oranges|bananas", "|")</code> returns 3.</dd>
+<dt>trim(src)</dt>
+<dd>Return <em>src</em> with all whitespace (spaces, tabs etc.) removed from the beginning and end of the string.</dd>
+<dt>uppercase(text)</dt>
+<dd>Convert the given text to all uppercase.</dd>
+<dt>URLEncode(str)</dt>
+<dt>URLDecode(str)</dt>
+<dd>Convert to and from a string in a format suitable for including in a URL or POST data.</dd>
+<dt>zeropad(number, digits)</dt>
+<dd>Pad <em>number</em> out to a certain number of <em>digits</em> by adding zeroes in front of the number, then returning the result as a string. For example, <code>zeropad(45, 5)</code> returns the string "00045".</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Time</h2>
+<dl class="sans">
+<dt>CPUUtilisation</dt>
+<dd>The percentage of the last second that was spent in logic, such as running events or processing behaviors. This is for performance measurements. Note on most devices the rendering happens on the separate GPU and so is not counted by this measurement; for that <em>fps</em> or <em>GPUUtilisation</em> is a better measure. Also note this measurement is based on timers so should be treated as an approximation, and it only measures time on the main thread.<br/>
+</dd>
+<dt>dt</dt>
+<dd>Delta-time in seconds. See <a class="extern" href="https://www.construct.net/tutorials/delta-time-framerate-2.html" rel="noopener" target="_blank" title="Make your own games">Delta-time and framerate independence</a>.</dd>
+<dt>fps</dt>
+<dd>How many frames per second (FPS) the project is rendering. The most common display refresh rate is 60 Hz, so typically an efficiently designed project will render at 60 FPS. Note however if nothing is changing on-screen, then nothing is rendered, and so the FPS measurement may fall to 0 or display a lower result; this does not indicate poor performance, only that fewer frames are necessary to render. The <em>TicksPerSecond</em> expression of the <a class="extern" href="../plugin-reference/platform-info.html" rel="noopener" target="_blank" title="Make your own games">Platform Info</a> object indicates how frequently the engine is stepping, which may be different to the frames rendered per second.</dd>
+<dt>GPUUtilisation</dt>
+<dd>The percentage of the last second that was spent rendering graphics. This represents how busy the graphics processing unit (GPU) is, which is useful for performance measurements. This measurement is based on timers so should be treated as an approximation. The GPU utilisation is only affected by the amount of rendering work to be done, such as the number of objects visible on-screen, and also increases if the window size is larger. Note this measurement is only available on certain systems. If it is not supported, it will return NaN (a special value representing Not A Number) to indicate there is no value available.<br/>
+</dd>
+<dt>tickcount</dt>
+<dd>The number of ticks that have run since the project started.</dd>
+<dt>time</dt>
+<dd>The number of seconds since the project  started, taking in to account the time scale.</dd>
+<dt>timescale</dt>
+<dd>The current time scale.</dd>
+<dt>wallclockdt</dt>
+<dd>This is the same as the <em>dt</em> expression, but is not affected by the time scale. This can be useful to still obtain the real-world delta-time value when the project is paused by setting the time scale to 0, which causes <em>dt</em> to also become 0.</dd>
+<dt>wallclocktime</dt>
+<dd>The number of seconds since the project started, not taking in to account the time scale (i.e. the real-world time).<br/>
+</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link9" name="internalH1Link9"></a><h2>Values</h2>
+<dl class="sans">
+<dt>choose(a, b [, c...])</dt>
+<dd>Choose one of the given parameters at random. E.g. <code>choose(1, 3, 9, 20)</code> randomly picks one of the four numbers and returns that. This also works with strings, e.g. <code>choose("Hello", "Goodbye")</code> returns either <em>Hello</em> or <em>Goodbye</em>. Any number of parameters can be used as long as there are at least two.</dd>
+<dt>chooseindex(index, value0[, ...])</dt>
+<dd>Choose one of the given parameters by a zero-based index. For example: <ul class="list"><br/>
+<li><code>chooseindex(0, "foo", "bar", "baz")</code> returns <em>"foo"</em></li><br/>
+<li><code>chooseindex(1, "foo", "bar", "baz")</code> returns <em>"bar"</em></li><br/>
+<li><code>chooseindex(2, "foo", "bar", "baz")</code> returns <em>"baz"</em></li></ul> Any number of parameters can be included after the index (but there must be at least one). If the index is out of range, it returns either the first or last value, e.g. in the above example an index of -1 will still return <em>"foo"</em>.</dd>
+<dt>clamp(x, lower, upper)</dt>
+<dd>Return <em>lower</em> if <em>x</em> is less than <em>lower</em>, <em>upper</em> if <em>x</em> is greater than <em>upper</em>, else return <em>x</em>.</dd>
+<dt>float(x)</dt>
+<dd>Convert the integer or text <em>x</em> to a float (fractional number). If <em>x</em> is text, non-numeric characters are allowed after the number, but not before. For example <code>float("3.1xx")</code> returns <em>3.1</em>, but <code>float("xx3.1")</code> returns 0.</dd>
+<dt>int(x)</dt>
+<dd>Convert the float or text <em>x</em> to an integer (whole number). If <em>x</em> is text, non-numeric characters are allowed after the number, but not before. For example <code>int("33xx")</code> returns 33, but <code>int("xx33")</code> returns 0.</dd>
+<dt>random(x)</dt>
+<dd>Generate a random float from 0 to <em>x</em>, not including <em>x</em>. E.g. <code>random(4)</code> can generate 0, 2.5, 3.29293, but not 4. Use <code>floor(random(4))</code> to generate just the whole numbers 0, 1, 2, 3.</dd>
+<dt>random(a, b)</dt>
+<dd>Generate a random float between <em>a</em> and <em>b</em>, including a but not including <em>b</em>.</dd>
+<dt>rgbEx(r, g, b)</dt>
+<dt>rgbEx255(r, g, b)</dt>
+<dt>rgba(r, g, b, a)</dt>
+<dt>rgba255(r, g, b, a)</dt>
+<dd>Generate a single number containing a color with the given red, green, blue and optionally alpha components. <em>rgbEx</em> and <em>rgba</em> use components in the range 0-100, whereas <em>rgbEx255</em> and <em>rgba255</em> use components in the range 0-255. When an alpha is not provided, the resulting color is opaque. These are useful for conditions or actions taking a color parameter.</dd>
+<dt>HexColor(string)</dt>
+<dd>Convert a string with a color in hexadecimal notation to a numerical color value. The hexadecimal notation is case insensitive and can optionally start with <code>#</code>, and can use three or six character forms for opaque colors, or four or eight character forms to include alpha. For example <code>"F00"</code>, <code>"#f00"</code>, <code>"#FF0000"</code> and <code>"ff0000"</code> are all interpreted as opaque red.</dd>
+<dt>ColorToHexString(value)</dt>
+<dd>Convert a numerical color value back in to a string with hexadecimal notation. The string will always be lowercase and begin with a <code>#</code>, and use six characters for opaque colors, or eight characters to include alpha. For example this will return <code>"#ff0000"</code> for opaque red.</dd>
+<dt>str(x)</dt>
+<dd>Convert the integer or float <em>x</em> to a string. Generally this is not necessary since strings can be built using the &amp; operator, e.g. <code>"Your score is " &amp; score</code></dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

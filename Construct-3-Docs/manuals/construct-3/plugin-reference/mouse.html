@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/mouse" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Mouse
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Mouse</strong> object allows projects to respond to mouse input.</p>
+<p>When designing your project, you cannot assume everyone has a mouse. Many users browse the web with touch-screen devices that have no mouse. Therefore if your project uses exclusively mouse or keyboard control, it may be impossible to use on touch devices. See the <a class="extern" href="https://www.construct.net/tutorials/touch-controls-detecting-13.html" rel="noopener" target="_blank" title="Make your own games">Touch controls</a> tutorial for an alternative control system.</p>
+<p>If you only use left clicks, consider instead using the <a class="extern" href="touch.html" rel="noopener" target="_blank" title="Make your own games">Touch</a> object with <em>Use Mouse Input</em> enabled. This will allow your project to work on touchscreen devices without any further changes.</p>
+<h3>Mouse hardware buttons</h3>
+<p>Most modern mouse hardware has three buttons: left, middle and right. The middle button usually is also a scroll wheel that allows more conveniently scrolling up and down (and can be detected in Construct with the <em>On mouse wheel</em> trigger). However some specialist devices have an additional two buttons, named simply button 4 and button 5, which are usually positioned on the side of the device (but some hardware may differ). You can also detect these buttons with the Mouse object, but note that not all users will have those buttons on their mouse hardware. You could use the additional buttons to provide shortcuts which can be achieved another way, such as with key presses, but you should avoid using them for unique features that cannot be accessed any other way.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/mouse.html" rel="noopener" target="_blank" title="Make your own games">IMouseObjectType script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Mouse conditions</h2>
+<dl class="sans">
+<dt>Cursor is over object</dt>
+<dd>True if the mouse cursor is hovering over an object.</dd>
+<dt>Mouse button is down</dt>
+<dd>True if a given mouse button is currently being held down.</dd>
+<dt>On any click</dt>
+<dd>Triggered when any mouse button is clicked. This can be useful for title screens or cut-scenes where any input will continue to the next step.</dd>
+<dt>On button released</dt>
+<dd>Triggered when a given mouse button is released.</dd>
+<dt>On click</dt>
+<dd>Triggered when a given mouse button is pressed. This can also be used to detect double-clicks. </dd>
+<dt>On mouse wheel</dt>
+<dd>Triggered when the mouse wheel is scrolled up or down a notch. Choose <em>any</em> to detect the mouse wheel being scrolled in either direction; in this case the WheelDeltaX/Y/Z expressions are useful to determine the direction and magnitude of the scroll. </dd>
+<dt>On object clicked</dt>
+<dd>Triggered when a given mouse button is pressed while the mouse cursor is over an object. This can also be used to detect double-clicks on objects.</dd>
+<dt>Has pointer lock</dt>
+<dd>True if pointer lock is currently active, i.e. after <em>On pointer locked</em> triggered.</dd>
+<dt>On movement</dt>
+<dd>Triggered every time the mouse moves, or any touch input moves. The <em>MovementX</em> and <em>MovementY</em> expressions provide the amount of movement. This can be used without pointer lock, but mouse movement will still be limited by the boundaries of the window or screen. Since this trigger also works with touch input, it means movement input also works with touch input on mobile devices. Usage with touch input does not require pointer lock, since that only affects the mouse cursor.<br/>
+</dd>
+<dt>On pointer locked</dt>
+<dd>Triggered when the pointer is successfully locked after the <em>Request pointer lock</em> action. The mouse cursor will disappear and only mouse movement values will be available via the <em>On movement</em> trigger.</dd>
+<dt>On pointer unlocked</dt>
+<dd>Triggered when pointer lock is released, restoring the normal mouse cursor behavior. This can happen either by the <em>Release pointer lock</em> action, or at any time if the user manually exits pointer lock, such as by pressing <kbd>Escape</kbd>.</dd>
+<dt>On pointer lock error</dt>
+<dd>Triggered if an error occurs attempting to use pointer lock, such as attempting to acquire pointer lock when security restrictions disallow it.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Mouse actions</h2>
+<dl class="sans">
+<dt>Set cursor from sprite</dt>
+<dd>Set the cursor image from a <a class="extern" href="sprite.html" rel="noopener" target="_blank" title="Make your own games">Sprite</a> object. This is preferable to setting a sprite to the mouse co-ordinates, because the input lag is significantly lower. Various limitations apply: the sprite image is used as it appears in the image editor, not taking in to account size or rotation in the layout; the image cannot be too large (64x64 is usually the limit); the cursor may not be applied close to the edges of the browser window; and support varies depending on browser and OS.</dd>
+<dt>Set cursor style</dt>
+<dd>Set the type of mouse cursor showing. The cursor can be hidden completely by choosing <em>None</em>.</dd>
+<dt>Request pointer lock</dt>
+<dd>Request to acquire pointer lock, which hides the mouse cursor and only reports mouse movement values via the <em>On movement</em> trigger and <em>MovementX</em> and <em>MovementY</em> expressions. This allows continuous input without the boundaries of the window or screen stopping movement. This type of input is useful for "mouse look" with the 3D Camera object (see <a class="extern" href="https://editor.construct.net/#open=first-person-platformer" rel="noopener" target="_blank" title="Make games in the browser">First-person platformer</a> for an example). Normally this can only be used in a user input trigger, such as <em>On click</em>. <em>On pointer locked</em> is triggered if the request is successful, but the request may be denied, for example due to security restrictions, in which case <em>On pointer lock error</em> will trigger. Also note the user can also exit pointer lock at any time, triggering <em>On pointer unlocked</em>. The <em>Unadjusted movement</em> parameter can be checked to disable system adjustments to the mouse movement, such as acceleration, instead accessing the raw mouse input.</dd>
+<dt>Release pointer lock</dt>
+<dd>If pointer lock is active, this ends pointer lock and restores the normal mouse cursor behavior.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Mouse expressions</h2>
+<dl class="sans">
+<dt>AbsoluteX</dt>
+<dt>AbsoluteY</dt>
+<dd>Return the position of the mouse cursor over the canvas area in the page. This is (0, 0) at the top left of the canvas and goes up to the window size. It is not affected by any scrolling or scaling in the project.</dd>
+<dt>X</dt>
+<dt>Y</dt>
+<dd>Return the position of the mouse cursor in layout co-ordinates. This is (0, 0) at the top left of the layout. It changes to reflect scrolling and scaling. However, if an individual layer has been scrolled, scaled or rotated, these expressions do not take that in to account - for that case, use the layer versions below.</dd>
+<dt>X(layer)</dt>
+<dt>Y(layer)</dt>
+<dd>Return the position of the mouse cursor in layer co-ordinates, with scrolling, scaling and rotation taken in to account for the given layer. The layer can be identified either by a string of its name or its zero-based index, e.g. <code>Mouse.X("HUD")</code>.</dd>
+<dt>WheelDeltaX</dt>
+<dt>WheelDeltaY</dt>
+<dt>WheelDeltaZ</dt>
+<dd>In <em>On mouse wheel</em>, these values provide the direction and magnitude of the wheel movement. Typically this will alter <em>WheelDeltaY</em> representing vertical movement, with the value being positive or negative depending on whether it is up or down movement. The magnitude can also vary depending on the speed of the movement, the system settings, and the type of device. The other values support other kind of hardware devices, such as an additional horizontal scrolling wheel on some mouse devices, or pan scrolling on a laptop trackpad.</dd>
+<dt>MovementX</dt>
+<dt>MovementY</dt>
+<dd>In the trigger <em>On movement</em>, these values provide the amount of horizontal and vertical movement. <br/>
+</dd></dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

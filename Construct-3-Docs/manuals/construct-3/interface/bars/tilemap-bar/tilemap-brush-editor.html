@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/tilemap-bar/tilemap-brush-editor" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Tilemap Brush Editor
+            </h1>
+<div itemprop="articleBody">
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>The tilemap brush editor</h2>
+<p>This editor is used to create, edit and delete auto-tiling and patch brushes for use with the <a class="extern" href="../tilemap-bar.html" rel="noopener" target="_blank" title="Make your own games">Tilemap Bar</a>.</p>
+<p>There are three types of brushes supported, the 16 tile auto tiling brush, the 47 tile auto tiling brush and the patch brush. Brushes are created by default with each instance of the <a class="extern" href="../../../plugin-reference/tilemap.html" rel="noopener" target="_blank" title="Make your own games">Tilemap plugin</a>. The default brushes are setup to work correctly with the default tilemap image.</p>
+<p>When the editor is opened from the auto tiling tool it will show the first auto tiling brush in the corresponding <a class="extern" href="../../../project-primitives/objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object type</a>. If it is opened from the patch brush tool, it will show the first patch brush in the corresponding object type. This is just for convenience as both types of brushes can be edited regardless from which part of the UI the editor was opened from.</p>
+<h3>Using the editor with auto tiling brushes</h3>
+<dl class="sans"></dl>
+<p>Here is a short summary on how to create, edit and use an auto tiling brush.</p>
+<h4><span class="headerStep">Step 1:</span> Open the editor</h4>
+<dl class="sans"></dl>
+<p>Click the <strong>Edit brushes</strong> option from the dropdown menu of the auto tiling tool button in the Tilemap Bar toolbar.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/130573/tilemap-brush-editor-manual-0.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 406x333px in new window (22.52 KB)"><span><img height="333" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/130573/tilemap-brush-editor-manual-0.png" width="406"/></span></a></div></div>
+<h4><span class="headerStep">Step 2:</span> Create (or edit) a brush</h4>
+<dl class="sans"></dl>
+<p>Click the <strong>Add</strong> option from the editor's toolbar.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/35961/step2.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 251x211px in new window (8.77 KB)"><span><img height="211" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/35961/step2.png" width="251"/></span></a></div></div>
+<p>If you don't need to create a new brush, one of the existing ones can be picked from the first dropdown in the editor's toolbar.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/35962/step3.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 195x208px in new window (8.11 KB)"><span><img height="208" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/35962/step3.png" width="195"/></span></a></div></div>
+<h4><span class="headerStep">Step 3:</span> Make changes to an auto tiling brush</h4>
+<dl class="sans"></dl>
+<p>In order to properly set up an auto tiling brush, you will need to choose which tiles of the tileset will go in each position of the template. To do that, click on the tile you want to change in the template <strong>(left pane)</strong>. If this is a new brush it's best to start with the top left tile. After clicking the template tile, it will become highlighted. Then choose the tile from the tileset <strong>(right pane)</strong> that will go in that position.</p>
+<p>After doing that, the selected tile will be assigned to that position and the next tile in the template will be highlighted. From here, all that needs to be done is to repeat the process until all the tiles in the template have a value assigned to them.</p>
+<p>After you are done you can use the <strong>"Toggle tiles"</strong> button in the toolbar to quickly review what tiles have been assigned to each position of the template.</p>
+<table>
+<thead>
+<tr>
+<td>Toogle tiles button</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127652/toolbar-1.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 524x29px in new window (2.92 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127652/toolbar-1.png" width="524"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<td>Neutral Template Tiles</td>
+<td>Assigned Template Tiles</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/35968/step4a.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 144x142px in new window (4.69 KB)"><span><img height="142" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/35968/step4a.png" width="144"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/35969/step4b.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 143x141px in new window (4.91 KB)"><span><img height="141" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/35969/step4b.png" width="143"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<h4><span class="headerStep">Step 4:</span> Using an auto tiling brush</h4>
+<dl class="sans"></dl>
+<p>Click the brush you want to use from the dropdown menu of the auto tiling tool button in the Tilemap Bar toolbar.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/130582/tilemap-brush-editor-manual-0.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 406x333px in new window (22.52 KB)"><span><img height="333" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/130582/tilemap-brush-editor-manual-0.png" width="406"/></span></a></div></div>
+<p>Make sure the auto tiling tool is activated (by clicking the main part of the button) and start drawing on the tilemap instance as you would with any other tilemap tool.</p>
+<h3>Using the editor with patch brushes</h3>
+<dl class="sans"></dl>
+<p>Creating and editing patch brushes is similar to auto tiling brushes, but since they perform different tasks there are a few differences in the UI.</p>
+<p>When the type of a brush is changed to <strong>"Patch"</strong> the top toolbar will include <strong>"Width"</strong> and <strong>"Height"</strong> fields to set the size of the patch. The <strong>"Toggle tiles"</strong> button is not present when editing a patch brush.</p>
+<p>Asides from that, the process of selecting tiles for each position of the patch is the same as with auto tiling brushes.</p>
+<div class="hr"></div>
+<h3>Interface</h3>
+<p>This dialog is separated into 5 different panes which are described below.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127653/main.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 752x502px in new window (51.51 KB)"><span><img height="502" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127653/main.png" width="752"/></span></a></div></div>
+<h4>Panes</h4>
+<ul class="list">
+<li><strong>Template:</strong> located in the top left, this pane shows the template of the auto tiling brush being edited. Its purpose is to select the tile of the template to be modified. Clicking on a template tile will update the <strong>Current tile</strong>, <strong>Assigned tiles</strong> and <strong>Tile properties</strong> panes. The template shown will change depending on the type of the current brush.</li>
+<li><strong>Tileset:</strong> located in the top right, this pane shows the tiles being used by the tilemap object type. Its purpose is to select tiles to assign to the currently selected template tile. Just selecting a tile from here will assign it to the current template tile and move to the next. If you bring up the context menu of a tile (e.g. by right-clicking), it is possible to assign multiple tiles to the same template tile. The use of this feature is discussed later.</li>
+<li><strong>Current tile:</strong> located in the bottom left, this pane shows the current template tile. It is only a visual aid and serves no other purpose. This pane is not shown when editing a patch brush.</li>
+<li><strong>Assigned tiles:</strong> located in between the <strong>Current tile</strong> and <strong>Tile properties</strong> panes, this pane shows all the tiles assigned to a template tile. Selecting a tile from the list will update the <strong>Tile properties</strong> panes with the appropriate values. From this pane it is possible to remove an assigned tile using a context menu option.</li>
+<li><strong>Tile properties:</strong> located in the bottom right, this pane shows the properties of the currently selected tile in the <strong>Assigned tiles</strong> pane. Tile properties are the following:
+	<ul class="list">
+<li><strong>Probability:</strong> in the case there is more than one tile assigned to a template position, the auto tiling and patch tools will pick one of the available tiles at random. This value dictates the probability of a tile being picked over the others.</li>
+</ul>
+</li>
+</ul>
+<h4>Toolbar</h4>
+<p>From left to right these are all the tools in the main toolbar.</p>
+<dl class="sans"></dl>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127654/toolbar-0.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 524x29px in new window (2.86 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127654/toolbar-0.png" width="524"/></span></a></div></div>
+<dl class="sans"></dl>
+<ul class="list">
+<li><strong>Brush</strong>: dropdown to select a brush to edit from the existing ones.</li>
+<li><strong>Options</strong>: the button next to the brush dropdown, has three basic options to manage brushes: <strong>Add</strong>, <strong>Rename</strong> and <strong>Delete</strong>.</li>
+<li><strong>Type</strong>: change the type of the current brush. Currently two types are supported: <strong>Auto 16</strong>, <strong>Auto 47</strong> and <strong>Patch</strong>. Changing this setting will update the contents of the <strong>Template</strong> pane.</li>
+<li><strong>Width</strong>: The width in tiles of the patch brush being edited. This button is only present when editing patch brushes.</li>
+<li><strong>Height</strong>: The height in tiles of the patch brush being edited. This button is only present when editing patch brushes.</li>
+<li><strong>Undo</strong>: reverts the last change.</li>
+<li><strong>Redo</strong>: applies the last change.</li>
+<li><strong>Tiles toggle</strong>: this is a visual aid to quickly see the first tile assigned to each template tile. If a template tile has nothing assigned the toggle will make no changes. This button is only present when editing auto tiling brushes.
+</li>
+<li><strong>Background toggle</strong>: change the background color of the <strong>Template</strong> and <strong>Tileset</strong> panes between a light and dark color.</li>
+<li><strong>Zoom in</strong>: zoom in the <strong>Template</strong> and <strong>Tileset</strong> panes.</li>
+<li><strong>Zoom out</strong>: zoom out the <strong>Template</strong> and <strong>Tileset</strong> panes.</li>
+<li><strong>Zoom reset</strong>: reset the zoom of the <strong>Template</strong> and <strong>Tileset</strong> panes.</li>
+</ul>
+<h4>Context Menus</h4>
+<ul class="list">
+<li><strong>Template pane</strong>
+<ul class="list">
+<li><strong>Zoom in</strong></li>
+<li><strong>Zoom out</strong></li>
+<li><strong>Zoom reset</strong></li>
+<li><strong>Help</strong></li>
+</ul>
+</li>
+<li><strong>Tileset pane</strong>
+<ul class="list">
+<li><strong>Add tile(s)</strong>: Add additional tiles to be used in a template position in addition to the first one. Multiple tiles might be added and will be visible in the <strong>Assigned tiles</strong> pane</li>
+<li><strong>Set brush with selection</strong>: Set all the tiles in the template at once with the current selection. This option clears any previous existing tiles in the template.</li>
+<li><strong>Zoom in</strong></li>
+<li><strong>Zoom out</strong></li>
+<li><strong>Zoom reset</strong></li>
+<li><strong>Help</strong></li>
+</ul>
+</li>
+<li><strong>Assigned tiles pane</strong>
+<ul class="list">
+<li><strong>Remove Tile</strong>: Remove the selected tile from the list of tiles available to the corresponding template tile.</li>
+<li><strong>Help</strong></li>
+</ul>
+</li>
+</ul>
+<div class="hr"></div>
+<h3>Using multiple tiles on a template position</h3>
+<p>As mentioned earlier, it is possible to assign multiple tiles to a template position. The result of this is that for the positions where multiple tiles have been chosen, the auto tiling and patch tools will pick one of them at random when needed. This is useful to create more varied tilemap layouts without having to manually edit tiles one at a time.</p>
+<p>The following image shows how would you add an additional tile to the selected template position.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127655/add-tiles-0.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 752x502px in new window (55.84 KB)"><span><img height="502" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127655/add-tiles-0.png" width="752"/></span></a></div></div>
+<p>Next you can see how the editor would look like after adding multiple tiles to the same template position.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127656/add-tiles-1.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 751x500px in new window (55.16 KB)"><span><img height="500" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/127656/add-tiles-1.png" width="751"/></span></a></div></div>
+<p>Using the <strong>Probability</strong> property of each tile, found in the <strong>Tile properties</strong> pane, it is possible to adjust which of the tiles is more or less likely to be chosen by the auto tiling and patch tools.</p>
+<p>Keep in mind that all tiles with the same probability value will have the same chance of being chosen. For example, two tiles with 100% probability results in each tile having 50% chance of being chosen when using the auto tiling or patch tools.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

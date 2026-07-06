@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/slider-bar" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Slider bar
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Slider bar</strong> object provides a simple form control allowing the user to pick a value between a minimum and maximum by moving a slider along a bar.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/1020/sliderbar.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 213x31px in new window (350 B)"><span><img alt="Slider bar control" height="31" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/1020/sliderbar.png" width="213"/></span></a></div></div>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/slider-bar.html" rel="noopener" target="_blank" title="Make your own games">ISliderBarInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Layering HTML objects</h2>
+<p>This object displays using a HTML element rather than drawing in to the canvas. This means its layering works differently to other objects. To learn more about how to layer HTML objects, see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Slider bar properties</h2>
+<dl class="sans">
+<dt>Minimum</dt>
+<dd>The lowest value that can be picked, when the slider is all the way to the left.</dd>
+<dt>Maximum</dt>
+<dd>The highest value that can be picked, when the slider is all the way to the right.</dd>
+<dt>Step</dt>
+<dd>The increment of possible values. For example if the step is 10, then the slider will jump in units of 10 as it is moved, and only a multiple of 10 can be chosen as a value.</dd>
+<dt>Tooltip</dt>
+<dd>An optional tooltip to show while hovering the mouse over the control.</dd>
+<dt>Initially visibile</dt>
+<dd>Whether the control is initially visible or invisible in the page.</dd>
+<dt>Enabled</dt>
+<dd>Whether the control is initially enabled and usable, or disabled so that it cannot be interacted with.</dd>
+<dt>ID <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>id</em> attribute for the element in the DOM (Document Object Model). This can be useful for CSS styling.</dd>
+<dt>Class <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>class</em> attribute for the element in the DOM (Document Object Model). This can be useful for CSS styling.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Slider bar conditions</h2>
+<p>See <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">common conditions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Compare value</dt>
+<dd>Compare the currently chosen value from the slider bar.</dd>
+<dt>On changed</dt>
+<dd>Triggered when the user finishes changing the chosen value on the slider bar. Typically this only triggers when the user releases a mouse button or touch after moving the slider.</dd>
+<dt>On changing</dt>
+<dd>Triggered repeatedly as the user changes the chosen value on the slider bar. Unlike <em>On changed</em> this will reflect the current value of the slider as the user is still dragging it.</dd>
+<dt>On clicked</dt>
+<dd>Triggered when the user clicks the slider bar.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Slider bar actions</h2>
+<p>See <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">common actions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Set maximum</dt>
+<dd>Set the maximum value that can be chosen from the slider bar.</dd>
+<dt>Set minimum</dt>
+<dd>Set the minimum value that can be chosen from the slider bar.</dd>
+<dt>Set step</dt>
+<dd>Set the increment step of the slider bar.</dd>
+<dt>Set tooltip</dt>
+<dd>Set the tooltip that appears when the mouse hovers over the slider bar.</dd>
+<dt>Set value</dt>
+<dd>Set the currently selected value of the slider bar. This must be between the currently set minimum and maximum values.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Slider bar expressions</h2>
+<dl class="sans">
+<dt>Maximum</dt>
+<dd>Return the currently set maximum slider value.</dd>
+<dt>Minimum</dt>
+<dd>Return the currently set minimum slider value.</dd>
+<dt>Step</dt>
+<dd>Return the currently set slider step value (increment).</dd>
+<dt>Value</dt>
+<dd>Return the current value chosen by the user, between the minimum and maximum values.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

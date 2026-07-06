@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/function" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Function
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Function</strong> object can run a different event (<em>On function</em>) in an action (<em>Call function</em>). This is analogous to functions in traditional programming languages. Using functions can help you organise events and avoid having to duplicate groups of actions or events.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>About functions</h2>
+<p>The main purpose of the Function object is using the <em>Call function</em> action. This takes the name of a function (e.g. <em>Call function "CreateEnemy"</em>). The action then triggers the corresponding <em>On function</em> event (e.g. <em>On function "CreateEnemy"</em>), running the event's actions and any sub-events, before returning to the original <em>Call function</em> action and continuing from where it was.</p>
+<p>As another example, suppose you create an enemy with random stats in a game every 5 seconds using this event:</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/992/functions1.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1265x339px in new window (59.84 KB)"><span><img alt="Event to create an enemy" height="169" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/992/functions1_v650.png" width="632"/></span></a></div></div>
+<p>Suppose there are two other events where you want to create an enemy the same way: one when a player walks in to a trap, and another one every 4 seconds when in a boss fight. Without functions, you may have to copy-and-paste the actions multiple times, like this:</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/993/functions2.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1265x1072px in new window (193.67 KB)"><span><img alt="Multiple events all creating an enemy the same way" height="536" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/993/functions2_v650.png" width="632"/></span></a></div></div>
+<p>Notice this is becoming inconvenient. There may be times you need to repeat the actions in even more places. If you want to make a change, you then have to find every place you repeated the actions, and repeat the change. We can remove the repetition using functions. By creating a <em>CreateEnemy</em> function which has the repeated actions, we can replace all the repeated actions with a <em>Call function</em> action like this:</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/994/functions3.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1265x706px in new window (111.55 KB)"><span><img alt="Using functions to prevent repeating actions" height="353" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/994/functions3_v650.png" width="632"/></span></a></div></div>
+<p>This works identically to the previous events, but is much shorter and more convenient. We can use <em>Call "CreateEnemy"</em> action anywhere we want to create an enemy, and it uses the same set of actions in the <em>On "CreateEnemy"</em> event.</p>
+<p>It is often useful to split many parts of your events in to functions like this, so they can be conveniently re-used across event sheets.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Parameters</h2>
+<p>When calling a function, you can also pass <em>parameters</em>. These are simply numbers or strings that are made available to the function. For example, the <em>CreateEnemy</em> function from the previous example could be modified to take two parameters: the X and the Y co-ordinates at which to create the enemy. This helps functions to be made more general purpose by using extra information from the action calling the function.</p>
+<p>To add a parameter to a function call, click the <strong>Add parameter</strong> link that appears in the <a class="extern" href="../interface/dialogs/parameters.html" rel="noopener" target="_blank" title="Make your own games">Parameters dialog</a> when editing the <em>Call function</em> action. This is a special link that only appears for this action in the Function object. Inside an <em>On function</em> event, you can then use the <em>Param</em> expression with the zero-based index of the parameter to retrieve the corresponding value.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Advanced function features</h2>
+<p>Like in programming languages, the Function object supports the following:</p>
+<ul class="list">
+<li>Functions calling other functions</li>
+<li>Functions calling themselves (recursion)</li>
+<li>Returning values from functions</li>
+<li>Calling functions from expressions (which also returns the return value)</li>
+</ul>
+<p>Note that functions calling other functions or recursing create a new "stack" of local variables. In other words, like in programming languages, local variables are unique at each level of function call. This does not apply to static local variables or global variables.</p>
+<p>Also note the Function object logs to the browser console if it is used incorrectly, such as calling a non-existent function or accessing a parameter that was not passed. This can help identify problems using functions in large projects.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Returning values from functions</h2>
+<p>Functions can also return a result. For example, a <em>factorial</em> function could calculate the mathematical result and return it. In an <em>On function</em> event, the return value can be set using the <em>Set return value</em> action.</p>
+<p>If the event was called using the <em>Call function</em> action, the returned value is afterwards available using the <em>ReturnValue</em> expression. Functions can also be called directly from an expression using the <em>Call</em> expression; in this case the return value is automatically returned as the result of the <em>Call</em> expression.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>JavaScript integration</h2>
+<p>It is strongly recommended to use the <a class="extern" href="../../addon-sdk.html" rel="noopener" target="_blank" title="Make your own games">Addon SDK</a> to integrate JavaScript code with Construct. However it is possible to trigger a function in the Function object from JavaScript code using the following function:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">if</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span>self<span class="token punctuation">.</span>c2_callFunction<span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span>
+    self<span class="token punctuation">.</span><span class="token function">c2_callFunction</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-2-close">[</span><span class="token string">"param1"</span><span class="token punctuation">,</span> <span class="token string">"param2"</span><span class="token punctuation brace-square brace-close brace-level-2" id="pair-2-open">]</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>(The name still refers to C2 for legacy reasons.) Note if the Function object is not included in a project, the <code>c2_callFunction</code> function will not exist, so the if check is necessary before using it. The function with the given "name" is triggered synchronously. Parameters are optional and can be omitted, but must be provided as an array in the second argument, and parameters may only be string or number values (any other types will return as 0 in Construct). The <code>c2_callFunction</code> method also returns the return value set in Construct (if any), and also can only return a string or number.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Function conditions</h2>
+<dl class="sans">
+<dt>Compare parameter</dt>
+<dd>Compare the value of one of the parameters to a function call. This condition should only be used in an <em>On function</em> event, since outside of function calls there are no parameters set.</dd>
+<dt>On function</dt>
+<dd>Triggered when the corresponding <em>Call function</em> action is used.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Function actions</h2>
+<dl class="sans">
+<dt>Call expression</dt>
+<dd>This is an alternative to the <em>Call function</em> action. It simply provides a parameter to enter an expression, and the result is ignored. You can use this to call a function via the <em>Function.Call(...)</em> expression, which may be more convenient if using a very large number of parameters.</dd>
+<dt>Call function</dt>
+<dd>Trigger the corresponding <em>On function</em> events. Additional parameters can be passed that are accessed by the <em>Param</em> expression.</dd>
+<dt>Set return value</dt>
+<dd>In a function event, set the value to be returned to the caller. This is either returned by the <em>Call</em> expression or accessed later using the <em>ReturnValue</em> expression.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Function expressions</h2>
+<dl class="sans">
+<dt>Call</dt>
+<dd>Call a function directly from an expression. The expression returns the return value that was set in the function, or 0 if no return value was set. Additional parameters can optionally be added after the name of the function, e.g. <code>Function.Call("CreateEnemy", 123, 456)</code>.</dd>
+<dt>Param</dt>
+<dd>Retrieve a parameter passed to a function call by its zero-based index. For example, <code>Function.Param(0)</code> returns the value of the first parameter.</dd>
+<dt>ParamCount</dt>
+<dd>Return the number of parameters passed to a function call.</dd>
+<dt>ReturnValue</dt>
+<dd>Return the value set using the <em>Set return value</em> action from the last function call. If <em>Set return value</em> is not used in a function, it returns 0.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

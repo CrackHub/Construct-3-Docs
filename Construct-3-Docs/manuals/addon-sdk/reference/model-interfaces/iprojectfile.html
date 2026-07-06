@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/model-interfaces/iprojectfile" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IProjectFile interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IProjectFile</code> interface represents a project file added in the Project Bar in Construct.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>GetName()</dt>
+<dd>Return the filename of the project file.</dd>
+<dt>GetPath()</dt>
+<dd>Return the full path to the project file, including any subfolders, separated by forwards slashes. The path returned matches its location after exporting the project, which may mean the subfolder path does not exactly match its location in the Project Bar. For example a file named <em>music.webm</em> in the Music folder of the Project Bar will have a path of <code>"media/music.webm"</code>. However files in the general-purpose <em>Files</em> folder are always relative to the root folder, so no additional subfolders will appear in the path.</dd>
+<dt>GetProject()</dt>
+<dd>Return the <a class="extern" href="iproject.html" rel="noopener" target="_blank" title="Make your own games">IProject</a> the project file belongs to.</dd>
+<dt>GetBlob()</dt>
+<dd>Return a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> representing the contents of the file. The standard web APIs for reading blobs can be used to access the content.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

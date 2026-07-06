@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/follow" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Follow behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Follow behavior</strong> allows an object to follow another object on a time or distance delay. More generally, it records a short history of an object's changes, allowing it to also perform tasks like record and replay, or rewinding time.</p>
+<p>Only adding the Follow behavior to an object does not do anything. You must use an action like <em>Follow object</em> before it starts changing the object the behavior has been added to.</p>
+<p>You can find a number of examples using the Follow behavior in Construct's Example Browser, such as the <a class="extern" href="https://editor.construct.net/#open=follow-behavior" rel="noopener" target="_blank" title="Make games in the browser">Follow behavior example</a> and <a class="extern" href="https://editor.construct.net/#open=follow-record-replay" rel="noopener" target="_blank" title="Make games in the browser">Follow record/replay</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/follow.html" rel="noopener" target="_blank" title="Make your own games">IFollowBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Follow properties</h2>
+<dl class="sans">
+<dt>Mode</dt>
+<dd>The following mode to use. <em>Time</em> mode follows on a time delay. <em>Distance</em> mode follows with a distance delay. In <em>Distance</em> mode the X and Y properties are always followed, as it is necessary for determining the distance.</dd>
+<dt>Delay</dt>
+<dd>The delay on which to follow the tracked object. In <em>Time</em> mode this is the delay in seconds to follow. In <em>Distance</em> mode this is the distance in pixels at which to follow. The delay cannot exceed the max delay.</dd>
+<dt>Max delay</dt>
+<dd>Determines the amount of data remembered in the same units as <em>Delay</em>. For example in time mode, if the delay is 1 second but the max delay is 3 seconds, then the behavior is remembering 3 seconds of history but following at a 1 second delay. The delay can be increased up to but not past the max delay. Usually the max delay can be the same as the delay, as additional data does not need to be remembered, but having a higher max delay can be useful if the delay may be increased. Note that the higher the max delay the more data is remembered and so the more memory will be used, so it's best to use the shortest max delay possible.</dd>
+<dt>History rate</dt>
+<dd>The rate in entries per second at which data about the object being followed is saved. For example if the history rate is 10, then the state of the followed object is saved every 100ms. When following, values in between entries are interpolated. Higher rates use more memory and have a higher performance overhead, but have a smoother movement; for efficiency it is best to choose the lowest rate which produces acceptably smooth movement. The default of 30 usually produces good results.</dd>
+<dt>Follow X</dt>
+<dt>Follow Y</dt>
+<dt>Follow Z</dt>
+<dt>Follow width</dt>
+<dt>Follow height</dt>
+<dt>Follow angle</dt>
+<dt>Follow opacity</dt>
+<dt>Follow visiblity</dt>
+<dt>Follow destroyed</dt>
+<dd>Choose the built-in properties to follow. For example if following X and Y is enabled, but not width and height, then if the followed object both moves and changes size, the following object will only move but not change size. Following more properties uses more memory. Following the destroyed state means that if the followed object is destroyed, then the following object will also be destroyed at the same point.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Follow conditions</h2>
+<dl class="sans">
+<dt>Has follow data</dt>
+<dd>True if the behavior has enough data to be able to start following on a delay. For example if the behavior starts following an object on a 5 second time delay, then for the first 5 seconds there is no follow data and so the object will not be updated, and <em>Has follow data</em> will be false. Once 5 seconds has elapsed it then starts updating and <em>Has follow data</em> will be true. Note that if following starts with <em>From current position</em> enabled, then that counts as having follow data immediately.</dd>
+<dt>Is following object</dt>
+<dd>True if any object has been set to be followed. If false then the behavior is not recording any information.</dd>
+<dt>Is paused</dt>
+<dd>True after using the <em>Set paused</em> action to pause following.</dd>
+<dt>Is following custom property</dt>
+<dd>Test if a particular custom property, specified by a string, is currently enabled for following.</dd>
+<dt>Compare delay</dt>
+<dt>Compare max delay</dt>
+<dt>Compare history rate</dt>
+<dt>Compare mode</dt>
+<dt>Is enabled</dt>
+<dt>Is following property</dt>
+<dd>Test the current values of the behavior properties. See <em>Follow properties</em> for more details.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Follow actions</h2>
+<dl class="sans">
+<dt>Follow object</dt>
+<dd>Begin following the specified object. This starts recording the changes over time of the specified object, and after the delay period has passed, it will then start following the changes for the enabled properties. Until the delay has passed, <em>Has follow data</em> will be false as there is not yet any data to follow. Alternatively the <em>From current position</em> setting can be enabled, which allows immediate following. When enabled this creates an initial history entry based on the following object's current state in the past at the delay time. Therefore <em>Has follow data</em> is immediately true and the object is able to immediately start updating. This has the effect of interpolating from the following object's starting position to the followed object's starting position over the delay time.</dd>
+<dt>Follow self</dt>
+<dd>Begin following the object the behavior belongs to. This records the changes over time of the current object. In this mode, the behavior does not update the object; it merely records the history. Note that as with following a different object, data is only retained up to the max delay. The history can then be saved to JSON and later replayed, or it can stop following and then set the delay to move to a previous position.</dd>
+<dt>Stop following</dt>
+<dd>Stops recording the history of a followed object. Any recorded history of the object that was followed is still preserved, and it will still continue following changes up until the time that this action was used.</dd>
+<dt>Clear history</dt>
+<dd>Erases any recorded history about the object being followed. This will cause <em>Has follow data</em> to become false and stop updating the object until enough data has been collected again. This is useful for resetting the behavior.</dd>
+<dt>Set paused</dt>
+<dd>Set whether following is paused. While paused, no further history is recorded, but it also stops advancing the follow time. Upon resuming, the behavior will restart recording the history of the followed object. If the followed object has substantially changed while following was paused, then it will skip to the new position as it follows the history, as no changes in between will have been saved.</dd>
+<dt>Rewind history</dt>
+<dd>Rewinds the follow time, deletes history entries past that time, and then continues recording history. Note that it is not possible to rewind further than the max delay, as data beyond that time is erased. This action allows for implementing a 'rewind time' feature where an object can go backwards in time and then continue from a different location, while preserving the history prior to the time it continued from.</dd>
+<dt>Load history JSON</dt>
+<dd>Load the recorded history of the object being followed from a string of data in JSON format previously saved by the <em>HistoryAsJSON</em> expression. This also sets the delay to the time of the oldest history entry loaded, so it then immediately follows the amount of data originally saved. This allows for creating a record/replay feature.</dd>
+<dt>Start following custom property</dt>
+<dt>Stop following custom property</dt>
+<dd>Start or stop following a custom property. This allows the Follow behavior to track a custom value other than one of the built-in properties such as the X and Y position. Multiple custom properties can be followed, each identified by a case-insensitive string. The interpolation mode of the custom property determines how values in between history entries are determined. <em>Step</em> does not interpolate and just uses the previous history entry. <em>Linear</em> uses linear interpolation, suitable for linear values like position and size. <em>Angular</em> uses angular interpolation, suitable for rotational values like angles. Note that if a custom property value is a string, then only <em>Step</em> mode is supported. The value to be recorded must be set with <em>Set custom property value</em>, and then the value to be followed can be retrieved with the <em>DelayedCustomPropertyValue</em> expression.</dd>
+<dt>Set custom property value</dt>
+<dd>Set the current value of a custom property that is being followed. The custom property is identified by a case-insensitive string. The value can be either a string or a number, but if it is a string then it will only use <em>Step</em> interpolation mode. This action should be used every tick while following a custom property, so that the latest value is available when the behavior decides to add a history entry.</dd>
+<dt>Set delay</dt>
+<dt>Set enabled</dt>
+<dt>Set following property</dt>
+<dt>Set history rate</dt>
+<dt>Set max delay</dt>
+<dt>Set mode</dt>
+<dd>Set the corresponding behavior properties. See <em>Follow properties</em> for more details.</dd>
+<dt>Set property interpolation</dt>
+<dd>Change the interpolation mode of one of the built-in properties. Generally this is used to change one of the built-in properties from smooth interpolation to step interpolation. For example mirroring an object with the Platform behavior should always update the width instantly, and not interpolate any in-between values.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Follow expressions</h2>
+<dl class="sans">
+<dt>FollowUID</dt>
+<dd>The UID of the current object being followed, or -1 if no object to follow has been set.</dd>
+<dt>HistoryAsJSON(MaxDelay)</dt>
+<dd>Save the current recorded history of the followed object to a string in JSON format. This can then be loaded again later using the <em>Load history JSON</em> action. The <em>MaxDelay</em> parameter can be used to save only a portion of the most recent history, rather than all the recorded history, suitable for a record/replay feature when the recording duration is less than the behavior's max delay. If <em>MaxDelay</em> is 0, then it saves all the history.</dd>
+<dt>DelayedCustomPropertyValue(CustomProperty)</dt>
+<dd>Retrieve the current value to be followed for a custom property, specified by a case-insensitive string.</dd>
+<dt>Delay</dt>
+<dt>MaxDelay</dt>
+<dt>HistoryRate</dt>
+<dd>Return the corresponding behavior properties. For more information, see <em>Follow properties</em>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

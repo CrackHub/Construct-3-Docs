@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/multiplayer" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Multiplayer
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Multiplayer object</strong> provides features to develop real-time online multiplayer games. It uses WebRTC DataChannels, a peer-to-peer networking feature of modern browsers, to transmit gameplay data.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/multiplayer.html" rel="noopener" target="_blank" title="Make your own games">IMultiplayerObjectType script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Multiplayer features</h2>
+<p>The Multiplayer object supports a number of features to enable low-latency gameplay over the Internet:</p>
+<ul class="list">
+<li>UDP-based transmission for minimal latency avoiding head-of-line blocking, with optional reliable modes</li>
+<li>NAT traversal to connect through common router/network setups</li>
+<li>Compensation for poor quality connections with high latency, packet delay variation (PDV), and packet loss</li>
+<li>Interpolation and extrapolation modes to ensure smooth in-game motion</li>
+<li>Scirra-hosted signalling server to connect peers to each other</li>
+<li>Scirra-hosted <a class="extern outlink" href="https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT">TURN server</a> to improve connectivity across some types of networks</li>
+<li>Authoritative host model to prevent cheating, with local input prediction to hide input latency</li>
+<li>LAN game support for near-zero latency gameplay, including support for mixed LAN/Internet games</li>
+<li>Automatic data compression to save bandwidth</li>
+<li>Automatic bandwidth reduction when objects are not changing, avoiding redundant repeated transmissions of identical data</li>
+<li>Binary transmission with control over specific datatypes to minimise bandwidth</li>
+<li>Large binary transfers, such as to send an entire file between peers</li>
+<li>Latency and packet loss simulation for realistic local testing</li>
+<li>Support for lag compensation</li>
+<li>Support for both peer-to-peer games (not needing a server) and centrally-hosted games (using a server)</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Learning to make Multiplayer games</h2>
+<p>Designing Multiplayer games is challenging. It is essential to follow the introductory tutorial series to gain an understanding of how to use the Multiplayer object correctly. You are likely to struggle if you try to skip ahead and start making a game without fully understanding how various aspects of multiplayer games work. Mistakes can also result in degraded gameplay quality, with unnecessary lag.</p>
+<p>The four introductory tutorials are:</p>
+<ol class="list">
+<li><a class="extern" href="https://www.construct.net/tutorials/multiplayer-tutorial-1-concepts-579.html" rel="noopener" target="_blank" title="Make your own games">Multiplayer tutorial 1: concepts</a></li>
+<li><a class="extern" href="https://www.construct.net/tutorials/multiplayer-tutorial-2-chat-room-591.html" rel="noopener" target="_blank" title="Make your own games">Multiplayer tutorial 2: chat room</a></li>
+<li><a class="extern" href="https://www.construct.net/tutorials/multiplayer-tutorial-3-pong-626.html" rel="noopener" target="_blank" title="Make your own games">Multiplayer tutorial 3: pong</a></li>
+<li><a class="extern" href="https://www.construct.net/tutorials/multiplayer-tutorial-3-real-time-game-598.html" rel="noopener" target="_blank" title="Make your own games">Multiplayer tutorial 4: real-time game</a></li>
+</ol>
+<p>You can also find examples of the Multiplayer features by searching for <em>Multiplayer</em> in the <a class="extern" href="../overview/start-page.html" rel="noopener" target="_blank" title="Make your own games">Start Page</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Signalling and hosting</h2>
+<p>The signalling server is a central server where players go to find each other. Scirra host an official signalling server at <strong>wss://multiplayer.construct.net</strong>. The signalling server does not transmit any gameplay data; it serves only to connect peers to the game host by relaying connection information like IP addresses. Players must connect and log in to the signalling server before they can join any rooms.</p>
+<p>The first player in to a room becomes the host. The host acts as the server for the game, transferring actual gameplay data. Any player can be the host. This means games can run without needing any server hosting, saving you from having to pay bandwidth bills to run your multiplayer game.</p>
+<p>If you have a large or particularly latency-sensitive game you can still run your game with a dedicated server host to take advantage of its better quality connection. This can be achieved by starting a browser on the server, starting the game and make sure the server is the first to join the room so it becomes the host. Now the server connection will be hosting the game. You can host multiple games on a server by opening multiple browser tabs (a hosted game can continue to work in a background tab). Note this means your server is genuinely running the game - as mentioned, the signalling server only helps peers connect to the room host, and actual gameplay data will be transmitted through your server if it is the room host. It is not necessary to run your own signalling server to achieve this.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Peer IDs</h2>
+<p>The signalling server assigns every player who connects a <em>Peer ID</em>. This is a short string of random characters that uniquely identifies them, such as "ABCD". When designing multiplayer games, it is best to identify peers by their peer ID instead of their alias (display name), since their alias could potentially change but their peer ID never changes so long as they remain connected.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Sending messages</h2>
+<p>Peers only connect to the host. In other words, the host has a connection to every peer, and peers only have one connection to the host. In order for two peers to communicate, the information must be relayed via the host.</p>
+<p>Consequently, the host can directly message any peer in the room, but peers can only directly message the host. See the chat tutorial for an example of how to relay messages through the host so other peers can receive messages from another peer.</p>
+<p>The host also has the unique ability to <em>broadcast</em> a message. This sends the same message to every peer in the room.</p>
+<p>Messages can be sent with different reliability modes. These are:</p>
+<ul class="list">
+<li><strong>Reliable ordered</strong>: all messages are guaranteed to arrive, and the order received will be the same as the order sent. However this can have the highest latency since a lost message will need retransmitting and will hold up every message sent after it. This mode is suitable for chat messages.</li>
+<li><strong>Reliable unordered:</strong> all messages are guaranteed to arrive, but the order received can be different from the order sent. This allows improved latency since a lost message will be held up as it is retransmitted, but subsequent messages can still get through quickly without being held up. This mode is suitable for gameplay events that occur independently of each other, such as "door opened" or "explosion occurred".</li>
+<li><strong>Unreliable:</strong> messages are not guaranteed to arrive, and the order received can be different from the order sent. The network will make a "best effort" attempt to deliver the message, but the message may be dropped and the recipient will never receive it and will have no indication it was even attempted to be sent. This mode is suitable for high-bandwidth or regularly-sent messages, where if a message is dropped it is likely to be shortly followed up by another one. Note the Multiplayer object uses this mode internally for object positions and data when using <em>Sync object</em>; avoid re-implementing this functionality with this mode.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Updating games</h2>
+<p>The host is authoritative for both gameplay data and its settings. If you change any aspect of your game, such as the synced objects or variables, the client input values, or bandwidth profile, the host's values are authoritative when there is a mismatch between the peer and the host. In order to avoid confusion or broken games, use a different game instance name when distributing an update, so only peers using the same version end up connecting to each other.</p>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Binary transfers</h2>
+<p>The Multiplayer object supports sending binary messages by transmitting the contents of a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. However due to the underlying networking technologies, a single binary message cannot be too large (common limits are in the range 64 KB - 256 KB), which poses a problem if you want to send a larger file to another peer.</p>
+<p>The Multiplayer object provides a <strong>Binary transfer</strong> feature to help send larger amounts of data. See the <a class="extern" href="https://editor.construct.net/#open=multiplayer-binary-transfer" rel="noopener" target="_blank" title="Make games in the browser">Multiplayer file transfer example</a> for a demonstration of how it works. When making a binary transfer, the process works like this:</p>
+<ol class="list">
+<li>The sending peer starts a binary transfer. The <em>receive started</em> event fires for the receiving peer, where the receiver can access metadata like the filename and transfer size.</li>
+<li>The Multiplayer object internally splits the data up into smaller chunks that can each be safely transmitted. The sending peer then starts sending these chunks over the network. Both sides will fire progress triggers to be able to observe how the transfer is progressing.</li>
+<li>Once all chunks have been successfully transmitted, the transfer completes and the receiving peer as an identical copy of the binary data that was transmitted.</li>
+</ol>
+<p>Binary transfers can have an optional tag assigned to identify different transfers. For convenience each transfer can also specify a filename and MIME type that the receiver can also access for purposes like transferring a named file. Transfers can also be cancelled while still in progress, such as if a user aborts a transfer. Transfers also benefit from automatic data compression to save bandwidth. Binary data transfers don't allow specifying a reliability mode - they always implicitly send with <em>reliable ordered</em> mode as the feature is designed to guarantee transmission of an identical copy of the data.</p>
+<p>As noted in the section above, peers only connect to the host and so direct communication is only possible between the host and peers. However the binary transfer feature supports an automatic relay through the host. This means two non-host peers can transfer binary data to each other. In this case each chunk will be sent first to the host, and then the host will send it on to the destination peer. This saves you having to implement a relay yourself. However it is important to note the privacy and security implications of this. While data transmitted over the network is automatically encrypted, the host will see unencrypted binary transfers while relaying them. Bear this in mind if transferring any privacy or security sensitive data between non-host peers. Also note this will increase the bandwidth used by the host, especially if multiple binary transfers occur simultaneously.</p>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Multiplayer conditions</h2>
+<dl class="sans">
+<dt>On (binary transfer) complete</dt>
+<dt>On any (binary transfer) complete</dt>
+<dd>Triggered on the receiving end of a binary transfer when the transfer has completed. The full transferred data is then available in the chosen <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. The <em>On complete</em> trigger fires only for the specified transfer tag, whereas the <em>any</em> variant trigger fires for any transfer (with the tag available in the <em>Tag</em> expression).</dd>
+<dt>On (binary transfer) event</dt>
+<dt>On any (binary transfer) event</dt>
+<dd>These triggers fire at various stages of a binary transfer, either for a transfer with a specific tag, or for any transfer (with the tag available in the <em>Tag</em> expression). The types of events are: <ul class="list"><br/>
+<li><em>receive started</em>: triggered for the receiving peer when a binary transfer starts. Metadata is available through expressions like <em>Filename</em> and <em>TransferSize</em>.</li><br/>
+<li><em>progress</em>: triggered for both sending and receiving peers as the transfer progresses, with the progess available in the <em>TransferProgress</em> expression.</li><br/>
+<li><em>cancelled</em>: triggered for both sending and receiving peers when a transfer is explicitly cancelled by the sender with the <em>Cancel binary transfer</em> action.</li><br/>
+<li><em>send complete</em>: triggered for the sending peer when the transfer has finished being sent (as the <em>On complete</em> trigger is only fired by the receiver).</li></ul></dd>
+<dt>Compare peer count</dt>
+<dd>Compare the number of peers currently in the room, if a room has been joined. The peer count includes the host so is at least 1 if in a room.</dd>
+<dt>Is host</dt>
+<dd>True if in a room and acting as the host. The host of the room is effectively the server for the game. Peers only connect to the host, and the host must relay data if two other peers are to communicate.</dd>
+<dt>On any peer message</dt>
+<dd>Triggered when a message with any tag is received. The <em>Message</em>, <em>Tag</em>, <em>FromID</em> and <em>FromAlias</em> expressions can be used to retrieve information about the received message. The order messages are received, or whether a sent message is received at all, depends on the reliability mode chosen when the message was originally sent.</dd>
+<dt>On kicked</dt>
+<dd>Triggered if kicked from the current room. This can occur if the host quits, the connection to the host could not be established, or the host otherwise decides to forcibly remove you from the room. After <em>On kicked</em> the player is no longer in the room and must re-join a room to be able to participate in a game.</dd>
+<dt>On peer connected</dt>
+<dd>Triggered when another peer joins the same room. It also triggers once per peer already in the room when joining an existing room, including the host. The <em>PeerID</em> and <em>PeerAlias</em> expressions identify the relevant peer.</dd>
+<dt>On peer disconnected</dt>
+<dd>Triggered when a peer disconnects from the room. The <em>PeerID</em> and <em>PeerAlias</em> expressions identify the peer that left. The <em>LeaveReason</em> expression can indicate why the peer left, such as if they intentionally quit or timed out.</dd>
+<dt>On host disconnected</dt>
+<dd>Triggered when a peer is disconnected from the host. This trigger works the same as using <em>On peer disconnected</em> and checking that the disconnected peer ID is the host's ID. When the host disconnects, it ends all communication as the host was the peer's only point of contact, and typically represents the end of the session.</dd>
+<dt>On peer message</dt>
+<dd>Triggered when a message sent with a specific tag is received. The <em>Message</em>, <em>FromID</em> and <em>FromAlias</em> expressions can be used to retrieve information about the received message. The order messages are received, or whether a sent message is received at all, depends on the reliability mode chosen when the message was originally sent.</dd>
+<dt>On peer binary message</dt>
+<dd>As with <em>On peer message</em>, but triggered when receiving a binary message sent with the <em>Send binary message</em> action. The received data is stored in the chosen <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. Note that binary messages do not have tags, but this data can be included in the transmitted binary data.</dd>
+<dt>Is ready for input</dt>
+<dd>True when a peer is ready to send input to the host. This means <em>On client update</em> has triggered at least once, or is about to trigger. Do not allow players using input prediction to move or act before this condition is true or <em>On client update</em> has triggered: doing so will simply cause an input prediction error since the host is not yet ready to receive input.</dd>
+<dt>On client update</dt>
+<dd>Triggered when a peer is about to send its input state to the host. The input state should be updated in this trigger using the <em>Set client state</em> action.</dd>
+<dt>Is connected</dt>
+<dd>True if currently connected to the signalling server. It is not necessary to be connected to a signalling server once connected to the room host.</dd>
+<dt>Is in room</dt>
+<dd>True if currently in a room on the signalling server.</dd>
+<dt>Is logged in</dt>
+<dd>True if currently connected to the signalling server and successfully logged in.</dd>
+<dt>On connected</dt>
+<dd>Triggered after successfully connecting to the signalling server. In order to join rooms, it is necessary to next log in to the server.</dd>
+<dt>On disconnected</dt>
+<dd>Triggered after disconnecting from the signalling server.</dd>
+<dt>On error</dt>
+<dd>Triggered if an error occurs with the signalling server. The <em>ErrorMessage</em> expression indicates the type of error that occurred.</dd>
+<dt>On game instance list</dt>
+<dd>Triggered after <em>Request game instance list</em> when the list has been received from the signalling server. The <em>List...</em> expressions can be used to retrieve the list details.</dd>
+<dt>On joined room</dt>
+<dd>Triggered after the <em>Join room</em> or <em>Auto-join room</em> actions when the room has been successfully joined. The <em>Is host</em> condition can be used to determine if the player is the first joining peer and has been assigned the room host.</dd>
+<dt>On left room</dt>
+<dd>Triggered after the <em>Leave room</em> action when the room has been left. The room is also left if <em>On kicked</em> triggers.</dd>
+<dt>On logged in</dt>
+<dd>Triggered after the <em>Log in</em> action if the login is successful. Once logged in it is possible to join rooms. Note the signalling server may have assigned a different alias to the one requested if it was already taken; use the <em>MyAlias</em> expression to determine the actual alias in use.</dd>
+<dt>On room list</dt>
+<dd>Triggered after the <em>Request room list</em> action when the room list has been successfully received. The room list expressions can then be used to inspect the received list.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Multiplayer actions</h2>
+<dl class="sans">
+<dt>Transfer peer binary</dt>
+<dd>Begin a binary data transfer to a peer identified by their peer ID. The data to send is in a specified <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. An optional tag, filename and MIME type may be specified which the receiver can also use. For more details see the section on <em>Binary transfers</em> above.</dd>
+<dt>Cancel binary transfer</dt>
+<dd>Cancel a currently in progress binary transfer specified by the peer ID it is being sent to and the tag of the transfer. Both the sender and receiver will fire the <em>cancelled</em> event and no further data will be transmitted.</dd>
+<dt>Add client input value</dt>
+<dd>Use on startup to add a value that peers send to the host to indicate their input state. Each client input value has a tag to identify it; use this tag to update the value with the <em>Set client state</em> action. To avoid wasting bandwidth, use the lowest <em>Precision</em> that can still hold all the values that need to be set. If using <em>setbit</em> / <em>getbit</em> to send key states, you must use <em>None</em> for <em>Interpolation</em>; otherwise use <em>Linear</em> for values like positions, or <em>Angular</em> if representing an angle.</dd>
+<dt>Associate object with peer</dt>
+<dd>If <em>Sync object</em> is used on objects which represent peers in the game, use this action to associate an instance of an object with a given peer. Typically this is used in the object's <em>On created</em> trigger. Both the host and peers must associate objects with peers. Associated objects are automatically destroyed when the corresponding peer leaves.</dd>
+<dt>Disconnect</dt>
+<dd>Disconnect from the room. If the room host, all players are kicked; otherwise the peer disconnects from the host. The room is also left on the signalling server, so another room can be joined afterwards.</dd>
+<dt>Send message</dt>
+<dd>Send a message to a specific peer with a given reliability mode. Peers can only message the host (and the <em>Peer ID</em> field must be left empty), but the host can send a message to any peer. Message tags can be used to identify messages for different purposes, such as "chat" or "gameplay-event". The message must be a text string, but could also be JSON data such as from an Array or Dictionary <em>AsJSON</em> expression; however be sure to avoid wasting bandwidth. The order messages arrive, or whether it is guaranteed to arrive at all, depends on the reliability mode.</dd>
+<dt>Send binary message</dt>
+<dd>As with <em>Send message</em>, but the data to be sent is specified by a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. Binary messages do not use a tag, although this data can be incorporated in the transmitted data. </dd>
+<dt>Set bandwidth profile</dt>
+<dd>Switch between <em>Internet</em> or <em>LAN</em> (Local Area Network) bandwidth modes. The bandwidth profile must be set before joining a room, and only the host's setting is used for all peers in the room. The default mode is <em>Internet</em>, which sends updates 30 times a second with an 80ms buffer. <em>LAN</em> mode sends updates 60 times a second with a 40ms buffer. <em>LAN</em> mode will use about double the bandwidth of <em>Internet</em> mode and will degrade gameplay quality more if there is latency or PDV in the connection. <em>LAN</em> mode should never be used for Internet games - it is intended for networks where bandwidth is effectively unlimited and latency effectively zero, which is typically only the case with local area networks, and taking advantage of this can improve gameplay quality. <em>Internet</em> mode should however work well over LANs, so if in doubt leave it on that.</dd>
+<dt>Simulate latency</dt>
+<dd>Simulate latency, PDV and packet loss on all inbound and outbound messages. This can be useful for making local testing more realistic, since unlike the Internet latency is effectively non-existent. For local testing it is only necessary to simulate latency on the host, since that guarantees every message in the game will have delay added; it is not necessary to also simulate latency on the peers. The latency for an individual message is calculated as the latency plus a random value from zero to the PDV. The packet loss indicates the chance an unreliable message is lost entirely, or in the case of reliable messages that retransmission is necessary and the latency is multiplied.</dd>
+<dt>Sync object</dt>
+<dd>Automatically sync an object. The host sends information about synced objects to peers. This is one-way transmission; peers sync with what is happening on the host. As synced objects are created, moved and destroyed on the host, they are correspondingly created, moved and destroyed on all connected peers. It is important to disable any behaviors and deactivate any events on the peers that may attempt to move the objects themselves; this will conflict with what <em>Sync object</em> is trying to do, and will not have any effect on the host. Peers should use their client input values as their sole way of influencing the game.
+<br/>
+Synced objects can optionally include their position and/or angle with a given precision. If no position or angle is selected, then it simply ensures the same numbers of objects are created.  <em>Bandwidth</em> can be used to reduce the number of updates it is necessary to send for a synced objects.<br/>
+<ul class="list"><br/>
+<li><em>Normal bandwidth (unpredictable)</em> will send updates for the object at most every update (30 times a second in Internet mode) and is suitable for objects with unpredictable movement.</li><br/>
+<li><em>Low bandwidth (highly predictable)</em> will send updates at most 10 times a second, which should only be used for highly predictable motion such as moving in a straight line at the same speed (it is not enough to handle changes in motion smoothly).</li><br/>
+<li><em>Very low bandwidth (essentially static)</em> will send updates at most twice a second, which should only be used for objects which are not expected to move but nevertheless can occasionally be created or destroyed, such as scenery.</li></ul>Note that even in <em>Normal bandwidth</em> mode, objects which are not changing gradually reduce their bandwidth to twice a second anyway, so static objects will still end up using <em>Very low bandwidth</em> mode. Therefore it is not normally necessary to change this, and it is suitable to use <em>Normal bandwidth</em> even for objects which rarely change.<br/>
+</dd>
+<dt>Sync instance variable</dt>
+<dd>Add an instance variable to sync with an object. The host sends the values of the instance variable for each object to the peers, keeping them up to date. The chosen object must already first be synced with <em>Sync object</em>.
+<br/>
+The <em>Precision</em> corresponds to the precision for <em>Sync object</em>, with an additional <em>Very low (uint8, 1 byte)</em> option, useful for bitwise flags.
+<br/>
+<em>Interpolation</em> can be <em>None</em> (updates in steps), <em>linear</em> (linearly smoothed interpolation between values, suitable for positions), or <em>angular</em> (rotational interpolation between angles).
+<br/>
+The <em>Client value tag</em> should be the name of the corresponding client input value, if any, to help ensure the host can sync the instance variable with minimal latency.
+<br/>
+Note: text instance variables cannot be synced, only numbers. To share text data between peers, use messages instead.</dd>
+<dt>Broadcast message</dt>
+<dd>As with <em>Send message</em>, but can only be used by the host. This sends a message to every peer in the room. <em>From ID</em> can be used to indicate the message is being sent on behalf of another peer; if it is used, when peers receive the message the <em>FromID</em> and <em>FromAlias</em> will be set to this peer. Also the message will <em>not</em> be sent to the specified <em>From ID</em> peer, since usually this is redundant. If it is empty, it will be sent to all peers and received as from the host.</dd>
+<dt>Kick peer</dt>
+<dd>When host, forcibly disconnect a peer from the room so they are no longer participating. The kicked peer will be notified that they have been disconnected and optionally the kick reason can be displayed. Peers cannot kick anyone, only the host can.</dd>
+<dt>Enable local input prediction</dt>
+<dd>Enable local input prediction on an object representing the local player. The object must be associated with the local peer's ID, and the game logic must correctly attempt to move both the local player and the player on the host in exactly the same way with correct use of client input values. This allows local controls to have immediate effect, but apply correction if the host position starts to deviate from the local position. See the fourth multiplayer tutorial for more information. There are two additional options for customizing how local input prediction is handled:<br/>
+<ul class="list"><li><strong>Avoid solids:</strong> if enabled, input prediction will avoid moving the object into any solid. If input prediction would have moved the object so that it overlaps a solid, it instead leaves the object in its current position.</li><li><strong>Platform mode:</strong> if enabled with an object using the Platform behavior, this detects if the Platform behavior is currently standing on the floor, and when it is then input prediction on the Y axis is disabled. This can help avoid a jittery movement when landing on the floor.</li></ul> The precise settings to use depend on the type of game and movement in use - some experimentation may be required to determine the best input prediction settings.</dd>
+<dt>Set client state</dt>
+<dd>In <em>On client update</em>, set the value of a client input value by its tag. The value must be a number, and <em>Add client input value</em> must have been used on startup to add a value with the given tag in advance.</dd>
+<dt>Add ICE server</dt>
+<dd>Add a custom Interactive Connectivity Establishment (ICE) server used by WebRTC to establish connections between peers. There are a couple of built-in public STUN servers used, but you can also provide your own TURN servers to enable connectivity through certain kinds of NAT. A username and credential can also be optionally provided if the server requires them. This action should be used on startup, before any connections are made.</dd>
+<dt>Auto-join room</dt>
+<dd>Join the first available room with the given game, instance and first room name. The player must be connected and logged in to the signalling server. The first player to join a room becomes the host. When rooms are full, the signalling server will create a new room. For example if "myroom" is full, it will try "myroom2", "myroom3", etc. This effectively arranges all joining peers in to games of a particular size. If the room is locked when full, then late-joiners are not allowed; if left unlocked and a peer leaves after the game starts, a newly joining peer may be added back to the game to top it up to the <em>Max peers</em> again. Upon joining, <em>On joined room</em> triggers.</dd>
+<dt>Connect</dt>
+<dd>Connect to a signalling server. The official Scirra signalling server is at <strong>wss://multiplayer.construct.net</strong>. Upon successful connection, <em>On connected</em> will trigger.</dd>
+<dt>Disconnect</dt>
+<dd>Disconnect from the signalling server. This can be done once peer-to-peer connections are established if the signalling server is no longer necessary, but note that will prevent any new peers from joining the game late.</dd>
+<dt>Join room</dt>
+<dd>Join a specific room in the given game instance. The player must be connected and logged in to the signalling server. The first player to join a room becomes the host. <em>Max peers</em> can be used to limit the number of peers that join. Only the host's value is used. If the room is full, subsequently joining peers will receive a "room full" error. The peer count includes the host, so 2 is the minimum value, or it can be left as 0 to allow an unlimited number of peers to join. Upon successfully joining, <em>On joined room</em> triggers.</dd>
+<dt>Leave room</dt>
+<dd>If in a room, leaves the room on the signalling server. <em>On left room</em> triggers upon the server acknowledging the request to leave. Note the room has not really been left until that trigger runs.</dd>
+<dt>Log in</dt>
+<dd>Once connected, log in to the signalling server. Players must log in before they can join rooms. The <em>Alias</em> is the requested display name to use. Note that if the requested alias is already taken, the server will automatically assign an alternative; be sure to use the <em>MyAlias</em> expression after logging in to determine the actual alias in use. Upon a successful login, <em>On logged in</em> triggers.</dd>
+<dt>Request game instance list</dt>
+<dd>Request a list of active game instances within the given game. When the response is received <em>On game instance list</em> triggers and the name and total number of peers in the returned instances can be listed using the <em>List...</em> expressions.</dd>
+<dt>Request room list</dt>
+<dd>Request a list of active rooms within a given game instance. The returned list can include all rooms, only rooms which are unlocked, or only rooms which are available to join (unlocked and not full). When the requested list is received, <em>On room list</em> triggers.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link9" name="internalH1Link9"></a><h2>Multiplayer expressions</h2>
+<dl class="sans">
+<dt>Filename</dt>
+<dt>MIMEType</dt>
+<dd>In a binary transfer, the filename and MIME type specified by the sender. These expressions are available on the receiving end in both the <em>receive started</em> and <em>completed</em> triggers.</dd>
+<dt>TransferProgress</dt>
+<dd>During a binary transfer and in a <em>progress</em> event (fired for both senders and receivers), this returns the current transfer progress on a scale of 0 to 1 (e.g. 0.5 being 50% complete).</dd>
+<dt>TransferSize</dt>
+<dd>In a binary transfer, the size in bytes of the data to be transmitted. This is set on the receiving end in the <em>receive started</em> event so the receiver knows ahead of time how big the data will be. (Once the transfer has completed, the size can also be obtained from the chosen Binary Data object.)</dd>
+<dt>ListInstanceCount</dt>
+<dd>After <em>On game instance list</em> triggers, the number of game instances in the received list.</dd>
+<dt>ListInstanceName(index)</dt>
+<dt>ListInstancePeerCount(index)</dt>
+<dd>Get the name and peer count of a given game instance in the returned instance list.</dd>
+<dt>ListRoomCount</dt>
+<dd>After <em>On room list</em>, the number of rooms in the received list.</dd>
+<dt>ListRoomName(index)</dt>
+<dt>ListRoomPeerCount(index)</dt>
+<dt>ListRoomMaxPeerCount(index)</dt>
+<dt>ListRoomState(index)</dt>
+<dd>After <em>On room list</em>, retrieve information for a room at an index in the received list. The state can be one of "available", "locked" or "full".</dd>
+<dt>FromAlias</dt>
+<dt>FromID</dt>
+<dd>The alias and ID of the peer a message is from in <em>On message received</em> or <em>On any message received</em>.</dd>
+<dt>HostAlias</dt>
+<dt>HostID</dt>
+<dd>When in a room, the alias and ID of the host of the room.</dd>
+<dt>LeaveReason</dt>
+<dd>A string identifying a reason for leaving in <em>On peer disconnected</em>, if known, e.g. "quit", "timeout", "network error"...</dd>
+<dt>Message</dt>
+<dd>The contents of the received message in <em>On message received</em> or <em>On any message received</em>.</dd>
+<dt>PeerAlias</dt>
+<dt>PeerID</dt>
+<dd>The alias and ID of the relevant peer in a trigger like <em>On peer connected</em> or <em>On peer disconnected</em>.</dd>
+<dt>PeerCount</dt>
+<dd>The number of peers in the current room, including the host.</dd>
+<dt>PeerAliasAt(index)</dt>
+<dt>PeerIDAt(index)</dt>
+<dd>The alias and ID of the nth peer in the current room, up to <em>PeerCount</em>.</dd>
+<dt>PeerAliasFromID(peerid)</dt>
+<dd>Get the alias of a peer in the current room from their peer ID.</dd>
+<dt>PeerIDFromAlias(alias)</dt>
+<dd>Get the ID of a peer in the current room by their alias.</dd>
+<dt>PeerLatency(peerid)</dt>
+<dt>PeerPDV(peerid)</dt>
+<dd>Get the latency and packet delay variation (PDV) of a peer from their peer ID. Peers can only use this to get the stats for the host, since that is the only connection they have, but the host can use it for any peer.</dd>
+<dt>Tag</dt>
+<dd>The tag of the received message in <em>On any message received</em>. This expression is also used by binary transfers, returning the tag of the current binary transfer in any of the binary transfer triggers.</dd>
+<dt>LagCompensateAngle(movingPeerID, fromPeerID)</dt>
+<dt>LagCompensateX(movingPeerID, fromPeerID)</dt>
+<dt>LagCompensateY(movingPeerID, fromPeerID)</dt>
+<dd>Return the lag-compensated position and angle for <em>movingPeerID</em> as seen by <em>fromPeerID</em>. In other words, this returns the past position of <em>movingPeerID</em> going back by the amount of time that <em>fromPeerID</em> is delayed by, given their latency. For example this can be used to perform a lag-compensated hit-test when <em>fromPeerID</em> shoots a laser. This is covered in more detail in the fourth multiplayer tutorial.</dd>
+<dt>PeerState(peerid, tag)</dt>
+<dd>When host, retrieve the latest client state value with the given tag, for a given peer ID. The peer will have set this with the <em>Set client state</em> action to indicate their input state.</dd>
+<dt>CurrentGame</dt>
+<dt>CurrentInstance</dt>
+<dt>CurrentRoom</dt>
+<dd>Retrieve the current game, instance and room names, if joined on the signalling server.</dd>
+<dt>ErrorMessage</dt>
+<dd>In <em>On signalling error</em>, the error message if available.</dd>
+<dt>MyAlias</dt>
+<dt>MyID</dt>
+<dd>The current player's own alias and ID, once connected and logged in to the signalling server.</dd>
+<dt>SignallingMOTD</dt>
+<dt>SignallingName</dt>
+<dt>SignallingOperator</dt>
+<dt>SignallingURL</dt>
+<dt>SignallingVersion</dt>
+<dd>Once connected to the signalling server, retrieve the Message Of The Day (MOTD), server name, server operator, website URL and server version for the connected server.</dd>
+<dt>ClientXError</dt>
+<dt>ClientYError</dt>
+<dd>The input prediction error for peers, used for debugging.</dd>
+<dt>HostX</dt>
+<dt>HostY</dt>
+<dd>The position the host has for the current peer, used for debugging.</dd>
+<dt>StatInboundBandwidth</dt>
+<dt>StatOutboundBandwidth</dt>
+<dd>Return the total estimated inbound and outbound bandwidth transmitted over the network, in bytes per second. When automatic data compression is in use, this measures the compressed size of the data actually sent over the network.</dd>
+<dt>StatInboundDecompressedBandwidth</dt>
+<dt>StatOutboundDecompressedBandwidth</dt>
+<dd>Return the total estimated decompressed inbound and outbound bandwidth for all data transmission through the Multiplayer object, in bytes per second. When automatic data compression is in use, this measures the size of the decompressed messages, which may be significantly larger than the data actually sent over the network, measured by the <em>StatInboundBandwidth</em> and <em>StatOutboundBandwidth</em> expressions. Together these expressions can also be used to identify the compression ratio (i.e. how much bandwidth is saved by compression).</dd>
+<dt>StatInboundCount</dt>
+<dt>StatOutboundCount</dt>
+<dd>Return the total number of separate inbound and outbound messages sent and received by the Multiplayer object. This includes internally-used messages for things like ping and synchronisation; generally the bandwidth is the more practically useful statistic.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

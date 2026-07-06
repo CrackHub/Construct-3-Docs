@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/shadow-light" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Shadow Light script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IShadowLightInstance</code> interface derives from <a class="extern" href="../object-interfaces/iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/shadow-light.html" rel="noopener" target="_blank" title="Make your own games">Shadow Light plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Shadow Light APIs</h2>
+<dl>
+<dt>lightX</dt>
+<dt>lightY</dt>
+<dd>Set or get the position in the layout from which shadows are cast from. </dd>
+<dt>lightHeight</dt>
+<dd>Set or get the height of the light, used with the shadow caster object heights to calculate the length of shadow to cast. This property only has an effect if the light radius is 0, otherwise shadows always extend offscreen.</dd>
+<dt>shadowColor</dt>
+<dd>Set or get the color of the shadows drawn by the light, as an array with 3 elements specifying the red, green and blue components as floats in the 0-1 range.</dd>
+<dt>tag</dt>
+<dd>Set or get a string of the tag for this light. Combined with <code>castFrom</code> this allows using multiple lights that cast shadows of different sets of objects.</dd>
+<dt>castFrom</dt>
+<dd>A string specifying which shadow caster objects to render shadows for from this object. The possible values are: <ul class="list"><br/>
+<li><code>"all"</code>: every shadow caster object will get a shadow rendered for this light.</li><br/>
+<li><code>"same-tag"</code>: shadows will only be rendered for shadow casters with the same <code>tag</code>.</li><br/>
+<li><code>"different-tag"</code>: shadows will only be rendered for shadow casters with a different <code>tag</code>.</li></ul></dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

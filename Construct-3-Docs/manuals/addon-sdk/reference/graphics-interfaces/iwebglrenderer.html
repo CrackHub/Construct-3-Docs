@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/graphics-interfaces/iwebglrenderer" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IWebGLRenderer interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IWebGLRenderer</code> interface provides methods for rendering to the Layout View, which is rendered using a canvas. The interface's methods provide high-level drawing commands implemented by Construct, so you don't need to handle low-level concerns like vertex buffers.</p>
+<p>This interface cannot be directly constructed. It is only available as a parameter to a <code>Draw()</code> call.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Renderer state</h2>
+<p>Since IWebGLRenderer is based on WebGL, it also uses a persistent rendering state. Therefore to correctly render something, all the intended state must be specified, otherwise it will use an undefined previous state. IWebGLRenderer simplifies the renderer state to:</p>
+<ol class="list">
+<li>A blend mode. Typically a normal alpha blend mode is used.</li>
+<li>A fill mode (internally, the current fragment shader). The fill modes can be <em>color fill</em> (draw a solid color), <em>texture fill</em> (draw a texture), and <em>smooth line fill</em> (for drawing smooth lines).</li>
+<li>A color set by <code>SetColor()</code> or <code>SetColorRgba()</code>. The alpha component of the color is used as the opacity in texture fill mode.</li>
+<li>A texture set by <code>SetTexture()</code>. This is only used in texture fill mode.</li>
+</ol>
+<p>There are two other states that are more applicable to 3D content:</p>
+<ul class="list">
+<li>The face culling mode, set by <code>SetCullFaceMode()</code></li>
+<li>The front face winding that is also used by the face culling mode, set by <code>SetFrontFaceWinding()</code></li>
+</ul>
+<p>A <code>Draw()</code> method should begin by specifying the blend mode, the fill mode, the color, and the texture (if texture fill mode is used), before continuing to draw. The renderer efficiently discards redundant calls, so if the state does not actually change then these calls have minimal performance overhead.</p>
+<p>Once all state is set up, quads can be issued using one of the <code>Rect()</code> or <code>Quad()</code> method overloads. These methods draw using the currently set state.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Methods</h2>
+<dl>
+<dt>SetAlphaBlendMode()</dt>
+<dd>Set the blend mode to a premultiplied alpha blending mode.</dd>
+<dt>SetBlendMode(blendMode)</dt>
+<dd>Set the blend mode by a string which must be one of <code>"normal"</code>, <code>"additive"</code>, <code>"copy"</code>, <code>"destination-over"</code>, <code>"source-in"</code>, <code>"destination-in"</code>, <code>"source-out"</code>, <code>"destination-out"</code>, <code>"source-atop"</code>, <code>"destination-atop"</code>, <code>"lighten"</code>, <code>"darken"</code>, <code>"multiply"</code>, <code>"screen"</code>. Passing <code>"normal"</code> is equivalent to calling <code>SetAlphaBlendMode()</code>.</dd>
+<dt>SetColorFillMode()</dt>
+<dd>Set the fill mode to draw a solid color, specified by the current color.</dd>
+<dt>SetTextureFillMode()</dt>
+<dd>Set the fill mode to draw a texture, specified by the current texture, and using the alpha component of the current color as the opacity.</dd>
+<dt>SetSmoothLineFillMode()</dt>
+<dd>Set the fill mode to draw smooth lines using the current color.</dd>
+<dt>SetColor(color)</dt>
+<dd>Set the current color with an <a class="extern" href="../geometry-interfaces/color.html" rel="noopener" target="_blank" title="Make your own games">SDK.Color</a>.</dd>
+<dt>SetColorRgba(r, g, b, a)</dt>
+<dd>Set the current color by directly passing the RGBA components.</dd>
+<dt>SetOpacity(o)</dt>
+<dd>Set only the alpha component of the current color. Note this does not affect the RGB components.</dd>
+<dt>SetCurrentZ(z)</dt>
+<dt>GetCurrentZ()</dt>
+<dd>Set and get the current Z component used for all 2D drawing commands that don't specify Z components, such as the <code>Rect2()</code> and <code>Quad3()</code>.</dd>
+<dt>SetCullFaceMode(mode)</dt>
+<dt>GetCullFaceMode()</dt>
+<dd>Set or get the face culling mode, which may be one of the following strings: <ul class="list"><br/>
+<li><code>"none"</code>: all faces are rendered</li><br/>
+<li><code>"back"</code>: back faces are culled</li><br/>
+<li><code>"front"</code>: front faces are culled</li></ul>Whether a face counts as front or back depends on the front face winding (see <code>SetFrontFaceWinding()</code>). The default mode is <code>"none"</code>. </dd>
+<dt>SetFrontFaceWinding(mode)</dt>
+<dt>GetFrontFaceWinding()</dt>
+<dd>Set or get the front face winding, which is used to determine whether a triangle is front facing or back facing depending on the order ("winding") of the vertices. This is used by the cull face mode (see <code>SetCullFaceMode()</code>). The mode may be either the string <code>"cw"</code> for clockwise winding, or <code>"ccw"</code> for counter-clockwise winding. The default mode is <code>"cw"</code>, because most content that Construct renders itself uses clockwise winding.</dd>
+<dt>ResetColor()</dt>
+<dd>Set the current color to (1, 1, 1, 1).</dd>
+<dt>Rect(rect)</dt>
+<dd>Draw a rectangle given by an <a class="extern" href="../geometry-interfaces/rect.html" rel="noopener" target="_blank" title="Make your own games">SDK.Rect</a>.</dd>
+<dt>Rect2(left, top, right, bottom)</dt>
+<dd>Draw a rectangle by directly passing the left, top, right and bottom positions.</dd>
+<dt>Quad(quad)</dt>
+<dd>Draw a quad given by an <a class="extern" href="../geometry-interfaces/quad.html" rel="noopener" target="_blank" title="Make your own games">SDK.Quad</a>.</dd>
+<dt>Quad2(tlx, tly, trx, try_, brx, bry, blx, bly)</dt>
+<dd>Draw a quad by directly passing the positions of each of the four points in the quad.</dd>
+<dt>Quad3(quad, rect)</dt>
+<dd>Draw a quad given by an <a class="extern" href="../geometry-interfaces/quad.html" rel="noopener" target="_blank" title="Make your own games">SDK.Quad</a>, using an <a class="extern" href="../geometry-interfaces/rect.html" rel="noopener" target="_blank" title="Make your own games">SDK.Rect</a> for the source texture co-ordinates to draw from.</dd>
+<dt>Quad4(quad, texQuad)</dt>
+<dd>Draw a quad given by an <a class="extern" href="../geometry-interfaces/quad.html" rel="noopener" target="_blank" title="Make your own games">SDK.Quad</a>, using another <code>SDK.Quad</code> for the source texture co-ordinates to draw from.</dd>
+<dt>Quad3D(tlx, tly, tlz, trx, try_, trz, brx, bry, brz, blx, bly, blz, rect)</dt>
+<dt>Quad3D2(tlx, tly, tlz, trx, try_, trz, brx, bry, brz, blx, bly, blz, texQuad)</dt>
+<dd>Draw a 3D quad, specifying all four points of the quad with X, Y and Z co-ordinates. The first overload accepts texture co-ordinates via an <a class="extern" href="../geometry-interfaces/rect.html" rel="noopener" target="_blank" title="Make your own games">SDK.Rect</a> <em>rect</em>, and the second accepts texture co-ordinates via an <a class="extern" href="../geometry-interfaces/quad.html" rel="noopener" target="_blank" title="Make your own games">SDK.Quad</a> <em>texQuad</em>.</dd>
+<dt>DrawMesh(posArr, uvArr, indexArr, colorArr)</dt>
+<dd>Draw an array of textured triangles based on the given position, texture co-ordinate and index arrays, and an optional per-vertex color array. For more details refer to the documentation for the <a class="extern" href="../../../construct-3/scripting/scripting-reference/graphics-interfaces/irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> <code>drawMesh()</code> method, which works the same (albeit with different casing on the method name).</dd>
+<dt>CreateMeshData(vertexCount, indexCount, opts)</dt>
+<dd>Create an <a class="extern" href="imeshdata.html" rel="noopener" target="_blank" title="Make your own games">IMeshData</a> to represent mesh data on the GPU and efficiently draw it over multiple frames with <code>DrawMeshData</code>. <code>vertexCount</code> and <code>indexCount</code> determines how many vertices and indices the mesh has. These values cannot be changed after creation - to resize a mesh, create a new one, copy data over (if necessary), and release the old one. <code>opts</code> is an optional object with additional parameters; currently this can specify an optional <code>debugLabel</code> property to specify a string label for debugging purposes. (In the WebGPU renderer, the debug label is also used on the underlying WebGPU objects.)</dd>
+<dt>DrawMeshData(meshData, indexOffset, indexCount)</dt>
+<dd>Draw a <a class="extern" href="imeshdata.html" rel="noopener" target="_blank" title="Make your own games">IMeshData</a> previously created with <code>CreateMeshData()</code>. If some buffers have been marked changed, the first time it is drawn the changed ranges of the buffers will also be uploaded to the GPU, and then the changed marking is unset. <code>indexOffset</code> and <code>indexCount</code> can optionally be specified to draw a reduced range of the index buffer; if used the count should be a multiple of 3 to specify complete triangles, and the offset should likely also be a multiple of 3 to avoid scrambling the triangle orders.</dd>
+<dt>ConvexPoly(pointsArray)</dt>
+<dd>Draw a convex polygon using the given array of points, in alternating X, Y order. Therefore the size of the array must be even, and must contain at least six elements (to define three points).</dd>
+<dt>Line(x1, y1, x2, y2)</dt>
+<dd>Draws a quad from the point (x1, y1) to (x2, y2) with the current line width.</dd>
+<dt>TexturedLine(x1, y1, x2, y2, u, v)</dt>
+<dd>Draws a quad from the point (x1, y1) to (x2, y2) with the current line width, and using (u, 0) as the texture co-ordinates at the start, and (v, 0) as the texture co-ordinates at the end.</dd>
+<dt>LineRect(left, top, right, bottom)</dt>
+<dd>Draws four lines along the edges of a given rectangle.</dd>
+<dt>LineRect2(rect)</dt>
+<dd>Draws four lines along the edges of a given <code>SDK.Rect</code>.</dd>
+<dt>LineQuad(quad)</dt>
+<dd>Draws four lines along the edges of a given <code>SDK.Quad</code>.</dd>
+<dt>PushLineWidth(w)</dt>
+<dt>PopLineWidth()</dt>
+<dd>Set the current line width for line-drawing calls. This must be followed by a <code>PopLineWidth()</code> call when finished to restore the previous line width.</dd>
+<dt>PushLineCap(lineCap)</dt>
+<dt>PopLineCap()</dt>
+<dd>Set the current line cap for line-drawing calls. This must be followed by a <code>PopLineCap()</code> call when finished to restore the previous line cap. The available line caps are <code>"butt"</code> and <code>"square"</code>.</dd>
+<dt>SetTexture(texture, sampling = "auto")</dt>
+<dd>Set the current texture to a given <a class="extern" href="iwebgltexture.html" rel="noopener" target="_blank" title="Make your own games">IWebGLTexture</a>. The <code>sampling</code> parameter is optional and defaults to <code>"auto"</code>, which means the texture will be rendered with the <code>defaultSampling</code> mode the texture was created with. Otherwise it can be set to one of <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code> to render the texture with a different sampling mode.</dd>
+<dt>CreateWebGLText()</dt>
+<dd>Return a new <a class="extern" href="iwebgltext.html" rel="noopener" target="_blank" title="Make your own games">IWebGLText</a> interface. This manages text wrapping, drawing text, and uploading the results to a WebGL texture.</dd>
+<dt>CreateDynamicTexture(width, height, opts)</dt>
+<dd>Create a new empty <a class="extern" href="iwebgltexture.html" rel="noopener" target="_blank" title="Make your own games">IWebGLTexture</a> for dynamic use, i.e. expecting the texture content to be replaced using <code>UpdateTexture()</code>. The size of the texture is given by <code>width</code> and <code>height</code> which must be positive integers. <code>opts</code> specifies options for the texture which is an object that can include the following properties:<br/>
+<ul class="list"><br/>
+<li><code>wrapX</code>: the texture horizontal wrap mode: one of <code>"clamp-to-edge"</code>, <code>"repeat"</code>, <code>"mirror-repeat"</code></li><br/>
+<li><code>wrapY</code>: as with <code>wrapX</code> but for the vertical wrap mode</li><br/>
+<li><code>defaultSampling</code>: the default texture sampling mode, which is used when <code>SetTexture()</code> sets this texture with the sampling parameter set to <code>"auto"</code>. This must be one of <code>"nearest"</code>, <code>"bilinear"</code> or <code>"trilinear"</code> (default). For backwards compatibility reasons, a property named <code>sampling</code> will also be used for this value if <code>defaultSampling</code> is not specified.</li><br/>
+<li><code>pixelFormat</code>: the texture pixel format, one of <code>"rgba8"</code> (default), <code>"rgb8"</code>, <code>"rgba4"</code>, <code>"rgb5_a1"</code> or <code>"rgb565"</code></li><br/>
+<li><code>mipMap</code>: boolean indicating if mipmaps should be used for this texture, default true</li><br/>
+<li><code>mipMapQuality</code>: if <code>mipMap</code> is true, one of <code>"default"</code> (default), <code>"low"</code> or <code>"high"</code></li></ul></dd>
+<dt>UpdateTexture(data, texture, opts)</dt>
+<dd>Upload <em>data</em> as the new texture contents for the <a class="extern" href="iwebgltexture.html" rel="noopener" target="_blank" title="Make your own games">IWebGLTexture</a> <em>texture</em>. This can only be used for textures created with <code>CreateDynamicTexture()</code> and managed by your addon.
+<br/>
+<em>data</em> can be one of the following types: <code>HTMLImageElement</code>, <code>HTMLVideoElement</code>, <code>HTMLCanvasElement</code>, <code>ImageBitmap</code>, <code>OffscreenCanvas</code> or <code>ImageData</code>. Note in worker mode the DOM types cannot be used (<code>HTMLImageElement</code>, <code>HTMLVideoElement</code>, <code>HTMLCanvasElement</code>); in this case use <code>ImageBitmap</code> or <code>OffscreenCanvas</code> instead. This method cannot resize an existing texture, so the data must match the size the texture was created with; if the size needs to change, destroy and re-create the texture.
+<br/>
+<em>opts</em> specifies options for the texture upload which is an object that can include the following properties:<br/>
+<ul class="list"><br/>
+<li><code>premultiplyAlpha</code>: a boolean indicating whether to premultiply alpha of the image content specified by <em>data</em> (default true). Construct always renders using premultiplied alpha so this is normally necessary; however if the data is known to already be premultiplied, set this to false.</li></ul></dd>
+<dt>DeleteTexture(texture)</dt>
+<dd>Delete a <a class="extern" href="iwebgltexture.html" rel="noopener" target="_blank" title="Make your own games">IWebGLTexture</a>, releasing its resources. This can only be used for textures created with <code>CreateDynamicTexture()</code> and managed by your addon. Do not attempt to delete textures managed by the Construct engine.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

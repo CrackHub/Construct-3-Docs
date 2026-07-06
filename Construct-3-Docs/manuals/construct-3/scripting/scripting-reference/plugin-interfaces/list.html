@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/list" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                List script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IListInstance</code> interface derives from <a class="extern" href="../object-interfaces/idominstance.html" rel="noopener" target="_blank" title="Make your own games">IDOMInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/list.html" rel="noopener" target="_blank" title="Make your own games">List plugin</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>List events</h2>
+<p>See <a class="extern" href="../interfaces/instance-event.html" rel="noopener" target="_blank" title="Make your own games">instance event</a> for standard instance event object properties.</p>
+<dl>
+<dt>"click"</dt>
+<dd>Fired when the list is clicked.</dd>
+<dt>"dblclick"</dt>
+<dd>Fired when the list is double-clicked.</dd>
+<dt>"selectionchange"</dt>
+<dd>Fired when there is any change to the selected item or items.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>List APIs</h2>
+<dl>
+<dt>addItem(text)</dt>
+<dd>Append a new item with the given text to the end of the list.</dd>
+<dt>insertItem(index, text)</dt>
+<dd>Insert a new item at a zero-based index in the list with the given text.</dd>
+<dt>setItemText(index, text)</dt>
+<dd>Set the item text at a zero-based index in the list.</dd>
+<dt>getItemText(index)</dt>
+<dd>Return a string of the current item text at a zero-based index in the list.</dd>
+<dt>removeItem(index)</dt>
+<dd>Delete an item at a zero-based index from the list.</dd>
+<dt>clear()</dt>
+<dd>Remove all items from the list, leaving the list empty.</dd>
+<dt>itemCount</dt>
+<dd>A read-only number representing how many items are in the list.</dd>
+<dt>selectedIndex</dt>
+<dd>Set or get a number indicating the zero-based index of the currently-selected list item.</dd>
+<dt>selectedCount</dt>
+<dd>A read-only number with the number of selected items. This is usually only useful with multi-select lists.</dd>
+<dt>getSelectedIndexAt(index)</dt>
+<dt>getSelectedTextAt(index)</dt>
+<dd>Return the item index or the item text of a selected item by its index up to <code>selectedCount</code>. This is usually only useful with multi-select lists.</dd>
+<dt>tooltip</dt>
+<dd>A tooltip that appears if the user hovers the mouse over the list and waits. An empty string indicates no tooltip.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

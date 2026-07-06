@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/shadow-light" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Shadow light
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Shadow light</strong> object can render real-time shadows from other objects with the <a class="extern" href="../behavior-reference/shadow-caster.html" rel="noopener" target="_blank" title="Make your own games">Shadow caster</a> behavior.</p>
+<p>Construct comes with a number of examples of shadow-casting effects. Search for <em>Shadows</em> in the <a class="extern" href="../overview/example-browser.html" rel="noopener" target="_blank" title="Make your own games">Example Browser</a> to locate them.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/1019/shadowexample.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 500x244px in new window (36.83 KB)"><span><img alt="Example of a shadow-casting effect" height="244" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/1019/shadowexample.png" width="500"/></span></a><span class="descrip">Example of a shadow-casting effect</span></div></div>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/shadow-light.html" rel="noopener" target="_blank" title="Make your own games">IShadowLightInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Shadow rendering</h2>
+<p>The Shadow light object renders shadows adjacent to objects with the <em>Shadow caster</em> behavior, using the object's collision polygon and the relative location of the light. Shadows are filled in over the background, as opposed to rendering sections of light. The Z order of the Shadow light object determines whether the shadows appear above or below other objects.</p>
+<p>The light can be set to have a radius. If the radius is 0, it acts like a point source, and shadows have hard edges. If the radius is larger, it accurately renders penumbras (the transition from lightness to darkness) at the edges of shadows. However in this mode the light height is ignored and all shadows extend off the screen.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Shadow limitations</h2>
+<p>Due to the shadow rendering algorithm, there are a couple of limitations:</p>
+<ul class="list">
+<li>The shadow casters can only use <a class="extern outlink" href="https://en.wikipedia.org/wiki/Convex_polygon" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Convex_polygon">convex collision polygons</a>. Shadows will not render correctly if they use concave polygons. If you need a concave shape, this can always be achieved by placing multiple shadow caster objects next to each other to compose a concave shape out of convex parts.</li>
+<li>Antumbras (beyond where the umbra converges to a point) are not rendered. To avoid the umbra converging to a point on-screen, avoid using shadow casters smaller than the light radius. Stick to large shadow casters and a small light radius.</li>
+<li>When using a light radius, avoid placing the light very close to or directly over a shadow caster. Shadows can fail to render correctly in these circumstances.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Tags</h2>
+<p>By default, all shadow lights cast shadows off all shadow casters. In some cases it is desirable to only have certain shadow lights cast shadows off certain shadow caster objects. Each shadow light object can be assigned a tag, and the <em>Cast from</em> property set to only cast shadows from that object off shadow caster behaviors with the same (or different) tags.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Shadow light properties</h2>
+<dl class="sans">
+<dt>Light height</dt>
+<dd>The height of the light, used with the shadow caster object heights to calculate the length of shadow to cast. This property only has an effect if the <em>Light radius</em> is 0, otherwise shadows always extend offscreen.</dd>
+<dt>Light radius</dt>
+<dd>The radius of the light. If the radius is 0, the light acts like a point source and shadows are hard-edged. If the radius is larger the object will render penumbras at the edges of shadows. The larger the radius, the wider the penumbras will be. For correct rendering avoid using a large radius, and especially avoid making the radius larger than any of the shadow caster objects. If the radius is not 0, the light height is ignored and shadows always extend offscreen.</dd>
+<dt>Cast from</dt>
+<dd>Which shadow caster objects to render shadows for from this object. The options are:<br/>
+<ul class="list"><br/>
+<li><strong>All:</strong> every shadow caster object will get a shadow rendered for this light.</li><br/>
+<li><strong>Same tag:</strong> shadows will only be rendered for shadow casters with the same Tag property.</li><br/>
+<li><strong>Different tag:</strong> shadows will only be rendered for shadow casters with a different Tag property.</li></ul></dd>
+<dt>Tag</dt>
+<dd>Used to determine which shadow casters to render shadows for, depending on the <em>Cast from</em> mode. If <em>Cast from</em> is set to <em>All</em>, the tag is ignored.</dd>
+<dt>Preview <span class="ilTag c2">Paid plans only</span></dt>
+<dd>Enable to run a preview of the shadow casting effect directly in the Layout View.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Shadow light conditions</h2>
+<p>The Shadow light object does not have any of its own conditions.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Shadow light actions</h2>
+<dl class="sans">
+<dt>Set cast from</dt>
+<dt>Set light height</dt>
+<dt>Set tag</dt>
+<dd>Set the corresponding object properties. For more information see <em>Shadow light properties</em>.</dd>
+<dt>Set light position</dt>
+<dd>Sets the position in the layout from which shadows are cast from. </dd>
+<dt>Set shadow color</dt>
+<dd>Set the color of the shadows that are rendered by the light. The default is black. Use an expression of the form <code>rgb(red, green, blue)</code>. To set the opacity of the shadows, change the opacity of the <em>Shadow light</em> object.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Shadow light expressions</h2>
+<dl class="sans">
+<dt>LightX</dt>
+<dt>LightY</dt>
+<dd>The X and Y co-ordinates of the light source in the layout. Note a quirk: the light source is moved using the ordinary <em>Set position</em> actions, but due to the way the object rendering works the ordinary X and Y expressions always return a position relative to the viewport instead. The <em>LightX</em> and <em>LightY</em> expressions return the actual position of the light source.</dd>
+<dt>Tag</dt>
+<dd>Return the current tag of the object.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

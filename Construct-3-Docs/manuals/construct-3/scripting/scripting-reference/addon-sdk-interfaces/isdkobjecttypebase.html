@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkobjecttypebase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ISDKObjectTypeBase addon SDK interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISDKObjectTypeBase</code> is used in the runtime as a base class for object types in the addon SDK. It derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>ISDKObjectTypeBase APIs</h2>
+<dl>
+<dt>_onCreate()</dt>
+<dd>An optional override called when the runtime starts up and creates all object types before the project starts. This call may be delayed when using a loader layout.</dd>
+<dt>getImageInfo()</dt>
+<dd>For plugins that use an image (by calling <code>this._info.SetHasImage(true)</code> in the editor plugin code), returns an <a class="extern" href="../object-interfaces/iimageinfo.html" rel="noopener" target="_blank" title="Make your own games">IImageInfo</a> representing the object's image.</dd>
+<dt>async _loadTextures(renderer)</dt>
+<dd>Optional override called by the runtime when it wants your object type's textures to be created. Use the passed <a class="extern" href="../graphics-interfaces/irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> to load textures. This method should return a promise that resolves when all textures have been loaded.</dd>
+<dt>_releaseTextures(renderer)</dt>
+<dd>Optional override called by the runtime when it wants your object type's textures to be released. Use the passed <a class="extern" href="../graphics-interfaces/irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> to release textures. This method is synchronous. Release any textures and drop the references to them.</dd>
+<dt>_onDynamicTextureLoadComplete()</dt>
+<dd>Optional override called by the runtime when a dynamic texture load has completed. If an object is created at runtime that does not already have its textures loaded, the runtime will call <code>_loadTextures()</code> but continue running the project while the textures are loaded asynchronously. When they finish loading, the runtime then calls this override so you have an opportunity to update any references to the newly loaded texture.</dd>
+<dt>async _preloadTexturesWithInstances(renderer)</dt>
+<dd>Optional override called just before starting a layout once all instances are created. This provides an opportunity to load textures depending on the details of the instances on the layout. Use the passed <a class="extern" href="../graphics-interfaces/irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> to load textures. This may be used for purposes such as rasterizing SVG at an appropriate resolution before the layout starts.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

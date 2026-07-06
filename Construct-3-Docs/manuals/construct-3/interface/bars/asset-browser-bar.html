@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/asset-browser-bar" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Asset Browser
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Asset Browser</strong> is used to browse for assets and quickly import them into a <a class="extern" href="../../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project</a>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/139537/asset-browser.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1464x571px in new window (152.28 KB)"><span><img alt="The asset browser" height="286" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/139537/asset-browser_v750.png" width="732"/></span></a><span class="descrip">The asset browser</span></div></div>
+<p>There are four main sources for assets that can be picked from the dropdown menu:</p>
+<ol class="list">
+<li><strong>Store free bundled assets:</strong> these asset packs are bundled with C3 and available to all accounts, free and subscribed.</li>
+<li><strong>Store premium bundled assets:</strong> these asset packs are bundled with C3 and are available to accounts with an active subscription only.</li>
+<li><strong>Store purchased assets:</strong> these asset packs are the ones that have been purchased in <a class="extern" href="https://www.construct.net/game-assets.html" rel="noopener" target="_blank" title="Make your own games">Scirra's Asset Store</a>.</li>
+<li><strong>Local assets:</strong> the asset browser can be used select one or more folders in the local file system. This feature's availability is subject to browser support.</li>
+</ol>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Importing assets</h2>
+<p>Assets can be imported into a project in three main ways:</p>
+<dl class="sans">
+<dt>Double clicking</dt>
+<dd>The quickest way to import a single asset. Depending on the type of the asset, something different will happen when importing. Below is a table showing how the different types will be handled.</dd>
+<table>
+<thead>
+<tr>
+<td>Type</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>Images</td>
+<td>Are imported as a new <a class="extern" href="../../plugin-reference/sprite.html" rel="noopener" target="_blank" title="Make your own games"><strong>Sprite</strong></a> with a single animation and a single frame.</td>
+</tr>
+<tr>
+<td>Animations</td>
+<td>Formats such as <strong>.gif</strong>, are imported as a new <strong>Sprite</strong> with an animation with as many frames as the asset has.</td>
+</tr>
+<tr>
+<td>SVG</td>
+<td>Are imported as a <a class="extern" href="../../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project file</a> in the project's <strong>Files</strong> folder and a new <a class="extern" href="../../plugin-reference/svg-picture.html" rel="noopener" target="_blank" title="Make your own games"><strong>SVG Picture</strong></a> using the corresponding project file. An <a class="extern" href="../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> is created in the middle of the currently active <a class="extern" href="../layout-view.html" rel="noopener" target="_blank" title="Make your own games">layout view</a>.</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>A dialog appears before importing audio assets to choose their destination and are then imported into either the <strong>Music</strong> or <strong>Sounds</strong> project folder.</td>
+</tr>
+<tr>
+<td>Videos</td>
+<td>Are imported into the <strong>Videos</strong> project folder.</td>
+</tr>
+<tr>
+<td>Fonts</td>
+<td>Are imported into the <strong>Fonts</strong> project folder.</td>
+</tr>
+<tr>
+<td>Scripts</td>
+<td>Are imported into the <strong>Scripts</strong> project folder.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Other supported types are imported into the <strong>Files</strong> project folder.</td>
+</tr>
+</tbody></table>
+<dt>Drag &amp; Drop</dt>
+<dd>Assets can be dragged and dropped onto the <a class="extern" href="../../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a> view or the <a class="extern" href="project-bar.html" rel="noopener" target="_blank" title="Make your own games">project bar</a> to import them into the project. Below is a table showing how the different types will be handled.</dd>
+<table>
+<thead>
+<tr>
+<td>Type</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>Images</td>
+<td>
+		A dialog appears with options about how the assets should be treated: 
+
+			<ul class="list">
+<li><strong>As object types: </strong> will create a new <a class="extern" href="../../project-primitives/objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object type</a> for each asset, each one using an asset as it's image.</li>
+<li><strong>As single object type: </strong> will create a single object type with an animation with as many frames as assets where selected. </li>
+<li><strong>As icons: </strong> all assets are imported into the <strong>Icons &amp; screenshots</strong> project folder.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Animations</td>
+<td>
+		This applies for animated formats, such as <em>.gif</em> or <em>.apng</em>. A dialog appears with options about how the assets should be treated:
+	
+			<ul class="list">
+<li><strong>As object types: </strong> will create a new object type for each selected asset, each one with an animation with as many frames as each asset has.</li>
+<li><strong>As single object type: </strong> will create a single new object type with a unique animation for each imported asset.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>SVG</td>
+<td>Are imported as a project file in the project's <strong>Files</strong> folder and a new <strong>SVG Picture</strong> using the corresponding project file.</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>
+		A dialog appears before importing audio assets to choose their destination:
+			<ul class="list">
+<li><strong>As music: </strong> all the assets are imported into the <strong>Music</strong> project folder.</li>
+<li><strong>As sound: </strong> all the assets are imported into the <strong>Sounds</strong> project folder.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>Videos</td>
+<td>Are imported into the <strong>Videos</strong> project folder.</td>
+</tr>
+<tr>
+<td>Fonts</td>
+<td>Are imported into the <strong>Fonts</strong> project folder.</td>
+</tr>
+<tr>
+<td>Scripts</td>
+<td>Are imported into the <strong>Scripts</strong> project folder.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Other supported types are imported into the <strong>Files</strong> project folder.</td>
+</tr>
+</tbody></table>
+<dt>Context menu</dt>
+<dd>Assets can also be imported by clicking on the import option at the top of the context menu for a given asset. In the case of selecting a single asset or many assets of the same type, there will be a single import option. If the context menu is brought up when multiple assets of different types are selected, there will be options to import the assets of each type individually.</dd>
+</dl>
+<h3>Importing zip files</h3>
+<p>Zip files have a slightly different workflow to regular assets. After using any of the methods described previously to import, a dialog appears to choose which files of the zip file should be imported and what to do with them in the cases there are multiple options for them.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/134598/assetbrowserzipimport.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 849x500px in new window (37.3 KB)"><span><img alt="Zip import dialog showing all possible options" height="471" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/134598/assetbrowserzipimport.png" width="800"/></span></a><span class="descrip">Zip import dialog showing all possible options</span></div></div>
+<p>The image shows what the dialog looks like when the zip file has files of all the supported formats. In cases in which a format is not present in the zip file, then the corresponding option will not be shown in the dialog.</p>
+<p>To import all the files of a given type tick the corresponding checkbox, if the asset type has additional options about how the assets should be treated, select it from the corresponding dropdown. Below is a table with all the possible options.</p>
+<table>
+<thead>
+<tr>
+<td>Type</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>Images</td>
+<td>
+<ul class="list">
+<li><strong>As multiple object types: </strong> will create a new object type for each asset, each one using an asset as it's image. If the asset is an animated format, such as <em>.gif</em> or <em>.apng</em>, the asset is used to fill up an animation, if the chosen object type supports it.</li>
+<li><strong>As single object type: </strong> will create a single object type with an animation with as many frames as assets where selected. Any animated formats are interpreted as an individual animation in the new object type.</li>
+<li><strong>As icons: </strong> all assets are imported into the <strong>Icons &amp; screenshots</strong> folder. Animated formats are not imported as icons.</li>
+</ul>
+</td></tr>
+<tr>
+<td>SVG</td>
+<td>Are imported as a project file in the project's <strong>Files</strong> folder and a new <strong>SVG Picture</strong> using the corresponding project file.</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>
+<ul class="list">
+<li><strong>As sound: </strong> all the assets are imported into the <strong>Sounds</strong> project folder.</li>
+<li><strong>As music: </strong> all the assets are imported into the <strong>Music</strong> project folder.</li>
+</ul>
+</td></tr>
+<tr>
+<td>Video</td>
+<td>All assets are imported into the <strong>Videos</strong> project folder.</td>
+</tr>
+<tr>
+<td>Fonts</td>
+<td>All assets are imported into the <strong>Fonts</strong> project folder.</td>
+</tr>
+<tr>
+<td>Scripts</td>
+<td>All assets are imported into the <strong>Scripts</strong> project folder.</td>
+</tr>
+<tr>
+<td>Files</td>
+<td>
+<ul class="list">
+<li><strong>Misc. only: </strong> only assets which are not any of the other types are imported into the <strong>Files</strong> project folder.</li>
+<li><strong>All: </strong> all the assets in the zip file are imported into the <strong>Files</strong> project folder.</li>
+</ul>
+</td></tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Other Context Menu Options</h2>
+<p>Other options in the various context menus are the following:</p>
+<table>
+<thead>
+<tr>
+<td>Option</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>Download</td>
+<td>Download the selected asset to the local file system. In case of selecting multiple assets, everything is compressed into a zip file. Using this option on a folder will download all the contents of the folder, compressing it into a zip file.</td>
+</tr>
+<tr>
+<td>Preview</td>
+<td>Bring up a dialog to preview the contents of the selected asset</td>
+</tr>
+<tr>
+<td>License terms</td>
+<td>Open a new page with the license associated with the asset.</td>
+</tr>
+<tr>
+<td>Visit asset website</td>
+<td>Open a new page with the asset's website.</td>
+</tr>
+<tr>
+<td>Explore</td>
+<td>This option appears when bringing up a context menu of a zip asset. Allows to explore the contents of the zip as if it was a folder. After using this option double clicking on the zip will open it as a folder instead of importing the contents.</td>
+</tr>
+<tr>
+<td>Find folder in tree</td>
+<td>Scroll the tree pane to show the folder a given asset belongs to.</td>
+</tr>
+<tr>
+<td>Expand/Collapse All</td>
+<td>Expand or collapse all the selected folders in the tree pane.</td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Settings dialog</h2>
+<p>Clicking on the settings button in the toolbar brings up a dialog for adjusting settings specific to the Asset Browser. This provides the following options:</p>
+<dl class="sans">
+<dt>Tag new frames with asset name when importing as many object types</dt>
+<dd>Toggle this setting and the animation frame for each of the created object types will be tagged with the name of the corresponding asset.</dd>
+<dt>Tag new frames with asset name when importing as single object type</dt>
+<dd>Toggle this setting and each animation frame of the created object type will be tagged with the corresponding asset's name. This option will not apply when importing an animated format, such as <strong>.gif</strong> or <strong>.apng</strong>, because the extracted images don't have a name. In the case of importing a zip file which has a <strong>c3-import-setting.json</strong> file used by the <a class="extern" href="../animations-editor.html#internalH1Link7" rel="noopener" target="_blank" title="Make your own games">Animations Editor for bulk importing</a>, any tag names in that file will be preferred over asset names.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Browsing assets in the local file system</h2>
+<p>As mentioned earlier you can browse folders in the local file system, to do so first choose the <strong>Local assets</strong> option from the dropdown in the main toolbar and then click on the <kbd>+</kbd> button to choose a folder.</p>
+<p>Different folders can be added and will be stored for future use.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

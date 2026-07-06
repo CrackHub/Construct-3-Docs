@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/dialogs/cordova-options" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Cordova options
+            </h1>
+<div itemprop="articleBody">
+<p><span class="ilTag c2">Paid plans only</span> The <strong>Cordova options</strong> dialog is used to change settings for an <strong>Android</strong> or <strong>iOS</strong> export, both of which are built with Cordova.</p>
+<p>For more information, also refer to the tutorial <a class="extern" href="https://www.construct.net/tutorials/how-to-publish-mobile-apps-26.html" rel="noopener" target="_blank" title="Make your own games">How to publish mobile apps</a>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/115439/cordova-android-options.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 990x990px in new window (65.07 KB)"><span><img alt="The Cordova options dialog" height="495" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/115439/cordova-android-options_v500.png" width="495"/></span></a><span class="descrip">The Cordova options dialog</span></div></div>
+<p>The dialog shown is for an Android export, but the appearance is similar for an iOS export. The following options are available.</p>
+<dl class="sans">
+<dt>Min. version</dt>
+<dd>Choose the minimum Android or iOS version that the app will support. A lower minimum version will make your app available on a greater number of devices on the market. On the other hand a higher minimum version ensures your app runs on more modern systems with better features and performance, and often correlates with higher-spec hardware.</dd>
+<dt>Target version</dt>
+<dd>(Android exports only) This field displays the <em>Target API level</em> that Construct has configured for your app, displayed as both the Android API level and the corresponding Android version number. This is different to the minimum version and is set by Construct so is not changeable. It is usually updated annually when the Google Play publishing requirements specify a new required target API level. If you need an updated target API level, make sure you are using the latest version of Construct, or check the latest beta release.</dd>
+<dt>Android build</dt>
+<dd>(Android exports only) Choose what to export. For more details see the tutorial <a class="extern" href="https://www.construct.net/tutorials/how-to-publish-mobile-apps-26.html" rel="noopener" target="_blank" title="Make your own games">How to publish mobile apps</a>.<br/>
+<ul class="list"><br/>
+<li><strong>Cordova project:</strong> export a Cordova project which can be built locally with the Cordova CLI, or used with a different build service.</li><br/>
+<li><strong>Android Studio project:</strong> use Cordova to generate an Android Studio project, which can then be opened in Android Studio for customisation, testing and completing an Android build.</li><br/>
+<li><strong>Debug APK:</strong> build a test Android application (APK) via the Scirra Mobile App Build Service. Debug APKs are intended for testing only. Normally to install a debug APK on an Android device requires adjusting the system settings to enable a special developer mode. Debug APKs cannot be published to the Google Play Store.</li><br/>
+<li><strong>Unsigned release APK:</strong> build a release Android application (APK) via the Scirra Mobile App Build Service. Release APKs are intended for publishing to the Google Play store and must first be signed before they can be published. Additionally you cannot normally install a release APK to a device unless it comes from the Google Play store. If you simply wish to test your app without publishing it, use a Debug APK instead.</li><br/>
+<li><strong>Unsigned Android App Bundle:</strong> build a release Android application, in the new Android App Bundle (ABB) format, via the Scirra Mobile Build Service. ABBs are intended for publishing to the Google Play store and must first be signed before they can be published. An ABB file cannot be directly installed onto a device. You should not use these for local testing</li><br/>
+<li><strong>Signed Debug APK:</strong> build and sign a test Android application (APK) via the Scirra Mobile App Build Service. While signing a debug APK is not required to install it onto a device, some services require that you sign the APK with your publishing certificate before you can test them ( such as Google Play Games ). Under most situations you will be fine to use an Unsigned Debug APK.</li><br/>
+<li><strong>Signed Release APK:</strong> build and sign a release Android application (APK) via the Scirra Mobile Build Service. This is intended for publishing to the Google Play store, it is already signed so can be uploaded directly to the store.</li><br/>
+<li><strong>Signed Android App Bundle:</strong> build and signed a release Android application, in the new Android App Bundle (ABB) format, via the Scirra Mobile Build Service. This is intended for publishing to the Google Play store, it is already signed so can be uploaded directly to the store. An ABB file cannot be directly installed onto a device.</li><br/>
+</ul></dd>
+<dt>URL whitelist</dt>
+<dd>A space separated list of URLs that the app can ask the system to open. The default option <code>http://*/* https://*/*</code> allows the application to open any http or https URL.</dd>
+<dt>Android Version Code</dt>
+<dd>(Android exports only) Specify a Android version code for this export. The initial value is automatically calculated from the project's version number.</dd>
+<dt>iOS build</dt>
+<dd>(iOS exports only) Choose what to export. For more details see the tutorial <a class="extern" href="https://www.construct.net/tutorials/how-to-publish-mobile-apps-26.html" rel="noopener" target="_blank" title="Make your own games">How to publish mobile apps</a>.<br/>
+<ul class="list"><br/>
+<li><strong>Cordova project:</strong> export a Cordova project which can be built locally with the Cordova CLI, or used with a different build service.</li><br/>
+<li><strong>Xcode project:</strong> use Cordova to generate an Xcode project, which can then be opened in Xcode on a Mac for customisation, testing and completing an iOS build.</li><br/>
+</ul></dd>
+<dt>Hide status bar</dt>
+<dd>When the app is running, hide the system status bar if possible. This allows the app to use up more space on the screen.</dd>
+<dt>Require Vibrate permission</dt>
+<dd>Enable if your app makes use of vibrating the device to ensure the app has permission to do this.</dd>
+<dt>Require Camera permission</dt>
+<dd>Enable if your app makes use of camera input via the User Media object to ensure the app has permission to access this.</dd>
+<dt>Require Microphone permission</dt>
+<dd>Enable if your app makes use of microphone input via the User Media object to ensure the app has permission to access this.</dd>
+<dt>Choose Keystore</dt><dt>Create Keystore</dt>
+<dd>(Signed Android builds only) Choose a keystore from the filesystem, or create a new one, for use in signing the build.</dd>
+<dt>Key Name</dt>
+<dd>(Signed Android builds only) The name of the key within the keystore you wish to use for signing the build. This is referred to as the "alias" by the create keystore dialog.</dd>
+<dt>Key Store password</dt>
+<dd>(Signed Android builds only) The password for the keystore you have selected.</dd>
+<dt>Key password</dt>
+<dd>(Signed Android builds only) The password for the key you have chosen in the keystore.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

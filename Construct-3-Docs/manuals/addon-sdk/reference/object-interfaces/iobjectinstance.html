@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/object-interfaces/iobjectinstance" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IObjectInstance interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IObjectInstance</code> interface represents an instance in Construct.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>GetProject()</dt>
+<dd>Return the <a class="extern" href="../model-interfaces/iproject.html" rel="noopener" target="_blank" title="Make your own games">IProject</a> representing the instance's associated project.</dd>
+<dt>GetObjectType()</dt>
+<dd>Return the associated <a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> interface for this instance.</dd>
+<dt>GetUID()</dt>
+<dd>Return the UID (unique ID) the editor has assigned to this instance.</dd>
+<dt>GetPropertyValue(id)</dt>
+<dd>Get the value of a plugin property for this instance by its property ID. Color properties return a <a class="extern" href="../geometry-interfaces/color.html" rel="noopener" target="_blank" title="Make your own games">SDK.Color</a>.</dd>
+<dt>SetPropertyValue(id, value)</dt>
+<dd>Set the value of a plugin property for this instance by its property ID. For color properties a <a class="extern" href="../geometry-interfaces/color.html" rel="noopener" target="_blank" title="Make your own games">SDK.Color</a> must be passed as the value.</dd>
+<dt>GetExternalSdkInstance()</dt>
+<dd>Return the custom plugin-specific SDK editor instance class for this object instance, which will be a derivative of <a class="extern" href="../base-classes/iinstancebase.html" rel="noopener" target="_blank" title="Make your own games">IInstanceBase</a>. For example if called for an instance of the addon SDK's <em>drawingPlugin</em> sample, this would return the <code>MyDrawingInstance</code> class. This method can only be used for installed addons - it will return <code>null</code> for any built-in plugins. </dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

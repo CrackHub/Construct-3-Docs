@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkinstancebase" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                ISDKInstanceBase addon SDK interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ISDKInstanceBase</code> interface is used as a runtime base class for instances in the addon SDK. It derives from <a class="extern" href="../object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>ISDKInstanceBase APIs</h2>
+<dl>
+<dt>_release()</dt>
+<dd>Optional override for when an instance is released. Clean up any other resources that need releasing in this method. It must also call <code>super._release()</code> to release all engine resources.</dd>
+<dt>_getInitProperties()</dt>
+<dd>Call this in the constructor to get an array of the instance's properties to create the instance with.</dd>
+<dt>_trigger(method)</dt>
+<dt>_triggerAsync(method)</dt>
+<dd>Fire a trigger condition. The condition must be declared as a trigger in aces.json. Pass a full reference to the condition method, e.g. <code>this._trigger(C3.Plugins.MyPlugin.Cnds.MyTrigger)</code>. The async variant returns a Promise that resolves when the trigger has finished executing, which can be used to support Construct's debugger, as it may wait if it hits a breakpoint inside the trigger.</dd>
+<dt>_addDOMMessageHandler(handler, callback)</dt>
+<dt>_addDOMMessageHandlers(arr)</dt>
+<dd>Add a callback to be run to handle a message posted from a DOM-side script. The handler is a string identifier. The callback receives the posted data as an argument. Note that if the caller in the DOM-side script originally used the <code>PostToRuntimeAsync</code> method, the callback may be an <code>async</code> function, and the return value is posted back to the DOM-side script. The <code>_addDOMMessageHandlers</code> variant accepts an array of <code>[handler, callback]</code> which is convenient when adding multiple handlers.</dd>
+<dt>_postToDOM(handler, data)</dt>
+<dt>_postToDOMAsync(handler, data)</dt>
+<dd>Post a message to a DOM-side script. The handler is a string identifier. The <code>data</code> must be <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm">structurally clonable</a> (since it is posted down a MessageChannel).
+<br/>
+The async method returns a promise that resolves with the DOM-side callback's return value. The non-async method does not return a value and the DOM-side callback's return value is discarded (i.e. a "fire and forget" message).</dd>
+<dt>_postToDOMMaybeSync(handler, data)</dt>
+<dd>As with <code>_postToDOM()</code>, but when the runtime is in DOM mode, calls the DOM handler synchronously inside the call. When the runtime is in worker mode, this still posts a message which is handled later. Usually this method is not necessary, but it can be used to work around some user input restrictions in some browsers in DOM mode only.</dd>
+<dt>_setTicking(isTicking)</dt>
+<dt>_setTicking2(isTicking)</dt>
+<dt>_isTicking()</dt>
+<dt>_isTicking2()</dt>
+<dd>Utility methods to start or stop the runtime calling the <code>_tick()</code> or <code>_tick2()</code> methods of your instance every tick, and also to check whether ticking is active. It is recommended to stop ticking whenever the tick method is no longer needed to reduce the performance overhead of ticking. Redundant calls to start or stop ticking are ignored. The first call always takes effect (i.e. calls do not stack - if you make 3 calls to start ticking then 1 call to stop ticking, ticking is stopped).</dd>
+<dt>_tick()</dt>
+<dd>Optional override that is called every tick just <strong>before</strong> events are run after <code>_setTicking(true)</code> has been called.</dd>
+<dt>_tick2()</dt>
+<dd>Optional override that is called every tick just <strong>after</strong> events are run after <code>_setTicking2(true)</code> has been called.</dd>
+<dt>_getDebuggerProperties()</dt>
+<dd>Override to return properties to display in the debugger. For more information see <a class="extern" href="../../../../addon-sdk/guide/runtime-scripts.html" rel="noopener" target="_blank" title="Make your own games">runtime scripts</a>.</dd>
+<dt>_saveToJson()</dt>
+<dd>Optional override to return a JSON object that represents the state of the instance for savegames.</dd>
+<dt>_loadFromJson(o)</dt>
+<dd>Optional override accepting a JSON object returned by a prior call to <code>_saveToJson()</code> that represents the state of an instance to load, for savegames.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Wrapper extension methods</h2>
+<p>These methods relate to the use of <a class="extern" href="../../../../addon-sdk/guide/wrapper-extensions.html" rel="noopener" target="_blank" title="Make your own games">wrapper extensions</a>. Refer to that manual section for more details; for completeness the relevant methods are also included here.</p>
+<dl>
+<dt>_isWrapperExtensionAvailable()</dt>
+<dd>Returns a boolean indicating whether the corresponding wrapper extension was successfully loaded. If this returns false then no messages sent to the wrapper extension will be received, and async messages will return a promise that never resolves.</dd>
+<dt>_addWrapperExtensionMessageHandler(messageId, callback)</dt>
+<dt>_addWrapperMessageHandlers(list)</dt>
+<dd>Add a callback to be run to handle a message posted from the corresponding wrapper extension. The callback receives the JSON data sent from the wrapper extension as an argument. The <code>_addWrapperMessageHandlers</code> variant accepts an array of <code>[messageId, callback]</code> which is convenient when adding multiple handlers.</dd>
+<dt>_sendWrapperExtensionMessage(messageId, params)</dt>
+<dt>_sendWrapperExtensionMessageAsync(messageId, params)</dt>
+<dd>Send a message to the wrapper extension. The message ID is used to identify the kind of message. <code>params</code> is an optional array of parameters to provide. These may only be boolean, number or string type values. The async variant returns a Promise that resolves when the wrapper extension responds to the message. The promise resolves with the JSON data sent from the wrapper extension.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

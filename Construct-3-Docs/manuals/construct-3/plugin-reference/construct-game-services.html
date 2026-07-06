@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/construct-game-services" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Construct Game Services plugin
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Construct Game Services</strong> (CGS) plugin allows accessing game services hosted by Scirra, the makers of Construct. Features include authentication, cloud save, and submitting high scores both for the <a class="extern" href="https://www.construct.net/free-online-games.html" rel="noopener" target="_blank" title="Make your own games">Construct Arcade</a> and cross-platform leaderboards.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/construct-game-services.html" rel="noopener" target="_blank" title="Make your own games">ICGSObjectType  script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Authentication</h2>
+<p>If you want to allow the player to sign in, you can make a login system with these steps.</p>
+<ol class="list">
+<li>In your <a class="extern" href="https://cgs.construct.net/" rel="noopener" target="_blank" title="Make your own games">Construct Game Services account</a>, create a game. Take note of the game ID.</li>
+<li>Use an action like <em>Sign in with provider</em> to provide a login using one of several existing account providers like Google, Microsoft or Steam. (You may want to allow multiple providers.) You'll need to specify the game ID to sign in to.</li>
+<li>When the player chooses this option, a popup window will appear asking them to log in, or if they are already logged in, to confirm that they wish to proceed. (In desktop exports this will instead launch the system browser, and in mobile exports it will use an in-app browser so the user does not have to leave the app.)</li>
+<li>If the player signs in successfully, then <em>On success</em> will trigger for <em>Sign in with provider</em>. You can then access the <em>PlayerName</em> and <em>PlayerID</em> expressions, and make use of other features like submitting scores to cross-platform leaderboards.</li>
+</ol>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=cgs-auth-providers" rel="noopener" target="_blank" title="Make games in the browser">Log in with providers example</a> for a demonstration of this, including support for handling popup blockers and persistent sign in.</p>
+<h3>Handling popup blockers</h3>
+<p>When running in a web browser, it is possible the browser popup blocker will prevent the login popup window from opening. In this case <em>On sign in popup blocked</em> will trigger, and you can provide an option to retry opening the popup window with the action <em>Retry sign in popup</em>. You should display a message to the user explaining what happened and be sure to use the retry action in a user input trigger, such as a button click or mouse click, otherwise the second attempt may also be blocked.</p>
+<p>You can test that your retry flow works correctly by checking the Construct Game Services plugin property <em>Simulate popup blocked</em>. When enabled this will not actually attempt to open a popup window on the first attempt, and will instead act as if the browser popup blocker prevented it from opening, triggering <em>On sign in popup blocked</em>. Then the second attempt made with <em>Retry sign in popup</em> will attempt to open the popup window normally. Turn this on to check your project handles popup blockers correctly, but be sure to turn it off again afterwards!</p>
+<p>In desktop and mobile exports the popup will never be blocked - this only needs to be handled for web browsers.</p>
+<h3>Sign in persistent</h3>
+<p>If the user signs in with <em>Allow persisting</em> enabled, then their sign in is remembered. Upon returning the <em>Can sign in persistent</em> condition will be true, and you can offer an option to log in again using the <em>Sign in persistent</em> action. This can continue with the previous sign in without showing any user interface.</p>
+<p>If the user signs out, it will delete their remembered sign in, so <em>Can sign in persistent</em> will not be true when they return to your game.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Leaderboards</h2>
+<p>Scores can be submitted to either the Construct Arcade or a cross-platform leaderboard.</p>
+<h3>Construct Arcade leaderboards</h3>
+<p>To publish a game to the Construct Arcade with leaderboards, follow these steps:</p>
+<ol class="list">
+<li>Add the Construct Game Services plugin to your project</li>
+<li>Add a <em>Submit score</em> action to submit the player's score at the appropriate time (such as when a 'Game over' screen appears). Leave the <em>Leaderboard ID</em> parameter empty.</li>
+<li><a class="extern" href="https://www.construct.net/tutorials/publishing-construct-arcade-2849.html" rel="noopener" target="_blank" title="Make your own games">Publish to the Construct Arcade</a> following the normal process</li>
+<li>Play your game until a score is submitted</li>
+<li>Reload the page and a leaderboard will have appeared with your score</li>
+</ol>
+<p>Note that you do not need to add any authentication features to your project to submit a score to the Construct Arcade, as it handles authentication automatically.</p>
+<h3>Cross-platform leaderboards</h3>
+<p>To make use of leaderboards on other platforms, follow these steps:</p>
+<ol class="list">
+<li>In your <a class="extern" href="https://cgs.construct.net/" rel="noopener" target="_blank" title="Make your own games">Construct Game Services account</a>, create a game (if you haven't already), and then create a leaderboard in that game. Take note of both the game ID and leaderboard ID.</li>
+<li>Add a sign-in feature to your game using the authentication features, as players must be signed in to be able to submit a score. You'll need to specify the game ID to sign in to.</li>
+<li>Once a player is signed in, you can use the <em>Submit score</em> action, specifying the leaderboard ID to submit to.</li>
+</ol>
+<p>You should then be able to find the score on the leaderboard in your Construct Game Services account. You can display scores in your game using the <em>Get leaderboard scores</em> action.</p>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=cgs-leaderboards" rel="noopener" target="_blank" title="Make games in the browser">Online leaderboards example</a> to try it out and see how it works.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Cloud save</h2>
+<p>Construct Game Services allows saving relatively small amounts of data for the signed in player. This can be used for a range of purposes, but is ideal for saving the user's progress online. This allows players to restore their progress on any device that they log in to the same account with, rather than only saving to the local device storage (which is what Construct's savegame feature does by default).</p>
+<p>To set up a cloud save feature, you only need to have a user successfully signed in (see the <em>Authentication</em> section above). Then you can change Construct's savegame feature to save online by using the <em>Save game to JSON string</em> and <em>Load game from JSON string</em> actions, and saving and loading the JSON string with the Cloud Save <em>Create</em> and <em>Get</em> actions. See the <a class="extern" href="https://editor.construct.net/#open=cgs-cloud-save" rel="noopener" target="_blank" title="Make games in the browser">Cloud Save example</a> for a demonstration.</p>
+<p>You can store data under different key names, such as "slot1", "slot2" etc. if you wanted to provide different save slots. However for the simple case of a single online save per user, you only need a single key name like "savegame".</p>
+<p>You can also create separate storage <em>buckets</em> in your Construct Game Services account, which are accessible to all players. However in the simple case of using storage private to a player's own account, you can leave the bucket ID empty.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>CGS properties</h2>
+<dl class="sans">
+<dt>Simulate popup blocked</dt>
+<dd>When enabled, act as if the first attempt to open the login popup window is blocked, requiring the use of <em>Retry sign in popup</em>. See the section <em>Handling popup blockers</em> above for more information.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>CGS conditions</h2>
+<dl class="sans">
+<dt>Can sign in persistent</dt>
+<dd>True if the user previously successfully signed in when <em>Allow persisting</em> was enabled and did not sign out. This means the <em>Sign in persistent</em> action can be used to continue with the previous sign in.</dd>
+<dt>Is signed in</dt>
+<dd>True if the user is currently signed in.</dd>
+<dt>On sign in popup blocked</dt>
+<dd>Triggered during sign in if the browser prevented the login popup window from appearing. See the section <em>Handling popup blockers</em> above for more information.</dd>
+<dt>On create success</dt>
+<dt>On create error</dt>
+<dd>Triggered after the cloud save <em>Create</em> actions with the corresponding bucket ID and key, depending on the outcome of the operation.</dd>
+<dt>On get success</dt>
+<dt>On get binary success</dt>
+<dd>Triggered after the cloud save <em>Get</em> action with the corresponding bucket ID and key completes successfully. When the <em>Get</em> action <em>Type</em> is <em>text</em>, <em>On get success</em> triggers, and the downloaded data is provided by the <em>CloudSaveText</em> expression; when <em>Type</em> is <em>binary</em>, <em>On get binary success</em> triggers, and the downloaded data is placed in the specified <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object.</dd>
+<dt>On get error</dt>
+<dd>Triggered after the cloud save <em>Get</em> action with the corresponding bucket ID and key fails to complete. This could occur if the user went offline, or if a network error occured.</dd>
+<dt>On success</dt>
+<dt>On error</dt>
+<dd>Triggered after an action depending on whether it completed successfully or failed.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>CGS actions</h2>
+<dl class="sans">
+<dt>Sign in with provider</dt>
+<dd>Attempt to sign the user in with a third-party identity service like Google or Microsoft. The game ID to sign in to from your <a class="extern" href="https://cgs.construct.net/" rel="noopener" target="_blank" title="Make your own games">Construct Game Services account</a> must be provided. If <em>Allow persisting</em> is enabled, a successful sign in is remembered, and may be re-used in future with the <em>Sign in persistent</em> action. The <em>Expiry</em> is the time in minutes that sessions remain active; the plugin will attempt to renew sessions shortly before expiry to extend the session. Signing in with a provider will open a popup window, and you can also specify the size of this popup window. Upon completing a sign in, <em>On success</em> will trigger for <em>sign in with provider</em>. In some cases if the sign in is cancelled or fails, <em>On error</em> will trigger. </dd>
+<dt>Sign in persistent</dt>
+<dd>Attempt to sign in re-using a previous successful sign in that allowed persisting. This can only be used when <em>Can sign in persistent</em> is true. This will trigger either <em>On success</em> or <em>On error</em> for <em>sign in persistent</em> depending on whether the persistent sign in completed successfully.</dd>
+<dt>Sign out</dt>
+<dd>Sign out of any account the user is currently signed in to, and also delete any remembered sign in if it allowed persisting. Locally this operation completes immediately and so there is no corresponding success or error trigger. For completeness signing out will send a request in the background to ensure the session is ended on the server-side as well, but that is optional and if it fails the session will time out anyway.</dd>
+<dt>Retry sign in popup</dt>
+<dd>After <em>On sign in popup blocked</em> triggers, attempt to open the login popup window again. See the section <em>Handling popup blockers</em> above for more information.</dd>
+<dt>Set player name</dt>
+<dd>Set the name of the currently signed in player. In some cases the player name is obtained from the authentication provider, but in others a generic name will be used, in which case the player will likely want to change their name for features like leaderboards. The current player name is provided by the <em>PlayerName</em> expression.</dd>
+<dt>Create (binary)</dt>
+<dt>Create (text)</dt>
+<dd>Create or replace the data for a key. A game bucket ID can optionally be provided, but if left empty it will use player private storage. The <em>text</em> variant uploads a string for the data, whereas the <em>binary</em> variant uploads the contents of a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. <em>On create success</em> or <em>On create error</em> will trigger depending on whether the upload completed successfully.</dd>
+<dt>Get</dt>
+<dd>Download the data previously uploaded for a key with one of the <em>Create</em> actions. A game bucket ID can optionally be provided, but if left empty it will use player private storage. If this fails, <em>On get error</em> will trigger. Otherwise when <em>Type</em> is <em>Text</em>, <em>On get success</em> will trigger, and the downloaded data will be in the <em>CloudSaveText</em> expression; when <em>Type</em> is <em>binary</em>, <em>On get binary success</em> will trigger, with the downloaded data stored in the specified Binary Data object.</dd>
+<dt>Submit score</dt>
+<dd>Submit a score to a leaderboard. The <em>Score</em> must be an integer (fractional scores are not supported). The <em>Leaderboard ID</em> may be left empty to submit a score on the Construct Arcade, which does not require authentication. Otherwise it may be set to the leaderboard ID to submit the score to, in which case authentication is required.</dd>
+<dt>Get leaderboard scores</dt>
+<dd>Request a page of scores from a given leaderboard ID, with a specified zero-based page number and number of results per page. This does not require authentication. The returned scores can optionally be filtered with several options. An <a class="extern outlink" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> country code filter can be provided, e.g. "US" to only return scores submitted in the United States of America. A time range can also be specified, such as <em>Daily</em> to return today's scores. Weekly leaderboards run from Monday to Sunday. A range offset can also be specified to return a prior range - for example specifying a <em>Daily</em> range with offset 1 will return yesterday's scores. The <em>Culture</em> can be set to a locale to use for returned values, or left empty to use the leaderboard's default culture. <em>On success</em> will trigger for <em>get scores</em> when scores are retrieved successfully, in which case the leaderboard expressions can be used to access them.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>CGS expressions</h2>
+<dl class="sans">
+<dt>GameID</dt>
+<dd>A string of the game ID currently signed in to.</dd>
+<dt>PlayerID</dt>
+<dd>A string with a unique ID to identify the currently signed in player.</dd>
+<dt>PlayerName</dt>
+<dd>The display name of the currently signed in player.</dd>
+<dt>CloudSaveBucketID</dt>
+<dt>CloudSaveKey</dt>
+<dt>CloudSaveName</dt>
+<dd>In a Cloud Save trigger, the bucket ID, key and name of the associated cloud save operation.</dd>
+<dt>CloudSaveText</dt>
+<dd>After <em>On get success</em> triggers (after the <em>Get</em> action with type <em>text</em>), the string of text data that was downloaded.</dd>
+<dt>ScoreCount</dt>
+<dd>After successfully retrieving leaderboard scores, the number of scores available.</dd>
+<dt>ScoreAt(index)</dt>
+<dt>ScoreFormattedAt(index)</dt>
+<dt>ScoreRankAt(index)</dt>
+<dt>ScoreFormattedRankAt(index)</dt>
+<dt>ScorePlayerIDAt(index)</dt>
+<dt>ScorePlayerNameAt(index)</dt>
+<dt>ScoreCountryAt(index)</dt>
+<dd>After successfully retrieving leaderboard scores, these expressions return information about a score at a given zero-based index. Scores and ranks are numbers, but the formatted versions return a string formatted according to the locale. Countries are returned as ISO 3166-1 alpha-2 country codes.</dd>
+<dt>TotalPageCount</dt>
+<dd>After successfully retrieving leaderboard scores, the total number of pages available.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

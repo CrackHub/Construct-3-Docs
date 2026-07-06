@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/tilemap-bar" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Tilemap bar
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Tilemap Bar</strong> allows editing tilemaps in the <strong>Tilemap object</strong> from the <a class="extern" href="../layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>. It provides a toolbar with various tools and options, and a view of the current tileset image.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/130572/tilemap-manual-0.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 406x423px in new window (26.25 KB)"><span><img alt="The Tilemap Bar" height="212" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/r/uploads/articleuploadobject/0/images/130572/tilemap-manual-0_v210.png" width="203"/></span></a><span class="descrip">The Tilemap Bar</span></div></div>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Basic usage</h2>
+<p>To add a tilemap and start editing it, follow these steps:</p>
+<ol class="list">
+<li>Add a <a class="extern" href="../../plugin-reference/tilemap.html" rel="noopener" target="_blank" title="Make your own games">Tilemap object</a> to the layout and make sure it is selected</li>
+<li>Choose the Pencil or Rectangle tool from the Tilemap bar's toolbar</li>
+<li>Select a tile in the tileset showing in the Tilemap bar</li>
+<li>Click inside the Tilemap object to start drawing the selected tile</li>
+</ol>
+<p>You can <strong>hold shift</strong> and <strong>right-click</strong> a tile in the Layout View to pick that tile to draw with. You can also hold shift and drag the right mouse button over a range of tiles to select that range of tiles as a patch you can stamp out.</p>
+<p>To stop editing the tilemap's tiles and return to normal layout editing, click the mouse cursor on the Tilemap bar's toolbar to restore normal layout view selection. This also allows you to move and resize the entire tilemap object.</p>
+<p>If you have multiple tilemap objects, only the selected tilemap is edited. It is often useful to layer tilemap objects directly on top of each other, in which case the tilemap to edit can be most easily selected using the <a class="extern" href="z-order-bar.html" rel="noopener" target="_blank" title="Make your own games">Z Order Bar</a> <span class="ilTag c2">Paid plans only</span> or hiding/locking layers with the <a class="extern" href="layers-bar.html" rel="noopener" target="_blank" title="Make your own games">Layers Bar</a>.</p>
+<p>If you are dealing with small tiles, you can also zoom the tileset image using the toolbar buttons. You can also access some of these options via a menu when right-clicking inside the Tilemap Bar.</p>
+<p>There are a range of keyboard shortcuts that can be used when editing tilemaps. For more information, see the manual entry on <a class="extern" href="../keyboard-shortcuts.html" rel="noopener" target="_blank" title="Make your own games">Keyboard shortcuts</a>.</p>
+<p>If the bar is not visible anywhere in the UI, it can be opened by doing either of these:</p>
+<ol class="list">
+<li>In the main menu button make sure the <span class="navWrap">View<span class="arr">►</span>Bars<span class="arr">►</span>Tilemap Bar</span> option is ticked</li>
+<li>Right-click on a tilemap instance in the Layout View and choose the option <span class="navWrap">Tilemap<span class="arr">►</span>Open Tilemap bar...</span></li>
+</ol>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Toolbar tools</h2>
+<p>The Tilemap Bar's toolbar has the following options:</p>
+<ul class="list">
+<li><strong>Normal layout view selection:</strong> stop editing tiles and select the Tilemap object like any other object.</li>
+<li><strong>Pencil tile tool:</strong> draw tiles with the mouse. You can also select an area of tiles by dragging across several tiles in the displayed tileset, and then use this tool to stamp that region of tiles in to the tilemap. You can also hold shift and right-click to drag an area over the Tilemap object to select a region of tiles to copy, or use the selection tool to do the same.</li>
+<li><strong>Erase tile tool:</strong> erase tiles from the tilemap so they appear as transparent space. Larger areas can be erased by selecting a larger area of tiles in the tileset. A shortcut for erasing single tiles is to right-click while another tool is selected.</li>
+<li><strong>Rectangle tile tool:</strong> draw a rectangular area of tiles by clicking and dragging in the Tilemap object. You can also select a 3x3 area of tiles in the displayed tileset, and the tool will <strong>automatically nine-patch</strong> the tiles. This also works for drawing single rows or columns with smaller selections such as 1x3 or 3x1, where the first and last tile are the first and last in the selection, and the rest are the middle tile repeated.</li>
+<li><strong>Fill tool:</strong> much like using a fill tool in an image editor, this allows filling a continuous area with a new kind of tile. If multiple tiles are selected in the tileset, they are repeated over the fill area.</li>
+<li><strong>Select tool:</strong> click and drag to select a range of tiles to use in the Tilemap object. Then switch to another tool to use that selection. For example switching to the <strong>Pencil</strong> tool allows you to stamp out copies of the selected range. A shortcut for this is to hold shift and right click and drag an area while the Pencil tool is selected. The individual tiles in the selection will be highlighted in the <strong>Tilemap bar</strong></li>
+<li><strong>Auto tile tool:</strong> this tool uses predefined brushes to automatically place the correct tile as you draw. Just pick the brush from the dropdown menu next to the tool's button and start using it. The brushes that are created by default are configured to work properly with the default tileset image. To create or modify brushes for use with different tilesets use the <a class="extern" href="tilemap-bar/tilemap-brush-editor.html" rel="noopener" target="_blank" title="Make your own games">Tilemap Brush Editor</a>.</li><li><strong>Patch tool:</strong> this tool uses brushes to draw a predefined set of tiles. Just pick the brush from the dropdown menu next to the tool's button and start using it. The brushes that are created by default work correctly with the default tileset image. To create or modify brushes for use with different tilesets use the <a class="extern" href="tilemap-bar/tilemap-brush-editor.html" rel="noopener" target="_blank" title="Make your own games">Tilemap Brush Editor</a>.</li><li><strong>Mirror:</strong> when using the Pencil tool, tiles will be placed flipped horizontally. This can also apply to an entire patch of tiles.</li>
+<li><strong>Flip:</strong> when using the Pencil tool, tiles will be placed flipped vertically. This can also apply to an entire patch of tiles.</li>
+<li><strong>Rotate anti-clockwise:</strong> when using the Pencil tool, tiles will be rotated 90° anti-clockwise. This can also apply to an entire patch of tiles. Click repeatedly to keep rotating tiles another 90°.</li>
+<li><strong>Rotate clockwise:</strong> when using the Pencil tool, tiles will be rotated 90° clockwise. This can also apply to an entire patch of tiles. Click repeatedly to keep rotating tiles another 90°.</li>
+<li><strong>Reset transformation:</strong> restores tiles to no mirror, no flip and no rotation.</li>
+<li><strong>Zoom in</strong>, <strong>Zoom out</strong>, <strong>Reset zoom</strong>: adjust the zoom of the source tileset image displayed in the Tilemap Bar. This is useful if you are dealing with particularly small tiles.</li>
+<li><strong>Save to TMX:</strong> export a zip with the current tileset image and the current tiles as a .tmx file (as used by the Tiled editor). Note that Construct does not support all of Tiled's features, so importing then exporting a TMX may lose some data, such as terrain definitions. Also since in Construct a Tilemap object represents a single layer of tiles, the exported TMX file will also only ever have one layer.</li>
+<li><strong>Load TMX</strong>: import a .tmx tilemap as used by Tiled. All the tiles in the object are replaced with tile data from the TMX file. In Construct a Tilemap object represents a single layer of tiles, so if the TMX file has multiple layers you will be asked which layer to import. To import all layers, create a different tilemap object for each layer and import them separately. The tileset image can also be replaced by choosing a new image file.
+
+Note you can also <strong>drag-and-drop</strong> individual .tmx files, image files, and .zip files of both, in to the Tilemap Bar. This opens the load TMX dialog with all relevant fields already filled in, so you only need to press <em>OK</em>.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Editing tile collision polygons</h2>
+<p>Each tile can have an individual collision polygon which is used when testing for collisions with the tilemap object. To edit a tile's collision polygon, <strong>double-click the tile</strong> in the Tilemap Bar. The <a class="extern" href="../animations-editor.html" rel="noopener" target="_blank" title="Make your own games">Animations Editor</a> will open to edit that tile. You can use the <strong>collision polygon tool</strong> to edit the tile's collision polygon. While the tool is active, you can also right-click and choose <strong>Toggle collision polygon</strong> to disable collisions for that tile entirely, such as if it is for decorative purposes only.</p>
+<p>You can also use the image editing features of the Animations Editor to alter the image of the tile.</p>
+<p>When hovering the mouse over a tile in the Tilemap Bar, its collision polygon is shown as an outline, if it has one. This helps you to quickly review the collision polygon set for each tile.</p>
+<h3>Bulk editing</h3>
+<p>There are four context menu options to toggle the state of multiple collision polygons at the same time, they are the following:</p>
+<ul class="list">
+<li><strong>Enable selected tile collisions:</strong> enable the collision polygon of all the tiles highlighted in the <strong>Tilemap bar</strong>.</li>
+<li><strong>Disable selected tile collisions:</strong> disable the collision polygon of all the tiles highlighted in the <strong>Tilemap bar</strong>.</li>
+<li><strong>Enable all tile collisions:</strong> enable all the collision polygons of the tilemap.</li>
+<li><strong>Disable all tile collisions:</strong> disable all the collision polygons of the tilemap.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Tilemap brushes in project folders</h2>
+<p>Tilemap brushes are saved to independent JSON files under the <code>"tilemapBrushes"</code> folder so they can be ignored or kept when working with source control.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>The Tilemap object</h2>
+<p>For more information on how to use tilemaps, see the manual entry on the <a class="extern" href="../../plugin-reference/tilemap.html" rel="noopener" target="_blank" title="Make your own games">Tilemap object</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

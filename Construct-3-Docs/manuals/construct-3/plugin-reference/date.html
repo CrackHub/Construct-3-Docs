@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/date" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Date
+            </h1>
+            <div itemprop="articleBody">
+                <p>The <strong>Date</strong> object provides a set of conditions and expressions for managing dates and times.</p>
+
+<p>For an example of the Date object, open the <a href="https://editor.construct.net/#open=date-time" target="_blank" rel="noopener" title="Make games in the browser" class="extern">Date &amp; Time example</a>.</p>
+
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" rel="nofollow noopener external" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" class="extern outlink">Date</a> object.</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Timestamps</h2>
+<p>The Date object mostly works with <em>timestamps</em>. These are the number of milliseconds since January 1st 1970 (also known as the Unix epoch), and is not affected by timezones or leap seconds. This is a standard way to reliably refer to a specific point in time in software development, and is sometimes referred to as the <em>Unix time</em>.</p>
+
+<p>A timestamp is just a number, which makes it easy to store them in existing variables or compare them as you would any other number. However it's difficult for humans to make sense of a timestamp since it's just a single large number. The Date object provides expressions to convert between timestamps and human-readable dates and times, and other related tools.</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Date &amp; time parts</h2>
+<p>A timestamp consists of the following parts, all of which are also numbers, with the given ranges and start points as noted:</p>
+
+<ul class="list">
+<li><strong>Year:</strong> the full four-digit year, e.g. 2020</li>
+<li><strong>Month:</strong> the <strong>zero-based</strong> calendar month, e.g. 0 for January, 5 for June</li>
+<li><strong>Date:</strong> the calendar date, i.e. the day of the month, from 1-31</li>
+<li><strong>Day:</strong> the zero-based week day from 0-6, starting with Sunday, e.g. 2 for Tuesday</li>
+<li><strong>Hours:</strong> the hours of the time, 0-23</li>
+<li><strong>Minutes:</strong> the minutes of the time, 0-59</li>
+<li><strong>Seconds:</strong> the seconds of the time, 0-59</li>
+<li><strong>Milliseconds:</strong> the milliseconds of the time, 0-999</li>
+</ul>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>Date Conditions</h2>
+<dl class="sans">
+	<dt>Compare Timestamps</dt>
+	<dd>Compare two timestamps. Equal timestamps refer to the same time, and a timestamp that is less than another precedes it in time.</dd>
+
+	<dt>Compare Date Strings</dt>
+	<dd>Compare two date strings with each other. The date strings are converted to their equivalent numeric timestamp before the comparison.</dd>
+
+	<dt>Compare Timestamp parts</dt>
+	<dd>Compare two timestamp parts with each other. The possible parts are Year (4 digit), Month (0 - 11), Date (1 - 31), Day (0 - 6), Hours (0 - 23), Minutes (0 - 59), Seconds (0 - 59), and Milliseconds (0 - 999).</dd>
+
+	<dt>Compare date string parts</dt>
+	<dd>Compare two date string parts with each other, they are converted to their equivalent numeric timestamp before the comparison. The possible parts are Year (4 digit), Month (0 - 11), Date (1 - 31), Day (0 - 6), Hours (0 - 23), Minutes (0 - 59), Seconds (0 - 59), Milliseconds (0 - 999).</dd>
+</dl>
+
+<h3>Date Expressions</h3>
+
+<dl class="sans">
+	<dt>ToString(timeStamp)</dt>
+	<dd>Convert a timestamp to a string representation including both date and time.</dd>	
+	
+	<dt>ToDateString(timeStamp)</dt>
+	<dd>Convert a timestamp to a string showing the corresponding date.</dd>
+
+	<dt>ToTimeString(timeStamp)</dt>
+	<dd>Convert a timestamp to a string showing the corresponding time.</dd>
+
+	<dt>ToLocaleString(timeStamp)</dt>
+	<dd>Convert a timestamp to a localized string representation including both date and time.</dd>
+
+	<dt>ToLocaleDateString(timeStamp)</dt>
+	<dd>Convert a timestamp to a localized string showing the corresponding date.</dd>
+
+	<dt>ToLocaleTimeString(timeStamp)</dt>
+	<dd>Convert a timestamp to a localized string showing the corresponding time.</dd>
+	
+	<dt>ToUTCString(timeStamp)</dt>
+	<dd>Convert a timestamp to a string representation including both date and time in universal time.</dd>
+	
+	<dt>Parse(dateString)</dt>
+	<dd>Parse a date string into the corresponding numeric timestamp. For the supported string formats, refer to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Date_Time_String_Format" target="_blank" rel="nofollow noopener external" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Date_Time_String_Format" class="extern outlink">MDN documentation for Date.parse()</a>, which is the underlying method used by this expression.</dd>
+
+	<dt>ToTimerHours(milliseconds)</dt>
+	<dd>Convert milliseconds to the equivalent amount of hours as they would be shown in a timer.</dd>
+		
+	<dt>ToTimerMinutes(milliseconds)</dt>
+	<dd>Convert milliseconds to the equivalent amount of minutes as they would be shown in a timer (0-59).</dd>
+
+	<dt>ToTimerSeconds(milliseconds)</dt>
+	<dd>Convert milliseconds to the equivalent amount of seconds as they would be shown in a timer (0-59).</dd>
+
+	<dt>ToTimerMilliseconds(milliseconds)</dt>
+	<dd>Convert milliseconds to the equivalent amount of milliseconds as they would be shown in a timer (0-999).</dd>
+	
+	<dt>ToTotalHours(milliseconds)</dt>
+	<dd>Convert milliseconds to the equivalent amount of hours, which may be a fractional value.</dd>
+	
+	<dt>ToTotalMinutes(milliseconds)</dt>
+	<dd>Convert milliseconds to the equivalent amount of minutes, which may be a fractional value.</dd>
+	
+	<dt>ToTotalSeconds(milliseconds)</dt>
+	<dd>Convert milliseconds to the equivalent amount of seconds, which may be a fractional value.</dd>
+
+	<dt>Now</dt>
+	<dd>Get the current timestamp (the number of milliseconds since January 1st 1970).</dd>
+
+	<dt>ExportTimestamp</dt>
+	<dd>Get the timestamp at the time the project was exported from Construct. In preview mode, this is the time the preview was launched.</dd>
+	
+	<dt>Get(year, month, day, hours, minutes, seconds, milliseconds)</dt>
+	<dd>Return a timestamp by providing the individual parts of the date and time.</dd>
+	
+	<dt>TimezoneOffset</dt>
+	<dd>Get the timezone offset of the local system.</dd>
+	
+	<dt>GetYear(timeStamp)</dt>
+	<dd>Extract the 4 digit year from the provided timestamp in local time.</dd>
+	
+	<dt>GetUTCYear(timeStamp)</dt>
+	<dd>Extract the 4 digit year from the provided timestamp in universal time.</dd>
+	
+	<dt>GetMonth(timeStamp)</dt>
+	<dd>Extract the month (0 - 11) from the provided timestamp in local time.</dd>
+	
+	<dt>GetUTCMonth(timeStamp)</dt>
+	<dd>Extract the month (0 - 11) from the provided timestamp in universal time.</dd>
+	
+	<dt>GetDate(timeStamp)</dt>
+	<dd>Extract the date (1 - 31) from the provided timestamp in local time.</dd>
+	
+	<dt>GetUTCDate(timeStamp)</dt>
+	<dd>Extract the date (1 - 31) from the provided timestamp in universal time.</dd>
+	
+	<dt>GetDay(timeStamp)</dt>
+	<dd>Extract the day (0 - 6) from the provided timestamp in local time.</dd>
+	
+	<dt>GetUTCDay(timeStamp)</dt>
+	<dd>Extract the day (0 - 6) from the provided timestamp in universal time.</dd>
+	
+	<dt>GetHours(timeStamp)</dt>
+	<dd>Extract the hours (0 - 23) from the provided timestamp in local time.</dd>
+	
+	<dt>GetUTCHours(timeStamp)</dt>
+	<dd>Extract the hours (0 - 23) from the provided timestamp in universal time.</dd>
+	
+	<dt>GetMinutes(timeStamp)</dt>
+	<dd>Extract the minutes (0 - 59) from the provided timestamp in local time.</dd>
+	
+	<dt>GetUTCMinutes(timeStamp)</dt>
+	<dd>Extract the minutes (0 - 59) from the provided timestamp in universal time.</dd>
+	
+	<dt>GetSeconds(timeStamp)</dt>
+	<dd>Extract the seconds (0 - 59) from the provided timestamp in local time.</dd>
+	
+	<dt>GetUTCSeconds(timeStamp)</dt>
+	<dd>Extract the seconds (0 - 59) from the provided timestamp in universal time.</dd>
+	
+	<dt>GetUTCMilliseconds(timeStamp)</dt>
+	<dd>Extract the milliseconds (0 - 999) from the provided timestamp in local time.</dd>
+	
+	<dt>GetMilliseconds(timeStamp)</dt>
+	<dd>Extract the milliseconds (0 - 999) from the provided timestamp in universal time.</dd>
+	
+	<dt>Difference(first, second)</dt>
+	<dd>Calculate the difference between two timestamps.</dd>
+
+	<dt>ChangeYear(timeStamp, year)</dt>
+	<dd>Change the year (4 digit) of the provided timestamp in local time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeUTCYear(timeStamp, year)</dt>
+	<dd>Change the year (4 digit) of the provided timestamp in universal, time and return as a new timestamp.</dd>
+	
+	<dt>ChangeMonth(timeStamp, month)</dt>
+	<dd>Change the month (0 - 11) of the provided timestamp in local time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeUTCMonth(timeStamp, month)</dt>
+	<dd>Change the month (0 - 11) of the provided timestamp in universal, time and return as a new timestamp.</dd>
+	
+	<dt>ChangeDate(timeStamp, date)</dt>
+	<dd>Change the date (1 - 31) of the provided timestamp in local time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeUTCDate(timeStamp, date)</dt>
+	<dd>Change the date (1 - 31) of the provided timestamp in universal time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeDay(timeStamp, day)</dt>
+	<dd>Change the day (0 - 6) of the provided timestamp in local time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeUTCDay(timeStamp, day)</dt>
+	<dd>Change the day (0 - 6) of the provided timestamp in universal time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeHours(timeStamp, hours)</dt>
+	<dd>Change the hours (0 - 23) of the provided timestamp in local time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeUTCHours(timeStamp, hours)</dt>
+	<dd>Change the hours (0 - 23) of the provided timestamp in universal time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeMinutes(timeStamp, minutes)</dt>
+	<dd>Change the minutes (0 - 59) of the provided timestamp in local time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeUTCMinutes(timeStamp, minutes)</dt>
+	<dd>Change the minutes (0 - 59) of the provided timestamp in universal time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeSeconds(timeStamp, seconds)</dt>
+	<dd>Change the seconds (0 - 59) of the provided timestamp in local time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeUTCSeconds(timeStamp, seconds)</dt>
+	<dd>Change the seconds (0 - 59) of the provided timestamp in universal time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeMilliseconds(timeStamp, milliseconds)</dt>
+	<dd>Change the milliseconds (0 - 999) of the provided timestamp in local time, and return as a new timestamp.</dd>
+	
+	<dt>ChangeUTCMilliseconds(timeStamp, milliseconds)</dt>
+	<dd>Change the milliseconds (0 - 999) of the provided timestamp in universal time, and return as a new timestamp.</dd>
+	
+	<dt>FormatDateWithStyles(locale, timeStamp, dateStyle, timeStyle, hourFormat)</dt>
+	<dd>Format the provided time stamp using the locale and optional styles. <strong>"dateStyle"</strong> can be any of <em>"full"</em>, <em>"long"</em>, <em>"medium"</em> or <em>"short"</em> and affects the date section of the final result, if an unsupported value is used, the date section will be omitted from the final output of the expression. <strong>"timeStyle"</strong> can be any of <em>"full"</em>, <em>"long"</em>, <em>"medium"</em> or <em>"short"</em> and affects the time section of the final result, if an unsupported value is used, the time section will be omitted from the final output of the expression. <strong>"hourFormat"</strong> can be either <em>"12"</em> or <em>"24"</em> and affects the formatting of the time section of the final result, if an unsupported value is used, the end result will be locale dependant.<br>
+	</dd>
+	
+	<dt>FormatDateWithComponents(locale, timeStamp, weekday, year, month, day, hour, minute, second, hourFormat)</dt>
+	<dd>Format the provided time stamp using the locale and optional components. <strong>"weekday"</strong> can be any of <em>"long"</em>, <em>"short"</em> or <em>"narrow"</em>. <strong>"year"</strong> can be any of <em>"numeric"</em> or <em>"2-digit"</em>. <strong>"month"</strong> can be any of <em>"numeric"</em>, <em>"2-digit"</em>, <em>"long"</em>, <em>"short"</em> or <em>"narrow"</em>. <strong>"day"</strong> can be any of <em>"numeric"</em> or <em>"2-digit"</em>. <strong>"hour"</strong> can be any of <em>"numeric"</em> or <em>"2-digit"</em>. <strong>"minute"</strong> can be any of <em>"numeric"</em> or <em>"2-digit"</em>. <strong>"second"</strong> can be any of <em>"numeric"</em> or <em>"2-digit"</em>. <strong>"hourFormat"</strong> can be either <em>"12"</em> or <em>"24"</em> and affects the formatting of the time section of the final result, if an unsupported value is used the end result will be locale dependant.
+<br>
+Any of the components can be omitted from the final result by providing an unsupported value.<br>
+	</dd>
+</dl>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

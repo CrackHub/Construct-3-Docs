@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/midi" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                MIDI plugin
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>MIDI plugin</strong> allows communicating with connected <a class="extern outlink" href="https://en.wikipedia.org/wiki/MIDI" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/MIDI">MIDI</a> (Musical Instrument Digital Interface) devices via the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API">Web MIDI API</a>. Typically MIDI devices are digital musical instruments such as a MIDI piano keyboard or synthesizer. The MIDI plugin can both receive MIDI input from devices, such as detecting when notes are pressed, as well as send MIDI output to devices, such as to create an arpeggiator.</p>
+<p>In order to use a MIDI device it will need to be connected to the device that the Construct project is running on. Some MIDI devices may require a special 5-pin MIDI cable, but others may be able to use another standard such as USB.</p>
+<p>You can find two examples of using the MIDI plugin in the <a class="extern" href="https://editor.construct.net/#open=midi-input" rel="noopener" target="_blank" title="Make games in the browser">MIDI input</a> and <a class="extern" href="https://editor.construct.net/#open=midi-output" rel="noopener" target="_blank" title="Make games in the browser">MIDI output</a> examples.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>MIDI access</h2>
+<p>For privacy and security reasons, browsers do not provide access to MIDI devices by default. Therefore the first thing your project must do before using MIDI is use the <em>Request MIDI access</em> action. This may show a permission prompt to the user. This action may also only be allowed in a user input trigger, such as in a button click or touch event, although some browsers may allow it to be used on startup (in <em>On start of layout</em>).</p>
+<p>The user must approve any permission prompt - if they do so, <em>On request access success</em> is triggered, and MIDI devices may then be used. If the user declines the permission prompt <em>On request access failed</em> will be triggered and access to MIDI will be blocked. In this case you may wish to show a message to the user.</p>
+<p>There are two options when requesting MIDI access:</p>
+<ul class="list">
+<li><strong>System exclusive:</strong> when enabled, this allows for sending and receiving system exclusive (sysex) MIDI messages. These are usually device or vendor specific. As these messages have potentially unlimited capability, such as wiping data stored on the device or overwriting its firmware, there may be stricter security requirements for using this mode; therefore it is recommended to leave it disabled if you don't need it.</li>
+<li><strong>Software:</strong> when enabled then virtual or software MIDI devices running on the same system as the Construct project may be listed as available. If you are only interested in using separate physical MIDI hardware, you should leave this disabled.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>MIDI devices</h2>
+<p>By default, after successfully gaining MIDI access, no MIDI messages will be sent or received. To use a MIDI device, it must first be <em>opened</em>. This means the device becomes active and messages may be sent or received. If the device is no longer needed it may then be <em>closed</em> to return it to an inactive state that will not send or receive MIDI messages.</p>
+<p>There are two types of MIDI devices: input, from which messages are received, and output, to which messages may be sent. If a single piece of MIDI hardware supports both input and output, it will appear as two devices - both an input device and an output device. Sometimes this will also require two cables, one for input and one for output. Be sure to make sure the appropriate MIDI sockets are used - for example to receive MIDI input from a device, you may need to connect a cable from the device's MIDI output socket to the MIDI input socket of the device the Construct project is running on.</p>
+<p>The MIDI plugin supports input and output to multiple devices simultaneously. To allow for this, devices are identified by an ID string provided by the browser or system. Usually the ID string can be left empty to refer to either the first available device, or the last opened device, which is a convenient way to use a single device.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>MIDI notes</h2>
+<p>In the MIDI specification, notes are identified by a number from 0-127, with number 60 referring to middle C. With Construct's MIDI plugin, for convenience notes may also be referred to by a string of the note name. For example number 60 (middle C) may be referred to by the string "C4", meaning note C in octave 4.</p>
+<p>Note names may also use a sharp ("#") or flat ("b") to adjust the note by a semitone in either direction, for example "D#4" or "Db4". This means both "C#4" and "Db4" refer to the same note. Construct also treats "Cb" as equivalent to "B", and "B#" as equivalent to "C".</p>
+<p>The <em>NoteNumberToName</em> and <em>NoteNameToNumber</em> expressions allow converting between note number and note name representations. Note that when converting from a note number to a note name, Construct will always use a sharp notation. For example note 61 is both "C#4" and "Db4", and Construct will choose the name "C#4" in this case.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>MIDI conditions</h2>
+<dl class="sans">
+<dt>Has access</dt>
+<dd>True if MIDI access is available, i.e. requesting MIDI access has completed successfully.</dd>
+<dt>Is supported</dt>
+<dd>True if MIDI access is supported on this browser/platform. This depends on support for the Web MIDI API.</dd>
+<dt>On devices state changed</dt>
+<dd>Triggered when any MIDI devices are connected, disconnected, or changed. If your project displays a list of available MIDI devices, it should update the list in this trigger. </dd>
+<dt>On request access success</dt>
+<dt>On request access failed</dt>
+<dd>Triggered after the <em>Request MIDI access</em> action, depending on the outcome of the request.</dd>
+<dt>On any device opened</dt>
+<dt>On device opened</dt>
+<dd>Triggered after the <em>Open device</em> action when the device has been opened and can now send or receive MIDI messages. With the <em>any</em> variant, the relevant MIDI device can be identified by expressions like <em>CurrentDeviceID</em>.</dd>
+<dt>On any device closed</dt>
+<dt>On device closed</dt>
+<dd>Triggered after the <em>Close device</em> action when the device has been closed and so will no longer send or receive MIDI messages. With the <em>any</em> variant, the relevant MIDI device can be identified by expressions like <em>CurrentDeviceID</em>.</dd>
+<dt>On any device error</dt>
+<dt>On device error</dt>
+<dd>Triggered if an error occurs when accessing a MIDI device. With the <em>any</em> variant, the relevant MIDI device can be identified by expressions like <em>CurrentDeviceID</em>.</dd>
+<dt>Compare parameter</dt>
+<dd>Compare an aspect of a MIDI message such as the note number or velocity.</dd>
+<dt>On any binary message</dt>
+<dd>Triggered when any MIDI message is received from any device. The raw binary data of the MIDI message is stored in a specified <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data object</a>. The associated MIDI device can be identified by expressions like <em>CurrentDeviceID</em>. Using the binary data will require knowledge of the MIDI specification - for example a three-byte message in hexadecimal notation 0x90 0x3C 0x40 refers to Note On, MIDI channel 0, note 60 (middle C), velocity 64.</dd>
+<dt>On any message</dt>
+<dd>Triggered when a MIDI message of a specific type, e.g. Note On, is received from any MIDI device. The associated MIDI device can be identified by expressions like <em>CurrentDeviceID</em>. Details about the message can be compared with <em>Compare parameter</em> or retrieved via expressions.</dd>
+<dt>On message</dt>
+<dd>Triggered when a MIDI message of a specific type, e.g. Note On, is received from a specific MIDI device given by its ID. The device ID may be left as an empty string to refer to the last opened input device. Details about the message can be compared with <em>Compare parameter</em> or retrieved via expressions.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>MIDI actions</h2>
+<dl class="sans">
+<dt>Request MIDI access</dt>
+<dd>Request to access MIDI devices. This must be done before any MIDI devices can be used, and may show a permission prompt to the user. For more details see the section on <em>MIDI access</em> above.</dd>
+<dt>Open device</dt>
+<dd>Open a MIDI device specified by its device ID and type (input/output). The device ID may be left as an empty string to open the first available device; however note if multiple devices are available, this may not select the device you really want, so generally you should provide a way for the user to pick the device (see the MIDI input/output examples in Construct). Once a device is opened, it may start sending or receiving messages (depending on whether it is an input or output device).</dd>
+<dt>Close device</dt>
+<dd>Close a MIDI device specified by its device ID and type (input/output). The device ID may be left as an empty string to close the last opened device (useful when only one device is opened at a time). Once a device is closed, it will no longer send or receive messages.</dd>
+<dt>Schedule next message</dt>
+<dd>This action will cause the next <em>Send</em> action to actually send the message after a given delay in seconds. This can be used to schedule messages to be sent with higher accuracy than ticks in Construct, which typically run approximately every 16ms (for a 60 Hz display).</dd>
+<dt>Send binary message</dt>
+<dd>Send raw binary data as a MIDI message to an output device ID. The ID may be left as an empty string to send a message to the last opened MIDI output device. The message contents is taken from a chosen <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data object</a>. Using the binary data will require knowledge of the MIDI specification - for example a three-byte message in hexadecimal notation 0x90 0x3C 0x40 refers to Note On, MIDI channel 0, note 60 (middle C), velocity 64.</dd>
+<dt>Send control change message</dt>
+<dd>Send a MIDI Control Change message to an output device ID. The ID may be left as an empty string to send a message to the last opened MIDI output device. Refer to the MIDI specification for possible controller numbers; a common one to use is controller number 1 to refer to the modulation wheel (coarse). The controller value is a number in the range 0-127.</dd>
+<dt>Send message</dt>
+<dd>Send a Program Change, Channel Pressure or Pitch Wheel message to an output device ID. The ID may be left as an empty string to send a message to the last opened MIDI output device. The value is a number in the range 0-127 for Program Change or Channel Pressure messages, or 0-16383 for Pitch Wheel messages.</dd>
+<dt>Send note message</dt>
+<dd>Send a Note Off, Note On or AfterTouch message to an output device ID. The ID may be left as an empty string to send a message to the last opened MIDI output device. The note may be specified by either its MIDI note number (0-127, e.g. 60 for middle C) or a note name e.g. "C4". The note velocity is given as a number 0-127. </dd>
+<dt>Set MIDI channel</dt>
+<dd>Set the MIDI channel of outgoing messages, from 0-15. The default is channel 0. Some devices will be configured to only receive messages on a certain channel and will have a setting to select the MIDI channel number of the device; note that many consumer devices will use 1-based indexing for the MIDI channel (so the first MIDI channel is displayed as channel 1, rather than channel 0).</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>MIDI expressions</h2>
+<dl class="sans">
+<dt>InputCount</dt>
+<dt>InputIDAt(index)</dt>
+<dt>InputManufacturerAt(index)</dt>
+<dt>InputNameAt(index)</dt>
+<dd>Retrieve the list of available input devices. These expressions provide the number of input devices, and the device ID, manufacturer, and name of the device at a given zero-based index. Note this list first becomes available in <em>On request access success</em>, and may change in <em>On devices state changed</em>.</dd>
+<dt>OutputCount</dt>
+<dt>OutputIDAt(index)</dt>
+<dt>OutputManufacturerAt(index)</dt>
+<dt>OutputNameAt(index)</dt>
+<dd>Retrieve the list of available input devices. These expressions provide the number of input devices, and the device ID, manufacturer, and name of the device at a given zero-based index. Note this list first becomes available in <em>On request access success</em>, and may change in <em>On devices state changed</em>.</dd>
+<dt>CurrentDeviceID</dt>
+<dt>CurrentDeviceManfucaturer</dt>
+<dt>CurrentDeviceName</dt>
+<dd>In a trigger, such as <em>On any message</em>, these expressions contain information about the device that sent the message.</dd>
+<dt>Channel</dt>
+<dd>When a MIDI message is received, this returns the MIDI channel of the message from 0-15.</dd>
+<dt>ControllerNumber</dt>
+<dt>ControllerValue</dt>
+<dd>When a Control Change message is received, these return the controller number (0-127) and controller value (0-127) specified in the message.</dd>
+<dt>NoteName</dt>
+<dt>NoteNumber</dt>
+<dd>When a note message is recieved (Note Off, Note On or After Touch), these return the associated note name as a string (e.g. "C4") or MIDI note number (0-127, e.g. 60 for middle C).</dd>
+<dt>PitchWheelValue</dt>
+<dd>When a Pitch Wheel message is received, this returns pitch wheel position in the range 0-16383.</dd>
+<dt>Pressure</dt>
+<dd>When an After Touch or Channel Pressure message is received, this returns the pressure value (0-127).</dd>
+<dt>ProgramNumber</dt>
+<dd>When a Program Change message is received, this returns the program number (0-127).</dd>
+<dt>Velocity</dt>
+<dd>When a Note On or Note Off message is received, this returns the velocity in the range 0-127. If the device does not support detecting note velocity, a default value such as 64 may be sent instead. Some devices send a Note On message with velocity 0 to indicate Note Off; in this case the velocity will be returned as 64 as a default value given the velocity is not actually specified in that case.</dd>
+<dt>NoteNameToNumber(NoteName)</dt>
+<dt>NoteNumberToName(NoteNumber)</dt>
+<dd>Convert between a note name (e.g. "C4" for middle C) and a MIDI note number in the range 0-127 (e.g. 60 for middle C). See the section on <em>MIDI notes</em> above for more information. </dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

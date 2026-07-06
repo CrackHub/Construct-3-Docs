@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/csv" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                CSV
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>CSV</strong> plugin supports reading and writing data in <a class="extern outlink" href="https://en.wikipedia.org/wiki/Comma-separated_values" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated values</a> (CSV) format, as well as other similar formats that use a different delimiter such as <a class="extern outlink" href="https://en.wikipedia.org/wiki/Tab-separated_values" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Tab-separated_values">tab-separated values</a> (TSV).</p>
+<p>Delimiter-based formats like CSV and TSV are simple and easy to use, but are limited in their ability to represent more complex data. For more advanced uses consider using <a class="extern" href="json.html" rel="noopener" target="_blank" title="Make your own games">JSON</a> instead.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/csv.html" rel="noopener" target="_blank" title="Make your own games">ICSVObjectType script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Using CSV files</h2>
+<p>CSV and TSV files can be added as <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">project files</a> in the Project Bar and edited directly in Construct. As with other data formats, these can then be loaded by requesting them with the <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX object</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Using tab delimiters</h2>
+<p>Due to the use of the tab key as a shortcut in the editor, it can be difficult to type a tab in the Parameters Dialog for the delimiter parameter if you want to use tab-separated values. To make this easier the CSV plugin provides a <em>TabCharacter</em> expression which just returns a string with a single tab character in it, so it can be conveniently used as a delimiter parameter.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Using array for storage</h2>
+<p>The CSV plugin merely parses and generates CSV. It uses an <a class="extern" href="array.html" rel="noopener" target="_blank" title="Make your own games">Array object</a> to store the actual data, as CSV can conveniently be represented as a two-dimensional array, and it allows using the full features of the Array object to read and manipulate the data.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>CSV conditions</h2>
+<dl class="sans">
+<dt>On parse error</dt>
+<dd>Triggered when using the <em>Parse</em> action with invalid data, such as a quoted item that is missing its end quote. If a parse error occurs then no data will be read from the file and the specified Array object will be unmodified.</dd>
+<dt>On parse success</dt>
+<dd>Triggered when using the <em>Parse</em> action with valid data that is successfully parsed.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>CSV actions</h2>
+<dl class="sans">
+<dt>Generate CSV</dt>
+<dd>Generate a string of CSV data using data from a specified two-dimensional Array object. A custom delimiter can be set for other delimiter-separated formats like tab-separated values. After this action the resulting string is available via the <em>GeneratedCSV</em> expression.</dd>
+<dt>Parse CSV</dt>
+<dd>Read a string of CSV data in to a specified Array object. The resulting data will be stored as a two-dimensional array. A custom delimiter can be set for other delimiter-separated formats like tab-separated values. If any of the rows are different lengths, the width of the array will be the maximum row length. If the data is invalid for any reason, <em>On parse error</em> will be triggered; otherwise if valid <em>On parse success</em> will be triggered. The <em>Data type</em> parameter determines whether values are read as strings or numbers. Its possible values are:<ul class="list"><br/>
+<li><strong>Auto:</strong> automatically determine whether values are strings or numbers, based on whether the string looks like a number. For example "hello" will be stored as a string, but "100" will be stored as a number.</li><br/>
+<li><strong>String:</strong> treat every value as a string. Note this means a number like "100" will be stored as a string with that sequence of characters rather than an actual number type.</li><br/>
+<li><strong>Number:</strong> treat every value as a number. Note this means strings like "hello", which are not valid numbers, will result in the special "Not A Number" (NaN) value.</li></ul></dd></dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>CSV expressions</h2>
+<dl class="sans">
+<dt>GeneratedCSV</dt>
+<dd>After the <em>Generate CSV</em> action, this expression returns a string of the generated CSV data.</dd>
+<dt>TabCharacter</dt>
+<dd>This expression merely returns a string with a single tab character in it. This can be useful to use as a delimiter parameter for tab-separated values (TSV), as a tab character can be difficult to type in the editor as it functions as a keyboard shortcut to move focus.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

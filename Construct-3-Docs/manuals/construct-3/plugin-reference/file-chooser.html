@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/file-chooser" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                File chooser
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>File chooser</strong> plugin is a form control that allows the user to pick a file on their local system and load it. For example, a text file can be chosen and its contents read, or a picture chosen and the image displayed in-game. Some mobile browsers also allow a picture to be taken with the device camera instead of choosing an existing file, then the taken photo image file is passed as the chosen file.</p>
+<p>The appearance of the file chooser button varies depending on the platform. Several browsers display a "Choose file" button.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/file-chooser.html" rel="noopener" target="_blank" title="Make your own games">IFileChooserInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Layering HTML objects</h2>
+<p>This object displays using a HTML element rather than drawing in to the canvas. This means its layering works differently to other objects. To learn more about how to layer HTML objects, see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Using files</h2>
+<p>Once a file has been selected, it can be accessed using a URL. While many URLs reference web resources on the Internet, the File Chooser plugin returns a special URL that refers to the local file. This URL typically starts with "blob:" (since the browser's term for an arbitrary set of data is a "blob") followed by some kind of unique ID. By accessing this URL the local file is accessed, without using any Internet connection, so this also works offline.</p>
+<p>The file URL can be used like any other URL. For example, it can be requested by the <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX</a> object to load its contents as text, or passed to the Sprite object's <em>Load image from URL</em> action to display it.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>File Chooser properties</h2>
+<dl class="sans">
+<dt>Accept</dt>
+<dd>The file type filter to accept. This can be a comma-separated list of file extensions, e.g. ".png,.jpg,.jpeg", or a MIME type, such as <em>image/*</em> for any image file, <em>video/*</em> for any video file, and so on. If left empty, the file chooser will be able to choose any kind of file. </dd>
+<dt>Select</dt>
+<dd>Whether to allow selecting a single file only, or multiple files in one go.</dd>
+<dt>Initially visibile</dt>
+<dd>Whether the control is initially visible or hidden.</dd>
+<dt>ID <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>id</em> attribute for the element in the DOM (Document Object Model). This can be useful for CSS styling.</dd>
+<dt>Class <span class="ilTag c1">Optional</span></dt>
+<dd>An optional <em>class</em> attribute for the element in the DOM (Document Object Model). This can be useful for CSS styling.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>File Chooser conditions</h2>
+<p>See <a class="extern" href="common-features/common-conditions.html" rel="noopener" target="_blank" title="Make your own games">common conditions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>On changed</dt>
+<dd>Triggered when a file or set of files has been chosen from the input control.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>File Chooser actions</h2>
+<p>See <a class="extern" href="common-features/common-actions.html" rel="noopener" target="_blank" title="Make your own games">common actions</a> for features shared between form control objects.</p>
+<dl class="sans">
+<dt>Clear</dt>
+<dd>Reset the control to its initial state with no selection, clearing any prior picked file.</dd>
+<dt>Click</dt>
+<dd>Acts as if the file chooser was clicked, which brings up the system file picker. This allows the button to be completely customised, as the actual File Chooser object can be moved offscreen, and a custom sprite or other object used to activate the <em>Click</em> action of File Chooser instead.<br/>
+</dd>
+<dt>Release file</dt>
+<dd>Release a previously returned file URL. This allows the browser to release memory for the file. If the user chooses lots of files or chooses them regularly this action should be used to release the files after they are no longer needed.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>File Chooser expressions</h2>
+<dl class="sans">
+<dt>FileCount</dt>
+<dd>The number of chosen files. If <em>Select</em> is <em>Single</em>, this is always 1. If <em>Multiple</em> then this returns the number of chosen files.</dd>
+<dt>FileNameAt(index)</dt>
+<dd>Return the name of the chosen file at an index. In <em>Single</em> select mode, the index should always be 0, since only one file can be chosen.</dd>
+<dt>FileSizeAt(index)</dt>
+<dd>Return the size of the chosen file in bytes at an index. In <em>Single</em> select mode, the index should always be 0, since only one file can be chosen.</dd>
+<dt>FileTypeAt(index)</dt>
+<dd>Return the MIME type of the chosen file at an index. The MIME type is the standardised Internet media type of the file contents. For example, this can be <em>image/png</em> for a PNG image, <em>image/jpeg</em> for a JPEG image, or <em>text/plain</em> for a plaintext file. In <em>Single</em> select mode, the index should always be 0, since only one file can be chosen.</dd>
+<dt>FileURLAt(index)</dt>
+<dd>The URL to access the local file's contents at an index. For more information see <em>Using files</em> above. In <em>Single</em> select mode, the index should always be 0, since only one file can be chosen.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

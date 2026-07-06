@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/share" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Share
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Share</strong> object can bring up the system share feature, allowing the user to share something via another app.</p>
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API">Web Share API</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Sharing files</h2>
+<p>The Share plugin can add files to a share, such as images or videos, if <em>Is sharing files supported</em> is true. The contents of the file is taken from a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object. Often Construct can provide a screenshot or video as a local URL. The process to share this as a file is as follows:</p>
+<ol class="list">
+<li>Use the <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX object</a> to load the URL in to a Binary Data object. This works like any other AJAX request, except using the <em>Set response binary</em> action before the request action.</li>
+<li>Once the AJAX request completes successfully, the data from the URL is in the Binary Data object.</li>
+<li>Now you can use the <em>Add file</em> action to attach the contents of the Binary Data object to the next share. Use the <em>Add file</em> action immediately before the <em>Share</em> action to attach the file to the next share.</li>
+</ol>
+<p>For an example of this, <a class="extern" href="https://editor.construct.net/#open=taking-screenshots" rel="noopener" target="_blank" title="Make games in the browser">open the 'Taking screenshots' example</a> which demonstrates taking a canvas snapshot and sharing it as a file.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Share conditions</h2>
+<dl class="sans">
+<dt>Is supported</dt>
+<dd>Check whether sharing is supported on the current platform. Sharing will only work if this is true.</dd>
+<dt>Is sharing files supported</dt>
+<dd>Check whether sharing files with the <em>Add file</em> action is supported on the current platform. The <em>Add file</em> action will only work if this is true. If it is false but <em>Is supported</em> is still true, then the <em>Share</em> action can still be used to share text and a URL.</dd>
+<dt>On share completed</dt>
+<dd>Triggered after a share action once the user completes the share process.<br/>
+</dd>
+<dt>On share failed</dt>
+<dd>Triggered if a share action is not successfully completed or an error otherwise occurs.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Share actions</h2>
+<dl class="sans">
+<dt>Add file</dt>
+<dd>Attach a file to the next share using the contents of a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object, with a given filename. This can be used multiple times before a <em>Share</em> action to attach multiple files to be shared, such as a series of screenshots. The type of the data must also be specified, which is normally <code>"image/png"</code> for a screenshot, or <code>"video/webm"</code> for a video, but can also be other types (see <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME Types</a>). For more information see <em>Sharing files</em> above.</dd>
+<dt>Share</dt>
+<dd>Use the system share feature to share some text via another app. <em>Text</em> is the text to share; <em>Title</em> is an optional title to use (which can be used for other fields, such as the subject of an email if shared to an email app); and <em>URL</em> is a link to share. All three fields are optional, but at least one must be provided. If <em>Is sharing files supported</em> is true and any <em>Add file</em> actions were used before this action, those files are attached to the share.<br/>
+</dd>
+<dt>Request app rating</dt>
+<dd>Display a dialog to the user requesting that they rate your application. Where available this uses the platform's built-in request app rating dialog, which has predefined text. On Android if this is not supported it falls back to using a custom system dialog, the content of which is defined by the parameters to the action. You should request review at an appropriate time, and infrequently, as so not to frustrate your users. For iOS see <a class="extern outlink" href="https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/ratings-and-reviews/" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/ratings-and-reviews/">Apple's guide on ratings</a>, and for Android see the <a class="extern outlink" href="https://developer.android.com/guide/playcore/in-app-review" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.android.com/guide/playcore/in-app-review">Google Play In-App Review API guide</a>. </dd>
+<dt>Display store page</dt>
+<dd>Display the native store page (Google Play/App Store) for an application with a given identifier. Note the app ID can be left empty to use the app ID specified in Project Properties.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Share expressions</h2>
+<p>The <em>Share</em> object has no expressions.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

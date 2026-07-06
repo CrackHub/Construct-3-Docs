@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/layouts" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Layouts
+            </h1>
+<div itemprop="articleBody">
+<p>A <strong>layout</strong> is a pre-arranged set of objects. It can represent a game level, menu or title screen, or a scene in an animation. In other tools layouts may be referred to as <em>scenes</em>, <em>rooms</em>, <em>frames</em> or <em>stages</em>. They can be added, renamed and deleted from the <a class="extern" href="../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a>. Layouts are edited with the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>. Every layout has an associated <a class="extern" href="events/event-sheets.html" rel="noopener" target="_blank" title="Make your own games">event sheet</a> which defines how the layout works.</p>
+<p>Layouts contain a tree of <a class="extern" href="layers.html" rel="noopener" target="_blank" title="Make your own games">layers</a>. A layout must have at least one layer. Objects that appear on the screen do not belong directly to a layout - they belong to one of the layers in the layout.</p>
+<p>Layouts do not have a background color. To set a background color, make the bottom layer opaque and set its background color. This can be done in the <a class="extern" href="../interface/bars/layers-bar.html" rel="noopener" target="_blank" title="Make your own games">Layers Bar</a>.</p>
+<p>Layouts can also have <a class="extern" href="objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effects</a> applied, which affects all content appearing in the display.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Adding and removing layouts</h2>
+<p>To add a layout, right-click a layout folder (such as the root level <em>Layouts</em>) in the <a class="extern" href="../interface/bars/project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> and select <strong>Add layout</strong>.</p>
+<p>To rename or remove a layout, right-click the layout itself in the Project Bar and select <strong>Rename</strong> or <strong>Delete</strong>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Layout properties</h2>
+<p>The properties for a layout can be edited in the <a class="extern" href="../interface/bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a> after clicking a space in the layout or selecting the name of the layout in the Project Bar.</p>
+<dl class="sans">
+<dt>Name</dt>
+<dd>The name of this layout.</dd>
+<dt>Event sheet</dt>
+<dd>The associated event sheet that defines how this layout works. Event sheets can be shared between layouts using <a class="extern" href="events/includes.html" rel="noopener" target="_blank" title="Make your own games">includes</a> if you have a lot of similar events between layouts.</dd>
+<dt>Size</dt>
+<dd>The size, in pixels, of the layout area. If <em>Unbounded scrolling</em> is enabled, this still affects how much of the layout area is shown in the Layout View.</dd>
+<dt>Unbounded scrolling</dt>
+<dd>By default the game window cannot scroll past the edges of the layout. Enable this to allow unlimited scrolling in any direction, even past the edges of the layout.</dd>
+<dt>Sampling</dt>
+<dd>Override the project sampling setting for content on this layout. <em>Auto</em> means it will use the project sampling setting. Layers and individual object instances can also further override this setting.</dd>
+<dt>Projection</dt>
+<dd>Set the projection used for rendering 3D features. The default <em>Perspective</em> projection means things get smaller as they get further away. The <em>Orthographic</em> projection instead keeps everything the same size, regardless of its distance from the camera, creating a flat appearance. For an interactive example of both projections, see the <a class="extern" href="https://editor.construct.net/#open=orthographic-projection" rel="noopener" target="_blank" title="Make games in the browser">Orthographic projection example</a>.</dd>
+<dt>Vanishing point</dt>
+<dd>When using 3D features such as Z elevation and the 3D shape object with perspective, this specifies where the vanishing point is relative to the viewport area. (This setting does not apply with an orthographic projection, as there is no perspective.) The default is 50%, 50% meaning the middle of the viewport. Consequently as things move in to the distance, they will also move towards the middle of the screen. Altering this will adjust the perspective such that objects moving in to the distance move to a vanishing point elsewhere on the screen. For example setting the vanishing point to 0%, 0% moves the vanishing point to the top-left corner of the screen. This can be used to adapt the 3D perspective to the style of your project. To learn more see the tutorial <a class="extern" href="https://www.construct.net/tutorials/using-3d-construct-2746.html" rel="noopener" target="_blank" title="Make your own games">Using 3D in Construct</a>.</dd>
+<dt>Effects</dt>
+<dd>Add and edit <a class="extern" href="objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effects</a> that apply to the whole layout.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Editor properties</h2>
+<p>These properties only affect how the layout works in the editor, and don't change how it works at runtime.</p>
+<dl class="sans">
+<dt>Margins</dt>
+<dd>The size in pixels of extra padding space around the actual layout area that you can scroll around in. Some padding is often useful for conveniently editing the edges of the layout area.</dd>
+<dt>Show grid</dt>
+<dd>Whether to display a 2D grid in the Layout View. Note as this is a 2D feature it only displays a grid using the grid width and height on the Z=0 plane - it does not draw anything for the Z axis.</dd>
+<dt>Snap to grid</dt>
+<dd>Whether to snap all object placements and sizes to the grid in the Layout View. Note if this is enabled then it overrides the <em>Pixel snapping</em> setting; if disabled then snapping may still occur if <em>Pixel snapping</em> is enabled.</dd>
+<dt>Grid size</dt>
+<dd>The size of the grid in pixels. This is only used if <em>Show grid</em> or <em>Snap to grid</em> is enabled.</dd>
+<dt>Grid offset</dt>
+<dd>By default the grid is aligned with the top left edge of the layout area. Adding an offset shifts the grid along each axis so it is offset from the edges of the layout.</dd>
+<dt>Pixel snapping</dt>
+<dd>Enabling this option is equivalent to enabling <em>Snap to grid</em> with the size 1x1x1, ensuring objects are never placed at fractional positions. This only takes effect when <em>Snap to grid</em> is disabled - when <em>Snap to grid</em> is enabled then the snapping is done according to the grid size instead. This can be a useful option for pixel art style projects to ensure fractional positions are never used while being able to preserve the grid size.</dd>
+<dt>Show collision polygons</dt>
+<dd>Display outlines of object's collision polygons in the Layout View. This can help arrange objects with regards to how they collide, rather than just how they appear.</dd>
+<dt>Show meshes</dt>
+<dd>Display outlines of object's meshes in the Layout View, if a mesh has been created. See <em>Editing meshes</em> in the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View manual entry</a> for more details.</dd>
+<dt>Show translucent inactive layers</dt>
+<dd>Enable to display all layers other than the active layer at a reduced opacity. This can help identify the content on the active layer.</dd>
+<dt>Show hierarchy</dt>
+<dd>Display arrows over scene graph hierarchies pointing from parents to children. See <em>Setting up a hierarchy</em> in the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View manual entry</a> for more details.</dd>
+<dt>Project properties</dt>
+<dd>A shortcut to view the <a class="extern" href="projects.html" rel="noopener" target="_blank" title="Make your own games">project's properties</a>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

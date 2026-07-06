@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/flowcharts/flowchart-node-output" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Output
+            </h1>
+<div itemprop="articleBody">
+<p><a class="extern" href="flowchart-node.html" rel="noopener" target="_blank" title="Make your own games">Nodes</a> can have an arbitrary amount of outputs, which have a name, an associated value, and can be linked to the input of another node.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Editing outputs</h2>
+<p>For a more complete overview on the editing tools available, look at the <a class="extern" href="../../interface/flowchart-view.html" rel="noopener" target="_blank" title="Make your own games">Flowchart View</a> section of the manual.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Output Properties</h2>
+<dl class="sans">
+<dt>Index</dt>
+<dd>The index of an output is a read-only property and can be used by the <a class="extern" href="../../plugin-reference/flowchart-controller.html" rel="noopener" target="_blank" title="Make your own games">Flowchart Controller</a> to query information about an output or to move to the next connected node.</dd>
+<dt>Name</dt>
+<dd>A string of a name for the output. This can be used by the Flowchart Controller plugin to get the associated value or to move the state of the <a class="extern" href="flowchart.html" rel="noopener" target="_blank" title="Make your own games">flowchart</a> to the next connected node.</dd>
+<dt>Value</dt>
+<dd>A string  which can hold an arbitrary value with no specific purpose, to be accessed via event sheets.</dd>
+<dt>Enable</dt>
+<dd>A boolean property indicating if the output is enabled or not. A disabled output is ignored at runtime, it can not be followed and it's information can not be queried. It is not considered when using the for loop condition to iterate the outputs of a node.</dd>
+<dt>Default</dt>
+<dd>A boolean property indicating if the output is the default one or not. Default outputs can be targeted by the <a class="extern" href="../../plugin-reference/flowchart-controller.html" rel="noopener" target="_blank" title="Make your own games">Flowchart Controller</a> ACEs. If a node doesn't have any explicit default output, the corresponding ACEs don't do anything. This setting can also be used together with disabled nodes to bypass them at runtime. When the runtime encounters a disabled node with a default output it will attempt to follow all bypasses until it can land in an enabled node.</dd>
+<dt>Color</dt>
+<dd>An editor only property to help better identify links between nodes when there are many of them.</dd>
+<dt>Link mode</dt>
+<dd>An editor only property to choose how to draw the link between nodes. Can either be a straight line or use path finding to avoid overlapping nodes. Using path finding can be useful when a link ends up going over other nodes.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

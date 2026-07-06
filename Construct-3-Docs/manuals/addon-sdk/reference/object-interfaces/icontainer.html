@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/object-interfaces/icontainer" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IContainer interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IContainer</code> interface represents a container in Construct, which is a group of object types that are always created, destroyed and picked together.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Methods</h2>
+<dl>
+<dt>GetMembers()</dt>
+<dd>Return an array of <a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> representing the object types in the container. Containers always have at least two members.</dd>
+<dt>SetSelectMode(m)</dt>
+<dt>GetSelectMode()</dt>
+<dd>Set or get the select mode of the container, corresponding to the <em>Select mode</em> property in Construct. Allowed modes are <code>"normal"</code>, <code>"all"</code> and <code>"wrap"</code>.</dd>
+<dt>RemoveObjectType(objectType)</dt>
+<dd>Remove a member <a class="extern" href="iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> from this container. </dd>
+<dt>IsActive()</dt>
+<dd>Return a boolean indicating if the container is active. It becomes inactive if there are fewer than the minimum required two members, at which point it is effectively deleted.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/html-element" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                HTML Element
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>HTML Element</strong> plugin allows you to include custom HTML content in your project. The HTML content can also be styled with CSS to alter its appearance. This is a good way to display content with more complex layout, such as tables, grids, and menus.</p>
+<p>Construct creates a single HTML Element for each instance of the object, and sizes and positions the element to match the object's size and position in the project. Beyond that the content is entirely determined by the HTML you provide.</p>
+<p>This guide will not teach how HTML and CSS work. However there is lots of information on the web about them. For example take a look at the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics">HTML basics</a> article on the MDN Web Docs.</p>
+<p>You can find several examples of using the HTML Element object in the Example Browser. Add the HTML Element plugin as a filter and the list will display projects using it.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/html-element.html" rel="noopener" target="_blank" title="Make your own games">IHTMLElementInstance script interface</a>. This allows access in worker mode; when worker mode is disabled, you can also use all the browser standard DOM APIs.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Layering HTML objects</h2>
+<p>As the name suggests, this object displays using a HTML element rather than drawing in to the canvas. This means its layering works differently to other objects. To learn more about how to layer HTML objects, see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>CSS styling</h2>
+<p>If you only need a small number of custom CSS styles for HTML Element, these can be entered in to the <em>Style attribute</em> property. However it's often more convenient to use a CSS file to write styles in a more readable and easily editable way.</p>
+<p>CSS styles can be added to the project by adding a stylesheet to the <em>Files</em> folder in the Project Bar. See <a class="extern" href="../project-primitives/files.html" rel="noopener" target="_blank" title="Make your own games">Project files</a> for more details.</p>
+<p>The HTML Element object has <em>ID</em> and <em>Class</em> properties. These can be filled in and then CSS styles added for the corresponding ID or class, which will allow altering the appearance of the main HTML element created by Construct. For example if the class is entered as <em>myelement</em>, then CSS styles can be added for it with the rule <code>.myelement { ... }</code>.</p>
+<p>Note that Construct sets the following styles on the HTML element via its style attribute. It is best not to override these as they may cause the element to work incorrectly.</p>
+<ul class="list">
+<li><code>position</code></li>
+<li><code>left</code>, <code>top</code>, <code>width</code> and <code>height</code></li>
+<li><code>box-sizing</code></li>
+<li><code>display</code> if made invisible</li>
+<li><code>color</code> and <code>background-color</code> if <em>Set color</em> and <em>Set background color</em> are enabled</li>
+<li><code>font-size</code> if <em>Auto font size</em> is enabled</li>
+<li><code>user-select</code> if <em>Allow text selection</em> is disabled</li>
+</ul>
+<p>One useful technique is to put a wrapper element inside the HTML element that is sized to fill its container. Then any custom styles or appearances can be used on that wrapper element without accidentally affecting the element created by Construct. This would mean the HTML content is something like this:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-html line-numbers" tabindex="0"><code class="match-braces language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>wrapper<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token comment">&lt;!-- Content goes here --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>This can then be styled to fill its container. There are several ways to do this in CSS; here is one approach using absolute positioning.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-css line-numbers" tabindex="0"><code class="match-braces language-css"><span class="token selector">.wrapper</span> <span class="token punctuation brace-curly brace-open brace-level-1" id="pair-0-close">{</span>
+	<span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+	<span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+	<span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+	<span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+	<span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-0-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Now further styles can be added to the wrapper, such as <code>font-size</code>, without conflicting with the styles added by Construct.</p>
+<h3>Scaling with Construct's canvas</h3>
+<p>Construct sets a CSS variable named <code>--construct-scale</code> on the root <code>html</code> element of the document, with a number representing the canvas scale as a multiplier. You can use this with <code>calc()</code> to scale CSS properties to match the displayed canvas size, e.g.:</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-css line-numbers" tabindex="0"><code class="match-braces language-css"><span class="token selector">.mybutton</span> <span class="token punctuation brace-curly brace-open brace-level-1" id="pair-3-close">{</span>
+	<span class="token property">height</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-2-close">(</span><span class="token function">var</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-1-close">(</span>--construct-scale<span class="token punctuation brace-round brace-close brace-level-3" id="pair-1-open">)</span> * 2em<span class="token punctuation brace-round brace-close brace-level-2" id="pair-2-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-3-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>This sets <code>.mybutton</code> to have a height of 2em at 100% scale, but also adjusts the height to follow Construct's fullscreen scaling.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Managing long HTML content</h2>
+<p>If you have a lot of HTML content to display, consider adding it as a HTML project file. Then use the <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX</a> object to fetch the project file, and set the content of the HTML Element to the content of the project file.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Scaling with the canvas</h2>
+<p>By default <em>Auto font size</em> is enabled. This means Construct sets a <code>font-size</code> style on the main HTML element to an <code>em</code> size that scales with the displayed canvas size. For example at 100% scale it will set <code>font-size: 1em</code>. Then if the window is resized to display twice as large, it will set <code>font-size: 2em</code>.</p>
+<p>This is useful for scaling your HTML content with the displayed size of the game. The key is to <strong>use</strong> <code>em</code> <strong>units for sizing</strong>. Then everything will automatically scale with the canvas.</p>
+<p>For example if you set <code>border-radius: 20px</code>, that will use a fixed 20px size regardless of how large or small the window size is, meaning it will look wrong at some sizes. However if you set <code>border-radius: 2em</code>, it will scale the size to match the canvas size, ensuring it looks consistent at all sizes.</p>
+<p>If you want to change the <code>font-size</code> for your HTML content, note that Construct sets that property already. The best approach is to use a wrapper element as described above, and change the <code>font-size</code> of the wrapper instead.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Using BBCode</h2>
+<p>HTML Element also sets supporting its content using simple formatting tags known as "BBCode". This involves using square bracket tags such as [b] and [/b] around text to make bold, e.g. <code>[b]bold text[/b]</code>. The tags you can use for BBCode in HTML Element are listed below.</p>
+<table>
+<thead>
+<tr>
+<td>Tag</td>
+<td>Description</td>
+</tr>
+</thead>
+<tbody><tr>
+<td>[b]...[/b]</td>
+<td><strong>Bold text</strong></td>
+</tr>
+<tr>
+<td>[i]...[/i]</td>
+<td><em>Italic text</em></td>
+</tr>
+<tr>
+<td>[s]...[/s]</td>
+<td><strike>Strikethrough text</strike></td>
+</tr>
+<tr>
+<td>[u]...[/u]</td>
+<td><u>Underline text</u></td>
+</tr>
+<tr>
+<td>[sub]...[/sub]</td>
+<td>Subscript text</td>
+</tr>
+<tr>
+<td>[sup]...[/sup]</td>
+<td>Superscript text</td>
+</tr>
+<tr>
+<td>[small]...[/small]</td>
+<td>Smaller text</td>
+</tr>
+<tr>
+<td>[mark]...[/mark]</td>
+<td>Mark text with highlight</td>
+</tr>
+<tr>
+<td>[code]...[/code]</td>
+<td>Format as code snippet</td>
+</tr>
+<tr>
+<td>[h1]...[/h1]</td>
+<td>Header 1</td>
+</tr>
+<tr>
+<td>[h2]...[/h2]</td>
+<td>Header 2</td>
+</tr>
+<tr>
+<td>[h3]...[/h3]</td>
+<td>Header 3</td>
+</tr>
+<tr>
+<td>[h4]...[/h4]</td>
+<td>Header 4</td>
+</tr>
+<tr>
+<td>[item]</td>
+<td>Item bullet point: •</td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Security</h2>
+<p>By default the HTML Element object interprets content as HTML. This is safe with content you've written yourself. However it's common to insert user-provided values, such as the user's name, in to HTML. <strong>This is a potential security risk</strong> and must be handled carefully.</p>
+<p>Inserting a string like <code>"&lt;p&gt;Your name is " &amp; PlayerName &amp; "!&lt;/p&gt;"</code> is dangerous, because the player could enter HTML content for their name - which can even include script tags. For example the player could enter their name as <code>&lt;script&gt;runDangerousCode()&lt;/script&gt;</code>. Then in the previous example the inserted HTML content will be <code>&lt;p&gt;Your name is &lt;script&gt;runDangerousCode()&lt;/script&gt;!&lt;/p&gt;</code> which will execute the given JavaScript code, which may be malicious.</p>
+<p>The solution is to make sure all user-provided values are <em>escaped</em>. This makes sure that HTML tags are displayed as text, rather than interpreted as HTML, replacing characters like <code>&lt;</code> and <code>&gt;</code> with <code>&amp;lt;</code> and <code>&amp;gt;</code>. This is done with the <em>EscapeHTML</em> expression. For example the following expression is now safe as it escapes the player name:</p>
+<p><code>"&lt;p&gt;Your name is " &amp; HTMLElement.EscapeHTML(PlayerName) &amp; "!&lt;/p&gt;"</code></p>
+<p>Another alternative is to use BBCode or plain text as the content type. In both cases it is impossible for users to insert unexpected HTML tags, so they are fundamentally safe.</p>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>HTML Element properties</h2>
+<dl class="sans">
+<dt>Tag</dt>
+<dd>The name of the HTML tag that Construct creates. By default this is <code>div</code> for a <code>&lt;div&gt;</code> element, but it can be changed to any other HTML element.</dd>
+<dt>Content</dt>
+<dd>The text to use as the initial content of the HTML Element. The way this is interpreted is set by the <em>Content type</em> property, which defaults to HTML. If you have a lot of content consider using a project file instead - see <em>Managing long HTML content</em> above.</dd>
+<dt>Content type</dt>
+<dd>Choose how the initial content text is interpreted. The default is <em>HTML</em>. It can also be set to <em>BBCode</em> (see the section on <em>Using BBCode</em> above), or <em>Plain text</em> to avoid interpreting any tags on the text at all.</dd>
+<dt>Initially visible</dt>
+<dd>Set whether the HTML Element is visible upon creation. The element is made invisible by setting the style <code>display: none</code>.</dd>
+<dt>ID</dt>
+<dd>The ID to set for the HTML Element.</dd>
+<dt>Class</dt>
+<dd>The class to set for the HTML Element. Like with the HTML <em>class</em> attribute, multiple classes can be specified separated by spaces.</dd>
+<dt>Allow context menu</dt>
+<dd>Whether the browser's default context menu should be allowed on the HTML Element. Typically this should be allowed for input elements, but often disallowing it is appropriate for games, which may use controls like right-clicking for other purposes. If disallowed, Construct will call <code>preventDefault()</code> on the <code>"contextmenu"</code> event.</dd>
+<dt>Stop input events</dt>
+<dd>Construct sometimes stops input events on HTML elements from reaching the rest of the project. For example using arrow keys to move the caret inside a text input should not also move the player if they are controlled by arrow keys. This also applies to mouse or touch input. This is optional with the HTML Element object and has three modes:<ul class="list"><br/>
+<li><strong>No</strong> - no input events are stopped. All mouse, touch or keyboard input on the element will reach the rest of the project.</li><br/>
+<li><strong>Child elements only</strong> - input events reaching child elements of the main HTML element will be stopped from reaching the rest of the project. However the main HTML element will not stop any input.</li><br/>
+<li><strong>Entire element</strong> - all input events on the entire HTML element will be stopped from reaching the rest of the project.</li></ul></dd>
+<dt>Origin</dt>
+<dd>Choose the position of the origin of the object relative to its unrotated bounding rectangle.</dd>
+<dt>Set color</dt>
+<dt>Default color</dt>
+<dd>Enable <em>Set color</em> to set the <code>color</code> CSS style on the HTML element to the given color. This changes the text color. Usually this is desirable as otherwise the text color may not be visible against the background.</dd>
+<dt>Set background color</dt>
+<dt>Default background color</dt>
+<dd>Enable <em>Set background color</em> to set the <code>background-color</code> style on the HTML element to the given color.</dd>
+<dt>Auto font size</dt>
+<dd>Automatically set a <code>font-size</code> CSS style on the HTML element according to the display scale of the canvas. This provides a convenient way to size HTML content with the canvas by using <code>em</code> units. See the section <em>Scaling with the canvas</em> above for more details.</dd>
+<dt>Allow text selection</dt>
+<dd>Set whether dragging over text is allowed to create a selection. By default this is disabled, which adds the CSS style <code>user-select: none</code>.</dd>
+<dt>Style attribute</dt>
+<dd>Additional CSS styles for the main HTML element can be added here, separated by semicolons. This will be set via the <code>style</code> attribute of the HTML element. Consider using CSS files if there are more than a couple of simple styles - see the section <em>CSS styling</em> above for more details.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>HTML Element conditions</h2>
+<dl class="sans">
+<dt>On clicked</dt>
+<dd>Triggered when any part of the HTML element is clicked. The <em>TargetID</em> and <em>TargetClass</em> expressions are set to the ID and class of the clicked element.</dd>
+<dt>On clicked class</dt>
+<dd>Triggered when an element with a given list of CSS classes is clicked. This includes a click on any child elements contained by the element with the given CSS classes. A single class name can be specified, or multiple classes given separated by spaces, in which case the clicked element must match all the given classes. </dd>
+<dt>On clicked ID</dt>
+<dd>Triggered when an element with a given ID is clicked. This includes a click on any child elements contained by the element with the given ID. </dd>
+<dt>On CSS animation ended</dt>
+<dd>Triggered when a CSS animation for any contained element finishes (i.e. the <code>"animationend"</code> event). The animation name is specified by the <code>@keyframes</code> rule. The <em>TargetID</em> and <em>TargetClass</em> expressions are set to the ID and class of the element that finished a CSS animation. This trigger is useful for things like destroying the HTML element after a fade out CSS animation has finished. </dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>HTML Element actions</h2>
+<dl class="sans">
+<dt>Create sprite image element</dt>
+<dd>Creates an <code>&lt;img&gt;</code> element with the content of a given <a class="extern" href="sprite.html" rel="noopener" target="_blank" title="Make your own games">Sprite</a> object's current image, and inserts it to the HTML element. The location to insert is set by a CSS selector. This can be left blank to insert in to the main HTML element. Alternatively a selector like <code>".myclass"</code> will mean to insert content to the child element with the class <em>myclass</em>. The element can be set to inserted at the start or the end of the given element, or alternatively replacing all the content of the given element with the image. The inserted image element can optionally also be given an ID and class, which helps make it easy to style the inserted image with CSS. </dd>
+<dt>Insert content</dt>
+<dd>Insert the given string of content inside the HTML element. The string is interpreted according to the content type (HTML, BBCode or plain text). The position indicates whether to insert at the start or the end of the given location. The location to insert is set by a CSS selector. This can be left blank to insert in to the main HTML element. Alternatively a selector like <code>".myclass"</code> will mean to insert content to the child element with the class <em>myclass</em>; if the <em>Type</em> is set to <em>all</em>, it will insert the same content to all elements matching the selector. </dd>
+<dt>Position object at element</dt>
+<dd>Sets the position and size of a given object to match the position and size of a specific HTML element. The element is chosen by a CSS selector, e.g. <code>".myclass"</code> to position an object at an element with the class <em>myclass</em>. </dd>
+<dt>Remove content</dt>
+<dd>Either removes elements entirely, or clears their content to make them empty, according to the given mode. The content to remove or clear is given by a CSS selector. This can be left blank to clear the main HTML element. (Note the main HTML element cannot be removed, so in this case it will be cleared instead.) Alternatively a selector like <code>".myclass"</code> will mean an element with the class <em>myclass</em> will be removed or cleared; if the <em>Type</em> is set to <em>all</em>, this will remove or clear all elements matching the selector.</dd>
+<dt>Set attribute</dt>
+<dd>Either sets or removes a named attribute on a HTML element, according to the given mode. The value is ignored if removing. The HTML element to alter attributes for is given by a CSS selector. This can be left blank to alter attributes for the main HTML element. Alternatively a selector like <code>".myclass"</code> will update attributes for an element with the class <em>myclass</em>; if the <em>Type</em> is set to <em>all</em>, this will update attributes for all elements matching the selector.</dd>
+<dt>Set class</dt>
+<dd>Either adds, toggles or removes classes on a HTML element, according to the given mode. Multiple classes can be updated at once by separating their names with spaces. The HTML element to alter classes for is given by a CSS selector. This can be left blank to alter classes for the main HTML element. Alternatively a selector like <code>".myclass"</code> will update the classes for an element with the class <em>myclass</em>; if the <em>Type</em> is set to <em>all</em>, this will update classes for all elements matching the selector. </dd>
+<dt>Set content</dt>
+<dd>Replaces some content inside the HTML element with the given string. The string is interpreted according to the content type (HTML, BBCode or plain text). The location to replace content is set by a CSS selector. This can be left blank to replace the content of the entire main HTML element. Alternatively a selector like <code>".myclass"</code> will mean to replace the content of the child element with the class <em>myclass</em>; if the <em>Type</em> is set to <em>all</em>, it will replace the content of all elements matching the selector. </dd>
+<dt>Set CSS style</dt>
+<dd>Set a single CSS style on the style attribute inside the HTML element, based on a CSS property name and a string for its value. Setting the value to an empty string will remove the property from the style attribute. The element to change the style for is set by a CSS selector. This can be left blank to update the style attribute of the main HTML element. Alternatively a selector like <code>".myclass"</code> will mean to update the CSS style of the child element with the class <em>myclass</em>; if the <em>Type</em> is set to <em>all</em>, it will update the style of all elements matching the selector.</dd>
+<dt>Set scroll position</dt>
+<dd>Set the horizontal or vertical scroll position of an element. The HTML element to scroll is given by a CSS selector. This can be left blank to scroll the main HTML element, or use a CSS selector string like <code>".myclass"</code> to scroll an element with the class <em>myclass</em>. This action only scrolls one element matching the selector. The <em>Direction</em> specifies whether to set the scroll top (vertical) or left (horizontal) position, and the <em>Position</em> value is the scroll position to set in CSS pixels.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link9" name="internalH1Link9"></a><h2>HTML element expressions</h2>
+<dl class="sans">
+<dt>EscapeHTML(string)</dt>
+<dd>Escapes any characters with meaning in HTML from the given string, such as replacing <code>&lt;</code> with <code>&amp;lt;</code>. This is important for securely inserting user content in to HTML strings. See the <em>Security</em> section above for more details.</dd>
+<dt>HTMLContent</dt>
+<dt>TextContent</dt>
+<dd>A string with the complete content of the HTML element, either as a full HTML string, or plain text only (with HTML tags removed). </dd>
+<dt>TargetClass</dt>
+<dt>TargetID</dt>
+<dd>In a trigger like <em>On clicked</em>, these contain the class and ID of the affected HTML element. Note that <em>TargetClass</em> can be a space-separated list of multiple classes, as per the <em>class</em> HTML attribute.</dd>
+</dl></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

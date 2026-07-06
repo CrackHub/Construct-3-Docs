@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/overview/publishing-projects" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Publishing projects
+            </h1>
+<div itemprop="articleBody">
+<p>To publish a project, use the <span class="navWrap">Menu<span class="arr">►</span>Project<span class="arr">►</span>Export</span> option. Construct allows you to export to a range of platforms, such as the web (HTML5), Android and iOS (via Cordova), and desktop apps (via Windows/macOS/Linux wrappers). Each platform has an accompanying tutorial to guide you through how the exporter works and covering any exporter-specific settings. Note in some cases fees may be involved, such as for developer subscriptions to allow uploading to app stores, or for hosting web content if you don't already have a server.</p>
+<p>Every kind of export has the following common settings:</p>
+<ul class="list">
+<li><strong>Deduplicate images</strong> will search the entire project for identical images and remove the duplicates. This helps save memory and reduce the download size by removing redundant images.</li>
+<li><strong>Lossless format</strong> lets you choose what format to export images in your project set to use lossless quality (i.e. perfect).</li>
+<li><strong>Lossy format</strong> lets you choose what format to export images in your project set to use lossy quality (i.e. allowing some reduction in quality in order to allow a greater reduction in the file size).</li>
+<li><strong>Optimize images</strong> will optimize all the lossless images in the project with enhanced compression. This spends longer trying to compress images to an even smaller size. This can make exporting take longer but sometimes significantly reduces the download size of the exported project. This process is lossless, so is guaranteed to preserve the quality of all your artwork.</li>
+<li><strong>Minify script</strong> will obfuscate and compress the main JavaScript file for your exported project. This also helps reduce the download size, improves load time, and makes it significantly more difficult to reverse-engineer the project. Normally <em>Advanced</em> mode is safe to use, but if you use the scripting feature you may want to switch to <em>Simple</em> mode or adjust how you write your code - see <a class="extern" href="../scripting/guides/advanced-minification.html" rel="noopener" target="_blank" title="Make your own games">Exporting with Advanced minification</a> in the scripting section for more details. 
+</li>
+</ul>
+<p>Each option helps optimise the exported project, but can make the export take longer. It is recommended to enable deduplication, image optimization and script minification when exporting the final finished project for publishing. However if you are simply doing a trial export, you may wish to disable them to speed up the process.</p>
+<p>Web-based export options also have a checkbox to enable <strong>Offline support</strong>. This is enabled by default and allows all exported projects to continue to work offline after the first time they are loaded (see <a class="extern" href="https://www.construct.net/tutorials/offline-games-construct-8.html" rel="noopener" target="_blank" title="Make your own games">Offline games in Construct</a> for more details). However this can sometimes interfere with testing if you are regularly updating a web-hosted project, so it can be disabled, but it is recommended to leave it enabled when publishing for release.</p>
+<p>Most export options will prompt you for additional settings specific to that exporter. For example the Android exporter has a setting for the minimum supported Android version.</p>
+<p>When the export finishes, you will be provided with a link to download a zip file containing the final exported project. You can also view some statistics about the export, such as how much download size was saved by image optimization (if it was enabled). The <a class="extern" href="../interface/dialogs/export-manager.html" rel="noopener" target="_blank" title="Make your own games">Export Manager</a> can also be used to find the last few exported projects and download them again.</p>
+<h3>More information about publishing</h3>
+<p>The publishing process is different depending on the chosen export option. The <a class="extern" href="https://www.construct.net/tutorials.html" rel="noopener" target="_blank" title="Make your own games">Tutorials</a> section has guides to help you export to each platform. Here are some to get you started:</p>
+<ul class="list">
+<li><a class="extern" href="https://www.construct.net/tutorials/publishing-to-the-web-10.html" rel="noopener" target="_blank" title="Make your own games">Publishing to the web</a></li>
+<li><a class="extern" href="https://www.construct.net/tutorials/publishing-to-the-scirra-arcade-16.html" rel="noopener" target="_blank" title="Make your own games">Publishing to the Scirra Arcade</a></li>
+<li><a class="extern" href="https://www.construct.net/tutorials/publish-mobile-apps-26.html" rel="noopener" target="_blank" title="Make your own games">How to publish mobile apps</a></li>
+<li><a class="extern" href="https://www.construct.net/tutorials/exporting-windows-webview2-2685.html" rel="noopener" target="_blank" title="Make your own games">Exporting to Windows</a></li>
+<li><a class="extern" href="https://www.construct.net/tutorials/exporting-macos-wkwebview-2718.html" rel="noopener" target="_blank" title="Make your own games">Exporting to macOS</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

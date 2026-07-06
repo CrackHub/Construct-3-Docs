@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/c3addon-file" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The .c3addon file
+            </h1>
+<div itemprop="articleBody">
+<p>Construct 3 addons are distributed as a .c3addon file. This is simply a .zip file renamed to end with .c3addon. You can rename a .c3addon file to .zip and inspect its contents, or create a .c3addon file by zipping some files and renaming it.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Structure of a .c3addon file</h2>
+<p>The files in a .c3addon for a plugin are arranged as follows. Note some features allow extra files to be added, but this is the minimal file structure for an empty plugin/behavior.</p>
+<ul class="list">
+<li><strong>c3runtime/</strong> — subfolder for Construct 3 runtime files.
+	</li><li><strong>lang/en-US.json</strong> — language file containing strings shown in the user interface. This is kept in a separate file to facilitate translation.</li>
+<li><strong>aces.json</strong> — JSON data file that defines actions, conditions and expressions.</li>
+<li><strong>addon.json</strong> — JSON data file with metadata about the addon.</li>
+<li><strong>icon.svg</strong> — addon icon.</li>
+<li><strong>plugin.js</strong> or <strong>behavior.js</strong> — class representing the plugin or behavior.</li>
+<li><strong>type.js</strong> — class representing an object type of the plugin, or behavior type of the behavior, in the editor.</li>
+<li><strong>instance.js</strong> — class representing an instance of the plugin, or behavior instance of the behavior, in the editor.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Specifying metadata</h2>
+<p>The basic metadata about your addon, such as its ID and type, is set in <strong>addon.json</strong>. See <a class="extern" href="addon-metadata.html" rel="noopener" target="_blank" title="Make your own games">Addon metadata</a> for more information.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Setting plugin information</h2>
+<p>For plugins, the detailed information about the plugin and its capabilities is set in <strong>plugin.js</strong>. See <a class="extern" href="configuring-plugins.html" rel="noopener" target="_blank" title="Make your own games">Configuring plugins</a> for more information.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Setting behavior information</h2>
+<p>For behaviors, the detailed information about the behavior and its capabilities is set in <strong>behavior.js</strong>. See <a class="extern" href="configuring-behaviors.html" rel="noopener" target="_blank" title="Make your own games">Configuring behaviors</a> for more information.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Setting effect information</h2>
+<p>For effects, the detailed information about the effect and its capabilities is set using extra properties in <strong>addon.json</strong>. The effect itself is written in a <strong>.fx</strong> file. See <a class="extern" href="configuring-effects.html" rel="noopener" target="_blank" title="Make your own games">Configuring effects</a> for more information.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Defining actions, conditions and expressions</h2>
+<p>To define your plugin or behavior's actions, conditions and expressions (ACEs), they must be specified in <strong>aces.json</strong> and the corresponding language strings added in <strong>en-US.json</strong>. (Currently the language file must be in US English, but the fact it is in a separate file will help facilitate translation in future.)</p>
+<p>For more information see <a class="extern" href="defining-aces.html" rel="noopener" target="_blank" title="Make your own games">Defining actions, conditions and expressions</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

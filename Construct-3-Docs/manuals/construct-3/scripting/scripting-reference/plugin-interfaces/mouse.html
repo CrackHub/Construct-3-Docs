@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/mouse" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Mouse script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IMouseObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/mouse.html" rel="noopener" target="_blank" title="Make your own games">Mouse plugin</a>.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Typically it is used through <code>runtime.mouse</code> instead of the named object.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>The <a class="extern" href="https://editor.construct.net/#open=scripting-shooting" rel="noopener" target="_blank" title="Make games in the browser">Shooting code example</a> demonstrates pointing the player at the mouse cursor and shooting bullets towards it.</p>
+<p>The <a class="extern" href="https://editor.construct.net/#open=tracking-pointers" rel="noopener" target="_blank" title="Make games in the browser">Tracking pointers</a> example also demonstrates how both mouse and touch input can be tracked simultaneously using pointer events.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Events</h2>
+<p>To detect mouse button events, use the events fired on the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">Runtime script interface</a>, such as <code>"mousedown"</code> or <code>"pointerdown"</code>. Some additional Mouse-specific events are also available.</p>
+<dl>
+<dt>"movement"</dt>
+<dd>Fired when the mouse cursor moves. The event object has properties <code>movementX</code> and <code>movementY</code> indicating the amount of movement. This is often used with pointer lock.</dd>
+<dt>"pointerlockchange"</dt>
+<dt>"pointerlockerror"</dt>
+<dd>Fired when the state of pointer lock changes, or if an error occurs attempting to obtain pointer lock.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Mouse APIs</h2>
+<dl>
+<dt>getMouseX(layerNameOrIndex)</dt>
+<dt>getMouseY(layerNameOrIndex)</dt>
+<dt>getMousePosition(layerNameOrIndex)</dt>
+<dd>Return the current position of the mouse cursor on a layer, given by a case-insensitive string of its name or zero-based index. The parameter can be omitted for the default mouse position, which does not take in to account any specific layer's transformations. <code>getMousePosition()</code> returns both the X and Y position as <code>[x, y]</code>.</dd>
+<dt>isMouseButtonDown(button)</dt>
+<dd>Return a boolean indicating if the given mouse button is currently down. The button is specified the same way as the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button">MouseEvent.button</a> property, i.e. 0 for left, 1 for middle, and 2 for right.</dd>
+<dt>setCursorStyle(style)</dt>
+<dd>Set the appearance of the mouse cursor to a string of a CSS <code>cursor</code> style value, e.g. <code>"crosshair"</code>. See <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">cursor styles on MDN</a> for some possible values.</dd>
+<dt>setCursorObjectClass(objectClass)</dt>
+<dd>Set the appearance of the mouse cursor to the current image of an <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a>. Various limitations apply: the object image is used as it appears in the image editor, not taking in to account size or rotation in the layout; the image cannot be too large (64x64 is usually the limit); the cursor may not be applied close to the edges of the browser window; and support varies depending on browser and OS. Some sample code for this method is shown below.<br/>
+<div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">runtime<span class="token punctuation">.</span>mouse<span class="token punctuation">.</span><span class="token function">setCursorObjectClass</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span>runtime<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>Sprite<span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div></dd>
+<dt>hasPointerLock</dt>
+<dd>A read-only boolean indicating if pointer lock is currently active.</dd>
+<dt>requestPointerLock(opts)</dt>
+<dd>Normally in DOM mode code can call the browser <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/requestPointerLock" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Element/requestPointerLock">requestPointerLock</a> method directly. However in worker mode and desktop exports, the browser method is unavailable or does not work. This method can be used to request pointer lock in these additional situations. Much like the browser API, <code>opts</code> is optional and can be an object with the property <code>unadjustedMovement</code> set to <code>true</code> to request that the system does not adjust the mouse movement values during pointer lock. The events <code>"pointerlockchange"</code> or <code>"pointerlockerror"</code> will be fired after this call depending on the outcome of the request.</dd>
+<dt>releasePointerLock()</dt>
+<dd>When pointer lock is active, release the pointer lock restoring normal mouse cursor operation.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

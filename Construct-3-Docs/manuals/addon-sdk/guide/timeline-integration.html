@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/timeline-integration" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Timeline Integration
+            </h1>
+<div itemprop="articleBody">
+<p>Adding <a class="extern" href="../../construct-3/project-primitives/timelines.html" rel="noopener" target="_blank" title="Make your own games">timeline</a> support to a 3rd party addon, be it a <a class="extern" href="../../construct-3/project-primitives/objects/plugins.html" rel="noopener" target="_blank" title="Make your own games">plugin</a>, <a class="extern" href="../../construct-3/project-primitives/objects/behaviors.html" rel="noopener" target="_blank" title="Make your own games">behavior</a> or <a class="extern" href="../../construct-3/project-primitives/objects/effects.html" rel="noopener" target="_blank" title="Make your own games">effect</a> is quite easy. A little bit of extra work is needed though, here is how to do it.</p>
+<h3>Plugins</h3>
+<ol class="list">
+<li>
+Set the <span class="navWrap">interpolatable</span> <a class="extern" href="../reference/pluginproperty.html" rel="noopener" target="_blank" title="Make your own games">plugin property</a> option to <span class="navWrap">true</span> in all the plugin properties which should be supported by timelines.
+</li>
+<li>
+Implement the <span class="navWrap">GetPropertyValueByIndex(index)</span> method in the plugin instance class.
+	<dl class="sans">
+<dt>index argument</dt>
+<dd>Refers to the index of each property in the plugin as they are given to the constructor of the plugin instance class.</dd>
+<dt>return value</dt>
+<dd>The current value associated with the passed in index. Depending on the current implementation this could be as easy as returning an existing variable.</dd>
+</dl>
+</li>
+<li>
+Implement the <span class="navWrap">SetPropertyValueByIndex(index, value)</span> method in the plugin instance class.
+
+<dl class="sans">
+<dt>index argument</dt>
+<dd>Refers to the index of each property in the plugin as they are given to the constructor of the plugin instance class.</dd>
+<dt>value argument</dt>
+<dd>The new value that needs to be applied to the specified property. The passed in value is absolute so it should be applied directly with the <kbd>=</kbd> operator.</dd>
+<dt>return value</dt>
+<dd>No return value is required.</dd>
+</dl>
+</li>
+</ol>
+<h3>Plugin that need layout view preview updates</h3>
+<p>Some plugins might need to update the layout view to give a preview of the changes they are making. In this case a few more methods needs to be implemented so the plugin can update it's internal state when a timeline starts preview and when it stops preview.</p>
+<ol class="list">
+<li>
+Implement the <span class="navWrap">OnTimelinePropertyChanged (id, value, detail)</span> method in the plugin instance class.
+	<dl class="sans">
+<dt>id argument</dt>
+<dd>The id of the property that is changing.</dd>
+<dt>value argument</dt>
+<dd>The value that is being applied by the timeline.</dd>
+<dt>detail argument</dt>
+<dd>An object with details about the value. It has a <strong>"resultMode"</strong> property with a value of either <strong>"absolute"</strong> or <strong>"relative"</strong>.</dd>
+</dl></li>
+<li>
+implement <span class="navWrap">OnExitTimelineEditMode ()</span>. This method is called when timeline edit mode is turned off. In this method the plugin's internal state should be updated again so any timeline changes from the preview are reset. Using <strong>GetPropertyValue(id)</strong> to get values without timeline changes, applying those to the relevant internal variables of the plugin and refreshing the layout view should be enough.
+</li>
+<div class="hr"></div>
+<h3>Behaviors</h3>
+
+See plugin integration above, all steps apply.
+<div class="hr"></div>
+<h3>Effects</h3>
+
+Edit the effect's <span class="navWrap">.json</span> file and add the <span class="navWrap">interpolatable</span> property with a value of <span class="navWrap">true</span> to each <a class="extern" href="configuring-effects.html" rel="noopener" target="_blank" title="Make your own games">paramenter definition</a> which should be supported by timelines. No additional modifications needed. 
+
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

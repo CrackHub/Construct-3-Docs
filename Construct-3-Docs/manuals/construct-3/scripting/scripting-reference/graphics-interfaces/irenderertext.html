@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/graphics-interfaces/irenderertext" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IRendererText script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IRendererText</code> interface manages text wrapping, drawing text to a canvas, and then uploading the result to a texture. This makes it easy to display text in Construct's renderer. It is created via the <a class="extern" href="irenderer-interface.html" rel="noopener" target="_blank" title="Make your own games">IRenderer</a> method <code>createWebGLText()</code>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>IRendererText APIs</h2>
+<dl>
+<dt>release()</dt>
+<dd>Destroy the object and its resources. <code>IRendererText</code> must be released when it is no longer needed; do not simply drop references, otherwise not all of its resources will be collected. If you are developing a plugin that creates an IRendererText, it should release any it still uses in its own <code>_release()</code> method.</dd>
+<dt>fontFace</dt>
+<dd>Set or get a string of the name of the font face used for drawing text.</dd>
+<dt>sizePt</dt>
+<dd>Set or get the size of the font, in points, used for drawing text.</dd>
+<dt>lineHeight</dt>
+<dd>Set or get the extra line height spacing, in pixels, used for drawing text. Note 0 is the default, indicating no offset to the default line height.</dd>
+<dt>isBold</dt>
+<dd>Set or get a boolean indicating whether the text is bold.</dd>
+<dt>isItalic</dt>
+<dd>Set pr get a boolean indicating whether the text is italic.</dd>
+<dt>setColor(color)</dt>
+<dd>Set the color of the text using an array with three elements for the RGB components in the range [0, 1].</dd>
+<dt>SetColorRgb(r, g, b)</dt>
+<dd>Set the color of the text using separate RGB components in the range [0, 1].</dd>
+<dt>setCssColor(str)</dt>
+<dd>Set the color of the text using a string with a CSS color, e.g. "red", "#00ffee", "rgb(0, 128, 192)" etc.</dd>
+<dt>horizontalAlign</dt>
+<dd>Set or get the horizontal alignment of the text within its bounding box. This can be one of <code>"left"</code>, <code>"center"</code> or <code>"right"</code>.</dd>
+<dt>verticalAlign</dt>
+<dd>Set the vertical alignment of the text within its bounding box. This can be one of <code>"top"</code>, <code>"center"</code> or <code>"bottom"</code>.</dd>
+<dt>wordWrapMode</dt>
+<dd>Set the word wrapping mode. This can be one of <code>"word"</code> (for space-delimited word wrapping) or <code>"character"</code> (for wrapping on any character).</dd>
+<dt>textDirection</dt>
+<dd>Set or get the text writing direction, which can be one of <code>"ltr"</code> or <code>"rtl"</code>.</dd>
+<dt>text</dt>
+<dd>Set or get the text string to be drawn.</dd>
+<dt>setSize(width, height, zoomScale)</dt>
+<dd>Set the size of the area that text can be drawn in. The size is specified in CSS pixels. The <code>zoomScale</code> can be increased to render the text at a higher resolution, which can be useful when zooming in.</dd>
+<dt>getTexture()</dt>
+<dd>Get an <a class="extern" href="itexture.html" rel="noopener" target="_blank" title="Make your own games">ITexture</a> interface representing the texture with the requested text rendered on to it. <strong>Note:</strong> the texture is generated asynchronously, so can return <code>null</code> when first requested. Use <code>setTextureUpdateCallback()</code> to get a callback when the texture has updated.</dd>
+<dt>getTexRect()</dt>
+<dd>Return a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect">DOMRect</a> representing the content area of the text on the texture. This is the subset of the texture that ought to be rendered. Note: this is only valid when <code>getTexture()</code> returns a non-null result.</dd>
+<dt>setTextureUpdateCallback(callback)</dt>
+<dd>Set a function to call when the texture containing the rendered text is updated. Since the texture is generated asynchronously, this is necessary to know when to redraw anything that may be displaying the text, so they can redraw with the updated texture.</dd>
+<dt>releaseTexture()</dt>
+<dd>Release the underlying texture. This can be used to save memory. However the texture will be re-created the next time <code>getTexture()</code> is called.</dd>
+<dt>textWidth</dt>
+<dt>textHeight</dt>
+<dd>Return the size of the text bounding box after processing word wrap. This allows determining the size of the actual visible text, rather than the box used for word wrap bounds.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

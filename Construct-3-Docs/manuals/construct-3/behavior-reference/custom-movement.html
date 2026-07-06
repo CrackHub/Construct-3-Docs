@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/custom-movement" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Custom Movement behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Custom Movement behavior</strong> does not directly implement any movement for an object. Instead, it provides features that make it easier to implement your own "custom" (event-based) movement.</p>
+<p>The way different movements are made is out of the scope of this manual section. Instead, it will outline the basics of the Custom Movement behavior and what its features do. For an example of Asteroids style movement using the Custom Movement behavior, <a class="extern" href="https://editor.construct.net/#open=custom-movement-asteroids" rel="noopener" target="_blank" title="Make games in the browser">open the <em>Custom movement ('Asteroids' style)</em> example.</a></p>
+<p>For many games, the built-in behaviors like Platform and 8 Direction are perfectly sufficient. Recreating existing behaviors with the Custom Movement should be avoided, since movements are difficult and time consuming to implement correctly. The built-in behaviours have been thoroughly tested, probably have more features than you imagine (like slope detection in Platform), and are much quicker and easier to use than making your own movement.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Overview of custom movements</h2>
+<p>Most movements in Construct work by manipulating two values: the speed on the X axis (<em>dx</em>) and the speed on the Y axis (<em>dy</em>). These are also known as <em>VectorX</em> and <em>VectorY</em> in some other behaviors. For example, if an object is moving left at 100 pixels per second, <em>dx</em> is -100 and <em>dy</em> is 0. The object can then be accelerated to the right by adding to <em>dx</em>. This is also how most of the other movement behaviors that come with Construct work internally (like Platform and 8 Direction).</p>
+<p>The Custom Movement behavior stores the <em>dx</em> and <em>dy</em> values for you, and provides features that help easily implement the math and algorithms necessary to make a movement.</p>
+<p>Every tick the Custom Movement adjusts the object's position according to the <em>dx</em> and <em>dy</em> values. This is called a <strong>step</strong>. The Custom Movement can also use multiple steps per tick, which can help detect collisions more accurately if the object is moving very quickly. Each step will trigger <em>On step</em>, <em>On horizontal step</em> or <em>On vertical step</em> depending on the <em>Stepping mode</em> property.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Custom Movement properties</h2>
+<dl class="sans">
+<dt>Stepping mode</dt>
+<dd>How to step the movement each tick. The number of steps taken (if not <em>None</em>) depends on the <em>Pixels per step</em> property. The different modes are:<br/>
+<ul class="list"><br/>
+<li><strong>None</strong> simply steps the object once per tick according to its velocity.</li><br/>
+<li><strong>Linear</strong> will step the object in a straight line towards its destination position, triggering <em>On step</em>.</li><br/>
+<li><strong>Horizontal then vertical</strong> will step the object to its destination first on the X axis (triggering <em>On horizontal step</em>), then on the Y axis (triggering <em>On vertical step</em>).</li><br/>
+<li><strong>Vertical then horizontal</strong> will step the object to its destination first on the Y axis (triggering <em>On vertical step</em>), then on the X axis (triggering <em>On horizontal step</em>).</li></ul></dd>
+<dt>Pixels per step</dt>
+<dd>If <em>Stepping mode</em> is not <em>None</em>, this is the distance in pixels of each step towards the destination position each tick. The default is 5, which means if the object is moving 20 pixels in a tick, it will move in four five-pixel steps.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the <em>Set enabled</em> action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Custom Movement conditions</h2>
+<dl class="sans">
+<dt>Compare speed</dt>
+<dd>Compare the current speed of the movement, in pixels per second. <em>Horizontal</em> and <em>Vertical</em> compares to the <em>dx</em> and <em>dy</em> speeds respectively, and <em>Overall</em> compares to the magnitude of the vector (<em>dx</em>, <em>dy</em>) (the overall movement speed).</dd>
+<dt>Is enabled</dt>
+<dd>Test if the behavior is currently enabled. When disabled it will have no effect on the object.</dd>
+<dt>Is moving</dt>
+<dd>True if either <em>dx</em> or <em>dy</em> are not zero. Invert to test if stopped.</dd>
+<dt>On horizontal step</dt>
+<dt>On vertical step</dt>
+<dd>Triggered for each step along an axis when <em>Stepping mode</em> is either <em>Horizontal then vertical</em> or <em>Vertical then horizontal</em>. This can be used to accurately detect collisions with <em>Is overlapping</em>.</dd>
+<dt>On step</dt>
+<dd>Triggered for each step when <em>Stepping mode</em> is <em>Linear</em>. This can be used to accurately detect collisions with <em>Is overlapping</em>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Custom Movement actions</h2>
+<dl class="sans">
+<dt>Set enabled</dt>
+<dd>Enable or disable the behavior. If disabled, the behavior will not modify the object's position.</dd>
+<dt>Rotate clockwise</dt>
+<dt>Rotate counter-clockwise</dt>
+<dt>Set angle of motion</dt>
+<dd>Adjust the angle of motion. This will calculate new values for <em>dx</em> and <em>dy</em> reflecting a new angle of motion with the same overall speed. <strong>Note:</strong> if the overall speed is 0, then setting the angle of motion has no effect, because there is no motion. A common mistake is to set the angle of motion then the speed, and find that the angle is not used. Instead simply set the speed first then the angle of motion and it will work as expected.</dd>
+<dt>Accelerate</dt>
+<dd>Accelerate either the overall movement, or movement on a specific axis.</dd>
+<dt>Accelerate toward angle</dt>
+<dt>Accelerate toward position</dt>
+<dd>Accelerate the movement towards an angle or position.</dd>
+<dt>Push out solid</dt>
+<dd>Only valid when the behavior is currently overlapping an object with the <a class="extern" href="solid.html" rel="noopener" target="_blank" title="Make your own games">solid behavior</a>. Automatically move the object until it is no longer overlapping the solid. This has no effect if the object is not currently overlapping a solid. The following techniques can be used:<br/>
+<ul class="list"><br/>
+<li><strong>Opposite angle</strong> reverses (or 'backtracks') the object from its current angle of motion until it is no longer overlapping.</li><br/>
+<li><strong>Nearest</strong> moves the object in an eight-direction spiral out one pixel at a time until it is no longer overlapping. The aim is for the object to end up in the nearest free space, but since only eight directions are used it will be an approximation.</li><br/>
+<li><strong>Up</strong>, <strong>down</strong>, <strong>left</strong> and <strong>right</strong> moves the object along a specific axis until it is no longer overlapping.</li><br/>
+</ul>
+<br/>
+</dd>
+<dt>Push out solid at angle</dt>
+<dd>Only valid when the behavior is currently overlapping an object with the solid behavior. Move the object from its current position at a given angle until it is no longer overlapping the solid. This has no effect if the object is not currently overlapping a solid.</dd>
+<dt>Reverse</dt>
+<dd>Inverts the movement by flipping the signs of <em>dx</em> and <em>dy</em>.</dd>
+<dt>Set speed</dt>
+<dd>Set the current speed in pixels per second either for the horizontal or vertical axes, or the overall movement speed. Setting horizontal or vertical speeds assigns <em>dx</em> and <em>dy</em> directly. Setting the overall speed calculates new values for <em>dx</em> and <em>dy</em> such that they reflect the new overall speed while keeping the same angle of motion.</dd>
+<dt>Stop</dt>
+<dd>A shortcut for setting both <em>dx</em> and <em>dy</em> to 0, stopping the movement.</dd>
+<dt>Stop stepping</dt>
+<dd>Only valid in <em>On step</em>, <em>On horizontal step</em> and <em>On vertical step</em>. Stop the current stepping for this tick. The object can either go back to its old position (where it was at the start of the tick) or stay at its current position (possibly half way between its start and end positions). Note that in <em>Horizontal then vertical</em> or <em>Vertical then horizontal</em> modes, only the current axis is stopped. The next axis will still continue stepping, unless you also use <em>Stop stepping</em> for that axis as well.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Custom Movement expressions</h2>
+<dl>
+<dt>dx</dt>
+<dt>dy</dt>
+<dd>Return the movement's <em>dx</em> and <em>dy</em> values, which are the speed in pixels per second on each axis.</dd>
+<dt>MovingAngle</dt>
+<dd>Return the current angle of motion, in degrees, calculated as the angle of the vector (<em>dx</em>, <em>dy</em>).</dd>
+<dt>Speed</dt>
+<dd>Return the current overall speed in pixels per second, calculated as the magnitude of the vector (<em>dx</em>, <em>dy</em>).</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

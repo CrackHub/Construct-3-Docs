@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/tilemap" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Tilemap
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Tilemap</strong> object allows tile-based projects to be designed more easily. The object's tilemap can also be edited in the <a class="extern" href="../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">layout view</a> using the <a class="extern" href="../interface/bars/tilemap-bar.html" rel="noopener" target="_blank" title="Make your own games">Tilemap Bar</a>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/987/tilemap.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 415x256px in new window (3.61 KB)"><span><img alt="An example tilemap" height="256" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/987/tilemap.png" width="415"/></span></a><span class="descrip">An example tilemap</span></div></div>
+<p>Tilemaps also have significant performance benefits over achieving the same results with other kinds of objects, such as arranging a grid of Sprites. The Tilemap object can optimise collision detection and rendering in a way that scales well even with extremely large Tilemap objects.</p>
+<p>For information about editing tilemaps in Construct, see the manual entry for the <a class="extern" href="../interface/bars/tilemap-bar.html" rel="noopener" target="_blank" title="Make your own games">Tilemap Bar</a>.</p>
+<p>A useful behavior to use to move objects around on top of the Tilemap object is the <a class="extern" href="../behavior-reference/tile-movement.html" rel="noopener" target="_blank" title="Make your own games">Tile movement behavior</a>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this object can be accessed via the <a class="extern" href="../scripting/scripting-reference/plugin-interfaces/tilemap.html" rel="noopener" target="_blank" title="Make your own games">ITilemapInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Tilemap object image</h2>
+<p>The image used for the Tilemap object is the <em>tileset</em>. This is an image that contains every different tile that can be used in the tilemap. The tiles can also can be offset and spaced, but this is not normally necessary. The tileset image appears in the Tilemap Bar after selecting the object, allowing you to choose which tiles to draw with.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Collisions</h2>
+<p>When testing for collisions with a Tilemap object, empty (erased) tiles count as not colliding, and by default all other tiles count as colliding. A custom collision polygon can be set, or collisions disabled, for individual tiles by double-clicking a tile in the Tilemap bar. The image editor will appear for the tile, where the collision polygon can be modified, or disabled completely by unticking the <em>Use collision</em> property, or right-clicking on the image and selecting <em>Toggle collision polygon</em>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Tile IDs</h2>
+<p>Each tile in the tileset has a zero-based index to identify it. This starts with the top-left tile and increments horizontally in rows. The tile ID can easily be seen by hovering the mouse over a tile in the Tilemap Bar. The tile ID is useful for comparing or setting tiles at runtime with the object's conditions, actions and expressions.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Tile positions</h2>
+<p>When using tiles in the object's conditions, actions and expressions, positions are generally given in <em>tiles</em> instead of layout co-ordinates. You can convert between tile positions and layout co-ordinates using the <em>PositionToTileX/Y</em> and <em>TileToPositionX/Y</em> expressions.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Inappropriate uses of Tilemaps</h2>
+<p>Don't use tilemaps to display large images where every tile in the tilemap is different. This makes it needlessly less efficient to render the image, since it is rendered one tile at a time when you could have just used a Sprite.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Tilemap Properties</h2>
+<dl class="sans">
+<dt>Image</dt>
+<dd>Click the <em>Edit</em> link to edit the tileset image from which tiles are drawn.</dd>
+<dt>Initially visibile</dt>
+<dd>Choose whether the object is visible or invisible at the start of the layout.</dd>
+<dt>Tile width</dt>
+<dt>Tile height</dt>
+<dd>The size of tiles in the tilemap, in pixels.</dd>
+<dt>Tile X offset</dt>
+<dt>Tile Y offset</dt>
+<dd>The offset in pixels of the top-left tile in the tileset image. This is not normally necessary and is provided mainly for compatibility with existing tileset images that have the tiles drawn at an offset.</dd>
+<dt>Tile X spacing</dt>
+<dt>Tile Y spacing</dt>
+<dd>The spacing in pixels between tiles in the tileset image. This is not normally necessary and is provided mainly for compatibility with existing tileset images that have the tiles drawn apart from each other.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Tilemap conditions</h2>
+<dl class="sans">
+<dt>Compare tile at</dt>
+<dd>Compare the tile ID at a position in the tilemap.</dd>
+<dt>Compare tile state at</dt>
+<dd>Test whether a tile at a position in the tilemap is flipped or rotated from its normal state.</dd>
+<dt>On image URL loaded</dt>
+<dt>On image URL failed to load</dt>
+<dd>Triggered when <em>Load image from URL</em> finishes downloading the image and is ready to display it, or if the load fails.</dd>
+<dt>Brush exists</dt>
+<dd>Check if a tilemap brush exists</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Tilemap actions</h2>
+<dl class="sans">
+<dt>Download</dt>
+<dd>Invoke a download of the current tilemap data (from the <em>TilesJSON</em> expression) as a JSON file. This can be useful for in-game level editors.</dd>
+<dt>Load</dt>
+<dd>Load the current tiles from a string of JSON data from a previous use of the <em>TilesJSON</em> expression.</dd>
+<dt>Erase tile</dt>
+<dd>Erase the tile at a position.</dd>
+<dt>Erase tile range</dt>
+<dd>Erase a rectangular area of tiles in the tilemap.</dd>
+<dt>Erase tile with brush</dt>
+<dd>Erase tiles using a brush created in the <a class="extern" href="../interface/bars/tilemap-bar/tilemap-brush-editor.html" rel="noopener" target="_blank" title="Make your own games">Tilemap Brush Editor</a>. When using an auto tiling brush, the specified position will be modified, along with the surrounding eight positions. If a patch brush is used the whole patch will be erased.</dd>
+<dt>Erase tile with brush (by name)</dt>
+<dd>Like <strong>Erase tile with brush</strong>, but allows you to specify the name of the brush using a string.</dd>
+<dt>Erase tiles with patch brush</dt>
+<dd>Erase tiles using a patch brush. This is similar to <strong>Erase tile with brush</strong>, with the additional options to specify to <em>mirror</em>, <em>flip</em> and <em>rotate</em> the brush.</dd>
+<dt>Erase tiles with patch brush (by name)</dt>
+<dd>Like <strong>Erase tiles with patch brush</strong>, but allows you to specify the name of the brush using a string.</dd>
+<dt>Set tile</dt>
+<dd>Set the tile at a position in the tilemap by its tile ID. The tile that is set can also optionally be flipped or rotated.</dd>
+<dt>Set tile range</dt>
+<dd>As with <em>Set tile</em>, but sets a rectangular area of tiles in the tilemap.</dd>
+<dt>Set tile state</dt>
+<dd>Set the tile flipped or rotated state at a position in the tilemap. The tile ID is not changed.</dd>
+<dt>Set tile state range</dt>
+<dd>Set the flipped or rotated state for a rectangular area of tiles in the tilemap. None of the tile IDs in the rectangular area are changed.</dd>
+<dt>Set tile with brush</dt>
+<dd>Set tiles using a brush created in the <a class="extern" href="../interface/bars/tilemap-bar/tilemap-brush-editor.html" rel="noopener" target="_blank" title="Make your own games">Tilemap Brush Editor</a>. When using an auto tiling brush, the specified position will be modified, along with the surrounding eight positions. Using a patch brush modifies all the tiles covered by the patch, the selected position corresponds to the top left of the patch.</dd>
+<dt>Set tile with brush (by name)</dt>
+<dd>Like <strong>Set tile with brush</strong>, but allows you to specify the name of the brush using a string.</dd>
+<dt>Set tile with patch brush</dt>
+<dd>Set tiles using a patch brush. This is similar to <strong>Set tile with brush</strong>, with the additional options to specify to <em>mirror</em>, <em>flip</em> and <em>rotate</em> the brush. The <strong>Invalid indexes</strong> parameter allows you to choose what should happen when a patch brush doesn't have a valid tile set at a given position, <strong>Erase</strong> deletes the corresponding tile, while <strong>Ignore</strong> leaves the tile unchanged.</dd>
+<dt>Set tile with patch brush (by name)</dt>
+<dd>Like <strong>Set tile with patch brush</strong>, but allows you to specify the name of the brush using a string.</dd>
+<dt>Load image from URL</dt>
+<dd>Load a new tilemap image from a given URL. It is not used until the image has finished downloading, and <em>On image URL loaded</em> triggers. Images loaded from different domains are subject to the same cross-domain restrictions as AJAX requests - for more information see the section on cross-domain in the <a class="extern" href="ajax.html" rel="noopener" target="_blank" title="Make your own games">AJAX</a> object. Data URIs can also be passed as an image, e.g. from a canvas snapshot or camera image.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Tilemap expressions</h2>
+<dl class="sans">
+<dt>TilesJSON</dt>
+<dd>Retrieve the tile data in JSON format, which can be loaded in again later using the <em>Load</em> action. Note this differs from the built-in <em>AsJSON</em> expression, which returns the entire object state (including position, size, behaviors etc), whereas <em>TilesJSON</em> returns only the tile data.</dd>
+<dt>MapDisplayWidth</dt>
+<dt>MapDisplayHeight</dt>
+<dd>The size of the displayed tilemap in tiles. For example if a Tilemap is 320px wide with tiles 32px wide, the display width is 10 as at this size it can fit 10 tiles in to the width.</dd>
+<dt>PositionToTileX(x)</dt>
+<dt>PositionToTileY(y)</dt>
+<dd>Convert an X or Y layout co-ordinate in to the corresponding tile number in the tilemap. For example, this can be used to get the tile position under the mouse.</dd>
+<dt>SnapX(x)</dt>
+<dt>SnapY(y)</dt>
+<dd>Snap an X or Y layout co-ordinate to the nearest tile. This also returns a layout co-ordinate, but aligned to the nearest tile in the tilemap.</dd>
+<dt>TileAt(x, y)</dt>
+<dd>Return the tile ID at a position in the tilemap. Note the position is given in tiles, not layout co-ordinates. If the tile at the given position is empty (has been erased), the expression returns -1.</dd>
+<dt>TileWidth</dt>
+<dt>TileHeight</dt>
+<dd>The width and height of each tile, as specified in the Tilemap properties.</dd>
+<dt>TileToPositionX(x)</dt>
+<dt>TileToPositionY(y)</dt>
+<dd>Convert a tile position to layout co-ordinates. For example, this can be used to position a Sprite object on top of a given tile.</dd>
+<dt>BrushWidth</dt>
+<dt>BrushHeight</dt>
+<dd>The width and height (in tiles) of a patch brush. Auto tiling brushes always return 0.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

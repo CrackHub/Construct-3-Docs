@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/tips-and-guides/best-practices" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Best practices
+            </h1>
+<div itemprop="articleBody">
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Back up regularly!</h2>
+<p>Neither the hardware nor software in your computer is perfect. Computers fail and software can crash. Back up your projects to protect yourself from losing work. It is essential to also maintain off-site backups. If all your backups are in the same computer or saved to disks all in the same building, catastrophic events like fire, flood, theft, software/hardware failure, or cyber attacks/related malware like ransomware, can all cause you to lose all your work and backups together.</p>
+<p><a class="extern" href="../overview/saving-projects.html" rel="noopener" target="_blank" title="Make your own games">Cloud Save</a> is a good way to save your work where it is safe in case of disaster. However it is wise to keep secondary backups anyway, in case you lose access to your account, or the service has an outage or even shuts down. Keeping additional backups is particularly important when saving to local files or folders on your system. Construct can help you do this by automatically making backups. See the <em>Save &amp; backup</em> section of the <a class="extern" href="../interface/dialogs/settings.html#internalH1Link1" rel="noopener" target="_blank" title="Make your own games">Settings dialog</a>. Check <em>Periodically back up active project</em>, and choose the location and backup interval. For example you could set up an automatic save to the same location as the project every 10 minutes, or select a local backup folder (where supported by the browser) to save backups to.</p>
+<p>The advice to back up regularly is not specific to Construct. It is vital to adopt this practice for any work on a computer which is important to you. Do not wait until you've lost work before starting to do this. People lose work regularly from having poor backup practices. Don't be one of them!</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Test on multiple platforms, browsers and devices</h2>
+<p>It is essential to test your project works as intended across a range of different systems. While Construct exports are based on the HTML5 standard  which in theory is implemented the same on all platforms, in practice there are variations between browsers and devices (e.g. in performance, features, text rendering, etc). You should install a range of browsers on every device you have available and test with them all to ensure your project will work well for everyone. <a class="extern" href="https://www.construct.net/make-games/manuals/construct-3/overview/testing-and-publishing.html" rel="noopener" target="_blank" title="Make your own games">Remote Preview</a> <span class="ilTag c2">Paid plans only</span> can help with this, especially since you can get anyone in the world to help test with their devices. You may also need to make test exports to check how your project works as published, since app containers like Cordova (for Android and iOS) can have differences too.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Support touchscreen devices</h2>
+<p>Many users browse the web with touchscreen devices. Where applicable, you should design your project to also support touch input. Often you can simply use the Touch plugin instead of the Mouse plugin.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Avoid superseded features</h2>
+<p>Some features exist mainly for backwards compatibility reasons and should be avoided in new projects in favor of newer features that essentially replace them. See <a class="extern" href="superseded-features.html" rel="noopener" target="_blank" title="Make your own games">Superseded features</a> for a list of such features to avoid.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Recommended file formats</h2>
+<p>You may wish to prepare artwork and audio in other software before importing to Construct. These are the formats we recommend.</p>
+<h3>Images</h3>
+<p>Use <strong>32-bit PNG</strong> (Portable Network Graphics) while preparing images. Be sure to select 32-bit if you are given a choice; the 8-bit or lower versions may degrade quality. 32-bit PNGs are lossless and fully support alpha-channel transparency. Note some images such as Microsoft Paint do not support PNG transparency. Use may need to use a different editor instead, such as <a class="extern outlink" href="https://www.getpaint.net/" rel="nofollow noopener external" target="_blank" title="Go to: https://www.getpaint.net/">Paint.NET</a> on Windows.</p>
+<p>You can choose different export formats like JPEG or WebP inside Construct to reduce the size of your finished project. However when importing you should still stick to 32-bit PNGs if possible, and leave Construct to recompress them when exporting. Construct does a lot of optimisation on export for you. It is unlikely that any third party tools or services will be able to beat Construct's existing lossless optimisations, unless they degrade the image quality. Remember there is no point optimising images before importing them to Construct since it stores them in projects as 32-bit PNGs with default compression settings; they are only optimised on export.</p>
+<h3>Audio</h3>
+<p>Use <strong>16-bit PCM WAV</strong> while preparing audio. These are typically .wav files, but note that not all .wav files are 16-bit PCM. Importing a 16-bit PCM .wav file to Construct will automatically encode it to WebM Opus. PCM WAV files are lossless, ensuring there is no quality degradation while you prepare your audio files. Allowing Construct to perform the encoding ensures the encoding is only done once (so there is no unnecessary degradation), and that the correct format is used for support across a wide range of platforms.</p>
+<h3>Fonts</h3>
+<p>Use fonts in <strong>WOFF</strong> (Web Open Font Format) format wherever possible. Fonts in other formats such as TTF may or may not work depending on specific details of browser support and the features used in the font file. WOFF was designed specifically for web browsers and so is the best supported format for web-based technology such as Construct.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Security</h2>
+<p><strong>Never enter usernames or passwords in to events.</strong> These will be visible in plain text in exported Javascript, and malicious users will very quickly be able to take control of the account. If you need to connect to something like a database, write a server-side script that talks to the database, then connect to the URL of the server.</p>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Performance</h2>
+<p>Many people worry about performance but just end up wasting their time. There is a specific way that you ought to approach performance questions and issues - see the guide on <a class="extern" href="performance-tips.html" rel="noopener" target="_blank" title="Make your own games">Performance Tips</a> for more about that.</p>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Memory use</h2>
+<p>Sometimes people accidentally create projects that waste large amounts of memory due to not understanding the way things like imags are handled in memory. See the guide on <a class="extern" href="memory-usage.html" rel="noopener" target="_blank" title="Make your own games">Memory usage</a> for more about that.</p>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Download size</h2>
+<p>It's a good idea to at least check your project's download size, and try to reduce the size of any particularly large files. This can be important for platforms that impose a file size limit, or for people who have slow connections. See the guide on <a class="extern" href="download-size.html" rel="noopener" target="_blank" title="Make your own games">Download size</a> for more about that.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

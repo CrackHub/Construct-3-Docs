@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/project-primitives/objects/effects" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Effects
+            </h1>
+<div itemprop="articleBody">
+<p><strong>Effects</strong> change the visual appearance of objects. They can be added with the <strong>Effects dialog</strong>. Effects can also be added to <a class="extern" href="../layers.html" rel="noopener" target="_blank" title="Make your own games">layers</a> and <a class="extern" href="../layouts.html" rel="noopener" target="_blank" title="Make your own games">layouts</a>, although effects which blend with the background cannot be used on layouts. Effects are also sometimes referred to as <em>shaders</em> or <em>shader effects</em>, since this refers to the underlying technology. Below is an example of the Water effect on an image.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/918/effects.jpg" itemprop="image" rel="nofollow" target="_blank" title="Open original 2045x1219px in new window (263.7 KB)"><span><img alt="An example of the Water effect" height="477" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/918/effects_v800.jpg" width="800"/></span></a><span class="descrip">An example of the Water effect</span></div></div>
+<p>Construct provides a library of over 80 effects. Adding effects also displays them in the <a class="extern" href="../../interface/layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a> if <em>Preview effects</em> is enabled in <a class="extern" href="../projects.html" rel="noopener" target="_blank" title="Make your own games">project properties</a>. A number of examples of effects are also provided in Construct's examples which you can find by searching for <em>Effects</em> in the <a class="extern" href="../../overview/start-page.html" rel="noopener" target="_blank" title="Make your own games">Start Page</a>.</p>
+<p>Multiple effects can be applied to a single object, layer or layout. In this case the effects are chained. The result of the first effect is processed by the second effect, then the result of that is processed by the third effect, and so on.</p>
+<p>Note that the Free edition is limited to using two effects in a project only.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Blend mode</h2>
+<p>The <em>Blend mode</em> provides a simple set of pre-defined ways to blend the object with the background. <a class="extern" href="https://editor.construct.net/#open=blend-modes" rel="noopener" target="_blank" title="Make games in the browser">Click here to open an example of blend modes in Construct.</a> The image below also demonstrates the available blend modes.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/139568/blend-modes.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1338x815px in new window (148.84 KB)"><span><img alt="The blend modes available in Construct" height="408" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/139568/blend-modes_v700.png" width="669"/></span></a><span class="descrip">The blend modes available in Construct</span></div></div>
+<p>Blend modes are usually more efficient than adding an effect, so it is recommended to prefer to use them over effects where possible.</p>
+<p>If multiple effects are used, the blend mode is applied only to the last effect. For example with three effects, the effect chain is processed normally, and the blend mode is only used to blend the result of the third effect with the background.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Changing effects at runtime</h2>
+<p>Objects supporting effects provide common actions to enable or disable effects, or set an effect parameter. This allows you to switch effects or adjust effect parameters at runtime, allowing for greater possibilities and creative uses. To enable or disable layout or layer effects, or change their parameters, use the relevant <a class="extern" href="../../system-reference/system-actions.html" rel="noopener" target="_blank" title="Make your own games">system actions</a>.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Performance</h2>
+<p>Using too many effects can cause poor performance. Try to only use effects when it is important to the appearance of the game.</p>
+<p>Creating many instances of an object using effects can be very inefficient, since the effect must be processed repeatedly for small areas. If many instances need to use an effect, sometimes it is more efficient to place all the instances on their own layer, and apply the effect to that layer instead. This can improve performance whilst producing the same visual appearance.</p>
+<p>Never use effects to process a static effect on an object. For example, do not use the <em>Grayscale</em> effect to make an object always appear grayscale. Instead apply the grayscale effect in an image editor and import a grayscale image to the object, without using any effects. This has the same visual result, and avoids performance-degrading effect processing. Effects like <em>Grayscale</em> should only be used for transitions or making objects only occasionally appear grayscale.</p>
+<p>For more information, see the manual section on <a class="extern" href="../../tips-and-guides/performance-tips.html" rel="noopener" target="_blank" title="Make your own games">performance tips</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

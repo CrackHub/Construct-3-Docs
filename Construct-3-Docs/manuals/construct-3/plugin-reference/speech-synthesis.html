@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/speech-synthesis" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Speech synthesis
+            </h1>
+            <div itemprop="articleBody">
+                <p>The <strong>Speech synthesis</strong> object can automatically speak some text using a synthetic voice, also known as text-to-speech (TTS).</p>
+
+<p>Speech synthesis may not be supported by all browsers or platforms. Use the <em>Supports speech synthesis</em> condition to check if speech synthesis can be used.</p>
+
+
+
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API" target="_blank" rel="nofollow noopener external" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API" class="extern outlink">Web Speech API</a>.</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Speech synthesis conditions</h2>
+<dl class="sans">
+	<dt>Is speaking</dt>
+	<dd>True if the speech synthesis engine is currently reading out some text.</dd>
+
+	<dt>On speech ended</dt>
+	<dd>Triggered when the speech started by <em>Speak text</em> finishes being read out.</dd>
+
+	<dt>On speech error</dt>
+	<dd>Triggered if an error occurs during speech synthesis.</dd>
+
+	<dt>Supports speech synthesis</dt>
+	<dd>True if the current browser/platform supports speech synthesis, so the <em>Speak text</em> action can be used</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Speech synthesis actions</h2>
+<dl class="sans">
+<dt>Pause speaking</dt>
+	<dt>Resume speaking</dt>
+	<dd>Pause or resume text being read out by speech synthesis from the <em>Speak text</em> action.</dd>
+
+	<dt>Speak text</dt>
+	<dd>Read out some text using speech synthesis. The language, volume, rate and pitch of the voice that reads out the text can be customised. The <em>Voice URI</em> can be used to select a different kind of voice (e.g. male vs. female) from a list of the supported voices, if any alternatives are available. The list of possible voices can be retrieved using the <em>VoiceCount</em> and <em>VoiceURIAt</em> expressions.</dd>
+
+	<dt>Stop speaking</dt>
+	<dd>Stop reading out text from a previous <em>Speak text</em> action. The speech cannot be resumed.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>Speech synthesis expressions</h2>
+<dl class="sans">
+	<dt>VoiceCount</dt>
+	<dd>Return the number of voices available for use with speech synthesis.</dd>
+
+	<dt>VoiceLangAt(index)</dt>
+	<dt>VoiceNameAt(index)</dt>
+	<dt>VoiceURIAt(index)</dt>
+	<dd>Return the language, name, or URI of the voice at the given zero-based index. This can be used to show the user a list of possible voices to choose. To select a different voice, pass the appropriate voice URI to the <em>Speak text</em> action.</dd>
+</dl>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

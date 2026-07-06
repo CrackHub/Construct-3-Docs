@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/binary-data" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Binary Data script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IBinaryDataInstance</code> interface derives from <a class="extern" href="../object-interfaces/iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data plugin</a>. This makes it possible to read and alter the binary data from scripts, which is often more convenient than trying to do so from events.</p>
+<p>Binary Data stores its data as an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>, which cannot be directly modified. In JavaScript, data can be read and written to an ArrayBuffer using <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> or <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">DataView</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Binary Data APIs</h2>
+<dl>
+<dt>setArrayBufferCopy(viewOrBuffer)</dt>
+<dd>Set the contents of the Binary Data object by an ArrayBuffer or typed array which is copied. This means it is safe to continue using the passed data after this call.</dd>
+<dt>setArrayBufferTransfer(arrayBuffer)</dt>
+<dd>Set the contents of the Binary Data object by an ArrayBuffer which the Binary Data object takes ownership of. You must not use the passed ArrayBuffer after this call, since it is now managed by the Binary Data object. Since this method does not copy the passed ArrayBuffer, it is more efficient if the ArrayBuffer won't be used again in your code. Note this method does not accept a typed array.</dd>
+<dt>getArrayBufferCopy()</dt>
+<dd>Return the contents of the Binary Data object as an ArrayBuffer which is a copy of the internal ArrayBuffer. This means it is safe to modify the returned ArrayBuffer without affecting the state of the Binary Data object.</dd>
+<dt>getArrayBufferReadOnly()</dt>
+<dd>Return the contents of the Binary Data object as a read-only reference to the internal ArrayBuffer. This ArrayBuffer must not be modified since it is managed by the Binary Data object. However it is more efficient to use this method if the data is only read from, e.g. to send over the network, since it does not copy the ArrayBuffer.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

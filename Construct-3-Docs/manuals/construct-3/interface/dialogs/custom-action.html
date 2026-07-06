@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/dialogs/custom-action" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Add/edit custom action dialog
+            </h1>
+<div itemprop="articleBody">
+<p>The add/edit function dialog appears when adding or editing a <a class="extern" href="../../project-primitives/events/custom-actions.html" rel="noopener" target="_blank" title="Make your own games">custom action</a>.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/99553/custom-action-dialog.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 937x755px in new window (36.07 KB)"><span><img height="377" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/99553/custom-action-dialog_v470.png" width="468"/></span></a></div></div>
+<p>This dialog has the following fields.</p>
+<dl class="sans">
+<dt>Object</dt>
+<dd>Click the button to choose the <a class="extern" href="../../project-primitives/objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object type</a> or <a class="extern" href="../../project-primitives/objects/families.html" rel="noopener" target="_blank" title="Make your own games">family</a> the custom action will belong to.</dd>
+<dt>Name</dt>
+<dd>The name of the custom action. This will appear in the <a class="extern" href="add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add Action dialog</a> and in the event sheet to identify this custom action. Object types are allowed to add a custom action with the same name as a family custom action, in which case the object type's custom action works as an override.</dd>
+<dt>Description <span class="ilTag c1">Optional</span></dt>
+<dd>An optional description of the custom action, for your organisational purposes. This is displayed in the <a class="extern" href="add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add action dialog</a> and can be a helpful reminder of what the custom action does.</dd>
+<dt>Category <span class="ilTag c1">Optional</span></dt>
+<dd>An optional category for the custom action, for your organisational purposes. Custom actions with the same category are grouped together in the <em>Add action dialog</em>, providing a way to arrange related custom actions together. This field autocompletes with existing category names used, making it easier to use the same category names.</dd>
+<dt>Copy all picked</dt>
+<dd>By default custom actions run with only the same instances of the given object picked as the action that called it. Check <em>Copy all picked</em> to instead run the custom action with the same instances of all objects picked as the action that called it, much like the <em>Copy picked</em> setting for functions.</dd>
+<dt>Asynchronous</dt>
+<dd>Tick to mark the custom action as <em>asynchronous</em> (or <em>async</em> for short). This means calls to this custom action can be used with the System action <em>Wait for previous actions to complete</em> if the custom action does any of its own waiting. Note this has a small performance overhead, so for best performance leave this disabled if you don't need it.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/using-scripting/coding-in-construct" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Coding in Construct
+            </h1>
+<div itemprop="articleBody">
+<p>This section covers some details about how JavaScript and TypeScript code is run in Construct.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Expressions aren't exposed to script</h2>
+<p>Construct's event sheets fundamentally work differently to code. Consequently object expressions that you may enter in to conditions and actions are not directly accessible from script. Refer to the scripting reference for the methods and properties that are directly accessible from scripts. You can also still indirectly access things that are not directly exposed to scripts by passing values between scripts and event sheets - for an example of that see <a class="extern" href="https://editor.construct.net/#open=integrating-events-with-script" rel="noopener" target="_blank" title="Make games in the browser">integrating events with script</a>.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Case sensitivity</h2>
+<p>Many features in Construct are case insensitive, such as "Player" being considered equivalent to "player". However like most programming languages, JavaScript and TypeScript are case sensitive. Therefore when referring to objects, variables and other items in your project from code, you must use the same case as it was written with in Construct.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Modules</h2>
+<p>All scripts in Construct are <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Modules</a> (also known as ES Modules, or ESM). This allows use of the <code>import</code> and <code>export</code> syntax. It also has a few differences to legacy "classic" mode scripts, notably:</p>
+<ol class="list">
+<li>Each module (script file) has its own top-level scope. This means top-level declarations are not globally accessible. Instead prefer to use imports and exports, or if you have to, explicitly use properties of <code>globalThis</code> to make them global.</li>
+<li>Modules run code in <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">strict mode</a>. This eliminates common problems such as silent errors, typos accidentally creating variables, and fixes some aspects of the language considered mistakes. In particular it helps avoid confusing problems that beginners often run in to. Since all code is already run in strict mode, there is no need to add the <code>"use strict"</code> directive to any of your code.</li>
+</ol>
+<p>See the <a class="extern" href="https://editor.construct.net/#open=imports-and-exports" rel="noopener" target="_blank" title="Make games in the browser">Imports &amp; exports example</a> for a demonstration of using modules in Construct.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Worker mode</h2>
+<p>When the <em>Use worker</em> project property is <em>Yes</em>, the Construct runtime is hosted in a <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker</a> instead of in the DOM, and renders using an <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas">OffscreenCanvas</a>. This is generally good for performance since the runtime can run independently of the browser main thread, which can be blocked by browser tasks like layout. However Web Workers have a reduced set of APIs available. Notably there are no <code>window</code> or <code>document</code> objects available, and so the DOM cannot be directly accessed. However there are many other APIs still available, such as <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> (and the older <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a>), <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a>, <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">WebSocket</a> and others - see <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers">Functions and classes available to workers</a> for more details.</p>
+<p>The default mode for <em>Use worker</em> is <em>Auto</em>. This means Construct automatically decides whether to run your project in a Web Worker or the DOM. Currently this means it will run in a worker unless your project uses any JavaScript code, in which case it will run on the DOM on the assumption your code will need to make use of DOM APIs. Note however that this loses the performance benefits of worker mode. If your JavaScript code can run in a Web Worker, you can change the setting back to <em>Yes</em> and gain the performance benefits.</p>
+<h3>Worker mode with TypeScript</h3>
+<p>When using TypeScript, Construct will update type definitions to match the environment. In other words if your project runs in a worker, it will use type definitions for a worker, so accessing things like <code>document</code> will be an error. Otherwise if the project runs in the DOM then it uses type definitions for the DOM, permitting the use of such DOM-specific APIs.</p>
+<h3>Accessing global scope</h3>
+<p>Sometimes the <code>window</code> object is used to refer to global scope, such as with <code>window.myGlobal = 1;</code>. Note however that the <code>window</code> object is not available in worker mode, so this won't work there.</p>
+<p>The standard way of accessing the global scope is with <code>globalThis</code>, such as with <code>globalThis.myGlobal = 1;</code>. Since this is available in both the DOM and Web Workers, this code will work everywhere.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Browser/platform support</h2>
+<p>When using the very latest JavaScript features, you may need to check which browsers support it. For example if you use a JavaScript feature that not all browsers or platforms support, you may get an error trying to run your game on that platform. We recommend the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/JavaScript">MDN web docs</a> as a good place to check compatibility.</p>
+<p>This also applies when using TypeScript. Since TypeScript essentially just deletes type annotations and then runs the code as JavaScript, you still need to be aware of browser support for any newer JavaScript features you use.</p>
+<p>You can also rely on modern support for JavaScript being available, because Construct only supports relatively modern browsers. For example the C3 runtime does not support Internet Explorer so you do not need to worry about supporting it at all. Note many older code examples across the web use an older style designed to support defunct browsers. For example many old code examples use <code>var</code> to declare variables, whereas in modern JavaScript <code>let</code> and <code>const</code> are preferred. Bear this in mind when looking at other code examples, and note there may be modern features that can considerably simplify the code. It can be a good idea to update any code snippets you use in your projects to a modern style.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Undocumented features</h2>
+<p>If you explore the functions and variables available in a debugger, you may find undocumented APIs specific to the Construct engine. The only reason these can be found is because the way JavaScript works makes it difficult to hide them. <strong>Do not use any such undocumented features in your JavaScript code.</strong> These are internal details of the Construct engine and can change at any time, and such changes can easily break your code. <strong>No support will be provided for undocumented APIs</strong>, even if engine changes break your code. Responsible developers know to only use documented and officially supported APIs. These can be found in the <a class="extern" href="../scripting-reference.html" rel="noopener" target="_blank" title="Make your own games">scripting reference</a>. If new engine functionality is essential to you, please file a feature request.</p>
+<p>Note this only applies to the Construct engine - all other browser APIs are of course available for use.</p>
+<p>When using TypeScript, type definitions are only provided for documented features, so it will prevent you using undocumented features. This can be circumvented with the <code>any</code> type, but naturally we would strongly advise against that.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

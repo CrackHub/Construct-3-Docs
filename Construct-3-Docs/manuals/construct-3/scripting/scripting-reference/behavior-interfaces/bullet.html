@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/behavior-interfaces/bullet" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Bullet behavior script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IBulletBehaviorInstance</code> interface derives from <a class="extern" href="../object-interfaces/ibehaviorinstance.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInstance</a> to add APIs specific to the <a class="extern" href="../../../behavior-reference/bullet.html" rel="noopener" target="_blank" title="Make your own games">Bullet behavior</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Bullet behavior APIs</h2>
+<dl>
+<dt>speed</dt>
+<dd>Set or get the current speed in pixels per second. This is also the magnitude of the current motion vector.</dd>
+<dt>setVector(dx, dy, dz)</dt>
+<dt>getVector()</dt>
+<dd>Set the bullet's current movement speed and direction using a 3D vector, with a speed in pixels per second on each axis. The magnitude of the vector is the overall speed, which can also be adjusted using the <code>speed</code> property.</dd>
+<dt>acceleration</dt>
+<dd>Set or get the acceleration of the movement in pixels per second per second.</dd>
+<dt>gravity</dt>
+<dd>Set or get the acceleration caused by gravity in pixels per second per second. When a gravity vector has been specified, this sets the magnitude of the vector.</dd>
+<dt>setGravityVector(gx, gy, gz)</dt>
+<dt>getGravityVector()</dt>
+<dd>Set or get the direction of gravity with a 3D vector. By default gravity accelerates downwards on the Y axis (with a vector of 0, 1, 0). The provided vector is automatically normalized, so its magnitude does not matter - instead the <code>gravity</code> property is used to specify the magnitude of gravity. This also means the returned gravity vector may be different to the one specified as it will have been set to a unit length.</dd>
+<dt>angleOfMotion</dt>
+<dd>Set or get the current angle of movement in radians.</dd>
+<dt>bounceOffSolids</dt>
+<dd>A boolean indicating if the <em>Bounce off solids</em> property is enabled.</dd>
+<dt>distanceTravelled</dt>
+<dd>A number indicating the distance the bullet has travelled so far in pixels. Note this can also be set, such as to reset the counter.</dd>
+<dt>isEnabled</dt>
+<dd>A boolean indicating if the behavior is enabled. If disabled, the behavior no longer has any effect on the object.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

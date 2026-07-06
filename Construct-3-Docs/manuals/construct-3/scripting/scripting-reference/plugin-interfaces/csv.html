@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/csv" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                CSV script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>ICSVObjectType</code> interface provides APIs specific to the <a class="extern" href="../../../plugin-reference/csv.html" rel="noopener" target="_blank" title="Make your own games">CSV plugin</a>. This allows reading and writing CSV data (and other delimiter-based formats like TSV) from JavaScript code.</p>
+<p>The script interface uses JavaScript data types directly and so does not need to use an Array object for storage, which is necessary when using CSV in event sheets.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>CSV APIs</h2>
+<dl>
+<dt>parseCsv(str, delimiter = ",", dataType = "auto")</dt>
+<dd>Parse a given string of CSV data using the provided delimiter. The <code>dataType</code> parameter must be one of <code>"auto"</code>, <code>"string"</code> or <code>"number"</code>. The return value is an array of arrays with values, representing the two-dimensional array of values in the data.</dd>
+<dt>generateCsv(arr, delimiter = ",")</dt>
+<dd>Generate a string of CSV data using the provided delimiter, from a two-dimensional array of values.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

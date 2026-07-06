@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/debugger/inspect-tab" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The debugger 'Inspect' tab
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Inspect</strong> tab is used to view and edit values in the project, such as an object's position.</p>
+<p>The Inspect view is divided in to two sections. On the left appears a list of all the <a class="extern" href="../../project-primitives/objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">object types</a> in the project, including the System object. On the right appears a list of tables of values relating to the selected object, similar to the <a class="extern" href="../bars/properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>.</p>
+<h3>The object list</h3>
+<p><strong>Click the name of an object type</strong> in the object list to expand it. The number of instances of that object type appears in brackets after the object name. If the object type only has one instance, or is a global object like the System object or Audio object, it will immediately start inspecting the object. Otherwise it expands a dropdown with a list of all the object instances sorted by their <em>index ID</em> (IID). Clicking a particular instance will then inspect just that instance.</p>
+<p>There are two ways to filter down the object list:</p>
+<ol class="list">
+<li>Type in to the search box underneath the object list to instantly filter down the list to only show objects matching the entered search term. </li>
+<li>Tick <em>Hide unused</em> underneath the object list to remove any objects from the list with zero instances. This will still list project-wide plugins like the Keyboard object.</li>
+</ol>
+<p>The System object is always shown at the top of the object list, regardless of any filtering options.</p>
+<h3>The values view</h3>
+<p>As with the Properties Bar, the values view shows a categorised list of tables displaying all the information about the currently inspected object. The displayed values depend on what is being inspected; for example the Sprite object displays information about its current animation frame, the Audio object displays information about currently playing sound and music, and the System object displays information about the engine, layout, and layers. Most often these values correspond to object properties from the Properties bar, as well as the object's expressions.</p>
+<p><a class="extern" href="../../project-primitives/objects/instance-variables.html" rel="noopener" target="_blank" title="Make your own games">Instance variables</a> and <a class="extern" href="../../project-primitives/objects/behaviors.html" rel="noopener" target="_blank" title="Make your own games">behavior</a> values are also shown if the selected object has any.</p>
+<p>It is often useful to view these values while running the project. However, they can also be edited. As with the Properties Bar, simply click on a value and type in a new value to change it. Edited values appear in bold. This can be an excellent way to experiment with how your project works. Note that not all values are editable - those with a light grey background are read-only. </p>
+<p>The <strong>eye icon</strong> to the right of values can be used to add the value to the <a class="extern" href="watch-tab.html" rel="noopener" target="_blank" title="Make your own games">Watch</a> tab <span class="ilTag c2">Paid plans only</span>. This is described in more detail later on.</p>
+<p>The <strong>Tools</strong> section gives you the ability to destroy the inspected object. By default the inspected object is also outlined with a dotted rectangle in the project to help identify it. If this is distracting, uncheck the <em>Highlight</em> checkbox.</p>
+<p>Objects in a <a class="extern" href="../../project-primitives/objects/containers.html" rel="noopener" target="_blank" title="Make your own games">container</a> also provide a list of links to inspect the other instances in the container with the currently inspected object. Objects in a hierarchy also provide a list of links to inspect the parent or child instances in the hierarchy relative to the currently inspected object.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

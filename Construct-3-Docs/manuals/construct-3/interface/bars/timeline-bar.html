@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/timeline-bar" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                The Timeline Bar
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Timeline Bar</strong> shows the currently active <a class="extern" href="../../project-primitives/timelines.html" rel="noopener" target="_blank" title="Make your own games">timeline</a>. Through this control you can add and remove <a class="extern" href="../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a> and other types of tracks to a timeline, and edit its properties.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87433/timeline-0.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 1055x338px in new window (14.36 KB)"><span><img height="256" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/r/uploads/articleuploadobject/0/images/87433/timeline-0_v800.png" width="800"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Using the Timeline Bar</h2>
+<p>Here's a summary of how to use the Timeline Bar. A project can have multiple timelines, each timeline can have multiple instances, and each instance can have multiple property tracks. Tracks then use keyframes to mark points in a timeline. Timelines can also have nested timelines to produce more complex structures. Other types of tracks that do not directly reference instances are supported, those are not covered in this quick start guide.</p>
+<h3><span class="headerStep">Step 1:</span> create a timeline</h3>
+<p>With the Timeline Bar open, you can create a timeline with any of the following methods:</p>
+<ul class="list">
+<li>Right-click <strong>Timelines</strong> folder in the <a class="extern" href="project-bar.html" rel="noopener" target="_blank" title="Make your own games">Project Bar</a> and select <em>Add timeline</em></li>
+<li>Right-click in the <a class="extern" href="../layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a> and select <span class="navWrap">Timeline<span class="arr">►</span>Add timeline</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<td>Project Bar context menu</td>
+<td>Layout View context menu</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26525/timeline-manual-02.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 367x477px in new window (13.31 KB)"><span><img height="477" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26525/timeline-manual-02.png" width="367"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26526/timeline-manual-03.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 323x258px in new window (7.27 KB)"><span><img height="258" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26526/timeline-manual-03.png" width="323"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<h3><span class="headerStep">Step 2:</span> add an instance</h3>
+<p>Once you have a timeline, add an instance to it with any of these methods:</p>
+<ul class="list">
+<li>Use the add <kbd>+</kbd> button in the toolbar to bring up a dialog from which to choose instances to add</li>
+<li>Drag &amp; drop instances from the Layout View into the bar</li>
+<li>Right click selected instances in the Layout View and select <span class="navWrap">Timeline<span class="arr">►</span>Add to timeline</span></li>
+<li>Use the <span class="navWrap">Track<span class="arr">►</span>Add instances</span> option in the <kbd>+</kbd> split button</li>
+</ul>
+<table>
+<thead>
+<tr>
+<td>Add instances split button</td>
+<td>Layout View context menu</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87436/timeline-toolbar-add.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 484x29px in new window (2.33 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87436/timeline-toolbar-add.png" width="484"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26528/timeline-manual-04.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 380x272px in new window (7.44 KB)"><span><img height="272" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26528/timeline-manual-04.png" width="380"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<h3><span class="headerStep">Step 3:</span> add keyframes</h3>
+<p>Adding an instance adds property tracks for the position (X and Y co-ordinates). The next step is to add some keyframes, which you can do by following these steps:</p>
+<ol class="list">
+<li>Turn on <strong>Edit Mode</strong> by pressing the <strong>pencil</strong> button in the toolbar</li>
+<li>Move the current time marker to the position in the timeline where you want to create keyframes. This can be done by either clicking on the time ruler or by dragging the red line marker.</li>
+<li>Make changes to the instances you want to animate</li>
+<li>Use the <strong>Set keyframes</strong> toolbar button, the <kbd>S</kbd> keyboard shortcut or right click in the Layout View and select <span class="navWrap">Timeline<span class="arr">►</span>Set keyframes</span></li>
+</ol>
+<table>
+<thead>
+<tr>
+<td>Edit mode button</td>
+<td>Set keyframes button</td>
+<td>Current Time</td>
+<td>Layout View Context Menu</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87438/timeline-toolbar-edit.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 484x29px in new window (2.33 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87438/timeline-toolbar-edit.png" width="484"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87439/timeline-toolbar-set.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 484x29px in new window (2.36 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87439/timeline-toolbar-set.png" width="484"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82227/timelinemanual02.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 202x143px in new window (1.46 KB)"><span><img height="143" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82227/timelinemanual02.png" width="202"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26532/timeline-manual-06.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 359x269px in new window (7.86 KB)"><span><img height="269" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26532/timeline-manual-06.png" width="359"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<p>Following those steps you should be able to setup the most basic timeline.</p>
+<h3>Previewing a timeline</h3>
+<p>The timeline can be previewed in the editor by pressing the <strong>Play</strong> button in the toolbar or by scrubbing the current time marker (press and hold <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> while scrubbing to move the marker without previewing the timeline).</p>
+<table>
+<thead>
+<tr>
+<td>Playback Controls</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87440/timeline-toolbar-playback.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 484x29px in new window (2.33 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87440/timeline-toolbar-playback.png" width="484"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<h3>Controlling timelines in events</h3>
+<p>You can control the timeline in your events using the <a class="extern" href="../../plugin-reference/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline Controller plugin</a>.</p>
+<table>
+<thead>
+<tr>
+<td>Timeline Controller Plugin</td>
+<td>Timeline Events</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82230/timelinemanual04.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 747x645px in new window (28.57 KB)"><span><img height="645" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/82230/timelinemanual04.png" width="747"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26558/timeline-manual-11.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 573x95px in new window (4.84 KB)"><span><img height="95" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26558/timeline-manual-11.png" width="573"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Edit mode</h2>
+<p>When edit mode is turned on with the edit toolbar button, the selection boxes in the Layout View change color and the properties which can be animated with the timeline are highlighted in the <a class="extern" href="properties-bar.html" rel="noopener" target="_blank" title="Make your own games">Properties Bar</a>. The highlighting only happens for instances which are part of the current timeline. Properties which are not highlighted in edit mode cannot be animated with a timeline. After finishing editing a timeline remember to turn the mode off as changes made in this mode are only relevant to the active timeline, rather than the whole project.</p>
+<table>
+<thead>
+<tr>
+<td>Highlighted Properties</td>
+<td>Highlighted Selection</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26550/timeline-manual-07.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 318x386px in new window (10.97 KB)"><span><img height="386" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26550/timeline-manual-07.png" width="318"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26551/timeline-manual-08.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 296x278px in new window (6.14 KB)"><span><img height="278" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26551/timeline-manual-08.png" width="296"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Updating keyframes</h2>
+<p>To update keyframes, place the current time marker on top of the keyframes you want to update, make the necessary changes, and set the keyframe again, either by the toolbar button, keyboard shortcut or by the Layout View menu option.</p>
+<p>Right-click master keyframes to update all the corresponding property keyframes with the current instance values.</p>
+<p>Right-click property keyframes to individually update them with the current instance values.</p>
+<p>Additionally, the X and Y properties of any instance can also be updated directly from the Layout View by dragging the handles for the keyframe.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26552/timeline-manual-09.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 441x230px in new window (8.15 KB)"><span><img height="230" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/26552/timeline-manual-09.png" width="441"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Drag &amp; drop</h2>
+<p>There are various places in which it is possible to use a drag and drop workflow when using the Timeline Bar.</p>
+<ul class="list">
+<li>To add new instances directly to the timeline from the current active <a class="extern" href="../../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a>. Drag the instances from the Layout View and drop them on a Timeline.</li>
+<li>To sort the different elements of the timeline that are represented by a row, such as a track.</li>
+<li>To add a nested timeline in the current timeline by dragging it from the Project bar.</li>
+<li>To update the starting offset of a nested timeline.</li>
+<li>To update the position of master keyframes and property keyframes. Notes on dragging keyframes:
+	<ul class="list">
+<li>Dragging a master keyframe updates it's position and the position of all related property keyframes.</li>
+<li>Dragging a property keyframe by itself creates a new one at the new position, along with a corresponding master keyframe. Since property keyframes do not exist by themselves there is no notion of just moving them by themselves. The only way to move a property keyframe is to move the corresponding master.</li>
+<li>Holding <kbd>Shift</kbd> while dragging a master keyframe will duplicate them and all related property keyframes in the new position.</li>
+</ul>
+</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Auto keyframing</h2>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87443/timeline-toolbar-auto.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 484x29px in new window (2.35 KB)"><span><img height="29" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1740/uploads/articleuploadobject/0/images/87443/timeline-toolbar-auto.png" width="484"/></span></a></div></div>
+<p>By toggling auto keyframes, keyframes will be added to the timeline at the position of the current time marker, as soon as changes are made in either the Properties bar or the Layout view.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Note on animating Sprite plugin instances</h2>
+<p>It is possible to animate the current frame of a <a class="extern" href="../../plugin-reference/sprite.html" rel="noopener" target="_blank" title="Make your own games">Sprite plugin</a> instance by animating it's <strong>initial frame</strong> property.</p>
+<p>When animating in this way make sure that the Sprite's normal animation is stopped as it would interfere with the changes made by a timeline. Likewise if you are just using a Sprite's regular animations, playing a timeline that changes the initial frame will cause un-expected results.</p>
+<p>It is also possible to change the current animation a Sprite plugin instance will show at runtime by animating the <strong>initial animation</strong> property.</p>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>More information</h2>
+<p>For more details on a timeline's capabilities, properties and related objects see the <a class="extern" href="../../project-primitives/timelines.html" rel="noopener" target="_blank" title="Make your own games">Project Primitives section on timelines</a>.</p>
+<p>See the <a class="extern" href="../../plugin-reference/timeline-controller.html" rel="noopener" target="_blank" title="Make your own games">Timeline Controller plugin</a> manual entry for more information on the actions, conditions and expressions available for controlling timelines.</p>
+<p>The Timeline Bar has various keyboard shortcuts which are listed in the manual entry <a class="extern" href="../keyboard-shortcuts.html" rel="noopener" target="_blank" title="Make your own games">Keyboard shortcuts</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

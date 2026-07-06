@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/drag-drop" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Drag &amp; Drop behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Drag &amp; Drop behavior</strong> enables objects to be dragged and dropped either by mouse or touch. On multi-touch devices, multiple objects can be dragged and dropped at once.</p>
+<p>An object starts dragging when a mouse click or touch falls inside the object's collision polygon. It is released when the mouse button is released or the touch ends.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/drag-drop.html" rel="noopener" target="_blank" title="Make your own games">IDragDropBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Drag &amp; Drop properties</h2>
+<dl class="sans">
+<dt>Axes</dt>
+<dd>Optionally axis-limit the movement, for example only allowing the object to be dragged horizontally or vertically. The default is <em>Both</em>, allowing the object to be dragged anywhere.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the <em>Set enabled</em> action.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Drag &amp; Drop conditions</h2>
+<dl class="sans">
+<dt>Is dragging</dt>
+<dd>True if the object is currently being dragged by mouse or touch.</dd>
+<dt>Is enabled</dt>
+<dd>True if the behavior is currently enabled; false if disabled by the <em>Set enabled</em> action.</dd>
+<dt>On drag start</dt>
+<dd>Triggered when the object is clicked or touched inside its collision polygon.</dd>
+<dt>On drop</dt>
+<dd>Triggered when the object is being dragged, and the mouse button is released or the touch ends.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Drag &amp; Drop actions</h2>
+<dl class="sans">
+<dt>Set enabled</dt>
+<dd>Enable or disable the Drag &amp; Drop behavior. If disabled, clicking or touching the object has no effect and the object cannot be dragged. It also becomes 'transparent' to clicks and touches, meaning other objects underneath it can still be dragged and dropped. If the object is being dragged when it is disabled, the drag is cancelled, but <em>On drop</em> will not trigger.</dd>
+<dt>Set axes</dt>
+<dd>Set the <em>Axes</em> property, allowing changing which axes movement is limited to.</dd>
+<dt>Drop</dt>
+<dd>Stop dragging the object if it is currently being dragged. This also triggers <em>On drop</em>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Drag &amp; Drop expressions</h2>
+<p>The Drag &amp; Drop behavior has no expressions.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

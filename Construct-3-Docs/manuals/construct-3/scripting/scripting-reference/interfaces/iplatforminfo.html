@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/interfaces/iplatforminfo" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Platform Info script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IPlatformInfo</code> interface provides access to Construct's detected platform details, such as the browser, operating system, and export type. It provides similar information to the <a class="extern" href="../../../plugin-reference/platform-info.html" rel="noopener" target="_blank" title="Make your own games">Platform info plugin</a>, but note that plugin does not need to be in the project to use this interface. It is typically accessed by the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> <code>platformInfo</code> property.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Example: log detected operating system to console on startup</span>
+<span class="token function">runOnStartup</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token keyword">async</span> <span class="token parameter">runtime</span> <span class="token operator">=&gt;</span>
+<span class="token punctuation brace-curly brace-open brace-level-2" id="pair-2-close">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation brace-round brace-open brace-level-3" id="pair-0-close">(</span><span class="token string">"The detected OS is: "</span> <span class="token operator">+</span> runtime<span class="token punctuation">.</span>platformInfo<span class="token punctuation">.</span>os<span class="token punctuation brace-round brace-close brace-level-3" id="pair-0-open">)</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-2-open">}</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Platform info APIs</h2>
+<dl>
+<dt>isMobile</dt>
+<dd>A read-only boolean indicating whether Construct detects the current device as "mobile". </dd>
+<dt>os</dt>
+<dd>A read-only string with the operating system Construct has detected, which is one of <code>"windows"</code>, <code>"macos"</code>, <code>"linux"</code>, <code>"chrome-os"</code>, <code>"android"</code>, <code>"ios"</code> or <code>"unknown"</code>.</dd>
+<dt>osVersion</dt>
+<dd>A read-only string with the operating system version Construct has detected, or the string <code>"(unknown)"</code> if it failed to identify a version.</dd>
+<dt>browser</dt>
+<dd>A read-only string with the browser Construct has detected, which is one of <code>"chrome"</code>, <code>"chromium"</code>, <code>"edge"</code>, <code>"opera"</code>, <code>"firefox"</code>, <code>"safari"</code> or <code>"unknown"</code>. </dd>
+<dt>browserVersion</dt>
+<dd>A read-only string with the browser version Construct has detected, or the string <code>"(unknown)"</code> if it failed to identify a version.</dd>
+<dt>browserEngine</dt>
+<dd>A read-only string with the browser engine Construct has detected, which is one of <code>"chromium"</code>, <code>"gecko"</code>, <code>"webkit"</code>, or <code>"unknown"</code> if failed to identify any.</dd>
+<dt>exportType</dt>
+<dd>A read-only string indicating the export option used to export the project, which is one of <code>"preview"</code> (when previewing prior to export), <code>"html5"</code>, <code>"scirra-arcade"</code>, <code>"cordova-android"</code>, <code>"cordova-ios"</code>, <code>"windows-webview2"</code>, <code>"macos-wkwebview"</code>, <code>"linux-cef"</code>, <code>"xbox-uwp-webview2"</code>, <code>"instant-games"</code> or <code>"playable-ad"</code>.</dd>
+<dt>renderer</dt>
+<dd>A read-only string indicating the graphics rendering technology in use. This can be <code>"webgl1"</code>, <code>"webgl2"</code> or <code>"webgpu"</code>. It can also have a <code>-software</code> suffix if a "major performance caveat" is detected, which normally indicates slower software rendering, typically due to unreliable GPU drivers. For example, software-rendered WebGL 1 support would return <code>"webgl1-software"</code>. The WebGPU renderer can also have a <code>-compatibility</code> suffix to indicate it is rendering with WebGPU in compatibility mode (supporting older hardware with legacy graphics APIs), e.g. <code>"webgpu-compatibility"</code>.</dd>
+<dt>rendererDetail</dt>
+<dd>A read-only string describing system-specific detail about the graphics hardware in use. This typically describes the GPU manufacturer and model name, and sometimes some hardware capabilities.</dd>
+<dt>canvasClientX</dt>
+<dt>canvasClientY</dt>
+<dd>Read-only numbers with the position of the main display canvas in CSS pixels. In other words these are the CSS co-ordinates of the top-left point of the main display canvas relative to the page.</dd>
+<dt>canvasCssWidth</dt>
+<dt>canvasCssHeight</dt>
+<dd>Read-only numbers with the size of the main display canvas in CSS pixels. This does not correspond exactly to device (physical display) pixels, but is the appropriate size from a web design perspective in <code>px</code> units.</dd>
+<dt>canvasDeviceWidth</dt>
+<dt>canvasDeviceHeight</dt>
+<dd>Read-only numbers with the size of the main display canvas in device (physical display) pixels. Unlike the CSS size, this size reflects the number of actual pixels used in the display.</dd>
+<dt>devicePixelRatio</dt>
+<dd>Return the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio">devicePixelRatio</a> property. </dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

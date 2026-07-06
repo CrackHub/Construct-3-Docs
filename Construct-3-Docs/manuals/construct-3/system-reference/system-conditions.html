@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/system-reference/system-conditions" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                System conditions
+            </h1>
+<div itemprop="articleBody">
+<p>This section describes all the <a class="extern" href="../project-primitives/events/conditions.html" rel="noopener" target="_blank" title="Make your own games">conditions</a> in the built-in System object in Construct. They are listed in the order they appear in the <a class="extern" href="../interface/dialogs/add-condition-action.html" rel="noopener" target="_blank" title="Make your own games">Add Condition dialog</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Angles</h2>
+<p>Note angles in Construct start with 0 degrees facing right and increment clockwise.</p>
+<dl class="sans">
+<dt>Is between angles</dt>
+<dd>True if a given angle is between the two other angles in degrees. The first and second angles must be in clockwise order. That is, <em>X is between 0 and 45 degrees</em> is true if the angle X is in a 45 degree area, but <em>X is between 45 and 0 degrees</em> is true if X is in the 315 degree area from 45 degrees through 0 degrees. The first angle is inclusive, but the second angle is exclusive, to ensure adjacent ranges are handled correctly.</dd>
+<dt>Is clockwise from</dt>
+<dd>True if a given angle is clockwise from another angle in degrees, or in other words, if it is 180 degrees or less in a clockwise direction from Angle 2 to Angle 1. Invert to test if anticlockwise instead. For example, 45 degrees is clockwise from 0 degrees, but 0 degrees is anticlockwise from 45 degrees. Angle 1 is the angle to test, and Angle 2 is the reference angle to test whether Angle 1 is clockwise from.</dd>
+<dt>Is within angle</dt>
+<dd>True if an angle is within a number of degrees of another angle. This is more reliable than testing if an angle exactly equals an angle, e.g. <em>X within 0.5 degrees of 90 degrees</em> is probably better than X equals 90 degrees, since there are many cases an angle can be very close to, but not exactly, 90 degrees.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>General</h2>
+<dl class="sans">
+<dt>Compare two values</dt>
+<dd>Compare any two <a class="extern" href="../project-primitives/events/expressions.html" rel="noopener" target="_blank" title="Make your own games">expressions</a> (which can either numbers or text) with each other. They can be compared as <em>Equal</em>, <em>Not equal</em>, <em>Less</em>, <em>Less or equal</em>, <em>Greater</em> or <em>Greater or equal</em>.</dd>
+<dt>Evaluate expression</dt>
+<dd>True if the given expression is a non-zero number, or a non-empty string. This is useful with <a class="extern" href="../project-primitives/events/expressions.html" rel="noopener" target="_blank" title="Make your own games">boolean expressions</a> like <code>score &lt; 0 | health &lt; 0</code>.</dd>
+<dt>Every tick</dt>
+<dd>A condition which is always true. Used on its own, this has the same effect as running every time it is checked, which is once per tick, hence the name "Every tick". This is about 60 times a second on most devices; see <a class="extern" href="../project-primitives/events/how-events-work.html" rel="noopener" target="_blank" title="Make your own games">how events work</a> for more information. Adding <em>Every tick</em> to an event with other conditions is redundant and has no effect at all.</dd>
+<dt>Is between values</dt>
+<dd>Test if a number is between two values (greater or equal to a lower value and less or equal to a higher value).</dd>
+<dt>Is group active</dt>
+<dd>Test if a <a class="extern" href="../project-primitives/events/groups.html" rel="noopener" target="_blank" title="Make your own games">group of events</a> is active or inactive. The name of the group is used to identify it.</dd>
+<dt>Is number NaN</dt>
+<dd>Test if a number is equal to <em>NaN</em> (Not A Number), a special value returned by calculations which cannot be represented as a real number, such as the square root of -1.</dd>
+<dt>Is value type</dt>
+<dd>Check if a value is a number or a string.</dd>
+<dt>Object UID exists</dt>
+<dd>Test if an object exists with the given Unique ID (UID). For more information on UIDs, see <a class="extern" href="../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a>.</dd>
+<dt>Test regex</dt>
+<dd>Test if a given string matches a regular expression with flags. This only returns a true or false result, so to make more advanced use of regular expressions, see the <em>Regex...</em> system expressions.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Global &amp; local variables</h2>
+<dl class="sans">
+<dt>Compare variable</dt>
+<dd>Compare the value of a <em>number</em> or <em>text</em> type <a class="extern" href="../project-primitives/events/variables.html" rel="noopener" target="_blank" title="Make your own games">event variable</a> (a global variable or local variable in scope). The comparison can be made <em>Equal</em>, <em>Not equal</em>, <em>Less</em>, <em>Less or equal</em>, <em>Greater</em> or <em>Greater or equal</em>.</dd>
+<dt>Is boolean set</dt>
+<dd>Test if a boolean event variable is set to <em>true</em>. To test if it is false, invert the condition.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Layers</h2>
+<dl class="sans">
+<dt>Compare opacity</dt>
+<dd>Compare the opacity (or semitransparency) of a layer, from 0 (transparent) to 100 (opaque). A layer's opacity cannot be outside this range.</dd>
+<dt>Layer is empty</dt>
+<dd>Test if a layer currently has zero instances on it. This counts any objects anywhere at all on the layer, so even one instance far outside the viewport will make this condition false.</dd>
+<dt>Layer is HTML</dt>
+<dd>Test if a layer is currently set to be a HTML layer. For more information see <a class="extern" href="../tips-and-guides/html-layers.html" rel="noopener" target="_blank" title="Make your own games">HTML layers</a>.</dd>
+<dt>Layer is interactive</dt>
+<dd>Test if a layer is currently interactive, allowing its content to respond to mouse and touch input. This can be changed with the <em>Set layer interactive</em> action.</dd>
+<dt>Layer is visible</dt>
+<dd>Test if a layer is currently set to be visible.<br/>
+</dd>
+<dt>Layer name exists</dt>
+<dd>Test if the current layout includes a layer with the given name (case insensitive). This can be useful when using dynamic layers (i.e. the <em>Add layer</em> and <em>Remove layer</em> actions).</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Layout</h2>
+<dl class="sans">
+<dt>On canvas snapshot</dt>
+<dd>Triggered after the <em>Snapshot canvas</em> system action, when the snapshot is ready. It can then be accessed with the <em>CanvasSnapshot</em> system expression.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Loops</h2>
+<p>Loops can be stopped with the <em>Stop Loop</em> <a class="extern" href="system-actions.html" rel="noopener" target="_blank" title="Make your own games">system action</a>.</p>
+<dl class="sans">
+<dt>For</dt>
+<dd>Repeat the event a number of times, using an index variable over a range of values. The index can be retrieved with the <em>LoopIndex</em> <a class="extern" href="system-expressions.html" rel="noopener" target="_blank" title="Make your own games">system expression</a> and passing the name of the loop.</dd>
+<dt>For Each</dt>
+<dt>For Each (ordered)</dt>
+<dd>Repeat the event once per picked <a class="extern" href="../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a>. This only repeats for instances that have been picked by prior conditions. See <a class="extern" href="../project-primitives/events/how-events-work.html" rel="noopener" target="_blank" title="Make your own games">how events work</a> for more information on picking. <em>For Each</em> is commonly mis-used or used redundantly - actions already apply <em>for each</em> instance picked by conditions, so it often is simply not needed. However, if you fully understand how the event system works, it can be used to force the event to apply once per instance where the event system would not normally do that. The 'ordered' variant allows the order that the instances are iterated in to be defined by an expression. For example, ordering by <code>Sprite.Y</code> ascending will iterate the top instances on the screen first, moving downwards.</dd>
+<dt>Repeat</dt>
+<dd>Simply repeat the event a given number of times. This tests any conditions following it on every repeat, and if those conditions are met also runs the actions and any sub-events on every repeat.</dd>
+<dt>While</dt>
+<dd>Repeat the event until one of the other following conditions in the event becomes false or a <em>Stop loop</em> action is used. Be careful not to create infinite loops which will cause the project to hang.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Memory management</h2>
+<dl class="sans">
+<dt>Is loading images</dt>
+<dd>True while any of the memory management 'Load' actions are in the process of loading images.</dd>
+<dt>On image loading complete</dt>
+<dd>Triggered when all memory management 'Load' actions that were started have finished loading their images.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Pick instances</h2>
+<dl class="sans">
+<dt>Pick all</dt>
+<dd>Reset the picked objects back to all of them. Subsequent conditions will pick from all instances again instead of filtering from only those meeting all the conditions so far. See <a class="extern" href="../project-primitives/events/how-events-work.html" rel="noopener" target="_blank" title="Make your own games">How events work</a> for more information on how instances are picked in events. Useful in subevents to start affecting different instances again.</dd>
+<dt>Pick by comparison</dt>
+<dd>Pick the individual instances of an object type that meet a comparison. For example, it is possible to pick all instances where <code>Object.X * 2</code> is less than <code>Object.Y + 100</code>, which is not possible with either the <em>Compare X</em> or <em>Compare Y</em> conditions.</dd>
+<dt>Pick by evaluate</dt>
+<dd>Pick the individual instances of an object type where the expression evaluates to a nonzero value. In other words, for each instance if the expression is 0, it is not picked, else it is picked. This is most useful with the comparison and logical operators (see <a class="extern" href="../project-primitives/events/expressions.html" rel="noopener" target="_blank" title="Make your own games">Expressions</a>). For example, it's possible to pick instances using the following expression (where &amp; means "and" and | means "or"): <code>(Object.X &gt; 100 &amp; Object.Y &gt; 100) | (Object.X &lt; -100 &amp; Object.Y &lt; -100)</code></dd>
+<dt>Pick by highest/lowest</dt>
+<dd>Pick instances of a given object type according to whether the value the given expression evaluates to has the highest or lowest number. This evaluates the provided expression repeatedly for each individual instance of the object type, and uses the resulting values to determine which instances had the highest or lowest result. For example picking the instance with the highest expression <code>Object.X</code> will pick the instances furthest to the right. When <em>Pick all tied</em> is checked, multiple instances may be picked if they all share the same highest/lowest value. If it is unchecked, the condition will only ever pick a single instance even when there is a tie, in which case it will pick an arbitrary instance.</dd>
+<dt>Pick last created</dt>
+<dd>Pick the most recently created instance of an object type or family. This is useful with the <em>Create object (by name)</em> <a class="extern" href="system-actions.html" rel="noopener" target="_blank" title="Make your own games">system action</a>. For example if you know the created object must belong to a <a class="extern" href="../project-primitives/objects/families.html" rel="noopener" target="_blank" title="Make your own games">family</a>, then you can use <em>Pick last created</em> to pick the created instance from the family.</dd>
+<dt>Pick Nth instance</dt>
+<dd>Pick the <a class="extern" href="../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instance</a> at a given place in the internal list of picked objects. This is most useful used in sub-events to act on separate instances. For example, in a "Sprite collided with Sprite" event, <em>Pick 0th instance</em> and <em>Pick 1st instance</em> can be used to act on each instance involved in the collision separately.
+<br/>
+If all objects are currently picked, this condition can also be used to pick an object by its index ID (IID).</dd>
+<dt>Pick overlapping point</dt>
+<dd>Pick all instances of a given object type that are overlapping a point in the layout. The given X and Y position in the layout will be tested against the instance's collision polygons.</dd>
+<dt>Pick random instance</dt>
+<dd>Pick a random instance from the currently picked objects. In other words, if <em>Pick random instance</em> follows another condition, it will pick a random instance from the instances meeting the prior condition. Otherwise it picks a random instance from all the instances.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Save &amp; Load</h2>
+<p>For more information on using savegames, see the tutorial <a class="extern" href="https://www.construct.net/tutorials/savegames-11.html" rel="noopener" target="_blank" title="Make your own games">How to make savegames</a>.</p>
+<dl class="sans">
+<dt>On load complete</dt>
+<dd>Triggered after the <em>Load</em> <a class="extern" href="system-actions.html" rel="noopener" target="_blank" title="Make your own games">system action</a> successfully completes. </dd>
+<dt>On load failed</dt>
+<dd>Triggered after the <em>Load</em> system action fails to complete, usually because the slot has not been saved to yet.</dd>
+<dt>On save complete</dt>
+<dd>Triggered after the <em>Save</em> or <em>Save to JSON</em> system actions successfully complete. In both cases, a string of the resulting JSON data can be accessed in this trigger with the <em>SaveStateJSON</em> system expression.</dd>
+<dt>On save failed</dt>
+<dd>Triggered if the <em>Save</em> system action fails to complete. This can occur if the browser has reached the limit of its storage quota, or the user has withdrawn permission for the page or app to write to storage.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link9" name="internalH1Link9"></a><h2>Special conditions</h2>
+<dl class="sans">
+<dt>Else</dt>
+<dd>Run if the previous event did not run. Note that this condition does not pick any objects: if it follows an event that picks objects, in the <em>Else</em> event all instances revert to picked again. <em>Else</em> can only follow normal (non-triggered) events. It can also follow another <em>Else</em> event with other conditions to make an "if - else if - else" chain.</dd>
+<dt>Is in preview</dt>
+<dd>True when running the project from a preview in Construct, and false when running after being exported. Useful to add debug or diagnostic features for previewing only.</dd>
+<dt>Trigger once while true</dt>
+<dd>Turn an ordinary event (which is tested every tick) in to a trigger. For example, if an event plays a sound when lives equals 0, normally this event runs every tick. This plays about 60 sounds a second and would sound pretty bad. Adding <em>Trigger once while true</em> <strong>after</strong> the other conditions makes the event run just once when it first becomes true. This makes the previous example only play a sound once the first time your lives reaches 0. It should be the last condition in an event.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link10" name="internalH1Link10"></a><h2>Start &amp; end</h2>
+<dl class="sans">
+<dt>Is suspended</dt>
+<dd>True if the runtime is currently suspended, i.e. in between <em>On suspended</em> and <em>On resumed</em>. This normally means the browser/app is in the background and is not currently running.</dd>
+<dt>On suspended</dt>
+<dt>On resumed</dt>
+<dd>Triggered when the browser/app suspends and resumes execution. Normally when the app goes in to the background (e.g. minimized, or switched back to the home screen), execution of the app is suspended to conserve system resources and save battery power, triggering <em>On suspended</em>. When the app is reopened, <em>On resumed</em> triggers and execution resumes.</dd>
+<dt>On end of layout</dt>
+<dd>Triggered when the layout is ending. This can happen when the project goes to a different layout or when the project closes.</dd>
+<dt>On loader layout complete</dt>
+<dd>Triggered on a loader layout when the progress reaches 100%. For more information see <a class="extern" href="https://www.construct.net/tutorials/loader-layouts-custom-loading-9.html" rel="noopener" target="_blank" title="Make your own games">How to use loader layouts to make custom loading screens</a>.</dd>
+<dt>On start of layout</dt>
+<dd>Triggered when the layout begins. Use this event to run any actions that need to be done on start-up.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link11" name="internalH1Link11"></a><h2>Time</h2>
+<dl class="sans">
+<dt>Compare time</dt>
+<dd>Compare the time, in seconds, since the project started. For example, events can be set up to run when the time reaches (equals) 10 seconds.</dd>
+<dt>Every X seconds</dt>
+<dd>Run the event regularly at a given time interval in seconds. This can also be used beneath other conditions to only run the event at a given time interval while the other conditions are true, e.g. "Player is holding spacebar AND every 0.5 seconds: fire laser".</dd>
+<dt>On signal</dt>
+<dd>Triggered when the <em>Signal</em> system action is run with a matching tag (case insensitive).</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link12" name="internalH1Link12"></a><h2>Templates</h2>
+<dl class="sans">
+<dt>Template exists</dt>
+<dd>Check if an object type has a template with the provided name.</dd></dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

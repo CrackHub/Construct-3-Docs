@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/audio" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Audio script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IAudioObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/audio.html" rel="noopener" target="_blank" title="Make your own games">Audio plugin</a>.</p>
+<p>The script interface essentially just provides access to the underlying <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/AudioContext">AudioContext</a> (part of the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>) that the Audio plugin uses internally for audio playback. However this is sufficient to provide complete control over audio playback, including setting up complex graphs of audio processing nodes. It is also convenient, since Construct manages some awkward details such as ensuring playback is enabled as soon as possible given most browsers impose autoplay restrictions. Adding the Audio object and using its script interface saves you from having to re-implement these details yourself.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Typically it is used through <code>runtime.objects.Audio</code>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Examples</h2>
+<p>The following examples demonstrate using the Web Audio API for audio playback.</p>
+<ul class="list">
+<li><a class="extern" href="https://editor.construct.net/#open=audio-scripting" rel="noopener" target="_blank" title="Make games in the browser">Audio scripting</a> demonstrates loading audio files and playing them</li>
+<li><a class="extern" href="https://editor.construct.net/#open=sound-synthesis" rel="noopener" target="_blank" title="Make games in the browser">Sound synthesis</a> demonstrates generating sounds with code</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Audio APIs</h2>
+<dl>
+<dt>audioContext</dt>
+<dd>The Audio plugin's internal <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/AudioContext">AudioContext</a> used for audio playback.</dd>
+<dt>destinationNode</dt>
+<dd>The destination node to connect any additional audio nodes to.<br/>
+<br/>
+</dd>
+<dt>isSilent</dt>
+<dd>Set or get a boolean indicating whether <em>Silent mode</em> is enabled. In silent mode all currently playing sounds are muted and no new sounds will play.</dd>
+<dt>masterVolume</dt>
+<dd>Set or get the current master volume, which is applied to all audio playback, in linear scale (in the range [0, 1]).</dd>
+<dt>stopAll()</dt>
+<dd>Stop all currently playing sounds.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/orbit" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Orbit behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Orbit behavior</strong> moves an object in a circle or ellipse around a point. The object's initial position is used as the point to orbit around.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/orbit.html" rel="noopener" target="_blank" title="Make your own games">IOrbitBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Orbit properties</h2>
+<dl class="sans">
+<dt>Speed</dt>
+<dd>The speed to orbit at, in degrees per second. Positive is clockwise and negative is anticlockwise.</dd>
+<dt>Acceleration</dt>
+<dd>The rate of change to the orbit speed, in degrees per second per second. Positive will accelerate in a clockwise direction and negative will accelerate in an anticlockwise direction.</dd>
+<dt>Primary radius</dt>
+<dd>The distance of the orbit from its center point, in pixels. For a circular orbit, ensure the primary and secondary radii are the same. For elliptical orbits, the primary radius is the one in the direction of the offset angle.</dd>
+<dt>Secondary radius</dt>
+<dd>The perpendicular distance of the orbit from its center point, in pixels. For a circular orbit, ensure the primary and secondary radii are the same. For elliptical orbits, the secondary radius is the one perpendicular to the offset angle.</dd>
+<dt>Offset angle</dt>
+<dd>For elliptical orbits, the rotation of the ellipse in degrees. For circular orbits, this does not affect the orbit path (since rotating a circle has no effect), but it changes the initial angle the orbit starts from.</dd>
+<dt>Match rotation</dt>
+<dd>If enabled, sets the object's angle to match the direction of travel in the orbit. If disabled the behavior only changes the object's position without affecting the angle.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, it can be enabled at runtime using the <em>Set enabled</em> action.</dd>
+<dt>Preview <span class="ilTag c2">Paid plans only</span></dt>
+<dd>Enable to run a preview of the behavior directly in the Layout View.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Orbit conditions</h2>
+<dl class="sans">
+<dt>Is enabled</dt>
+<dd>Test if the behavior is currently enabled.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Orbit actions</h2>
+<dl class="sans">
+<dt>Pin</dt>
+<dt>Unpin</dt>
+<dd>Set another object as the location to orbit around, following the object if it moves. The <em>Unpin</em> action will stop following the object.</dd>
+<dt>Set acceleration</dt>
+<dt>Set enabled</dt>
+<dt>Set match rotation</dt>
+<dt>Set offset angle</dt>
+<dt>Set radius</dt>
+<dt>Set speed</dt>
+<dd>Set the corresponding behavior properties. See <em>Orbit properties</em> above.</dd>
+<dt>Set rotation</dt>
+<dd>Set the current orbit position by its angle from the center point in degrees.</dd>
+<dt>Set target</dt>
+<dd>Set the center point of the orbit in layout co-ordinates.</dd>
+<dt>Reset total rotation</dt>
+<dd>Sets the counters for the TotalRotation and AbsoluteTotalRotation to 0</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Orbit expressions</h2>
+<dl class="sans">
+<dt>Acceleration</dt>
+<dt>OffsetAngle</dt>
+<dt>PrimaryRadius</dt>
+<dt>SecondaryRadius</dt>
+<dt>Speed</dt>
+<dd>Return the corresponding behavior properties. See <em>Orbit properties</em> above.</dd>
+<dt>DistanceToTarget</dt>
+<dd>Return the distance from the object to the center point of the orbit, in pixels.</dd>
+<dt>Rotation</dt>
+<dd>Return the current position of the orbit as its rotation relative to the center point in degrees.</dd>
+<dt>TargetX</dt>
+<dt>TargetY</dt>
+<dd>Return the current center point of the orbit in layout co-ordinates.</dd>
+<dt>TotalRotation</dt>
+<dd>Return the total rotation of the instance in degrees. This value does not wrap at 360 degrees. If the instance is rotating counter-clockwise then the value will decrease over time. This counter can be cleared using the <em>Reset total rotation</em> action.</dd>
+<dt>TotalAbsoluteRotation</dt>
+<dd>Return the total rotation of the instance in degrees, ignoring rotation direction. This expression is very similar to the <em>TotalRotation</em> expression, but rotation deltas are converted to absolute values. This means the counter will always increase even if the instance is rotating counter-clockwise. This counter can be cleared using the <em>Reset total rotation</em> action.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

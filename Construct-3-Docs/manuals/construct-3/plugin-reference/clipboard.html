@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/clipboard" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Clipboard
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Clipboard</strong> object provides access to the system clipboard, such as copy and paste operations.</p>
+<h3>Scripting</h3>
+<p>This object has no script interface, because when using JavaScript or TypeScript coding you can use the browser built-in <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API">Clipboard API</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Browser permissions</h2>
+<p>For security and privacy reasons, clipboard access - particularly paste operations - are usually controlled by permission prompts in browsers. Further, these operations are sometimes only allowed in a user input trigger, such as a button click or touch start. This prevents situations like web pages being able to immediately read from the user's clipboard before they've even interacted with the page. However it may mean you need to adjust the way your project accesses the clipboard.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Clipboard conditions</h2>
+<dl class="sans">
+<dt>On copy success</dt>
+<dd>Triggered after a copy action when the copy has successfully completed, so the data is now on the user's clipboard.</dd>
+<dt>On copy error</dt>
+<dd>Triggered after a copy action fails. The user may not have granted permission or the attempt may not have been in a user input trigger.</dd>
+<dt>On paste text</dt>
+<dd>Triggered after a <em>Request paste text</em> action completes successfully. The text from the user's clipboard is available with the <em>PastedText</em> expression.</dd>
+<dt>On paste binary</dt>
+<dd>Triggered after a <em>Request paste binary</em> action completes successfully, and the data in the user's clipboard matches the <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME type</a> specified in the trigger (e.g. "image/png" for a PNG image). This allows using different triggers to receive different types of clipboard data. When this triggers, the pasted data is placed inside the chosen <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data object</a>.</dd>
+<dt>On paste error</dt>
+<dd>Triggered after a paste action fails. The user may not have granted permission or the attempt may not have been in a user input trigger.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Clipboard actions</h2>
+<dl class="sans">
+<dt>Copy text</dt>
+<dd>Copy a string of text to the user's clipboard. This may require permission from the browser. <em>On copy success</em> or <em>On copy error</em> will trigger afterwards depending on the result.</dd>
+<dt>Copy binary</dt>
+<dd>Copy the contents of a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data object</a> the user's clipboard. The <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME type</a> of the data must also be specified, e.g. "image/png" for a PNG image, so other apps know whether they can paste the data. Copying may require permission from the browser. <em>On copy success</em> or <em>On copy error</em> will trigger afterwards depending on the result.</dd>
+<dt>Request paste text</dt>
+<dd>Request to read text from the user's current clipboard. This usually involves a permission prompt in browsers and may only be allowed in a user input trigger. If successful then <em>On paste text</em> will trigger and the pasted text will be available in the <em>PastedText</em> expression; otherwise <em>On paste error</em> will trigger.</dd>
+<dt>Request paste binary</dt>
+<dd>Request to read binary data from the user's current clipboard. This usually involves a permission prompt in browsers and may only be allowed in a user input trigger. If successful then <em>On paste binary</em> will trigger assuming the type of the clipboard data matches the type specified in the trigger; then the data is available in the chosen Binary Data object. Otherwise <em>On paste error</em> will trigger if the attempt to paste fails.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Clipboard expressions</h2>
+<dl class="sans">
+<dt>PastedText</dt>
+<dd>After <em>On paste text</em> triggers, this is set to the text that was copied to the user's clipboard.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

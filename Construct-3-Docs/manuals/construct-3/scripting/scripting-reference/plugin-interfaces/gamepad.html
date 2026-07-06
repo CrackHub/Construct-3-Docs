@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/plugin-interfaces/gamepad" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Gamepad script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IGamepadObjectType</code> interface derives from <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> to add APIs specific to the <a class="extern" href="../../../plugin-reference/gamepad.html" rel="noopener" target="_blank" title="Make your own games">Gamepad plugin</a>.</p>
+<p>Note this class derives from the object class interface, not the instance interface. Typically it is used through <code>runtime.objects.Gamepad</code> directly.</p>
+<p>When writing code you can interact with the browser <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API">Gamepad API</a> directly. However the browser API is only available when the project runs in DOM mode. This script interface allows accessing gamepad features in worker mode too. The script interface is designed to work similarly to the browser Gamepad API.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Events</h2>
+<dl>
+<dt>"gamepadconnected"</dt>
+<dd>Fired when a gamepad is connected. The event object includes the properties <code>id</code> for a string identifying the gamepad, and <code>index</code> for the zero-based index of the gamepad.</dd>
+<dt>"gamepaddisconnected"</dt>
+<dd>Fired when a gamepad is disconnected. The event object includes the property <code>index</code> for the zero-based index of the gamepad.</dd>
+<dt>"gamepadinputupdate"</dt>
+<dd>Fired when Construct's internal gamepad polling returns data. This event contains data about the current input state of all gamepads. The event object contains a property <code>gamepads</code> which is an array of all connected gamepad states. Each gamepad state is an object with the following properties:<ul class="list"><br/>
+<li><code>index</code>: the zero-based index of the gamepad</li><br/>
+<li><code>id</code>: a string identifying the gamepad</li><br/>
+<li><code>axes</code>: an array of numbers representing the gamepad axis positions in the range [-1, 1].</li><br/>
+<li><code>buttons</code>: an array of objects representing the gamepad button states. Each object has the properties <code>pressed</code>, which is a boolean indicating whether the button is currently pressed, and <code>value</code>, which is the pressed amount in the range [0-1] for buttons that support it.</li></ul>Note that all data represents raw input with no dead zone or input mapping applied. Detecting button press events also requires writing code to observe input updates and identifying when a button changes from unpressed to pressed state.</dd></dl>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Gamepad APIs</h2>
+<dl>
+<dt>deadZone</dt>
+<dd>Read-only number representing the deadzone property of the Gamepad object in the range 0-1.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

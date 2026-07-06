@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/interface/bars/instance-bar" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Instances Bar
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Instances Bar</strong> shows all the <a class="extern" href="../../project-primitives/objects/instances.html" rel="noopener" target="_blank" title="Make your own games">instances</a> in the current <a class="extern" href="../../project-primitives/layouts.html" rel="noopener" target="_blank" title="Make your own games">layout</a> at a glance, it can be very useful in large or busy layouts to quickly find specific instances.</p>
+<p>You can also use folders to group related instances together. <a class="extern" href="../layout-view.html#internalH1Link4" rel="noopener" target="_blank" title="Make your own games">Hierarchies</a> are shown as a tree structure to quickly tell which instances are where in complex structures.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124586/overview.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 484x875px in new window (70.23 KB)"><span><img height="875" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124586/overview.png" width="484"/></span></a></div></div>
+<p>To open the Instances Bar tick the check at <span class="navWrap">Menu<span class="arr">►</span>View<span class="arr">►</span>Bars<span class="arr">►</span>Instances Bar</span>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Folders</h2>
+<div class="hr"></div>
+<p>To add a folder right-click anywhere in the bar and choose the appropriate option from the context menu. </p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/121772/instancesbar-context-menu-1.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 231x148px in new window (4.4 KB)"><span><img height="148" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/121772/instancesbar-context-menu-1.png" width="231"/></span></a></div></div>
+<p>Once a folder is created you can drag &amp; drop instances in and out of them by dragging the items in the bar.</p>
+<p>It is also possible to drag instances into a folder directly from the <a class="extern" href="../layout-view.html" rel="noopener" target="_blank" title="Make your own games">Layout View</a>.</p>
+<p>The order in which instances appear in the bar can also be altered by dragging and dropping.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Hierarchies</h2>
+<div class="hr"></div>
+<p>Hierarchies can be set directly in the bar by dragging and dropping items on top of each other. Dragging an instance from the Layout View on top of an item in the bar will also work for this purpose.</p>
+<table>
+<thead>
+<tr>
+<td>Hierarchy in the Instances bar</td>
+<td>Hierarchy in the Layout View</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124593/hierarchy-overview-1.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 418x761px in new window (45.15 KB)"><span><img height="761" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124593/hierarchy-overview-1.png" width="418"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/121774/instancesbar-2.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 361x296px in new window (99.05 KB)"><span><img height="296" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/121774/instancesbar-2.png" width="361"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Context menu options</h2>
+<div class="hr"></div>
+<h3>Common</h3>
+<p>These options are shown with any context menu in the bar.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/121775/instancesbar-context-menu-0.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 231x148px in new window (4.37 KB)"><span><img height="148" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/121775/instancesbar-context-menu-0.png" width="231"/></span></a></div></div>
+<ul class="list">
+<li><strong>Add folder:</strong> adds a new folder.</li>
+<li><strong>Expand / Collapse: </strong> expand or collapse all items with nested content.</li>
+<li>
+<strong>Show more information:</strong> show additional information about each instance.
+
+		<ul class="list">
+<li><strong>Hierarchies:</strong> show an icon next to instances which have children. In the case an instance has a parent in a different layout (which can happen when working with global layers), that layout will also be shown next to the item.</li>
+<li><strong>Meshes:</strong> show an icon next to instances which have a mesh and also show the horizontal and vertical size of the mesh.</li>
+<li><strong>Layers &amp; Layouts:</strong> show an icon indicating if the <a class="extern" href="../../project-primitives/layers.html" rel="noopener" target="_blank" title="Make your own games">layer</a> is global and the name of the layer the instance belongs to. If the layer is not part of the current layout, also shows the layout the layer is coming from.
+
+</li>
+<li><strong>Plugin:</strong> show the icon and the name of the <a class="extern" href="../../project-primitives/objects/plugins.html" rel="noopener" target="_blank" title="Make your own games">plugin</a>.</li>
+<li><strong>Templates:</strong> <a class="extern" href="../../project-primitives/objects/templates.html" rel="noopener" target="_blank" title="Make your own games">template</a> and replica instances show a unique icon as well as the corresponding template name.</li>
+<li><strong>Timelines:</strong> show an icon next to instances belonging to a <a class="extern" href="../../project-primitives/timelines/timeline.html" rel="noopener" target="_blank" title="Make your own games">timeline</a> as well as the names of the timelines the instance belongs too.</li>
+</ul>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/121777/instancesbar-3.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 496x112px in new window (8.88 KB)"><span><img height="112" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/121777/instancesbar-3.png" width="496"/></span></a></div></div>
+</li>
+</ul>
+<h3>Folder</h3>
+<p>These options are shown when showing a context menu for a folder.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124579/folder-context-menu.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 231x238px in new window (5.02 KB)"><span><img height="238" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124579/folder-context-menu.png" width="231"/></span></a></div></div>
+<ul class="list">
+<li><strong>Rename:</strong> rename the selected folder.</li>
+<li><strong>Delete:</strong> delete the selected folders.</li>
+<li><strong>Select all instances:</strong> select all the instances in the folder.</li>
+</ul>
+<h3>Instances</h3>
+<p>These options are shown when showing a context menu for an instance or group of instances. Some are equivalent to the context menu options with the same names found on context menus of the Layout View.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124581/instance-context-menu.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 231x526px in new window (16.64 KB)"><span><img height="526" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124581/instance-context-menu.png" width="231"/></span></a></div></div>
+<ul class="list">
+<li><strong>Timeline:</strong> shown for all instances as long as there is a timeline in the <a class="extern" href="../../project-primitives/projects.html" rel="noopener" target="_blank" title="Make your own games">project</a>. Will have different options depending on how the instance relates to the current timeline. This is the same as the equivalent Layout View context menu option.</li>
+<li><strong>Tilemap:</strong> only shown for Tilemap plugin instances. This is the same as the equivalent Layout View context menu option.</li>
+<li><strong>Z Order:</strong> shown for all instances. This is the same as the equivalent Layout View context menu option.</li>
+<li><strong>Hierarchy:</strong> shown for instances that are already part of a hierarchy or when selecting multiple instances. This is the same as the equivalent Layout View context menu option.</li>
+<li><strong>Template:</strong> shown only for instances which are either a template or a replica. This is the same as the equivalent Layout View context menu option.</li>
+<li><strong>Mesh:</strong> shown for all instances that support meshes. This is the same as the equivalent Layout View context menu option.</li>
+<li><strong>Flash selection:</strong> will make the current selection blink in the Layout View.</li>
+<li><strong>Scroll selection into view:</strong> scroll the Layout View to show the selected instances.
+		
+		
+	</li>
+<li><strong>Lock / Unlock layer:</strong> toggle the lock state of the layer the selected instance belongs to.</li>
+<li><strong>Toggle layer visibility:</strong> toggle the visible state of the layer the selected instance belongs to.</li>
+<li><strong>Select layer:</strong> select the layer which the selected instance belongs to. This is the same as selecting a layer through the <a class="extern" href="layers-bar.html" rel="noopener" target="_blank" title="Make your own games">Layers bar</a>.</li>
+<li><strong>Delete:</strong> delete the the selection of instances.</li>
+<li><strong>Cut, Copy and Paste:</strong> these options do the same as the ones in the Layout view context menu.</li>
+<li><strong>Find all references:</strong> searches the whole project for the selected instance.</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Icons</h2>
+<div class="hr"></div>
+<p>Depending on what <strong>Show more information for</strong> option is selected, additional icons might be shown next to an instance to better identify it.</p>
+<p>The <strong>layer visibility checkbox</strong> and <strong>layer lock icon</strong> are shown at all times to change the corresponding visibility and locked states of each instance individually at any time.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124594/icons-overview.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 198x116px in new window (5.79 KB)"><span><img height="116" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124594/icons-overview.png" width="198"/></span></a></div></div>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Locking and Visibility</h2>
+<div class="hr"></div>
+<p>Locking instances through the Instances bar is similar to locking them using the Layout View context menu option <strong>Lock selection</strong>. This means this locked state is independent from the locked state of the corresponding layer.</p>
+<p>Toggling visibility of an instance works in a similar way to the locked state in that it is independent to the visibility state of the corresponding layer.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Global Layers</h2>
+<div class="hr"></div>
+<p>When a layout is showing instances that are coming from a global layer a few unique items will appear in the bar to make it more clear where those instances are coming from.</p>
+<p>In the image below you can see the special <strong>Global instances</strong> folder and a <strong>Layout</strong> item showing which instances are coming from a global layer.</p>
+<div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124590/global-layers-overview.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 472x760px in new window (61.15 KB)"><span><img height="760" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124590/global-layers-overview.png" width="472"/></span></a></div></div>
+<p>In that example the current layout is <strong>OtherLayout</strong> and the bar is showing that some instances shown are coming from a global layer in the <strong>Game</strong> layout. At the bottom you can see the <strong>Layers &amp; Layouts</strong> option is toggled so all instances are showing which layer they belong too.</p>
+<p>The globe icon next to some instances indicates they are part of a global layer. Instances which don't have a globe are not part of any global layer in the current layout.</p>
+<p>Instances highlighted in red are shown in the bar because they belong to the <strong>Game</strong> layout, but are not in any global layer in the current layout. </p>
+<table>
+<thead>
+<tr>
+<td>Instances from a global layer</td>
+<td>Instances not in any global layer</td>
+</tr>
+</thead>
+<tbody><tr>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124591/global-layers-overview-0.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 472x760px in new window (61.24 KB)"><span><img height="760" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124591/global-layers-overview-0.png" width="472"/></span></a></div></div></td>
+<td><div class="imgAlign"><div class="imageWrapper"><a href="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124592/global-layers-overview-1.png" itemprop="image" rel="nofollow" target="_blank" title="Open original 472x760px in new window (61.33 KB)"><span><img height="760" loading="lazy" no-referrer="none" src="https://construct-static.com/images/v1769/uploads/articleuploadobject/0/images/124592/global-layers-overview-1.png" width="472"/></span></a></div></div></td>
+</tr>
+</tbody></table>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Searching</h2>
+<div class="hr"></div>
+<p>Use the search field at the top of the bar to filter instances. Items are filtered using the following criteria and order:</p>
+<ol class="list">
+<li>Any match with the item name as shown in the bar.</li>
+<li>Any match with the <a class="extern" href="../../project-primitives/objects/object-types.html" rel="noopener" target="_blank" title="Make your own games">Object type</a> name.</li>
+<li>Any match with the plugin name.</li>
+<li>Any match with any of the tags an instance might have.</li>
+<li>Any match with the template name an instance might have.</li>
+<li>Using the special <strong>"mesh" (or it's translated form)</strong> string will match all instances which have a mesh.</li>
+<li>Using the special <strong>"hierarchy" (or it's translated form)</strong> string will match all instances which are part of a hierarchy.</li>
+</ol>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Drag &amp; Drop</h2>
+<p>As mentioned earlier it is possible to drag &amp; drop instances within the bar to arrange them in which ever way is more useful.</p>
+<p>It is also possible to drag instances from the bar into the Layout View, which will create clones of the dragged instances in the dropped position.</p>
+<p>Dragging instances from the Layout View into the Instances Bar has the same effect as dragging the corresponding items within the Instances bar.</p>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>UI state in project folders</h2>
+<p>The UI state for the Instance Bar is saved to independent JSON files for each Layout under the <code>"layouts/uistate"</code> folder so they can be ignored or kept when working with source control.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

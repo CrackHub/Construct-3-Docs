@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/configuring-effects/webgl-shaders" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                WebGL shaders
+            </h1>
+            <div itemprop="articleBody">
+                <p>Effect addons that support WebGL must provide a shader written in WebGL's shading language GLSL. This section provides information specific to WebGL shaders.</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Adding a WebGL 2 shader variant</h2>
+<p>All shaders written for WebGL 1 (using GLSL ES 1.0) are compatible with both WebGL 1 and WebGL 2. There is no need to write a WebGL 2 variant of a shader unless you need specific features only available with WebGL 2 (using GLSL ES 3.0).</p>
+
+<p>If you do write a WebGL 2 shader, we strongly recommend still providing a WebGL 1 shader. Do whatever you can to support WebGL 1, perhaps by using WebGL 1 extensions (see the following section for more details), or use a fallback like a low quality version, a glitchy version, or even just output transparency so it doesn't render. If you don't provide a WebGL 1 shader at all, then any project using your shader will cause an error on devices that still only support WebGL 1, with the project failing to load and just displaying a blank screen.</p>
+
+<h3>Providing a WebGL 2 shader variant</h3>
+<p>To provide a WebGL 2 shader variant, ensure <code>"webgl2"</code> is listed in the <code>"supported-renderers"</code> property of addon.json, e.g.:</p>
+
+<p><code>"supported-renderers": ["webgl", "webgl2"]</code></p>
+
+<p>This tells Construct to look for both a WebGL 1 and WebGL 2 shader for your addon.</p>
+
+<p>The WebGL 1 shader is still in the file <code>effect.fx</code> as before. If enabled then the file <code>effect.webgl2.fx</code> specifies the shader to load for WebGL 2. A sample of an effect using both WebGL 1 and WebGL 2 shaders is provided in the effect SDK download.</p>
+
+<h3>Writing WebGL 2 shaders</h3>
+<p>WebGL 2 shaders are written using GLSL ES 3.0, as opposed to GLSL ES 1.0 for WebGL 1 shaders. This documentation does not cover the full details of how to write WebGL shaders - there are lots of other resources across the web covering that. However some key points to note when writing a WebGL 2 shader are:</p>
+
+<ul class="list">
+<li>A WebGL 2 shader MUST start with the line <code>#version 300 es</code>. This must be the first line - no comments or other lines are allowed before it.</li><li>Change <code>varying</code> to <code>in</code> for the <code>vTex</code> declaration.</li>
+<li><code>gl_FragColor</code> is not used in WebGL 2 shaders. Instead declare <code>out lowp vec4 outColor;</code> at the top level and assign the result color to that.</li>
+<li>The <code>texture2D()</code> function for sampling a texture is now just <code>texture()</code> with WebGL 2.</li>
+</ul>
+
+<p>Once adapted you can then make use of WebGL 2 shader features, such as <code>dFdx()</code>, <code>dFdy()</code> and <code>textureGrad()</code>.</p>
+
+<h3>Using WebGL 1 extensions</h3>
+<p>When only WebGL 1 is supported, Construct unconditionally activates the following extensions if supported:</p>
+
+<ul class="list">
+	<li>EXT_frag_depth</li>
+	<li>OES_standard_derivatives</li>
+	<li>EXT_shader_texture_lod</li>
+</ul>
+
+<p>If your WebGL 2 shader uses equivalent features, this means you can sometimes support WebGL 1 too by activating them in your WebGL 1 shader, e.g.:</p>
+
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-none line-numbers" tabindex="0"><code class="language-{0} match-braces language-none">#extension GL_EXT_frag_depth : enable
+#extension GL_EXT_shader_texture_lod : enable
+#extension GL_OES_standard_derivatives : enable
+
+// now you can use gl_FragDepthEXT, dFdx, dFdy, texture2DGradEXT etc.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>Note Construct currently doesn't support any way to provide an alternative WebGL 1 shader when these extensions are not supported. However this approach lets you support more devices as instead of requiring WebGL 2, your shader can work with WebGL 1 as well when the necessary extensions are available.</p>
+
+
+
+<h3>Testing</h3>
+<p>The Construct editor provides a setting to force the editor and preview to run with WebGL 1. This can help you test your shader variants with both WebGL 1 and WebGL 2 (assuming your device supports WebGL 2). Note this option exists for shader testing only - exported projects will continue to use WebGL 2 when available regardless of the editor setting.</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Shader varyings</h2>
+<p>These are the available <code>varying</code> (in WebGL 1 terminology) variables that are passed from the vertex shader and interpolated across fragments.</p>
+
+<dl>
+	<dt>varying mediump vec2 vTex;</dt>
+	<dd>The current texture co-ordinate to sample the foreground texture at.</dd>
+
+	<dt>varying highp vec3 vWorldPos;</dt>
+	<dd>The current world position. It can be useful for identifying the 3D position of the current fragment.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>Shader uniforms</h2>
+<p>Shaders are written in a GLSL (OpenGL Shading Language) ES 1.0 fragment shader and interpreted by the browser's WebGL implementation. As with normal fragment shaders, the output is written to the special <code>gl_FragColor</code> variable. A WebGL 2 shader variant can be provided which must be written in GLSL ES 3.0 which has a number of differences; see the previous section on adding a WebGL 2 shader variant for more details.</p>
+
+<p>The current foreground texture co-ordinate is provided in the special variable <code>vTex</code>. This is normally used to read the foreground texture, but it is actually optional (in case you want to write a shader that generates all of its output without reference to the foreground texture at all). All other uniforms are optional, and are documented below. The full uniform declaration is included with the recommended precision.</p>
+
+<dl>
+	<dt>uniform lowp sampler2D samplerFront;</dt>
+	<dd>The foreground texture sampler, to be sampled at <code>vTex</code>.</dd>
+
+	<dt>uniform mediump vec2 srcStart;</dt>
+	<dt>uniform mediump vec2 srcEnd;</dt>
+	<dd>The current foreground rectangle being rendered, in texture co-ordinates. Note this is clamped as the object reaches the edge of the viewport. These are mainly useful for calculating the background sampling position.</dd>
+	<dt>uniform mediump vec2 srcOriginStart;</dt>
+	<dt>uniform mediump vec2 srcOriginEnd;</dt>
+	<dd>The current foreground source rectangle being rendered, in texture co-ordinates. This is not clamped, so can cover a rectangle that leaves the viewport. These are mainly useful for calculating the current sampling position relative to the object being rendered, without changing as the object clips against the viewport.</dd>
+	<dt>uniform mediump vec2 layoutStart;</dt>
+	<dt>uniform mediump vec2 layoutEnd;</dt>
+	<dd>The current foreground source rectangle being rendered, in layout co-ordinates. This allows the current fragment's position in the layout to be calculated.</dd>
+	<dt>uniform lowp sampler2D samplerBack;</dt>
+	<dd>The background texture sampler used for background-blending effects. The <code>blends-background</code> property in addon.json should also be set to <code>true</code> before using this. For the correct way to sample the background, see the next section.</dd>
+	<dt>uniform lowp sampler2D samplerDepth;</dt>
+	<dd>The depth texture sampler used for depth-based effects. The <code>uses-depth</code> property in addon.json should also be set to <code>true</code> before using this. The depth texture is the same size as the background texture, so this is sampled similarly to <code>samplerBack</code>. See the next section for more details.</dd>
+	<dt>uniform mediump vec2 destStart;</dt>
+	<dt>uniform mediump vec2 destEnd;</dt>
+	<dd>The current background rectangle being rendered to, in texture co-ordinates, for background-blending effects. For the correct way to sample the background, see the next section.</dd>
+	<dt>uniform highp float seconds;</dt>
+	<dd>The time in seconds since the runtime started. This can be used for animated effects. The <code>animated</code> property in addon.json should be set to <code>true</code>.<br>
+</dd>
+	<dt>uniform mediump vec2 pixelSize;</dt>
+	<dd>The size of a texel in the foreground texture in texture co-ordinates. This allows calculating distances in pixels rather than texture co-ordinates.</dd>
+	<dt>uniform mediump float layerScale;</dt>
+	<dd>The current layer scale as a factor (i.e. 1 is unscaled). This is useful to ensure effects scale according to zoom.</dd>
+	<dt>uniform mediump float layerAngle;</dt>
+	<dd>The current layer angle in radians.</dd>
+	<dt>uniform mediump float devicePixelRatio;</dt>
+	<dd>The value of <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio" target="_blank" rel="nofollow noopener external" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio" class="extern outlink">devicePixelRatio</a> in the browser, which is the number of device pixels per CSS pixel. This may be necessary in some effects to handle high-DPI displays.</dd>
+
+<dt>uniform mediump float zNear;</dt>
+<dt>uniform mediump float zFar;</dt>
+<dd>The values of the project properties <em>Near distance</em> and <em>Far distance</em>, which represent the distance of the near and far planes from the camera position.</dd>
+</dl>
+
+<a class="internalNavLink" name="internalH1Link3" id="internalH1Link3"></a><h2>Useful shader calculations</h2>
+
+<p>Some common calculations done with the available uniforms are listed below.</p>
+
+<p>To sample the foreground pixel:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">lowp vec4 front <span class="token operator">=</span> <span class="token function">texture2D</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span>samplerFront<span class="token punctuation">,</span> vTex<span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>To sample an adjacent pixel, offset by the pixel size:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// sample next pixel to the right</span>
+lowp vec4 next <span class="token operator">=</span> <span class="token function">texture2D</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span>samplerFront<span class="token punctuation">,</span> vTex <span class="token operator">+</span> <span class="token function">vec2</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-1-close">(</span>pixelSize<span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-1-open">)</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>To calculate the position to sample the background, find the normalised position <code>n</code> of <code>vTex</code> in the foreground rectangle, and apply that to the background rectangle:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">mediump vec2 n <span class="token operator">=</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-3-close">(</span>vTex <span class="token operator">-</span> srcStart<span class="token punctuation brace-round brace-close brace-level-1" id="pair-3-open">)</span> <span class="token operator">/</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-4-close">(</span>srcEnd <span class="token operator">-</span> srcStart<span class="token punctuation brace-round brace-close brace-level-1" id="pair-4-open">)</span><span class="token punctuation">;</span>
+lowp vec4 back <span class="token operator">=</span> <span class="token function">texture2D</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-6-close">(</span>samplerBack<span class="token punctuation">,</span> <span class="token function">mix</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-5-close">(</span>destStart<span class="token punctuation">,</span> destEnd<span class="token punctuation">,</span> n<span class="token punctuation brace-round brace-close brace-level-2" id="pair-5-open">)</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-6-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>Sampling the depth buffer works similarly to sampling the background, but only provides one component, so just read the <code>r</code> value. Note that the value in the depth buffer is normalized (0-1 range) and does not linearly correspond to distance. To get a linearized Z value for a depth sample, use the calculation below, which uses the <code>zNear</code> and <code>zFar</code> uniforms.</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">mediump vec2 n <span class="token operator">=</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-7-close">(</span>vTex <span class="token operator">-</span> srcStart<span class="token punctuation brace-round brace-close brace-level-1" id="pair-7-open">)</span> <span class="token operator">/</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-8-close">(</span>srcEnd <span class="token operator">-</span> srcStart<span class="token punctuation brace-round brace-close brace-level-1" id="pair-8-open">)</span><span class="token punctuation">;</span>
+mediump float depthSample <span class="token operator">=</span> <span class="token function">texture2D</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-10-close">(</span>samplerDepth<span class="token punctuation">,</span> <span class="token function">mix</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-9-close">(</span>destStart<span class="token punctuation">,</span> destEnd<span class="token punctuation">,</span> n<span class="token punctuation brace-round brace-close brace-level-2" id="pair-9-open">)</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-10-open">)</span><span class="token punctuation">.</span>r<span class="token punctuation">;</span>
+mediump float zLinear <span class="token operator">=</span> zNear <span class="token operator">*</span> zFar <span class="token operator">/</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-12-close">(</span>zFar <span class="token operator">+</span> depthSample <span class="token operator">*</span> <span class="token punctuation brace-round brace-open brace-level-2" id="pair-11-close">(</span>zNear <span class="token operator">-</span> zFar<span class="token punctuation brace-round brace-close brace-level-2" id="pair-11-open">)</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-12-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>To calculate the current texture co-ordinate relative to the object being rendered, without being affected by clipping at the edge of the viewport, use the original source rectangle:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">mediump vec2 srcOriginSize <span class="token operator">=</span> srcOriginEnd <span class="token operator">-</span> srcOriginStart<span class="token punctuation">;</span>
+mediump vec2 n <span class="token operator">=</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-14-close">(</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-13-close">(</span>vTex <span class="token operator">-</span> srcOriginStart<span class="token punctuation brace-round brace-close brace-level-2" id="pair-13-open">)</span> <span class="token operator">/</span> srcOriginSize<span class="token punctuation brace-round brace-close brace-level-1" id="pair-14-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>To calculate the current layout co-ordinates being rendered, add an extra step to interpolate <code>n</code> across the layout rectangle:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">mediump vec2 srcOriginSize <span class="token operator">=</span> srcOriginEnd <span class="token operator">-</span> srcOriginStart<span class="token punctuation">;</span>
+mediump vec2 n <span class="token operator">=</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-16-close">(</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-15-close">(</span>vTex <span class="token operator">-</span> srcOriginStart<span class="token punctuation brace-round brace-close brace-level-2" id="pair-15-open">)</span> <span class="token operator">/</span> srcOriginSize<span class="token punctuation brace-round brace-close brace-level-1" id="pair-16-open">)</span><span class="token punctuation">;</span>
+mediump vec2 l <span class="token operator">=</span> <span class="token function">mix</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-17-close">(</span>layoutStart<span class="token punctuation">,</span> layoutEnd<span class="token punctuation">,</span> n<span class="token punctuation brace-round brace-close brace-level-1" id="pair-17-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>Construct renders using premultiplied alpha. Often it is convenient to modify the RGB components without premultiplication. To do this, divide by alpha to unpremultiply the color, but be sure not to divide by zero.</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript">lowp vec4 front <span class="token operator">=</span> <span class="token function">texture2D</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-18-close">(</span>samplerFront<span class="token punctuation">,</span> vTex<span class="token punctuation brace-round brace-close brace-level-1" id="pair-18-open">)</span><span class="token punctuation">;</span>
+lowp float a <span class="token operator">=</span> front<span class="token punctuation">.</span>a<span class="token punctuation">;</span>
+
+<span class="token comment">// unpremultiply</span>
+<span class="token keyword">if</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-19-close">(</span>a <span class="token operator">!=</span> <span class="token number">0.0</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-19-open">)</span>
+	front<span class="token punctuation">.</span>rgb <span class="token operator">/=</span> a<span class="token punctuation">;</span>
+
+<span class="token comment">// ...modify unpremultiplied front color...</span>
+
+<span class="token comment">// premultiply again</span>
+front<span class="token punctuation">.</span>rgb <span class="token operator">*=</span> a<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw"></div></div></div></div></div></div></div></div></div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

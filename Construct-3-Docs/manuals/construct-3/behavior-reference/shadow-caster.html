@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/behavior-reference/shadow-caster" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Shadow caster behavior
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Shadow caster behavior</strong> marks an object as casting a shadow from a <a class="extern" href="../plugin-reference/shadow-light.html" rel="noopener" target="_blank" title="Make your own games">Shadow light</a> object. For more information, see the documentation for <em>Shadow light</em>.</p>
+<p>Shadows are cast from the object's collision polygon, if it has one, otherwise its bounding rectangle.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, the features of this behavior can be accessed via the <a class="extern" href="../scripting/scripting-reference/behavior-interfaces/shadow-caster.html" rel="noopener" target="_blank" title="Make your own games">IShadowCasterBehaviorInstance script interface</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Collision polygon shape</h2>
+<p>Objects with the <em>Shadow caster</em> behavior must use <a class="extern outlink" href="https://en.wikipedia.org/wiki/Convex_polygon" rel="nofollow noopener external" target="_blank" title="Go to: https://en.wikipedia.org/wiki/Convex_polygon">convex collision polygons</a>. Shadows will not render correctly if they use concave polygons. If you need a concave shape, this can always be achieved by placing multiple shadow caster objects next to each other to compose a concave shape out of convex parts.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Shadow caster properties</h2>
+<dl class="sans">
+<dt>Height</dt>
+<dd>The simulated height of the object, which adjusts the length of shadow it casts. If the <em>Shadow light</em> height is less than or equal to the object height, it casts an "infinite" shadow which goes all the way offscreen; if it is higher, it uses the relative heights to calculate how long a shadow to cast. For example two objects with different heights will cast different length shadows.</dd>
+<dt>Tag</dt>
+<dd>A tag for this shadow casting object. A <em>Shadow light</em> object also has a tag, and can be set to only cast shadows from shadow casters with the same or different tags to itself. This can be used to have different <em>Shadow lights</em> casting shadows off different sets of objects, such as to have shadows working at different levels of Z order.</dd>
+<dt>Enabled</dt>
+<dd>Whether the behavior is initially enabled or disabled. If disabled, the object will not cast a shadow.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Shadow caster conditions</h2>
+<dl class="sans">
+<dt>Compare height</dt>
+<dd>Compare the current height property of the behavior to a value.</dd>
+<dt>Is enabled</dt>
+<dd>True if the behavior is currently enabled so it can cast shadows.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Shadow caster actions</h2>
+<dl class="sans">
+<dt>Set enabled</dt>
+<dd>Enable or disable the behavior. If disabled, the object will not cast a shadow.</dd>
+<dt>Set height</dt>
+<dd>Set the height property of the behavior. For more information see <em>Shadow caster properties</em>.</dd>
+<dt>Set tag</dt>
+<dd>Change the tag of the behavior. For more information see <em>Shadow caster properties</em>.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Shadow caster expressions</h2>
+<dl class="sans">
+<dt>Height</dt>
+<dd>Return the current height property.</dd>
+<dt>Tag</dt>
+<dd>Return the currently set tag for the behavior.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

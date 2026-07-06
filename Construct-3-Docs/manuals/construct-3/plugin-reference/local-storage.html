@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/local-storage" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Local Storage
+            </h1>
+<div itemprop="articleBody">
+<p>The <strong>Local Storage</strong> plugin can <strong>store data locally</strong> on the user's device. For example it can be used to store a personal best high-score. Note if you want a full-state save and load feature, see <a class="extern" href="https://www.construct.net/tutorials/how-to-make-savegames-11.html" rel="noopener" target="_blank" title="Make your own games">How to make savegames</a>.</p>
+<p>Local Storage works offline, since it stores data to the device itself. Different browsers use different storages, so data is not shared between different browsers on the same computer - each browser has its own unique storage. This is also separate to the browser cache, which is temporary storage to avoid needlessly re-downloading the same files over and over again. However the user can usually still choose to clear local storage data from their browser (with an option perhaps named something like "clear offline website data"). Non-browser export options like desktop exports and mobile apps are not affected by the user clearing any amount of data from any browser, they also use separate storage. Finally for security reasons browsers use separate storage per domain. For example all content on <em>construct.net</em> shares the same storage, but content on <em>facebook.com</em> uses a different storage and cannot access any data saved from <em>construct.net</em>.</p>
+<h3>Scripting</h3>
+<p>When using JavaScript or TypeScript coding, you can use the <a class="extern" href="../scripting/scripting-reference/interfaces/istorage.html" rel="noopener" target="_blank" title="Make your own games">IStorage</a> interface to access the same storage as Construct uses for this object (there is no dedicated script interface for the Local Storage plugin itself). Further, you can use the browser built-in storage APIs such as <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a> for more advanced cases.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Storage location on disk</h2>
+<p>The Local Storage plugin stores all saved data in an internal browser database. This does not produce any easily discoverable files on disk. If you want to save data to easily identifiable files on disk, such as storing save data in a file in the user's Documents folder, consider using the <a class="extern" href="filesystem.html" rel="noopener" target="_blank" title="Make your own games">File System plugin</a> instead.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Storage quotas</h2>
+<p>To prevent abuse, most browsers implement a storage quota, which is a maximum amount of data that can be saved locally. On most modern browsers this is defined as a proportion of the free storage space on the device. You can check the available quota on a device by loading Construct and checking the About dialog which shows the quota available. If the quota is exceeded, the <em>On error</em> trigger will fire when writing to storage.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Using Local Storage</h2>
+<p>Local Storage uses a very simple storage system: values are stored under named <em>keys</em>, similar to how the <a class="extern" href="dictionary.html" rel="noopener" target="_blank" title="Make your own games">Dictionary</a> object works. For example the value 100 could be stored under a key named <em>score</em>.</p>
+<p>Local Storage is asynchronous. This means reading and writing data does not complete immediately. The actions only start the process of reading or writing a value, and the project continues to run in the interim. This ensures that slow or busy storage systems do not impact the performance of the project. When the read or write is complete, a trigger fires (<em>On item get</em> or <em>On item set</em>) which indicates either the value is available to read (with the <em>ItemValue</em> expression) or that the value was successfully written.</p>
+<p>For example here is a flow to read the value of the key "score":</p>
+<ol class="list">
+<li>Use the action <em>Get item "score"</em></li>
+<li>A moment later, <em>On item "score" get</em> triggers</li>
+<li>In this trigger, use the <em>ItemValue</em> expression to read the item</li>
+</ol>
+<p>Here is a flow to set the new value of "score":</p>
+<ol class="list">
+<li>Use the action <em>Set item "score" to 100</em></li>
+<li>A moment later, <em>On item "score" set</em> triggers</li>
+<li>You may not need to do anything in this trigger, but it indicates the value has been successfully written. The <em>Key</em> and <em>ItemValue</em> expressions are still set in this trigger in case you need them.</li>
+</ol>
+<p>Note that you must be careful to avoid "races" when using asynchronous storage. For example the <em>Clear storage</em> action may take a moment to complete before it fires <em>On storage cleared</em>. It is possible to write more values to storage in between, while <em>Clear storage</em> is still processing. This is like "racing" the <em>Clear storage</em> and <em>Set item</em> actions: the end result depends on what order they complete in, which is unpredictable. In this case it is more or less random what happens: the written keys may be cleared, or they may not be - you cannot rely on any specific result. Therefore you should be careful to avoid this case.</p>
+<a class="internalNavLink" id="internalH1Link3" name="internalH1Link3"></a><h2>Simplifying usage with Dictionary</h2>
+<p>Although it improves performance, dealing with asynchronous reads and writes can sometimes be difficult. One simple way to conveniently have synchronous storage is to store an entire <a class="extern" href="dictionary.html" rel="noopener" target="_blank" title="Make your own games">Dictionary</a> object's contents to Local Storage, by saving its <em>AsJSON</em> string. Then you can load this content from Local Storage with the <em>Load</em> action. This means only saving and loading the dictionary contents is asynchronous, and the rest of the time you can use the Dictionary object's features to synchronously access data, such as simply using its <em>Get</em> expression to immediately read a value. However you must remember to save the Dictionary again at some point before the user quits the project.</p>
+<a class="internalNavLink" id="internalH1Link4" name="internalH1Link4"></a><h2>Redirecting storage</h2>
+<p>If you have a complex existing project and you decide you want to change how data is saved - such as by saving it to a file with the File System plugin, or using a cloud service - updating all usages of the Local Storage plugin can be tricky. To help with this you can enable the <em>In memory only</em> property of the object. This essentially disables the use of storage and only holds data in memory, and the data will be lost when reloading the page or app. However the data can then be accessed using the <em>MemoryStorageAsJSON</em> expression for saving elsewhere, and loaded with the <em>Load memory from JSON</em> action, to persist storage somewhere else. Note that if you use this to save to a cloud service, you may want to check the size of the saved data - usually it is not a problem to save a large amount of data locally, but it may turn out to be too much to upload and download.</p>
+<a class="internalNavLink" id="internalH1Link5" name="internalH1Link5"></a><h2>Local Storage properties</h2>
+<dl class="sans">
+<dt>In-memory only</dt>
+<dd>Check to enable in-memory only storage mode. In this mode data will not be persisted if the page or app is closed, but can be stored elsewhere instead - see <em>Redirecting storage</em> above for more details.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link6" name="internalH1Link6"></a><h2>Local Storage conditions</h2>
+<dl class="sans">
+<dt>On any item get</dt>
+<dd>Triggered after any <em>Get item</em> action completes.</dd>
+<dt>On any item removed</dt>
+<dd>Triggered after any <em>Remove item</em> action completes.</dd>
+<dt>On any item set</dt>
+<dd>Triggered after any <em>Set item</em> action completes.</dd>
+<dt>On item exists</dt>
+<dd>Triggered after the <em>Check item exists</em> action completes if the key checked does indeed exist. In this trigger the <em>ItemValue</em> expression is also set to the value of this key, so there is no need to use another <em>Get item</em> action to read it.<br/>
+</dd>
+<dt>On item get</dt>
+<dd>Triggered after a <em>Get item</em> action completes for a given key. The <em>ItemValue</em> expression is set to the value of the key, except for when reading binary data.</dd>
+<dt>On item missing</dt>
+<dd>Triggered after the <em>Check item exists</em> action completes if the key checked does not exist.</dd>
+<dt>On item removed</dt>
+<dd>Triggered after the <em>Remove item</em> action completes for a given key.</dd>
+<dt>On item set</dt>
+<dd>Triggered after the <em>Set item</em> action completes for a given key. This indicates the data is now in storage.</dd>
+<dt>Compare key</dt>
+<dd>Compare the current value of the <em>Key</em> expression, which is the name of the current key in a trigger. This can be useful in the <em>On any item...</em> triggers.</dd>
+<dt>Compare value</dt>
+<dd>Compare the current value of the <em>ItemValue</em> expression, which is set to the item value when getting an item or in <em>On item exists</em>.</dd>
+<dt>Is persistent</dt>
+<dd>True if the browser has granted the current domain persistent storage permission. See the <em>Request persistent storage</em> action for more details.</dd>
+<dt>On all key names loaded</dt>
+<dd>Triggered after the <em>Get all key names</em> action completes. In this trigger the <em>KeyCount</em> and <em>KeyAt</em> expressions give the list of all the key names.</dd>
+<dt>On error</dt>
+<dd>Triggered at any time while using Local Storage if an error occurs, such as if a write failed, or the maximum storage quota was exceeded. The <em>ErrorMessage</em> expression is set to the error message if available.</dd>
+<dt>On storage cleared</dt>
+<dd>Triggered after the <em>Clear storage</em> action completes and storage is now empty.</dd>
+<dt>Is processing gets</dt>
+<dd>True if any <em>Get item</em> actions are still processing, i.e. any <em>On item get</em> trigger is yet to fire for a <em>Get item</em> action.</dd>
+<dt>Is processing sets</dt>
+<dd>True if any <em>Set item</em> actions are still processing, i.e. any <em>On item set</em> trigger is yet to fire for a <em>Set item</em> action.</dd>
+<dt>On all gets complete</dt>
+<dd>Triggered when all outstanding <em>Get item</em> actions are completed, i.e. when <em>Is processing gets</em> first becomes false. In other words if 10 <em>Get item</em> actions are all used at the same time, <em>On all gets complete</em> triggers when all 10 items have been read and fired their <em>On item get</em> triggers.</dd>
+<dt>On all sets complete</dt>
+<dd>Triggered when all outstanding <em>Set item</em> actions are completed, i.e. when <em>Is processing sets</em> first becomes false. In other words if 10 <em>Set item</em> actions are all used at the same time, <em>On all sets complete</em> triggers when all 10 items have been written and fired their <em>On item set</em> triggers.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link7" name="internalH1Link7"></a><h2>Local Storage actions</h2>
+<dl class="sans">
+<dt>Check item exists</dt>
+<dd>Check if a key exists in storage. This triggers either <em>On item exists</em> if the key exists, or <em>On item missing</em> if the key does not exist. If the item exists, the <em>ItemValue</em> expression is set to the key value in the <em>On item exists</em> trigger, so there is no need to use a subsequent <em>Get item</em> action to read the value.<br/>
+</dd>
+<dt>Get item</dt>
+<dt>Get binary item</dt>
+<dd>Read the value of a key in storage. This triggers <em>On item get</em> when the value has been read. When reading binary data, the data will be written to the chosen <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object; otherwise the <em>ItemValue</em> expression is set to the value of the key.</dd>
+<dt>Remove item</dt>
+<dd>Remove (delete) a key from storage. This triggers <em>On item removed</em> when the key has been removed.</dd>
+<dt>Set item</dt>
+<dt>Set binary item</dt>
+<dd>Set the value of a key in storage. This triggers <em>On item set</em> when the value has been written. When setting binary data, the contents of a <a class="extern" href="binary-data.html" rel="noopener" target="_blank" title="Make your own games">Binary Data</a> object are written; otherwise the text or number provided is used.</dd>
+<dt>Clear storage</dt>
+<dd>Remove (delete) all items from storage, reverting it back to the empty state. This triggers <em>On storage cleared</em> when completed.</dd>
+<dt>Get all key names</dt>
+<dd>Retrieve a list of all the key names that currently exist in storage. This triggers <em>On all key names loaded</em> when the list has been loaded, where the <em>KeyCount</em> and <em>KeyAt</em> expressions can be used to access the list.</dd>
+<dt>Request persistent storage</dt>
+<dd>Request that storage be made persistent for the current domain. This typically only applies to web browsers, as all other export options already use persistent storage. In the context of a web browser, all storage is preserved on a "best effort" basis, but may be erased in various situations such as if too much storage space is being used, if the site has not been visited for too long, and so on. If persistent storage permission is granted, then the browser will avoid automatically deleting the storage wherever possible; it may also avoid deleting the storage even if the user chooses to clear storage in browser settings, unless they specifically acknowledge they want to delete the site's data. Requesting persistent storage may show a visible prompt to the user asking them to accept permission, and this action may only be allowed to be used in a user input trigger (such as mouse click or touch). The action is asynchronous, meaning it can be used with <em>Wait for previous actions to complete</em>, after which the permission will have been granted or refused. The <em>Is persistent</em> condition reflects the current persistent permission state.</dd>
+<dt>Load memory from JSON</dt>
+<dd>Only applicable when the property <em>In-memory only</em> is enabled. Load the entire state of the storage - including all keys and values - from a string of JSON data previously returned by the <em>MemoryStorageAsJSON</em> expression. For more details on usage, see <em>Redirecting storage</em> above.</dd>
+</dl>
+<a class="internalNavLink" id="internalH1Link8" name="internalH1Link8"></a><h2>Local Storage expressions</h2>
+<dl class="sans">
+<dt>ItemValue</dt>
+<dd>The value for a key that has been read or written in a Local Storage trigger, such as <em>On item get</em> or <em>On item exists</em>. This can be either a string or a number. This returns 0 if used outside of a Local Storage trigger, or if binary data was stored instead of text or a number.</dd>
+<dt>Key</dt>
+<dd>The name of the key that was modified in any Local Storage trigger, such as <em>On item get</em>, <em>On item set</em> or <em>On any item set</em>. This returns an empty string if used outside of a Local Storage trigger.</dd>
+<dt>ErrorMessage</dt>
+<dd>In <em>On error</em>, the text of the error message if any is available.</dd>
+<dt>KeyAt(index)</dt>
+<dd>In <em>On all key names loaded</em>, the name of the key at the given zero-based index in the list.</dd>
+<dt>KeyCount</dt>
+<dd>In <em>On all key names loaded</em>, the number of key names in the list.</dd>
+<dt>MemoryStorageAsJSON</dt>
+<dd>Only applicable when the property <em>In-memory only</em> is enabled. Returns the entire state of the storage - including all keys and values - as a string of JSON data. This can then be loaded again later with the <em>Load memory from JSON</em> action. For more details on usage, see <em>Redirecting storage</em> above.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

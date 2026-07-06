@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/porting-c2-addons" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Porting Construct 2 plugins/behaviors
+            </h1>
+<div itemprop="articleBody">
+<p>To port a Construct 2 plugin or behavior to Construct 3, use the following checklist.</p>
+<ol class="list">
+<li>Start by copying the template SDK to a new folder.</li>
+<li>Update the <a class="extern" href="addon-metadata.html" rel="noopener" target="_blank" title="Make your own games">addon metadata</a> in addon.json.</li>
+<li>Update the icon. An SVG icon is preferable. The .ico files Construct 2 uses are not supported in Construct 3, but you can use a PNG icon. Just delete icon.svg, add icon.png, and call <code>this._info.SetIcon("icon.png", "image/png");</code> in the plugin/behavior constructor.</li>
+<li>Update the plugin/behavior constants and identifiers in plugin.js/behavior.js, type.js and instance.js, as described in <a class="extern" href="configuring-plugins.html" rel="noopener" target="_blank" title="Make your own games">configuring plugins</a>/<a class="extern" href="configuring-behaviors.html" rel="noopener" target="_blank" title="Make your own games">configuring behaviors</a>.</li>
+<li>Match your Construct 2 addon's configuration by making calls to <a class="extern" href="../reference/iplugininfo.html" rel="noopener" target="_blank" title="Make your own games">IPluginInfo</a>/<a class="extern" href="../reference/ibehaviorinfo.html" rel="noopener" target="_blank" title="Make your own games">IBehaviorInfo</a> in the addon constructor. For example if your Construct 2 plugin was a single-global plugin, the Construct 3 plugin should call <code>this._info.SetIsSingleGlobal(true);</code> in the plugin constructor.</li>
+<li>Add equivalent properties as the Construct 2 addon has. See <em>Specifying plugin properties</em> in <a class="extern" href="configuring-plugins.html" rel="noopener" target="_blank" title="Make your own games">configuring plugins</a>. (The process is identical for behaviors.)</li>
+<li>Create corresponding action, condition and expression definitions. See <a class="extern" href="defining-aces.html" rel="noopener" target="_blank" title="Make your own games">defining actions, conditions and expressions</a>. The key point to ensure Construct 2 projects using your addon can be imported to Construct 3 is:
+
+<ul class="list">
+<li>Give every action, condition and expression a new <code>id</code> based on a string</li>
+<li>Also set the <code>c2id</code> property to the corresponding numeric ID that the Construct 2 addon used</li>
+</ul>
+</li>
+<li>Update <a class="extern" href="language-file.html" rel="noopener" target="_blank" title="Make your own games">the language file</a> to contain the UI strings for the addon, properties, and ACEs.</li>
+<li>You'll then need to port the runtime script to the C3 runtime, since Construct 3 introduced an entirely rewritten engine.</li>
+</ol>
+<p>Once complete, zip all the addon files and rename the .zip to .c3addon. You should now have a addon you can install via the Addon Manager in Construct 3.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

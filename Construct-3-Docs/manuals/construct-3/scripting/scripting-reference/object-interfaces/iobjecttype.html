@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/scripting-reference/object-interfaces/iobjecttype" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IObjectType script interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IObjectType</code> script interface represents an object type in the project, e.g. a Sprite object type. An object type can have multiple instances created, which are represented by the <a class="extern" href="iworldinstance.html" rel="noopener" target="_blank" title="Make your own games">IWorldInstance</a> script interface if it appears in a layout, otherwise the <a class="extern" href="iinstance.html" rel="noopener" target="_blank" title="Make your own games">IInstance</a> interface.
+</p>
+<p><code>IObjectType</code> derives from <a class="extern" href="iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> which is a base class shared with families (<a class="extern" href="ifamily.html" rel="noopener" target="_blank" title="Make your own games">IFamily</a>).
+</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Getting an IObjectType</h2>
+<p>References to the project's object types are typically accessed through the <a class="extern" href="../iruntime.html" rel="noopener" target="_blank" title="Make your own games">IRuntime</a> interface <code>objects</code> property. For example <code>runtime.objects.Sprite</code> would refer to the <code>IObjectType</code> interface for the <em>Sprite</em> object type, assuming one was added to the project.
+</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Examples</h2>
+<p>The following examples demonstrate using some features of <code>IObjectType</code>:
+</p>
+<ul class="list">
+<li><a class="extern" href="https://editor.construct.net/#open=instancedestroy-event" rel="noopener" target="_blank" title="Make games in the browser">Instance destroy event</a> demonstrates the use of the <code>"instancedestroy"</code> event</li>
+<li><a class="extern" href="https://editor.construct.net/#open=iterating-instances" rel="noopener" target="_blank" title="Make games in the browser">Iterating instances</a> demonstrates the use of the <code>instances()</code> iterator to modify all instances</li>
+</ul>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Object type APIs</h2>
+<dl>
+<dt>setInstanceClass(Class)</dt>
+<dd>Set a custom class to be used to represent instances of this object type. The class must derive from the default class. This can only be called in <code>runOnStartup</code>, before any instances have been created. For more information see the guide on <a class="extern" href="../../guides/subclassing-instances.html" rel="noopener" target="_blank" title="Make your own games">subclassing instances</a>.</dd>
+<dt>createInstance(layerNameOrIndex, x, y, createHierarchy, template)</dt>
+<dd>Create a new instance of the object type at a position. The layer to create on is specified either by a case-insensitive string of the layer name or its zero-based index. The position is given in layout co-ordinates. If <code>createHierarchy</code> is true, all children of the created instance in the scene-graph hierarchy will also be created automatically with their connections in place. If <code>template</code> is a valid template name then the new instance will be based on the template rather than an arbitrary instance. The return value is the script interface for the created instance. 
+<br/>
+</dd>
+<dt>getAllFamilies()</dt>
+<dd>Return an array of <a class="extern" href="ifamily.html" rel="noopener" target="_blank" title="Make your own games">IFamily</a> listing all the families this object type belongs to.</dd>
+<dt>*families()</dt>
+<dd>Iterates over all the families this object type belongs to (as <code>IFamily</code>).</dd>
+<dt>isInFamily(family)</dt>
+<dd>Returns a boolean indicating if this object type belongs to the specified <code>IFamily</code>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

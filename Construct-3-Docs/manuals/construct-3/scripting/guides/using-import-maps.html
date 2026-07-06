@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en-US">
+<body>
+    <form method="post" action="https://www.construct.net/en/make-games/manuals/construct-3/scripting/guides/using-import-maps" id="form1">
+
+
+
+
+
+
+        
+        
+            
+        
+        
+        
+
+        
+    
+    
+    
+
+        
+        <main>
+
+            
+    
+    <div id="UnderTopNavContent" class="underTopNavContent">
+        
+    
+    <div class="manualContentWrap">
+        
+        <div class="mainContentWrap">
+            
+            
+            <div class="manualContentSplitter">
+                
+    <div class="manualContent">
+        
+        
+
+        
+        <div itemscope="" itemtype="http://schema.org/Article">
+            <h1 itemprop="headline">
+                Using import maps
+            </h1>
+            <div itemprop="articleBody">
+                <p>Construct allows using <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap" target="_blank" rel="nofollow noopener external" title="Go to: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap" class="extern outlink">import maps</a> to customize how you write <code>import</code> statements.</p>
+
+<p>Normally you must import a script by its file path, such as:</p>
+
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Standard path-based import</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> MyModule <span class="token keyword">from</span> <span class="token string">"./mymodule.js"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>However with an import map you can write something like this instead:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Standard path-based import</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> MyModule <span class="token keyword">from</span> <span class="token string">"mymodule"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>The import map then determines what path to use for "mymodule".</p>
+
+<a class="internalNavLink" name="internalH1Link0" id="internalH1Link0"></a><h2>Adding an import map</h2>
+<p>Import maps are defined as JSON files. To add an import map to your project, follow these steps.</p>
+
+<ol class="list">
+	<li>In the Project Bar, right-click on <em>Files</em> and select <span class="navWrap">New<span class="arr">►</span>JSON</span></li>
+	<li>Name the file something like <em>importMap.json</em>.</li>
+	<li>Click the file in the Project Bar to show its properties in the Properties Bar.</li>
+	<li>Change the <em>Purpose</em> property to <em>Import map</em>.</li>
+</ol>
+
+<p>For the contents of the import map, use some JSON data like the following. Refer to the MDN article linked above for full details on the format.</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token punctuation brace-curly brace-open brace-level-1" id="pair-1-close">{</span>
+	<span class="token string-property property">"imports"</span><span class="token operator">:</span> <span class="token punctuation brace-curly brace-open brace-level-2" id="pair-0-close">{</span>
+		<span class="token string-property property">"mymodule"</span><span class="token operator">:</span> <span class="token string">"./mymodule-v1.js"</span>
+	<span class="token punctuation brace-curly brace-close brace-level-2" id="pair-0-open">}</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-1-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>Now if you write this in a script file:</p>
+
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Standard path-based import</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> MyModule <span class="token keyword">from</span> <span class="token string">"mymodule"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+
+<p>...the import map means that importing "mymodule" will load the path "./mymodule-v1.js".</p>
+
+<a class="internalNavLink" name="internalH1Link1" id="internalH1Link1"></a><h2>Why to use import maps</h2>
+<p>You don't have to use import maps, but they can be a handy way to organize your imports. To illustrate this, using the example above, suppose you import "mymodule" in lots of places. You can then change that from importing "./mymodule-v1.js" to importing "./mymodule-v2.js" merely by changing the entry in the import map - you don't have to go through every place it's imported and update it. So import maps can help manage complex sets of imports more easily.</p>
+
+<p>Some third-party libraries like three.js also rely on import maps, and so supporting them makes it easier to use these libraries. You can find an example of this in the <a href="https://editor.construct.net/#open=integrated-3d-engine" target="_blank" rel="noopener" title="Make games in the browser" class="extern">Integrated 3D engine example</a>.</p>
+
+<a class="internalNavLink" name="internalH1Link2" id="internalH1Link2"></a><h2>Limitations</h2>
+<p>As of September 2024, browsers don't support using import maps in web workers. Therefore if you use import maps, your project will run in DOM mode and not be able to use worker mode.</p>
+
+<p>Currently Construct only supports the <code>"imports"</code> field in an import map. The <code>"scopes"</code> and <code>"integrity"</code> fields are supported by browsers, but are not yet supported in exported projects, as these need special handling for cases like minified exports.</p></div></div></div></div></div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+
+
+            
+        
+            
+
+        </main>
+
+        
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+
+        
+		
+		
+		
+		
+		
+		
+
+        
+        
+    
+
+
+
+        
+    
+
+</form>
+    
+    
+
+    
+
+
+</body></html>

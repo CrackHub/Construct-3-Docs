@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/guide/runtime-scripts" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                Runtime scripts
+            </h1>
+<div itemprop="articleBody">
+<p>Plugin and behavior addons have separate scripts that run in the context of the runtime (the Construct game engine) rather than the editor.</p>
+<h3>Runtime documentation</h3>
+<p>In Construct's addon SDK, runtime scripts are based on the same APIs as used by Construct's scripting feature. The APIs specific to the Addon SDK can be found in the <a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces.html" rel="noopener" target="_blank" title="Make your own games">Addon SDK interfaces</a> section of the scripting reference in the Construct manual. Further, all the APIs in the rest of the <a class="extern" href="../../construct-3/scripting/scripting-reference.html" rel="noopener" target="_blank" title="Make your own games">scripting reference</a> section of Construct's manual are also accessible to addons.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Using modules</h2>
+<p>A major feature of the Addon SDK is first-class support for modules. These allow you to use <code>import</code> and <code>export</code> in your addon's runtime scripts.</p>
+<h3>Configuring use of modules</h3>
+<p>By default the Addon SDK samples are all already configured to use modules. However for clarity, to use modules an addon must be configured as follows:</p>
+<ol class="list">
+<li>The editor plugin must call <code>this._info.SetRuntimeModuleMainScript("c3runtime/main.js")</code> to set the runtime script file <em>main.js</em> as the main script. Then this is the only script that Construct loads.</li>
+<li>All other runtime scripts must then be imported in main.js, e.g. <code>import "./instance.js";</code></li>
+<li>Add main.js to the <code>file-list</code> in addon.json so it works in developer mode</li>
+</ol>
+<p>If an addon does not call <code>SetRuntimeModuleMainScript()</code>, then Construct automatically generates a main script that imports every runtime file. However this is not the right way to use modules if you want to do something like <code>import</code> a module in one of your existing runtime files.</p>
+<h3>Adding a module script</h3>
+<p>Assuming the addon is already configured to use modules - which all the Addon SDK samples are - then if you want to import a new module script named <em>mymodule.js</em>, these are the steps to follow.</p>
+<ol class="list">
+<li>Create the file <em>c3runtime/mymodule.js</em> and write an <code>export</code> in it.</li>
+<li>In the editor plugin/behavior script, call <code>this._info.AddC3RuntimeScript("c3runtime/mymodule.js");</code> to add it as a runtime script, so the editor knows the file exists.</li>
+<li>In addon.json add <em>c3runtime/mymodule.js</em> to <code>"file-list"</code> so the file is available in developer mode.</li>
+<li>Import the new module in an existing runtime script. For example at the top of instance.js you could write: <code>import * as MyModule from "./mymodule.js";</code></li>
+</ol>
+<p>In short, when an addon is configured to use modules, all you need to do to add a new module script is to add it as a runtime file and then <code>import</code> it somewhere.</p>
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>DOM calls in the C3 runtime</h2>
+<p>A major architectural feature of the runtime is the ability to host the runtime in a dedicated worker, off the main thread. In this mode it renders using OffscreenCanvas. With the modern web platform, many functions and classes are available in dedicated workers, and more are being added over time. Refer to <a class="extern outlink" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers" rel="nofollow noopener external" target="_blank" title="Go to: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers">this MDN guide</a> on available APIs in workers.</p>
+<p>Providing your addon's runtime calls only use APIs available in a worker, such as <code>fetch()</code> or IndexedDB, then it will not need any changes to support a worker. However if it does use APIs not normally available in a worker, then it will need some changes.</p>
+<p>The principle behind making calls to the main thread in the C3 runtime is to split the runtime scripts in to two halves: the runtime side (that runs in the worker), and the DOM side (that runs on the main thread where the document is). The DOM side has full access to all browser APIs. The runtime side can issue DOM calls using a specially-designed messaging API built in to the runtime. Essentially instead of making a call, your addon can post a message with parameters for the call to the script on the DOM side, where the API call is really made. The DOM side can then send a message back with a result, or send messages to the runtime on its own, such as in response to events. The messaging APIs make this relatively straightforward. However one consequence to note is that a synchronous API call will become asynchronous, since the process of messaging to or from a worker is asynchronous.</p>
+<p>Once this approach is used, there is no need to change anything to support the normal (non-Worker) mode. In this case both scripts will run in the same context and the messaging API will just forward messages within the same context too. Therefore this one approach covers both cases, and ensures code works identically regardless of whether the runtime is hosted in the main thread or a worker.</p>
+<h3>Using a DOM script</h3>
+<p>By default Construct 3 assumes no DOM scripts are used. If you want to use one, use the following call on IPluginInfo to enable one:</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>_info<span class="token punctuation">.</span><span class="token function">SetDOMSideScripts</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-square brace-open brace-level-2" id="pair-1-close">[</span><span class="token string">"c3runtime/domSide.js"</span><span class="token punctuation brace-square brace-close brace-level-2" id="pair-1-open">]</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></div><div class="articleRender rw">
+<p>Since an array of script paths is used, if you have a lot of DOM code, you can split it across different files. Don't forget to add these files to the file list in <code>addon.json</code>.</p>
+<p>For documentation on the DOM messaging APIs, refer to <a class="extern" href="https://www.construct.net/make-games/manuals/addon-sdk/runtime-reference/base-classes/domelementhandler.html" rel="noopener" target="_blank" title="Make your own games">DOMElementHandler</a> (used in domSide.js), <a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkdompluginbase.html" rel="noopener" target="_blank" title="Make your own games">ISDKDOMPluginBase</a> (used in plugin.js), and <a class="extern" href="../../construct-3/scripting/scripting-reference/addon-sdk-interfaces/isdkdominstancebase.html" rel="noopener" target="_blank" title="Make your own games">ISDKDOMInstanceBase</a> (used in instance.js).</p>
+<p>For an example demonstrating how to get started, see the <strong>domElementPlugin</strong> template in the C3 plugin SDK download. This demonstrates using the above APIs to create a simple <code>&lt;button&gt;</code> element in the DOM with a custom button text, and firing an <em>On clicked</em> trigger, with support for running in a Web Worker.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Supporting the debugger</h2>
+<p>Plugins and behaviors can display custom properties in the debugger by overriding the <code>_getDebuggerProperties()</code> method of the instance class. It should return an array of property sections of the form <code>{ title, properties }</code>, where <code>title</code> is a string of the section title and <code>properties</code> is an array of property objects. Each property object is of the form <code>{ name, value }</code> with an optional <code>onedit</code> callback. The name must be a string, and the value can be a string, number or boolean.</p>
+<h3>Editing properties</h3>
+<p>If an <code>onedit</code> callback is omitted, the debugger displays the property as read-only. If it is provided, the debugger allows the property to be edited. If it is changed, the callback is run with the new value as a parameter.</p>
+<p>In many cases, editing a property does the equivalent of an action. To conveniently manage your code, you can implement actions as methods on your instance class, and call the same method from both the action and the debugger edit handler. As a public method is also accessible from Construct's scripting feature, it also makes the feature accessible from JavaScript code in projects.</p>
+<h3>Translation</h3>
+<p>By default, property section titles and property names are interpreted as language string keys. This allows them to be translated by looking them up in your addon's language file. Note property values do not have any special treatment. You can bypass the language file lookup by prefixing the string with a dollar character <code>$</code>, e.g. the property name <code>"plugins.sprite.debugger.foo"</code> will look up a string in the language file, but <code>"$foo"</code> will simply display the string <code>foo</code>.</p>
+<p>The debugger runs in a separate context to the editor, and as such not all language strings are available. The language keys available in the debugger are:</p>
+<ul class="list">
+<li>The addon name</li>
+<li>All property names</li>
+<li>All combo property items</li>
+<li>Everything under the "debugger" key</li>
+</ul>
+<p>In general, if you need a language string for the debugger, simply place it under the "debugger" key, e.g. at "plugins.sprite.debugger.foo".</p>
+<h3>Sample code</h3>
+<p>The following code is used by the Sprite plugin to display its animation-related debugger properties. Notice how it uses language keys and calls actions to update properties.</p>
+</div><div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token function">_getDebuggerProperties</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-8-close">{</span>
+	<span class="token keyword">const</span> prefix <span class="token operator">=</span> <span class="token string">"plugins.sample-plugin.debugger"</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token punctuation brace-square brace-open brace-level-2" id="pair-4-close">[</span><span class="token punctuation brace-curly brace-open brace-level-3" id="pair-7-close">{</span>
+		<span class="token literal-property property">title</span><span class="token operator">:</span> prefix <span class="token operator">+</span> <span class="token string">".title"</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">properties</span><span class="token operator">:</span> <span class="token punctuation brace-square brace-open brace-level-4" id="pair-3-close">[</span>
+			<span class="token punctuation brace-curly brace-open brace-level-5" id="pair-5-close">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> prefix <span class="token operator">+</span> <span class="token string">".speed"</span><span class="token punctuation">,</span>	<span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>speed<span class="token punctuation">,</span>	<span class="token function-variable function">onedit</span><span class="token operator">:</span> <span class="token parameter">v</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>speed <span class="token operator">=</span> v<span class="token punctuation brace-curly brace-close brace-level-5" id="pair-5-open">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation brace-curly brace-open brace-level-5" id="pair-6-close">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> prefix <span class="token operator">+</span> <span class="token string">".angle"</span><span class="token punctuation">,</span>	<span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>angle<span class="token punctuation">,</span>	<span class="token function-variable function">onedit</span><span class="token operator">:</span> <span class="token parameter">v</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>angle <span class="token operator">=</span> v<span class="token punctuation brace-curly brace-close brace-level-5" id="pair-6-open">}</span>
+		<span class="token punctuation brace-square brace-close brace-level-4" id="pair-3-open">]</span>
+	<span class="token punctuation brace-curly brace-close brace-level-3" id="pair-7-open">}</span><span class="token punctuation brace-square brace-close brace-level-2" id="pair-4-open">]</span><span class="token punctuation">;</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-8-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>

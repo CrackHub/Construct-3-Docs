@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<form action="https://www.construct.net/en/make-games/manuals/addon-sdk/reference/model-interfaces/ieventblock" id="form1" method="post">
+<main>
+<div class="underTopNavContent" id="UnderTopNavContent">
+<div class="manualContentWrap">
+<div class="mainContentWrap">
+<div class="manualContentSplitter">
+<div class="manualContent">
+<div itemscope="" itemtype="http://schema.org/Article">
+<h1 itemprop="headline">
+                IEventBlock interface
+            </h1>
+<div itemprop="articleBody">
+<p>The <code>IEventBlock</code> interface represents an event block in the event sheet. Event blocks are the most important kind of event, and consist of a number of conditions, actions to run when the conditions are met, and optionally further sub-events. It derives from <a class="extern" href="ieventparentrow.html" rel="noopener" target="_blank" title="Make your own games">IEventParentRow</a>.</p>
+<a class="internalNavLink" id="internalH1Link0" name="internalH1Link0"></a><h2>Creating an event block</h2>
+<p>The following code sample demonstrates the calls necessary to add an <em>On start of layout</em> event to the associated event sheet for a given <a class="extern" href="../ui-interfaces/ilayoutview.html" rel="noopener" target="_blank" title="Make your own games">ILayoutView</a>. This is useful with the Custom Importer API, since the <a class="extern" href="../ui-interfaces/utilities.html" rel="noopener" target="_blank" title="Make your own games">AddDragDropFileImportHandler</a> callback provides the ILayoutView that content was dropped in to.</p>
+<div class="articleRender"><div class="codeWrap"><div class="code-toolbar"><pre class="language-javascript line-numbers" tabindex="0"><code class="match-braces language-javascript"><span class="token comment">// Note: this code is assumed to be in an async function</span>
+<span class="token comment">// First get the associated event sheet for the layout view</span>
+<span class="token keyword">const</span> eventSheet <span class="token operator">=</span> layoutView<span class="token punctuation">.</span><span class="token function">GetLayout</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-0-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-0-open">)</span><span class="token punctuation">.</span><span class="token function">GetEventSheet</span><span class="token punctuation brace-round brace-open brace-level-1" id="pair-1-close">(</span><span class="token punctuation brace-round brace-close brace-level-1" id="pair-1-open">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation brace-round brace-open brace-level-1" id="pair-2-close">(</span>eventSheet<span class="token punctuation brace-round brace-close brace-level-1" id="pair-2-open">)</span>	<span class="token comment">// note the layout may not have an event sheet</span>
+<span class="token punctuation brace-curly brace-open brace-level-1" id="pair-8-close">{</span>
+	<span class="token comment">// Get the IObjectType for the System plugin</span>
+	<span class="token keyword">const</span> systemType <span class="token operator">=</span> eventSheet<span class="token punctuation">.</span><span class="token function">GetProject</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-3-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-3-open">)</span><span class="token punctuation">.</span><span class="token function">GetSystemType</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-4-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-4-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Create an empty event block at the root level of the event sheet</span>
+	<span class="token keyword">const</span> eventBlock <span class="token operator">=</span> <span class="token keyword">await</span> eventSheet<span class="token punctuation">.</span><span class="token function">GetRoot</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-5-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-5-open">)</span><span class="token punctuation">.</span><span class="token function">AddEventBlock</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-6-close">(</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-6-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Add an 'On start of layout' condition</span>
+	eventBlock<span class="token punctuation">.</span><span class="token function">AddCondition</span><span class="token punctuation brace-round brace-open brace-level-2" id="pair-7-close">(</span>systemType<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"on-start-of-layout"</span><span class="token punctuation brace-round brace-close brace-level-2" id="pair-7-open">)</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Example code for adding a 'Set position' action</span>
+	<span class="token comment">//eventBlock.AddAction(iObjectType, null, "set-position", [100, 200]);</span>
+<span class="token punctuation brace-curly brace-close brace-level-1" id="pair-8-open">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></div><div class="articleRender rw">
+<a class="internalNavLink" id="internalH1Link1" name="internalH1Link1"></a><h2>Finding condition and action IDs</h2>
+<p>Some developer methods are available to explore the list of condition and action IDs that can be used to create events with. See <a class="extern" href="../finding-addon-ids.html" rel="noopener" target="_blank" title="Make your own games">Finding addon IDs</a> for more information.</p>
+<a class="internalNavLink" id="internalH1Link2" name="internalH1Link2"></a><h2>Methods</h2>
+<dl>
+<dt>AddCondition(iObjectClass, reserved, cndId, params)</dt>
+<dt>AddAction(iObjectClass, reserved, actId, params)</dt>
+<dd>Add a condition or action to this event block. These methods are very similar so they are documented together. <em>iObjectClass</em> must be an <a class="extern" href="../object-interfaces/iobjectclass.html" rel="noopener" target="_blank" title="Make your own games">IObjectClass</a> (i.e. an <a class="extern" href="../object-interfaces/iobjecttype.html" rel="noopener" target="_blank" title="Make your own games">IObjectType</a> or <a class="extern" href="../object-interfaces/ifamily.html" rel="noopener" target="_blank" title="Make your own games">IFamily</a>) to create the condition and action for. The next parameter is reserved for future use; you must pass <code>null</code>. <em>cndId</em> or <em>actId</em> must be a string specifying the condition or action to create; for example the System <em>On start of layout</em> condition ID is <code>"on-start-of-layout"</code>. If the condition or action uses any parameters, then <em>params</em> must be an array with enough elements for every parameter. Each parameter can be a string, number, boolean or IObjectType. Expression parameters use a string, which can be any valid expression (including calculations like <code>"1+1"</code> for number parameters); if you pass a number, it will be converted to a string. IObjectClass can also be passed for object parameters.</dd>
+</dl></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</form>
+</body></html>
